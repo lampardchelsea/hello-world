@@ -1,5 +1,5 @@
-# Start coding with leetcode problems
+# Start coding
 
 Useful links
-<p>_The markdown tutorial_ http://www.markdowntutorial.com/
+<p>The markdown tutorial http://www.markdowntutorial.com/
 
