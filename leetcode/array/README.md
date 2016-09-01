@@ -5,4 +5,5 @@
 
 # Useful links for specific problems
 <p>RemoveElements
-<p>1. [Array size cannot change unless allocate a new one](http://stackoverflow.com/questions/4870188/delete-item-from-array-and-shrink-array)
+<p>1. [Remove element editorial solution] (https://leetcode.com/articles/remove-element/)
+<p>2. [Array size cannot change unless allocate a new one](http://stackoverflow.com/questions/4870188/delete-item-from-array-and-shrink-array)
