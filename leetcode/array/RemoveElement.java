@@ -32,8 +32,10 @@ public class Solution {
                 j++;
             }
         }
-        // Should not return nums.length, based on "It doesn't matter what you leave beyond the new length.",
-        // just return value of i which present remain array length.
+        // Should not return nums.length, otherwise if input [3,2,2,3], 
+        // the resutl will be [2,2,2,3], based on "It doesn't matter 
+        // what you leave beyond the new length.", just return value of 
+        // i which present remain array length.
         return i;
     }
 }
