@@ -1,3 +1,7 @@
+/**
+ * Given array nums1, length m, and nums2, length n, merge into a one array.
+ * Not necessary in place.
+ */
 public class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         int i = 0;
