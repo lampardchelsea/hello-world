@@ -6,3 +6,20 @@
  * Given input array nums = [3,2,2,3], val = 3
  * Your function should return length = 2, with the first two elements of nums being 2.
 */
+public class Solution {
+    public int removeElement(int[] nums, int val) {
+        int i = 0;
+        int j = 0;
+        int length = nums.length;
+        while(j < length) {
+            if(nums[j] == val) {
+                j++;
+            } else {
+                nums[i] = nums[j];
+                j++;
+                i++;
+            }
+        }
+        return i;
+    }
+}
