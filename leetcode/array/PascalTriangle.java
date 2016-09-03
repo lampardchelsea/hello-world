@@ -9,8 +9,6 @@
 *   [1,3,3,1],
 *  [1,4,6,4,1]
 * ]
-* 
-* 
 */
 public class Solution {
     public List<List<Integer>> generate(int numRows) {
