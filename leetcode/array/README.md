@@ -14,5 +14,5 @@
 <p>3. [Two solutions to merge in place] (http://www.programcreek.com/2012/12/leetcode-merge-sorted-array-java/)
 
 <p>Pascal's Triangle
-<p>1. [Initialize ArrayList<ArrayList<Integer>> type and convert] (http://blog.welkinlan.com/2015/10/18/pascals-triangle-leetcode-java/)
+<p>1. [Initialize ```ArrayList<ArrayList<Integer>>``` type and convert] (http://blog.welkinlan.com/2015/10/18/pascals-triangle-leetcode-java/)
 <p>2. [Pascal Triangle] (https://en.wikipedia.org/wiki/Pascal%27s_triangle)
