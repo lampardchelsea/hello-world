@@ -16,3 +16,6 @@
 <p>Pascal's Triangle
 <p>1. [Initialize ```ArrayList<ArrayList<Integer>>``` type and convert] (http://blog.welkinlan.com/2015/10/18/pascals-triangle-leetcode-java/)
 <p>2. [Pascal Triangle] (https://en.wikipedia.org/wiki/Pascal%27s_triangle)
+
+<p>Plus One
+<p>1. [Special case] (http://yucoding.blogspot.com/2013/04/leetcode-question-71-plus-one.html)
