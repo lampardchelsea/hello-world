@@ -22,12 +22,9 @@ public class Solution {
         if(allDigitsAreNine) {
             // If all digits are 9, then return 100..0(one more digit)
             result = new int[length + 1];
-            for(int k = 0; k < length + 1; k++) {
-                if(k == 0) {
-                    result[k] = 1;
-                } else {
-                    result[k] = 0;
-                }
+            result[0] = 1;
+            for(int k = 1; k < length + 1; k++) {
+                result[k] = 0;
             }
         } else {
             // If not, keep original length
