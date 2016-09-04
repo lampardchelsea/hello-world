@@ -19,3 +19,4 @@
 
 <p>Plus One
 <p>1. [Special case] (http://yucoding.blogspot.com/2013/04/leetcode-question-71-plus-one.html)
+<p>2. [Only use one boolean flag] (http://www.programcreek.com/2014/05/leetcode-plus-one-java/)
