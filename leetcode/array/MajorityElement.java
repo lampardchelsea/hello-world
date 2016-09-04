@@ -12,8 +12,11 @@
 */
 public class Solution {
     public int majorityElement(int[] nums) {
+        // Math.floor default return type is double, cast to integer
         int threshold = (int)Math.floor(nums.length / 2);
+        // Sort the original array
         Arrays.sort(nums);
+        // Return the central value
         return nums[threshold];
     }
 }
