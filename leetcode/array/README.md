@@ -20,3 +20,12 @@
 <p>Plus One
 <p>1. [Special case] (http://yucoding.blogspot.com/2013/04/leetcode-question-71-plus-one.html)
 <p>2. [Only use one boolean flag] (http://www.programcreek.com/2014/05/leetcode-plus-one-java/)
+
+<p>Majority Element
+<p>1. [Linear time to find majority element] (http://blog.csdn.net/monkeyduck/article/details/44560109)
+<p>2. [Three ways to find majority element] (http://www.programcreek.com/2014/02/leetcode-majority-element-java/)
+
+
+
+
+
