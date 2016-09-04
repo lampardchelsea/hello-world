@@ -23,7 +23,8 @@
 
 <p>Majority Element
 <p>1. [Linear time to find majority element] (http://blog.csdn.net/monkeyduck/article/details/44560109)
-<p>2. [Three ways to find majority element] (http://www.programcreek.com/2014/02/leetcode-majority-element-java/)
+<p>2. [Linear time to find majority element 2] (http://stackoverflow.com/questions/4325200/find-the-majority-element-in-array)
+<p>3. [Three ways to find majority element] (http://www.programcreek.com/2014/02/leetcode-majority-element-java/)
 
 
 
