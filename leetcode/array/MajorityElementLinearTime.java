@@ -1,11 +1,14 @@
 /**
  * Using Moore’s Voting Algorithm)
 This is a two step process.
-1. Get an element occurring most of the time in the array. This phase will make sure that if there is a majority element then it will return that only.
+1. Get an element occurring most of the time in the array. This phase will make sure that if there is 
+a majority element then it will return that only.
 2. Check if the element obtained from above step is majority element.
 
 1. Finding a Candidate:
-The algorithm for first phase that works in O(n) is known as Moore’s Voting Algorithm. Basic idea of the algorithm is if we cancel out each occurrence of an element e with all the other elements that are different from e then e will exist till end if it is a majority element.
+The algorithm for first phase that works in O(n) is known as Moore’s Voting Algorithm. Basic idea of 
+the algorithm is if we cancel out each occurrence of an element e with all the other elements that 
+are different from e then e will exist till end if it is a majority element.
 
 findCandidate(a[], size)
 1.  Initialize index and count of majority element
@@ -19,8 +22,12 @@ findCandidate(a[], size)
           maj_index = i;
           count = 1
 3.  Return a[maj_index]
-Above algorithm loops through each element and maintains a count of a[maj_index], If next element is same then increments the count, if next element is not same then decrements the count, and if the count reaches 0 then changes the maj_index to the current element and sets count to 1.
-First Phase algorithm gives us a candidate element. In second phase we need to check if the candidate is really a majority element. Second phase is simple and can be easily done in O(n). We just need to check if count of the candidate element is greater than n/2.
+Above algorithm loops through each element and maintains a count of a[maj_index], If next element is 
+same then increments the count, if next element is not same then decrements the count, and if the count 
+reaches 0 then changes the maj_index to the current element and sets count to 1.
+First Phase algorithm gives us a candidate element. In second phase we need to check if the candidate is 
+really a majority element. Second phase is simple and can be easily done in O(n). We just need to check 
+if count of the candidate element is greater than n/2.
 
 Example:
 A[] = 2, 2, 3, 5, 2, 2, 6
