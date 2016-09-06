@@ -26,6 +26,9 @@
 <p>2. [Linear time to find majority element (Moore’s Voting Algorithm)] (http://www.geeksforgeeks.org/majority-element/)
 <p>3. [Three ways to find majority element] (http://www.programcreek.com/2014/02/leetcode-majority-element-java/)
 
+<p>Rotate Array
+<p>1. [Four ways to create rotate array] (https://leetcode.com/articles/rotate-array/)
+
 
 
 
