@@ -29,7 +29,8 @@
 <p>Rotate Array
 <p>1. [Four ways to create rotate array] (https://leetcode.com/articles/rotate-array/)
 
-
+<p>Remove Duplicates from Sorted Array
+<p>1.[Two pointers to remove duplicates] (https://leetcode.com/articles/remove-duplicates-sorted-array/)
 
 
 
