@@ -1,6 +1,10 @@
 /**
  * Given an array of integers and an integer k, find out whether there are two distinct indices i 
  * and j in the array such that nums[i] = nums[j] and the difference between i and j is at most k.
+ * 
+ * Analyze
+ * This question can be translate into: Whether two same and nearby value items exist in an array, 
+ * and their nearby distance no large than k.
 */
 public boolean containsNearbyDuplicate(int[] nums, int k) {
     int length = nums.length;
@@ -18,8 +22,8 @@ public boolean containsNearbyDuplicate(int[] nums, int k) {
         Integer preIndex = map.put(nums[i], i);
         // The check for preIndex not null is required, otherwise will break as NullPointException
         // Use (i - preIndex.intValue()) to calculate the gap between one key's two nearest
-        // distance, as HashMap put method will return latest previous same key(nums[i])'s index
-        // (i) in array. If the gap not larger than k, then we find their is a pair nums[i],
+        // distance, as HashMap put method will return latest previous(nearby) same key(nums[i])'s 
+        // index(i) in array. If the gap not larger than k, then we find their is a pair nums[i],
         // and nums[j] have same value and distance no larger than k.
         if(preIndex != null && i - preIndex.intValue() <= k) {
             result = true;
