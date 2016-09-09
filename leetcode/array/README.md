@@ -33,6 +33,6 @@
 <p>1. [Two pointers to remove duplicates] (https://leetcode.com/articles/remove-duplicates-sorted-array/)
 
 <p>Contains Duplicate II
-<p>1. [Use HashMap and HashSet to check] (http://www.programcreek.com/2014/05/leetcode-contains-duplicate-ii-java/)
+<p>1. [Use HashMap and HashSet to check] (http://my.oschina.net/Tsybius2014/blog/517511)
 
 
