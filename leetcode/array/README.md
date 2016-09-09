@@ -30,7 +30,9 @@
 <p>1. [Four ways to create rotate array] (https://leetcode.com/articles/rotate-array/)
 
 <p>Remove Duplicates from Sorted Array
-<p>1.[Two pointers to remove duplicates] (https://leetcode.com/articles/remove-duplicates-sorted-array/)
+<p>1. [Two pointers to remove duplicates] (https://leetcode.com/articles/remove-duplicates-sorted-array/)
 
+<p>Contains Duplicate II
+<p>1. [Use HashMap and HashSet to check] (http://www.programcreek.com/2014/05/leetcode-contains-duplicate-ii-java/)
 
 
