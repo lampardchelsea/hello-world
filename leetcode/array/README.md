@@ -34,5 +34,6 @@
 
 <p>Contains Duplicate II
 <p>1. [Use HashMap and HashSet to check] (http://my.oschina.net/Tsybius2014/blog/517511)
+<p>2. [Explain of how HashSet works] (http://blog.csdn.net/itismelzp/article/details/50575762)
 
 
