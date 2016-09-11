@@ -37,6 +37,8 @@ public class Solution {
         	  // other element will get overrided value from this element, e.g a[i] = a[i - 1];
         	  // a[i + 1] = a[i], actually a[i + 1] get value of a[i - 1] not a[i], but stuck
         	  // at engage previous and temp update relation.
+        	  // When inside for loop receive "preivous" from outside for loop, every element
+        	  // should shift to right for one step.
         		temp = nums[i];
         		nums[i] = previous;
         		previous = temp;
