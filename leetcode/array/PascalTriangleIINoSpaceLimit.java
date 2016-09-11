@@ -51,6 +51,7 @@
 }
  * 
 */
+// Use numRows
 public class Solution {
     public List<Integer> getRow(int rowIndex) {
         List<List<Integer>> pascalTriangle = new ArrayList<List<Integer>>();
@@ -82,6 +83,42 @@ public class Solution {
                     }
                 }
                 pascalTriangle.add(currentRow);
+            }
+        }
+        
+        result = pascalTriangle.get(rowIndex);
+        
+        return result;
+    }
+}
+
+// Use rowIndex
+public class Solution {
+    public List<Integer> getRow(int rowIndex) {
+        List<List<Integer>> pascalTriangle = new ArrayList<List<Integer>>();
+        List<Integer> result = new ArrayList<Integer>();
+        
+        if(rowIndex < 0) {
+            return result;
+        }
+        
+        for(int i = 0; i <= rowIndex; i++) {
+            if(i == 0) {
+                List<Integer> firstRow = new ArrayList<Integer>();
+                firstRow.add(1);
+                pascalTriangle.add(firstRow);
+            } else {
+                List<Integer> currentRow = new ArrayList<Integer>();
+                for(int j = 0; j <= i; j++) {
+                    if(j == 0 || j == i) {
+                        currentRow.add(1);
+                    } else {
+                        int a = pascalTriangle.get(i - 1).get(j - 1);
+                        int b = pascalTriangle.get(i - 1).get(j);
+                        currentRow.add(a + b);
+                    }
+                }
+                pascalTriangle.add(currentRow); 
             }
         }
         
