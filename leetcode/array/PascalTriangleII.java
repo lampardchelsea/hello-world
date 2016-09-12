@@ -4,6 +4,21 @@
  * Return [1,3,3,1].
  * Note:
  * Could you optimize your algorithm to use only O(k) extra space?
+ * 
+ * Analyze
+ * In-place iterator from right to left, every loop will replace
+ * the original row into new value, the array length is initially set
+ * to rowIndex
+ * e.g rowIndex = 3, use i to iterate
+ * [1,0,0,0] --> i = 0 (set most right element at index = 0 as 1)
+ * [1,1,0,0] --> i = 1 (set most right element at index = 1 as 1)
+ * [1,1,1,0] -->       (set most right element at index = 2 as 1)
+ * [1,2,1,0] --> i = 2 
+ * [1,2,1,1] -->       (set most right element at index = 3 as 1)
+ * [1,2,3,1]
+ * [1,3,3,1] --> i = 3
+ * This is the process to looply replace original array element to
+ * create final array
 */
 public class Solution {
     public List<Integer> getRow(int rowIndex) {
