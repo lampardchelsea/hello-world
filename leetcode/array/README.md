@@ -36,4 +36,8 @@
 <p>1. [Use HashMap and HashSet to check] (http://my.oschina.net/Tsybius2014/blog/517511)
 <p>2. [Explain of how HashSet works] (http://blog.csdn.net/itismelzp/article/details/50575762)
 
+<p>Pascal's Triangle II
+<p>1. [In-place iterator of orginal based on O(K) extra space] (http://blog.csdn.net/abcbc/article/details/8982651)
+
+
 
