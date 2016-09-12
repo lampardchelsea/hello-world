@@ -42,3 +42,9 @@
 <p>Move Zeros
 <p>1. [Move Zeros with two pointers] (https://segmentfault.com/a/1190000003768716)
 
+<p>Contains Duplicate
+<p>1. [Use HashSet to filter] (http://www.programcreek.com/2014/05/leetcode-contains-duplicate-java/)
+
+
+
+
