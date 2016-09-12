@@ -39,5 +39,6 @@
 <p>Pascal's Triangle II
 <p>1. [In-place iterator of orginal based on O(K) extra space] (http://blog.csdn.net/abcbc/article/details/8982651)
 
-
+<p>Move Zeros
+<p>1. [Move Zeros with two pointers] (https://segmentfault.com/a/1190000003768716)
 
