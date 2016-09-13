@@ -45,6 +45,7 @@
 <p>Contains Duplicate
 <p>1. [Use HashSet to filter] (http://www.programcreek.com/2014/05/leetcode-contains-duplicate-java/)
 
-
+<p>Best Time to Buy and Sell Stock
+<p>1. [One pass and brute force ways] (https://leetcode.com/articles/best-time-buy-and-sell-stock/)
 
 
