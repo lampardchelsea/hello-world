@@ -13,4 +13,14 @@
  * In this case, no transaction is done, i.e. max profit = 0.
  * 
  * Analyze
+ * If we plot the numbers of the given array [7, 1, 5, 3, 6, 4] on a graph, we get:
+ * 
+ * 7|   *
+ * 6|                   *       
+ * 5|           *
+ * 4|                       *
+ * 3|               *
+ * 2|
+ * 1|       *
+ * 0|___1___2___3___4___5___6__
  */
