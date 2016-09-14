@@ -91,6 +91,35 @@
         
         return maxProfit;
     }
+ *
+ * The enhancement should be if current element smaller than minPrice,
+ * the set minPrice to this element value, otherwise, current element
+ * is not the smallest element until now, it must be larger than previous
+ * setting of minPrice, so use current element minus minPrice to get
+ * difference betweeen minPrice and current element value for current
+ * profit, compare it with maxProfit, if larger than maxProfit then
+ * replace it with current profit.
  * 
- * 
+ * The difference is now we don't find on smallest element in array first,
+ * we just find smallest one until current loop, and compare it with all
+ * latest element larger than it, if encounter smaller element, then replace
+ * smallest element. This way will check all difference(profit) based on
+ * current smallest element, which will not fail as input as [2,4,1]
  */
+public class Solution {
+    public int maxProfit(int[] prices) {
+        int length = prices.length;
+        int minPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        
+        for(int i = 0; i < length; i++) {
+            if(prices[i] < minPrice) {
+                minPrice = prices[i];
+            } else if(prices[i] - minPrice >= maxProfit) {
+                maxProfit = prices[i] - minPrice;
+            }
+        }
+        
+        return maxProfit;
+    }
+}
