@@ -65,6 +65,9 @@
  * and after 1 there is no more element as a peak. So, current strategy
  * as first find smallest element in array then based on its index to 
  * find maxProfit has big defect.
+ * Note: This issue can not be observed from input as [7, 1, 5, 3, 6, 4],
+ * because element 1 is smaller than any later element, but if input is
+ * [2,4,1], the problem is element 2 has a smaller later element 1.
  * 
  *     public static int maxProfit(int[] prices) {
         int length = prices.length;
