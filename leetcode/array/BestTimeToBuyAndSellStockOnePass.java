@@ -23,4 +23,13 @@
  * 2|
  * 1|       *
  * 0|___1___2___3___4___5___6__
+ * 
+ * The points of interest are the peaks and valleys in the given graph. We need to find the 
+ * largest peak following the smallest valley. We can maintain two variables - minprice and 
+ * maxprofit corresponding to the smallest valley and maximum profit (maximum difference 
+ * between selling price and minprice) obtained so far respectively.
+ * 
+ * Complexity Analysis
+ * Time complexity : O(n). Only a single pass is needed.
+ * Space complexity : O(1). Only two variables are used.
  */
