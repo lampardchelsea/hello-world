@@ -32,4 +32,62 @@
  * Complexity Analysis
  * Time complexity : O(n). Only a single pass is needed.
  * Space complexity : O(1). Only two variables are used.
+ * 
+ * Error 1:
+ * If write like below, a issue as index i not record exactly which elememnt 
+ * is minPrice, in for loop i will always go to index (length - 1).
+ * 
+ *     public static int maxProfit(int[] prices) {
+        int length = prices.length;
+        int minPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        int i;
+        int j;
+        
+        for(i = 0; i < length; i++) {
+            if(prices[i] < minPrice) {
+                minPrice = prices[i];
+            }
+        }
+        
+        for(j = i + 1; j < length; j++) {
+            if(prices[j] - minPrice >= maxProfit) {
+                maxProfit = prices[j] - minPrice;
+            }
+        }
+        
+        return maxProfit;
+    }
+ * 
+ * Error 2:
+ * If write like below, and given input as [2,4,1] will show errror as 
+ * minPrice will locate to last element 1, not the first element 2, 
+ * and after 1 there is no more element as a peak. So, current strategy
+ * as first find smallest element in array then based on its index to 
+ * find maxProfit has big defect.
+ * 
+ *     public static int maxProfit(int[] prices) {
+        int length = prices.length;
+        int minPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        int i;
+        int j = 0;
+        
+        for(i = 0; i < length; i++) {
+            if(prices[i] < minPrice) {
+                minPrice = prices[i];
+                j = i + 1;
+            }
+        }
+        
+        for(; j < length; j++) {
+            if(prices[j] - minPrice >= maxProfit) {
+                maxProfit = prices[j] - minPrice;
+            }
+        }
+        
+        return maxProfit;
+    }
+ * 
+ * 
  */
