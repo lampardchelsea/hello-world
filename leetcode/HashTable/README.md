@@ -4,7 +4,7 @@
 <p>3. [Hashmap Internal Implementation Analysis in Java] (https://tekmarathon.com/2012/12/04/hashmap-internal-implementation-analysis-in-java/)
 <p>4. [Java equals() and hashCode() Contract] (http://www.programcreek.com/2011/07/java-equals-and-hashcode-contract/)
 <p>5. [How HashMap works in Java] (http://newtechnobuzzz.blogspot.com/2014/07/how-hashmap-works-in-java.html#.V90GYSErKUk)
-<p>6. [HashMap Race Condition(bucket infinite loop)] (http://mailinator.blogspot.com/2009/06/beautiful-race-condition.html)
+<p>6. [HashMap Race Condition(bucket infinite loop / transfer method)] (http://mailinator.blogspot.com/2009/06/beautiful-race-condition.html)
 
 # Useful links for specific questions
 <p>Single Number
