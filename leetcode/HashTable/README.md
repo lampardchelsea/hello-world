@@ -1,7 +1,7 @@
 # Leetcode hash table issues
 <p>1. [Leetcode hash table issues] (https://leetcode.com/tag/hash-table/)
 <p>2. [Princeton hash table java tutorial] (http://algs4.cs.princeton.edu/34hash/)
-<p>3. [Hashmap Internal Implementation Analysis in Java] (https://tekmarathon.com/2012/12/04/hashmap-internal-implementation-analysis-in-java/)
+<p>3. [Hashmap Internal Implementation Analysis in Java (distribute/mix lower bits evenly)] (https://tekmarathon.com/2012/12/04/hashmap-internal-implementation-analysis-in-java/)
 <p>4. [Java equals() and hashCode() Contract] (http://www.programcreek.com/2011/07/java-equals-and-hashcode-contract/)
 <p>5. [How HashMap works in Java] (http://newtechnobuzzz.blogspot.com/2014/07/how-hashmap-works-in-java.html#.V90GYSErKUk)
 <p>6. [HashMap Race Condition(bucket infinite loop / transfer method)] (http://mailinator.blogspot.com/2009/06/beautiful-race-condition.html)
