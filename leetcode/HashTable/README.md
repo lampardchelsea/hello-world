@@ -3,6 +3,7 @@
 <p>2. [Princeton hash table java tutorial] (http://algs4.cs.princeton.edu/34hash/)
 <p>3. [Hashmap Internal Implementation Analysis in Java] (https://tekmarathon.com/2012/12/04/hashmap-internal-implementation-analysis-in-java/)
 <p>4. [Java equals() and hashCode() Contract] (http://www.programcreek.com/2011/07/java-equals-and-hashcode-contract/)
+<p>5. [How HashMap works in Java] (http://newtechnobuzzz.blogspot.com/2014/07/how-hashmap-works-in-java.html#.V90GYSErKUk)
 
 # Useful links for specific questions
 <p>Single Number
