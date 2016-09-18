@@ -18,6 +18,22 @@
  * 按编号求'/'就是求得当前小方格的第一行横坐标，因为每个小方格有3行，所以循环3次。
  * 按编号求'%'就是求得当前小方格的第一列纵坐标，因为每个小方格有3列，所以循环3次。 
  * 对9个小方格依次走一边，就完成了检查小方格的工作。
+ * 
+ * There is a more official checking method on matrix, first check 1st dimension as
+ * row number by divide 3, then check 2nd dimension as column number by mod 3
+ *    // Check for each sub-grid(matrix)
+      for (int k = 0; k < 9; k++) {
+         for (int i = k / 3 * 3; i < k / 3 * 3 + 3; i++) {
+             for (int j = (k % 3) * 3; j < (k % 3) * 3 + 3; j++) {
+                 if (board[i][j] == '.')
+                     continue;
+                 if (set.contains(board[i][j]))
+                     return false;
+                 set.add(board[i][j]);
+             }
+         }
+         set.clear();
+     }
 */
 public class Solution {
     public boolean isValidSudoku(char[][] board) {
@@ -44,7 +60,7 @@ public class Solution {
             set.clear();
         }
         
-        // Check for sequare (there are nine 3 * 3 square need to check)
+        // Check for matrix (there are nine 3 * 3 matrix need to check)
         for(int m = 0; m < 3; m++) {
             for(int n = 0; n < 3; n++) {
                 for(int i = m * 3; i < m * 3 + 3; i++) {
@@ -55,7 +71,7 @@ public class Solution {
                     }
                 }
                 // For square, not clear after each row or column check, only
-                // clear after adding 3 * 3 elements in one square
+                // clear after adding 3 * 3 elements in one matrix
                 set.clear();
             }
         }
