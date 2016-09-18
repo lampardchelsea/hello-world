@@ -9,7 +9,7 @@
  * Subscribe to see which companies asked this question
  * 
  * Analyze
- *  这道题利用的是HashSet的唯一性来帮助check。
+ * 这道题利用的是HashSet的唯一性来帮助check。
  * 先按每行check，如果是'.'说明还没填字，是合法的，往下走，如果没在set中存过就加一下，
  * 如果便利过程中出现了在set中存在的key值，说明有重复的数字在一行，不合法，return false。
  * 再按照这个方法check列。
