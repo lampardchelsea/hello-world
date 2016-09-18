@@ -13,3 +13,4 @@
 
 <p>Two Sum
 <p>1. [Three ways of two sum] (https://leetcode.com/articles/two-sum/)
+<p>2. [Two ways of two sum] (http://www.cnblogs.com/springfor/p/3859618.html)
