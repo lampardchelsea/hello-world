@@ -14,3 +14,6 @@
 <p>Two Sum
 <p>1. [Three ways of two sum] (https://leetcode.com/articles/two-sum/)
 <p>2. [Two ways of two sum] (http://www.cnblogs.com/springfor/p/3859618.html)
+
+<p>Valid Sudoku
+<p>1. [How to check valid sudoku] (http://www.cnblogs.com/springfor/p/3884217.html)
