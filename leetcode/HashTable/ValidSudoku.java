@@ -19,3 +19,47 @@
  * 按编号求'%'就是求得当前小方格的第一列纵坐标，因为每个小方格有3列，所以循环3次。 
  * 对9个小方格依次走一边，就完成了检查小方格的工作。
 */
+public class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        Set<Character> set = new HashSet<Character>();
+        
+        // Check for each row (fix row number i and increase column number j)
+        for(int i = 0; i < 9; i++) {
+            for(int j = 0; j < 9; j++) {
+                // Encouter '.' will ignore as only the filled cells need to be validated
+                if(board[i][j] != '.' && !set.add(board[i][j])) {
+                    return false;
+                }
+            }
+            set.clear();
+        }
+        
+        // Check for each column (fix column number j and increase row number i)
+        for(int j = 0; j < 9; j++) {
+            for(int i = 0; i < 9; i++) {
+                if(board[i][j] != '.' && !set.add(board[i][j])) {
+                    return false;
+                }
+            }
+            set.clear();
+        }
+        
+        // Check for sequare (there are nine 3 * 3 square need to check)
+        for(int m = 0; m < 3; m++) {
+            for(int n = 0; n < 3; n++) {
+                for(int i = m * 3; i < m * 3 + 3; i++) {
+                    for(int j = n * 3; j < n * 3 + 3; j++) {
+                        if(board[i][j] != '.' && !set.add(board[i][j])) {
+                            return false;
+                        }
+                    }
+                }
+                // For square, not clear after each row or column check, only
+                // clear after adding 3 * 3 elements in one square
+                set.clear();
+            }
+        }
+        
+        return true;
+    }
+}
