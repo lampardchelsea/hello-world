@@ -27,4 +27,10 @@
  * // logging string "foo" at timestamp 11
  * logger.shouldPrintMessage(11,"foo"); returns true;
 */
-
+public class Logger{
+  
+  public boolean shouldPrintMessage(int timestamp, String message) {
+      
+  }
+  
+}
