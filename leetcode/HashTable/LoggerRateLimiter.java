@@ -27,10 +27,41 @@
  * // logging string "foo" at timestamp 11
  * logger.shouldPrintMessage(11,"foo"); returns true;
 */
+import java.util.HashMap;
+import java.util.Map;
+
+
 public class Logger{
+  Map<String, Integer> map;
+  public Logger() {
+	  map = new HashMap<String, Integer>();
+  }
   
   public boolean shouldPrintMessage(int timestamp, String message) {
-      
+    boolean result = true;
+    Integer preTimeStamp = map.put(message, timestamp);
+    
+    if(preTimeStamp != null) {
+    	int interval = timestamp - preTimeStamp.intValue();
+    	if(interval < 9) {
+        	result = false;
+    	}
+    }  
+    
+    return result;  
+  }
+  
+  public static void main(String[] args) {
+	  Logger logger = new Logger();
+	  
+	  boolean result1 = logger.shouldPrintMessage(1, "foo");
+	  System.out.println(result1);
+	  
+	  boolean result2 = logger.shouldPrintMessage(2, "foo");
+	  System.out.println(result2);
+	  
+	  boolean result11 = logger.shouldPrintMessage(11, "foo");
+	  System.out.println(result11);
   }
   
 }
