@@ -17,3 +17,6 @@
 
 <p>Valid Sudoku
 <p>1. [How to check valid sudoku] (http://www.cnblogs.com/springfor/p/3884217.html)
+
+<p>Logger Rate Limiter
+<p>1. [Logger Rate Limiter with HashMap] (http://massivealgorithms.blogspot.com/2016/06/leetcode-359-logger-rate-limiter.html)
