@@ -22,4 +22,4 @@
 <p>1. [Logger Rate Limiter with HashMap] (http://massivealgorithms.blogspot.com/2016/06/leetcode-359-logger-rate-limiter.html)
 <p>2. [Logger Rate Limiter with circular array] (http://blog.csdn.net/jmspan/article/details/51697104)
 <p>3. [Circular Array] (http://oppansource.com/queue-implementation-in-java-using-circular-array/)
-<p>4. [Why use circular array] (http://blog.csdn.net/victor_cindy1/article/details/46604575)
+<p>4. [Why use circular array(fake stack overflow)] (http://blog.csdn.net/victor_cindy1/article/details/46604575)
