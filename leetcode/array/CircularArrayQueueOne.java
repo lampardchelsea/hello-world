@@ -42,11 +42,13 @@
  * 2. queue = new T[DEFAULT_CAPACITY]; is wrong format
  * 3. dequeue() and first() method lake of handling of exception, and this chagne also impact QueueADT interface
  *    which declare the protype method
- * 4. count variable behavior not reflect relation with DEFAULT_CAPACITY, cannot identify array is full, wrong
- *    behavior reflect with toString() method, if for loop depend on count, but count larger than DEFAULT_CAPACITY
- *    will throw NullPointerException, also reflect on isEmpty() method, in dequeue() method cannot reflect real
- *    situation if count not equal to 0, but array already empty.
- * 5. toString() method need to handle null value, as dequeue will reset array index value to null.
+ * 4. enqueue() method lake of isFull() method check, otherwise it will override already existing elements, and 
+ *    variable "count" can increase with no limitation, isFull() and isEmpty() methods which based on "count"
+ *    cannot work properly.
+ *    e.g Insert A,B,C,D to DEFAULT_CAPACITY = 3 circular array, the element A previously enqueued will override 
+ *    as D, this case should avoid (No already existing element should be replaced).
+ * 5. toString() method need to handle null value, as dequeue will reset array index value to null or DEFAULT_CAPACITY
+ *    larger than current element numbers in array, remained index are still null.
  * 
 public interface QueueADT<T> {
   // add an element to the rear of the queue
@@ -60,6 +62,9 @@ public interface QueueADT<T> {
   
   // returns true if the queue is empty
   public boolean isEmpty();
+  
+  // returns true if the queue is full
+	public boolean isFull();
   
   // returns number of elements in the queue
   public int size();
@@ -91,6 +96,12 @@ public class CircularArrayQueue<T> implements QueueADT<T> {
     rear = (rear + 1) % DEFAULT_CAPACITY;
     count++;
     
+    if(isFull()) {
+      System.out.println("Circular array is full, element at rear index is " + element.toString());
+	  } else if(count > DEFAULT_CAPACITY) {
+	    System.out.println("Circular array is full, replace current rear index " + rear + 
+	    			" original element " + originalValue.toString() + " with " + element.toString());
+	  }
   }
   
   @Override
@@ -125,6 +136,11 @@ public class CircularArrayQueue<T> implements QueueADT<T> {
   }
   
   @Override
+  public boolean isFull() {
+    return (count == DEFAULT_CAPACITY);
+  }
+  
+  @Override
   public int size() {
     return count;
   }
@@ -138,6 +154,26 @@ public class CircularArrayQueue<T> implements QueueADT<T> {
     
     return result;
   }
+  
+  public static void main(String[] args) {
+		@SuppressWarnings("rawtypes")
+		CircularArrayQueue queue = new CircularArrayQueue();
+		queue.enqueue("A");
+		queue.enqueue("B");
+		queue.enqueue("C");
+		queue.enqueue("D");
+		//queue.enqueue("E");
+		try {
+			queue.dequeue();
+			queue.dequeue();
+			queue.dequeue();
+			//queue.dequeue();
+		} catch (EmptyCollectionException e) {
+			System.out.println("Empty Collection Exception happen: " + e.getMessage());
+		}
+		
+		System.out.println("All elements in circular array queue are: " + queue);
+	}
 }
 
 
@@ -149,3 +185,194 @@ public class EmptyCollectionException extends Exception {
   }
 }
 */
+package CircularArrayQueue;
+
+public interface QueueADT<T> {
+	// add an element to the rear of the queue
+	public void enqueue(T element) throws FullCollectionException;
+  
+	// remove and return an element at the front of the queue
+	public T dequeue() throws EmptyCollectionException;
+  
+	// returns without removing the element at the front of the queue
+	public T first() throws EmptyCollectionException;
+  
+	// returns true if the queue is empty
+	public boolean isEmpty();
+	
+	// returns true if the queue is full
+	public boolean isFull();
+  
+	// returns number of elements in the queue
+	public int size();
+  
+	// returns a string representation of queue
+	public String toString();
+}
+
+
+package CircularArrayQueue;
+
+@SuppressWarnings("unchecked")
+public class CircularArrayQueue<T> implements QueueADT<T> {
+	private final int DEFAULT_CAPACITY = 10;
+	private int front;
+	private int rear;
+	private int count;
+	private T[] queue;
+	
+	// If define an generic constructor, the wrong way is
+	// e.g public CircularArrayQueue<T>() {}
+	public CircularArrayQueue() {
+		// To create a generic type of array, the wrong way is
+		// e.g queue = new T[DEFAULT_CAPACITY];
+		queue = (T[])new Object[DEFAULT_CAPACITY];
+		front = 0;
+		rear = 0;
+		count = 0;
+	}
+	 
+	// enqueue() method need handle(try/catch or throw out exception)  
+	@Override
+	public void enqueue(T element) throws FullCollectionException {
+		// Enqueue method need to consider circular array already full 
+		// issue, otherwise will override previously enqueued element.
+		// e.g Insert A,B,C,D to DEFAULT_CAPACITY = 3 circular array,
+		// the element A previously enqueued will override as D, this
+		// case should avoid (No already existing element should be replaced).
+		if(isFull()) {
+	    	System.out.println("Circular array is full, no more element to insert");
+	    	throw new FullCollectionException("circular array queue is full");
+		}
+		
+		// The order of assign element to queue[rear] and increase
+	    // rear is first assign then increase
+	    queue[rear] = element;
+	    
+	    System.out.println("Insert element at current rear index " + rear + " as " + element);
+	    
+	    rear = (rear + 1) % DEFAULT_CAPACITY;
+	    count++;
+	}
+	
+	// dequeue() method need handle(try/catch or throw out exception)
+	@Override
+	public T dequeue() throws EmptyCollectionException {
+		// Enqueue method no need to consider empty queue issue, just override
+	    // privious value, but dequeue method requires
+	    if(isEmpty()) {
+	    	System.out.println("Circular array is empty, no element to remove");
+	    	throw new EmptyCollectionException("circular array queue is empty");
+	    }
+	    
+	    // The order of assign queue[front] to element and increase
+	    // front is first assign then increase
+	    T element = queue[front];
+	    queue[front] = null;
+	    
+	    System.out.println("Remove element at current front index " + front + " as " + element);
+	    
+	    front = (front + 1) % DEFAULT_CAPACITY;
+	    count--;
+	    
+	    return element;
+	}
+	
+	// first() method need handle(try/catch or throw out exception)
+	@Override
+	public T first() throws EmptyCollectionException {
+	    if(isEmpty()) {
+	      throw new EmptyCollectionException("circular array queue is empty");
+	    }
+	    return queue[front];
+	}
+	  
+	@Override
+	public boolean isEmpty() {
+	    return (count == 0);
+	}
+	
+	@Override
+	public boolean isFull() {
+	    // The compare is between count and DEFAULT_CAPACITY, not (DEFAULT_CAPACITY - 1),
+	    // as count is increase as 1 after each enqueue.
+		return (count == DEFAULT_CAPACITY);
+	}
+	
+	@Override
+	public int size() {
+	    return count;
+	}
+	  
+	@Override
+	public String toString() {
+	    String result = "";
+	    for(int scan = 0; scan < DEFAULT_CAPACITY; scan++) {
+		    // Add trinary logic here to solve case as queue is not empty, but element already
+		    // set to null as locate on front index.
+	    	String value = queue[scan] == null ? "AS_NULL" : queue[scan].toString();
+	    	result += (value + " ");
+	    }
+	    
+	    return result;
+	}
+	
+	public static void main(String[] args) {
+		@SuppressWarnings("rawtypes")
+		CircularArrayQueue queue = new CircularArrayQueue();
+		
+		try {
+			queue.enqueue("A");
+			queue.enqueue("B");
+			queue.enqueue("C");
+			queue.enqueue("D");
+			queue.enqueue("E");
+			queue.dequeue();
+			queue.dequeue();
+			queue.dequeue();
+			queue.dequeue();
+			queue.enqueue("F");
+			queue.enqueue("G");
+			queue.enqueue("H");
+			queue.enqueue("I");
+			queue.enqueue("J");
+			queue.enqueue("K");
+			queue.enqueue("L");
+			queue.enqueue("M");
+			//queue.enqueue("N");
+			//queue.enqueue("O");
+		} catch (EmptyCollectionException e) {
+			System.out.println("Empty Collection Exception happen: " + e.getMessage());
+		} catch (FullCollectionException e1) {
+			System.out.println("Full Collection Exception happen: " + e1.getMessage());
+		}
+		
+		System.out.println("All elements in circular array queue are: " + queue);
+	}
+}
+
+
+package CircularArrayQueue;
+
+public class EmptyCollectionException extends Exception {
+	private static final long serialVersionUID = 1L;
+
+	public EmptyCollectionException() {}
+	
+	public EmptyCollectionException(String errorMsg) {
+		super(errorMsg);
+	}
+}
+
+
+package CircularArrayQueue;
+
+public class FullCollectionException extends Exception {
+	private static final long serialVersionUID = 1L;
+	
+	public FullCollectionException() {}
+	
+	public FullCollectionException(String msg) {
+		super(msg);
+	}
+}
