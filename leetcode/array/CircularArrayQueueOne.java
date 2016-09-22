@@ -27,6 +27,9 @@ public interface QueueADT<T> {
   // remove and return an element at the front of the queue
   public T dequeue();
   
+  // returns without removing the element at the front of the queue
+  public T first();
+  
   // returns true if the queue is empty
   public boolean isEmpty();
   
@@ -36,3 +39,13 @@ public interface QueueADT<T> {
   // returns a string representation of queue
   public String toString();
 }
+
+
+public class CircularArrayQueue<T> implements QueueADT<T> {
+  
+  
+  
+}
+
+
+
