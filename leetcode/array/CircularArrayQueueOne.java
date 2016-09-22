@@ -29,6 +29,11 @@
  * 
  * 6. How to create a generic constructor
  * http://www.java2s.com/Tutorials/Java/Java_Object_Oriented_Design/0370__Java_Generic_Methods_Constructors.htm
+ * 
+ * 7. What is @SuppressWarnings annotation in Java ?
+ * http://javarevisited.blogspot.com/2015/09/what-is-suppresswarnings-annotation-in-java-unchecked-raw-serial.html
+ * http://stackoverflow.com/questions/197986/what-causes-javac-to-issue-the-uses-unchecked-or-unsafe-operations-warning?rq=1
+ * 
 */
 
 /**
@@ -39,7 +44,9 @@
  *    which declare the protype method
  * 4. count variable behavior not reflect relation with DEFAULT_CAPACITY, cannot identify array is full, wrong
  *    behavior reflect with toString() method, if for loop depend on count, but count larger than DEFAULT_CAPACITY
- *    will throw NullPointerException.
+ *    will throw NullPointerException, also reflect on isEmpty() method, in dequeue() method cannot reflect real
+ *    situation if count not equal to 0, but array already empty.
+ * 5. toString() method need to handle null value, as dequeue will reset array index value to null.
  * 
 public interface QueueADT<T> {
   // add an element to the rear of the queue
@@ -83,6 +90,7 @@ public class CircularArrayQueue<T> implements QueueADT<T> {
     queue[rear] = element;
     rear = (rear + 1) % DEFAULT_CAPACITY;
     count++;
+    
   }
   
   @Override
