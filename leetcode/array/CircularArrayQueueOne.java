@@ -30,6 +30,14 @@
  * 6. How to create a generic constructor
  * http://www.java2s.com/Tutorials/Java/Java_Object_Oriented_Design/0370__Java_Generic_Methods_Constructors.htm
 */
+
+/**
+ * There are multiple issues in below code:
+ * 1. public CircularArrayQueue<T>() {} is wrong format
+ * 2. queue = new T[DEFAULT_CAPACITY]; is wrong format
+ * 3. dequeue() and first() method lake of handling of exception, and this chagne also impact QueueADT interface
+ *    which declare the protype method
+ * 
 public interface QueueADT<T> {
   // add an element to the rear of the queue
   public void enqueue(T element);
@@ -121,6 +129,7 @@ public class CircularArrayQueue<T> implements QueueADT<T> {
   }
 }
 
+
 public class EmptyCollectionException extends Exception {
   public EmptyCollectionException() {}
   
@@ -128,4 +137,4 @@ public class EmptyCollectionException extends Exception {
     super(errorMsg);
   }
 }
-
+*/
