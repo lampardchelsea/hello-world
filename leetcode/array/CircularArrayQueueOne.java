@@ -21,6 +21,14 @@
  * but no braces (an abstract method does not contain an implementation).
  * https://docs.oracle.com/javase/tutorial/java/IandI/interfaceDef.html
  * 
+ * 4. How to create a generic type of array
+ * http://stackoverflow.com/questions/529085/how-to-create-a-generic-array-in-java
+ * 
+ * 5. How to create a generic constructor for a generic class in java?
+ * http://stackoverflow.com/questions/8680442/how-to-create-a-generic-constructor-for-a-generic-class-in-java
+ * 
+ * 6. How to create a generic constructor
+ * http://www.java2s.com/Tutorials/Java/Java_Object_Oriented_Design/0370__Java_Generic_Methods_Constructors.htm
 */
 public interface QueueADT<T> {
   // add an element to the rear of the queue
@@ -113,7 +121,7 @@ public class CircularArrayQueue<T> implements QueueADT<T> {
   }
 }
 
-public EmptyCollectionException extends Exception {
+public class EmptyCollectionException extends Exception {
   public EmptyCollectionException() {}
   
   public EmptyCollectionException(String errorMsg) {
