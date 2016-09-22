@@ -4,10 +4,14 @@
  * cicularly insert at the end or delete element at the start of array.  
  * Use two pointer front(point to start index of current array, operate with dequeue method) 
  * and rear(point to end index of current array, operate with enqueue method) 
- * to build circular array, use additional variable "count" to record elemements number in 
- * circular array, which can help identify array is empty or full.
+ * to build circular array.
+ * Use additional variable "count" to record elemements number in circular array, which 
+ * can help identify array is empty or full.
  * If front = rear, count = 0, circular array is empty.
  * If front = rear, count = array.length, circular array is full.
+ * 
+ * Best example
+ * http://www.javamadesoeasy.com/2015/01/circular-queue.html
  * 
  * Note: 
  * 1. In below links are interface circular array must implement and its implementation.
