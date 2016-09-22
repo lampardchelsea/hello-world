@@ -21,6 +21,7 @@
 <p>Logger Rate Limiter
 <p>1. [Logger Rate Limiter with HashMap] (http://massivealgorithms.blogspot.com/2016/06/leetcode-359-logger-rate-limiter.html)
 <p>2. [Logger Rate Limiter with circular array] (http://blog.csdn.net/jmspan/article/details/51697104)
-<p>3. [Circular Array] (http://oppansource.com/queue-implementation-in-java-using-circular-array/)
-<p>4. [Why use circular array(fake stack overflow)] (http://blog.csdn.net/victor_cindy1/article/details/46604575)
-<p>5. [CircularArrayQueue] (http://faculty.washington.edu/moishe/javademos/ch07%20Code/jss2/CircularArrayQueue.java)
+<p>3. [CircularArrayQueue solution with additional count to identify empty or full] (http://www.javamadesoeasy.com/2015/01/circular-queue.html)
+<p>4. [CircularArrayQueue solution with sacrifise one space to identify empty or full] (http://www.mathcs.emory.edu/~cheung/Courses/171/Syllabus/8-List/array-queue2.html)
+<p>5. [Why use circular array(fake stack overflow)] (http://blog.csdn.net/victor_cindy1/article/details/46604575)
+<p>6. [Other resource] (http://faculty.washington.edu/moishe/javademos/ch07%20Code/jss2/CircularArrayQueue.java)
