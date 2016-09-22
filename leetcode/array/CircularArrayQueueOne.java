@@ -37,6 +37,9 @@
  * 2. queue = new T[DEFAULT_CAPACITY]; is wrong format
  * 3. dequeue() and first() method lake of handling of exception, and this chagne also impact QueueADT interface
  *    which declare the protype method
+ * 4. count variable behavior not reflect relation with DEFAULT_CAPACITY, cannot identify array is full, wrong
+ *    behavior reflect with toString() method, if for loop depend on count, but count larger than DEFAULT_CAPACITY
+ *    will throw NullPointerException.
  * 
 public interface QueueADT<T> {
   // add an element to the rear of the queue
