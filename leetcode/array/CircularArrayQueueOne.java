@@ -2,15 +2,17 @@
  * Analyze
  * The implementation class use array structure to implement a queue attribute FIFO and
  * cicularly insert at the end or delete element at the start of array.  
- * Use two pointer front(point to start index of array) and rear(point to end index of array) 
+ * Use two pointer front(point to start index of current array, operate with dequeue method) 
+ * and rear(point to end index of current array, operate with enqueue method) 
  * to build circular array, use additional variable "count" to record elemements number in 
  * circular array, which can help identify array is empty or full.
  * If front = rear, count = 0, circular array is empty.
  * If front = rear, count = array.length, circular array is full.
  * 
  * Note: 
- * 1. In below link is interface circular array must implement.
+ * 1. In below links are interface circular array must implement and its implementation.
  * http://faculty.washington.edu/moishe/javademos/ch07%20Code/jss2/QueueADT.java
+ * http://faculty.washington.edu/moishe/javademos/ch07%20Code/jss2/CircularArrayQueue.java
  * 
  * 2. Genertic symbol T explanation below, T is any non-primitive type. 
  * http://stackoverflow.com/questions/6008241/java-generics-e-and-t-what-is-the-difference
@@ -42,10 +44,80 @@ public interface QueueADT<T> {
 
 
 public class CircularArrayQueue<T> implements QueueADT<T> {
+  private final int DEFAULT_CAPACITY = 10;
+  private int front;
+  private int rear;
+  private int count;
+  private T[] queue;
   
+  public CircularArrayQueue<T>() {
+    queue = new T[DEFAULT_CAPACITY];
+    front = 0;
+    rear = 0;
+    count = 0;
+  }
   
+  @Override
+  public void enqueue(T element) {
+    // The order of assign element to queue[rear] and increase
+    // rear is first assign then increase
+    queue[rear] = element;
+    rear = (rear + 1) % DEFAULT_CAPACITY;
+    count++;
+  }
   
+  @Override
+  public T dequeue() {
+    // Enqueue method no need to consider empty queue issue, just override
+    // privious value, but dequeue method requires
+    if(isEmpty()) {
+      throw new EmptyCollectionException("circular array queue is empty");
+    }
+    
+    // The order of assign queue[front] to element and increase
+    // front is first assign then increase
+    element = queue[front];
+    queue[front] = null;
+    front = (front + 1) % DEFAULT_CAPACITY;
+    count--;
+    
+    return element;
+  }
+  
+  @Override
+  public T first() {
+    if(isEmpty()) {
+      throw new EmptyCollectionException("circular array queue is empty");
+    }
+    return queue[front];
+  }
+  
+  @Override
+  public boolean isEmpty() {
+    return (count == 0);
+  }
+  
+  @Override
+  public int size() {
+    return count;
+  }
+  
+  @Override
+  public String toString() {
+    String result = "";
+    for(int scan = 0; scan < count; scan++) {
+      result += (queue[scan].toString() + " ");
+    }
+    
+    return result;
+  }
 }
 
-
+public EmptyCollectionException extends Exception {
+  public EmptyCollectionException() {}
+  
+  public EmptyCollectionException(String errorMsg) {
+    super(errorMsg);
+  }
+}
 
