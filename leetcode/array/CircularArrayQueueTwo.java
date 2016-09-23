@@ -10,7 +10,12 @@
  * In other words, we use the following test to check if the circular buffer is full:
  *    read pointer == ( write pointer + 1 ) % (buf.length)
  * And this will cause real full size of circular array is 1 less than DEFAULT_CAPACITY.
- * e.g If set DEFAULT_CAPACITY = 10, when throw out FullExceptionCollection, the size is 10 - 1 = 9.
+ * e.g 
+ * If set DEFAULT_CAPACITY = 10, when throw out FullExceptionCollection, the size is 10 - 1 = 9.
+ * In code example below, the out put is:
+ * Full Collection Exception happen: circular array queue is full
+ * Circular array size is: 9
+ * All elements in circular array queue are: AS_NULL B C D E F G H I J 
  * 
  * Note: There are two case to calculate size, as it is circular array, front can be either larger
  * or smaller than rear.
