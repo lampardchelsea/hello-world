@@ -1,6 +1,6 @@
 /**
  * Analyze
- * The implementation class use array structure to implement a queue attribute FIFO and
+ * The implementation class use array to implement a queue structur which attribute as FIFO and
  * cicularly insert at the end or delete element at the start of array.  
  * Use two pointer front(point to start index of current array, operate with dequeue method) 
  * and rear(point to end index of current array, operate with enqueue method) 
