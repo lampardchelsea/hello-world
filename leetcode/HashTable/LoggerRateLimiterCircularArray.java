@@ -49,6 +49,10 @@ public class Logger{
 	private int startRecordTimestamp = 0;
 	
 	public Logger() {
+		// Binding circular array and set together, queue only keep latest
+		// 10 seconds message, which capacity match the requirement, set
+		// used to filter new message coming in, if duplicate with messages
+		// already on circular array, then should not print message.
 		queue = new String[DEFAULT_CAPACTIY];
 		set = new HashSet<String>();
 	}
