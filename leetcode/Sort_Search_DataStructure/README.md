@@ -12,3 +12,7 @@
 # Sort and Search
 <p>Binary Search
 <p>1. [Binary Search] (http://algs4.cs.princeton.edu/11model/BinarySearch.java.html)
+<p>2. [Bounded Type Parameters] (https://docs.oracle.com/javase/tutorial/java/generics/bounded.html)
+<p>3. [Generic binary search Java] (http://stackoverflow.com/questions/5426316/generic-binary-search-java)
+<p>4. [Why should a Java class implement comparable?] (http://stackoverflow.com/questions/3718383/why-should-a-java-class-implement-comparable)
+<p>5. [Important tips of compareTo(T o) method] (http://javarevisited.blogspot.com/2011/11/how-to-override-compareto-method-in.html)
