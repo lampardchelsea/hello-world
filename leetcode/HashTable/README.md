@@ -25,3 +25,6 @@
 <p>4. [CircularArrayQueue solution with sacrifise one space to identify empty or full] (http://www.mathcs.emory.edu/~cheung/Courses/171/Syllabus/8-List/array-queue2.html)
 <p>5. [Why use circular array(fake stack overflow)] (http://blog.csdn.net/victor_cindy1/article/details/46604575)
 <p>6. [Other resource] (http://faculty.washington.edu/moishe/javademos/ch07%20Code/jss2/CircularArrayQueue.java)
+
+<p>Intersection of Two Arrays
+<p>1. [Two ways to solve Intersection of Two Arrays] (http://www.programcreek.com/2015/05/leetcode-intersection-of-two-arrays-java/)
