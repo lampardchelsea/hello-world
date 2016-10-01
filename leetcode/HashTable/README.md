@@ -28,3 +28,4 @@
 
 <p>Intersection of Two Arrays
 <p>1. [Two ways to solve Intersection of Two Arrays] (http://www.programcreek.com/2015/05/leetcode-intersection-of-two-arrays-java/)
+<p>2. [binary search way] (http://www.jiuzhang.com/solutions/intersection-of-two-arrays/)
