@@ -29,3 +29,6 @@
 <p>Intersection of Two Arrays
 <p>1. [Two ways to solve Intersection of Two Arrays] (http://www.programcreek.com/2015/05/leetcode-intersection-of-two-arrays-java/)
 <p>2. [binary search way] (http://www.jiuzhang.com/solutions/intersection-of-two-arrays/)
+
+<p>Strobogrammatic Number I/II/III
+<p>1. [Strobogrammatic number I/II] (https://segmentfault.com/a/1190000003787462)
