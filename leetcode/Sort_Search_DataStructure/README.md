@@ -1,6 +1,7 @@
 # Leetcode sort, search, datastructure, graphs
 <p>1. [Princeton Sorting and Searching] (http://introcs.cs.princeton.edu/java/42sort/)
 <p>2. [Princeton Graphs] (http://algs4.cs.princeton.edu/40graphs/)
+<p>3. [Princeton Bags, Queues and Stacks] (http://algs4.cs.princeton.edu/13stacks/)
 
 # Useful links for specific problems
 
@@ -9,6 +10,10 @@
 <p>1. [Two ways to implement circular array queue] (http://blog.csdn.net/victor_cindy1/article/details/46604575)
 <p>2. [Additional variable way] (http://faculty.washington.edu/moishe/javademos/ch07%20Code/jss2/CircularArrayQueue.java)
 <p>3. [Circular Queue implementation in Java using array] (http://oppansource.com/queue-implementation-in-java-using-circular-array/)
+<p> Bag
+<p>1. [What is bag ?] (http://algs4.cs.princeton.edu/13stacks/)
+<p>2. [How to implememnt bag ?] (http://algs4.cs.princeton.edu/13stacks/Bag.java.html)
+<p>
 
 # Sort and Search
 <p>Binary Search
@@ -19,11 +24,13 @@
 <p>5. [Important tips of compareTo(T o) method] (http://javarevisited.blogspot.com/2011/11/how-to-override-compareto-method-in.html)
 
 # Graphs
-<p> Bag
-<p>1. [What is bag ?] (http://algs4.cs.princeton.edu/13stacks/)
-<p>2. [How to implememnt bag ?] (http://algs4.cs.princeton.edu/13stacks/Bag.java.html)
 <p> Adjacency list
 <p>1. [What is Adjacency list ?] (https://en.wikipedia.org/wiki/Adjacency_list)
 <p> Undirected Graphs
 <p>1. [Undirected Graphs] (http://algs4.cs.princeton.edu/41graph/)
 <p>2. [How to implement Graph ?] (http://algs4.cs.princeton.edu/41graph/GraphClient.java.html)
+
+# Accessories
+<p>1. [Princeton StdIn] (http://introcs.cs.princeton.edu/java/stdlib/StdIn.java.html)
+<p>2. [Princeton StdOut] (http://introcs.cs.princeton.edu/java/stdlib/StdOut.java.html)
+
