@@ -4,6 +4,7 @@
  * For example, the numbers "69", "88", and "818" are all strobogrammatic.
  *
  * Analyze:
+ * 双指针法
  * 复杂度
  * 时间 O(N) 空间 O(1)
  * 思路
