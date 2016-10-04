@@ -19,5 +19,11 @@
 <p>5. [Important tips of compareTo(T o) method] (http://javarevisited.blogspot.com/2011/11/how-to-override-compareto-method-in.html)
 
 # Graphs
+<p> Bag
+<p>1. [What is bag ?] (http://algs4.cs.princeton.edu/13stacks/)
+<p>2. [How to implememnt bag ?] (http://algs4.cs.princeton.edu/13stacks/Bag.java.html)
+<p> Adjacency list
+<p>1. [What is Adjacency list ?] (https://en.wikipedia.org/wiki/Adjacency_list)
 <p> Undirected Graphs
 <p>1. [Undirected Graphs] (http://algs4.cs.princeton.edu/41graph/)
+<p>2. [How to implement Graph ?] (http://algs4.cs.princeton.edu/41graph/GraphClient.java.html)
