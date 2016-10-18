@@ -33,3 +33,21 @@
  *  ...
  *  
  ******************************************************************************/
+/**
+ *  The {@code Graph} class represents an undirected graph of vertices
+ *  named 0 through <em>V</em> - 1.
+ *  It supports the following two primary operations: add an edge to the graph,
+ *  iterate over all of the vertices adjacent to a vertex. It also provides
+ *  methods for returning the number of vertices <em>V</em> and the number
+ *  of edges <em>E</em>. Parallel edges and self-loops are permitted.
+ *  By convention, a self-loop <em>v</em>-<em>v</em> appears in the
+ *  adjacency list of <em>v</em> twice and contributes two to the degree
+ *  of <em>v</em>.
+ *  <p>
+ *  This implementation uses an adjacency-lists representation, which 
+ *  is a vertex-indexed array of {@link Bag} objects.
+ *  All operations take constant time (in the worst case) except
+ *  iterating over the vertices adjacent to a given vertex, which takes
+ *  time proportional to the number of such vertices.
+ *  <p>
+ */
