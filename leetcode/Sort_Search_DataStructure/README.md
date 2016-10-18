@@ -13,6 +13,9 @@
 <p>Bag
 <p>1. [What is bag ?] (http://algs4.cs.princeton.edu/13stacks/)
 <p>2. [How to implememnt bag ?] (http://algs4.cs.princeton.edu/13stacks/Bag.java.html)
+<p>3. [Confusion regarding the initial position of the pointer in a list iterated by the Iterator interface] (http://stackoverflow.com/questions/25060742/confusion-regarding-the-initial-position-of-the-pointer-in-a-list-iterated-by-th)
+<p>4. [How to create Iterator in Java] (http://mrbool.com/how-to-create-iterator-in-java/26422)
+<p>5. [Iterating through a Collection, avoiding ConcurrentModificationException when removing in loop] (http://stackoverflow.com/questions/223918/iterating-through-a-collection-avoiding-concurrentmodificationexception-when-re)
 <p>LinkedList
 <p>1. [What is LinkedList] (http://algs4.cs.princeton.edu/13stacks/)
 
