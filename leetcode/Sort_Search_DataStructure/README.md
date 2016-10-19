@@ -16,7 +16,8 @@
 <p>3. [Confusion regarding the initial position of the pointer in a list iterated by the Iterator interface] (http://stackoverflow.com/questions/25060742/confusion-regarding-the-initial-position-of-the-pointer-in-a-list-iterated-by-th)
 <p>4. [How to create Iterator in Java ?] (http://mrbool.com/how-to-create-iterator-in-java/26422)
 <p>5. [What is the Iterable interface used for ?] (http://stackoverflow.com/questions/1059127/what-is-the-iterable-interface-used-for)
-<p>6. [Iterating through a Collection, avoiding ConcurrentModificationException when removing in loop] (http://stackoverflow.com/questions/223918/iterating-through-a-collection-avoiding-concurrentmodificationexception-when-re)
+<p>6. [How does the Java for each loop work ?] (http://stackoverflow.com/questions/85190/how-does-the-java-for-each-loop-work)
+<p>7. [Iterating through a Collection, avoiding ConcurrentModificationException when removing in loop] (http://stackoverflow.com/questions/223918/iterating-through-a-collection-avoiding-concurrentmodificationexception-when-re)
 <p>Stack
 <p>1. [What is stack ?] (http://algs4.cs.princeton.edu/13stacks/)
 <p>2. [How to implement stack(princeton version) ?] (http://algs4.cs.princeton.edu/13stacks/Stack.java.html)
