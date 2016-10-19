@@ -18,14 +18,16 @@
 <p>5. [What is the Iterable interface used for ?] (http://stackoverflow.com/questions/1059127/what-is-the-iterable-interface-used-for)
 <p>6. [How does the Java for each loop work ?] (http://stackoverflow.com/questions/85190/how-does-the-java-for-each-loop-work)
 <p>7. [Iterating through a Collection, avoiding ConcurrentModificationException when removing in loop] (http://stackoverflow.com/questions/223918/iterating-through-a-collection-avoiding-concurrentmodificationexception-when-re)
+
 <p>Stack
 <p>1. [What is stack ?] (http://algs4.cs.princeton.edu/13stacks/)
 <p>2. [How to implement stack(princeton version) ?] (http://algs4.cs.princeton.edu/13stacks/Stack.java.html)
 <p>3. [How to implement stack(java source version which extends vector) ?] (http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/util/Stack.java)
-<p>4. [Never assume! Stack iterators in Java] (https://www.tigraine.at/2010/05/12/never-assume-stack-iterators-in-java)
-<p>5. [JDK-4475301 : RFE: java.util.Stack.iterator() iterates the wrong way] (http://bugs.java.com/bugdatabase/view_bug.do?bug_id=4475301)
-<p>5. [foreach and stack, iterating from the bottom-up?] (http://www.thecodingforums.com/threads/foreach-and-stack-iterating-from-the-bottom-up.608994/)
-<p>6. [Stack, foreach, wrong order?] (http://stackoverflow.com/questions/14900710/stack-foreach-wrong-order)
+<p>4. [IS-A and HAS-A relationship] (http://learnwithharsha.com/my-first-java-lesson-is-a-and-has-a-relationships/)
+<p>5. [Never assume! Stack iterators in Java] (https://www.tigraine.at/2010/05/12/never-assume-stack-iterators-in-java)
+<p>6. [JDK-4475301 : RFE: java.util.Stack.iterator() iterates the wrong way] (http://bugs.java.com/bugdatabase/view_bug.do?bug_id=4475301)
+<p>7. [foreach and stack, iterating from the bottom-up?] (http://www.thecodingforums.com/threads/foreach-and-stack-iterating-from-the-bottom-up.608994/)
+<p>8. [Stack, foreach, wrong order?] (http://stackoverflow.com/questions/14900710/stack-foreach-wrong-order)
 <p>LinkedList
 <p>1. [What is LinkedList ?] (http://algs4.cs.princeton.edu/13stacks/)
 
