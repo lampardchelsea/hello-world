@@ -18,9 +18,10 @@
 <p>5. [Iterating through a Collection, avoiding ConcurrentModificationException when removing in loop] (http://stackoverflow.com/questions/223918/iterating-through-a-collection-avoiding-concurrentmodificationexception-when-re)
 <p>Stack
 <p>1. [What is stack ?] (http://algs4.cs.princeton.edu/13stacks/)
-<p>2. [How to implement stack ?] (http://algs4.cs.princeton.edu/13stacks/Stack.java.html)
-<p>3. [Never assume! Stack iterators in Java] (https://www.tigraine.at/2010/05/12/never-assume-stack-iterators-in-java)
-<p>4. [JDK-4475301 : RFE: java.util.Stack.iterator() iterates the wrong way] (http://bugs.java.com/bugdatabase/view_bug.do?bug_id=4475301)
+<p>2. [How to implement stack(princeton version) ?] (http://algs4.cs.princeton.edu/13stacks/Stack.java.html)
+<p>3. [How to implement stack(java source version which extends vector) ?] (http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/util/Stack.java)
+<p>4. [Never assume! Stack iterators in Java] (https://www.tigraine.at/2010/05/12/never-assume-stack-iterators-in-java)
+<p>5. [JDK-4475301 : RFE: java.util.Stack.iterator() iterates the wrong way] (http://bugs.java.com/bugdatabase/view_bug.do?bug_id=4475301)
 <p>5. [foreach and stack, iterating from the bottom-up?] (http://www.thecodingforums.com/threads/foreach-and-stack-iterating-from-the-bottom-up.608994/)
 <p>6. [Stack, foreach, wrong order?] (http://stackoverflow.com/questions/14900710/stack-foreach-wrong-order)
 <p>LinkedList
