@@ -42,6 +42,12 @@
 # Graphs
 <p> Adjacency list
 <p>1. [What is Adjacency list ?] (https://en.wikipedia.org/wiki/Adjacency_list)
+<p> Graph testing input files
+<p>1. [tinyG.txt] (http://algs4.cs.princeton.edu/41graph/tinyG.txt)
+<p>2. [mediumG.txt] (http://algs4.cs.princeton.edu/41graph/mediumG.txt)
+<p>3. [largeG.txt] (http://algs4.cs.princeton.edu/41graph/largeG.txt)
+<p>4. [run java file on Terminal (mac) with text file/args] (http://stackoverflow.com/questions/24985943/run-java-file-on-terminal-mac-with-text-file-args)
+<p>5. [How can I compile a Java program in Eclipse without running it ?] (http://stackoverflow.com/questions/4058155/how-can-i-compile-a-java-program-in-eclipse-without-running-it)
 <p> Undirected Graphs
 <p>1. [Undirected Graphs] (http://algs4.cs.princeton.edu/41graph/)
 <p>2. [How to implement Graph ?] (http://algs4.cs.princeton.edu/41graph/GraphClient.java.html)
