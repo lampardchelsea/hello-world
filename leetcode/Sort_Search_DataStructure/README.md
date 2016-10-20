@@ -53,6 +53,9 @@
 <p>2. [How to implement Graph ?] (http://algs4.cs.princeton.edu/41graph/GraphClient.java.html)
 <p>3. [What does “this()” method mean ?] (http://stackoverflow.com/questions/15867722/what-does-this-method-mean)
 <p>4. [How to create a generic array in Java ?] (http://stackoverflow.com/questions/529085/how-to-create-a-generic-array-in-java)
+<p>5. [Is returning an iterable better than a list or set in Java ?] (https://www.quora.com/Is-returning-an-iterable-better-than-a-list-or-set-in-Java)
+<p>6. [Is it bad practice to return an iterable in a method ?] (http://stackoverflow.com/questions/19474862/is-it-bad-practice-to-return-an-iterable-in-a-method)
+<p>7. [Iterable as a return type] (http://stackoverflow.com/questions/23162559/iterable-as-a-return-type)
 
 # Accessories
 <p>1. [Princeton StdIn] (http://introcs.cs.princeton.edu/java/stdlib/StdIn.java.html)
