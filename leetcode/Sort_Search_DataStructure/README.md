@@ -56,6 +56,8 @@
 <p>5. [Is returning an iterable better than a list or set in Java ?] (https://www.quora.com/Is-returning-an-iterable-better-than-a-list-or-set-in-Java)
 <p>6. [Is it bad practice to return an iterable in a method ?] (http://stackoverflow.com/questions/19474862/is-it-bad-practice-to-return-an-iterable-in-a-method)
 <p>7. [Iterable as a return type] (http://stackoverflow.com/questions/23162559/iterable-as-a-return-type)
+<p>8. [Most of the Iterators and Iterables methods are LAZY! What does this mean] (http://stackoverflow.com/questions/2155788/most-of-the-iterators-and-iterables-methods-are-lazy-what-does-this-mean)
+<p>9. [Lazy evaluation and example of how python 3.x use iterator implement lazy evaluation as simulating laziness in eager languages] (https://en.wikipedia.org/wiki/Lazy_evaluation)
 
 # Accessories
 <p>1. [Princeton StdIn] (http://introcs.cs.princeton.edu/java/stdlib/StdIn.java.html)
