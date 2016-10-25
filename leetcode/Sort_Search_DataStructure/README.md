@@ -29,6 +29,11 @@
 <p>6. [JDK-4475301 : RFE: java.util.Stack.iterator() iterates the wrong way] (http://bugs.java.com/bugdatabase/view_bug.do?bug_id=4475301)
 <p>7. [foreach and stack, iterating from the bottom-up?] (http://www.thecodingforums.com/threads/foreach-and-stack-iterating-from-the-bottom-up.608994/)
 <p>8. [Stack, foreach, wrong order?] (http://stackoverflow.com/questions/14900710/stack-foreach-wrong-order)
+
+<p>Queue
+<p>1. [What is queue ?] (http://algs4.cs.princeton.edu/13stacks/)
+<p>1. [How to implement queue ?] (http://algs4.cs.princeton.edu/41graph/Queue.java.html)
+
 <p>LinkedList
 <p>1. [What is LinkedList ?] (http://algs4.cs.princeton.edu/13stacks/)
 
@@ -45,6 +50,10 @@
 <p>2. [Princeton DFS] (http://algs4.cs.princeton.edu/41graph/)
 <p>3. [How to implement DFS ?] (http://algs4.cs.princeton.edu/41graph/DepthFirstSearch.java.html)
 <p>4. [How to implement DFP(Depth First Paths) ?] (http://algs4.cs.princeton.edu/41graph/DepthFirstPaths.java.html)
+
+<p>Breath First Search
+<p>1. [BFS basic ideas] (http://blog.csdn.net/raphealguo/article/details/7523411)
+<p>2. [Princeton BFS] (http://algs4.cs.princeton.edu/41graph/BreadthFirstPaths.java.html)
 
 # Graphs
 <p> Adjacency list
