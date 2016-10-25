@@ -54,7 +54,7 @@ public class Bag<Item> implements Iterable<Item> {
 	}
 	
 	// Helper linked list class
-	private class Node<Item> {
+	private static class Node<Item> {
 		private Item item;
 		private Node<Item> next;
 	}
