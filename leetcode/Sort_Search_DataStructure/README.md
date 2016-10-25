@@ -36,6 +36,7 @@
 
 <p>LinkedList
 <p>1. [What is LinkedList ?] (http://algs4.cs.princeton.edu/13stacks/)
+<p>2. [Nested Classes] (https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html)
 
 # Sort and Search
 <p>Binary Search
