@@ -47,7 +47,7 @@ public class PrincetonStack<Item> implements Iterable<Item> {
 		n = 0;
 	}
 	
-	private class Node<Item> {
+	private static class Node<Item> {
 		private Item item;
 		private Node<Item> next;
 	}
