@@ -20,21 +20,21 @@
  *  5: 3 0 
  *
  *  %  java BreadthFirstPaths tinyCG.txt 0
- *  0 to 0:  0
- *  0 to 1:  0-1
- *  0 to 2:  0-2
- *  0 to 3:  0-2-3
- *  0 to 4:  0-2-4
- *  0 to 5:  0-5
+ *  0 to 0 (0):  0
+ *  0 to 1 (1):  0-1
+ *  0 to 2 (1):  0-2
+ *  0 to 3 (2):  0-2-3
+ *  0 to 4 (2):  0-2-4
+ *  0 to 5 (1):  0-5
  *
  *  %  java BreadthFirstPaths largeG.txt 0
- *  0 to 0:  0
- *  0 to 1:  0-932942-474885-82707-879889-971961-...
- *  0 to 2:  0-460790-53370-594358-780059-287921-...
- *  0 to 3:  0-713461-75230-953125-568284-350405-...
- *  0 to 4:  0-460790-53370-310931-440226-380102-...
- *  0 to 5:  0-932942-474885-82707-879889-971961-...
- *  0 to 6:  0-932942-474885-82707-879889-971961-...
+ *  0 to 0 (0):  0
+ *  0 to 1 (418):  0-932942-474885-82707-879889-971961-...
+ *  0 to 2 (323):  0-460790-53370-594358-780059-287921-...
+ *  0 to 3 (168):  0-713461-75230-953125-568284-350405-...
+ *  0 to 4 (144):  0-460790-53370-310931-440226-380102-...
+ *  0 to 5 (566):  0-932942-474885-82707-879889-971961-...
+ *  0 to 6 (349):  0-932942-474885-82707-879889-971961-...
  *
  ******************************************************************************/
 
@@ -54,7 +54,11 @@
  *  If not adding distTo() related part(including comment out check() method), also
  *  need to change pathTo() method for loop end condition as same as DFS
  *  pathTo(v) --> pathTo(v, s)
+ *  for(x = v; distTo(x) != 0; x = edgeTo(x))
  *  for(x = v; x != s; x = edgeTo(x)){...}
+ *  The background mechanism for end condition is same, because x != s equally to
+ *  distTo[x] != 0, both of these two methods works as define end condition as
+ *  x not step back to source vertex.
  *  
  *  As check, the final result is same as adding distTo().
  */
