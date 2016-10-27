@@ -32,7 +32,8 @@
 
 <p>Queue
 <p>1. [What is queue ?] (http://algs4.cs.princeton.edu/13stacks/)
-<p>1. [How to implement queue ?] (http://algs4.cs.princeton.edu/41graph/Queue.java.html)
+<p>2. [How to implement queue ?] (http://algs4.cs.princeton.edu/41graph/Queue.java.html)
+<p>3. [What is loitering in queue design ?] (http://www.jyuan92.com/blog/coursera-algorithmprinceton-hw2-queues/)
 
 <p>LinkedList
 <p>1. [What is LinkedList ?] (http://algs4.cs.princeton.edu/13stacks/)
