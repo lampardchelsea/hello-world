@@ -39,6 +39,11 @@
 <p>1. [What is LinkedList ?] (http://algs4.cs.princeton.edu/13stacks/)
 <p>2. [Nested Classes] (https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html)
 
+<p>Binary Search Tree
+<p>1. [What is BST ?] (http://algs4.cs.princeton.edu/32bst/)
+<p>2. [How to implement BST ?] (http://algs4.cs.princeton.edu/32bst/BST.java.html)
+<p>3. [What is Associate Array ?] (https://en.wikipedia.org/wiki/Associative_array)
+
 # Sort and Search
 <p>Binary Search
 <p>1. [Binary Search] (http://algs4.cs.princeton.edu/11model/BinarySearch.java.html)
