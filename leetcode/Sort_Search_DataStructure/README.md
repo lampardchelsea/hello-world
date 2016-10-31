@@ -44,6 +44,7 @@
 <p>2. [How to implement BST ?] (http://algs4.cs.princeton.edu/32bst/BST.java.html)
 <p>3. [What is Associate Array ?] (https://en.wikipedia.org/wiki/Associative_array)
 <p>4. [Why we need BST ?] (http://www.nowcoder.com/discuss/528)
+<p>5. [A Generic Version of the Box Class] (https://docs.oracle.com/javase/tutorial/java/generics/types.html)
 
 # Sort and Search
 <p>Binary Search
