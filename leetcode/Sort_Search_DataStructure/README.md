@@ -40,14 +40,15 @@
 <p>2. [Nested Classes] (https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html)
 
 <p>Binary Search Tree
-<p>1. [What is BST ?] (http://algs4.cs.princeton.edu/32bst/)
-<p>2. [How to implement BST ?] (http://algs4.cs.princeton.edu/32bst/BST.java.html)
-<p>3. [What is Associate Array ?] (https://en.wikipedia.org/wiki/Associative_array)
-<p>4. [Why we need BST ?] (http://www.nowcoder.com/discuss/528)
-<p>5. [A Generic Version of the Box Class] (https://docs.oracle.com/javase/tutorial/java/generics/types.html)
-<p>6. [Floor and Ceil from a BST] (http://www.geeksforgeeks.org/floor-and-ceil-from-a-bst/)
-<p>7. [DFS Tree Traversals -- Inorder/Preorder/Postorder] (http://www.geeksforgeeks.org/618/)
-<p>8. [BFS Tree Traversals -- Levelorder] (http://www.geeksforgeeks.org/level-order-tree-traversal/)
+<p>1. [What is BST(Princeton) ?] (http://algs4.cs.princeton.edu/32bst/)
+<p>2. [What is BST(CMU) ?] (https://www.cs.cmu.edu/~adamchik/15-121/lectures/Trees/trees.html)
+<p>3. [How to implement BST ?] (http://algs4.cs.princeton.edu/32bst/BST.java.html)
+<p>4. [What is Associate Array ?] (https://en.wikipedia.org/wiki/Associative_array)
+<p>5. [Why we need BST ?] (http://www.nowcoder.com/discuss/528)
+<p>6. [A Generic Version of the Box Class] (https://docs.oracle.com/javase/tutorial/java/generics/types.html)
+<p>7. [Floor and Ceil from a BST] (http://www.geeksforgeeks.org/floor-and-ceil-from-a-bst/)
+<p>8. [DFS Tree Traversals -- Inorder/Preorder/Postorder] (http://www.geeksforgeeks.org/618/)
+<p>9. [BFS Tree Traversals -- Levelorder] (http://www.geeksforgeeks.org/level-order-tree-traversal/)
 
 # Sort and Search
 <p>Binary Search
