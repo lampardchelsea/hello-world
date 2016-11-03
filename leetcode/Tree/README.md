@@ -6,4 +6,4 @@
 <p>Balanced Binary Tree
 <p>1. [How to determine if a binary tree is height-balanced ?] (http://www.geeksforgeeks.org/how-to-determine-if-a-binary-tree-is-balanced/)
 <p>2. [How to implement check of balanced binary tree ?] (https://segmentfault.com/a/1190000003509063)
-
+<p>3. [Empty binary tree height ?] (http://stackoverflow.com/questions/2209777/what-is-the-definition-for-the-height-of-a-tree)
