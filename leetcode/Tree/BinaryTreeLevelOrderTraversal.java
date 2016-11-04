@@ -122,5 +122,3 @@ public class Solution {
         return result;
     }
 }
-
-// Soluton 3: If not create new arraylist to record current level nodes each time
