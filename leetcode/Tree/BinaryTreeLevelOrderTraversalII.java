@@ -15,3 +15,51 @@
   [3]
 ]
 */
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        
+        if(root == null) {
+            return result;
+        }
+        
+        queue.add(root);
+        
+        while(!queue.isEmpty()) {
+            List<Integer> level = new ArrayList<Integer>();
+            
+            int size = queue.size();
+            for(int i = 0; i < size; i++) {
+                TreeNode x = queue.poll();
+                level.add(x.val);
+            
+                if(x.left != null) {
+                    queue.add(x.left);
+                }
+                if(x.right != null) {
+                    queue.add(x.right);
+                }
+            }
+
+            result.add(level);
+        }
+        
+        // Use Collections reverse() method to reverse the result arraylist
+        // or use self-define method to reverse the result.
+        // E.g When create the result we can use 
+        // resultList.add(0, valuesInCurrentLevel);
+        // Refer to https://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html#add(int,%20E)
+        Collections.reverse(result);
+        return result;
+    }
+}
