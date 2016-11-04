@@ -57,8 +57,12 @@ public class Solution {
         // Use Collections reverse() method to reverse the result arraylist
         // or use self-define method to reverse the result.
         // E.g When create the result we can use 
-        // resultList.add(0, valuesInCurrentLevel);
+        // 1. resultList.add(0, valuesInCurrentLevel);
         // Refer to https://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html#add(int,%20E)
+        // 2. List<ArrayList<Integer>> reversedResult = new  ArrayList<ArrayList<Integer>>();
+        //    for(int i=result.size()-1; i>=0; i--){
+        //       reversedResult.add(result.get(i));
+        //    }
         Collections.reverse(result);
         return result;
     }
