@@ -41,3 +41,91 @@ public class Solution {
         return Math.max(height(x.left), height(x.right)) + 1;
     }
 }
+
+
+
+
+/**
+ * Full example with test cases
+ * 
+ * For this problem, a height-balanced binary tree is defined as a binary tree 
+ * in which the depth of the two subtrees of every node never differ by more than 1.
+ * 
+ * https://segmentfault.com/a/1190000003509063
+ * The easiest way is computer both heights of left child tree and right child tree,
+ * if difference larger than 1, then not a height-balanced binary tree, in recursively
+ * calculate child tree height need to start from leaves which have no more children
+ * nodes, and trace back level after level.
+ * E.g in current example, the left subtree start from 2, right subtree start from 3.
+ * The height of left subtree is 2, as 2--4--5 number of edges is 2, height of right
+ * subtree is 0, as 3 is the only node as leave node and no edge.
+ * 
+ * Note: The height of a node
+ * https://www.cs.cmu.edu/~adamchik/15-121/lectures/Trees/trees.html
+ */
+public class BlancedBinrayTree {
+	private TreeNode root;
+	
+	private class TreeNode {
+		private int val;
+		private TreeNode left;
+		private TreeNode right;
+		
+		public TreeNode(int x) {
+			val = x;
+		}
+	}
+	
+	public boolean isBalanced(TreeNode root) {
+		if(root == null) {
+			return true;
+		}
+		
+		int leftHeight = height(root.left);
+		int rightHeight = height(root.right);
+		
+		if(Math.abs(leftHeight - rightHeight) <= 1 && isBalanced(root.left) && isBalanced(root.right)) {
+			return true;
+		}
+		
+		return false;
+	} 
+	
+	public int height(TreeNode x) {
+		if(x == null) {
+			return -1;
+		}
+		
+		return Math.max(height(x.left), height(x.right)) + 1;
+	}
+	
+	public static void main(String[] args) {
+		BlancedBinrayTree tree = new BlancedBinrayTree();
+		
+		/**
+		 * Construct a binary tree
+		 *              1
+		 *             / \
+		 *            2   3
+		 *             \
+		 *              4
+		 *             /
+		 *            5   
+		 */
+		
+		tree.root = tree.new TreeNode(1);
+		tree.root.left = tree.new TreeNode(2);
+		tree.root.right = tree.new TreeNode(3);
+		tree.root.left.right = tree.new TreeNode(4);
+		tree.root.left.right.left = tree.new TreeNode(5);
+		
+		boolean isBalanced = tree.isBalanced(tree.root);
+		System.out.println(isBalanced);
+	}
+	
+}
+
+
+
+
+
