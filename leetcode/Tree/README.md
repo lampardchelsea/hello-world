@@ -10,3 +10,4 @@
 
 <p>Binary Tree Level Order Traversal
 <p>1. [Four ways to implement binary tree level order traversal] (http://www.jiuzhang.com/solutions/binary-tree-level-order-traversal/)
+<p>2. [How do I instantiate a Queue object in java ?] (http://stackoverflow.com/questions/4626812/how-do-i-instantiate-a-queue-object-in-java)
