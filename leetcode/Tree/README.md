@@ -20,3 +20,4 @@
 <p>Root To Leaf Binary Tree Paths & Node To Node Binary Tree Paths
 <p>1. [Root To Leaf Binary Tree Paths & Node to Node Binary Tree Path] (https://segmentfault.com/a/1190000003465753)
 <p>2. [Binary Tree Paths] (http://www.jiuzhang.com/solutions/binary-tree-paths/)
+<p>3. [Lowest Common Ancestor of a Binary Search Tree] (https://segmentfault.com/a/1190000003509399)
