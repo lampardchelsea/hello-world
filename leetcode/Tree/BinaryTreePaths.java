@@ -81,6 +81,7 @@ public class Solution {
     }
     
     public void dfs(TreeNode x, String path) {
+	// As test, no matter in-order/pre-order/post-order, all accept
         if(x.left == null && x.right == null) {
             result.add(path);
             return;
