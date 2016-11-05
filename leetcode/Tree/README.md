@@ -16,3 +16,7 @@
 <p>Binary Tree Level Order Traversal II
 <p>1. [Reverse Level Order Traversal] (http://www.geeksforgeeks.org/reverse-level-order-traversal/)
 <p>2. [Binary Tree Level Order Traversal II] (http://www.jiuzhang.com/solutions/binary-tree-level-order-traversal-ii/)
+
+<p>Binary Tree Paths
+<p>1. [Root To Leaf Binary Tree Paths & Node to Node Binary Tree Path] (https://segmentfault.com/a/1190000003465753)
+<p>2. [Binary Tree Paths] (http://www.jiuzhang.com/solutions/binary-tree-paths/)
