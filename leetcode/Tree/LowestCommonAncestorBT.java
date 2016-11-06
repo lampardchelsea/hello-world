@@ -22,6 +22,30 @@
  *     TreeNode right;
  *     TreeNode(int x) { val = x; }
  * }
+ *
+ * Solution:
+ * https://segmentfault.com/a/1190000003509399
+ * 深度优先标记
+ * 复杂度
+ * 时间 O(h) 空间 O(h) 递归栈空间
+ * 思路
+ * 我们可以用深度优先搜索，从叶子节点向上，标记子树中出现目标节点的情况。如果子树中有目标节点，标记为那个目标节点，
+ * 如果没有，标记为null。显然，如果左子树、右子树都有标记，说明就已经找到最小公共祖先了。如果在根节点为p的左右子树
+ * 中找p、q的公共祖先，则必定是p本身。
+ * 换个角度，可以这么想：如果一个节点左子树有两个目标节点中的一个，右子树没有，那这个节点肯定不是最小公共祖先。
+ * 如果一个节点右子树有两个目标节点中的一个，左子树没有，那这个节点肯定也不是最小公共祖先。只有一个节点正好左子树有，
+ * 右子树也有的时候，才是最小公共祖先。
+ *
+ * http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/
+ * Method 2 (Using Single Traversal)
+ * The method 1 finds LCA in O(n) time, but requires three tree traversals plus extra spaces for path arrays. 
+ * If we assume that the keys n1 and n2 are present in Binary Tree, we can find LCA using single traversal of 
+ * Binary Tree and without extra storage for path arrays.
+ * The idea is to traverse the tree starting from root. If any of the given keys (n1 and n2) matches with root, 
+ * then root is LCA (assuming that both keys are present). If root doesn’t match with any of the keys, we recur 
+ * for left and right subtree. The node which has one key present in its left subtree and the other key present 
+ * in right subtree is the LCA. If both keys lie in left subtree, then left subtree has LCA also, otherwise LCA 
+ * lies in right subtree.
  */
 public class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
@@ -43,7 +67,7 @@ public class Solution {
         // this express LCA in right subtree, and we only need to look for LCA in right
         // subtree and return node right_lca or null if not found
         // Case 3: left_lca != null && right_lca != null
-        // this express current node is LCA as p and q separately exist on left and
+        // this express current node is LCA because p and q separately exist on left and
         // right subtree.
         // Now we need to check Case 3 first, and if not satisfy, then use trinary
         // express to return either node left_lca or right_lca as Case 1 or Case 2
