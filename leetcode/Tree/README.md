@@ -17,7 +17,7 @@
 <p>1. [Reverse Level Order Traversal] (http://www.geeksforgeeks.org/reverse-level-order-traversal/)
 <p>2. [Binary Tree Level Order Traversal II] (http://www.jiuzhang.com/solutions/binary-tree-level-order-traversal-ii/)
 
-<p>Root To Leaf Binary Tree Paths & Node To Node Binary Tree Paths & Lowest Common Ancestor of a Binary Search Tree
+<p>Root To Leaf Binary Tree Paths & Node To Node Binary Tree Paths & Lowest Common Ancestor of a BST and BT
 <p>1. [Root To Leaf Binary Tree Paths & Node to Node Binary Tree Path] (https://segmentfault.com/a/1190000003465753)
 <p>2. [Binary Tree Paths] (http://www.jiuzhang.com/solutions/binary-tree-paths/)
 <p>3. [Lowest Common Ancestor of a Binary Tree(Ethan Li)] (https://segmentfault.com/a/1190000003509399)
