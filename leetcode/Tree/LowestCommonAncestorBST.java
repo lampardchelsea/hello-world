@@ -25,7 +25,8 @@
   * Otherwise root is LCA (assuming that both n1 and n2 are present in BST)
   *
   * 对于二叉搜索树，公共祖先的值一定大于等于较小的节点，小于等于较大的节点。换言之，在遍历树的时候，如果当前结点大于两个节点，
-  * 则结果在当前结点的左子树里，如果当前结点小于两个节点，则结果在当前节点的右子树里。
+  * 则结果在当前结点的左子树里，如果当前结点小于两个节点，则结果在当前节点的右子树里。最后一种情况就是当前节点大于或等于较小节点，
+  * 小于或等于较大节点，直接返回当前节点即可。
 */
 /**
  * Definition for a binary tree node.
@@ -41,14 +42,19 @@ public class Solution {
         if(root == null) {
             return null;
         }
+        
+        // If both n1 and n2 are smaller than root, then LCA lies in left
         if(root.val > p.val && root.val > q.val) {
             return lowestCommonAncestor(root.left, p, q);
         }
         
+        // If both n1 and n2 are bigger than root, then LCA lies in right
         if(root.val < p.val && root.val < q.val) {
             return lowestCommonAncestor(root.right, p, q);
         }
         
+        // Directly return current node as it satisfy the only situation left
+        // root.val >= p.val && root.val <= q.val
         return root;
     }
 }
