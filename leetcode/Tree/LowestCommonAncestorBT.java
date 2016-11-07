@@ -37,6 +37,15 @@
  * 右子树也有的时候，才是最小公共祖先。
  *
  * http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/
+ * Note: This solution contain a wrong condition as :
+        // If either n1 or n2 matches with root's key, report
+        // the presence by returning root (Note that if a key is
+        // ancestor of other, then the ancestor key becomes LCA
+        if (node.data == n1 || node.data == n2)
+            return node;
+ * The correct version should be 
+        if (node == n1 || node == n2)
+            return node;
  * Method 2 (Using Single Traversal)
  * The method 1 finds LCA in O(n) time, but requires three tree traversals plus extra spaces for path arrays. 
  * If we assume that the keys n1 and n2 are present in Binary Tree, we can find LCA using single traversal of 
@@ -49,10 +58,14 @@
  */
 public class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        // If either p or q matches with root's value, report
+        // If either p or q matches with root(NOT root's val), report
         // the presence by returning root (Note that if a key is
         // ancestor of other, then the ancestor root becomes LCA)
-        if(root == null || root.val == p.val || root.val == q.val) {
+        // The wrong condition is below:
+        // if(root == null || root.val == p.val || root.val == q.val) {
+        //    return root;
+        // }
+        if(root == null || root == p || root == q) {
             return root;
         }
         
