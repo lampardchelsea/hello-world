@@ -27,5 +27,5 @@
 <p>7. [Lowest Common Ancestor of a Binary Search Tree(GeeksForGeeks)] (http://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-search-tree/)
 <p>8. [Difference between binary tree and binary search tree] (http://stackoverflow.com/questions/6380231/difference-between-binary-tree-and-binary-search-tree)
 
-<p>Root To Leaf Binary Tree Path
+<p>Root To Node Binary Tree Path
 <p>1. [Print a path from Root to Node in Binary Tree] (http://algorithms.tutorialhorizon.com/print-a-path-from-root-to-node-in-binary-tree/)
