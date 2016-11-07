@@ -21,7 +21,7 @@
 <p>1. [Root To Leaf Binary Tree Paths & Node to Node Binary Tree Path] (https://segmentfault.com/a/1190000003465753)
 <p>2. [Binary Tree Paths] (http://www.jiuzhang.com/solutions/binary-tree-paths/)
 <p>3. [Lowest Common Ancestor of a Binary Tree(Ethan Li)] (https://segmentfault.com/a/1190000003509399)
-<p>4. [Lowest Common Ancestor of a Binary Tree(GeeksForGeeks)] (http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/)
+<p>4. [Lowest Common Ancestor of a Binary Tree(GeeksForGeeks -> contain wrong condition)] (http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/)
 <p>5. [Lowest Common Ancestor of a Binary Search Tree(Ethan Li)] (https://segmentfault.com/a/1190000003509399)
 <p>6. [Lowest Common Ancestor of a Binary Search Tree(LeetCode)] (http://articles.leetcode.com/lowest-common-ancestor-of-a-binary-search-tree/)
 <p>7. [Lowest Common Ancestor of a Binary Search Tree(GeeksForGeeks)] (http://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-search-tree/)
