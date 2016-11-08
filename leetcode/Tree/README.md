@@ -29,3 +29,6 @@
 
 <p>Root To Node Binary Tree Path
 <p>1. [Print a path from Root to Node in Binary Tree] (http://algorithms.tutorialhorizon.com/print-a-path-from-root-to-node-in-binary-tree/)
+
+<p>Sum of Left Leaves
+<p>1. [Two ways of find sum of all left leaves in a given Binary Tree] (http://www.geeksforgeeks.org/find-sum-left-leaves-given-binary-tree/)
