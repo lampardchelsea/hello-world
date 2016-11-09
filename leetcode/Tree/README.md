@@ -33,3 +33,5 @@
 <p>Sum of Left Leaves
 <p>1. [Two ways of find sum of all left leaves in a given Binary Tree] (http://www.geeksforgeeks.org/find-sum-left-leaves-given-binary-tree/)
 <p>2. [Java is Pass-by-Value, Dammit!] (http://javadude.com/articles/passbyvalue.htm)
+<p>3. [How to do the equivalent of pass by reference for primitives in Java ?] (http://stackoverflow.com/questions/5614562/how-to-do-the-equivalent-of-pass-by-reference-for-primitives-in-java)
+<p>4. [Why static member variable not work for retain value in recursive method ?] (http://stackoverflow.com/questions/40499420/why-static-member-variable-not-work-for-retain-value-in-recursive-method)
