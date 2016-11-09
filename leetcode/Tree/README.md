@@ -37,7 +37,7 @@
 <p>4. [Why static member variable not work for retain value in recursive method ?] (http://stackoverflow.com/questions/40499420/why-static-member-variable-not-work-for-retain-value-in-recursive-method)
 <p>5. [Using recursion how can i keep the local variable updated] (http://stackoverflow.com/questions/7969955/using-recursion-how-can-i-keep-the-local-variable-updated)
 <p>6. [Behaviour of an array when passed as a parameter in recursive calls] (http://stackoverflow.com/questions/24973572/behaviour-of-an-array-when-passed-as-a-parameter-in-recursive-calls)
-
+<p>7. [How to collect the result of a recursive method ?] (http://stackoverflow.com/questions/1142256/how-to-collect-the-result-of-a-recursive-method)
 
 
 
