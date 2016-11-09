@@ -42,6 +42,11 @@ public class Solution {
         }
         
         sumOfLeftLeavesRec(x.left, true, sum);
+	// As debug model check, if just use static memeber variable sum could not
+	// keep the value when return from deepest recursion, e.g when return from
+	// node 8, the sum should be 8 and pass into new recursion on node 6(which
+	// return from recursion of node 8), but real situation is sum will change
+	// back to 0.
         sumOfLeftLeavesRec(x.right, false, sum);
     }
 	
