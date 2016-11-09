@@ -36,7 +36,7 @@ public class Solution {
         return result;
     }
     
-    // Every time pass in mutable type String object "path" to record
+    // Every time pass in mutable type List<String> object "result" to record
     // http://stackoverflow.com/questions/40499420/why-static-member-variable-not-work-for-retain-value-in-recursive-method
     public void dfs(TreeNode x, List<String> result, String path) {
         // As test, no matter in-order/pre-order/post-order, all accept
