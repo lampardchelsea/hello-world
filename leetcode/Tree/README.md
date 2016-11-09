@@ -38,6 +38,6 @@
 <p>5. [Using recursion how can i keep the local variable updated] (http://stackoverflow.com/questions/7969955/using-recursion-how-can-i-keep-the-local-variable-updated)
 <p>6. [Behaviour of an array when passed as a parameter in recursive calls] (http://stackoverflow.com/questions/24973572/behaviour-of-an-array-when-passed-as-a-parameter-in-recursive-calls)
 <p>7. [How to collect the result of a recursive method ?] (http://stackoverflow.com/questions/1142256/how-to-collect-the-result-of-a-recursive-method)
-
+<p>8. [MIT 6.005 Reading 10: Recursion] (http://web.mit.edu/6.005/www/fa15/classes/10-recursion/)
 
 
