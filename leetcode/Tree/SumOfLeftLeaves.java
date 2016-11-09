@@ -73,3 +73,7 @@ public class Solution {
 	int result = sumOfLeftLeaves(s.root);
 	System.out.println(result);
 }
+
+	
+// Two right ways
+// http://stackoverflow.com/questions/40499420/why-static-member-variable-not-work-for-retain-value-in-recursive-method
