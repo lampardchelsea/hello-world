@@ -153,3 +153,59 @@ public class Solution {
 		System.out.println(result.toString());
 	}
 }
+
+
+// A more easy understanding version with use of ArrayList, which also used by PathSum.java
+// http://www.programcreek.com/2014/05/leetcode-binary-tree-paths-java/
+// The major difference between previous solution and this one is 3rd parameter on dfs method
+// change from "String path" into "List<Integer>", and related change on final result recording
+// as List<List<Integer>> to record each path.
+public List<String> binaryTreePaths(TreeNode root) {
+    List<String> finalResult = new ArrayList<String>();
+ 
+    if(root == null)
+        return finalResult;
+ 
+    List<List<String>> results = new ArrayList<List<String>>();
+    List<String> curr = new ArrayList<String>();
+
+    dfs(root, results, curr);
+ 
+    for(ArrayList<String> al : results){
+        StringBuilder sb = new StringBuilder();
+        sb.append(al.get(0));
+        for(int i = 1; i < al.size(); i++){
+            sb.append("->" + al.get(i));
+        }
+ 
+        finalResult.add(sb.toString());
+    }
+ 
+    return finalResult;
+}
+ 
+public void dfs(TreeNode root, List<List<String>> list, List<String> curr){
+    curr.add(String.valueOf(root.val));
+ 
+    if(root.left == null && root.right == null){
+        list.add(curr);
+        return;
+    }
+  
+    // How to pass current recursion content which stored in "curr" ArrayList
+    // into next recursion, the most effect way is using contructor provide
+    // by ArrayList(Collection<? extends E> c), same effect as "String path"
+    // modification(since String is immutable, but '+' work on String as StringBuilder)
+    // http://stackoverflow.com/a/4370101/6706875
+    // https://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html#ArrayList(java.util.Collection)
+    if(root.left != null){
+        List<String> temp = new ArrayList<String>(curr);
+        dfs(root.left, list, temp);
+    }
+ 
+    if(root.right!=null){
+        List<String> temp = new ArrayList<String>(curr);
+        dfs(root.right, list, temp);
+    } 
+}
+
