@@ -44,6 +44,7 @@ public class Solution {
             return null;
         }
         
+	// First recursively go to the leave nodes of the tree
         if(root.left != null) {
             invertTree(root.left);
         }
@@ -52,6 +53,9 @@ public class Solution {
             invertTree(root.right);
         }
         
+	// Then invert the left and right subtree (start with leaves 
+	// right & left as null, after that will go up from bottom
+	// level by level to invert left and right subtree)
         TreeNode tmp = root.left;
         root.left = root.right;
         root.right = tmp;
@@ -61,16 +65,29 @@ public class Solution {
 }
 
 // Solution 2: Top-Bottom traverse invert
+/**
+		       1                  1                  1                 1
+	             /   \              /   \              /   \             /   \
+	  	    2     3            2     3            2     3           3     2
+	 	   / \   /    -->     / \    /   -->     / \      \   -->    \   / \ 
+		  6   5 9            6   5  9           5   6      9          9 5   6   
+	 	 /                    \                      \                       \
+		8                      8                      8                       8
+*/
 public class Solution {
     public TreeNode invertTree(TreeNode root) {
         if(root == null) {
             return null;
         }
         
+	// First we invert left and right subtree (start with root's left
+	// and right node, after that will go down from root to invert
+	// left and right subtree)
         TreeNode tmp = root.left;
         root.left = root.right;
         root.right = tmp;
         
+	// Then recursively go to the leave nodes of the tree
         if(root.left != null) {
             invertTree(root.left);
         }
