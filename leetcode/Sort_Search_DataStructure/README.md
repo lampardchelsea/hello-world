@@ -89,6 +89,11 @@
 <p>9. [Lazy evaluation and example of how python 2.2+ use iterator implement lazy evaluation as simulating laziness in eager languages] (https://en.wikipedia.org/wiki/Lazy_evaluation)
 <p>10. [Self loop appears in adjacency list twice] (https://en.wikipedia.org/wiki/Loop_(graph_theory))
 
+# Recursion
+<p>1. [MIT Recursion] (http://web.mit.edu/6.005/www/fa15/classes/10-recursion/)
+<p>2. [Princeton Recursion] (http://introcs.cs.princeton.edu/java/23recursion/)
+
+
 # Accessories
 <p>1. [Princeton StdIn] (http://introcs.cs.princeton.edu/java/stdlib/StdIn.java.html)
 <p>2. [Princeton StdOut] (http://introcs.cs.princeton.edu/java/stdlib/StdOut.java.html)
