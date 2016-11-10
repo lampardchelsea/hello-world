@@ -19,7 +19,7 @@
 
 <p>Root To Leaf Binary Tree Paths & Node To Node Binary Tree Paths & Lowest Common Ancestor of a BST and BT
 <p>1. [Root To Leaf Binary Tree Paths & Node to Node Binary Tree Path] (https://segmentfault.com/a/1190000003465753)
-<p>2. [Root To Leaf Binary Tree Paths] (http://www.programcreek.com/2014/05/leetcode-binary-tree-paths-java/)
+<p>2. [Root To Leaf Binary Tree Paths(ArrayList version, same as Path Sum)] (http://www.programcreek.com/2014/05/leetcode-binary-tree-paths-java/)
 <p>3. [ArrayList(Collection<? extends E> c)] (http://stackoverflow.com/questions/4370085/arraylistcollection-extends-e-c)
 <p>4. [Binary Tree Paths] (http://www.jiuzhang.com/solutions/binary-tree-paths/)
 <p>5. [Lowest Common Ancestor of a Binary Tree(Ethan Li)] (https://segmentfault.com/a/1190000003509399)
