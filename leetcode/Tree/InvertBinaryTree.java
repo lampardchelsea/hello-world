@@ -28,7 +28,7 @@ to
  * }
  */
 
-// Solution 1: Buttom-Top traverse invert
+// Solution 1: DFS Buttom-Top traverse invert
 /**
 		       1                  1                  1                 1
 	             /   \              /   \              /   \             /   \
@@ -64,7 +64,7 @@ public class Solution {
     }
 }
 
-// Solution 2: Top-Bottom traverse invert
+// Solution 2: DFS Top-Bottom traverse invert
 /**
 		       1                  1                  1                 1
 	             /   \              /   \              /   \             /   \
@@ -94,6 +94,64 @@ public class Solution {
         
         if(root.right != null) {
             invertTree(root.right);
+        }
+        
+        return root;
+    }
+}
+
+// Solution 3: BFS first enqueue then exchange
+public class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
+        if(root == null) {
+            return null;
+        }
+        
+        queue.add(root);
+        
+        while(!queue.isEmpty()) {
+            TreeNode x = queue.poll();
+            
+            if(x.left != null) {
+                queue.add(x.left);
+            }
+            if(x.right != null) {
+                queue.add(x.right);
+            }
+            
+            TreeNode tmp = x.left;
+            x.left = x.right;
+            x.right = tmp;
+        }
+        
+        return root;
+    }
+}
+
+// Solution 4: BFS first exchange then enqueue
+public class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
+        if(root == null) {
+            return null;
+        }
+        
+        queue.add(root);
+        
+        while(!queue.isEmpty()) {
+            TreeNode x = queue.poll();
+            
+            TreeNode tmp = x.left;
+            x.left = x.right;
+            x.right = tmp;
+            
+            if(x.left != null) {
+                queue.add(x.left);
+            }
+            if(x.right != null) {
+                queue.add(x.right);
+            }
         }
         
         return root;
