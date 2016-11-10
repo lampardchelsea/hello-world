@@ -45,3 +45,7 @@
 
 <p>Invert Binary Tree
 <p>1. [Invert Binary Tree] (http://www.programcreek.com/2014/06/leetcode-invert-binary-tree-java/)
+
+<p>Path Sum
+<p>1. [Path Sum Recursive Solution] (http://www.cnblogs.com/springfor/p/3879825.html)
+<p>2. [To ways for Path Sum] (http://www.programcreek.com/2013/01/leetcode-path-sum/)
