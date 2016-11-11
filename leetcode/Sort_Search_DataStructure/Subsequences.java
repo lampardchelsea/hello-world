@@ -132,6 +132,33 @@
  * 
  * Should I use string.isEmpty() or “”.equals(string)? 
  * http://stackoverflow.com/questions/3321526/should-i-use-string-isempty-or-equalsstring
+ *
+ *
+ *
+ *
+ * Louis Reasoner doesn’t want to use a helper method, so he tries to implement subsequences() by storing 
+ * partialSubsequence as a static variable instead of a parameter. Here is his implementation:
+ * 
+   private static String partialSubsequence = "";
+   public static String subsequencesLouis(String word) {
+       if (word.isEmpty()) {
+           // base case
+           return partialSubsequence;
+       } else {
+           // recursive step
+           String withoutFirstLetter = subsequencesLouis(word.substring(1));
+           partialSubsequence += word.charAt(0);
+           String withFirstLetter = subsequencesLouis(word.substring(1));
+           return withoutFirstLetter + "," + withFirstLetter;
+       }
+   }
+ * Suppose we call subsequencesLouis("c") followed by subsequencesLouis("a").
+ * What does subsequencesLouis("c") return? (",c")
+ * What does subsequencesLouis("a") return? ("c,ca")
+ * The static variable maintains its value across calls to subsequencesLouis(), so it still has the final value
+ * "c" from the call to subsequencesLouis("c") when subsequencesLouis("a") starts. As a result, every subsequence 
+ * of that second call will have an extra c before it.
+ * 
 */
 
 
