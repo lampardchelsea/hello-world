@@ -135,7 +135,7 @@
  *
  *
  *
- *
+ * Problem 1: 
  * Louis Reasoner doesn’t want to use a helper method, so he tries to implement subsequences() by storing 
  * partialSubsequence as a static variable instead of a parameter. Here is his implementation:
  * 
@@ -155,6 +155,8 @@
  * Suppose we call subsequencesLouis("c") followed by subsequencesLouis("a").
  * What does subsequencesLouis("c") return? (",c")
  * What does subsequencesLouis("a") return? ("c,ca")
+ * 
+ * Reason:
  * The static variable maintains its value across calls to subsequencesLouis(), so it still has the final value
  * "c" from the call to subsequencesLouis("c") when subsequencesLouis("a") starts. As a result, every subsequence 
  * of that second call will have an extra c before it.
