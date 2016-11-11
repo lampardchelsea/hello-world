@@ -161,6 +161,17 @@
  * "c" from the call to subsequencesLouis("c") when subsequencesLouis("a") starts. As a result, every subsequence 
  * of that second call will have an extra c before it.
  * 
+ * Problem 2:
+ * Louis fixes that problem by making partialSubsequence public:
+   public static String partialSubsequence;
+ * Alyssa P. Hacker throws up her hands when she sees what Louis did. Which of these statements are true about his code?
+ * partialSubsequence is risky – it should be final (No)
+ * partialSubsequence is risky – it is a global variable (Yes)
+ * partialSubsequence is risky – it points to a mutable object (No)
+ *
+ * Reason: 
+ * partialSubsequence is indeed a global variable. It can’t be made final, however, because the recursion needs to 
+ * reassign it (frequently). But at least it doesn’t point to a mutable object.
 */
 
 
