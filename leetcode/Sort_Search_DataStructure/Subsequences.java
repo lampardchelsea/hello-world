@@ -54,4 +54,18 @@
     result = ",,g,c,gc" (line 13)
     result = ",g,c,gc" (line 15)
     This final result is returned from subsequences("gc").
+ *    
+ * The important tips of design recursive algorithm
+ * Structure of Recursive Implementations
+ * A recursive implementation always has two parts:
+ * base case, which is the simplest, smallest instance of the problem, that can’t be decomposed any further. 
+ * Base cases often correspond to emptiness – the empty string, the empty list, the empty set, the empty tree, zero, etc.
+ * recursive step, which decomposes a larger instance of the problem into one or more simpler or smaller instances 
+ * that can be solved by recursive calls, and then recombines the results of those subproblems to produce the solution 
+ * to the original problem.
+ * It’s important for the recursive step to transform the problem instance into something smaller, otherwise the 
+ * recursion may never end. If every recursive step shrinks the problem, and the base case lies at the bottom, 
+ * then the recursion is guaranteed to be finite.
+ * A recursive implementation may have more than one base case, or more than one recursive step. For example, 
+ * the Fibonacci function has two base cases, n=0 and n=1.
 */
