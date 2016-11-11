@@ -16,11 +16,8 @@
  * f.listFiles() returns the files contained by f, which is an array of other File objects.
  
  * For recursive data, it’s natural to write recursive implementations:
-
-    /**
-     * @param f a file in the filesystem
-     * @return the full pathname of f from the root of the filesystem
-     */
+    * @param f a file in the filesystem
+    * @return the full pathname of f from the root of the filesystem
     public static String fullPathname(File f) {
         if (f.getParentFile() == null) {
             // base case: f is at the root of the filesystem
@@ -30,7 +27,6 @@
             return fullPathname(f.getParentFile()) + "/" + f.getName();
         }
     }
-
 * Recent versions of Java have added a new API, java.nio.Files and java.nio.Path, which offer a cleaner separation 
 * between the filesystem and the pathnames used to name files in it. But the data structure is still fundamentally 
 * recursive.
