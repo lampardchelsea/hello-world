@@ -3,7 +3,7 @@
  * For example, subsequences("abc") might return "abc,ab,bc,ac,a,b,c,". 
  * Note the trailing comma preceding the empty subsequence, which is also a valid subsequence.
  * 
- * Solution:
+ * Solution 1:
  * This problem lends itself to an elegant recursive decomposition. Take the first letter of the word. 
  * We can form one set of subsequences that include that letter, and another set of subsequences that 
  * exclude that letter, and those two sets completely cover the set of possible subsequences.
@@ -68,4 +68,73 @@
  * then the recursion is guaranteed to be finite.
  * A recursive implementation may have more than one base case, or more than one recursive step. For example, 
  * the Fibonacci function has two base cases, n=0 and n=1.
+ *
+ * 
+ * 
+ * Solution 2:
+ * Helper Methods
+ * The recursive implementation we just saw for subsequences() is one possible recursive decomposition of the problem. 
+ * We took a solution to a subproblem – the subsequences of the remainder of the string after removing the first character – 
+ * and used it to construct solutions to the original problem, by taking each subsequence and adding the first character 
+ * or omitting it. This is in a sense a direct recursive implementation, where we are using the existing specification of 
+ * the recursive method to solve the subproblems.
+ * 
+ * In some cases, it’s useful to require a stronger (or different) specification for the recursive steps, to make the 
+ * recursive decomposition simpler or more elegant. In this case, what if we built up a partial subsequence using the 
+ * intial letters of the word, and used the recursive calls to complete that partial subsequence using the remaining 
+ * letters of the word? For example, suppose the original word is “orange”. At first, we would select “o” to be in the 
+ * partial subsequence, and recursively extend it with all subsequences of “range”. Then, we would use “” as the partial 
+ * subsequence, and again recursively extend it with all subsequences of “range”.
+ * 
+ * Using this approach, our code now looks much simpler:
+   private static String subsequencesAfter(String partialSubsequence, String word) {
+       if (word.isEmpty()) {
+           // base case
+           return partialSubsequence;
+       } else {
+           // recursive step
+           return subsequencesAfter(partialSubsequence, word.substring(1))
+                + ","
+                + subsequencesAfter(partialSubsequence + word.charAt(0), word.substring(1));
+       }
+   }
+ * This subsequencesAfter method is called a helper method. It satisfies a different spec from the original subsequences, 
+ * because it has a new parameter partialSubsequence. This parameter fills a similar role that a local variable would in 
+ * an iterative implementation. It holds temporary state during the evolution of the computation. The recursive calls 
+ * steadily extend this partial subsequence, selecting or ignoring each letter in the word, until finally reaching the 
+ * end of the word (the base case), at which point the partial subsequence is returned as the only result. Then the 
+ * recursion backtracks and fills in other possible subsequences.
+ * 
+ * To finish the implementation, we need to implement the original subsequences spec, which gets the ball rolling by 
+ * calling the helper method with an initial value for the partial subsequence parameter:
+ * 
+   public static String subsequences(String word) {
+       return subsequencesAfter("", word);
+   }
+ * 
+ * Don’t expose the helper method to your clients. Your decision to decompose the recursion this way instead of another 
+ * way is entirely implementation-specific. In particular, if you discover that you need temporary variables like 
+ * partialSubsequence in your recursion, don’t change the original spec of your method, and don’t force your clients 
+ * to correctly initialize those parameters. That exposes your implementation to the client and reduces your ability to 
+ * change it in the future. Use a private helper function for the recursion, and have your public method call it with 
+ * the correct initializations, as shown above.
+ *
+ * Also need to be careful on base case checking, 
+ * must use word.equals(""), word.isEmpty() or word.length() == 0,
+ * must not use word == "",
+ * Refer to 
+ * Difference between String.isEmpty() and String.equals(“”)
+ * http://stackoverflow.com/questions/6828362/difference-between-string-isempty-and-string-equals
+ * http://stackoverflow.com/a/6828406/6706875
+ * 
+ * What is the difference between == vs equals() in Java?
+ * http://stackoverflow.com/questions/7520432/what-is-the-difference-between-vs-equals-in-java
+ * 
+ * Should I use string.isEmpty() or “”.equals(string)? 
+ * http://stackoverflow.com/questions/3321526/should-i-use-string-isempty-or-equalsstring
 */
+
+
+
+
+
