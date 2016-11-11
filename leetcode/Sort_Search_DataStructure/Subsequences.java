@@ -161,6 +161,8 @@
  * "c" from the call to subsequencesLouis("c") when subsequencesLouis("a") starts. As a result, every subsequence 
  * of that second call will have an extra c before it.
  * 
+ *
+ *
  * Problem 2:
  * Louis fixes that problem by making partialSubsequence public:
    public static String partialSubsequence;
@@ -172,6 +174,62 @@
  * Reason: 
  * partialSubsequence is indeed a global variable. It can’t be made final, however, because the recursion needs to 
  * reassign it (frequently). But at least it doesn’t point to a mutable object.
+ *
+ *
+ *
+ * Problem 3: Why static member variable is very dangerous for recursive method ?
+ * Louis gives in to Alyssa’s strenuous arguments, hides his static variable again, and takes care of initializing 
+ * it properly before starting the recursion:
+ * 
+   public static String subsequences(String word) {
+       partialSubsequence = "";
+       return subsequencesLouis(word);
+   }
+
+   private static String partialSubsequence = "";
+
+   public static String subsequencesLouis(String word) {
+       if (word.isEmpty()) {
+           // base case
+           return partialSubsequence;
+       } else {
+           // recursive step
+           String withoutFirstLetter = subsequencesLouis(word.substring(1));
+           partialSubsequence += word.charAt(0);
+           String withFirstLetter = subsequencesLouis(word.substring(1));
+           return withoutFirstLetter + "," + withFirstLetter;
+       }
+   }
+ *
+ * Unfortunately a static variable is simply a bad idea in recursion. Louis’s solution is still broken. 
+ * To illustrate, let’s trace through the call subsequences("xy"). You can step through an interactive 
+ * visualization of this version to see what happens. It will produce these recursive calls to subsequencesLouis():
+ *
+   1. subsequencesLouis("xy")
+   2.     subsequencesLouis("y")
+   3.         subsequencesLouis("")
+   4.         subsequencesLouis("")
+   5.     subsequencesLouis("y")
+   6.         subsequencesLouis("")
+   7.         subsequencesLouis("")
+ *  
+ * When each of these calls starts, what is the value of the static variable partialSubsequence?
+   subsequencesLouis("xy")  empty string
+   subsequencesLouis("y")   empty string 
+   subsequencesLouis("")    empty string
+   subsequencesLouis("")    y
+   subsequencesLouis("y")   yx
+   subsequencesLouis("")    yx
+   subsequencesLouis("")    yxy
+ * 
+ * Reason:
+ * Everything seems fine until call 5, where it becomes clear that the static variable is still clinging to letters 
+ * like "y" that were added to it in deeper levels of recursion and never discarded.
+ * The final (wrong) return value of this implementation can be read off from the base cases, calls 3,4,6,7: ",y,yx,yxy".
+ * Static variables and aliases to mutable data are very unsafe for recursion, and lead to insidious bugs like this. 
+ * When you’re implementing recursion, the safest course is to pass in all variables, and stick to immutable objects 
+ * or avoid mutation.
+ *
 */
 
 
