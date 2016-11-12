@@ -210,8 +210,7 @@ public class Solution {
 	
 // Solution 3: The best way which match the recursive design rule
 // Rule refer to http://web.mit.edu/6.005/www/fa15/classes/10-recursion/
-// and implement refer to http://www.programcreek.com/2014/05/leetcode-sum-root-to-leaf-numbers-java/
-// or http://www.jiuzhang.com/solutions/sum-root-to-leaf-numbers/
+// Implement refer to https://my.oschina.net/styshoo/blog/757251
 
 
 	
