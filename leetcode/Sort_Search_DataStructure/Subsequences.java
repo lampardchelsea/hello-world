@@ -232,7 +232,34 @@
  *
 */
 
+// Solution 1:
+public class Subsequence {
+   public static String subsequences(String word) {
+    if(word.isEmpty()) {
+     return "";
+    } else {
+     String result = "";
 
+     char firstLetter = word.charAt(0);
+     String restOfWord = word.substring(1);
+
+     String restWordSubsequences = subsequences(restOfWord);
+
+     for(String subsequence : restWordSubsequences.split(",", -1)) {
+      result += "," + subsequence;
+      result += "," + firstLetter + subsequence;
+     }
+
+     result = result.substring(1);
+     return result;
+    }
+   }
+
+   public static void main(String[] args) {
+    String result = subsequences("gc");
+    System.out.println(result);
+   }
+}
 
 
 
