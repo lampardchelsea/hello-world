@@ -31,3 +31,10 @@
 * between the filesystem and the pathnames used to name files in it. But the data structure is still fundamentally 
 * recursive.
 */
+public static String fullPathName(File f) {
+   if(f.getParentFile() == null) {
+      return f.getName();
+   } else {
+      return fullPathName(f.getParentFile()) + "/" + f.getName();
+   }
+}
