@@ -93,10 +93,12 @@
 <p> Document
 <p>1. [MIT Recursion] (http://web.mit.edu/6.005/www/fa15/classes/10-recursion/)
 <p>2. [Princeton Recursion] (http://introcs.cs.princeton.edu/java/23recursion/)
-<p>3. [Subsequences] (http://web.mit.edu/6.005/www/fa15/classes/10-recursion/)
-<p>4. [StringValue] (http://web.mit.edu/6.005/www/fa15/classes/10-recursion/)
-<p>5. [Right Way To Implement Recursion] (http://web.mit.edu/6.005/www/fa15/classes/10-recursion/)
-<p>6. [Right Way To Implement Sum Of Left Leaves] (http://www.programcreek.com/2014/05/leetcode-sum-root-to-leaf-numbers-java/) 
+
+<p> Examples Of Recursive
+<p>1. [Subsequences] (http://web.mit.edu/6.005/www/fa15/classes/10-recursion/)
+<p>2. [StringValue] (http://web.mit.edu/6.005/www/fa15/classes/10-recursion/)
+<p>3. [Right Way To Implement Recursion] (http://web.mit.edu/6.005/www/fa15/classes/10-recursion/)
+<p>4. [Right Way To Implement Sum Of Left Leaves] (http://www.programcreek.com/2014/05/leetcode-sum-root-to-leaf-numbers-java/) 
 
 
 # Accessories
