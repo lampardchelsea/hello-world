@@ -90,8 +90,13 @@
 <p>10. [Self loop appears in adjacency list twice] (https://en.wikipedia.org/wiki/Loop_(graph_theory))
 
 # Recursion
+<p> Document
 <p>1. [MIT Recursion] (http://web.mit.edu/6.005/www/fa15/classes/10-recursion/)
 <p>2. [Princeton Recursion] (http://introcs.cs.princeton.edu/java/23recursion/)
+<p>3. [Subsequences] (http://web.mit.edu/6.005/www/fa15/classes/10-recursion/)
+<p>4. [StringValue] (http://web.mit.edu/6.005/www/fa15/classes/10-recursion/)
+<p>5. [Right Way To Implement Recursion] (http://web.mit.edu/6.005/www/fa15/classes/10-recursion/)
+<p>6. [Right Way To Implement Sum Of Left Leaves] (http://www.programcreek.com/2014/05/leetcode-sum-root-to-leaf-numbers-java/) 
 
 
 # Accessories
