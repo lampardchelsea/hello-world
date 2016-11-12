@@ -261,5 +261,25 @@ public class Subsequence {
    }
 }
 
+// Solution 2:
+public class Subsequence {
+   public static String subsequences(String word) {
+    return helper("", word);
+   }
 
+   public static String helper(String partialSubsequence, String word) {
+    if(word.isEmpty()) {
+     return partialSubsequence;
+    } else {
+     return helper(partialSubsequence, word.substring(1)) 
+       + "," 
+       + helper(partialSubsequence + word.charAt(0), word.substring(1));
+    }
+   }
+ 
+   public static void main(String[] args) {
+    String result = subsequences("gc");
+    System.out.println(result);
+   }
+}
 
