@@ -1,4 +1,5 @@
 /**
+ * Refer to http://algorithms.tutorialhorizon.com/print-all-combinations-of-subset-of-size-k-from-given-array/
  * Objective: Given an array of integers of size N, print all the subsets of size k. (k<=N)
  * Example:
  * Generate all subsets of a fixed size k of a given set [1,2,3…n]. e.g, if n=5 and k=3, the output will look like
@@ -17,3 +18,44 @@
  * recursive call, make start + 1 ( for both the scenarios mentioned in the steps above).
  * Print the elements when currentLength = k.
 */
+
+public class CombinationsOfSubsetOfSizeKFromGivenArray {
+	public static void subset(int[] A, boolean[] B, int k) {
+		int currentLength = 0;
+		int start = 0;
+		
+		subset(A, B, k, start, currentLength);
+	}
+	
+	public static void subset(int[] A, boolean[] B, int k, int start, int currentLength) {
+		if(currentLength == k) {
+			System.out.print("[");
+			for(int i = 0; i < A.length; i++) {
+				if(B[i]) {
+					System.out.print(A[i] + " ");
+				}
+			}
+			
+			System.out.print("]");
+			return;
+		}
+		
+		if(start == A.length) {
+			return;
+		}
+		
+		B[start] = true;
+		subset(A, B, k, start + 1, currentLength + 1);
+		
+		B[start] = false;
+		subset(A, B, k, start + 1, currentLength);
+	}
+	
+	public static void main(String[] args) {
+		int[] A = {1, 2, 3, 4, 5};
+		boolean[] B = new boolean[A.length];
+		int k = 2;
+		
+		subset(A, B, k);
+ 	}
+}
