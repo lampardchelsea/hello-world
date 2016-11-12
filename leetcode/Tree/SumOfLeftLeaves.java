@@ -214,8 +214,68 @@ public class Solution {
 // In Solution 1: (1)The static member variable is not a good idea (2)In an ideal recursive implementation, all variables are final, 
 // all data is immutable, and the recursive methods are all pure functions in the sense that they do not mutate anything. 
 // The behavior of a method can be understood simply as a relationship between its parameters and its return value, with no side 
-// effects on any other part of the program.
+// effects on any other part of the program. (3)Design including two major part, one is base case, another is recursive step
+public class Solution {
+    public TreeNode root;
 
+    private static class TreeNode {
+       private String val;
+       private TreeNode left, right;
+       public TreeNode(String x) {
+	  this.val = x;
+       }
+     }
+    
+    public static int sumOfLeftLeaves(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+
+        return sumOfLeftLeavesRec(root, false);
+    }
+    
+    public static int sumOfLeftLeavesRec(TreeNode x, boolean isLeft) {
+        if(x == null) {
+            return 0;
+        }
+	    
+        int sum = 0;
+        // Base Case
+        if(x.left == null && x.right == null && isLeft) {
+        	sum += Integer.valueOf(x.val);
+        } else {
+            // Recursive Steps
+            sum += sumOfLeftLeavesRec(x.left, true);
+            sum += sumOfLeftLeavesRec(x.right, false);
+        }
+        
+        return sum;
+    }
+    
+    public static void main(String[] args) {
+	/*
+	 * The tree used for test
+	 *	       1
+	 *		 /   \
+	 *		2     3
+	 *	   / \   /
+	 *	  6   5 9
+	 *	 /
+	 *	8
+	*/
+	Solution s = new Solution();
+	s.root = new TreeNode("1");
+	s.root.left = new TreeNode("2");
+	s.root.right = new TreeNode("3");
+	s.root.left.left = new TreeNode("6");
+	s.root.left.right = new TreeNode("5");
+	s.root.left.left.left = new TreeNode("8");
+	s.root.right.left = new TreeNode("9");
+	
+	int result = sumOfLeftLeaves(s.root);
+	System.out.println(result);
+    }
+}
 
 	
 	
