@@ -139,7 +139,7 @@ public class Solution {
     }
 }
 
-// Soltuon 2: Create a new class Accumulator and pass an instance of this type as parameter into recursive method
+// Solution 2: Create a new class Accumulator and pass an instance of this type as parameter into recursive method
 // to record.
 // Refer to http://www.geeksforgeeks.org/find-sum-left-leaves-given-binary-tree/
 // and http://stackoverflow.com/a/10265620/6706875
@@ -206,3 +206,12 @@ public class Solution {
 	System.out.println(result); 
     }
 }
+
+	
+// Solution 3: The best way which match the recursive design rule
+// Rule refer to http://web.mit.edu/6.005/www/fa15/classes/10-recursion/
+// and implement refer to http://www.programcreek.com/2014/05/leetcode-sum-root-to-leaf-numbers-java/
+
+
+	
+	
