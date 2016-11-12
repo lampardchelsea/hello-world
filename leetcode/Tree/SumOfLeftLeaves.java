@@ -211,6 +211,10 @@ public class Solution {
 // Solution 3: The best way which match the recursive design rule
 // Rule refer to http://web.mit.edu/6.005/www/fa15/classes/10-recursion/
 // Implement refer to https://my.oschina.net/styshoo/blog/757251
+// In Solution 1: (1)The static member variable is not a good idea (2)In an ideal recursive implementation, all variables are final, 
+// all data is immutable, and the recursive methods are all pure functions in the sense that they do not mutate anything. 
+// The behavior of a method can be understood simply as a relationship between its parameters and its return value, with no side 
+// effects on any other part of the program.
 
 
 	
