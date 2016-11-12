@@ -43,9 +43,9 @@ public class Solution {
     public static int sumOfLeftLeaves(TreeNode root) {
        if(root == null) {
          return 0;
-       } else {
-         return sumOfLeftLeavesRec(root, false);
        }
+
+       return sumOfLeftLeavesRec(root, false);
     }
     
     public static int sumOfLeftLeavesRec(TreeNode x, boolean isLeft) {
