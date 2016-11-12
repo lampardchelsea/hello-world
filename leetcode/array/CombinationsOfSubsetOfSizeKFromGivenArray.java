@@ -17,6 +17,9 @@
  * Another important factor is from which index you will start making the subset of size k. Initialize start = 0, and with every 
  * recursive call, make start + 1 ( for both the scenarios mentioned in the steps above).
  * Print the elements when currentLength = k.
+ * 
+ * And this is exactly same way how to handle required length subsequence of a string
+ * https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Sort_Search_DataStructure/RequiredLengthSubsequence.java
 */
 
 public class CombinationsOfSubsetOfSizeKFromGivenArray {
