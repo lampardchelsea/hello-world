@@ -18,6 +18,6 @@
  *  abc
  *  acc
  *  bcc
- *  
- * Refer to comment5.news.sina.com.cn/cmnt/vote
+ *
+ * Refer to http://introcs.cs.princeton.edu/java/23recursion/Subsequence.java.html
  ******************************************************************************/
