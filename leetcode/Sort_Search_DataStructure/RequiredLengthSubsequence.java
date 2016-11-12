@@ -20,4 +20,73 @@
  *  bcc
  *
  * Refer to http://introcs.cs.princeton.edu/java/23recursion/Subsequence.java.html
+ *
+ * In normal case, we don't have limitaion on length k, the code and result is below:
+ *
+     public class Subsequence {
+        public static void subsequences(String word) {
+          helper("", word);
+        }
+
+        public static void helper(String partialSubsequence, String word) {
+          if(word.isEmpty()) {
+            System.out.println(partialSubsequence);
+          } else {
+            helper(partialSubsequence, word.substring(1)); 
+            helper(partialSubsequence + word.charAt(0), word.substring(1));
+          }
+        }
+
+        public static void main(String[] args) {
+          subsequences("abcd");
+        }
+    }
+ * 
+ * The result is
+    d
+    c
+    cd
+    b
+    bd
+    bc
+    bcd
+    a
+    ad
+    ac
+    acd
+    ab
+    abd
+    abc
+    abcd
+    
+ * But when we add limitaion on requirement, the length k will become an additional check
+ * condition for return.
  ******************************************************************************/
+public class SubsequenceWithRequiredLength {
+    public static void print(String prefix, String remaining, int k) {
+      // If reach the digit limitation, need to print out current constructed
+      // temp string and return to previous call of print.
+      if(k == 0) {
+        System.out.println(prefix);
+        return;
+      }
+
+      // Check wether remaining length is 0, if yes, return back
+      if(remaining.isEmpty()){
+        return;
+      }
+      
+      // Not contain the first letter of remaining string
+      print(prefix, remaining.substring(1), k);
+      // Contain the first letter of remaining string
+      print(prefix + remaining.charAt(0), remaining.substring(1), k - 1);
+    }
+
+    public static void main(String[] args) { 
+		String s = "abcd";
+		int k = 3;
+		print("", s, k);
+    }
+}
+
+
