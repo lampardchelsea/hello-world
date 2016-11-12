@@ -73,3 +73,26 @@
  * will result.
 */
 
+public class StringValue {
+	public static String stringValue(int n, int base) {
+		if(n < 0) {
+			return "-" + stringValue(-n, base);
+		} else if(n < base) {
+//			return "0123456789".substring(n, n + 1);
+			return "" + n;
+		} else {
+			// The "0123456789" here is used for limit base range from 2 to 10.
+			// e.g If n = 170, base = 16, and no limit as "0123456789", n % base = 10
+			// not violate the charAt range limitation as 0 to 9, and return as
+			// 1010, but if add this limitation, n % base = 10 will out of range, 
+			// charAt throw out exception as "String index out of range: 10"
+			return stringValue(n / base, base) + "0123456789".charAt(n % base);
+//			return stringValue(n / base, base) + n % base;
+		}
+	}
+	
+	public static void main(String[] args) {
+		String result = stringValue(170, 16);
+		System.out.println(result);
+	}
+}
