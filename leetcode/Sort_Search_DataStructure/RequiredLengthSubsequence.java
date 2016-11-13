@@ -62,6 +62,7 @@
  * But when we add limitaion on requirement, the length k will become an additional check
  * condition for return.
  ******************************************************************************/
+// Solution 1:
 public class SubsequenceWithRequiredLength {
     public static void print(String prefix, String remaining, int k) {
       // If reach the digit limitation, need to print out current constructed
@@ -89,4 +90,46 @@ public class SubsequenceWithRequiredLength {
     }
 }
 
-
+// Solution 2: Same way as Solution 1, but easier to understand
+// Refer to CombinationsOfSubsetOfSizeKFromGivenArray.java
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/CombinationsOfSubsetOfSizeKFromGivenArray.java
+// http://algorithms.tutorialhorizon.com/print-all-combinations-of-subset-of-size-k-from-given-array/
+public class SubsequenceWithRequiredLength { 
+	public static void print(String remaining, int k) {
+		char[] A = remaining.toCharArray();
+		boolean[] B = new boolean[A.length];
+		int start = 0;
+		int currentLength = 0;
+		print(A, B, k, start, currentLength);
+	}
+	
+	public static void print(char[] A, boolean[] B, int k, int start, int currentLength) {
+		if(currentLength == k) {
+			System.out.print("[");
+			for(int i = 0; i < A.length; i++) {			
+				if(B[i]) {
+					System.out.print(A[i]);
+				}			
+			}
+			System.out.print("] ");
+			return;
+		}
+		
+		if(start == A.length) {
+			return;
+		}
+		
+		B[start] = true;
+		print(A, B, k, start + 1, currentLength + 1);
+		
+		B[start] = false;
+		print(A, B, k, start + 1, currentLength);
+	}
+	
+	
+    public static void main(String[] args) { 
+		String s = "abcd";
+		int k = 3;
+		print(s, k);
+    }
+}
