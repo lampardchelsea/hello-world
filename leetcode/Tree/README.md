@@ -49,3 +49,9 @@
 <p>Path Sum
 <p>1. [Path Sum Recursive Solution] (http://www.cnblogs.com/springfor/p/3879825.html)
 <p>2. [To ways for Path Sum] (http://www.programcreek.com/2013/01/leetcode-path-sum/)
+
+<p>Maximum Depth Of Binary Tree
+<p>1. [Princeton BST Height] (http://algs4.cs.princeton.edu/32bst/BST.java.html)
+<p>2. [Another way] (http://www.jiuzhang.com/solutions/maximum-depth-of-binary-tree/)
+
+<p>Minimum Depth Of Binary Tree
