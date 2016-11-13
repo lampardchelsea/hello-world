@@ -45,6 +45,12 @@ public class CombinationsOfSubsetOfSizeKFromGivenArray {
 		
 		// Another important factor is from which index you will start making the subset of size k.
 		// Initialize start = 0, and with every recursive call, make start + 1 ( for both the scenarios)
+		// e.g Initially, int[] A = {1, 2, 3}, corresponding int[] B = {false, false, false}, start = 0,
+		// currentLength = 0, when we try to judge the first item of A as 1(either select it or not), we
+		// change our "start"(final array construction index) from 0 to 1, when it goes into next iteration
+		// as judge on second item of A as 2, we will change "start" from 1 to 2. So, "start" actually
+		// represent the item index we make judgement on. When "start" equals to A's length means we finish
+		// scanning, should return.
 		if(start == A.length) {
 			return;
 		}
