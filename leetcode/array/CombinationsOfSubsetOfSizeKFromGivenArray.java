@@ -9,14 +9,14 @@
     3 4 5
  *    
  * Solution:
- * 1.Create an boolean array of the same size as the given array.
- * Now for every integer we have two options, whether to select it or ignore it.
- * Now if we select it, we will put TRUE in the boolean array at the corresponding index or if we ignore it, put FALSE at that index.
- * We will start with currentLength =0 and do the recursive calls for both the options mentioned in the previous step.
- * If we select an integer to print, make currentLength +1 and if we ignore, dont change currentLength.
- * Another important factor is from which index you will start making the subset of size k. Initialize start = 0, and with every 
- * recursive call, make start + 1 ( for both the scenarios mentioned in the steps above).
- * Print the elements when currentLength = k.
+ * 1. Create an boolean array of the same size as the given array.
+ * 2. Now for every integer we have two options, whether to select it or ignore it.
+ * 3. Now if we select it, we will put TRUE in the boolean array at the corresponding index or if we ignore it, put FALSE at that index.
+ * 4. We will start with currentLength =0 and do the recursive calls for both the options mentioned in the previous step.
+ * 5. If we select an integer to print, make currentLength +1 and if we ignore, dont change currentLength.
+ * 6. Another important factor is from which index you will start making the subset of size k. Initialize start = 0, and with every 
+ *    recursive call, make start + 1 ( for both the scenarios mentioned in the steps above).
+ * 7. Print the elements when currentLength = k.
  * 
  * And this is exactly same way how to handle required length subsequence of a string
  * https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Sort_Search_DataStructure/RequiredLengthSubsequence.java
@@ -43,13 +43,18 @@ public class CombinationsOfSubsetOfSizeKFromGivenArray {
 			return;
 		}
 		
+		// Another important factor is from which index you will start making the subset of size k.
+		// Initialize start = 0, and with every recursive call, make start + 1 ( for both the scenarios)
 		if(start == A.length) {
 			return;
 		}
 		
+		// For every index we have two options,
+		// Either we select it, means put true in B[] and make currentLength + 1
 		B[start] = true;
 		subset(A, B, k, start + 1, currentLength + 1);
 		
+		// OR we dont select it, means put false in B[] and dont increase currentLength
 		B[start] = false;
 		subset(A, B, k, start + 1, currentLength);
 	}
