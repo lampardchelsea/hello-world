@@ -84,3 +84,30 @@ public class Solution {
 
 
 // Solution 3: With use of Queue
+public class Solution {
+    public static int minDepth(TreeNode root){
+		if(root == null){
+			return 0;
+		}
+		Queue<TreeNode> currentLevelNodes = new LinkedList<TreeNode>();
+		currentLevelNodes.add(root);
+		int count = 1;
+		while(!currentLevelNodes.isEmpty()){
+			Queue<TreeNode> nextLevelNodes = new LinkedList<TreeNode>();
+			for(TreeNode n: currentLevelNodes){
+				if(n.left != null){
+					nextLevelNodes.add(n.left);
+				}
+				if(n.right != null){
+					nextLevelNodes.add(n.right);
+				}
+				if(n.left == null && n.right == null){
+					return count;
+				}
+			}
+			count++;
+			currentLevelNodes = nextLevelNodes;
+		}
+		return count;
+	}
+}
