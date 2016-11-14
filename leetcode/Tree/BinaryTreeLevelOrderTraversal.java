@@ -29,6 +29,10 @@
  * nodes and next level nodes, and after each level inserting into level arraylist
  * which used for print out, will replace the current level queue with next level
  * queue, and recreate a new next level queue.
+ * 
+ * Note: There is a very similar way problem to use BST and queue
+ * https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Queue/MinimumDepthofBinaryTreeQueueSolution.java
+ * 
  */
 public class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
