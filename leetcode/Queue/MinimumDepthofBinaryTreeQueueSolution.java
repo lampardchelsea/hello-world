@@ -3,6 +3,7 @@
  * https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/BinaryTreeLevelOrderTraversal.java
  * This solution is very similar to Binary Tree Level Order Traversal.
 */
+// Solution 1: With two queues
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -60,3 +61,7 @@ public class Solution {
         return depth;
     }
 }
+
+// Solution 2: With one queue
+
+
