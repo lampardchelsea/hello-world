@@ -17,5 +17,4 @@
  *
  * Refer to 
  * https://leetcode.com/articles/symmetric-tree/
- * http://www.acmerblog.com/leetcode-solution-symmetric-tree-6291.html
 */
