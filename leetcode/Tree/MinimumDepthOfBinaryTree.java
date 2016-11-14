@@ -84,30 +84,36 @@ public class Solution {
 
 
 // Solution 3: With use of Queue
+// Refer to 
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Queue/MinimumDepthofBinaryTreeQueueSolution.java
 public class Solution {
-    public static int minDepth(TreeNode root){
-		if(root == null){
-			return 0;
-		}
-		Queue<TreeNode> currentLevelNodes = new LinkedList<TreeNode>();
-		currentLevelNodes.add(root);
-		int count = 1;
-		while(!currentLevelNodes.isEmpty()){
-			Queue<TreeNode> nextLevelNodes = new LinkedList<TreeNode>();
-			for(TreeNode n: currentLevelNodes){
-				if(n.left != null){
-					nextLevelNodes.add(n.left);
-				}
-				if(n.right != null){
-					nextLevelNodes.add(n.right);
-				}
-				if(n.left == null && n.right == null){
-					return count;
-				}
-			}
-			count++;
-			currentLevelNodes = nextLevelNodes;
-		}
-		return count;
-	}
+  public static int minDepth(TreeNode root){
+     if(root == null) {
+        return 0;
+     }
+     
+     Queue<TreeNode> currentLevel = new LinkedList<TreeNode>();
+
+     int depth = 1;
+     currentLevel.add(root);
+     while(!currentLevel.isEmpty()) {
+	 Queue<TreeNode> nextLevel = new LinkedList<TreeNode>(); 
+	 int size = currentLevel.size();
+	 for(int i = 0; i < size; i++) {
+	    TreeNode x = currentLevel.poll();
+	    if(x.left != null) {
+	        nextLevel.add(x.left);
+	    }
+	    if(x.right != null) {
+		nextLevel.add(x.right);
+	    }
+	    if(x.left == null && x.right == null) {
+	        return depth;
+	    }
+	 }
+	 depth++;
+	 currentLevel = nextLevel;
+     }
+     return depth;
+  }
 }
