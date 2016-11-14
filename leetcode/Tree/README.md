@@ -55,3 +55,6 @@
 <p>2. [Another way] (http://www.jiuzhang.com/solutions/maximum-depth-of-binary-tree/)
 
 <p>Minimum Depth Of Binary Tree
+<p>1. [Find Minimum Depth of a Binary Tree] (http://www.geeksforgeeks.org/find-minimum-depth-of-a-binary-tree/)
+<p>2. [Minimum Depth of Binary Tree] (http://www.jiuzhang.com/solutions/minimum-depth-of-binary-tree/)
+
