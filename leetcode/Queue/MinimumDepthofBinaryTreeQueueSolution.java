@@ -23,7 +23,7 @@ public class Solution {
         
         // The minimum depth is the number of nodes along the shortest path from the 
         // root node down to the nearest leaf node. "depth" used for record levels(depth)
-        // we have encounter.
+        // we have encounter. Initially set up as 1, because "root" already exist.
         int depth = 1;
         q1.add(root);
         
