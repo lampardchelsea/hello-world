@@ -65,6 +65,44 @@ public class Solution {
 // Solution 2: With one queue
 // Refer to 
 // http://www.cnblogs.com/springfor/p/3879680.html
-
+public class Solution {
+  public static int minDepth(TreeNode root){
+    if(root == null) {
+       return 0;
+    }
+    
+    int depth = 1;
+    int currNum = 1;
+    int nextNum = 0;
+    Queue<TreeNode> q = new LinkedList<TreeNode>();
+    q.add(root);
+    while(!q.isEmpty()) {
+       TreeNode x = q.poll();
+       currNum--;
+        
+       if(x.left == null && x.right == null) {
+          return depth;
+       } 
+       
+       if(x.left != null) {
+          q.add(x.left);
+          nextNum++; 
+       } 
+        
+       if(x.right != null) {
+          q.add(x.right);
+          nextNum++; 
+       } 
+       
+       if(currNum == 0) {
+          currNum = nextNum;
+          nextNum = 0;
+          depth++; 
+       } 
+    }  
+    
+    return depth;  
+  }
+}
 
 
