@@ -18,6 +18,12 @@
  * Refer to 
  * http://www.acmerblog.com/leetcode-solution-symmetric-tree-6291.html
  * https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Queue/SymmetricTreeQueueSolution.java
+ * 
+ * Complexity Analysis
+ * Because we traverse the entire input tree once, the total run time is O(n), where nn is the total number 
+ * of nodes in the tree.
+ * There is additional space required for the search queue. In the worst case, we have to insert O(n)
+ * nodes in the queue. Therefore, space complexity is O(n).
 */
 /**
  * Definition for a binary tree node.
