@@ -1,6 +1,6 @@
 # Interview experience
-<p>1.胡迪聪面试
-1. binary tree level traversal(45 min) -> 做完聊天（10min, behavior问题或讨论最优解（时间复杂度），如果和标答不一样就必须讨论和解释，英语要达到能解释算法的程度）
+<p>胡迪聪面试
+<p>1. binary tree level traversal(45 min) -> 做完聊天（10min, behavior问题或讨论最优解（时间复杂度），如果和标答不一样就必须讨论和解释，英语要达到能解释算法的程度）
 2. word search II(45 min)
 3. LRU cache (印度人专门提高难度)(45 min)
 4. Iterator on sorted array (Merge k Sorted Lists) (45 min)
