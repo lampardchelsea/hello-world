@@ -34,4 +34,5 @@
 <p>1. [Strobogrammatic number I/II] (https://segmentfault.com/a/1190000003787462)
 
 <p>Intersection of Two Arrays II
-<p>1. [] ()
+<p>1. [Intersection of Two Arrays II HashMap solution 1] (https://aaronice.gitbooks.io/lintcode/content/array/intersection_of_two_arrays_ii.html)
+<p>2. [Intersection of Two Arrays II HashMap solution 2] (http://www.jiuzhang.com/solutions/intersection-of-two-arrays-ii/)
