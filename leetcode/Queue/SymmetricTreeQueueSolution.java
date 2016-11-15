@@ -22,6 +22,12 @@
  * and their values compared. Then, the right and left children of the two nodes are inserted in the queue in 
  * opposite order. The algorithm is done when either the queue is empty, or we detect that the tree is not symmetric 
  * (i.e. we pull out two consecutive nodes from the queue that are unequal).
+ *
+ * Complexity Analysis
+ * Because we traverse the entire input tree once, the total run time is O(n), where nn is the total number 
+ * of nodes in the tree.
+ * There is additional space required for the search queue. In the worst case, we have to insert O(n)
+ * nodes in the queue. Therefore, space complexity is O(n).
  * 
  * Refer to 
  * https://leetcode.com/articles/symmetric-tree/
