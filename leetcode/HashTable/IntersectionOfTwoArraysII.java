@@ -13,6 +13,9 @@
 */
 // Solution 1: Use HashMap as a filter, build the HashMap first depends on nums1,
 // then use this map to measure nums2, find the intersection between two array.
+// Refer to 
+// http://www.jiuzhang.com/solutions/intersection-of-two-arrays-ii/
+// https://aaronice.gitbooks.io/lintcode/content/array/intersection_of_two_arrays_ii.html
 public class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
         // Construct the HashMap based on nums1
@@ -44,3 +47,6 @@ public class Solution {
         return result;
     }
 }
+
+// Solution 2:
+
