@@ -52,4 +52,39 @@ public class Solution {
 }
 
 // Solution 2:
-
+// Refer to
+// http://www.cnblogs.com/grandyang/p/5533305.html
+// 先给两个数组排序，然后用两个指针分别指向两个数组的起始位置，如果两个指针指的数字相等，
+// 则存入结果中，两个指针均自增1，如果第一个指针指的数字大，则第二个指针自增1，反之亦然
+public class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        List<Integer> tmp = new ArrayList<Integer>();
+        
+        int i = 0;
+        int j = 0;
+        while(i < nums1.length && j < nums2.length) {
+            int x = nums1[i];
+            int y = nums2[j];
+            
+            if(x == y) {
+                tmp.add(y);
+                i++;
+                j++;
+            } else if(x > y) {
+                j++;
+            } else {
+                i++;
+            }
+        }
+        
+        int k = 0;
+        int[] result = new int[tmp.size()];
+        for(Integer m : tmp) {
+            result[k++] = m;
+        }
+        
+        return result;
+    }
+}
