@@ -62,7 +62,7 @@ public class Solution {
     }
 }
 
-// Solution 2: With one queue
+// Solution 2: With one queue (Use two counters instead of create second queue)
 // Refer to 
 // http://www.cnblogs.com/springfor/p/3879680.html
 public class Solution {
