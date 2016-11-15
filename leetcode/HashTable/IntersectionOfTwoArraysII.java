@@ -13,6 +13,9 @@
 */
 // Solution 1: Use HashMap as a filter, build the HashMap first depends on nums1,
 // then use this map to measure nums2, find the intersection between two array.
+// 这道题是之前那道Intersection of Two Arrays的拓展，不同之处在于这道题允许我们返回重复的数字，而且是尽可能多的返回，
+// 之前那道题是说有重复的数字只返回一个就行。那么这道题我们用哈希表来建立nums1中字符和其出现个数之间的映射, 
+// 然后遍历nums2数组，如果当前字符在哈希表中的个数大于0，则将此字符加入结果res中，然后哈希表的对应值自减1
 // Refer to 
 // http://www.jiuzhang.com/solutions/intersection-of-two-arrays-ii/
 // https://aaronice.gitbooks.io/lintcode/content/array/intersection_of_two_arrays_ii.html
