@@ -58,6 +58,8 @@ public class Solution {
 }
 
 // Solution 2: Use Stack
+// Refer to 
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Stack/SymmetricTreeStackSolution.java
 public class Solution {
    public boolean isSymmetric(TreeNode root) {
       Stack<TreeNode> left = new Stack<TreeNode>();
