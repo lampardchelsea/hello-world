@@ -23,3 +23,36 @@
  * the tree is linear and the height is in O(n). Therefore, space complexity due to recursive calls on the stack is O(n)
  * in the worst case.
 */
+// Solution 1: 
+// Refer to 
+// https://leetcode.com/articles/symmetric-tree/
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+   public boolean isSymmetric(TreeNode root) {
+      return isSymmetric(root, root);
+   }
+   
+   public boolean isSymmetric(TreeNode x, TreeNode y) {
+       if(x == null && y == null) {
+           return true;
+       }
+       
+       if(x == null || y == null) {
+           return false;
+       }
+      
+       if(x.val != y.val) {
+           return false;
+       }
+       
+       return isSymmetric(x.left, y.right) && isSymmetric(x.right, y.left);
+   }
+}
