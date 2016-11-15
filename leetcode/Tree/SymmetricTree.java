@@ -56,3 +56,73 @@ public class Solution {
        return isSymmetric(x.left, y.right) && isSymmetric(x.right, y.left);
    }
 }
+
+// Solution 2: Use Stack
+public class Solution {
+   public boolean isSymmetric(TreeNode root) {
+      Stack<TreeNode> left = new Stack<TreeNode>();
+      Stack<TreeNode> right = new Stack<TreeNode>();
+      left.push(root);
+      right.push(root);
+      
+      while(left.size() > 0 && right.size() > 0) {
+          TreeNode x = left.pop();
+          TreeNode y = right.pop();
+          
+          // Continue is most tricky part for this code
+          // Refer to below link to check why use Continue
+          // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Queue/SymmetricTreeQueueSolution.java
+          if(x == null && y == null) {
+              continue;
+          }
+          
+          if(x == null || y == null) {
+              return false;
+          }
+          
+          if(x.val != y.val) {
+              return false;
+          }
+          
+          left.push(x.left);
+          right.push(y.right);
+          left.push(x.right);
+          right.push(y.left);
+      } 
+      
+      return false;
+   }
+}
+
+// Solution 3: Use Queue
+public class Solution {
+   public boolean isSymmetric(TreeNode root) {
+      Queue<TreeNode> q = new LinkedList<TreeNode>();
+      q.add(root); 
+      q.add(root);
+       
+      while(!q.isEmpty()) {
+         TreeNode x = q.poll();
+         TreeNode y = q.poll();
+          
+         if(x == null && y == null) {
+             continue;
+         } 
+          
+         if(x == null || y == null) {
+             return false;
+         }
+          
+         if(x.val != y.val) {
+             return false;
+         }
+          
+         q.add(x.left);
+         q.add(y.right);
+         q.add(x.right);
+         q.add(y.left); 
+      } 
+      
+      return true; 
+   }
+}
