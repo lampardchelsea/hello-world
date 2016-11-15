@@ -104,7 +104,10 @@ public class Solution {
       while(!q.isEmpty()) {
          TreeNode x = q.poll();
          TreeNode y = q.poll();
-          
+         
+         // Continue is most tricky part for this code
+         // Refer to below link to check why use Continue
+         // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Queue/SymmetricTreeQueueSolution.java 
          if(x == null && y == null) {
              continue;
          } 
