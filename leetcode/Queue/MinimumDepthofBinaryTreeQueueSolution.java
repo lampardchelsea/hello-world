@@ -63,5 +63,8 @@ public class Solution {
 }
 
 // Solution 2: With one queue
+// Refer to 
+// http://www.cnblogs.com/springfor/p/3879680.html
+
 
 
