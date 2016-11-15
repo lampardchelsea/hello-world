@@ -36,3 +36,4 @@
 <p>Intersection of Two Arrays II
 <p>1. [Intersection of Two Arrays II HashMap solution 1] (https://aaronice.gitbooks.io/lintcode/content/array/intersection_of_two_arrays_ii.html)
 <p>2. [Intersection of Two Arrays II HashMap solution 2] (http://www.jiuzhang.com/solutions/intersection-of-two-arrays-ii/)
+<p>3. [Two Ways For Intersection of Two Arrays II HashMap] (http://www.cnblogs.com/grandyang/p/5533305.html)
