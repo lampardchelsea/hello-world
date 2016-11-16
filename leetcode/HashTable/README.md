@@ -40,3 +40,5 @@
 <p>4. [Good explaination of follow up questions] (http://buttercola.blogspot.com/2016/06/leetcode-intersection-of-two-arrays-ii.html)
 <p>5. [Arrays.sort() time complexity and space time complexity?] (http://stackoverflow.com/questions/22571586/will-arrays-sort-increase-time-complexity-and-space-time-complexity)
 <p>6. [Number of comparisons required to sort a list] (https://en.wikipedia.org/wiki/Comparison_sort#Number_of_comparisons_required_to_sort_a_list)
+<p>7. [External Sort 1] (http://pages.cs.wisc.edu/~jignesh/cs564/notes/lec07-sorting.pdf)
+<p>8. [External Sort 2] (http://www.csbio.unc.edu/mcmillan/Media/Comp521F10Lecture17.pdf)
