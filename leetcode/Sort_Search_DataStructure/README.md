@@ -68,6 +68,12 @@
 <p>1. [BFS basic ideas] (http://blog.csdn.net/raphealguo/article/details/7523411)
 <p>2. [Princeton BFS] (http://algs4.cs.princeton.edu/41graph/BreadthFirstPaths.java.html)
 
+<p>External Merge Sort
+<p>1. [External Sort 1] (http://pages.cs.wisc.edu/~jignesh/cs564/notes/lec07-sorting.pdf)
+<p>2. [External Sort 2] (http://www.csbio.unc.edu/mcmillan/Media/Comp521F10Lecture17.pdf)
+<p>3. [External Merge Sort Java Implementation] (http://www.ashishsharma.me/2011/08/external-merge-sort.html)
+<p>4. [External Merge Sort Java Implementation 2] (https://github.com/lemire/externalsortinginjava)
+
 # Graphs
 <p> Adjacency list
 <p>1. [What is Adjacency list ?] (https://en.wikipedia.org/wiki/Adjacency_list)
