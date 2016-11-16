@@ -10,6 +10,24 @@
  * What if nums1's size is small compared to nums2's size? Which algorithm is better?
  * What if elements of nums2 are stored on disk, and the memory is limited such that 
  * you cannot load all elements into the memory at once?
+ *
+ * For questions:
+ * Rfer to 
+ * http://buttercola.blogspot.com/2016/06/leetcode-intersection-of-two-arrays-ii.html
+ *
+ * What if the given array is already sorted? How would you optimize your algorithm?
+ * Solution 2, i.e., sorting,  would be better since it does not need extra memory. 
+ * 
+ * What if nums1's size is small compared to nums2's size? Which algorithm is better?
+ * In Solution 2, Sort the two arrays and iterate over to find out the intersections. So the overall time complexity is bounded 
+ * by O(n logn), where n is the length of the longer array. The main body of the loop is bounded by O(m + n). 
+ * If two arrays are sorted, we could use binary search, i.e., for each element in the shorter array, search in the longer one. 
+ * So the overall time complexity is O(nlogm), where n is the length of the shorter array, and m is the length of the longer array. 
+ * Note that this is better than Solution 2 since the time complexity is O(n + m) in the worst case. 
+ * 
+ * What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements 
+ * into the memory at once?
+ * 
 */
 // Solution 1: Use HashMap as a filter, build the HashMap first depends on nums1,
 // then use this map to measure nums2, find the intersection between two array.
@@ -88,3 +106,5 @@ public class Solution {
         return result;
     }
 }
+
+
