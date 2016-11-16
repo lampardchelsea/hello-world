@@ -42,3 +42,7 @@
 <p>6. [Number of comparisons required to sort a list] (https://en.wikipedia.org/wiki/Comparison_sort#Number_of_comparisons_required_to_sort_a_list)
 <p>7. [External Sort 1] (http://pages.cs.wisc.edu/~jignesh/cs564/notes/lec07-sorting.pdf)
 <p>8. [External Sort 2] (http://www.csbio.unc.edu/mcmillan/Media/Comp521F10Lecture17.pdf)
+
+<p>Find The Difference
+<p>1. [Find the Difference Solution] (http://webcache.googleusercontent.com/search?q=cache:eCfLpY1WtwIJ:blog.csdn.net/cloudox_/article/details/52472228+&cd=5&hl=en&ct=clnk&gl=us)
+<p>2. [Three Ways To Find the Difference] (http://zhangchuzhao.site/2016/08/27/LeetCode-389-find-the-difference/)
