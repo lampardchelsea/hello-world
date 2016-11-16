@@ -15,20 +15,41 @@
  * Rfer to 
  * http://buttercola.blogspot.com/2016/06/leetcode-intersection-of-two-arrays-ii.html
  *
- * What if the given array is already sorted? How would you optimize your algorithm?
+ * (1) What if the given array is already sorted? How would you optimize your algorithm?
  * Solution 2, i.e., sorting,  would be better since it does not need extra memory. 
  * 
- * What if nums1's size is small compared to nums2's size? Which algorithm is better?
+ * (2) What if nums1's size is small compared to nums2's size? Which algorithm is better?
  * In Solution 2, Sort the two arrays and iterate over to find out the intersections. So the overall time complexity is bounded 
  * by O(n logn), where n is the length of the longer array. The main body of the loop is bounded by O(m + n). 
  * If two arrays are sorted, we could use binary search, i.e., for each element in the shorter array, search in the longer one. 
  * So the overall time complexity is O(nlogm), where n is the length of the shorter array, and m is the length of the longer array. 
  * Note that this is better than Solution 2 since the time complexity is O(n + m) in the worst case. 
  * 
- * What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements 
+ * (3) What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements 
  * into the memory at once?
+ * If the two arrays have relatively the same length, we can use "External Sort" to sort out the two arrays in the disk. 
+ * Then load chunks of each array into the memory and compare, by using the solution 2.
+ * If one array is too short while the other is long, in this case, if memory is limited and nums2 is stored in disk, 
+ * partition it and send portions of nums2 piece by piece. keep a pointer for nums1 indicating the current position, 
+ * and it should be working fine.
+ * Another method is, store the larger array into disk, and for each element in the shorter array, use "Exponential Search" 
+ * and search in the longer array. 
  * 
+ * Another explain
+ * https://segmentfault.com/a/1190000005720072
+ * If only nums2 cannot fit in memory, put all elements of nums1 into a HashMap, read chunks of array that fit into the memory, 
+ * and record the intersections.
+ * If both nums1 and nums2 are so huge that neither fit into the memory, sort them individually (External Sort), then read 
+ * (let's say) 2G of each into memory and then using the 2 pointer technique(solution 2), then read 2G more from the array 
+ * that has been exhausted. Repeat this until no more data to read from disk.
+ *
+ * Note: Both metioned about "External Sort"
+ * Refer to
+ * http://www.csbio.unc.edu/mcmillan/Media/Comp521F10Lecture17.pdf
+ * http://pages.cs.wisc.edu/~jignesh/cs564/notes/lec07-sorting.pdf
 */
+
+
 // Solution 1: Use HashMap as a filter, build the HashMap first depends on nums1,
 // then use this map to measure nums2, find the intersection between two array.
 // 这道题是之前那道Intersection of Two Arrays的拓展，不同之处在于这道题允许我们返回重复的数字，而且是尽可能多的返回，
