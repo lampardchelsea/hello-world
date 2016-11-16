@@ -70,7 +70,7 @@
 
 <p>Merge Sort
 <p>1. [Princeton Merge Sort] (http://algs4.cs.princeton.edu/22mergesort/)
-<p>2. [Princeton Merge Sort Implementation] (http://algs4.cs.princeton.edu/14analysis/Mergesort.java.html)
+<p>2. [Princeton Merge Sort Implementation] (http://algs4.cs.princeton.edu/22mergesort/Merge.java.html)
 
 <p>External Merge Sort
 <p>1. [External Sort 1] (http://pages.cs.wisc.edu/~jignesh/cs564/notes/lec07-sorting.pdf)
