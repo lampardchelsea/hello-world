@@ -37,4 +37,4 @@
 <p>1. [Intersection of Two Arrays II HashMap solution 1] (https://aaronice.gitbooks.io/lintcode/content/array/intersection_of_two_arrays_ii.html)
 <p>2. [Intersection of Two Arrays II HashMap solution 2] (http://www.jiuzhang.com/solutions/intersection-of-two-arrays-ii/)
 <p>3. [Two Ways For Intersection of Two Arrays II HashMap] (http://www.cnblogs.com/grandyang/p/5533305.html)
-<p>4. [Good Explaination of follow up questions] (http://buttercola.blogspot.com/2016/06/leetcode-intersection-of-two-arrays-ii.html)
+<p>4. [Good explaination of follow up questions] (http://buttercola.blogspot.com/2016/06/leetcode-intersection-of-two-arrays-ii.html)
