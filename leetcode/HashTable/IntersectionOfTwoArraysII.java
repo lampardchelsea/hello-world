@@ -51,7 +51,7 @@ public class Solution {
     }
 }
 
-// Solution 2:
+// Solution 2: First sort and then use two pointers
 // Refer to
 // http://www.cnblogs.com/grandyang/p/5533305.html
 // 先给两个数组排序，然后用两个指针分别指向两个数组的起始位置，如果两个指针指的数字相等，
