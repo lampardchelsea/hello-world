@@ -74,7 +74,7 @@
 <p>3. [External Merge Sort Java Implementation] (http://www.ashishsharma.me/2011/08/external-merge-sort.html)
 <p>4. [External Merge Sort Java Implementation 2] (https://github.com/lemire/externalsortinginjava)
 <p>5. [External Merge Sort Apache Official Version] (http://svn.apache.org/repos/asf/jackrabbit/oak/trunk/oak-commons/src/main/java/org/apache/jackrabbit/oak/commons/sort/ExternalSort.java)
-      [External Merge Sort Apache Official Version Auxiliary Class] (http://svn.apache.org/repos/asf/jackrabbit/oak/trunk/oak-commons/src/main/java/org/apache/jackrabbit/oak/commons/sort/StringSizeEstimator.java)
+      [& External Merge Sort Apache Official Version Auxiliary Class] (http://svn.apache.org/repos/asf/jackrabbit/oak/trunk/oak-commons/src/main/java/org/apache/jackrabbit/oak/commons/sort/StringSizeEstimator.java)
 
 
 # Graphs
