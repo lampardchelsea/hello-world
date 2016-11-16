@@ -39,3 +39,4 @@
 <p>3. [Two Ways For Intersection of Two Arrays II HashMap] (http://www.cnblogs.com/grandyang/p/5533305.html)
 <p>4. [Good explaination of follow up questions] (http://buttercola.blogspot.com/2016/06/leetcode-intersection-of-two-arrays-ii.html)
 <p>5. [Arrays.sort() time complexity and space time complexity?] (http://stackoverflow.com/questions/22571586/will-arrays-sort-increase-time-complexity-and-space-time-complexity)
+<p>6. [Number of comparisons required to sort a list] (https://en.wikipedia.org/wiki/Comparison_sort#Number_of_comparisons_required_to_sort_a_list)
