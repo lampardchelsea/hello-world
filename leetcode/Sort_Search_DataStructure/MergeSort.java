@@ -6,8 +6,13 @@
  * http://algs4.cs.princeton.edu/22mergesort/Merge.java.html
  *
  */
-public class QuanMerge {
-	public QuanMerge() {}
+/**
+ * Refer to
+ * http://algs4.cs.princeton.edu/22mergesort/Merge.java.html
+ *
+ */
+public class Merge {
+	public Merge() {}
 	
 	public static void sort(Comparable[] a) {
 		Comparable[] aux = new Comparable[a.length];
@@ -33,6 +38,16 @@ public class QuanMerge {
 //		if(hi <= lo) {
 //			return;
 //		}
+		
+        // Precondition: a[lo .. mid] and a[mid+1 .. hi] are sorted subarrays
+		// Before we start real merge, we need to verify each smallest section is being sorted
+		// Refer to 
+		// http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX1.htm
+		// http://pages.cs.wisc.edu/~jignesh/cs564/notes/lec07-sorting.pdf --> Pass 1(sort on current 
+		// Page required before merge) 
+        assert isSorted(a, lo, mid);
+        assert isSorted(a, mid+1, hi);
+		
 		
 		// First copy all items into auxiliary array
 		for(int k = 0; k < a.length; k++) {
@@ -60,6 +75,9 @@ public class QuanMerge {
 				a[k] = aux[i++];
 			}
 		}
+		
+		// Postcondition: a[lo .. hi] is sorted
+        assert isSorted(a, lo, hi);
 	}
 	
 	public static boolean less(Comparable v, Comparable w) {
@@ -72,11 +90,23 @@ public class QuanMerge {
         }
     }
 	
+    /***************************************************************************
+     *  Check if array is sorted - useful for debugging.
+     ***************************************************************************/
+    private static boolean isSorted(Comparable[] a) {
+       return isSorted(a, 0, a.length - 1);
+    }
+
+    private static boolean isSorted(Comparable[] a, int lo, int hi) {
+        for (int i = lo + 1; i <= hi; i++)
+            if (less(a[i], a[i-1])) return false;
+        return true;
+    }
+    
     public static void main(String[] args) {
         //String[] a = StdIn.readAllStrings();
     	String[] a = {"M", "E", "R", "G", "E", "S", "O", "R", "T", "E", "X", "A", "M", "P", "L", "E"};
-        QuanMerge.sort(a);
+        Merge.sort(a);
         show(a);
     }
 }
-
