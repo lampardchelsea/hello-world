@@ -57,7 +57,7 @@ public class Merge {
 			aux[k] = a[k];
 		}
 		
-		// Set up two pointers each point to the first item in half section of input array
+		// Set up two pointers separately point to the first item in first and second half section of input array
 		int i = lo;
 		int j = mid + 1;
 
