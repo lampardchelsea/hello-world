@@ -41,6 +41,9 @@ public class Merge {
 		
         // Precondition: a[lo .. mid] and a[mid+1 .. hi] are sorted subarrays
 		// Before we start real merge, we need to verify each smallest section is being sorted
+		// In this example, the smallest section is every 2 items in array, like first and
+		// second item combine as one smallest section ("M", "E"), before used on merge, it
+		// needs to sort into ("E", "M")
 		// Refer to 
 		// http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX1.htm
 		// http://pages.cs.wisc.edu/~jignesh/cs564/notes/lec07-sorting.pdf --> Pass 1(sort on current 
