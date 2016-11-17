@@ -1,4 +1,7 @@
 /**
+ * Check the process of Top-Down merge sort part
+ * http://algs4.cs.princeton.edu/22mergesort/
+ * 
  * Refer to
  * http://algs4.cs.princeton.edu/22mergesort/Merge.java.html
  *
