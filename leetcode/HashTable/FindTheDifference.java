@@ -45,3 +45,41 @@ public class Solution {
         return result;
     }
 }
+
+// Solution 1: 这种解法比较直接，建立以个map对应字符串s，key为字符，value就是该字符出现的次数。首先遍历字符串s，
+// 来建立这个map，然后再遍历字符串t。对t中出现的每个字符，都从map中减一，当最后剩下一个value值为1时，则说明该
+// 字符就是多出的字符
+// Refer to 
+// https://my.oschina.net/styshoo/blog/752872
+public class Solution {
+    public char findTheDifference(String s, String t) {
+        char result = '\0';
+        
+        Map<Character, Integer> map = new HashMap<Character, Integer>();
+        char[] a = s.toCharArray();
+        char[] b = t.toCharArray();
+        
+        for(int i = 0; i < b.length; i++) {
+            if(!map.containsKey(b[i])) {
+                map.put(b[i], 1);
+            } else {
+                map.put(b[i], map.get(b[i]) + 1);
+            }
+        }
+        
+        for(int j = 0; j < a.length; j++) {
+            if(map.containsKey(a[j]) && map.get(a[j]) > 0) {
+                map.put(a[j], map.get(a[j]) - 1);
+            }
+        }
+        
+        for(Character c : map.keySet()) {
+            if(map.get(c) == 1) {
+                result = c;
+            }
+        } 
+        
+        return result;
+    }
+}
+
