@@ -86,3 +86,38 @@ public class Solution {
     }
 }
 
+// Solution 2: 第一种解法的map有点太重了，而且涉及到Character和char，int和Integer之间的转换, 
+// 所以，我就用了另一种很类似的方法——int数组来代替map。因为字符串只有小写字母，也就是只有26中可能，
+// 那么建立一个int[26]的数组即可，索引就是字符char-'a'，而数组值就是字符出现在字符串s中的次数。
+// 说白了，和解法二思路一致。
+// Refer to 
+// https://my.oschina.net/styshoo/blog/752872
+public class Solution {
+    public char findTheDifference(String s, String t) {
+        char result = '\0';
+        int[] frequence = new int[26];
+        
+        char[] a = s.toCharArray();
+        char[] b = t.toCharArray();
+        
+        for(int i = 0; i < b.length; i++) {
+            int index = b[i] - 'a';
+            frequence[index]++;
+        }
+        
+        for(int j = 0; j < a.length; j++) {
+            int index = a[j] - 'a';
+            frequence[index]--;
+        }
+        
+        for(int k = 0; k < frequence.length; k++) {
+            if(frequence[k] == 1) {
+                // The convert from int to char refer to
+                // http://stackoverflow.com/questions/17984975/convert-int-to-char-in-java
+                result = (char)('a' + k);
+            }
+        }
+        
+        return result;
+    }
+}
