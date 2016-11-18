@@ -11,3 +11,37 @@
  * Explanation:
  * 'e' is the letter that was added.
 */
+
+// Wrong Solution
+// If input as s = "a", t = "aa", expected output is 'a', but this method will return null
+// the tricky part is condition to judge when same char but different digits.
+public class Solution {
+    public char findTheDifference(String s, String t) {
+        char[] a = s.toCharArray();
+        char[] b = t.toCharArray();
+
+        char result = '\0';
+        
+        for(int i = 0; i < b.length; i++) {
+            char x = b[i];
+            boolean notExist = true;
+            int j;
+            for(j = 0; j < a.length; j++) {
+                char y = a[j];
+                // This condition cause the error, only consideration on x and y are different
+                // chars, but even if x, y are same char, because of different digits issue,
+                // the additional char will also happen.
+                if(x == y) {
+                    notExist = false;
+                    break;
+                }
+            }
+            
+            if(notExist) {
+                result = b[i];
+            } 
+        }
+        
+        return result;
+    }
+}
