@@ -47,4 +47,4 @@
 
 <p>Find The Difference
 <p>1. [Find the Difference Solution] (http://webcache.googleusercontent.com/search?q=cache:eCfLpY1WtwIJ:blog.csdn.net/cloudox_/article/details/52472228+&cd=5&hl=en&ct=clnk&gl=us)
-<p>2. [Three Ways To Find the Difference] (http://zhangchuzhao.site/2016/08/27/LeetCode-389-find-the-difference/)
+<p>2. [Four Ways To Find the Difference] (https://my.oschina.net/styshoo/blog/752872)
