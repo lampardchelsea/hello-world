@@ -53,6 +53,9 @@ public class Solution {
 // https://my.oschina.net/styshoo/blog/752872
 public class Solution {
     public char findTheDifference(String s, String t) {
+        // To initial a char is different than normal primary type
+        // Refer to 
+        // http://stackoverflow.com/questions/5859934/char-initial-value-in-java
         char result = '\0';
         
         Map<Character, Integer> map = new HashMap<Character, Integer>();
