@@ -13,6 +13,19 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Refer to:
+ * http://www.ashishsharma.me/2011/08/external-merge-sort.html
+ * http://pages.cs.wisc.edu/~jignesh/cs564/notes/lec07-sorting.pdf
+ * http://svn.apache.org/repos/asf/jackrabbit/oak/trunk/oak-commons/src/main/java/org/apache/jackrabbit/oak/commons/sort/ExternalSort.java
+ * http://stackoverflow.com/questions/20802396/how-external-merge-sort-algorithm-works
+ * http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSort.htm
+ * http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX1.htm
+ * http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX2.htm
+ * http://stackoverflow.com/questions/683041/java-how-do-i-use-a-priorityqueue
+ * http://stackoverflow.com/questions/5055909/algorithm-for-n-way-merge
+ * http://stackoverflow.com/questions/19474924/merging-k-sorted-lists-using-priority-queue
+ * https://courses.cs.washington.edu/courses/cse373/06sp/handouts/lecture08.pdf
  */
 package org.apache.jackrabbit.oak.commons.sort;
 
