@@ -81,7 +81,10 @@
       [& External Merge Sort Apache Official Version Auxiliary Class] (http://svn.apache.org/repos/asf/jackrabbit/oak/trunk/oak-commons/src/main/java/org/apache/jackrabbit/oak/commons/sort/StringSizeEstimator.java)
 <p>6. [Best Explain Of Two Way External Sorting] (http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX1.htm)
 <p>7. [Best Explain Of Multi-Way External Sorting] (http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX2.htm)
-
+<p>8. [External Merge Sort Real Usage With Priority Queue] (http://www.ashishsharma.me/2011/08/external-merge-sort.html)
+<p>9. [External Merge Sort Apache Official Library Implementation With Priority Queue] (http://svn.apache.org/repos/asf/jackrabbit/oak/trunk/oak-commons/src/main/java/org/apache/jackrabbit/oak/commons/sort/ExternalSort.java)
+<p>10. [Merging K- Sorted Lists using Priority Queue] (http://stackoverflow.com/questions/19474924/merging-k-sorted-lists-using-priority-queue)
+<p>11. [Algorithm for N-way merge] (http://stackoverflow.com/questions/5055909/algorithm-for-n-way-merge)
 
 # Graphs
 <p> Adjacency list
