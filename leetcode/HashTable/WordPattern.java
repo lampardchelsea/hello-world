@@ -48,3 +48,6 @@ public class Solution {
    }
 }
 
+// Solution 2:
+// Refer to
+// https://my.oschina.net/Tsybius2014/blog/514983
