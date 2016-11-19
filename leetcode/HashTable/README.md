@@ -48,3 +48,11 @@
 <p>Find The Difference
 <p>1. [Find the Difference Solution] (http://webcache.googleusercontent.com/search?q=cache:eCfLpY1WtwIJ:blog.csdn.net/cloudox_/article/details/52472228+&cd=5&hl=en&ct=clnk&gl=us)
 <p>2. [Four Ways To Find the Difference] (https://my.oschina.net/styshoo/blog/752872)
+
+<p>Word Pattern
+<p>1. [Word Pattern Solution] (https://segmentfault.com/a/1190000003827151)
+
+<p>Isomorphic Strings
+<p>1. [Isomorphic Strings Solution] (https://segmentfault.com/a/1190000003709248)
+
+
