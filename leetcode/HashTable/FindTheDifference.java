@@ -123,6 +123,7 @@ public class Solution {
 }
 
 // Solution 3: 由于字符串t只比字符串s多了一个字符，那么直接用t中所有字符值的和减去字符串s中字符值的和即可。
+//　This solution is most efficient one
 // Refer to
 // https://my.oschina.net/styshoo/blog/752872
 public class Solution {
