@@ -144,3 +144,22 @@ public class Solution {
         return (char)(sum2 - sum1);
     }
 }
+
+
+// Solution 4: 另外一种思路，既然字符串t只比字符串s多了一个字符，也就是说大部分字符都是相同的。
+// 那么，我们可以使用异或的方式，来找出这个不同的值。
+// Refer to
+// https://my.oschina.net/styshoo/blog/752872
+public static char findTheDifference(String s, String t) {
+    int ret = 0;
+    // E.g 'a' = 97 = 0110 0001 'b' = 98 = 0110 0010
+    // 'a' ^ 'b' = 0000 0011 = 3
+    for(int i = 0; i < s.length(); i++) {
+        ret ^= s.charAt(i);
+    }
+    for(int j = 0; j < t.length(); j++) {
+        ret ^= t.charAt(j);
+    }
+
+    return (char)ret;
+}
