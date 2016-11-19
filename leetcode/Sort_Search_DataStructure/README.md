@@ -87,6 +87,10 @@
 <p>10. [Merging K- Sorted Lists using Priority Queue] (http://stackoverflow.com/questions/19474924/merging-k-sorted-lists-using-priority-queue)
 <p>11. [Algorithm for N-way merge] (http://stackoverflow.com/questions/5055909/algorithm-for-n-way-merge)
 
+<p>Shuffle
+<p>1. [Princeton Implementation Of Shuffle] (http://introcs.cs.princeton.edu/java/15inout/Shuffle.java.html)
+
+
 # Graphs
 <p> Adjacency list
 <p>1. [What is Adjacency list ?] (https://en.wikipedia.org/wiki/Adjacency_list)
