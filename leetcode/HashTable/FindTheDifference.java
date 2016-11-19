@@ -121,3 +121,26 @@ public class Solution {
         return result;
     }
 }
+
+// Solution 3: 由于字符串t只比字符串s多了一个字符，那么直接用t中所有字符值的和减去字符串s中字符值的和即可。
+// Refer to
+// https://my.oschina.net/styshoo/blog/752872
+public class Solution {
+    public char findTheDifference(String s, String t) {
+        char[] a = s.toCharArray();
+        char[] b = t.toCharArray();
+        
+        int sum1 = 0;
+        int sum2 = 0;
+        
+        for(int i = 0; i < a.length; i++) {
+            sum1 += a[i]; 
+        }
+        
+        for(int j = 0; j < b.length; j++) {
+            sum2 += b[j];
+        }
+        
+        return (char)(sum2 - sum1);
+    }
+}
