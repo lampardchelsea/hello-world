@@ -51,6 +51,7 @@
 
 <p>Word Pattern
 <p>1. [Word Pattern Solution] (https://segmentfault.com/a/1190000003827151)
+<p>2. [Word Pattern Solution 2] (https://my.oschina.net/Tsybius2014/blog/514983)
 
 <p>Isomorphic Strings
 <p>1. [Isomorphic Strings Solution] (https://segmentfault.com/a/1190000003709248)
