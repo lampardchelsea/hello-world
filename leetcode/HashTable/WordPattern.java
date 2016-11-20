@@ -94,3 +94,46 @@ public class Solution {
 // Solution 2:
 // Refer to
 // https://my.oschina.net/Tsybius2014/blog/514983
+public class Solution {
+   public boolean wordPattern(String pattern, String str) {
+      String[] a = str.split("\\s+");
+      
+      if(a.length != pattern.length()) {
+         return false;
+      }
+      
+      Map<Comparable, Integer> map = new HashMap<Comparable, Integer>();
+      
+      for(int i = 0; i < pattern.length(); i++) {
+        Integer x = map.put(pattern.charAt(i), i);
+        Integer y = map.put(a[i], i);
+        /**
+         * Returns true if the arguments are equal to each other and false otherwise. 
+         * Consequently, if both arguments are null, true is returned and if exactly 
+         * one argument is null, false is returned. Otherwise, equality is determined 
+         * by using the equals method of the first argument. 
+         * 
+         *  public static boolean More ...equals(Object a, Object b) {
+         *     return (a == b) || (a != null && a.equals(b));
+         *  }
+         */
+        if(!Objects.equals(x, y)) {
+            return false;
+        }
+        /** 
+         * The above Objects.equals(x, y) equals to below section
+         if(x == null && y == null) {
+           // Be careful when x == null && y == null, we don't directly return true,
+           // as we need looply compare other x, y pair based on for loop, so we
+           // use continue
+	        continue;
+	      }
+         if((x == null || y == null) || !x.equals(y)) {
+            return false;
+         }
+        */
+      }
+      
+      return true;
+   }
+}
