@@ -9,6 +9,41 @@
  * Notes:
  * You may assume pattern contains only lowercase letters, and str contains lowercase letters separated by a single space.
  */
+
+// Wrong way
+public class Solution {
+   public boolean wordPattern(String pattern, String str) {
+      String[] a = str.split("\\s+");
+      
+      if(a.length != pattern.length()) {
+         return false;
+      }
+      
+      Map<Character, String> map = new HashMap<Character, String>();
+      
+      for(int i = 0; i < pattern.length(); i++) {
+          if(!map.containsKey(pattern.charAt(i))) {
+              // The wrong condition is here, if pattern = "abba", 
+              // str = "dog dog dog dog", when put ('b', "dog") on
+              // map, it will surely return null, but "dog" is
+              // occupied by another projection ('a', "dog"), the
+              // right expression should reflect miss projection
+              // such as map.containsValue(a[i]) in solution 1
+              if(map.put(pattern.charAt(i), a[i]) != null) {
+                  return false;
+              }
+          } else {
+              if(!map.put(pattern.charAt(i), a[i]).equals(a[i])) {
+                  return false;
+              }
+          }
+      }
+      
+      return true;
+   }
+}
+
+
 // Solution 1:
 // Refer to
 // https://segmentfault.com/a/1190000003827151
