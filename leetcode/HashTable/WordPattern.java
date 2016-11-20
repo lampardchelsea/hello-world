@@ -29,7 +29,12 @@ public class Solution {
          if(!map.containsKey(pattern.charAt(i))) {
              // But already contains the projection value of this key,
              // which means the value match another key not relate as
-             // one on one projection. so return false
+             // one on one projection. 
+             // E.g pattern = "abba", str = "dog dog dog dog",
+             // First putting ('a', "dog") on map, key = 'b' not contain 
+             // in map now, when we try to put ('b', "dog") on map, we
+             // find "dog" already on map and is projection of 'a', this
+             // violate one(key) on one(value) projection, so return false
              if(map.containsValue(a[i])) {
                  return false;
              }
@@ -38,7 +43,10 @@ public class Solution {
          } else {
              // If already contains current key
              // But the key's projection not match the expected key,
-             // so return false
+             // E.g pattern = "abba", str = "dog cat cat fish",
+             // First putting ('a', "dog") on map, projection of key = 'a'
+             // should be "dog", but when try to put ('a', "fish") on map,
+             // "fish" violate one(key) on one(value) projection, so return false
              if(!map.get(pattern.charAt(i)).equals(a[i])) {
                  return false;
              }
