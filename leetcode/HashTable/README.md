@@ -52,6 +52,7 @@
 <p>Word Pattern
 <p>1. [Word Pattern Solution] (https://segmentfault.com/a/1190000003827151)
 <p>2. [Word Pattern Solution 2] (https://my.oschina.net/Tsybius2014/blog/514983)
+<p>3. [Objects.equals() method source code] (http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8-b132/java/util/Objects.java#Objects.equals%28java.lang.Object%2Cjava.lang.Object%29)
 
 <p>Isomorphic Strings
 <p>1. [Isomorphic Strings Solution] (https://segmentfault.com/a/1190000003709248)
