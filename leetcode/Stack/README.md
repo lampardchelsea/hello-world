@@ -1,5 +1,6 @@
 # Leetcode stack issues
 <p>1. [Leetcode stack issues] (https://leetcode.com/tag/stack/)
+<p>2. [Best explain of transfer BackTracking & DFS problem into stack] (https://www.cis.upenn.edu/~matuszek/cit594-2012/Pages/backtracking.html)
 
 # Useful links for specific questions
 <p>Sum Of Left Leaves
