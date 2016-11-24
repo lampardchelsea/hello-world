@@ -79,3 +79,48 @@ public class Solution {
     }
     
 }
+
+
+// Solution 2: 
+// Refer to
+// https://segmentfault.com/a/1190000003697153
+// 基本思路很简单，对矩阵里每个点都进行一次深度优先搜索，看它能够产生一个路径和所给的字符串是一样的。
+// 重点在如何优化搜索，避免不必要的计算。比如我们一个方向的搜索中已经发现了这个词，那我们就不用再搜索。
+// 另外，为了避免循环搜索，我们还要将本轮深度优先搜索中搜索过的数字变一下，等递归回来之后再变回来。
+// 实现这个特性最简单的方法就是异或上一个特定数，然后再异或回来。
+public class Solution {
+    public boolean exist(char[][] board, String word) {
+       int rows = board.length;
+       int columns = board[0].length;
+       
+       for(int i = 0; i < rows; i++) {
+           for(int j = 0; j < columns; j++) {
+               if(dfs(board, word, 0, i, j)) {
+                   return true;
+               }
+           }
+       }
+       
+       return false;
+    }
+    
+    public boolean dfs(char[][] board, String word, int index, int rowIndex, int columnIndex) {
+        if(index == word.length()) {
+            return true;
+        }
+        
+        if(rowIndex < 0 || rowIndex >= board.length || columnIndex < 0 || columnIndex >= board[0].length || board[rowIndex][columnIndex] != word.charAt(index)) {
+            return false;
+        }
+        
+        board[rowIndex][columnIndex] ^= 255;
+        boolean result = dfs(board, word, index + 1, rowIndex + 1, columnIndex) ||
+                         dfs(board, word, index + 1, rowIndex - 1, columnIndex) ||
+                         dfs(board, word, index + 1, rowIndex, columnIndex + 1) ||
+                         dfs(board, word, index + 1, rowIndex, columnIndex - 1);
+        board[rowIndex][columnIndex] ^= 255;
+        return result;
+    }
+    
+}
+
