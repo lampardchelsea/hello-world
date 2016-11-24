@@ -45,14 +45,17 @@ public class Solution {
             return true;
         } 
         
+        // Boundary check must before conditional check, otherwise will throw out ArrayOutOfBound exception
         if(rowIndex < 0 || rowIndex > board.length - 1 || columnIndex < 0 || columnIndex > board[0].length - 1) {
             return false;
         }
         
+        // Condition to break out current level loop as this item on board is already visited
         if(visited[rowIndex][columnIndex]) {
             return false;
         }
         
+        // Condition to break out current level loop as this item on board not match the required character
         if(board[rowIndex][columnIndex] != word.charAt(index)) {
             return false;
         }
