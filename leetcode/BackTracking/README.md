@@ -5,4 +5,6 @@
 
 # Useful links for specific questions
 <p>Word Search
-<p>1. [] ()
+<p>1. [Two Dimensional Array] (https://www.cs.cmu.edu/~mrmiller/15-110/Handouts/arrays2D.pdf)
+<p>2. [Word Search Implementation 1] (http://www.cnblogs.com/springfor/p/3883942.html)
+<p>3. [Word Search Implementation 2] (https://segmentfault.com/a/1190000003697153)
