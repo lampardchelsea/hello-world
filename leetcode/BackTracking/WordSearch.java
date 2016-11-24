@@ -113,6 +113,9 @@ public class Solution {
             return false;
         }
         
+        // The number used for XOR(exclusive or) can be randomly pick up, such as 255, 127, 63...
+        // The big improvement of this way is no need to introduce additional O(n) space, such as
+        // Solution 1 contain boolean[][] visited to record each on board item status
         board[rowIndex][columnIndex] ^= 255;
         boolean result = dfs(board, word, index + 1, rowIndex + 1, columnIndex) ||
                          dfs(board, word, index + 1, rowIndex - 1, columnIndex) ||
