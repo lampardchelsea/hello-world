@@ -53,8 +53,7 @@
 <p>Trie
 <p>1. [What is Trie(Princeton) ?] (http://algs4.cs.princeton.edu/52trie/)
 <p>2. [What is Trie 2(Princeton) ?] (http://algs4.cs.princeton.edu/lectures/52Tries.pdf)
-<p>3. [What is Trie(BU) ?] (https://www.cs.bu.edu/teaching/c/tree/trie/)
-<p>4. [The Trie: A Neglected Data Structure] (https://www.toptal.com/java/the-trie-a-neglected-data-structure)
+<p>3. [The Trie: A Neglected Data Structure] (https://www.toptal.com/java/the-trie-a-neglected-data-structure)
 
 # Sort and Search
 <p>Binary Search
