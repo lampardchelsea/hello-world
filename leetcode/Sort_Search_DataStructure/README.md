@@ -50,6 +50,11 @@
 <p>8. [DFS Tree Traversals -- Inorder/Preorder/Postorder] (http://www.geeksforgeeks.org/618/)
 <p>9. [BFS Tree Traversals -- Levelorder] (http://www.geeksforgeeks.org/level-order-tree-traversal/)
 
+<p>Trie
+<p>1. [What is Trie(Princeton) ?] (http://algs4.cs.princeton.edu/52trie/)
+<p>2. [What is Trie(BU) ?] (https://www.cs.bu.edu/teaching/c/tree/trie/)
+<p>3. [The Trie: A Neglected Data Structure] (https://www.toptal.com/java/the-trie-a-neglected-data-structure)
+
 # Sort and Search
 <p>Binary Search
 <p>1. [Binary Search] (http://algs4.cs.princeton.edu/11model/BinarySearch.java.html)
