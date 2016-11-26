@@ -1,7 +1,7 @@
 # Leetcode array issues
-
 <p>1. [Leetcode array issues] (https://leetcode.com/tag/array/)
 <p>2. [Princeton arrays java tutorial] (http://introcs.cs.princeton.edu/java/14array/)
+<p>3. [ideserve arrays Interview Questions] (http://www.ideserve.co.in/learn/array-interview-questions)
 
 # Useful links for specific problems
 <p>Remove Elements
