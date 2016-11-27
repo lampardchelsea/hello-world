@@ -3,9 +3,11 @@
  * Note:
  * You may assume that all inputs are consist of lowercase letters a-z.
 */
+// Solution 1: Refine Princeton TrieST.java
+// Refer to 
+// http://algs4.cs.princeton.edu/52trie/TrieST.java.html
 import java.util.LinkedList;
 import java.util.Queue;
-
 
 /**
  * Instead of Princeton TrieST.java declare an nested class,
@@ -148,3 +150,8 @@ public class Trie {
 // Trie trie = new Trie();
 // trie.insert("somestring");
 // trie.search("key");
+
+
+
+// Solution 2: 
+// http://www.programcreek.com/2014/05/leetcode-implement-trie-prefix-tree-java/
