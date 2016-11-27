@@ -57,6 +57,7 @@
 <p>4. [Trie Data Structure | Delete] (http://www.ideserve.co.in/learn/trie-delete)
 <p>5. [单词查找树] (http://blog.ubone.com/blog/2014/11/16/dan-ci-cha-zhao-shu/)
 <p>6. [The Trie: A Neglected Data Structure] (https://www.toptal.com/java/the-trie-a-neglected-data-structure)
+<p>7. [Trie without value and limit on 'a'-'z'] (http://www.programcreek.com/2014/05/leetcode-implement-trie-prefix-tree-java/)
 
 # Sort and Search
 <p>Binary Search
