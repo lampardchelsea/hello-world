@@ -535,10 +535,11 @@ public class TrieST<Value> {
             }
             StdOut.println();
         }
-            
-        //st.delete("sea"); --> 
-        //st.delete("and"); --> 
-        st.delete("andy");  // --> 
+        
+	// Different kind of delete can refer to below explanation
+        //st.delete("sea");
+        //st.delete("and");
+        st.delete("andy");
         
         StdOut.println("-----------------");
         
@@ -573,6 +574,7 @@ public class TrieST<Value> {
 }
 
 /**
+ http://www.ideserve.co.in/learn/trie-delete
  In the previous post, we have seen how can we insert and retrieve keys for trie data structure. 
  In this post, we will discuss how to delete keys from trie.
  
