@@ -153,7 +153,7 @@ public class Trie {
 
 
 
-// Solution 2: 
+// Solution 2: Not Use Recursive
 // http://www.programcreek.com/2014/05/leetcode-implement-trie-prefix-tree-java/
 // Java Solution 2 - Improve Performance by Using an Array
 // Each trie node can only contains 'a'-'z' characters. So we can use a small array to store the character.
