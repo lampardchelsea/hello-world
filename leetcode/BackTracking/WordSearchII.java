@@ -25,6 +25,7 @@
 // Refer to
 // http://www.programcreek.com/2014/06/leetcode-word-search-ii-java/
 // http://algs4.cs.princeton.edu/52trie/TrieST.java.html
+// http://stackoverflow.com/questions/12231453/syntax-for-creating-a-two-dimensional-array
 public class Solution {
     public List<String> findWords(char[][] board, String[] words) {
     	int rows = board.length;
