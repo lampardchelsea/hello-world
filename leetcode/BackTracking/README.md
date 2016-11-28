@@ -13,7 +13,8 @@
 <p>1. [Word Search II Implementation] (http://www.programcreek.com/2014/06/leetcode-word-search-ii-java/)
 <p>2. [Princeton Trie Implementation] (http://algs4.cs.princeton.edu/52trie/TrieST.java.html)
 <p>3. [Word Search 单词搜索] (https://segmentfault.com/a/1190000003697153#articleHeader10)
-<p>4. [Syntax for creating a two-dimensional array] (http://stackoverflow.com/questions/12231453/syntax-for-creating-a-two-dimensional-array)
+<p>4. [Implement Trie] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Sort_Search_DataStructure/ImplementTrie.java)
+<p>5. [Syntax for creating a two-dimensional array] (http://stackoverflow.com/questions/12231453/syntax-for-creating-a-two-dimensional-array)
 
 <p>Word Pattern II
 <p>1. [How to print out DFS stack trace ?] (https://www.cis.upenn.edu/~matuszek/cit594-2012/Pages/backtracking.html)
