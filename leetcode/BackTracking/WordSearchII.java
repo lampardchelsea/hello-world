@@ -89,7 +89,7 @@ class TrieNode {
 }
 
 class Trie {
-	private static final int lower_case_no = 26;
+	//private static final int lower_case_no = 26;
 	private TrieNode root;
 	
 	public Trie() {
