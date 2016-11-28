@@ -24,3 +24,6 @@
 <p>5. [How To Implement Word Pattern II 4 ?] (http://wangyuanvivien.blogspot.com/2016/06/leetcode-290-291-word-pattern-i-ii.html)
 <p>6. [How print out the contents of a HashMap ?] (http://stackoverflow.com/questions/3605237/how-print-out-the-contents-of-a-hashmapstring-string-in-ascending-order-based)
 
+<p>N Queens
+<p>1. [N Queen Implementation 1] (http://www.cnblogs.com/springfor/p/3870944.html)
+<p>2. [N Queen Implementation 2] (https://segmentfault.com/a/1190000003762668)
