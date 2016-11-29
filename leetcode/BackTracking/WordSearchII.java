@@ -321,6 +321,8 @@ import java.util.List;
  * 
  */
 public class WordPatternTrie {
+	private static final boolean debugging = true;
+	
     public List<String> findWords(char[][] board, String[] words) {
     	int rows = board.length;
     	int columns = board[0].length;
@@ -397,22 +399,30 @@ public class WordPatternTrie {
 	
 	static String indent = "";
 	public void enter(String prefix, int i, int j) {
-		System.out.println(indent + "dfs(" + prefix + ", row_index:" + i + ", column_index:" + j + ")");
-		indent = indent + "|  ";
+		if(debugging) {
+			System.out.println(indent + "dfs(" + prefix + ", row_index:" + i + ", column_index:" + j + ")");
+			indent = indent + "|  ";
+		}
 	}
 	
 	public void add(char[][] board, int i, int j) {
-		System.out.println(indent + "add '" + board[i][j] + "' to prefix");
+		if(debugging) {
+			System.out.println(indent + "add '" + board[i][j] + "' to prefix");
+		}
 	}
 	
 	public void yes(String reason) {
-		indent = indent.substring(3);
-		System.out.println(indent + "Search Hit --------> " + reason);
+		if(debugging) {
+			indent = indent.substring(3);
+			System.out.println(indent + "Search Hit --------> " + reason);
+		}
 	}
 	
 	public void no(String reason) {
-		indent = indent.substring(3);
-		System.out.println(indent + reason);
+		if(debugging) {
+			indent = indent.substring(3);
+			System.out.println(indent + reason);
+		}
 	}
 	
     public static void main(String[] args) {
