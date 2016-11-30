@@ -59,3 +59,6 @@
 <p>1. [Isomorphic Strings Solution] (https://segmentfault.com/a/1190000003709248)
 <p>2. [Same Way As Word Pattern] (https://segmentfault.com/a/1190000003827151)
 
+<p>Bulls And Cows
+<p>1. [What is Bulls And Cows ?] (https://en.wikipedia.org/wiki/Bulls_and_Cows)
+<p>2. [] ()
