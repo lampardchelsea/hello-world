@@ -328,3 +328,83 @@ public class NQueens {
     	System.out.println(result.toString());
     }
 }
+
+// Solution 2:
+// Refer to
+// https://segmentfault.com/a/1190000003762668
+/**
+ * 集合法
+ * 复杂度
+ * 时间 O(N^2) 空间 O(N)
+ * 思路
+ * 该方法的思路和暴力法一样，区别在于，之前我们判断一个皇后是否冲突，是遍历一遍当前皇后排列的列表，看每一个皇后是否冲突。
+ * 这里，我们用三个集合来保存之前皇后的信息，就可以O(1)时间判断出皇后是否冲突。三个集合分别是行集合，用于存放有哪些列被占了，
+ * 主对角线集合，用于存放哪个右上到左下的对角线被占了，副对角线集合，用于存放哪个左上到右下的对角线被占了。如何唯一的判断某
+ * 个点所在的主对角线和副对角线呢？我们发现，两个点的行号加列号的和相同，则两个点在同一条主对角线上。两个点的行号减列号的
+ * 差相同，则两个点再同一条副对角线上。
+ * 注意
+ * 主对角线row + col，副对角线row - col
+ */
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
+public class NQueens2 {
+	public List<List<String>> solveNQueens(int n) {
+		List<List<String>> result = new LinkedList<List<String>>();
+		int[] nqueens = new int[n];
+		Set<Integer> columnSet = new HashSet<Integer>();
+		Set<Integer> majorDiagonalSet = new HashSet<Integer>();
+		Set<Integer> subDiagonalSet = new HashSet<Integer>();
+		dfs(nqueens, result, n, 0, columnSet, majorDiagonalSet, subDiagonalSet);
+		return result;
+	}
+	
+	public void dfs(int[] nqueens, List<List<String>> result, int n, int rowIndex, 
+			Set<Integer> columnSet, Set<Integer> majorDiagonalSet, Set<Integer> subDiagonalSet) {
+		if(rowIndex == n) {
+			List<String> oneSolution = new LinkedList<String>();
+			for(int columnIndex : nqueens) {
+				StringBuilder sb = new StringBuilder();
+				for(int x = 0; x < columnIndex; x++) {
+					sb.append(".");
+				}
+				sb.append("Q");
+				for(int x = columnIndex + 1; x < n; x++) {
+					sb.append(".");
+				}
+				oneSolution.add(sb.toString());
+			} 
+			result.add(oneSolution);
+		} else {
+			// Check for each row the column index should be what value
+			// candPos is candidate position of column index on current row index
+			for(int candPos = 0; candPos < n; candPos++) {
+				//nqueens[rowIndex] = candPos;
+				int forMajorDiagonal = rowIndex + candPos;
+				int forSubDiagonal = rowIndex - candPos;
+				if(columnSet.contains(candPos) || majorDiagonalSet.contains(forMajorDiagonal) 
+						|| subDiagonalSet.contains(forSubDiagonal)) {
+					continue;
+				}
+				nqueens[rowIndex] = candPos;
+				columnSet.add(candPos);
+				majorDiagonalSet.add(forMajorDiagonal);
+				subDiagonalSet.add(forSubDiagonal);
+				dfs(nqueens, result, n, rowIndex + 1, columnSet, majorDiagonalSet, subDiagonalSet);
+				subDiagonalSet.remove(forSubDiagonal);
+				majorDiagonalSet.remove(forMajorDiagonal);
+				columnSet.remove(candPos);
+				nqueens[rowIndex] = 0;
+			}
+		}
+	}
+	
+	
+	public static void main(String[] args) {
+    	NQueens2 nqueens = new NQueens2();
+    	List<List<String>> result = nqueens.solveNQueens(6);
+    	System.out.println(result.toString());
+	}
+}
