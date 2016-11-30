@@ -59,6 +59,10 @@
 <p>6. [The Trie: A Neglected Data Structure] (https://www.toptal.com/java/the-trie-a-neglected-data-structure)
 <p>7. [Trie without value and limit on 'a'-'z'] (http://www.programcreek.com/2014/05/leetcode-implement-trie-prefix-tree-java/)
 
+<p>LRU Cache
+<p>1. [What is LRU Cache ?] (http://mcicpc.cs.atu.edu/archives/2012/mcpc2012/lru/lru.html)
+<p>2. [Double LinkedList And HashMap LRU Cache Implementation] (http://www.cnblogs.com/springfor/p/3869393.html)
+
 # Sort and Search
 <p>Binary Search
 <p>1. [Binary Search] (http://algs4.cs.princeton.edu/11model/BinarySearch.java.html)
