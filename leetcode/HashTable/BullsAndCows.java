@@ -18,3 +18,49 @@
  * In this case, the 1st 1 in friend's guess is a bull, the 2nd or 3rd 1 is a cow, and your function should return "1A1B".
  * You may assume that the secret number and your friend's guess only contain digits, and their lengths are always equal.
 */
+// Solution 1:
+// Refer to
+// http://www.programcreek.com/2014/05/leetcode-bulls-and-cows-java/
+public class Solution {
+    public String getHint(String secret, String guess) {
+        int bulls = 0;
+        int cows = 0;
+        Map<Character, Integer> map = new HashMap<Character, Integer>();
+        
+        for(int i = 0; i < secret.length(); i++) {
+            char a = secret.charAt(i);
+            char b = guess.charAt(i);
+            if(a == b) {
+                bulls++;
+            } else {
+                if(map.containsKey(a)) {
+                    map.put(a, map.get(a) + 1);
+                } else {
+                    map.put(a, 1);
+                }
+            }
+        }
+        
+        for(int j = 0; j < secret.length(); j++) {
+        	  char c = secret.charAt(j);
+            char d = guess.charAt(j);
+            // Also need to add condition as c != d check, as we still
+            // scan String guess from start, which may repeat previous
+            // same character at same position as String secret.
+            // E.g secret = "11", guess = "10", when re-loop, the first
+            // '1' on both strings if not discard will calculate again.
+            if(c != d) {
+            	if(map.containsKey(d)) {
+                    cows++;
+                    if(map.get(d) == 1) {
+                        map.remove(d);
+                    } else {
+                        map.put(d, map.get(d) - 1);
+                    }
+                }
+            }   
+        }
+        
+        return bulls + "A" + cows + "B";
+    }
+}
