@@ -61,4 +61,4 @@
 
 <p>Bulls And Cows
 <p>1. [What is Bulls And Cows ?] (https://en.wikipedia.org/wiki/Bulls_and_Cows)
-<p>2. [] ()
+<p>2. [Two Ways Implementation] (http://www.programcreek.com/2014/05/leetcode-bulls-and-cows-java/)
