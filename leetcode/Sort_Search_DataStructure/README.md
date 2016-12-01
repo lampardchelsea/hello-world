@@ -35,6 +35,10 @@
 <p>2. [How to implement queue ?] (http://algs4.cs.princeton.edu/41graph/Queue.java.html)
 <p>3. [What is loitering in queue design ?] (http://www.jyuan92.com/blog/coursera-algorithmprinceton-hw2-queues/)
 
+<p>Blocking Queue
+<p>1. [What is BlockingQueue ?] (http://webcache.googleusercontent.com/search?q=cache:TzsVcr70HHAJ:blog.csdn.net/chenchaofuck1/article/details/51660119+&cd=4&hl=en&ct=clnk&gl=us)
+<p>2. [What is BlockingQueue2 ?] (http://tutorials.jenkov.com/java-util-concurrent/blockingqueue.html)
+
 <p>LinkedList
 <p>1. [What is LinkedList ?] (http://algs4.cs.princeton.edu/13stacks/)
 <p>2. [Nested Classes] (https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html)
