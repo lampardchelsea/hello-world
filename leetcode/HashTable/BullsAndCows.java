@@ -70,3 +70,36 @@ public class Solution {
         return bulls + "A" + cows + "B";
     }
 }
+
+// Solution 2:
+// Refer to
+// http://www.programcreek.com/2014/05/leetcode-bulls-and-cows-java/
+/**
+ * Since the secret and guess only contain numbers and there are at most 10 possible digits, 
+ * we can use two arrays to track the frequency of each digits in secret and guess.
+*/
+public class Solution {
+    public String getHint(String secret, String guess) {
+        int bulls = 0;
+        int cows = 0;
+        int[] secretFrequency = new int[10];
+        int[] guessFrequency = new int[10];
+        
+        for(int i = 0; i < secret.length(); i++) {
+            char a = secret.charAt(i);
+            char b = guess.charAt(i);
+            if(a == b) {
+                bulls++;
+            } else {
+                secretFrequency[a - '0']++;
+                guessFrequency[b - '0']++;
+            }
+        }
+        
+        for(int j = 0; j < 10; j++) {
+            cows += Math.min(secretFrequency[j], guessFrequency[j]);
+        }
+        
+        return bulls + "A" + cows + "B";
+    }
+}
