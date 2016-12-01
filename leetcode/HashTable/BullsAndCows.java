@@ -33,6 +33,12 @@ public class Solution {
             if(a == b) {
                 bulls++;
             } else {
+                // First filter out all digits as bulls, the remind digits
+                // which NOT bulls but candidates for cows will be added
+                // onto map, e.g secret = "11", bulls = "10", the first
+                // digit of both strings are equal as '1', which is bull,
+                // then remind part of secret is '1' will be added onto 
+                // map as an dictionary for scanning String guess.
                 if(map.containsKey(a)) {
                     map.put(a, map.get(a) + 1);
                 } else {
