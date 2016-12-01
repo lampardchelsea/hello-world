@@ -39,6 +39,10 @@
 <p>1. [What is LinkedList ?] (http://algs4.cs.princeton.edu/13stacks/)
 <p>2. [Nested Classes] (https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html)
 
+<p>DoublyLinkedList
+<p>1. [DoublyLinkedList Implementation] (http://algs4.cs.princeton.edu/13stacks/DoublyLinkedList.java.html)
+<p>2. [What is DoublyLinkedList ?] (https://www.java2novice.com/data-structures-in-java/linked-list/doubly-linked-list/)
+
 <p>Binary Search Tree
 <p>1. [What is BST(Princeton) ?] (http://algs4.cs.princeton.edu/32bst/)
 <p>2. [What is BST(CMU) ?] (https://www.cs.cmu.edu/~adamchik/15-121/lectures/Trees/trees.html)
