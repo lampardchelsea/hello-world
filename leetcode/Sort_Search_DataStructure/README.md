@@ -70,6 +70,7 @@
 <p>LRU Cache
 <p>1. [What is LRU Cache ?] (http://mcicpc.cs.atu.edu/archives/2012/mcpc2012/lru/lru.html)
 <p>2. [Double LinkedList And HashMap LRU Cache Implementation] (http://www.cnblogs.com/springfor/p/3869393.html)
+<p>3. [Double LinkedList And HashMap LRU Cache Implementation 2] (http://www.learn4master.com/data-structures/hashtable/leetcode-lru-cache-solution-in-java)
 
 # Sort and Search
 <p>Binary Search
