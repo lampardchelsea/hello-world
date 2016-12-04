@@ -44,8 +44,13 @@
 <p>2. [Nested Classes] (https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html)
 
 <p>DoublyLinkedList
-<p>1. [DoublyLinkedList Implementation] (http://algs4.cs.princeton.edu/13stacks/DoublyLinkedList.java.html)
-<p>2. [What is DoublyLinkedList ?] (https://www.java2novice.com/data-structures-in-java/linked-list/doubly-linked-list/)
+<p>1. [What is DoublyLinkedList ?] (https://www.java2novice.com/data-structures-in-java/linked-list/doubly-linked-list/)
+<p>2. [LinkedList Java Standard Library Implementation] (http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/util/LinkedList.java)
+<p>3. [Java Standard Library LinkedList Analysis] (http://www.jianshu.com/p/681802a00cdf#)
+<p>4. [LinkedList Structure Analysis 1] (http://opendatastructures.org/ods-python-screen.pdf)
+<p>5. [LinkedList Structure Analysis 2] (http://faculty.cs.uwlax.edu/~mallen/courses/cs340/lec08.pdf)
+<p>6. [DoublyLinkedList Princeton Implementation] (http://algs4.cs.princeton.edu/13stacks/DoublyLinkedList.java.html)
+<p>7. [Princeton Implementation Issue] (http://stackoverflow.com/questions/40956297/how-doublylinkedlistprinceton-version-remove-method-works)
 
 <p>Binary Search Tree
 <p>1. [What is BST(Princeton) ?] (http://algs4.cs.princeton.edu/32bst/)
