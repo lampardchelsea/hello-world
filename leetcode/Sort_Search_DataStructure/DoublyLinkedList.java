@@ -316,3 +316,9 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 	
 }
 
+// Java Standard Library Solution
+// Refer to
+// http://www.jianshu.com/p/681802a00cdf#
+// http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/util/LinkedList.java
+// http://opendatastructures.org/ods-python-screen.pdf
+// http://faculty.cs.uwlax.edu/~mallen/courses/cs340/lec08.pdf
