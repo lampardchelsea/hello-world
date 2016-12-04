@@ -69,6 +69,9 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 		private Node prev;
 	}
 	
+	// Why pre.next = post; post.prev = pre;
+	// Refer to
+	// http://www.jianshu.com/p/681802a00cdf#
 	public DoublyLinkedList() {
 		pre = new Node();
 		post = new Node();
