@@ -317,7 +317,8 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 }
 
 
-// Similar To Princeton Version Recommended Solution 
+// Similar To Princeton Version Recommended Solution (Both contain sentinel header/trailer nodes, 
+// not similar to Java Standard Library only contain one header sentinel node)
 // Refer to
 // http://stackoverflow.com/questions/40956297/how-doublylinkedlist-princeton-version-remove-method-works?noredirect=1#comment69131584_40956297
 // https://www.cpp.edu/~ftang/courses/CS240/lectures/dlist.htm
