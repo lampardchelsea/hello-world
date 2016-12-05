@@ -322,3 +322,9 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 // http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/util/LinkedList.java
 // http://opendatastructures.org/ods-python-screen.pdf
 // http://faculty.cs.uwlax.edu/~mallen/courses/cs340/lec08.pdf
+
+
+// Other Solution:
+// Refer to
+// http://stackoverflow.com/questions/40956297/how-doublylinkedlist-princeton-version-remove-method-works?noredirect=1#comment69131584_40956297
+// https://www.cpp.edu/~ftang/courses/CS240/lectures/dlist.htm
