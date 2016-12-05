@@ -32,7 +32,7 @@ import java.util.NoSuchElementException;
 
 /**
  * Refer to
- * http://stackoverflow.com/questions/40956297/how-doublylinkedlistprinceton-version-remove-method-works
+ * http://stackoverflow.com/questions/40956297/how-doublylinkedlist-princeton-version-remove-method-works
  * As suggest, this implementation should not used in practice.
  * 
  * Refer to
