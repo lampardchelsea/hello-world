@@ -1,4 +1,4 @@
-// Solution 1: Princeton Solution
+// Solution 1: Princeton Solution (Not Recommended)
 /******************************************************************************
  *  Refer to
  *  http://algs4.cs.princeton.edu/13stacks/DoublyLinkedList.java.html
@@ -316,6 +316,15 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 	
 }
 
+
+// Similar To Princeton Version Recommended Solution 
+// Refer to
+// http://stackoverflow.com/questions/40956297/how-doublylinkedlist-princeton-version-remove-method-works?noredirect=1#comment69131584_40956297
+// https://www.cpp.edu/~ftang/courses/CS240/lectures/dlist.htm
+
+
+
+
 // Java Standard Library Solution
 // Refer to
 // http://www.jianshu.com/p/681802a00cdf#
@@ -324,7 +333,3 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 // http://faculty.cs.uwlax.edu/~mallen/courses/cs340/lec08.pdf
 
 
-// Other Solution:
-// Refer to
-// http://stackoverflow.com/questions/40956297/how-doublylinkedlist-princeton-version-remove-method-works?noredirect=1#comment69131584_40956297
-// https://www.cpp.edu/~ftang/courses/CS240/lectures/dlist.htm
