@@ -76,10 +76,10 @@
 <p>1. [What is LRU Cache ?] (http://mcicpc.cs.atu.edu/archives/2012/mcpc2012/lru/lru.html)
 <p>2. [DoublyLinkedList And HashMap LRU Cache Implementation] (http://www.cnblogs.com/springfor/p/3869393.html)
 <p>3. [DoublyLinkedList And HashMap LRU Cache Implementation 2] (http://www.learn4master.com/data-structures/hashtable/leetcode-lru-cache-solution-in-java)
-<p>4. [HashMap Related Part 1] (http://coding-geek.com/how-does-a-hashmap-work-in-java/)
-<p>5. [HashMap Related Part 2] (http://yikun.github.io/2015/04/01/Java-HashMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/)
-<p>6. [HashMap Related Part 3] (http://stackoverflow.com/questions/4553624/hashmap-get-put-complexity)
-<p>7. [HashMap Related Part 4] (https://segmentfault.com/a/1190000003743083)
+<p>4. [DoublyLinkedList And HashMap LRU Cache Implementation 3] (https://segmentfault.com/a/1190000003743083)
+<p>5. [HashMap Related Part 1] (http://coding-geek.com/how-does-a-hashmap-work-in-java/)
+<p>6. [HashMap Related Part 2] (http://yikun.github.io/2015/04/01/Java-HashMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/)
+<p>7. [HashMap Related Part 3] (http://stackoverflow.com/questions/4553624/hashmap-get-put-complexity)
 <p>8. [DoublyLinkedList Related Part] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Sort_Search_DataStructure/DoublyLinkedList.java)
 
 
