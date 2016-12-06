@@ -62,3 +62,7 @@
 <p>Bulls And Cows
 <p>1. [What is Bulls And Cows ?] (https://en.wikipedia.org/wiki/Bulls_and_Cows)
 <p>2. [Two Ways Implementation] (http://www.programcreek.com/2014/05/leetcode-bulls-and-cows-java/)
+
+<p>Island Perimeter
+<p>1. [Two Ways Solution For Island Perimeter] (http://www.cnblogs.com/grandyang/p/6096138.html)
+
