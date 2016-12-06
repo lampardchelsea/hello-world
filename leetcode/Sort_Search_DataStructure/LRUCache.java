@@ -14,6 +14,9 @@
  *
  * DoublyLinkedList related part:
  * https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Sort_Search_DataStructure/DoublyLinkedList.java
- *
- *
+ * 
+ * Design part:
+ * http://www.learn4master.com/data-structures/hashtable/leetcode-lru-cache-solution-in-java
+ * http://www.cnblogs.com/springfor/p/3869393.html
+ * https://segmentfault.com/a/1190000003743083
 */
