@@ -65,4 +65,4 @@
 
 <p>Island Perimeter
 <p>1. [Two Ways Solution For Island Perimeter] (http://www.cnblogs.com/grandyang/p/6096138.html)
-
+<p>2. [Another Explaination] (http://webcache.googleusercontent.com/search?q=cache:TTwczH_uSWUJ:blog.csdn.net/mebiuw/article/details/53265123+&cd=4&hl=en&ct=clnk&gl=us)
