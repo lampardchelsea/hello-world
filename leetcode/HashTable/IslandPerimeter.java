@@ -70,7 +70,8 @@ public class IslandPerimeter {
 	
 }
 
-// Soluton 2: 
+// Soluton 2: As nested for loop start from the grid at top-left corner of map,
+// we need to check shared edge grid on upward & leftward
 public class Solution {
     public int islandPerimeter(int[][] grid) {
         int rows = grid.length;
@@ -82,24 +83,65 @@ public class Solution {
         
         int result = 0;
         for(int i = 0; i < rows; i++) {
-        	for(int j = 0; j < columns; j++) {
-        		if(grid[i][j] == 1) {
-        		    // Assume the grid initially count for all edges as 4
-        		    result += 4;
-        		    // Check if internally share edge with upward(which
-        		    // means have another grid is land on up direction
-        		    // of current grid in same column)
-                    if(i >= 1 && grid[i - 1][j] == 1) {
-                        result -= 2;
-                    }
-                    // Check if internally share edge with leftward(which
-                    // means have another grid is land on left direction
-                    // of current grid in same row)
-                    if(j >= 1 && grid[i][j - 1] == 1) {
-                        result -= 2;
-                    }
-        		}
-        	}
+		for(int j = 0; j < columns; j++) {
+		   if(grid[i][j] == 1) {
+		      // Assume the grid initially count for all edges as 4
+		      result += 4;
+		      // Check if internally share edge with upward(which
+		      // means have another grid is land on up direction
+		      // of current grid in same column, (i - 1) decrease
+		      // row number means upward)
+		      if(i >= 1 && grid[i - 1][j] == 1) {
+			 result -= 2;
+		       }
+		      // Check if internally share edge with leftward(which
+		      // means have another grid is land on left direction
+		      // of current grid in same row, (j - 1) decrease 
+		      // column number means leftward)
+		      if(j >= 1 && grid[i][j - 1] == 1) {
+			 result -= 2;
+		       }
+		   }
+          }
+       }
+       return result;
+    }
+}
+
+// Soluton 3: Similar way as Solution 2, but because of we create nested for loop start from
+// the grid at bottom-right corner of map, we change the condition to find shared edge grid
+// on downward & rightward 
+public class Solution {
+    public int islandPerimeter(int[][] grid) {
+        int rows = grid.length;
+		int columns = grid[0].length;
+		
+        if(rows == 0 || columns == 0) {
+        	return 0;
+        }
+        
+        int result = 0;
+        for(int i = rows - 1; i >= 0; i--) {
+            for(int j = columns - 1; j >= 0 ; j--) {
+                if(grid[i][j] == 1) {
+                   // Assume the grid initially count for all edges as 4
+        	   result += 4;
+                   // Check if internally share edge with downward(which
+                   // means have another grid is land on down direction
+                   // of current grid in same column, (i + 1) increase row 
+		   // number means downward)
+                   if(i < rows - 1 && grid[i + 1][j] == 1) {
+                       result -= 2;
+                   }
+                   // Check if internally share edge with rightward(which
+                   // means have another grid is land on right direction
+        	   // of current grid in same column, (j + 1) increase column
+		   // number means rightward)
+                   if(j < columns - 1 && grid[i][j + 1] == 1) {
+                       result -= 2;
+                   }
+                 }
+             }
         }
         return result;
     }
