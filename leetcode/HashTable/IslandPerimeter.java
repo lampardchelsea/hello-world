@@ -20,7 +20,7 @@
  * 首先看左边的边，只有当左边的边处于第一个位置或者当前格子的左面没有岛格子的时候，左边的边计入周长。其他三
  * 条边的分析情况都跟左边的边相似
 */
-
+// Solution 1:
 public class IslandPerimeter {
 	public int islandPerimeter(int[][] grid) {
 		int rows = grid.length;
@@ -68,4 +68,39 @@ public class IslandPerimeter {
 		System.out.println(result);
 	}
 	
+}
+
+// Soluton 2: 
+public class Solution {
+    public int islandPerimeter(int[][] grid) {
+        int rows = grid.length;
+		int columns = grid[0].length;
+		
+        if(rows == 0 || columns == 0) {
+        	return 0;
+        }
+        
+        int result = 0;
+        for(int i = 0; i < rows; i++) {
+        	for(int j = 0; j < columns; j++) {
+        		if(grid[i][j] == 1) {
+        		    // Assume the grid initially count for all edges as 4
+        		    result += 4;
+        		    // Check if internally share edge with upward(which
+        		    // means have another grid is land on up direction
+        		    // of current grid in same column)
+                    if(i >= 1 && grid[i - 1][j] == 1) {
+                        result -= 2;
+                    }
+                    // Check if internally share edge with leftward(which
+                    // means have another grid is land on left direction
+                    // of current grid in same row)
+                    if(j >= 1 && grid[i][j - 1] == 1) {
+                        result -= 2;
+                    }
+        		}
+        	}
+        }
+        return result;
+    }
 }
