@@ -1,0 +1,1399 @@
+
+<!-- saved from url=(0139)http://webcache.googleusercontent.com/search?q=cache:X8oe7JZrbvoJ:blog.csdn.net/vickyway/article/details/49948701+&cd=1&hl=en&ct=clnk&gl=us -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--<base href="http://blog.csdn.net/vickyway/article/details/49948701">--><base href="."><style type="text/css">body { margin-left:0;margin-right:0;margin-top:0; }#google-cache-hdr {background:#f5f5f5 !important;font:13px arial,sans-serif !important;text-align:left !important;color:#202020 !important;border:0 !important;margin:0 !important;border-bottom:1px solid #cecece !important;line-height:16px !important ;padding:16px 28px 24px 28px !important;}#google-cache-hdr * {display:inline !important;font:inherit !important;text-align:inherit !important;color:inherit !important;line-height:inherit !important;background:none !important;border:0 !important;margin:0 !important;padding:0 !important;letter-spacing:0 !important;}#google-cache-hdr a {text-decoration:none !important;color:#1a0dab !important;}#google-cache-hdr a:hover { text-decoration:underline !important; }#google-cache-hdr a:visited { color:#609 !important; }#google-cache-hdr div { display:block !important;margin-top:4px !important; }#google-cache-hdr b {font-weight:bold !important;display:inline-block !important;direction:ltr !important;}</style><script src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/share.js.download"></script><link rel="stylesheet" type="text/css" href="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/job_reco.css"><link href="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/bdsstyle.css" rel="stylesheet" type="text/css"><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link rel="stylesheet" type="text/css" href="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/style.css"><link type="text/css" rel="stylesheet" href="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/style(1).css"><script src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/logger.js.download"></script><script src="http://ads.csdn.net/get_ads.php?ip=null&amp;zones=149%7C72%7C71%7C190&amp;iframe=false%7Cfalse%7Cfalse%7Cfalse&amp;prefix=revive-0-&amp;loc=http%3A%2F%2Fwebcache.googleusercontent.com%2Fsearch%3Fq%3Dcache%3AX8oe7JZrbvoJ%3Ablog.csdn.net%2Fvickyway%2Farticle%2Fdetails%2F49948701%2B%26cd%3D1%26hl%3Den%26ct%3Dclnk%26gl%3Dus&amp;function%20(val)%20{%20%20%20%20for%20(var%20i%20=%200;%20i%20%3C%20this.length;%20i++)%20{%20%20%20%20%20%20%20%20if%20(this[i]%20===%20val)%20{%20%20%20%20%20%20%20%20%20%20%20%20return%20true;%20%20%20%20%20%20%20%20}%20%20%20%20}%20%20%20%20return%20false;}" type="text/javascript"></script><link rel="stylesheet" href="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/share_style0_16.css"></head><body><div id="MathJax_Message" style="display: none;"></div><iframe frameborder="0" style="display: none;" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/saved_resource.html"></iframe><div id="google-cache-hdr" dir="ltr"><div>This is Google's cache of <a href="http://blog.csdn.net/vickyway/article/details/49948701" dir="ltr">http://blog.csdn.net/vickyway/article/details/49948701</a>. It is a snapshot of the page as it appeared on Nov 10, 2016 02:19:11 GMT. </div><div>The <a href="http://blog.csdn.net/vickyway/article/details/49948701" dir="ltr">current page</a> could have changed in the meantime. <a href="http://support.google.com/websearch/bin/answer.py?hl=en&amp;p=cached&amp;answer=1687222">Learn more</a></div><div></div><div><span style="display:inline-block !important;margin-top:8px !important;margin-right:104px !important;white-space:nowrap !important;"><span style="margin-right:28px !important;"><span style="font-weight:bold !important;">Full version</span></span><span style="margin-right:28px !important;"><a href="http://webcache.googleusercontent.com/search?q=cache:X8oe7JZrbvoJ:blog.csdn.net/vickyway/article/details/49948701&amp;num=1&amp;hl=en&amp;gl=us&amp;strip=1&amp;vwsrc=0">Text-only version</a></span><span style="margin-right:28px !important;"><a href="http://webcache.googleusercontent.com/search?q=cache:X8oe7JZrbvoJ:blog.csdn.net/vickyway/article/details/49948701&amp;num=1&amp;hl=en&amp;gl=us&amp;strip=0&amp;vwsrc=1">View source</a></span></span><span style="display:inline-block !important;margin-top:8px !important;color:#717171 !important;">Tip: To quickly find your search term on this page, press <b>Ctrl+F</b> or <b>⌘-F</b> (Mac) and use the find bar.</span></div></div><div style="position:relative;">
+
+
+     
+    
+    
+   
+   
+
+    <script src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/hm.js.download"></script><script type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/tracking.js.download" charset="utf-8"></script>  
+
+    <script type="text/javascript">
+        var protocol = window.location.protocol;
+        document.write('<script type="text/javascript" src="' + protocol + '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></' + 'script>');
+    </script><script type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/repoAddr2.js.download"></script>
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://blog.csdn.net/vickyway/article/details/49948701#">
+
+    <title>JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来
+        - 博客频道 - CSDN.NET</title>
+    
+    <meta name="description" content="由于项目需要通过ajax得到后台的List对象里面的值，由于没有接触过json所以前期我只能先传字符串再在js里截取子串实现。闲暇时间摸索了一下关于json接受List对象的方法，步骤如下：1.首先下载json所以依赖的包， Json-lib 最新版 json-lib-2.3-jdk15.jar，其官方网站是：http://json-lib.sourceforge.net/可以直接 dow">
+    <script src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/jquery.js.download" type="text/javascript"></script>
+      <script type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/jquery-version.js.download"></script>
+    <script type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/ad.js.download"></script>
+        <!--new top-->
+       
+        <link rel="stylesheet" href="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/index.css">
+        <!--new top-->
+    
+      <!-- ad begin -->
+         <script language="javascript" type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/tracking.js(1).download"></script>
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/style(2).css">
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/hqshaozhu/rss/list">
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/default.css">
+ 
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+    <!-- 广告位开始 -->
+        <ins data-revive-zoneid="149" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57" id="revive-0-0"></ins>
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/html.js.download" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/vickyway">收拾心灵_描绘未来</a></h2>
+            <h3>让自己的努力变得更有价值</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/vickyway?viewmode=contents"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_mulu&#39;])">
+                    <img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/vickyway?viewmode=list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_zhaiyao&#39;])">
+                    <img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/vickyway/rss/list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])">
+                    <img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "hqshaozhu";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/vickyway";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod="popu_3"> 
+
+<a href="http://huiyi.csdn.net/activity/product/goods_list?project_id=3252" target="_blank">
+<font color="blue">移动信息安全的漏洞和逆向原理
+</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/turingbooks/article/details/53079366" target="_blank">
+<font color="red">程序员11月书讯，评论得书啦 
+</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://geek.csdn.net/news/detail/110921" target="_blank">
+<font color="blue">Get IT技能知识库，50个领域一键直达
+</font></a>
+
+
+
+
+</div>                        </div>
+                        
+
+
+<!-- 广告位开始 -->
+<ins data-revive-zoneid="72" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57" id="revive-0-1"></ins>
+<!-- 广告位结束 -->
+
+  
+<link href="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/comment1.css" type="text/css" rel="stylesheet">
+<link href="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/style1.css" type="text/css" rel="stylesheet">
+<script language="JavaScript" type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/jquery.cookie.js.download"></script>
+<script type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/main.js.download"></script>
+<link rel="stylesheet" href="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/markdown_views.css">
+<link rel="stylesheet" href="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/category.css">
+<script type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/MathJax.js.download"></script>
+<script type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/web-storage-cache.min.js.download"></script>
+<script type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/replace.min.js.download"></script>
+
+
+
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+           
+            var isBole = false;
+            
+          
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="http://blog.csdn.net/vickyway/article/details/49948701">
+        JDK并发工具类源码学习系列——PriorityBlockingQueue            
+        </a></span>
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_l">
+            <span class="link_categories">
+            标签：
+              <a href="http://www.csdn.net/tag/jdk" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">jdk</a><a href="http://www.csdn.net/tag/%e5%b9%b6%e5%8f%91" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">并发</a><a href="http://www.csdn.net/tag/%e6%ba%90%e7%a0%81" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">源码</a><a href="http://www.csdn.net/tag/%e9%98%bb%e5%a1%9e%e9%98%9f%e5%88%97" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">阻塞队列</a><a href="http://www.csdn.net/tag/%e5%a0%86" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">堆</a>
+            </span>
+        </div>
+        <div class="article_r">
+            <span class="link_postdate">2015-11-20 17:19</span>
+            <span class="link_view" title="阅读次数">383人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="http://blog.csdn.net/vickyway/article/details/49948701#comments" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_pinglun&#39;])">评论</a>(0)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;JDK并发工具类源码学习系列——PriorityBlockingQueue&#39;,&#39;49948701&#39;);return false;" title="收藏" target="_blank">收藏</a></span>
+             <span class="link_report"> <a href="http://blog.csdn.net/vickyway/article/details/49948701#report" onclick="javascript:report(49948701,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>
+    <div class="embody" style="display:none" id="embody">
+        <span class="embody_t">本文章已收录于：</span>
+        <div class="embody_c" id="lib" value="{&quot;err&quot;:0,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:[]}"></div>
+    </div>
+    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label onclick="GetCategoryArticles(&#39;5865197&#39;,&#39;hqshaozhu&#39;,&#39;top&#39;,&#39;49948701&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">Jdk源码<em>（8）</em></span>
+                      <img class="arrow-down" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/hqshaozhu/article/category/5865197" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_5865197">                            
+                            </ul>
+                        </div>
+                    </label>                    
+                    <label onclick="GetCategoryArticles(&#39;1144965&#39;,&#39;hqshaozhu&#39;,&#39;top&#39;,&#39;49948701&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">Java学习<em>（48）</em></span>
+                      <img class="arrow-down" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/hqshaozhu/article/category/1144965" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_1144965">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+    <script type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/category.js.download"></script>  
+        <div class="bog_copyright">         
+            <p class="copyright_p">版权声明：本文为博主原创文章，转载请注明出处，谢谢。</p>
+        </div>
+
+  
+
+  
+  
+     
+
+<div style="clear:both"></div><div style="border:solid 1px #ccc; background:#eee; float:left; min-width:200px;padding:4px 10px;"><p style="text-align:right;margin:0;"><span style="float:left;">目录<a href="http://blog.csdn.net/vickyway/article/details/49948701#" title="系统根据文章中H1到H6标签自动生成文章目录">(?)</a></span><a href="http://blog.csdn.net/vickyway/article/details/49948701#" onclick="javascript:return openct(this);" title="展开">[+]</a></p><ol style="display:none;margin-left:14px;padding-left:14px;line-height:160%;"><li><a href="http://blog.csdn.net/vickyway/article/details/49948701#t0">实现原理</a></li><li><a href="http://blog.csdn.net/vickyway/article/details/49948701#t1">堆的介绍</a></li><li><a href="http://blog.csdn.net/vickyway/article/details/49948701#t2">结构介绍</a></li><li><a href="http://blog.csdn.net/vickyway/article/details/49948701#t3">常用方法介绍</a></li><ol><li><a href="http://blog.csdn.net/vickyway/article/details/49948701#t4">offerE</a></li><li><a href="http://blog.csdn.net/vickyway/article/details/49948701#t5">poll和polllong TimeUnittake</a></li><li><a href="http://blog.csdn.net/vickyway/article/details/49948701#t6">removeObject</a></li></ol><li><a href="http://blog.csdn.net/vickyway/article/details/49948701#t7">使用场景</a></li></ol></div><div style="clear:both"></div><div id="article_content" class="article_content">
+        <div class="markdown_views"><p>PriorityBlockingQueue是一个基于优先级堆的无界的并发安全的优先级队列（FIFO），队列的元素按照其自然顺序进行排序，或者根据构造队列时提供的 Comparator 进行排序，具体取决于所使用的构造方法。</p>
+
+
+
+<h5 id="实现原理"><a name="t0"></a><strong>实现原理</strong></h5>
+
+<p>PriorityBlockingQueue通过使用堆这种<a href="http://lib.csdn.net/base/datastructure" class="replace_word" title="算法与数据结构知识库" target="_blank" style="color:#df3434; font-weight:bold;">数据结构</a>实现将队列中的元素按照某种排序规则进行排序，从而改变先进先出的队列顺序，提供开发者改变队列中元素的顺序的能力。队列中的元素必须是可比较的，即实现Comparable接口，或者在构建函数时提供可对队列元素进行比较的Comparator对象。</p>
+
+<h5 id="堆的介绍"><a name="t1"></a><strong>堆的介绍</strong></h5>
+
+<p>由于PriorityBlockingQueue是基于堆的，所以这里简单介绍下堆的结构。堆是一种二叉树结构，堆的根元素是整个树的最大值或者最小值（称为大顶堆或者小顶堆），同时堆的每个子树都是满足堆的树结构。由于堆的顶部是最大值或者最小值，所以每次从堆获取数据都是直接获取堆顶元素，然后再将堆调整成堆结构。</p>
+
+<p>更多关于堆的介绍请参考：<a href="http://vickyqi.com/2015/11/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%A0%86/">数据结构系列——堆</a></p>
+
+
+
+<h5 id="结构介绍"><a name="t2"></a><strong>结构介绍</strong></h5>
+
+<p>PriorityBlockingQueue通过内部组合PriorityQueue的方式实现优先级队列（<code>private final PriorityQueue q;</code>），另外在外层通过ReentrantLock实现线程安全，同时通过Condition实现阻塞唤醒。</p>
+
+<h5 id="常用方法介绍-1"><a name="t3"></a><strong>常用方法介绍</strong></h5>
+
+<p>PriorityBlockingQueue继承自AbstractQueue，以及实现了BlockingQueue接口，是一个阻塞队列，主要方法：offer(E)/poll()/poll(long, TimeUnit)/take()/remove(Object)。下面我们结合源码堆这些方法进行深入分析。</p>
+
+
+
+<h6 id="offere"><a name="t4"></a><strong>offer(E)</strong></h6>
+
+<p>入队操作。此处虽然PriorityBlockingQueue是阻塞队列，但是其并没有阻塞的入队方法，因为该队列是无界的，所以入队是不会阻塞的。</p>
+
+<pre class="prettyprint" name="code"><code class="hljs cs has-numbering"><span class="hljs-keyword">public</span> boolean <span class="hljs-title">offer</span>(E e) {
+    final ReentrantLock <span class="hljs-keyword">lock</span> = <span class="hljs-keyword">this</span>.<span class="hljs-keyword">lock</span>;
+    <span class="hljs-keyword">lock</span>.<span class="hljs-keyword">lock</span>();<span class="hljs-comment">// 加锁</span>
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-comment">// 通过PriorityQueue入队一个元素</span>
+        boolean ok = q.offer(e);
+        assert ok;
+        <span class="hljs-comment">// 唤醒等在notEmpty上的线程</span>
+        notEmpty.signal();
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    } <span class="hljs-keyword">finally</span> {
+        <span class="hljs-keyword">lock</span>.unlock();
+    }
+}</code><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li></ul></pre>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">offer</span>(E e, <span class="hljs-keyword">long</span> timeout, TimeUnit unit) {
+    <span class="hljs-keyword">return</span> offer(e); <span class="hljs-comment">// never need to block</span>
+}</code><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li></ul></pre>
+
+<p>offer()方法正如在结构介绍中提到的通过组合的方式，通过外部加锁内部直接调用PriorityQueue的offer()方法。所以主要的工作在PriorityQueue内部。</p>
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-javadoc">/**
+ *@By Vicky:入队一个元素
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">offer</span>(E e) {
+    <span class="hljs-keyword">if</span> (e == <span class="hljs-keyword">null</span>)
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException();
+    modCount++;
+    <span class="hljs-keyword">int</span> i = size;
+    <span class="hljs-comment">// 内部使用数组保存队列的元素，所以如果队列的大小超过数组的长度，则需要进行扩容</span>
+    <span class="hljs-comment">// 扩容的标准是：&lt;64扩大2倍，&gt;=64则扩大1.5倍</span>
+    <span class="hljs-keyword">if</span> (i &gt;= queue.length)
+        grow(i + <span class="hljs-number">1</span>);
+    size = i + <span class="hljs-number">1</span>;
+    <span class="hljs-comment">// i==0表示队列目前没有元素，则直接将带插入元素添加到数组即可</span>
+    <span class="hljs-keyword">if</span> (i == <span class="hljs-number">0</span>)
+        queue[<span class="hljs-number">0</span>] = e;
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-comment">// 将带插入元素添加到队列的最后一个元素，然后自下而上调整堆</span>
+        siftUp(i, e);
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+}
+
+<span class="hljs-javadoc">/**
+ *@By Vicky:自下而上调整堆 
+ */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">siftUp</span>(<span class="hljs-keyword">int</span> k, E x) {
+    <span class="hljs-comment">// 两者逻辑一样，只是采用的比较方式不同而已</span>
+    <span class="hljs-keyword">if</span> (comparator != <span class="hljs-keyword">null</span>)
+        siftUpUsingComparator(k, x);
+    <span class="hljs-keyword">else</span>
+        siftUpComparable(k, x);
+}
+
+<span class="hljs-javadoc">/**
+*@By Vicky:自下而上调整堆 
+ */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">siftUpUsingComparator</span>(<span class="hljs-keyword">int</span> k, E x) {
+    <span class="hljs-comment">// 循环，直到根元素</span>
+    <span class="hljs-keyword">while</span> (k &gt; <span class="hljs-number">0</span>) {
+        <span class="hljs-comment">// 寻找k的父元素下标，固定规则，可参考博客：http://vickyqi.com/</span>
+        <span class="hljs-keyword">int</span> parent = (k - <span class="hljs-number">1</span>) &gt;&gt;&gt; <span class="hljs-number">1</span>;
+        Object e = queue[parent];
+        <span class="hljs-comment">// 如果x &gt;= e，即子节点&gt;=父节点，则直接退出循环</span>
+        <span class="hljs-comment">// 解释：自下而上一般出现在插入元素时调用，插入元素是插入到队列的最后，则需要将该元素调整到合适的位置</span>
+        <span class="hljs-comment">// 即从队列的最后往上调整堆，直到不小于其父节点为止，相当于冒泡</span>
+        <span class="hljs-keyword">if</span> (comparator.compare(x, (E) e) &gt;= <span class="hljs-number">0</span>)
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-comment">// 如果当前节点&lt;其父节点，则将其与父节点进行交换，并继续往上访问父节点</span>
+        queue[k] = e;
+        k = parent;
+    }
+    queue[k] = x;
+}</code><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li><li>37</li><li>38</li><li>39</li><li>40</li><li>41</li><li>42</li><li>43</li><li>44</li><li>45</li><li>46</li><li>47</li><li>48</li><li>49</li><li>50</li><li>51</li><li>52</li><li>53</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li><li>37</li><li>38</li><li>39</li><li>40</li><li>41</li><li>42</li><li>43</li><li>44</li><li>45</li><li>46</li><li>47</li><li>48</li><li>49</li><li>50</li><li>51</li><li>52</li><li>53</li></ul></pre>
+
+<p>入队时通过调用ReentrantLock.lock()进行加锁，然后调用PriorityQueue.offer()方法进行入队操作，最后通过Condition.signal()唤醒等待其上的线程。PriorityQueue.offer()方法将元素插入到队列的最后，然后自上而下调整堆。文中代码都给出了注释，同时可参考博客：<a href="http://vickyqi.com/2015/11/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%A0%86/">数据结构系列——堆</a>进行详细的了解。</p>
+
+<h6 id="poll和polllong-timeunittake"><a name="t5"></a><strong>poll()和poll(long, TimeUnit)，take()</strong></h6>
+
+<p>出队操作。poll(long, TimeUnit)是poll()的阻塞版本，同时take()是无限阻塞版poll()（即无期限阻塞，直到获取到数据），通过Condition.awaitNanos()实现阻塞。三者实现主要逻辑相同，只是在等待时不同，这里主要介绍poll(long, TimeUnit)。</p>
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-javadoc">/**
+ *<span class="hljs-javadoctag"> @By</span> Vicky:阻塞版的出队
+ */</span>
+<span class="hljs-keyword">public</span> E <span class="hljs-title">poll</span>(<span class="hljs-keyword">long</span> timeout, TimeUnit unit) <span class="hljs-keyword">throws</span> InterruptedException {
+    <span class="hljs-keyword">long</span> nanos = unit.toNanos(timeout);
+    <span class="hljs-keyword">final</span> ReentrantLock lock = <span class="hljs-keyword">this</span>.lock;
+    <span class="hljs-comment">// 此处不同于其他非阻塞方法，调用了ReentrantLock的lockInterruptibly()方法，考虑了当前线程是否被打断</span>
+    lock.lockInterruptibly();
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-comment">// 循环，直到获取到元素，或者到达等待时间</span>
+        <span class="hljs-keyword">for</span> (;;) {
+            <span class="hljs-comment">// 从PriorityQueue获取一个元素，该方法不会阻塞</span>
+            E x = q.poll();
+            <span class="hljs-keyword">if</span> (x != <span class="hljs-keyword">null</span>)
+                <span class="hljs-keyword">return</span> x;
+            <span class="hljs-comment">// 此处的nanos会因为每次调用Condition.awaitNanos而减少，如果&lt;0则说明累计等待时间已达到设定的等待时间</span>
+            <span class="hljs-keyword">if</span> (nanos &lt;= <span class="hljs-number">0</span>)
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-comment">// Condition.awaitNanos指定等待时间，但是有可能会被“虚假唤醒”（参考API），导致等待时间未满，返回值即剩余的等待时间</span>
+                <span class="hljs-comment">// 所以需要在外层进行循环，每次等待的时候是上次剩余的时间</span>
+                nanos = notEmpty.awaitNanos(nanos);
+            } <span class="hljs-keyword">catch</span> (InterruptedException ie) {
+                notEmpty.signal(); <span class="hljs-comment">// propagate to non-interrupted thread</span>
+                <span class="hljs-keyword">throw</span> ie;
+            }
+        }
+    } <span class="hljs-keyword">finally</span> {
+        lock.unlock();
+    }
+}</code><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li></ul></pre>
+
+<p>具体的出队操作依然是调用PriorityQueue.poll()。</p>
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-javadoc">/**
+ *<span class="hljs-javadoctag"> @By</span> Vicky:出队一个元素
+ */</span>
+<span class="hljs-keyword">public</span> E <span class="hljs-title">poll</span>() {
+    <span class="hljs-comment">// size==0队列为0，直接返回null</span>
+    <span class="hljs-keyword">if</span> (size == <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    <span class="hljs-keyword">int</span> s = --size;
+    modCount++;
+    <span class="hljs-comment">// 出队总是将数组的第一个元素进行出队，</span>
+    E result = (E) queue[<span class="hljs-number">0</span>];
+    E x = (E) queue[s];
+    queue[s] = <span class="hljs-keyword">null</span>;
+    <span class="hljs-keyword">if</span> (s != <span class="hljs-number">0</span>)
+        <span class="hljs-comment">// 同时将队列的最后一个元素放到第一个位置，然后自上而下调整堆</span>
+        siftDown(<span class="hljs-number">0</span>, x);
+    <span class="hljs-keyword">return</span> result;
+}
+
+<span class="hljs-javadoc">/**
+ *<span class="hljs-javadoctag"> @By</span> Vicky:自下而上调整堆
+ */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">siftDown</span>(<span class="hljs-keyword">int</span> k, E x) {
+    <span class="hljs-keyword">if</span> (comparator != <span class="hljs-keyword">null</span>)
+        siftDownUsingComparator(k, x);
+    <span class="hljs-keyword">else</span>
+        siftDownComparable(k, x);
+}
+
+<span class="hljs-javadoc">/**
+ *<span class="hljs-javadoctag"> @By</span> Vicky:自下而上调整堆
+ */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">siftDownUsingComparator</span>(<span class="hljs-keyword">int</span> k, E x) {
+    <span class="hljs-comment">// 由于堆是一个二叉树，所以size/2是树中的最后一个非叶子节点</span>
+    <span class="hljs-comment">// 如果k是叶子节点，那么其无子节点，则不需要再往下调整堆</span>
+    <span class="hljs-keyword">int</span> half = size &gt;&gt;&gt; <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span> (k &lt; half) {
+        <span class="hljs-comment">// 左节点，固定规则，可参考博客：http://vickyqi.com/</span>
+        <span class="hljs-keyword">int</span> child = (k &lt;&lt; <span class="hljs-number">1</span>) + <span class="hljs-number">1</span>;
+        Object c = queue[child];
+        <span class="hljs-comment">// 右节点</span>
+        <span class="hljs-keyword">int</span> right = child + <span class="hljs-number">1</span>;
+        <span class="hljs-comment">// 找出两个子节点以及父节点中较小的一个</span>
+        <span class="hljs-keyword">if</span> (right &lt; size &amp;&amp;
+            comparator.compare((E) c, (E) queue[right]) &gt; <span class="hljs-number">0</span>)
+            c = queue[child = right];
+        <span class="hljs-comment">// 如果父节点最小，则无需继续往下调整堆</span>
+        <span class="hljs-keyword">if</span> (comparator.compare(x, (E) c) &lt;= <span class="hljs-number">0</span>)
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-comment">// 否则将父节点与两个子节点中较小的一个交换，然后往下继续调整</span>
+        queue[k] = c;
+        k = child;
+    }
+    queue[k] = x;
+}</code><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li><li>37</li><li>38</li><li>39</li><li>40</li><li>41</li><li>42</li><li>43</li><li>44</li><li>45</li><li>46</li><li>47</li><li>48</li><li>49</li><li>50</li><li>51</li><li>52</li><li>53</li><li>54</li><li>55</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li><li>37</li><li>38</li><li>39</li><li>40</li><li>41</li><li>42</li><li>43</li><li>44</li><li>45</li><li>46</li><li>47</li><li>48</li><li>49</li><li>50</li><li>51</li><li>52</li><li>53</li><li>54</li><li>55</li></ul></pre>
+
+<p>基本操作原理见代码注释，同时可参考博客：<a href="http://vickyqi.com/2015/11/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%A0%86/">数据结构系列——堆</a>进行详细的了解。</p>
+
+
+
+<h6 id="removeobject"><a name="t6"></a><strong>remove(Object)</strong></h6>
+
+<p>删除其实并不是常用的方法，主要是堆在删除时还是有点值得介绍的。这里我们直接看PriorityQueue.remove()方法。</p>
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-javadoc">/**
+ *<span class="hljs-javadoctag"> @By</span> Vicky:移除指定元素
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">remove</span>(Object o) {
+    <span class="hljs-comment">// 在队列中查询元素，返回待删除元素在队列中的位置</span>
+    <span class="hljs-keyword">int</span> i = indexOf(o);
+    <span class="hljs-keyword">if</span> (i == -<span class="hljs-number">1</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// 删除指定位置的元素</span>
+        removeAt(i);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+}
+
+<span class="hljs-javadoc">/**
+ *<span class="hljs-javadoctag"> @By</span> Vicky:删除指定位置的元素
+ */</span>
+<span class="hljs-keyword">private</span> E <span class="hljs-title">removeAt</span>(<span class="hljs-keyword">int</span> i) {
+    <span class="hljs-keyword">assert</span> i &gt;= <span class="hljs-number">0</span> &amp;&amp; i &lt; size;
+    modCount++;
+    <span class="hljs-keyword">int</span> s = --size;
+    <span class="hljs-keyword">if</span> (s == i) <span class="hljs-comment">// removed last element</span>
+        queue[i] = <span class="hljs-keyword">null</span>;
+    <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// 删除最后一个元素，将最后一个元素放到i的位置，然后从i开始上而下调整堆</span>
+        E moved = (E) queue[s];
+        queue[s] = <span class="hljs-keyword">null</span>;
+        siftDown(i, moved);
+        <span class="hljs-comment">// 如果queue[i] == moved说明未发生调整，那么则需要自下而上调整堆</span>
+        <span class="hljs-keyword">if</span> (queue[i] == moved) {
+            siftUp(i, moved);
+            <span class="hljs-keyword">if</span> (queue[i] != moved)
+                <span class="hljs-keyword">return</span> moved;
+        }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+}</code><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li><li>37</li><li>38</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li><li>37</li><li>38</li></ul></pre>
+
+<p>当删除堆中的一个元素时，将堆的最后一个元素移动到被删除的位置，然后将最后一个位置值为NULL，当把最后一个元素移动到堆中的某个位置时，这时首先需要从该位置开始自上而下的调整堆，如果该位置的元素在调整时发生变化，即堆有变化，则说明该元素是大于其子节点的，那么该节点就不可能小于其上的父节点（因为堆的结构是传递性的，即子节点小于父节点，其孙子节点同时小于其父节点），所以就不需要再网上调整了；但是如果未发生变化，则说明该位置的节点小于其子节点，那么就无法保证其一定比父节点大，所以需要从该节点开始自上而下的调整堆。调整堆的方法是入队和出队时都有介绍，这里就不介绍了。</p>
+
+<p>以上即PriorityBlockingQueue常用的一些方法，另外一些peek()，迭代等方法就不介绍了，毕竟不涉及堆的改变。</p>
+
+<h5 id="使用场景"><a name="t7"></a><strong>使用场景</strong></h5>
+
+<p>PriorityBlockingQueue与普通阻塞队列的不同之处就是在于其支持对队列中的元素进行比较，而已决定出队的顺序，所以可以使用PriorityBlockingQueue实现高优先级的线程优先执行。</p>
+
+<hr>
+
+<p>以上即本篇的全部内容，如有错误之处，请不吝赐教~~~</p>
+
+<hr>
+
+<p><a href="http://vickyqi.com/?f=csdn">欢迎访问我的个人博客，寻找更多乐趣~</a></p></div>
+        <script type="text/javascript">
+            $(function () {
+                $('pre.prettyprint code').each(function () {
+                    var lines = $(this).text().split('\n').length;
+                    var $numbering = $('<ul></ul>').addClass('pre-numbering').hide();
+                    $(this).addClass('has-numbering').parent().append($numbering);
+                    for (i = 1; i <= lines; i++) {
+                        $numbering.append($('<li></li>').text(i));
+                    };
+                    $numbering.fadeIn(1700);
+                });
+            });
+        </script>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad bdshare-button-style0-16" style="float: right;" data-mod="popu_172" data-bd-bind="1481097706119">
+<a href="http://blog.csdn.net/vickyway/article/details/49948701#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important" target="_blank"></a>
+<a href="http://blog.csdn.net/vickyway/article/details/49948701#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background-position:0 -52px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/vickyway/article/details/49948701#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background-position:0 -104px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/vickyway/article/details/49948701#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" style="background-position:0 -260px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/vickyway/article/details/49948701#" class="bds_renren" data-cmd="renren" title="分享到人人网" style="background-position:0 -208px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/vickyway/article/details/49948701#" class="bds_weixin" data-cmd="weixin" title="分享到微信" style="background-position:0 -1612px !important" target="_blank"></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/blog_detail.css">
+
+    
+<!--172.16.140.12-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/bds_s_v2.js.download"></script>
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+ 
+
+        <div id="digg" articleid="49948701">
+            <dl id="btnDigg" class="digg digg_disable" onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>2</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable" onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" target="_blank">&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" target="_blank">&nbsp;</a></div>
+    <script type="text/javascript">
+                function btndigga() {
+                    $(".tracking-ad[data-mod='popu_222'] a").click();
+                }
+                function btnburya() {
+                    $(".tracking-ad[data-mod='popu_223'] a").click();
+                }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;]);location.href=&#39;/vickyway/article/details/49925367&#39;;">上一篇</span><a href="http://blog.csdn.net/vickyway/article/details/49925367" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;])">数据结构系列——堆</a></li>
+                <li class="next_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;/vickyway/article/details/49995107&#39;;">下一篇</span><a href="http://blog.csdn.net/vickyway/article/details/49995107" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;])">数据结构系列——Trie树</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+        <div class="similar_article" style="display:none">
+                <h4>我的同类文章</h4>
+                <div class="similar_c" style="margin:20px 0px 0px 0px">
+                    <div class="similar_c_t">
+                                <label class="similar_cur">
+                                    <span style="cursor:pointer" onclick="GetCategoryArticles(&#39;5865197&#39;,&#39;hqshaozhu&#39;,&#39;foot&#39;,&#39;49948701&#39;);">Jdk源码<em>（8）</em></span>
+                                </label>
+                                <label class="">
+                                    <span style="cursor:pointer" onclick="GetCategoryArticles(&#39;1144965&#39;,&#39;hqshaozhu&#39;,&#39;foot&#39;,&#39;49948701&#39;);">Java学习<em>（48）</em></span>
+                                </label>
+                    </div>
+                   
+                    <div class="similar_wrap tracking-ad" data-mod="popu_141" style="max-height:195px;">
+                        <a href="http://blog.csdn.net/" style="display:none" target="_blank">http://blog.csdn.net</a>
+                        <ul class="similar_list fl">                          
+                        </ul>
+
+                        <ul class="similar_list fr">                           
+                        </ul>
+                    </div>
+                </div>
+            </div>    
+    <script type="text/javascript">
+        $(function () {
+            GetCategoryArticles('5865197', 'hqshaozhu','foot','49948701');
+        });
+    </script>
+      
+</div>
+<div id="suggest"></div>
+         <script language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/hqshaozhu/svc/GetSuggestContent/49948701",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+<style>
+.blog-ass-articl dd {
+color: #369;
+width: 99%; /*修改行*/
+float: left;
+overflow: hidden;
+font: normal normal 12px/23px "SimSun";
+height: 23px;
+margin: 0;
+padding: 0 0 0 10px;
+margin-right: 30px;
+background: url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;
+}
+</style>
+
+ <link rel="stylesheet" href="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/replace.css">
+
+<div id="relate" data-mod="popu_218" class="tracking-ad" style="display: block;">
+        <div class="relate_t">
+            <h3><span>参考知识库</span></h3>
+        </div>
+        <div class="relate_c"><dl class="relate_list"><dt><a target="_blank" href="http://lib.csdn.net/base/datastructure"><img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/1461035533512_512.jpg" alt="img"></a></dt><dd><h4><a target="_blank" href="http://lib.csdn.net/base/datastructure">算法与数据结构知识库</a></h4><p><label><span>10995</span><em>关注</em><i>|</i><span>2291</span><em>收录</em></label></p></dd></dl></div>
+</div>
+ 
+
+<dl class="blog-ass-articl" id="res-relatived"> 
+    <div class="embody embody_b" id="libkeyparent" style="display:none">
+            <span class="embody_t">更多资料请参考：</span>
+            <div class="embody_c" id="libkey"></div>
+    </div>
+
+
+     <dt><span>猜你在找</span></dt>    
+
+
+   
+
+
+    <div id="adCollege" style="width: 42%;float: left;"> 
+        <script src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/job_reco.js.download" type="text/javascript"></script> 
+        <script type="text/javascript">
+            csdn.position.showEdu({
+                sourceType: "blog",
+                searchType: "detail",
+                searchKey: "49948701",
+                username: "",
+                recordcount: "5",
+                containerId: "adCollege" //容器DIV的id。 
+            });
+        </script> 
+    <div class="tracking-ad" data-mod="popu_84"><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/2531" title="【思科CCNA理论专题：5】--Port-Security（端口安全）视频课程" strategy="v4:content" target="_blank">【思科CCNA理论专题：5】--Port-Security（端口安全）视频课程</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/1961" title="iOS移动开发从入门到精通(Xcode7 &amp; Swift2)" strategy="v4:content" target="_blank">iOS移动开发从入门到精通(Xcode7 &amp; Swift2)</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/1841" title="精通iOS移动开发(Xcode7&amp;Swift2;) 初识Xcode7.0" strategy="v4:content" target="_blank">精通iOS移动开发(Xcode7&amp;Swift2;) 初识Xcode7.0</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/550" title="CCIE专家讲解思科认证网络认证CCNA v2.0网络工程师和网络安全课程" strategy="v4:content" target="_blank">CCIE专家讲解思科认证网络认证CCNA v2.0网络工程师和网络安全课程</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/1124" title="C语言系列之 数据结构栈的运用" strategy="v4:content" target="_blank">C语言系列之 数据结构栈的运用</a></dd></div></div>  
+
+    
+     <div id="res" data-mod="popu_36" class="tracking-ad" style="width: 42%; float: left; margin-right: 30px; display: none;"></div>
+   
+</dl>
+
+
+<script type="text/javascript">
+    $(function () {
+        setTimeout(function () {
+            var searchtitletags = 'JDK并发工具类源码学习系列——PriorityBlockingQueue' + ',' + $("#tags").html();
+            searchService({
+                index: 'blog',
+                query: searchtitletags,
+                from: 5,
+                size: 5,
+                appendTo: '#res',
+                url: 'recommend',
+                his: 2,
+                client: "blog_cf_enhance",
+                tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+            });
+        }, 500);
+    });    
+
+ </script>  
+
+    <div id="ad_cen">        
+<!-- 广告位开始 -->
+<ins data-revive-zoneid="71" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57" id="revive-0-2"></ins>
+<!-- 广告位结束 -->    </div>  
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list"><br>&nbsp;&nbsp;暂无评论<br><br><div class="clear"></div></div>
+    <div id="comment_bar">
+    </div>
+    <div id="comment_form"><div class="guest_link">您还没有登录,请<a href="javascript:void(0);" onclick="javascript:loginbox();">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fwebcache.googleusercontent.com%2Fsearch%3Fq%3Dcache%3AX8oe7JZrbvoJ%3Ablog.csdn.net%2Fvickyway%2Farticle%2Fdetails%2F49948701%2B%26cd%3D1%26hl%3Den%26ct%3Dclnk%26gl%3Dus">[注册]</a></div></div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '49948701';
+    var commentscount = 0;
+    var islock = false
+</script>
+<script type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/comment.js.download"></script>
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top" style="bottom:60px;">
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/blog-icon-reply.png" alt="快速回复">
+        </a>    
+
+    <a id="d-top-a" class="btn btn-top backtop" style="display: none;" title="返回顶部" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_huidaodingbu&#39;])">         
+         <img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+<div class="tag_list" style="display:none"></div>
+  <script language="javascript" type="text/javascript">     
+      $(function(){
+              setTimeout(function(){
+                  $.get("/hqshaozhu/svc/GetTagContent",function(data){
+                      $(".tag_list").html(data).show();
+                  });     
+              });
+          },500);                       
+ </script> 
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+</script>
+ <script language="javascript" type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/async_new.js.download"></script>      
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/hqshaozhu" target="_blank">
+    <img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/1_hqshaozhu.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/hqshaozhu" class="user_name" target="_blank">少主无翼</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter" title="[发私信]" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=hqshaozhu&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+                                            <a target="_blank">
+                                                    <img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/zhuanlandaren.png" onmouseover="m_over_m(this,2)" onmouseout="m_out_m()" alt="1">
+                                            </a>
+                                            <a target="_blank">
+                                                    <img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="1">
+                                            </a>
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>86974次</span></li>
+    <li>积分：<span>1512</span> </li>    
+    <li>等级： <span style="position:relative;display:inline-block;z-index:1">
+            <img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/blog4.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：1512 </div>
+        </span>  </li>
+    <li>排名：<span>千里之外</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>55篇</span></li>
+    <li>转载：<span>4篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>40条</span></li>
+</ul>
+</ul>
+</div>
+
+
+
+
+<div id="custom_column_40789311" class="panel">
+<ul class="panel_head"><span>个人简介</span></ul>
+<ul class="panel_body">
+
+关注<b>并发编程</b>，对Java并发机制有一定程度了解，欢迎探讨。<br>
+<br>
+个人博客：<a href="http://vickyqi.com/">http://vickyqi.com/</a>
+
+</ul>
+</div><div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>博客专栏</span></ul>
+    <ul class="panel_body" id="sp_column">
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/vicky-juc.html" target="_blank"><img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/20151123181713802" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/vicky-juc.html" target="_blank">JUC-Java并发集合源码解析</a>
+    <p>文章：9篇</p>
+    <span>阅读：3640</span>
+    </td>
+    </tr></tbody></table>
+    </ul>
+</div><div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="http://blog.csdn.net/hqshaozhu/article/category/1144965" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Java学习</a><span>(49)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/hqshaozhu/article/category/1642487" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Hadoop</a><span>(14)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/hqshaozhu/article/category/1753083" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Mapreduce</a><span>(11)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/hqshaozhu/article/category/1773565" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">算法系列</a><span>(12)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/hqshaozhu/article/category/1642489" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Linux</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/hqshaozhu/article/category/1144966" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Oracle学习</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/hqshaozhu/article/category/5732121" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">排序算法系列</a><span>(8)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/hqshaozhu/article/category/1186272" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Exceptions</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/hqshaozhu/article/category/5848039" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">计算机基础</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/hqshaozhu/article/category/5865197" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Jdk源码</a><span>(9)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/hqshaozhu/article/category/5942273" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">博客</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/hqshaozhu/article/category/5958583" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Python学习</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/hqshaozhu/article/category/5964953" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">数据结构</a><span>(4)</span>
+                </li>
+</ul>
+</div><div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/7562246" title="Struts2整合Spring方法及原理">Struts2整合Spring方法及原理</a><span>(22074)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/7583545" title="Java类之间的关联关系">Java类之间的关联关系</a><span>(11704)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/17127559" title="Hadoop1.2.1源码解析系列：JT与TT之间的心跳通信机制——JT篇">Hadoop1.2.1源码解析系列：JT与TT之间的心跳通信机制——JT篇</a><span>(2708)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/7745124" title="SQLGrammarException错误">SQLGrammarException错误</a><span>(2523)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/48157819" title="几种常用JSON库性能比较">几种常用JSON库性能比较</a><span>(2472)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/17209145" title="FairScheduler的任务调度机制——assignTasks">FairScheduler的任务调度机制——assignTasks</a><span>(2283)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/17102381" title="Hadoop1.2.1源码解析系列：JT与TT之间的心跳通信机制——TT篇">Hadoop1.2.1源码解析系列：JT与TT之间的心跳通信机制——TT篇</a><span>(2117)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/16925025" title="Hadoop1.2.1源码解析系列：JobTracker（一）——JobTracker初始化">Hadoop1.2.1源码解析系列：JobTracker（一）——JobTracker初始化</a><span>(1981)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/16812325" title="hadoop job初始化源码浅析">hadoop job初始化源码浅析</a><span>(1803)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/11788025" title="Linux(RedHat6.0)下配置SSH无密码访问">Linux(RedHat6.0)下配置SSH无密码访问</a><span>(1715)</span>
+</li>
+</ul>
+</div>
+<div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list"><li><a href="http://blog.csdn.net/hqshaozhu/article/month/2015/12">2015年12月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/hqshaozhu/article/month/2015/11">2015年11月</a><span>(13)</span></li><li><a href="http://blog.csdn.net/hqshaozhu/article/month/2015/10">2015年10月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/hqshaozhu/article/month/2015/09">2015年09月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/hqshaozhu/article/month/2015/08">2015年08月</a><span>(10)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/hqshaozhu/article/month/2015/06">2015年06月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/hqshaozhu/article/month/2015/05">2015年05月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/hqshaozhu/article/month/2014/12">2014年12月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/hqshaozhu/article/month/2014/03">2014年03月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/hqshaozhu/article/month/2013/12">2013年12月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/hqshaozhu/article/month/2013/11">2013年11月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/hqshaozhu/article/month/2013/09">2013年09月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/hqshaozhu/article/month/2013/03">2013年03月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/hqshaozhu/article/month/2012/07">2012年07月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/hqshaozhu/article/month/2012/05">2012年05月</a><span>(7)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/20216203" title="算法系列：PageRank算法的MapReduce实现">算法系列：PageRank算法的MapReduce实现</a><span>(12)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/7583545" title="Java类之间的关联关系">Java类之间的关联关系</a><span>(7)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/7562246" title="Struts2整合Spring方法及原理">Struts2整合Spring方法及原理</a><span>(6)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/17209145" title="FairScheduler的任务调度机制——assignTasks">FairScheduler的任务调度机制——assignTasks</a><span>(6)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/17127559" title="Hadoop1.2.1源码解析系列：JT与TT之间的心跳通信机制——JT篇">Hadoop1.2.1源码解析系列：JT与TT之间的心跳通信机制——JT篇</a><span>(5)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/16870261" title="FairScheduler job初始化过程源码浅析">FairScheduler job初始化过程源码浅析</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/50059095" title="数据结构系列——Java后缀树实现代码">数据结构系列——Java后缀树实现代码</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/17102381" title="Hadoop1.2.1源码解析系列：JT与TT之间的心跳通信机制——TT篇">Hadoop1.2.1源码解析系列：JT与TT之间的心跳通信机制——TT篇</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/7605753" title="Java内部类">Java内部类</a><span>(0)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vickyway/article/details/50113429" title="JDK并发工具类源码学习系列——SynchronousQueue">JDK并发工具类源码学习系列——SynchronousQueue</a><span>(0)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/turingbooks/article/details/52522830" target="_blank">* 程序员10月书讯，评论得书</a></li>
+<li><a href="http://blog.csdn.net/jiangwei0910410003/article/details/52836241" target="_blank">* Android中Xposed框架篇---修改系统位置信息实现自身隐藏功能</a></li>
+<li><a href="http://blog.csdn.net/luoshengyang/article/details/52773402" target="_blank">* Chromium插件（Plugin）模块（Module）加载过程分析</a></li>
+<li><a href="http://blog.csdn.net/hejjunlin/article/details/52966319" target="_blank">* Android TV开发总结--构建一个TV app的直播节目实例</a></li>
+<li><a href="http://blog.csdn.net/yinwenjie/article/details/52935140" target="_blank">* 架构设计：系统存储--MySQL简单主从方案及暴露的问题</a></li>
+
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="http://blog.csdn.net/vickyway/article/details/50059095#comments">数据结构系列——Java后缀树实现代码</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/clevercat925" class="user_name">clevercat925</a>:
+有bug哦，运行这个串"abadbbax"报错
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/vickyway/article/details/7583545#comments">Java类之间的关联关系</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/sky15732625340" class="user_name">12期一刘超</a>:
+@xiao_baozi:牛人，牛人
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/vickyway/article/details/7583545#comments">Java类之间的关联关系</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/sky15732625340" class="user_name">12期一刘超</a>:
+@linyixuan1989:厉害！
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/vickyway/article/details/7583545#comments">Java类之间的关联关系</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/sky15732625340" class="user_name">12期一刘超</a>:
+总结的太经典了，尤其是最后的四种关系的实际实现手法更是让我茅塞顿开
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/vickyway/article/details/20216203#comments">算法系列：PageRank算法的MapReduce实现</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/lishengjie22222" class="user_name">lishengjie22222</a>:
+@hqshaozhu:感谢楼主~~~~
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/vickyway/article/details/20216203#comments">算法系列：PageRank算法的MapReduce实现</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/hqshaozhu" class="user_name">少主无翼</a>:
+@lishengjie22222:已更新了
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/vickyway/article/details/20216203#comments">算法系列：PageRank算法的MapReduce实现</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/lishengjie22222" class="user_name">lishengjie22222</a>:
+楼主能不再发一下下载链接，原来的已失效。。
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/vickyway/article/details/20216203#comments">Java类之间的关联关系</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/xxp_xiaoxiaopeng" class="user_name">xxp_xiaoxiaopeng</a>:
+henghao
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/vickyway/article/details/20216203#comments">算法系列：PageRank算法的MapReduce实现</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/taonianchen" class="user_name">taonianchen</a>:
+@wangnan45:你怎么调好的啊  我调了半天不好用啊，求帮忙
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/vickyway/article/details/20216203#comments">算法系列：PageRank算法的MapReduce实现</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/taonianchen" class="user_name">taonianchen</a>:
+@wangnan45:你怎么调好的啊  我调了半天不好用啊，求帮忙
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+
+
+                   <!-- 广告位开始 --> 
+                    <ins data-revive-zoneid="190" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57" id="revive-0-3"></ins> 
+                    <!-- 广告位结束 -->
+
+           </div>   
+
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+<script type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/cnick.js.download"></script>
+<script type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/newblog.min.js.download"></script>
+
+
+<script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=1199813"></script>
+<script type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/JavaScript1.js.download"></script><link rel="stylesheet" type="text/css" href="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/pub_footer_2014.css"><div class="pub_fo"><div id="pub_footerall" class="pub_footer_new"><dl><dt></dt> <dd class="foot_sub_menu"><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a><span>|</span><a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a><span>|</span><a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a><span>|</span><a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a><span>|</span><a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a><span>|</span><a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a><span>|</span><a href="mailto:webmaster@csdn.net">问题报告</a><span>|</span><a target="_blank" href="http://www.csdn.net/friendlink.html">合作伙伴</a><span>|</span><a href="http://bbs.csdn.net/forums/Service" target="_blank">论坛反馈</a></dd><dd class="foot_contact"><a href="javascript:void(0);" target="_blank" class="qq">网站客服</a><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2251809102&amp;site=qq&amp;menu=yes" target="_blank" class="qq">杂志客服</a><a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a><a href="mailto:webmaster@csdn.net" class="email" title="联系邮箱">webmaster@csdn.net</a><span class="phone" title="服务热线">400-600-2320</span><span class="interval">|</span><span>北京创新乐知信息技术有限公司 版权所有</span><span class="interval">|</span><span>江苏知之为计算机有限公司</span><span class="interval">|</span><span>江苏乐知网络技术有限公司</span></dd><dd class="foot_copyright"><span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span><span class="interval">|</span><span>Copyright © 1999-2016, CSDN.NET, All Rights Reserved&nbsp;</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div></div><div id="note1" class="csdn_note" style="display:none; position:absolute; z-index:9999; width:440px">  <span class="notice_top_arrow"><span class="inner"></span></span>  <div class="box"></div><iframe src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/saved_resource(1).html" frameborder="0" allowtransparency="true" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div><div class="csdn_notice_tip" style="display:none; position:absolute; z-index:9990; width:170px">  <iframe src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/saved_resource(2).html" frameborder="0" scrolling="no" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div class="tip_text">您有<strong>0</strong>条新通知</div>  <a href="javascript:void 0" class="close2"></a></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/notify.js.download"></script>
+
+    <script type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/login.js.download"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/pv.aspx" border="0" width="0" height="0">
+<script type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/counter.js.download"></script><script type="text/javascript" charset="UTF-8" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/msg.popup.js.download"></script>
+<script type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/ad-blog.js.download"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div>
+      <!--new top-->
+    
+    <script id="csdn-toolbar-id" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/toolbar.js.download"></script>
+     <!--new top-->
+   
+    <link href="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/ask_float_block.css" type="text/css" rel="stylesheet">
+    <script language="JavaScript" type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/wmd.js.download"></script>
+    <script language="JavaScript" type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/showdown.js.download"></script>
+    <script language="JavaScript" type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/prettify.js.download"></script>
+    <script language="JavaScript" type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/ask_float_block.js.download"></script>
+   
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334" src="http://ads.csdn.net/js/opt/52b5334.js?t=0.551330783103434"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+    <link rel="stylesheet" href="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/blog_code.css">
+    <script type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/saveToCode.js.download"></script>
+      <script type="text/javascript" src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/main.js(1).download"></script>
+
+   
+ </div><div class="csdn-toolbar csdn-toolbar-skin-black ">        <div class="container row center-block ">          <div class="col-md-3 pull-left logo clearfix"><a href="http://www.csdn.net/?ref=toolbar" title="CSDN首页" target="_blank" class="icon"></a><a title="频道首页" href="http://webcache.googleusercontent.com/?ref=toolbar_logo" class="img blog-icon"></a></div>          <div class="pull-right login-wrap unlogin">            <ul class="btns">              <li class="loginlink"><a href="https://passport.csdn.net/account/login?ref=toolbar" target="_top">登录&nbsp;</a>|<a target="_top" href="http://passport.csdn.net/account/mobileregister?ref=toolbar&amp;action=mobileRegister">&nbsp;注册</a></li>              <li class="search">                <div class="icon on-search-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <form action="http://so.csdn.net/search" method="get" target="_blank">                      <input type="hidden" value="toolbar" name="ref" accesskey="2">                      <div class="border">                        <input placeholder="搜索" type="text" value="" name="q" accesskey="2"><span class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li class="favor">                <div class="icon on-favor-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div style="display:none;" class="favor-success"><span class="msg">收藏成功</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <div style="display:none;" class="favor-failed"><span class="icon-danger-lg"></span><span class="msg">收藏失败，请重新收藏</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <form role="form" class="form-horizontal favor-form">                      <div class="form-group">                        <div class="clearfix">                          <label for="input-title" class="col-sm-2 control-label">标题</label>                          <div class="col-sm-10">                            <input id="inputTitle" type="text" placeholder="" class="title form-control">                          </div>                        </div>                        <div class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div class="form-group">                        <label for="input-url" class="col-sm-2 control-label">网址</label>                        <div class="col-sm-10">                          <input id="input-url" type="text" placeholder="" class="url form-control">                        </div>                      </div>                      <div class="form-group">                        <label for="input-tag" class="col-sm-2 tag control-label">标签</label>                        <div class="col-sm-10">                          <input id="input-tag" type="text" class="form-control tag">                        </div>                      </div>                      <div class="form-group">                        <label for="input-description" class="description col-sm-2 control-label">摘要</label>                        <div class="col-sm-10">                          <textarea id="input-description" class="form-control description"></textarea>                        </div>                      </div>                      <div class="form-group">                        <div class="col-sm-offset-2 col-sm-10 ft">                          <div class="col-sm-4 pull-left">                            <div class="checkbox">                              <label>                                <input type="checkbox" name="share" checked="checked" class="share">公开                              </label>                            </div>                          </div>                          <div class="col-sm-8 pull-right favor-btns">                            <button type="button" class="cancel btn btn-default">取消</button>                            <button type="submit" class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li class="notify">                <div style="display:none" class="number"></div>                <div style="display:none" class="icon-hasnotes-sm"></div>                <div id="header_notice_num"></div>                <div class="icon on-notify-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div id="note1" class="csdn_note">                      <div class="box"></div>                    </div>                  </div>                </div>              </li>              <li class="ugc">                <div class="icon on-ugc-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <dl>                      <dt><a href="http://geek.csdn.net/news/expert?ref=toolbar" target="_blank" class="p-news clearfix" style="display:none;"><em class="icon"></em><span>分享资讯</span></a></dt>                      <dt style="border: none;"><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-doc clearfix"><em class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a href="http://bbs.csdn.net/topics/new?ref=toolbar" target="_blank" class="p-ask clearfix"><em class="icon"></em><span>提问题</span></a></dt>                      <dt><a href="http://write.blog.csdn.net/postedit?ref=toolbar" target="_blank" class="p-blog clearfix"><em class="icon"></em><span>写博客</span></a></dt>                      <dt><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-src clearfix"><em class="icon"></em><span>传资源</span></a></dt>                      <dt><a href="https://code.csdn.net/projects/new?ref=toolbar" target="_blank" class="c-obj clearfix"><em class="icon"></em><span>创建项目</span></a></dt>                      <dt><a href="https://code.csdn.net/snippets/new?ref=toolbar" target="_blank" class="c-code clearfix"><em class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li class="profile">                <div class="icon on-profile-icon"><img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/100x100.jpg" class="curr-icon-img">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div class="bd">                      <dl class="clearfix">                        <dt class="pull-left img"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="avatar"><img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/100x100.jpg"></a></dt>                        <dd class="info" style="border: none;"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="nickname"></a><a class="set-nick" href="https://passport.csdn.net/account/profile">设置昵称<span class="write-icon"></span></a><span class="dec"><a class="fill-dec" href="http://my.csdn.net/" target="_blank">编辑自我介绍，让更多人了解你<span class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div class="ft clearfix"><a target="_blank" href="http://my.csdn.net/my/account/changepwd?ref=toolbar" class="pull-left"><span class="icon-cog"></span>帐号设置</a><a href="https://passport.csdn.net/account/logout?ref=toolbar" target="_top" class="pull-left" style="margin-left:132px; width:18px; height:27px; white-space:nowrap; overflow:hidden;"><span class="icon-signout"></span><span class="out">退出</span></a></div>                  </div>                </div>              </li>              <li class="apps">                <div id="chasnew123" class="hasnew" style="display: none;"></div>                <div id="cappsarea123" class="icon on-apps-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a href="http://blog.csdn.net/?ref=toolbar" target="_blank">博客</a></dd>                      <dd> <a href="http://bbs.csdn.net/?ref=toolbar" target="_blank">论坛</a></dd>                      <dd> <a href="http://download.csdn.net/?ref=toolbar" target="_blank">下载</a></dd>                      <dd> <a href="http://lib.csdn.net/?ref=toolbar" target="_blank">知识库</a></dd>                      <dd><a href="http://ask.csdn.net/?ref=toolbar" target="_blank">技术问答</a></dd>                      <dd><a href="http://geek.csdn.net/?ref=toolbar" target="_blank">极客头条</a></dd>                      <dd style="display:none"> <a href="http://hero.csdn.net/?ref=toolbar" target="_blank">英雄会</a></dd>                    </dl>                  </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd style="display:none"> <a href="http://job.csdn.net/?ref=toolbar" target="_blank">JOB<img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="http://edu.csdn.net/?ref=toolbar" target="_blank">学院<img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="https://code.csdn.net/?ref=toolbar" target="_blank">CODE</a></dd>                      <dd> <a href="http://huiyi.csdn.net/?ref=toolbar" target="_blank">活动</a></dd>                      <dd> <a href="http://www.csto.com/?ref=toolbar" target="_blank">CSTO</a></dd>                      <dd> <a href="http://mall.csdn.net/?ref=toolbar" target="_blank">C币兑换<img src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                    </dl>                  </div>                  <div class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a href="http://cto.csdn.net/?ref=toolbar" target="_blank">CTO俱乐部</a></dd>                      <dd> <a href="http://student.csdn.net/?ref=toolbar" target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div><input type="hidden" id="aa_g_data_ids"><div id="tag-suggest-pop">
+  <div class="relative">
+    <div class="close"></div>
+    <div class="content"></div>
+  </div>
+</div><link rel="stylesheet" type="text/css" media="screen" href="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/ask_float_fonts_css-6b30a53970eb5c3a2a045e3df585b475.css"><div data-mod="popu_64" class="csdn-tracking-statistics" chg-blk="0"><a id="com-quick-reply" title="快速回复" style="top:3802px"></a><a id="com-d-top-a" style="top: 3840px; display: none;" title="返回顶部" onclick=""></a> </div><div class="pop_edit ask_second comm_ask_second"><h3>提问</h3><span class="ask_float_span">您的问题将会被发布在“<a class="ask_float_channel" href="http://ask.csdn.net/" target="_blank" style="cursor:pointer">技术问答</a>”频道</span><a href="http://blog.csdn.net/vickyway/article/details/49948701#" nodetype="close" class="close">×</a><div class="context"><div class="err_div"><span class="err_ico"></span><span class="err_txt">该问题已存在，请勿重复提问</span></div><div class="input_div"><input id="askInputSecond" type="text" style="font-size:14px;" placeholder="问题标题"></div><div class="cm_box"><div class="cm_dialog"></div> <div class="pop_cm cm_add_link"><input type="text" placeholder="链接内容" id="af_cm_link_txt"><input type="text" placeholder="链接地址" id="af_cm_link_url"><input type="text" placeholder="链接提示" id="af_cm_link_tit"><div class="text-right"><span class="btn btn-default btn-sm" id="add_link_btn">插入链接</span> </div> </div><div class="pop_cm cm_add_img"><div class="nav-tabs"><a class="img_tab active" href="http://blog.csdn.net/vickyway/article/details/49948701#tab_upload">本地上传</a><a class="img_tab" href="http://blog.csdn.net/vickyway/article/details/49948701#tab_weburl">网络图片</a></div><div class="tab_panel active" id="tab_upload"><div class="set_img"><iframe src="./JDK并发工具类源码学习系列——PriorityBlockingQueue - 收拾心灵_描绘未来 - 博客频道 - CSDN.NET_files/upload.html"></iframe></div></div><div class="tab_panel" id="tab_weburl"><input type="text" placeholder="图片地址" id="af_cm_img_url"><input type="text" placeholder="图片说明" id="af_cm_img_alt"><div class="text-right"><span class="btn btn-default btn-sm" id="add_img_btn">插入图片</span> </div></div> </div></div> <textarea id="editor_all" rows="8" style="display: none;"></textarea><div class="editor-toolbar"><i class="separator">|</i><a class="icon-headline" title="标题一（Ctrl+Alt+1）"></a><a class="icon-heading" title="标题二（Ctrl+Alt+2）"></a><a class="icon-bold" title="粗体（Ctrl+B）"></a><a class="icon-italic" title="斜体（Ctrl+I）"></a><i class="separator">|</i><a class="icon-quote-left" title="引用（Ctrl+’）"></a><a class="icon-code" title="插入代码片（Ctrl+,）"></a><a class="icon-list-ul" title="无序列表（Ctrl+L）"></a><a class="icon-list-ol" title="有序列表（Ctrl+Alt+L）"></a><i class="separator">|</i><a class="icon-link" title="添加链接（Ctrl+K）"></a><a class="icon-picture" title="添加图片（Ctrl+Alt+I）"></a><i class="separator">|</i><a class="icon-reply" title="撤退（Ctrl+Z）"></a><a class="icon-share-alt" title="前进（Ctrl+Shift+Z）"></a><i class="separator">|</i><a class="icon-info" href="http://ask.csdn.net/pages/markdown" target="_blank" title="markdown语法参考"></a><a class="icon-preview" title="预览"></a><i class="separator">|</i></div><div class="CodeMirror cm-s-paper CodeMirror-focused"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar"><div style="height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="min-width: 33px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>&nbsp;<span style="display: inline-block; width: 1px; margin-right: -1px;">&nbsp;</span></pre></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code"></div><div class="CodeMirror-cursor">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters" style="display: none;"></div></div></div><div class="editor-statusbar"><span class="lines">0</span><span class="words">0</span><span class="cursor">0:0</span></div><div class="div_tags clearfix"><div id="divSearchTags" class="tags_con"><input type="text"></div><input type="hidden" name="txtSearchTags"></div><div id="ask2_tagRecomm_div" class="drt_tagRecomm tracking-ad" data-mod="popu_73"><span class="drt_tit">推荐标签：</span></div></div><div class="success"><div class="left_area"><input id="chk_cb" type="checkbox"><span class="wyxs">我要悬赏</span><input id="cb_num" class="cb_num" readonly="true"><span class="phib_rii"><span> 币</span></span></div><a href="http://blog.csdn.net/vickyway/article/details/49948701#" nodetype="cancel" class="cancel">取消</a><a href="http://blog.csdn.net/vickyway/article/details/49948701#" nodetype="ok" class="ok">发布</a></div></div><div id="common_ask_div_sc" class="searchContainer"><div class="sTitle">可能存在类似的问题：</div><div class="sFooter"><a class="sFirstNewAsk">我想提一个新问题</a></div></div><div id="mask_code"></div><div class="gist_edit"><div class="save_snippets clearfix"><div class="tit"><h3>保存代码片</h3><span>整理和分享保存的代码片，请访问<a href="https://code.csdn.net/snippets_manage" target="_blank">代码笔记</a></span></div><div class="con_form"><ul class="gist_edit_list clearfix"><li><span class="red">*</span><span class="txt">标题</span><input id="form_title" class="form-input" placeholder="JDK并发工具类源码学习系列——PriorityBlockingQueue" type="text"></li><li><span class="red">*</span><span class="txt">描述</span><textarea id="form-textarea" class="form-textarea" placeholder="JDK并发工具类源码学习系列——PriorityBlockingQueue： http://webcache.googleusercontent.com/search?q=cache:X8oe7JZrbvoJ:blog.csdn.net/vickyway/article/details/49948701+&amp;cd=1&amp;hl=en&amp;ct=clnk&amp;gl=us"></textarea></li><li><span class="red">&nbsp;</span><span class="txt">标签</span><div id="divSearchTags"><span class="label blog_tag"><span>jdk</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>并发</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>源码</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>阻塞队列</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>堆</span><a title="Removing tag" href="javascript:;">x</a></span><input id="insertTag" class="insertTag" placeholder="请输入标签，按Enter生成(最多5项)" type="text" value="" name="insertTag" maxlength="21" style="color: rgb(51, 51, 51);"><input id="OrganTag" class="OrganTag" type="hidden" name="OrganTag" value="jdk,并发,源码,阻塞队列,堆,"><input id="OldOrganTag" class="OldOrganTag" type="hidden" name="OldOrganTag" value=""><input type="hidden" name="txtSearchTags"></div></li></ul></div><div class="bottom-bar"><a href="javascript:;" class="btn-submit btn-cancel">取消</a><span class="tracking-ad" data-mod="popu_250"><a class="btn-submit btn-confirm" href="javascript:;" target="_blank">确定</a></span></div></div></div></body></html>
