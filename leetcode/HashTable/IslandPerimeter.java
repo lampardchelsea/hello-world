@@ -20,3 +20,52 @@
  * 首先看左边的边，只有当左边的边处于第一个位置或者当前格子的左面没有岛格子的时候，左边的边计入周长。其他三
  * 条边的分析情况都跟左边的边相似
 */
+
+public class IslandPerimeter {
+	public int islandPerimeter(int[][] grid) {
+		int rows = grid.length;
+		int columns = grid[0].length;
+		
+        if(rows == 0 || columns == 0) {
+        	return 0;
+        }
+        
+        int result = 0;
+        for(int i = 0; i < rows; i++) {
+        	for(int j = 0; j < columns; j++) {
+        		// grid[i][j] == 1 --> land
+        		// grid[i][j] == 0 --> water
+        		if(grid[i][j] == 1) {
+        			// Check top edge, if current grid's top edge 
+        			// is one strip of map boundary or the upper 
+        			// adjacent grid of current grid is water, 
+        			// then count this top edge
+        			if(i == 0 || grid[i - 1][j] == 0) {
+        				result++;
+        			}
+        			// Check bottom edge
+        			if(i == rows - 1 || grid[i + 1][j] == 0) {
+        				result++;
+        			}
+        			// Check left edge
+        			if(j == 0 || grid[i][j - 1] == 0) {
+        				result++;
+        			}
+        			// Check right edge
+        			if(j == columns - 1 || grid[i][j + 1] == 0) {
+        				result++;
+        			}
+        		}
+        	}
+        }
+        return result;
+    }
+	
+	public static void main(String[] args) {
+		int[][] grid = {{0, 1, 0, 0}, {1, 1, 1, 0}, {0, 1, 0, 0}, {1, 1, 0, 0}};
+		IslandPerimeter ip = new IslandPerimeter();
+		int result = ip.islandPerimeter(grid);
+		System.out.println(result);
+	}
+	
+}
