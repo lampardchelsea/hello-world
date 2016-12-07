@@ -5,10 +5,10 @@
  * Java并发编程-阻塞队列(BlockingQueue)的实现原理
  * http://webcache.googleusercontent.com/search?q=cache:TzsVcr70HHAJ:blog.csdn.net/chenchaofuck1/article/details/51660119+&cd=4&hl=en&ct=clnk&gl=us
  *
- * LinkedBlockingQueue Source Code Analysis
+ * LinkedBlockingQueue源码分析(简书)
  * http://www.jianshu.com/p/cc2281b1a6bc
  *  
- * ArrayBlockingQueue Source Code Analysis
+ * ArrayBlockingQueue源码分析(简书)
  * http://www.jianshu.com/p/9a652250e0d1
  * 
  * PriorityBlockingQueue Source Code Analysis
