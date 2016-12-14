@@ -23,12 +23,8 @@ public class Solution {
         int[] table = new int[26];
         int length = s.length();
         for(int i = 0; i < length; i++) {
-            int index = s.charAt(i) - 'a';
-            table[index]++;
-        }
-        for(int i = 0; i < length; i++) {
-            int index = t.charAt(i) - 'a';
-            table[index]--;
+            table[s.charAt(i) - 'a']++;
+            table[t.charAt(i) - 'a']--;
         }
         for(int i = 0; i < table.length; i++) {
             if(table[i] != 0) {
@@ -38,5 +34,6 @@ public class Solution {
         return true;
     }
 }
+
 
 // Solution 2:
