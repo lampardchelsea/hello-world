@@ -74,5 +74,5 @@
 <p>Count Primes
 <p>1. [埃拉托斯特尼筛法 Sieve of Eratosthenes] (https://segmentfault.com/a/1190000003709122)
 <p>2. [Sieve of Eratosthenes] (https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)
-
+<p>3. [Detail Analysis of Count Primes] (https://leetcode.com/problems/count-primes/)
 
