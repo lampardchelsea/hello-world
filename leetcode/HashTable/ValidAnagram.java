@@ -36,4 +36,24 @@ public class Solution {
 }
 
 
-// Solution 2:
+// Solution 2: 排序法
+// 复杂度
+// 时间 O(KlogK) 空间 O(K)
+// 思路
+// 因为变形词两个单词对应字母出现的次数都相同，所以如果将两个单词按字母顺序排序，肯定会变为一个字符串，
+// 如果字符串不相同，则不是变形词。这里不推荐Java用这个方法，因为Java得先将字母转化为char数组再排序。
+public class Solution {
+    public boolean isAnagram(String s, String t) {
+        char[] word1 = s.toCharArray();
+        char[] word2 = t.toCharArray();
+        Arrays.sort(word1);
+        Arrays.sort(word2);
+        return String.valueOf(word1).equals(String.valueOf(word2));
+    }
+}
+
+
+// Solution 3: Follow up:
+// What if the inputs contain unicode characters? How would you adapt your solution to such case?
+
+
