@@ -55,5 +55,42 @@ public class Solution {
 
 // Solution 3: Follow up:
 // What if the inputs contain unicode characters? How would you adapt your solution to such case?
-
+// If the inputs contain unicode characters, an array with length of 26 is not enough.
+public class Solution {
+    public boolean isAnagram(String s, String t) {
+        if(s.length() != t.length()) {
+            return false;
+        }
+        
+        Map<Character, Integer> map = new HashMap<Character, Integer>();
+        int length = s.length();
+        for(int i = 0; i < length; i++) {
+            char c = s.charAt(i);
+            if(!map.containsKey(c)) {
+                map.put(c, 1);
+            } else {
+                map.put(c, map.get(c) + 1);
+            }
+        }
+        
+        for(int i = 0; i < length; i++) {
+            char c = t.charAt(i);
+            if(map.containsKey(c)) {
+                if(map.get(c) == 1) {
+                    map.remove(c);
+                } else {
+                    map.put(c, map.get(c) - 1);
+                }
+            } else {
+                return false;
+            }
+        }
+        
+        if(map.size() != 0) {
+            return false;
+        }
+        
+        return true;
+    }
+}
 
