@@ -71,3 +71,8 @@
 <p>1. [Two Ways To Solve Valid Anagram] (https://segmentfault.com/a/1190000003812063)
 <p>2. [Two Ways To Solve Valid Anagram 2] (http://www.programcreek.com/2014/05/leetcode-valid-anagram-java/)
 
+<p>Count Primes
+<p>1. [埃拉托斯特尼筛法 Sieve of Eratosthenes] (https://segmentfault.com/a/1190000003709122)
+<p>2. [Sieve of Eratosthenes] (https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)
+
+
