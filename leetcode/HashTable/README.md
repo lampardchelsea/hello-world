@@ -69,5 +69,5 @@
 
 <p>Valid Anagram
 <p>1. [Two Ways To Solve Valid Anagram] (https://segmentfault.com/a/1190000003812063)
-
+<p>2. [Two Ways To Solve Valid Anagram 2] (http://www.programcreek.com/2014/05/leetcode-valid-anagram-java/)
 
