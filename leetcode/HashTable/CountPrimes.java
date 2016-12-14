@@ -87,3 +87,37 @@
            return count;
         }
 */
+// Solution 1: 
+public class CountPrime {
+	public static int countPrime(int n) {
+		int count = 0;	
+		for(int i = 1; i < n; i++) {
+			if(isPrime(i)) {
+				count++;
+			}
+		}		
+		return count;
+	}
+	
+	public static boolean isPrime(int num) {
+		if(num <= 1) {
+			return false;
+		}
+		// Loop's ending condition is i * i <= num instead of i <= sqrt(num)
+		// to avoid repeatedly calling an expensive function sqrt(). Don't
+		// write as i * i < n, e.g if input as n = 5, hen n = 4, it will
+		// miss case as 2 * 2 = 4, based on hint 3
+		for(int i = 2; i * i <= num; i++) {
+			if(num % i == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public static void main(String[] args) {
+		int n = 5;
+		int result = countPrime(n);
+		System.out.println(result);
+	}
+}
