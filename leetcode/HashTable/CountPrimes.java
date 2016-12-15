@@ -123,7 +123,8 @@ public class CountPrime {
 }
 
 
-// Solution 2:
+// Solution 2: Sieve of Eratosthenes 
+// 时间 O(NloglogN) 空间 O(N)
 public class Solution {
     public int countPrimes(int n) {
         boolean[] isPrime = new boolean[n];
