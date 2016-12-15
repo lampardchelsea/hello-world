@@ -21,4 +21,22 @@
 // 思路
 // 根据快乐数的计算方法，我们很难在有限步骤内确定一个数是否是快乐数，但使用排除法的话，我们可以尝试确定一个数不是快乐数。
 // 根据题意，当计算出现无限循环的时候就不是快乐数。出现无限循环的说明产生了相同的结果，而判断相同结果只要用Set就行了。
-
+public class Solution {
+    public boolean isHappy(int n) {
+        Set<Integer> set = new HashSet<Integer>();
+		while(n != 1) {
+			int sum = 0;
+			while(n > 0) {
+				sum += (n % 10) * (n % 10);
+				n = n / 10;
+			}
+			if(set.contains(sum)) {
+				return false;
+			} else {
+				set.add(sum);
+			}
+			n = sum;
+		}
+		return true;
+    }
+}
