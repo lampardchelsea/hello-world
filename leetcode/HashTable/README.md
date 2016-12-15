@@ -79,5 +79,15 @@
 <p>Happy Number
 <p>1. [Solution Of Happy Number] (https://segmentfault.com/a/1190000003481340)
 
+<p>Number Of Boomerangs
+<p>1. [Top Solution Of LeetCode Discuss] (https://discuss.leetcode.com/topic/66587/clean-java-solution-o-n-2-166ms)
+<p>2. [Explanation 1] (http://www.cnblogs.com/grandyang/p/6049382.html)
+<p>3. [Explanation 2] (http://blog.csdn.net/mebiuw/article/details/53096120)
+
+
+
+
+
+
 
 
