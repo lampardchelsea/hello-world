@@ -76,3 +76,8 @@
 <p>2. [Sieve of Eratosthenes] (https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)
 <p>3. [Detail Analysis of Count Primes] (https://leetcode.com/problems/count-primes/)
 
+<p>Happy Number
+<p>1. [Solution Of Happy Number] (https://segmentfault.com/a/1190000003481340)
+
+
+
