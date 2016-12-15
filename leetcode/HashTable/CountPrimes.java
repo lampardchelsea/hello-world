@@ -133,6 +133,14 @@ public class Solution {
         }
         // Loop's ending condition is i * i < n instead of i < sqrt(n)
         // to avoid repeatedly calling an expensive function sqrt().
+	// Note: i * i <= n, the effect is same as i * i < n, because
+	// we don't need to strictly add a "=" relation on "<", since
+	// inner for loop will use j = i * i to handle this case.
+	// e.g given n = 4, i * i < 4 means it will break out 
+	// outside for loop directly, and count 2, 3 as prime number.
+	// given n = 16, i * i <= 16 means i can be 2, 3, 4, but if i = 4, 
+	// inside for loop will have j = 16 which j < 16 invalid, 
+	// the effect as same as i * i < 16 and i can only be 2, 3. 
         for(int i = 2; i * i < n; i++) {
             if(!isPrime[i]) {
                 continue;
