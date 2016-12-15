@@ -84,7 +84,10 @@
 <p>2. [Explanation 1] (http://www.cnblogs.com/grandyang/p/6049382.html)
 <p>3. [Explanation 2] (http://blog.csdn.net/mebiuw/article/details/53096120)
 
-
+<p>Two Sum III
+<p>1. [Two Sum III - Data structure design] (http://www.jianshu.com/p/c287d26579c7)
+<p>2. [Two Sum III - Data structure design 2] (http://ryanleetcode.blogspot.com/2015/10/two-sum-iii-data-structure-design.html)
+<p>3. [Two Sum III - Data structure design explain] (http://www.cnblogs.com/grandyang/p/5184143.html)
 
 
 
