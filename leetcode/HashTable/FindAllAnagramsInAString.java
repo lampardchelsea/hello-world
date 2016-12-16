@@ -58,3 +58,12 @@ public class FindAllAnagramsOfAString {
 		System.out.println(result);
 	}
 }
+
+
+// Solution 2:
+
+
+
+
+
+
