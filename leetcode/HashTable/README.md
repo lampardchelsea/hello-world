@@ -89,6 +89,8 @@
 <p>2. [Two Sum III - Data structure design 2] (http://ryanleetcode.blogspot.com/2015/10/two-sum-iii-data-structure-design.html)
 <p>3. [Two Sum III - Data structure design explain] (http://www.cnblogs.com/grandyang/p/5184143.html)
 
+<p>Find All Anagrams in a String
+<p>1. [Top Solution of LeetCode Discuss] (https://discuss.leetcode.com/topic/30941/here-is-a-10-line-template-that-can-solve-most-substring-problems)
 
 
 
