@@ -104,8 +104,39 @@ public class Solution {
     }
 }
 
-// Solution 2: Improvement of Solution 1
+// Solution 2: Improvement of Solution 1 --> No need initial HashMap
 // Refer to
 // http://blog.csdn.net/mebiuw/article/details/52724207
-
+public class Solution {
+    public int longestPalindrome(String s) {
+        char[] chars = s.toCharArray();
+        int length = chars.length;
+        int[] lowerCount = new int[26];
+        int[] upperCount = new int[26];
+        
+        for(int i = 0; i < length; i++) {
+            if(chars[i] < 'a') {
+                upperCount[chars[i] - 'A']++;
+            } else {
+                lowerCount[chars[i] - 'a']++;
+            }
+        }
+        
+        int odds = 0;
+        for(int i = 0; i < 26; i++) {
+            if(lowerCount[i] % 2 == 1) {
+                odds++;
+            }
+            if(upperCount[i] % 2 == 1) {
+                odds++;
+            }
+        }
+        
+        if(odds == 0) {
+            return length;
+        } else {
+            return length - odds + 1;
+        }
+    }
+}
 
