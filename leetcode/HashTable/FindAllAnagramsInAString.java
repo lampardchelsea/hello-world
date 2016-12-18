@@ -60,7 +60,83 @@ public class FindAllAnagramsOfAString {
 }
 
 
-// Solution 2:
+// Solution 2: Shortest/Concise JAVA O(n) Sliding Window Solution
+// Refer to 
+// https://discuss.leetcode.com/topic/30941/here-is-a-10-line-template-that-can-solve-most-substring-problems
+// https://leetcode.com/problems/find-all-anagrams-in-a-string/ --> Top Solution
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class FindAllAnagramsOfAString {
+    public static List<Integer> findAnagrams(String s, String p) {
+    	List<Integer> list = new ArrayList<>();
+        if (s == null || s.length() == 0 || p == null || p.length() == 0) return list;
+        int[] hash = new int[256]; //character hash
+        //record each character in p to hash
+        for (char c : p.toCharArray()) {
+            hash[c]++;
+        }
+        //two points, initialize count to p's length
+        int left = 0, right = 0, count = p.length();
+        while (right < s.length()) {
+            //move right every time, if the character exists in p's hash, decrease the count
+            //current hash value >= 1 means the character is existing in p
+            if (hash[s.charAt(right)] >= 1) {
+            	count--; 
+            }
+        	
+            // Be careful, below two statements should NOT exchange order,
+            // first minus current character in String s corresponding value 
+            // in hash, then increase pointer for next character in String s.
+            hash[s.charAt(right)]--;
+            right++;
+            
+            /**
+             * Note: The above code section can be write in simple line
+             * if (hash[s.charAt(right++)]-- >= 1) count--;
+             */
+            
+            //when the count is down to 0, means we found the right anagram
+            //then add window's left to result list
+            if (count == 0) {
+            	list.add(left);
+            }
+            
+            //if we find the window's size equals to p, then we have to move left (narrow the window) to find the new match window
+            if (right - left == p.length()) {
+        		// only increase the count if the character is in p
+        		// hash[s.charAt(left)] >= 0 indicate it was original in the hash, cuz it won't go below 0
+            	if(hash[s.charAt(left)] >= 0) {
+            		count++;
+            	}
+            	// ++ to reset the hash because we kicked out the left
+                // Be careful, below two statements should NOT exchange order,
+                // first increase current character in String s corresponding value 
+                // in hash, then increase pointer for next character in String s.
+            	hash[s.charAt(left)]++;
+            	left++;
+            }
+            
+            /**
+             * Note: The above code section can be write in simple line
+             * if (right - left == p.length() && hash[s.charAt(left++)]++ >= 0) count++;
+             */
+            	
+        }
+        return list;
+    }
+    
+	public static void main(String[] args) {
+		// s: "cbaebabacd" p: "abc"
+		String s = "cbaebabacd";
+		String p = "abc";
+//		String s = "abab";
+//		String p = "ab";
+		List<Integer> result = findAnagrams(s, p);
+		System.out.println(result);
+	}
+}
 
 
 
