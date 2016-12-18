@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class LongestPalidrome {
+public class LongestPalindrome {
     public static int longestPalindrome(String s) {
         Map<Character, Integer> map = new HashMap<Character, Integer>();
         for(int i = 0; i < s.length(); i++) {
