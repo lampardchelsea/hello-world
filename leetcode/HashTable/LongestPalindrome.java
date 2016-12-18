@@ -104,5 +104,8 @@ public class Solution {
     }
 }
 
+// Solution 2: Improvement of Solution 1
+// Refer to
+// http://blog.csdn.net/mebiuw/article/details/52724207
 
 
