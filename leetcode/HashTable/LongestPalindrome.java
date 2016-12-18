@@ -159,6 +159,7 @@ public class Solution {
             char c = s.charAt(i);
             if(set.contains(c)) {
                 set.remove(c);
+                // count means how many pairs we have
                 count++;
             } else {
                 set.add(c);
