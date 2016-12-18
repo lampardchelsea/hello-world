@@ -93,6 +93,9 @@
 <p>1. [Top Solution of LeetCode Discuss] (https://discuss.leetcode.com/topic/30941/here-is-a-10-line-template-that-can-solve-most-substring-problems)
 <p>2. [Shortest/Concise JAVA O(n) Sliding Window Solution] (https://leetcode.com/problems/find-all-anagrams-in-a-string/)
 
-
+<p>Longest Palidrome
+<p>1. [Longest Palindrome 构造最长回文串 解题报告] (http://blog.csdn.net/mebiuw/article/details/52724207)
+<p>2. [Other explain] (http://www.cnblogs.com/grandyang/p/5931874.html)
+<p>3. [Top Solution of LeetCode Discuss] (https://discuss.leetcode.com/topic/61300/simple-hashset-solution-java/4)
 
 
