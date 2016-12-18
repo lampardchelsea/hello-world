@@ -58,3 +58,12 @@ public class LongestPalidrome {
     }
 
 }
+
+
+// Solution 1:
+// Refer to
+// http://blog.csdn.net/mebiuw/article/details/52724207
+
+
+
+
