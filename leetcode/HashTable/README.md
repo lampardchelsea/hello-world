@@ -91,7 +91,7 @@
 
 <p>Find All Anagrams in a String
 <p>1. [Top Solution of LeetCode Discuss] (https://discuss.leetcode.com/topic/30941/here-is-a-10-line-template-that-can-solve-most-substring-problems)
-
+<p>2. [Shortest/Concise JAVA O(n) Sliding Window Solution] (https://leetcode.com/problems/find-all-anagrams-in-a-string/)
 
 
 
