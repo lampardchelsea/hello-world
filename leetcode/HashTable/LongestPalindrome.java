@@ -104,7 +104,7 @@ public class Solution {
     }
 }
 
-// Solution 2: Improvement of Solution 1 --> No need initial HashMap
+// Solution 2: Improvement of Solution 1(Most quickly solution) --> No need initial HashMap
 // Refer to
 // http://blog.csdn.net/mebiuw/article/details/52724207
 public class Solution {
@@ -150,7 +150,27 @@ public class Solution {
 // 和set长度减一之间的较大值即可，为啥这样呢，我们想，如果没有出现个数是奇数个的字符，那么t的长度就是0，
 // 减1成了-1，那么s的长度只要减去0即可；如果有奇数个的字符，那么字符个数减1，就是不能组成回文串的字符，
 // 因为回文串最多允许一个不成对出现的字符
-
+public class Solution {
+    public int longestPalindrome(String s) {
+        Set<Character> set = new HashSet<Character>();
+        int count = 0;
+        int length = s.length();
+        for(int i = 0; i < length; i++) {
+            char c = s.charAt(i);
+            if(set.contains(c)) {
+                set.remove(c);
+                count++;
+            } else {
+                set.add(c);
+            }
+        }
+        if(!set.isEmpty()) {
+            return count * 2 + 1;
+        } else {
+            return count * 2;
+        }
+    }
+}
 
 
 
