@@ -39,11 +39,13 @@ public class LongestPalidromeSubstring {
 		
 		// i is start position of substring, can be 0 to length - 1
 		for(int i = 0; i < length; i++) {
-			// j is length of substring, can be 1 to length - i
+			// j is length of substring, can be 0 to length - i
 			// actually need j <= length - i, but because of
 			// isPalindrome requires s.charAt(i + j) in index 
 			// boundary, we need a make up "=" situation
-			for(int j = 1; j < length - i; j++) {
+			// Note: If j start with 1, will miss input as "a",
+			// expected return is "a", real return is empty.
+			for(int j = 0; j < length - i; j++) {
 				if(isPalindrome(s, i, i + j)) {
 					if(j >= maxLength) {
 						// +1 to make up cannot set as j <= length - i
