@@ -25,6 +25,11 @@
  * 5. If you find next palindrome substring and if it is greater than the current one, replace it with current one.
  * 6. Finally your string variable will have the answer
  *
+ * 暴力法 Brute Force
+ * 复杂度
+ * 时间 O(n^3) 空间 O(1)
+ * 思路
+ * 暴力法就是穷举所有子字符串的可能，然后依次按位判断其是否是回文，并更新结果。虽然其时间复杂度很高，但它对空间的要求很低。
  */
 public class LongestPalidromeSubstring {
 	public static String longestPalindrome(String s) {
