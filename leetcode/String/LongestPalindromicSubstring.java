@@ -18,7 +18,7 @@
  * Brute force Algorithm.
  * Have 2 for loops 
  * 1. for i = 0 to i less than array.length - 1 
- *    for j = 1 to j less than array.length - i
+ *    for j = 0 to j less than array.length - i
  * 2. This way you can get substring of every possible combination from the array
  * 3. Have a palindrome function which checks if a string is palindrome
  * 4. so for every substring (i, i + j + 1) call this function, if it is a palindrome store it in a string variable
