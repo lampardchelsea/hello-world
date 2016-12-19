@@ -45,6 +45,8 @@ public class LongestPalidromeSubstring {
 			// boundary, we need a make up "=" situation
 			// Note: If j start with 1, will miss input as "a",
 			// expected return is "a", real return is empty.
+			// Because j = 1 and j < length(1) - i(0) not possible
+			// directly skip out for loop
 			for(int j = 0; j < length - i; j++) {
 				if(isPalindrome(s, i, i + j)) {
 					if(j >= maxLength) {
