@@ -97,3 +97,16 @@ public class LongestPalidromeSubstring {
 		System.out.println(result);
 	}
 }
+
+
+// Solution 2: Dynamic Programming
+// Refer to
+// http://www.geeksforgeeks.org/longest-palindrome-substring-set-1/
+// https://leetcode.com/articles/longest-palindromic-substring/#approach-2-brute-force-time-limit-exceeded
+// https://segmentfault.com/a/1190000002991199
+
+
+
+
+
+
