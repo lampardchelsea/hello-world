@@ -76,6 +76,7 @@ public class LongestPalidromeSubstring {
 	
 	
 	public static void main(String[] args) {
+		// String s = "a";
 		String s = "babad";
 		// Time exceed
 //		String s = "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
