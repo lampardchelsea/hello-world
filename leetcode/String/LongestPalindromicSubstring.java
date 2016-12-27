@@ -147,6 +147,69 @@ public class Solution {
 // Right DP solution
 // Refer to
 // http://articles.leetcode.com/longest-palindromic-substring-part-i/
+/**
+Dynamic programming solution, O(N2) time and O(N2) space:
+To improve over the brute force solution from a DP approach, first think how we can avoid unnecessary 
+re-computation in validating palindromes. Consider the case “ababa”. If we already knew that “bab” is 
+a palindrome, it is obvious that “ababa” must be a palindrome since the two left and right end letters 
+are the same.
 
+Stated more formally below:
+Define P[ i, j ] ← true iff the substring Si … Sj is a palindrome, otherwise false.
+Therefore,
+
+P[ i, j ] ← ( P[ i+1, j-1 ] and Si = Sj )
+The base cases are:
+
+P[ i, i ] ← true
+P[ i, i+1 ] ← ( Si = Si+1 )
+This yields a straight forward DP solution, which we first initialize the one and two letters palindromes, 
+and work our way up finding all three letters palindromes, and so on… 
+
+This gives us a run time complexity of O(N2) and uses O(N2) space to store the table.
+*/
+public class Solution {
+	public static String longestPalindrome(String s) {
+        int length = s.length();
+        int maxLength = 1;
+        int longestBegin = 0;
+        boolean[][] table = new boolean[1000][1000];
+        
+        // All single character (substring length = 1) are
+        // naturally palindrome
+        for(int i = 0; i < length; i++) {
+            table[i][i] = true;
+        }
+        
+        // Be careful on boundary conditions, if missing "-1" will
+        // show error as java.lang.StringIndexOutOfBoundsException: 
+        // String index out of range: 5 when input "babad", this
+        // is because we assume current substring length is 2, 
+        // need to make sure s.charAt(i + 1) in boundary
+        for(int i = 0; i < length - 1; i++) {
+            if(s.charAt(i) == s.charAt(i + 1)) {
+                table[i][i + 1] = true;
+                maxLength = 2;
+                longestBegin = i;
+            }
+        }
+        
+        // Be careful on boundary conditions, len can equal to length
+        // if missing "=", error will show as e.g input "CCC", expect
+        // output "CCC", error output "CC"
+        for(int len = 3; len <= length; len++) {
+            for(int i = 0; i < length - len + 1; i++) {
+                int j = i + len - 1;
+                if(s.charAt(i) == s.charAt(j) && table[i + 1][j - 1]) {
+                    table[i][j] = true;
+                    maxLength = len;
+                    longestBegin = i;
+                }
+            }
+        }
+        
+        return s.substring(longestBegin, longestBegin + maxLength);
+    }
+}
 
 
