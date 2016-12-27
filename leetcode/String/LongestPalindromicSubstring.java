@@ -108,8 +108,6 @@ public class LongestPalidromeSubstring {
 // Original LPS problem
 // https://www.quora.com/What-is-a-dynamic-programming-algorithm-to-find-the-longest-palindrome-that-is-a-subsequence-of-a-given-input-string-without-reversing-the-string
 // http://www.geeksforgeeks.org/dynamic-programming-set-12-longest-palindromic-subsequence/
-// 
-
 public class Solution {
 	public static String longestPalindrome(String s) {
 		int maxLength = 0;
