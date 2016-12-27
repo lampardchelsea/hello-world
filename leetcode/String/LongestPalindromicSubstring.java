@@ -213,3 +213,18 @@ public class Solution {
 }
 
 
+// Solution 3: 
+// Refer to 
+// https://segmentfault.com/a/1190000002991199
+// http://articles.leetcode.com/longest-palindromic-substring-part-i/
+
+
+
+
+
+
+
+
+
+
+
