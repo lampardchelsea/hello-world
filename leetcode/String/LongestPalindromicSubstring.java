@@ -99,12 +99,52 @@ public class LongestPalidromeSubstring {
 }
 
 
-// Solution 2: Dynamic Programming
+// Solution 2: Dynamic Programming (This solution has some issue, also it not really match the requirement of original LPS issue)
 // Refer to
 // http://www.geeksforgeeks.org/longest-palindrome-substring-set-1/
 // https://leetcode.com/articles/longest-palindromic-substring/#approach-2-brute-force-time-limit-exceeded
 // https://segmentfault.com/a/1190000002991199
+//
+// Original LPS problem
+// https://www.quora.com/What-is-a-dynamic-programming-algorithm-to-find-the-longest-palindrome-that-is-a-subsequence-of-a-given-input-string-without-reversing-the-string
+// http://www.geeksforgeeks.org/dynamic-programming-set-12-longest-palindromic-subsequence/
+// 
 
+public class Solution {
+	public static String longestPalindrome(String s) {
+		int maxLength = 0;
+		int start = 0;
+		int length = s.length();
+		// 1st dimension is start position of longest palindrome
+		// 2nd dimension is end position of longest palindrome
+		boolean[][] dp = new boolean[length][length];
+		
+		// i is length of candidate substring
+		for(int i = 0; i < length; i++) {
+			// j is start position of candidate substring
+			for(int j = 0; j < length - i; j++) {
+				if(i == 0 || i == 1) {
+					// When substring length is 0 or 1, it must be palindrome
+					dp[j][j + i] = true;
+				} else if(s.charAt(j) == s.charAt(j + i)) {
+					// When left and right terminal positions equals, it depends
+					// on whether shorter substring is centrosymmetric
+					dp[j][j + i] = dp[j + 1][j + i - 1];
+				} else {
+					// When left and right terminal posistions not equals,
+					// it directly cause current substring not palindrome
+					dp[j][j + i] = false;
+				}
+				if(dp[j][j + i] && i >= maxLength) {
+					maxLength = i + 1;
+					start = j;
+				}
+			}
+		}
+		
+		return s.substring(start, start + maxLength);
+    }
+}
 
 
 
