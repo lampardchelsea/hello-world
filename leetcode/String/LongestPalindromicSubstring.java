@@ -99,15 +99,14 @@ public class LongestPalidromeSubstring {
 }
 
 
-// Solution 2: Dynamic Programming (This solution has some issue, also Longest Palindrome Substring != Longest Palindrome Subsequence(LPS))
-// Refer to
-// http://www.geeksforgeeks.org/longest-palindrome-substring-set-1/
-// https://leetcode.com/articles/longest-palindromic-substring/#approach-2-brute-force-time-limit-exceeded
-// https://segmentfault.com/a/1190000002991199
-//
+// Solution 2: Dynamic Programming (Longest Palindrome Substring != Longest Palindrome Subsequence(LPS))
 // Original LPS problem (Check Leetcode/Dynamic Programming)
 // https://www.quora.com/What-is-a-dynamic-programming-algorithm-to-find-the-longest-palindrome-that-is-a-subsequence-of-a-given-input-string-without-reversing-the-string
 // http://www.geeksforgeeks.org/dynamic-programming-set-12-longest-palindromic-subsequence/
+/**
+// Below solution has some issue
+// Refer to
+// https://segmentfault.com/a/1190000002991199
 public class Solution {
 	public static String longestPalindrome(String s) {
 		int maxLength = 0;
@@ -143,8 +142,11 @@ public class Solution {
 		return s.substring(start, start + maxLength);
     }
 }
+*/
 
-
+// Right DP solution
+// Refer to
+// http://articles.leetcode.com/longest-palindromic-substring-part-i/
 
 
 
