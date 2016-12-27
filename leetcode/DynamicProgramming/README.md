@@ -4,4 +4,7 @@
 <p>3. [Dynamic Programming – From Novice to Advanced] (https://www.topcoder.com/community/data-science/data-science-tutorials/dynamic-programming-from-novice-to-advanced/)
 
 # Useful links for specific questions
+<p>Longest Palindrome Subsequence
+<p>1. [What is a dynamic programming algorithm to find the longest palindrome that is a subsequence of a given input string (without reversing the string)?] (https://www.quora.com/What-is-a-dynamic-programming-algorithm-to-find-the-longest-palindrome-that-is-a-subsequence-of-a-given-input-string-without-reversing-the-string)
+<p>2. [Dynamic Programming | Set 12 (Longest Palindromic Subsequence)] (http://www.geeksforgeeks.org/dynamic-programming-set-12-longest-palindromic-subsequence/)
 
