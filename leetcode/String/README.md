@@ -3,7 +3,6 @@
 
 # Useful links for specific questions
 <p>Longest Palindrome Substring
-<p>1. [Brute Force Way To Solve Longest Palindrome Substring] (https://leetcode.com/articles/longest-palindromic-substring/#approach-2-brute-force-time-limit-exceeded)
-<p>2. [Four Ways To Solve Problem] (https://segmentfault.com/a/1190000002991199)
-<p>3. [How to find all substrings in string] (http://www.programmingsimplified.com/java/source-code/java-program-find-substrings-of-string)
-<p>4. [Dynamic Progamming To Solve Longest Palindrome Substring] (https://leetcode.com/problems/longest-palindromic-substring/)
+<p>1. [Four Ways To Solve Problem] (https://segmentfault.com/a/1190000002991199)
+<p>2. [How to find all substrings in string] (http://www.programmingsimplified.com/java/source-code/java-program-find-substrings-of-string)
+<p>3. [Dynamic Progamming To Solve Longest Palindrome Substring] (http://articles.leetcode.com/longest-palindromic-substring-part-i/)
