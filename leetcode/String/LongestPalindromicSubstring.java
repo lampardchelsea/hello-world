@@ -216,8 +216,75 @@ public class Solution {
 // Solution 3: 
 // Refer to 
 // https://segmentfault.com/a/1190000002991199
-// http://articles.leetcode.com/longest-palindromic-substring-part-i/
+/**
+中心扩散法 Spread From Center
+复杂度
+时间 O(n^2) 空间 O(1)
 
+思路
+动态规划虽然优化了时间，但也浪费了空间。实际上我们并不需要一直存储所有子字符串的回文情况，我们需要知道的只是
+中心对称的较小一层是否是回文。所以如果我们从小到大连续以某点为个中心的所有子字符串进行计算，就能省略这个空间.
+这种解法中，外层循环遍历的是子字符串的中心点，内层循环则是从中心扩散，一旦不是回文就不再计算其他以此为中心的
+较大的字符串。由于中心对称有两种情况，一是奇数个字母以某个字母对称，而是偶数个字母以两个字母中间为对称，所以
+我们要分别计算这两种对称情况。
+*/
+
+// http://articles.leetcode.com/longest-palindromic-substring-part-i/
+/**
+A simpler approach, O(N2) time and O(1) space:
+In fact, we could solve it in O(N2) time without any extra space.
+We observe that a palindrome mirrors around its center. Therefore, a palindrome can be expanded from 
+its center, and there are only 2N-1 such centers.
+You might be asking why there are 2N-1 but not N centers? The reason is the center of a palindrome 
+can be in between two letters. Such palindromes have even number of letters (such as “abba”) and its 
+center are between the two ‘b’s.
+Since expanding a palindrome around its center could take O(N) time, the overall complexity is O(N2).
+*/
+public class Solution {
+	public String longestPalindrome(String s) {
+        int length = s.length();
+        if(length == 0) {
+            return "";
+        }
+        String longest = s.substring(0, 1);
+        // Must contain "-1", if missing, will cause
+        // expandAroundCenter(s, i, i + 1) out of boundary
+        for(int i = 0; i < length - 1; i++) {
+            // Odd character numbers string
+            String p1 = expandAroundCenter(s, i, i);
+            if(p1.length() > longest.length()) {
+                longest = p1;
+            }
+            // Even character numbers string
+            String p2 = expandAroundCenter(s, i, i + 1);
+            if(p2.length() > longest.length()) {
+                longest = p2;
+            }
+        }
+        return longest;
+    }
+    
+    public String expandAroundCenter(String s, int c1, int c2) {
+        int l = c1;
+        int r = c2;
+        int length = s.length();
+        while(l >= 0 && r <= length - 1 && s.charAt(l) == s.charAt(r)) {
+            l--;
+            r++;
+        }
+        // If missing "+1", will cause ArrayIndexOutOfBound issue
+        // e.g when call expandAroundCenter(s, 0, 0), l = c1 = 0,
+        // l-- = -1, then s.substring(-1, r) will be wrong
+        // Also, in normal case, e.g s = "babad", call as (s, 1, 1)
+        // when break out while loop, l = -1, r = 3, the real
+        // palindrome section is between l = 0, r = 2, which the
+        // most recent success l, r pair pass while loop, conside
+        // substring method inclusive position (l + 1), exclusive
+        // position r, then (-1 + 1, 3) perfect match real section
+        // [0, 2]
+        return s.substring(l + 1, r);
+    }
+}
 
 
 
