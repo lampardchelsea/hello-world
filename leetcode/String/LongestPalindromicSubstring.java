@@ -285,13 +285,3 @@ public class Solution {
         return s.substring(l + 1, r);
     }
 }
-
-
-
-
-
-
-
-
-
-
