@@ -44,3 +44,31 @@ public class Solution {
         return false;
     }
 }
+
+// Solution 2: 48ms to 18ms
+// Added a small check in your code and time reduced from 48 ms to 18 ms. 
+// Just return if any of the substring will not match. No need to create 
+// the whole string.
+public class Solution {
+    public boolean repeatedSubstringPattern(String str) {
+        int length = str.length();
+        for(int i = length / 2; i >= 1; i--) {
+            if(length % i == 0) {
+                int n = length / i;
+                StringBuilder sb = new StringBuilder();
+                String s = str.substring(0, i);
+                int j;
+                for(j = 1; j < n; j++) {
+                    if(!s.equals(str.substring(j * i, j * i + i))) {
+                        break;
+                    }
+                }
+                if(j == n) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
+
