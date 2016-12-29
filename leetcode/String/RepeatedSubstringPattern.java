@@ -46,6 +46,8 @@ public class Solution {
 }
 
 // Solution 2: 48ms to 18ms
+// Refer to
+// https://discuss.leetcode.com/topic/67992/java-simple-solution-with-explanation/2
 // Added a small check in your code and time reduced from 48 ms to 18 ms. 
 // Just return if any of the substring will not match. No need to create 
 // the whole string.
