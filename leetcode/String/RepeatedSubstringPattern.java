@@ -25,3 +25,22 @@
  * 不能大于原字符串长度的一半，那么我们可以从原字符串长度的一半遍历到1，如果当前长度能被总长度整除，说明可
  * 以分成若干个子字符串，我们将这些子字符串拼接起来看跟原字符串是否相等。 如果拆完了都不相等，返回false。
 */
+public class Solution {
+    public boolean repeatedSubstringPattern(String str) {
+        int length = str.length();
+        for(int i = length / 2; i >= 1; i--) {
+            if(length % i == 0) {
+                int n = length / i;
+                StringBuilder sb = new StringBuilder();
+                String s = str.substring(0, i);
+                for(int j = 0; j < n; j++) {
+                    sb.append(s);
+                }
+                if(sb.toString().equals(str)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
