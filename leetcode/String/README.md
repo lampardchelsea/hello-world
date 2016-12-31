@@ -9,3 +9,6 @@
 
 <p>Repeated Substring Pattern
 <p>1. [Searching for Patterns | Set 2 (KMP Algorithm)] (http://www.geeksforgeeks.org/searching-for-patterns-set-2-kmp-algorithm/)
+
+<p>Find Substring Position Brute Match
+<p>1. [暴力匹配算法] (http://wiki.jikexueyuan.com/project/kmp-algorithm/violent-match.html)
