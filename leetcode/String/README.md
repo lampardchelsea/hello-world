@@ -12,3 +12,6 @@
 
 <p>Find Substring Position Brute Match
 <p>1. [暴力匹配算法] (http://wiki.jikexueyuan.com/project/kmp-algorithm/violent-match.html)
+
+<p>Find Substring Position KMP
+<p>1. [KMP 算法] (http://wiki.jikexueyuan.com/project/kmp-algorithm/define.html)
