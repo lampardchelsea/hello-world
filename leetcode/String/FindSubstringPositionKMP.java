@@ -1,4 +1,7 @@
-
+/**
+ * Refer to
+ * http://wiki.jikexueyuan.com/project/kmp-algorithm/define.html
+*/
 public class FindSubstringPositionKMP {
 	public static int KmpSearch(String s, String p, int[] next) {
 		int i = 0;
