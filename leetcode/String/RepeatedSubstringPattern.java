@@ -74,3 +74,31 @@ public class Solution {
     }
 }
 
+
+// Solution 3: KMP
+// Refer to
+// http://www.cnblogs.com/grandyang/p/6087347.html
+// https://discuss.leetcode.com/topic/67652/c-o-n-using-kmp-32ms-8-lines-of-code-with-brief-explanation
+public class Solution {
+    public boolean repeatedSubstringPattern(String str) {
+        // i is index pointer to loop through the str
+        int i = 1;
+        // j is a counter to store how many characters repeated until current position
+        int j = 0;
+        int length = str.length();
+        int[] dp = new int[length + 1];
+        for(int k = 0; k < dp.length; k++) {
+            dp[k] = 0;
+        }
+        while(i < length) {
+            if(str.charAt(i) == str.charAt(j)) {
+                dp[++i] = ++j;
+            } else if(j == 0) {
+                ++i;
+            } else {
+                j = dp[j];
+            }
+        }
+        return dp[length] != 0 && (dp[length] % (length - dp[length]) == 0);
+    }
+}
