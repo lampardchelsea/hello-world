@@ -75,7 +75,7 @@ public class Solution {
 }
 
 
-// Solution 3: KMP
+// Solution 3: KMP (As analysis, not exactly KMP)
 // Refer to
 // http://www.cnblogs.com/grandyang/p/6087347.html
 // https://discuss.leetcode.com/topic/67652/c-o-n-using-kmp-32ms-8-lines-of-code-with-brief-explanation
