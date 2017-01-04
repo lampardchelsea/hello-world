@@ -79,6 +79,16 @@ public class Solution {
 // Refer to
 // http://www.cnblogs.com/grandyang/p/6087347.html
 // https://discuss.leetcode.com/topic/67652/c-o-n-using-kmp-32ms-8-lines-of-code-with-brief-explanation
+/**
+ * 原作者说是用的KMP算法，LeetCode之前也有一道应用KMP算法来解的题Shortest Palindrome，但是感觉那道题才是KMP算法。
+ * 这道题也称为KMP算法感觉怪怪的(关于KMP的详细介绍请参见从头到尾彻底理解KMP)，KMP算法中的next数组是找当前位置的最
+ * 大相同前缀后缀的个数，而这道题维护的一位数组dp[i]表示，到位置i-1为止的重复字符串的字符个数，不包括被重复的那个
+ * 字符串，什么意思呢，我们举个例子，比如"abcabc"的dp数组为[0 0 0 0 1 2 3]，dp数组长度要比原字符串长度多一个。
+ * 那么我们看最后一个位置数字为3，就表示重复的字符串的字符数有3个。如果是"abcabcabc"，那么dp数组为[0 0 0 0 1 2 3 4 5 6]，
+ * 我们发现最后一个数字为6，那么表示重复的字符串为“abcabc”，有6个字符。那么怎么通过最后一个数字来知道原字符串是否
+ * 由重复的子字符串组成的呢，首先当然是最后一个数字不能为0，而且还要满足dp[n] % (n - dp[n]) == 0才行，因为n - dp[n]
+ * 是一个子字符串的长度，那么重复字符串的长度和肯定是一个子字符串的整数倍
+*/
 public class Solution {
     public boolean repeatedSubstringPattern(String str) {
         // i is index pointer to loop through the str
