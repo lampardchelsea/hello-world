@@ -21,3 +21,6 @@
 
 <p>Reverse String
 <p>1. [[JAVA] Simple and Clean with Explanations [6 Solutions]] (https://discuss.leetcode.com/topic/43296/java-simple-and-clean-with-explanations-6-solutions)
+
+<p>ZigZag Conversion
+<p>1. [Easy to understand Java solution] (https://discuss.leetcode.com/topic/3162/easy-to-understand-java-solution)
