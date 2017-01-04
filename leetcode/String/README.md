@@ -9,6 +9,9 @@
 
 <p>Repeated Substring Pattern
 <p>1. [Searching for Patterns | Set 2 (KMP Algorithm)] (http://www.geeksforgeeks.org/searching-for-patterns-set-2-kmp-algorithm/)
+<p>2. [Java Simple Solution with Explanation] (https://discuss.leetcode.com/topic/67992/java-simple-solution-with-explanation)
+<p>3. [Repeated Substring Pattern 重复子字符串模式(normal way & KMP)] (http://www.cnblogs.com/grandyang/p/6087347.html)
+<p>4. [KMP (As analysis, not exactly KMP)] (https://discuss.leetcode.com/topic/67652/c-o-n-using-kmp-32ms-8-lines-of-code-with-brief-explanation)
 
 <p>Find Substring Position Brute Match
 <p>1. [暴力匹配算法] (http://wiki.jikexueyuan.com/project/kmp-algorithm/violent-match.html)
