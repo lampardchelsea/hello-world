@@ -18,3 +18,6 @@
 
 <p>Find Substring Position KMP
 <p>1. [KMP 算法] (http://wiki.jikexueyuan.com/project/kmp-algorithm/define.html)
+
+<p>Reverse String
+<p>1. [[JAVA] Simple and Clean with Explanations [6 Solutions]] (https://discuss.leetcode.com/topic/43296/java-simple-and-clean-with-explanations-6-solutions)
