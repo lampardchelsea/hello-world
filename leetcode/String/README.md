@@ -28,3 +28,6 @@
 <p>Valid Word Abbreviation
 <p>1. [Simple Solution] (https://discuss.leetcode.com/topic/61348/short-and-easy-to-understand-java-solution)
 <p>2. [Valid Word Abbreviation 验证单词缩写] (http://www.cnblogs.com/grandyang/p/5930369.html)
+
+<p>Ransom Note
+<p>1. [] ()
