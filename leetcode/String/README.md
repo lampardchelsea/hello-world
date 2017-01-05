@@ -30,4 +30,4 @@
 <p>2. [Valid Word Abbreviation 验证单词缩写] (http://www.cnblogs.com/grandyang/p/5930369.html)
 
 <p>Ransom Note
-<p>1. [] ()
+<p>1. [Simple Solution] (https://discuss.leetcode.com/topic/53864/java-o-n-solution-easy-to-understand)
