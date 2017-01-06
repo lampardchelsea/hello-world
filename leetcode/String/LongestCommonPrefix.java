@@ -9,6 +9,7 @@
 // Solution 2: Trie
 // Refer to
 // http://www.geeksforgeeks.org/longest-common-prefix-set-5-using-trie/
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Sort_Search_DataStructure/ImplementTrie.java
 import java.util.ArrayList;
 import java.util.List;
 /**
