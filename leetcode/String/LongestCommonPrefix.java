@@ -12,7 +12,11 @@
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Sort_Search_DataStructure/ImplementTrie.java
 import java.util.ArrayList;
 import java.util.List;
+
 /**
+ * Refer to
+ * http://www.geeksforgeeks.org/longest-common-prefix-set-5-using-trie/
+ * 
  * (1)Insert all the words one by one in the trie. After inserting we perform a walk on the trie.
  * (2)In this walk, go deeper until we find a node having more than 1 children(branching occurs) or 
  *    0 children (one of the string gets exhausted).This is because the characters (nodes in trie) 
@@ -30,10 +34,10 @@ import java.util.List;
  *                   k   z  
  *                  /     \
  */
-public class LongestCommonPrefix {
+public class LongestCommonPrefixTrie {
 	static final int ascii = 256;
 	public String longestCommonPrefix(String[] strs) {
-		Trie trie = new LongestCommonPrefix().new Trie();
+		Trie trie = new LongestCommonPrefixTrie().new Trie();
 		for(int i = 0; i < strs.length; i++) {
 			trie.insert(strs[i]);
 		}
@@ -121,7 +125,7 @@ public class LongestCommonPrefix {
 	
 	public static void main(String[] args) {
 		String[] strings = {"geek", "geezer", "geeksforgeeks", "geeks"};
-		LongestCommonPrefix lcp = new LongestCommonPrefix();
+		LongestCommonPrefixTrie lcp = new LongestCommonPrefixTrie();
 		String result = lcp.longestCommonPrefix(strings);
 		System.out.println(result);
 	}
