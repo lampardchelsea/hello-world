@@ -4,6 +4,120 @@
 // Solution 1: Binary Search
 // Refer to
 // http://www.geeksforgeeks.org/longest-common-prefix-set-4-binary-search/
+/**
+ * Refer to
+ * http://www.geeksforgeeks.org/longest-common-prefix-set-4-binary-search/
+ * 
+ * In this article, an approach using Binary Search is discussed.
+ * Steps:
+ * (1) Find the string having the minimum length. Let this length be L.
+ * (2) Perform a binary search on any one string (from the input array of strings). 
+ *     Let us take the first string and do a binary search on the characters from 
+ *     the index – 0 to L-1.
+ * (3) Initially, take low = 0 and high = L-1 and divide the string into two 
+ *     halves – left (low to mid) and right (mid+1 to high).Check whether all the 
+ *     characters in the left half is present at the corresponding indices (low to 
+ *     mid) of all the strings or not. If it is present then we append this half to 
+ *     our prefix string and we look in the right half in a hope to find a longer 
+ *     prefix.(It is guaranteed that a common prefix string is there.)
+ * (4) Otherwise, if all the characters in the left half is not present at the 
+ *     corresponding indices (low to mid) in all the strings, then we need not look 
+ *     at the right half as there is some character(s) in the left half itself which 
+ *     is not a part of the longest prefix string. So we indeed look at the left half 
+ *     in a hope to find a common prefix string. (It may be possible that we don’t 
+ *     find any common prefix string)
+ *     
+ * E.g Strings: geeksforgeeks   geeks   geek   geezer
+ *     Length:       13           5       4      6
+ *     The string with minimum length is "geek" (length = 4)
+ *     So, we will do a binary search on any of the strings with the low as 0 and high
+ *     as 3 (4 -1)
+ *     For convenience we take the first string of the above array - "geeksforgeeks"
+ *     In the string "geeksforgeeks" we do a binary search on its substring from index
+ *     0 to index 3, i.e - "geek"
+ *     
+ *     We will do a binary search later
+ *                                  
+ *                                  geek
+ *                       -----------    -----------            
+ *                      /                          \
+ *                     ge                           ek
+ *     since "ge" is present                  ------   ------          
+ *     in all the strings, so                /               \
+ *     append this to our                   e                 k    
+ *     longest common prefix           since "e" is        "k" is not present in 
+ *     and go to the right side        present in all       all strings at its
+ *                                     the strings at       correct index(it is not)
+ *                                     its correct index,   present in "geezer" as
+ *                                     so append it to      at the place of "k", "z"
+ *                                     our longest common   is there, so we don't
+ *                                     substring and go     append "k" to our longest
+ *                                     to the right         common prefix
+ *    
+ *    Hence our longest common prefix is "gee"     
+ */           
+public class LongestCommonPrefixBinarySearch {
+	public String longestCommonPrefix(String[] strs) {
+		String result = "";
+	    String strForBS = findShortestString(strs);
+	    int lo = 0;
+	    int hi = strForBS.length() - 1;
+	    while(lo <= hi) {
+		    int mid = (lo + hi) / 2;
+		    // To get left part of string for binary search, index 
+		    // range end at (mid + 1), as java substring method
+		    // will naturally exclusive last position, e.g if
+		    // strForBS is "geek", lo = 0, hi = 3, mid = 1, if not
+		    // using (mid + 1), leftSubstring is "g", not what we
+		    // expect as "ge"
+		    String leftSubstring = strForBS.substring(lo, mid + 1);
+	    	if(!existInAllStrs(strs, leftSubstring, lo, mid + 1)) {
+	    		// If not exist in all strings, keep search in 
+	    		// current left part of string for binary search
+	    		hi = mid - 1;
+	    	} else {
+	    		// If exist, add current left part to result
+	    		// and move on to search right part of string
+	    		// for binary search
+	    		lo = mid + 1;
+	    		result += leftSubstring;
+	    	}
+	    }
+	    return result;
+    }
+	
+	// Find shorest string in all strings in given array
+	public String findShortestString(String[] strs) {
+		int minimum = Integer.MAX_VALUE;
+		String result = "";
+		for(int i = 0; i < strs.length; i++) {
+			if(strs[i].length() <= minimum) {
+				result = strs[i];
+				minimum = strs[i].length();
+			}
+		}
+		return result;
+	}
+	
+	// Identify whether current left part of string for binary search exist or not
+	// in all strings in given array
+	public boolean existInAllStrs(String[] strs, String leftSubstring, int lo, int mid) {
+		for(int i = 0; i < strs.length; i++) {
+			String s = strs[i].substring(lo, mid);
+			if(!s.equals(leftSubstring)) {
+				return false;
+			} 
+		}
+		return true;
+	}
+	
+	public static void main(String[] args) {
+		String[] strings = {"geek", "geezer", "geeksforgeeks", "geeks"};
+		LongestCommonPrefixBinarySearch lcp = new LongestCommonPrefixBinarySearch();
+		String result = lcp.longestCommonPrefix(strings);
+		System.out.println(result);
+	}
+}
 
 
 // Solution 2: Trie
