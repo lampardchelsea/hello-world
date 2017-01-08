@@ -260,6 +260,162 @@ public class LongestCommonPrefixTrie {
 // Solution 5: Divide and Conquer
 // Refer to
 // http://www.geeksforgeeks.org/longest-common-prefix-set-3-divide-and-conquer/
+/**
+ * What is the difference between recursion and divide and conquer?
+ * Refer to
+ * https://www.quora.com/What-is-the-difference-between-recursion-and-divide-and-conquer
+ * Recursion is a programming method where you define a function in terms of itself. 
+ * The function generally calls itself with slightly modified parameters (in order to converge).
+ * Divide and conquer is when you split a problem into non-overlapping sub-problems. 
+ * For example, in merge sort, you split the array into two halves and sort them and then merge 
+ * them back. You divided the problem into two sub-problems, solved them and got a solution to 
+ * the original problem. Note that we use recursion to solve the sub-problems.
+ * 
+ * Recursion is a "Programming Paradigm" which is generally used to implement 
+ * the "Algorithmic Paradigm" Divide and Conquer.
+ * 
+ * Divide and conquer algorithms
+ * Refer to
+ * https://www.khanacademy.org/computing/computer-science/algorithms/merge-sort/a/divide-and-conquer-algorithms
+ * 
+ * Merge Sort
+ * Refer to
+ * https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Sort_Search_DataStructure/MergeSort.java
+ * 
+ * How to print log with indent ?
+ * Refer to
+ * https://github.com/lampardchelsea/hello-world/blob/master/leetcode/BackTracking/WordPatternII.java
+ * e.g "geek", "geezer", "geeksforgeeks", "geeks"
+ * Enter divideAndConquer() method
+	|  Enter divideAndConquer() method
+	|  |  Enter divideAndConquer() method
+	|  |  Into branch --> index lo == hi(0,0) return string on current index position = 'geek'
+	|  |  Enter divideAndConquer() method
+	|  |  Into branch --> index lo == hi(1,1) return string on current index position = 'geezer'
+	|  Enter commonPrefixBetweenTwoStrings() method
+	|  Into branch --> index lo < hi(0,1) return common prefix between two strings = 'gee'
+	|  Enter divideAndConquer() method
+	|  |  Enter divideAndConquer() method
+	|  |  Into branch --> index lo == hi(2,2) return string on current index position = 'geeksforgeeks'
+	|  |  Enter divideAndConquer() method
+	|  |  Into branch --> index lo == hi(3,3) return string on current index position = 'geeks'
+	|  Enter commonPrefixBetweenTwoStrings() method
+	|  Into branch --> index lo < hi(2,3) return common prefix between two strings = 'geeks'
+	Enter commonPrefixBetweenTwoStrings() method
+	Into branch --> index lo < hi(0,3) return common prefix between two strings = 'gee'
+	gee
+ * 
+ * 
+ * Refer to
+ * http://www.geeksforgeeks.org/longest-common-prefix-set-3-divide-and-conquer/
+ * In this algorithm, a divide and conquer approach is discussed. We first divide the arrays of string into two parts. 
+ * Then we do the same for left part and after that for the right part. We will do it until and unless all the strings 
+ * becomes of length 1. Now after that we will start conquering by returning the common prefix of the left and the 
+ * right strings.
+ * The algorithm will be clear using the below illustration. We consider our strings as 
+ * – "geek", "geezer", "geeksforgeeks", "geeks"
+ * 
+ *                                 geek   geezer  geeksforgeeks  geeks
+ *                                /                                   \
+ *                          geek    geezer              geeksforgeeks    geeks
+ *                            |       |                       |            |
+ *                          geek    geezer              geeksforgeeks    geeks         
+ *                             \     /                            \      /
+ *       Longest Common Prefix = gee        Longest Common Prefix = geeks
+ *                                 \                                 /
+ *                                  ---------------    --------------
+ *                          Longest Common Prefix = gee                          
+ */
+public class LongestCommonPrefixDivideAndConquer {
+	public String indent = "";
+	public boolean debug = true;
+	
+	public String longestCommonPrefix(String[] strs) {
+	    int lo = 0;
+	    int hi = strs.length - 1;
+	    return divideAndConquer(strs, lo, hi);
+    }
+	
+	public String commonPrefixBetweenTwoStrings(String str1, String str2) {
+		// For debug
+		enterCommonPrefixBetweenTwoStrings();
+		String result = "";
+		int str1Len = str1.length();
+		int str2Len = str2.length();
+		int minLen = str1Len <= str2Len ? str1Len : str2Len;
+		int i;
+		for(i = 0; i < minLen; i++) {
+			if(str1.charAt(i) != str2.charAt(i)) {
+				break;
+			}
+		}
+		result = str1.substring(0, i);
+		return result;
+	}
+	
+	public String divideAndConquer(String[] strs, int lo, int hi) {
+		// For debug
+		enterDivideAndConquer();
+		String result = "";
+		// Important: base case --> index (lo == hi) will return
+		// the string on current index position in string array
+		if(lo == hi) {
+		   result = strs[lo];
+		   // For debug
+		   enter1(result, lo, hi);
+		}
+		// We first divide the arrays of string into two parts. 
+		// Then we do the same for left part and after that for the 
+		// right part. We will do it until and unless all the strings 
+		// becomes of length 1. Now after that we will start conquering 
+		// by returning the common prefix of the left and the right strings.
+		if(lo < hi) {
+			int mid = (lo + hi) / 2;
+			String str1 = divideAndConquer(strs, lo, mid);
+			String str2 = divideAndConquer(strs, mid + 1, hi);
+			result = commonPrefixBetweenTwoStrings(str1, str2);
+			// For debug
+			enter2(result, lo, hi);
+		}		
+		return result;
+	}	
+	
+	public void enterDivideAndConquer() {
+		if(debug) {
+			System.out.println(indent + "Enter divideAndConquer() method");
+			indent += "|  ";
+		}
+	}
+	
+	public void enterCommonPrefixBetweenTwoStrings() {
+		if(debug) {
+			indent = indent.substring(3);
+			System.out.println(indent + "Enter commonPrefixBetweenTwoStrings() method");
+			indent += "|  ";
+		}
+	}
+	
+	public void enter1(String result, int lo, int hi) {
+		if(debug) {
+			indent = indent.substring(3);
+			System.out.println(indent + "Into branch --> index lo == hi(" + lo + "," + hi + ") return string on current index position = '" + result + "'");			
+		}
+	}
+	
+	public void enter2(String result, int lo, int hi) {
+		if(debug) {
+			indent = indent.substring(3);
+			System.out.println(indent + "Into branch --> index lo < hi(" + lo + "," + hi + ") return common prefix between two strings = '" + result + "'");			
+		}
+	}
+	
+	public static void main(String[] args) {
+		String[] strings = {"geek", "geezer", "geeksforgeeks", "geeks"};
+		LongestCommonPrefixDivideAndConquer lcp = new LongestCommonPrefixDivideAndConquer();
+		String result = lcp.longestCommonPrefix(strings);
+		System.out.println(result);
+	}
+}
 
 
 
