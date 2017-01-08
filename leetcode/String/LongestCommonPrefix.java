@@ -249,6 +249,84 @@ public class LongestCommonPrefixTrie {
 // Solution 3: Word by Word Matching
 // Refer to
 // http://www.geeksforgeeks.org/longest-common-prefix-set-1-word-by-word-matching/
+/**
+ * We start with an example. Suppose there are two strings- “geeksforgeeks” and “geeks”. 
+ * What is the longest common prefix in both of them? It is “geeks”.
+ * Now let us introduce another word “geek”. So now what is the longest common prefix in 
+ * these three words ? It is “geek”
+ * We can see that the longest common prefix holds the associative property, i.e-
+ *    LCP(string1, string2, string3) 
+         = LCP (LCP (string1, string2), string3)
+      
+      Like here
+      LCP (“geeksforgeeks”, “geeks”, “geek”) 
+         =  LCP (LCP (“geeksforgeeks”, “geeks”), “geek”)
+         =  LCP (“geeks”, “geek”) = “geek”
+ * So we can make use of the above associative property to find the LCP of the given strings. 
+ * We one by one calculate the LCP of each of the given string with the LCP so far. The final 
+ * result will be our longest common prefix of all the strings.
+ * Note that it is possible that the given strings have no common prefix. This happens when 
+ * the first character of all the strings are not same.
+ * We show the algorithm with the input strings- “geeksforgeeks”, “geeks”, “geek”, “geezer” 
+ * by the below figure.
+ * 
+ *            geek   geezer  geeksforgeeks  geeks
+ *                \    /      /             /
+ *                  gee      /             /
+ *                    \     /             /   
+ *                      gee              /
+ *                        \             /
+ *                         ---- gee ----
+ * 
+ */
+public class LongestCommonPrefixWordToWord {
+	public String longestCommonPrefix(String[] strs) {
+        int length = strs.length;
+        String result = "";
+        if(length == 1) {
+            result = strs[0];
+        } else if(length > 1) {
+        	// This process is elegant, the two points:
+        	// (1) The base case is individually store strs[0]
+        	//     as initial status
+        	// (2) When we finish a common prefix retrieve
+        	//     between two strings, need to use its result
+        	//     into next loop, like iterative update temporary
+        	//     string. Also, in each loop need to update
+        	//     comparing object as next string in string array
+        	//     by increase index as 1
+            String temp = strs[0];
+            for(int i = 1; i < length; i++) {
+                temp = commonPrefixBetweenTwoStrings(temp, strs[i]);
+            }
+            result = temp;
+        }
+        return result;
+    }
+    
+    public String commonPrefixBetweenTwoStrings(String str1, String str2) {
+		String result = "";
+		int str1Len = str1.length();
+		int str2Len = str2.length();
+		int minLen = str1Len <= str2Len ? str1Len : str2Len;
+		int i;
+		for(i = 0; i < minLen; i++) {
+			if(str1.charAt(i) != str2.charAt(i)) {
+				break;
+			}
+		}
+		result = str1.substring(0, i);
+		return result;
+	}
+    
+    public static void main(String[] args) {
+    	String[] strings = {"geek", "geezer", "geeksforgeeks", "geeks"};
+    	LongestCommonPrefixCharToChar lcp = new LongestCommonPrefixCharToChar();
+		String result = lcp.longestCommonPrefix(strings);
+		System.out.println(result);
+    }
+}
+
 
 
 // Solution 4: Character by Character Matching
