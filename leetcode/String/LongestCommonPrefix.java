@@ -254,6 +254,55 @@ public class LongestCommonPrefixTrie {
 // Solution 4: Character by Character Matching
 // Refer to
 // http://www.geeksforgeeks.org/longest-common-prefix-set-2-character-by-character-matching/
+public class LongestCommonPrefixCharToChar {
+	public String longestCommonPrefix(String[] strs) {
+	    String result = "";
+	    if(strs.length == 0) {
+	        return result;
+	    }
+        int minLen = minLen(strs);
+        for(int i = 0; i < minLen; i++) {
+            boolean same = true;
+            char c = strs[0].charAt(i);
+            for(int j = 1; j < strs.length; j++) {
+                if(strs[j].charAt(i) != c) {
+                    same = false;
+                    break;
+                }
+            }
+            if(same) {
+               result += c; 
+            } else {
+               // Must also break in outside for loop,
+               // otherwise result may continue add same
+               // characters after current different
+               // character (e.g aca, cba if not break
+               // here after first character not match,
+               // it will continue add match character
+               // as 'a' on position 2)
+               break;
+            }
+        }
+        return result;
+    }
+    
+    public int minLen(String[] strs) {
+        int minLen = Integer.MAX_VALUE;
+        for(int i = 0; i < strs.length; i++) {
+            if(strs[i].length() <= minLen) {
+                minLen = strs[i].length();
+            }
+        }
+        return minLen;
+    }
+    
+    public static void main(String[] args) {
+    	String[] strings = {"aca", "cba"};
+    	LongestCommonPrefixCharToChar lcp = new LongestCommonPrefixCharToChar();
+		String result = lcp.longestCommonPrefix(strings);
+		System.out.println(result);
+    }
+}
 
 
 
