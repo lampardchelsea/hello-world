@@ -13,6 +13,7 @@ public class Solution {
         for(int i = 0; i < chars.length; i++) {
             if(chars[i] == '(' || chars[i] == '[' || chars[i] == '{') {
                 stack.push(chars[i]);
+              // !stack.isEmpty() to handle invalid input and because you can't peek when the stack is empty.  
             } else if(chars[i] == ')' && !stack.isEmpty() && stack.peek() == '(') {
                 // Check the peek position element in stack is right counterpart
                 // and then pop out is right procedure
