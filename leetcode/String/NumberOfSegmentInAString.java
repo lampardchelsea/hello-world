@@ -8,7 +8,8 @@
 */
 // Wrong answer
 // If input as "               " continuous space, it will treat as length > 0 branch
-// and return wrong result
+// and return wrong result, also it will not handle case like "     notspace     ",
+// which start and end with space but string in mid case
 public class Solution {
     public int countSegments(String s) {
         char[] chars = s.toCharArray();
