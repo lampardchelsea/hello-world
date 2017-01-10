@@ -31,3 +31,29 @@
 
 <p>Ransom Note
 <p>1. [Simple Solution] (https://discuss.leetcode.com/topic/53864/java-o-n-solution-easy-to-understand)
+
+<p>Reverse Vowels Of A String
+<p>1. [Reverse Vowels of a String 翻转字符串中的元音字母] (http://www.cnblogs.com/grandyang/p/5426682.html)
+
+<p>Valid Parentheses
+<p>1. [My easy to understand Java Solution with one stack] (https://discuss.leetcode.com/topic/7813/my-easy-to-understand-java-solution-with-one-stack)
+
+<p>Longest Common Prefix
+<p>1. [Solution1: Binary Search] (http://www.geeksforgeeks.org/longest-common-prefix-set-4-binary-search/)
+<p>2. [Solution2: Trie] (http://www.geeksforgeeks.org/longest-common-prefix-set-5-using-trie/)
+<p>3. [Solution3: Word To Word Matching] (http://www.geeksforgeeks.org/longest-common-prefix-set-1-word-by-word-matching/)
+<p>4. [Solution4: Character To Character Matching] (http://www.geeksforgeeks.org/longest-common-prefix-set-2-character-by-character-matching/)
+<p>5. [Solution5: Divide And Conquer] (http://www.geeksforgeeks.org/longest-common-prefix-set-3-divide-and-conquer/)
+
+<p>Number Of Segment In A String
+<p>1. [Clean java solution O(n)] (https://discuss.leetcode.com/topic/70642/clean-java-solution-o-n)
+
+
+
+
+
+
+
+
+
+
