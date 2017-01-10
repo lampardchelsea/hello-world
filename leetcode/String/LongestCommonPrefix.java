@@ -5,9 +5,6 @@
 // Refer to
 // http://www.geeksforgeeks.org/longest-common-prefix-set-4-binary-search/
 /**
- * Refer to
- * http://www.geeksforgeeks.org/longest-common-prefix-set-4-binary-search/
- * 
  * In this article, an approach using Binary Search is discussed.
  * Steps:
  * (1) Find the string having the minimum length. Let this length be L.
