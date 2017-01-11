@@ -64,5 +64,26 @@ public class Solution {
 // Solution 2: Brute Force
 // Refer to
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/String/FindSubstringPositionBruteMatch.java
-
+public class Solution {
+    public int strStr(String haystack, String needle) {
+        int hLen = haystack.length();
+        int nLen = needle.length();
+        int i = 0;
+        int j = 0;
+        while(i < hLen && j < nLen) {
+            if(haystack.charAt(i) == needle.charAt(j)) {
+                i++;
+                j++;
+            } else {
+                i = i - (j - 1);
+                j = 0;
+            }
+        }
+        if(j == nLen) {
+            return i - j;
+        } else {
+            return -1;
+        }
+    }
+}
 
