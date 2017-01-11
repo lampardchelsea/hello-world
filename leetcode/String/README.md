@@ -48,8 +48,12 @@
 <p>Number Of Segment In A String
 <p>1. [Clean java solution O(n)] (https://discuss.leetcode.com/topic/70642/clean-java-solution-o-n)
 
-
-
+<p>Implement strStr
+<p>1. [KMP Solution] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/String/FindSubstringPositionKMP.java)
+<p>2. [This is same as find substring in string] (http://www.cnblogs.com/springfor/p/3896469.html)
+<p>3. [Explain 1] (http://zjalgorithm.blogspot.com/2014/12/leetcode-in-java-implement-strstr.html)
+<p>4. [Explain 2] (https://segmentfault.com/a/1190000003707284)
+<p>5. [Brute Force Solution] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/String/FindSubstringPositionBruteMatch.java)
 
 
 
