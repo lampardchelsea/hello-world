@@ -60,3 +60,9 @@ public class Solution {
         }
     } 
 }
+
+// Solution 2: Brute Force
+// Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/String/FindSubstringPositionBruteMatch.java
+
+
