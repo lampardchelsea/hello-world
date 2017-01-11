@@ -2,7 +2,11 @@
  * Implement strStr().
  * Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
 */
+// Solution 1: KMP
+// This problem is actually find whether needle is substring of haystack, best way is KMP
+// 
 // Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/String/FindSubstringPositionKMP.java
 // http://www.cnblogs.com/springfor/p/3896469.html
 // http://zjalgorithm.blogspot.com/2014/12/leetcode-in-java-implement-strstr.html
 // https://segmentfault.com/a/1190000003707284
