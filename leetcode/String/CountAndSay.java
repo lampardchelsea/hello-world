@@ -129,6 +129,7 @@ public class CountAndSay {
 		int i = 0;
 		int j = 1;
 		StringBuilder sb = new StringBuilder();
+		// Used for record last section character
 		char curr = chars[0];
 		while(i < length && j < length) {
 			curr = chars[i];
@@ -141,6 +142,8 @@ public class CountAndSay {
 			}
 		}
 		// Tricky part, need to handle the last section
+		// append last section character numbers with
+		// (j - i), then append its value which stored previously
 		sb.append(j - i).append(curr);
 		result = sb.toString();
 		return result;
