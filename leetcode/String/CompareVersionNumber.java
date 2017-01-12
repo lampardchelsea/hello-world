@@ -39,11 +39,15 @@ public class CompareVersionNumbers {
         } else if(s1.length == 1 && s2.length == 2) {
         	if(compare(s1[0], s2[0]) > 0) {
             	return 1;
+            } else if(compare(s1[0], s2[0]) == 0 && Integer.valueOf(s2[1]) == 0) {
+            	return 0;
             }
         	return -1;
         } else {
         	if(compare(s1[0], s2[0]) < 0) {
             	return -1;
+            } else if(compare(s1[0], s2[0]) == 0 && Integer.valueOf(s1[1]) == 0) {
+            	return 0;
             }
         	return 1;
         }
@@ -68,10 +72,12 @@ public class CompareVersionNumbers {
 //		String version1 = "01";
 //		String version2 = "1";
 		// Test 2: Return 1 is wrong as not consider s1[1] = 0
-		// equal to nothing
+		// equal to nothing, even fix this issue with additional
+		// check on s1[1] == 0 in two branches, still fail on
+		// case 3
 //		String version1 = "1.0";
 //		String version2 = "1";
-		// Test 3: Return 0 is wrong as treat '01' same as '1',
+		// Test 3: Return 0 is wrong as treat '01' same as '1'
 		// because of compare() method using Integer.valueOf()
 		String version1 = "1.01";
 		String version2 = "1.1";
@@ -80,3 +86,4 @@ public class CompareVersionNumbers {
 		System.out.println(result);
 	}
 }
+
