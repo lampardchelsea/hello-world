@@ -169,8 +169,62 @@ public class CountAndSay {
 // The Real Example Of Nth Sequence Without Wrong Description
 // Refer to
 // https://discuss.leetcode.com/topic/2264/examples-of-nth-sequence
-
-
+// https://segmentfault.com/a/1190000003849544
+/**
+ * At the beginning, I got confusions about what is the nth sequence. 
+ * Well, my solution is accepted now, so I'm going to give some examples of nth sequence here. 
+ * The following are sequence from n=1 to n=10:
+	 1.     1
+	 2.     11
+	 3.     21
+	 4.     1211
+	 5.     111221 
+	 6.     312211
+	 7.     13112221
+	 8.     1113213211
+	 9.     31131211131221
+	 10.   13211311123113112211
+ * From the examples you can see, the (i+1)th sequence is the "count and say" of the ith sequence!
+ */
+public class CountAndSay {
+	public String countAndSay(int n) {
+		if(n == 0) {
+			return "";
+		}
+		String result = "1";
+		if(n == 1) {
+			return result;
+		}
+		// Loop start from 1 because n is {1, 2, 3...} never equal to 0
+		for(int i = 1; i < n; i++) {
+			int count = 1;
+			// Record initial character for compare
+			char iniForCompare = result.charAt(0);
+			StringBuilder sb = new StringBuilder();
+			// Loop start from 1 because not include initial character
+			for(int j = 1; j < result.length(); j++) {
+				if(result.charAt(j) == iniForCompare) {
+					count++;
+				} else {
+					sb.append(count).append(iniForCompare);
+					// Update initial character for compare
+					iniForCompare = result.charAt(j);
+					count = 1;
+				}
+			}
+			// Remember to add last character
+			sb.append(count).append(iniForCompare);
+			result = sb.toString();
+		}
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		CountAndSay countAndSay = new CountAndSay();
+		String result = countAndSay.countAndSay(6);
+		System.out.println(result);
+	}
+}
 
 
 
