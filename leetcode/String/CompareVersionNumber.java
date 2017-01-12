@@ -71,7 +71,8 @@ public class CompareVersionNumbers {
 		// equal to nothing
 //		String version1 = "1.0";
 //		String version2 = "1";
-		// Test 3: Return 0 is wrong as treat '01' same as '1' 
+		// Test 3: Return 0 is wrong as treat '01' same as '1',
+		// because of compare() method using Integer.valueOf()
 		String version1 = "1.01";
 		String version2 = "1.1";
 		CompareVersionNumbers compareVersionNumbers = new CompareVersionNumbers();
