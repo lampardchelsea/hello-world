@@ -8,7 +8,7 @@
  * Note: The sequence of integers will be represented as a string.
 */
 
-// Wrong Solution
+// Wrong Solution: Try to use two pointers
 // This will always missing the last section, as loop will terminate when find 1st character
 // in last section not equal to its previous section
 // e.g Here the result is 111023, because the while loop detect last section start with '3',
