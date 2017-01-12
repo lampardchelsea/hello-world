@@ -93,6 +93,7 @@ public class CountAndSay {
 // This solution refer to
 // https://discuss.leetcode.com/topic/14543/straightforward-java-solution
 // http://www.cnblogs.com/springfor/p/3889221.html
+// https://segmentfault.com/a/1190000003849544
 public class CountAndSay {
 	public String countAndSay(int n) {
 		String result = "";
