@@ -8,3 +8,74 @@
  * Here is an example of version numbers ordering:
  * 0.1 < 1.1 < 1.2 < 13.37
 */
+// Wrong Solution:
+public class CompareVersionNumbers {
+	public int compareVersion(String version1, String version2) {
+        String[] s1 = version1.split("\\.");
+        String[] s2 = version2.split("\\.");
+        
+        if(s1.length == 1 && s2.length == 1) {
+        	if(compare(s1[0], s2[0]) > 0) {
+            	return 1;
+            } else if(compare(s1[0], s2[0]) < 0) {
+            	return -1;
+            } else {
+            	return 0;
+            }
+        } else if(s1.length == 2 && s2.length == 2) {
+        	if(compare(s1[0], s2[0]) > 0) {
+            	return 1;
+            } else if(compare(s1[0], s2[0]) < 0) {
+            	return -1;
+            } else {
+            	if(compare(s1[1], s2[1]) == 0) {
+            		return 0;
+            	} else if(compare(s1[1], s2[1]) > 0) {
+            		return 1;
+            	} else {
+            		return -1;
+            	}
+            }
+        } else if(s1.length == 1 && s2.length == 2) {
+        	if(compare(s1[0], s2[0]) > 0) {
+            	return 1;
+            }
+        	return -1;
+        } else {
+        	if(compare(s1[0], s2[0]) < 0) {
+            	return -1;
+            }
+        	return 1;
+        }
+    }
+	
+	public int compare(String s1, String s2) {
+		int a = Integer.valueOf(s1);
+		int b = Integer.valueOf(s2);
+		if(a == b) {
+			return 0;
+		} else if( a > b) {
+			return 1;
+		} else {
+			return -1;
+		}
+	}
+	
+	
+	public static void main(String[] args) {
+		// Test 1: If not consider no dot situation or array length 
+		// not equal situation, it will be a problem
+//		String version1 = "01";
+//		String version2 = "1";
+		// Test 2: Return 1 is wrong as not consider s1[1] = 0
+		// equal to nothing
+//		String version1 = "1.0";
+//		String version2 = "1";
+		// Test 3: Return 0 is wrong as treat '01' same as '1' 
+		String version1 = "1.01";
+		String version2 = "1.1";
+		CompareVersionNumbers compareVersionNumbers = new CompareVersionNumbers();
+		int result = compareVersionNumbers.compareVersion(version1, version2);
+		System.out.println(result);
+	}
+}
