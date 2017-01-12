@@ -55,7 +55,12 @@
 <p>4. [Explain 2] (https://segmentfault.com/a/1190000003707284)
 <p>5. [Brute Force Solution] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/String/FindSubstringPositionBruteMatch.java)
 
-
+<p>Count And Say
+<p>1. [Please change the misleading description] (https://discuss.leetcode.com/topic/1296/please-change-the-misleading-description)
+<p>2. [Straightforward Java Solution with misleading description] (https://discuss.leetcode.com/topic/14543/straightforward-java-solution)
+<p>3. [题目说的实在是太不明白了] (http://www.cnblogs.com/springfor/p/3889221.html)
+<p>4. [Count And Say 外观序列] (https://segmentfault.com/a/1190000003849544)
+<p>5. [Examples of nth sequence] (https://discuss.leetcode.com/topic/2264/examples-of-nth-sequence)
 
 
 
