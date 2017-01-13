@@ -399,7 +399,46 @@ public class CompareVersionNumbers {
 	}
 }
 
-
-
+// Right Solution With Concise Solution (Same way as above solution)
+// Refer to
+// https://segmentfault.com/a/1190000003803133
+public class Solution {
+	public int compareVersion(String version1, String version2) {
+	    // Split string with '.'
+        String[] s1 = version1.split("\\.");
+        String[] s2 = version2.split("\\.");
+        // Set up pointer to loop through both strings
+        int i = 0;
+        // First compare the common sections of both strings
+        for(; i < s1.length && i < s2.length; i++) {
+            int v1 = Integer.valueOf(s1[i]);
+            int v2 = Integer.valueOf(s2[i]);
+            if(v1 < v2) {
+                return -1;
+            }
+            if(v1 > v2) {
+                return 1;
+            }
+        }
+        // If one string is longer, then find if any additional
+        // section is 0 or not, if not 0 then higher version
+        if(s2.length > s1.length) {
+            for(; i < s2.length; i++) {
+                int val = Integer.valueOf(s2[i]);
+                if(val != 0) {
+                    return -1;
+                }    
+            }
+        } else {
+            for(; i < s1.length; i++) {
+                int val = Integer.valueOf(s1[i]);
+                if(val != 0) {
+                    return 1;
+                }
+            }
+        }
+        return 0;
+    }
+}
 
 
