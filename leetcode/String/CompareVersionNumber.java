@@ -13,47 +13,100 @@ public class CompareVersionNumbers {
 	public int compareVersion(String version1, String version2) {
         String[] s1 = version1.split("\\.");
         String[] s2 = version2.split("\\.");
+        int s1Len = s1.length;
+        int s2Len = s2.length;
+        int minLen = s1Len < s2Len ? s1Len : s2Len;
+        int maxLen = s1Len < s2Len ? s2Len : s1Len;
+        int temp = 0;
         
-        if(s1.length == 1 && s2.length == 1) {
-        	if(compareIntegerPart(s1[0], s2[0]) > 0) {
-            	return 1;
-            } else if(compareIntegerPart(s1[0], s2[0]) < 0) {
-            	return -1;
-            } else {
-            	return 0;
-            }
-        } else if(s1.length == 2 && s2.length == 2) {
-        	if(compareIntegerPart(s1[0], s2[0]) > 0) {
-            	return 1;
-            } else if(compareIntegerPart(s1[0], s2[0]) < 0) {
-            	return -1;
-            } else {
-            	if(compareDecimalPart(s1[1], s2[1]) == 0) {
-            		return 0;
-            	} else if(compareDecimalPart(s1[1], s2[1]) > 0) {
-            		return 1;
-            	} else {
-            		return -1;
-            	}
-            }
-        } else if(s1.length == 1 && s2.length == 2) {
-        	if(compareIntegerPart(s1[0], s2[0]) > 0) {
-            	return 1;
-            } else if(compareIntegerPart(s1[0], s2[0]) == 0 && Integer.valueOf(s2[1]) == 0) {
-            	return 0;
-            }
-        	return -1;
+        if(minLen <= 1) {
+        	if(compareIntegerSection(s1[0], s2[0]) > 0) {
+        		return 1;
+        	} else if(compareIntegerSection(s1[0], s2[0]) < 0) {
+        		return -1;
+        	} else {
+        		if(maxLen == 1) {
+        			// Both version1 and version2 only contain integer part
+        			return compareIntegerSection(s1[0], s2[0]);
+        		} else {
+        			if(s1Len == maxLen) {
+        				// version1 has decimal part
+        				int i = 1;
+        				while(!s1[i++].equals("0")) {
+        					return 1;
+        				}
+        			} else if(s2Len == maxLen) {
+        				// version2 has decimal part
+        				int i = 1;
+        				while(!s2[i++].equals("0")) {
+        					return 1;
+        				}
+        			}
+        			return 0;
+        		}
+        	}
         } else {
-        	if(compareIntegerPart(s1[0], s2[0]) < 0) {
-            	return -1;
-            } else if(compareIntegerPart(s1[0], s2[0]) == 0 && Integer.valueOf(s1[1]) == 0) {
-            	return 0;
-            }
-        	return 1;
+        	if(compareIntegerSection(s1[0], s2[0]) > 0) {
+        		return 1;
+        	} else if(compareIntegerSection(s1[0], s2[0]) < 0) {
+        		return -1;
+        	} else {
+        		for(int i = 1; i < minLen; i++) {
+                	if(compareDecimalSection(s1[i], s2[i]) > 0) {
+                		return 1;
+                	} else if(compareDecimalSection(s1[i], s2[i]) < 0) {
+                		return -1;
+                	} else {
+                		temp = 0;
+                	}
+                }
+                if(temp == 0 && maxLen - minLen > 0) {
+                	for(int j = 0; j < maxLen - minLen; j++) {
+                		if(s1Len == maxLen) {
+                			// version1 has more section
+                			if(!s1[minLen + j].equals("0")) {
+                				return 1;
+                			}
+                		} else if(s2Len == maxLen) {
+                			// version2 has more section
+                			if(!s2[minLen + j].equals("0")) {
+                				return -1;
+                			}
+                		}
+                	}
+                }
+                return 0;
+        	}
         }
+        
+//        for(int i = 0; i < minLen; i++) {
+//        	if(compareDecimalSection(s1[i], s2[i]) > 0) {
+//        		return 1;
+//        	} else if(compareDecimalSection(s1[i], s2[i]) < 0) {
+//        		return -1;
+//        	} else {
+//        		temp = 0;
+//        	}
+//        }
+//        if(temp == 0 && maxLen - minLen > 0) {
+//        	for(int j = 0; j < maxLen - minLen; j++) {
+//        		if(s1Len == maxLen) {
+//        			// version1 has more section
+//        			if(!s1[minLen + j].equals("0")) {
+//        				return 1;
+//        			}
+//        		} else if(s2Len == maxLen) {
+//        			// version2 has more section
+//        			if(!s2[minLen + j].equals("0")) {
+//        				return -1;
+//        			}
+//        		}
+//        	}
+//        }
+//        return 0;
     }
 	
-	public int compareIntegerPart(String s1, String s2) {
+	public int compareIntegerSection(String s1, String s2) {
 		int a = Integer.valueOf(s1);
 		int b = Integer.valueOf(s2);
 		if(a == b) {
@@ -64,8 +117,8 @@ public class CompareVersionNumbers {
 			return -1;
 		}
 	}
-	
-	public int compareDecimalPart(String s1, String s2) {
+
+	public int compareDecimalSection(String s1, String s2) {
 		int s1ZeroAhead = 0;
 		int s2ZeroAhead = 0;
 		for(int i = 0; i < s1.length(); i++) {
@@ -78,18 +131,12 @@ public class CompareVersionNumbers {
 				s2ZeroAhead++;
 			}
 		}
-//		while(s1.charAt(s1ZeroAhead) == '0') {
-//			s1ZeroAhead++;
-//		}
-//		while(s2.charAt(s2ZeroAhead) == '0') {
-//			s2ZeroAhead++;
-//		}
 		if(s1ZeroAhead > s2ZeroAhead) {
 			return -1;
 		} else if(s1ZeroAhead < s2ZeroAhead) {
 			return 1;
 		} else {
-			return compareIntegerPart(s1, s2);
+			return compareIntegerSection(s1, s2);
 		}
 	}
 	
@@ -116,10 +163,19 @@ public class CompareVersionNumbers {
 //		String version1 = "1.1";
 //		String version2 = "1.0";
 		// Test 6: Find error on only consider one dot
-		String version1 = "1";
-		String version2 = "1.0.1";
+//		String version1 = "1.0";
+//		String version2 = "1.0.1";
+		// Test 7: 
+//		String version1 = "01";
+//		String version2 = "1.0";
+		// Test 8: Find error in compareDecimalSection(), not reflect
+		// find all ahead '0' until first number not '0', just calculate
+		// numbers of '0'
+		String version1 = "1.1";
+		String version2 = "1.10";
 		CompareVersionNumbers compareVersionNumbers = new CompareVersionNumbers();
 		int result = compareVersionNumbers.compareVersion(version1, version2);
 		System.out.println(result);
 	}
 }
+
