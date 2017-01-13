@@ -9,7 +9,6 @@
  * 0.1 < 1.1 < 1.2 < 13.37
 */
 // Wrong Solution:
-
 public class CompareVersionNumbers {
 	public int compareVersion(String version1, String version2) {
         String[] s1 = version1.split("\\.");
