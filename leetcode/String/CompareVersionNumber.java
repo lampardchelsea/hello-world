@@ -31,15 +31,17 @@ public class CompareVersionNumbers {
         		} else {
         			if(s1Len == maxLen) {
         				// version1 has decimal part
-        				int i = 1;
-        				while(!s1[i++].equals("0")) {
-        					return 1;
+        				for(int i = 1; i < s1Len; i++) {
+        					if(!s1[i].equals("0")) {
+        						return 1;
+        					}
         				}
         			} else if(s2Len == maxLen) {
         				// version2 has decimal part
-        				int i = 1;
-        				while(!s2[i++].equals("0")) {
-        					return 1;
+        				for(int i = 1; i < s2Len; i++) {
+        					if(!s2[i].equals("0")) {
+        						return -1;
+        					}
         				}
         			}
         			return 0;
@@ -122,12 +124,16 @@ public class CompareVersionNumbers {
 		int s1ZeroAhead = 0;
 		int s2ZeroAhead = 0;
 		for(int i = 0; i < s1.length(); i++) {
-			if(s1.charAt(i) == '0') {
+			if(s1.charAt(i) != '0') {
+				break;
+			} else {
 				s1ZeroAhead++;
 			}
 		}
 		for(int j = 0; j < s2.length(); j++) {
-			if(s2.charAt(j) == '0') {
+			if(s2.charAt(j) != '0') {
+				break;
+			} else {
 				s2ZeroAhead++;
 			}
 		}
@@ -171,11 +177,14 @@ public class CompareVersionNumbers {
 		// Test 8: Find error in compareDecimalSection(), not reflect
 		// find all ahead '0' until first number not '0', just calculate
 		// numbers of '0'
+//		String version1 = "1.1";
+//		String version2 = "1.10";
+		// Test 9: Return 1 is wrong as treat '1' and '01' as different
+		// right answer should be 0, the decimal part are equal
 		String version1 = "1.1";
-		String version2 = "1.10";
+		String version2 = "1.01";
 		CompareVersionNumbers compareVersionNumbers = new CompareVersionNumbers();
 		int result = compareVersionNumbers.compareVersion(version1, version2);
 		System.out.println(result);
 	}
 }
-
