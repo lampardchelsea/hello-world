@@ -62,6 +62,16 @@
 <p>4. [Count And Say 外观序列] (https://segmentfault.com/a/1190000003849544)
 <p>5. [Examples of nth sequence] (https://discuss.leetcode.com/topic/2264/examples-of-nth-sequence)
 
+<p>Compare Version Number
+<p>1. [Compare Version Numbers 比较版本号] (https://segmentfault.com/a/1190000003803133)
+<p>2. [Accepted small Java solution] (https://discuss.leetcode.com/topic/6238/accepted-small-java-solution)
+<p>3. [Compare Version Numbers 版本比较] (http://www.cnblogs.com/grandyang/p/4244123.html)
+
+
+
+
+
+
 
 
 
