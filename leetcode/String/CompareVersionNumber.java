@@ -402,6 +402,18 @@ public class CompareVersionNumbers {
 // Right Solution With Concise Solution (Same way as above solution)
 // Refer to
 // https://segmentfault.com/a/1190000003803133
+/**
+ * 迭代法
+ * 复杂度
+ * 时间 O(N) 空间 O(N)
+ * 思路
+ * 这题的难点在于几个corner case：
+ * (1) 1.0和1是一个版本，意味即使长度不一样，也要检查后面是否都是0
+ * (2) 1.15要大于1.5，因为前者是第15个子版本，而后者是第5个
+ * 最简单的方法就是用split方法按照.分割，然后比对相应的每一个子串。
+ * 注意
+ * 因为split方法输入的是一个正则表达式所以不能直接用.，而是要用\.，而java的\要转义，所有要用\\.
+*/
 public class Solution {
 	public int compareVersion(String version1, String version2) {
 	    // Split string with '.'
