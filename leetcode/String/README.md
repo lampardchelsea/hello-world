@@ -67,7 +67,9 @@
 <p>2. [Accepted small Java solution] (https://discuss.leetcode.com/topic/6238/accepted-small-java-solution)
 <p>3. [Compare Version Numbers 版本比较] (http://www.cnblogs.com/grandyang/p/4244123.html)
 
-
+<p>Flip Game
+<p>1. [Flip Game 翻转游戏] (http://www.cnblogs.com/grandyang/p/5224896.html)
+<p>2. [Flip Game (Java)] (http://www.programcreek.com/2014/04/leetcode-flip-game-java/)
 
 
 
