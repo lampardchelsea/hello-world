@@ -71,6 +71,11 @@
 <p>1. [Flip Game 翻转游戏] (http://www.cnblogs.com/grandyang/p/5224896.html)
 <p>2. [Flip Game (Java)] (http://www.programcreek.com/2014/04/leetcode-flip-game-java/)
 
+<p>Group Shifted Strings
+<p>1. [Group Shifted Strings 群组偏移字符串] (http://www.cnblogs.com/grandyang/p/5204770.html)
+<p>2. [Group Shifted Strings id mapping] (http://blog.csdn.net/pointbreak1/article/details/48780345)
+<p>3. [Concise JAVA Solution] (https://discuss.leetcode.com/topic/20722/my-concise-java-solution)
+
 
 
 
