@@ -41,6 +41,8 @@ public class GroupShiftedStrings {
             for(int j = 0; j < strings[i].length(); j++) {
             	// Based on character at 1st position of current string to find identification
             	// code for of string, e.g abc --> 012, bcd --> 012, bdfg --> 0245
+		// Important: Don't forget to add 26 to make sure offset in 0 to 25 region, which
+		// handle case like "ba", "za" ...
                 sb.append(Integer.toString(((strings[i].charAt(j) - strings[i].charAt(0)) + 26) % 26)); 
             }  
             String stringID = sb.toString();
