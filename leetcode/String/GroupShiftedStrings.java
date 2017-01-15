@@ -47,7 +47,8 @@ public class GroupShiftedStrings {
             }  
             String stringID = sb.toString();
             // String has same id value will put into same collection, else will put into new collection
-            // e.g abc --> 012 and bcd --> 012 will put into same collection
+            // e.g abc --> 012 and bcd --> 012 will put into same collection，bdfg --> 0245 will put
+            // in new collection
             if(map.containsKey(stringID)) {  
             	map.get(stringID).add(strings[i]);  
             } else {  
