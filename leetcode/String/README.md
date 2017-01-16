@@ -76,7 +76,10 @@
 <p>2. [Group Shifted Strings id mapping] (http://blog.csdn.net/pointbreak1/article/details/48780345)
 <p>3. [Concise JAVA Solution] (https://discuss.leetcode.com/topic/20722/my-concise-java-solution)
 
-
+<p>Read N Characters Given Read4 I
+<p>1. [Read N Characters Given Read4 用Read4来读取N个字符] (http://www.cnblogs.com/grandyang/p/5174322.html)
+<p>2. [Another accepted Java solution] (https://discuss.leetcode.com/topic/18289/another-accepted-java-solution/9)
+<p>3. [Read N Characters Given Read4 用Read4 API读取N个字符] (https://segmentfault.com/a/1190000003794420)
 
 
 
