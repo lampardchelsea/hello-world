@@ -11,6 +11,7 @@
 // Refer to
 // https://discuss.leetcode.com/topic/18289/another-accepted-java-solution
 // https://segmentfault.com/a/1190000003794420
+// http://www.cnblogs.com/grandyang/p/5174322.html
 public class ReadNCharactersGivenRead4I {
 	public int read(char[] buf, int n) {
 		char[] tmp = new char[4];
