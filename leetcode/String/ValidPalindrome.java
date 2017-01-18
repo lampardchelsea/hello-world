@@ -1,6 +1,7 @@
 // Refer to
 // http://stackoverflow.com/questions/4047808/what-is-the-best-way-to-tell-if-a-character-is-a-letter-or-number-in-java-withou
 // https://discuss.leetcode.com/topic/8282/accepted-pretty-java-solution-271ms
+// This solution is 12ms
 public class Solution {
     public boolean isPalindrome(String s) {
         if(s.length() == 0) {
