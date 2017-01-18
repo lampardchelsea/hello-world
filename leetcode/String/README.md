@@ -81,7 +81,9 @@
 <p>2. [Another accepted Java solution] (https://discuss.leetcode.com/topic/18289/another-accepted-java-solution/9)
 <p>3. [Read N Characters Given Read4 用Read4 API读取N个字符] (https://segmentfault.com/a/1190000003794420)
 
-
+<p>Valid Palindrome
+<p>1. [What is the best way to tell if a character is a letter or number in Java without using regexes?] (http://stackoverflow.com/questions/4047808/what-is-the-best-way-to-tell-if-a-character-is-a-letter-or-number-in-java-withou)
+<p>2. [Accepted pretty Java solution(271ms)] (https://discuss.leetcode.com/topic/8282/accepted-pretty-java-solution-271ms/10)
 
 
 
