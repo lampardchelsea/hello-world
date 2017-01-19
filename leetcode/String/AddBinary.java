@@ -1,7 +1,6 @@
-
+// Solution 1:
 /**
  * Refer to
- * https://segmentfault.com/a/1190000003707317
  * https://discuss.leetcode.com/topic/13698/short-ac-solution-in-java-with-explanation
  */
 public class AddBinary {
@@ -106,3 +105,39 @@ public class AddBinary {
 	}
 }
 
+// Solution 2:
+/**
+ * https://segmentfault.com/a/1190000003707317
+*/
+public class Solution {
+     public String addBinary(String a, String b) {
+        StringBuilder sb = new StringBuilder();
+        char[] aChars = a.toCharArray();
+        char[] bChars = b.toCharArray();
+        int i = aChars.length - 1;
+        int j = bChars.length - 1;
+        int carryover = 0;
+	// Elegant design as using '||' to handle condition on different length loop
+	// also use trinary expression to set position without value (either i or j
+	// run out of length) as 0 
+        while(i >= 0 || j >= 0) {
+            int m = i >= 0 ? aChars[i] - '0' : 0;
+            int n = j >= 0 ? bChars[j] - '0' : 0;
+            int digit = m + n + carryover;
+            if(digit >= 2) {
+                carryover = 1;
+                digit = digit % 2;
+            } else {
+                carryover = 0;
+            }
+	    // Also, use insert() to auto add digit onto the first position
+            sb.insert(0, digit);
+            i--;
+            j--;
+        }
+        if(carryover != 0) {
+            sb.insert(0, 1);
+        }
+        return sb.toString();
+    }
+}
