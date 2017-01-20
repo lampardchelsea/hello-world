@@ -89,6 +89,7 @@
 <p>1. [Add Binary 二进制相加] (https://segmentfault.com/a/1190000003707317)
 <p>2. [Short AC solution in Java with explanation] (https://discuss.leetcode.com/topic/13698/short-ac-solution-in-java-with-explanation)
 
-
+<p>Length Of Last Word
+<p>1. [A single line of Code in Java] (https://discuss.leetcode.com/topic/6055/a-single-line-of-code-in-java/13)
 
 
