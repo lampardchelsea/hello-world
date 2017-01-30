@@ -1,3 +1,4 @@
+// Solution 1: Start at array position 1
 /**
  * Refer to
  * http://algs4.cs.princeton.edu/24pq/
@@ -97,4 +98,6 @@ public class HeapSort {
 		show(a);
 	}
 }
+
+// Solution 2: Start at array position 0
 
