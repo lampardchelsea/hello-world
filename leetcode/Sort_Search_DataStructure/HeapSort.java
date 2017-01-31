@@ -4,6 +4,26 @@
  * http://algs4.cs.princeton.edu/24pq/
  * http://algs4.cs.princeton.edu/24pq/Heap.java.html
  * 
+ * Definition. 
+ * A binary heap is a set of nodes with keys arranged in a complete heap-ordered binary tree, 
+ * represented in level order in an array (not using the first entry).
+ * Heap representations
+ * In a heap, the parent of the node in position k is in position k/2; and, conversely, the two children 
+ * of the node in position k are in positions 2k and 2k + 1. We can travel up and down by doing simple 
+ * arithmetic on array indices: to move up the tree from a[k] we set k to k/2; to move down the tree we 
+ * set k to 2*k or 2*k+1.
+ * The structure we are using in this solution (Start at array position 1) match this representation
+ * e.g
+ * 0 1 2 3 4 5 6 7 8 9 10
+ * X 
+ *   T S 
+ *       P L R A 
+ *               M O E E
+ * 
+ * X is parent of T, S
+ * T is parent of P, L  |  S is parent of R, A
+ * P is parent of M, O  |  L is parent of E, E
+ * 
  * Heapsort. 
  * We can use any priority queue to develop a sorting method. We insert all the keys to be sorted 
  * into a minimum-oriented priority queue, then repeatedly use remove the minimum to remove them all in order. 
