@@ -18,7 +18,7 @@
  *   X 
  *     T S 
  *         P L R A 
- *                  M O E E
+ *                 M O E E
  * 
  * X is parent of T, S
  * T is parent of P, L  |  S is parent of R, A
