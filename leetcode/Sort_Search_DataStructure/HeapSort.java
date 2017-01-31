@@ -120,4 +120,86 @@ public class HeapSort {
 }
 
 // Solution 2: Start at array position 0
-
+/**
+ * Refer to
+ * http://algs4.cs.princeton.edu/24pq/
+ * http://quiz.geeksforgeeks.org/heap-sort/
+ */
+public class HeapSort {
+	public static void sort(Comparable[] pq) {
+		int n = pq.length;
+		for(int k = n/2 - 1; k >= 0; k--) {
+			sink(pq, k, n);
+		}
+		// For debug to compare whether after heaplify,
+		// the heap constructed successful (as same as
+		// princeton version)
+		show(pq);
+		// This step is critical, also refer to
+		// http://quiz.geeksforgeeks.org/heap-sort/
+		// if not apply "-1" before while loop, we
+		// can not handle array index start from 0
+		// end at (n - 1).
+		n = n - 1;
+		while(n > 0) {			
+			exch(pq, 0, n--);
+			sink(pq, 0, n);
+		}
+	}
+	
+	public static void exch(Comparable[] pq, int i, int j) {
+		Comparable swap = pq[i];
+		pq[i] = pq[j];
+		pq[j] = swap;
+	}
+	
+	public static boolean less(Comparable[] pq, int i, int j) {
+		return pq[i].compareTo(pq[j]) < 0;
+	}
+	
+	public static void sink(Comparable[] pq, int k, int n) {
+		// The condition change from k <= n/2 to k <= n/2 - 1
+		// which suitable for start index at 0. This condition
+		// actually should match the 1st condition used for
+		// construct heap in for loop (int k = n/2 - 1), here
+		// we just add additional "<"
+		while(k <= n/2 - 1) {
+			// The calculation of j is a bigger change than array
+			// index start from 1, if the parent index is k in
+			// array, the children indexes are 2k and 2k + 1
+			// Now as we change to index start from 0, refer to
+			// http://quiz.geeksforgeeks.org/heap-sort/
+			// if the parent index is k in array, the children
+			// indexes are 2k + 1 and 2k + 2
+			int j = 2 * k + 1;
+			if(j < n - 1 && less(pq, j, j + 1)) {
+				j++;
+			}
+			if(!less(pq, k, j)) {
+				break;
+			}
+			exch(pq, k, j);
+			k = j;
+		}
+	}
+	
+	public static void show(Comparable[] a) {
+		for(int i = 0; i < a.length; i++) {
+			StdOut.print(a[i]);
+		}
+		StdOut.println("");
+	}
+	
+	public static void main(String[] args) {
+//		String[] a = {"S", "O", "R", "T", "E", "X", "A", "M", "P", "L", "E"};
+		String[] a = {"bed", "bug", "dad", "yes", "zoo",
+					  "now", "for", "tip", "ilk", "dim", 
+                      "tag", "jot", "sob", "nob", "sky",
+                      "hut", "men", "egg", "few", "jay",
+                      "owl", "joy", "rap", "gig", "wee",
+                      "was", "wad", "fee", "tap", "tar",
+                      "dug", "jam", "all", "bad", "yet"};
+		sort(a);
+		show(a);
+	}
+}
