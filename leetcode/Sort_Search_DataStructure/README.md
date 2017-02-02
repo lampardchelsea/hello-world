@@ -120,11 +120,13 @@
 <p>10. [Merging K- Sorted Lists using Priority Queue] (http://stackoverflow.com/questions/19474924/merging-k-sorted-lists-using-priority-queue)
 <p>11. [Algorithm for N-way merge] (http://stackoverflow.com/questions/5055909/algorithm-for-n-way-merge)
 
-<p>Heap Sort
+<p>Heap Sort And Priority Queue
 <p>1. [Princeton Priority Queue and Heap Sort] (http://algs4.cs.princeton.edu/24pq/)
 <p>2. [Princeton Heap Sort Implementation Start At Array Position 1] (http://algs4.cs.princeton.edu/24pq/Heap.java.html)
 <p>3. [Binary Heaps] (https://www.cs.cmu.edu/~adamchik/15-121/lectures/Binary%20Heaps/heaps.html)
 <p>4. [Heap Sort Start At Array Position 0] (http://quiz.geeksforgeeks.org/heap-sort/)
+<p>5. [Princeton MaxPQ] (http://algs4.cs.princeton.edu/24pq/MaxPQ.java.html)
+<p>6. [Princeton IndexMaxPQ] (http://algs4.cs.princeton.edu/24pq/IndexMaxPQ.java.html) 
 
 <p>Shuffle
 <p>1. [Princeton Implementation Of Shuffle] (http://introcs.cs.princeton.edu/java/15inout/Shuffle.java.html)
