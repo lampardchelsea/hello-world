@@ -130,7 +130,8 @@
 
 <p>Selection Sort And Insertion Sort
 <p>1. [Princeton Elementary Sort] (http://algs4.cs.princeton.edu/21elementary/)
-<p>2. [] ()
+<p>2. [Princeton Selection Sort] (http://algs4.cs.princeton.edu/21elementary/Selection.java.html)
+<p>3. [Princeton Insertion Sort] (http://algs4.cs.princeton.edu/21elementary/Insertion.java.html)
 
 
 <p>Shuffle
