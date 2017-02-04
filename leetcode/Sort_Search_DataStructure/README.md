@@ -128,6 +128,11 @@
 <p>5. [Princeton MaxPQ] (http://algs4.cs.princeton.edu/24pq/MaxPQ.java.html)
 <p>6. [Princeton IndexMaxPQ] (http://algs4.cs.princeton.edu/24pq/IndexMaxPQ.java.html) 
 
+<p>Selection Sort And Insertion Sort
+<p>1. [Princeton Elementary Sort] (http://algs4.cs.princeton.edu/21elementary/)
+<p>2. [] ()
+
+
 <p>Shuffle
 <p>1. [Princeton Implementation Of Shuffle] (http://introcs.cs.princeton.edu/java/15inout/Shuffle.java.html)
 
