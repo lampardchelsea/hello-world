@@ -4,7 +4,8 @@ import java.util.Comparator;
  * Refer to
  * http://algs4.cs.princeton.edu/21elementary/
  * http://algs4.cs.princeton.edu/21elementary/Selection.java.html
- *
+ * http://quiz.geeksforgeeks.org/selection-sort/
+ * 
  * One of the simplest sorting algorithms works as follows: First, find the smallest item in 
  * the array, and exchange it with the first entry. Then, find the next smallest item and 
  * exchange it with the second entry. Continue in this way until the entire array is sorted. 
