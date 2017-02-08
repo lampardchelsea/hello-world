@@ -5,3 +5,8 @@
 <p>4. [Heap Sort] (http://quiz.geeksforgeeks.org/heap-sort/)
 
 # Useful links for specific questions
+<p>Kth Smallest Element in a Sorted Matrix
+<p>1. [Share my thoughts and Clean Java Code] (https://discuss.leetcode.com/topic/52948/share-my-thoughts-and-clean-java-code)
+<p>2. [Kth Smallest Element in a Sorted Matrix 有序矩阵中第K小的元素] (http://www.cnblogs.com/grandyang/p/5727892.html)
+
+
