@@ -1,4 +1,9 @@
 /**
+ * Write a program to check whether a given number is an ugly number.
+ * Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. 
+ * For example, 6, 8 are ugly while 14 is not ugly since it includes another prime factor 7.
+ * Note that 1 is typically treated as an ugly number.
+ * 
  * Refer to
  * http://www.cnblogs.com/grandyang/p/4741934.html
  * 这道题让我们检测一个数是否为丑陋数，所谓丑陋数就是其质数因子只能是2,3,5。
