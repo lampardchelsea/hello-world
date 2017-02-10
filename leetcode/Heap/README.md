@@ -12,6 +12,8 @@
 <p>Super Ugly Number
 <p>1. [Ugly Number 丑陋数] (http://www.cnblogs.com/grandyang/p/4741934.html)
 <p>2. [Ugly Number II 丑陋数] (http://www.cnblogs.com/grandyang/p/4743837.html)
-<p>3. [Super Ugly Number 超级丑陋数] (http://www.cnblogs.com/grandyang/p/5144918.html)
-<p>4. [Java three methods, 23ms, 36 ms, 58ms(with heap), performance explained] (https://discuss.leetcode.com/topic/34841/java-three-methods-23ms-36-ms-58ms-with-heap-performance-explained)
+<p>3. [Ugly Number II (Use Dynamic Programming)] (http://www.geeksforgeeks.org/ugly-numbers/)
+<p>4. [Ugly Number II O(n) Java solution] (https://discuss.leetcode.com/topic/21791/o-n-java-solution)
+<p>5. [Super Ugly Number 超级丑陋数] (http://www.cnblogs.com/grandyang/p/5144918.html)
+<p>6. [Java three methods, 23ms, 36 ms, 58ms(with heap), performance explained] (https://discuss.leetcode.com/topic/34841/java-three-methods-23ms-36-ms-58ms-with-heap-performance-explained)
 
