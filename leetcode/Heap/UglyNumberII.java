@@ -175,7 +175,7 @@ public class Solution {
 */
 public class Solution {
 	public int nthUglyNumber(int n) {
-	    // Declare an array for ugly numbers
+	// Declare an array for ugly numbers
         int[] ugly = new int[n];
         // Initialize first ugly number as 1
         ugly[0] = 1;
