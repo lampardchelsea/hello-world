@@ -17,3 +17,7 @@
 <p>5. [Super Ugly Number 超级丑陋数] (http://www.cnblogs.com/grandyang/p/5144918.html)
 <p>6. [Java three methods, 23ms, 36 ms, 58ms(with heap), performance explained] (https://discuss.leetcode.com/topic/34841/java-three-methods-23ms-36-ms-58ms-with-heap-performance-explained)
 
+<p>Sort Characters By Frequency
+<p>1. [O(n) Easy to understand Java Solution] (https://discuss.leetcode.com/topic/65947/o-n-easy-to-understand-java-solution)
+<p>2. [How to loop a Map in Java] (https://www.mkyong.com/java/how-to-loop-a-map-in-java/)
+<p>3. [Java Autoboxing and Unboxing with examples] (http://beginnersbook.com/2014/09/java-autoboxing-and-unboxing-with-examples/)
