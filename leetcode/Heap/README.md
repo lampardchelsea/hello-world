@@ -25,3 +25,6 @@
 <p>Design Twitter
 <p>1. [Design Twitter 设计推特] (http://www.cnblogs.com/grandyang/p/5577038.html)
 <p>2. [Java OO Design with most efficient function getNewsFeed] (https://discuss.leetcode.com/topic/48100/java-oo-design-with-most-efficient-function-getnewsfeed/2)
+
+<p>Kth Largest Element in an Array
+<p>1. [K’th Smallest/Largest Element in Unsorted Array] (http://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array/)
