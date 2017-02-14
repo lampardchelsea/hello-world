@@ -79,6 +79,12 @@ public class Solution {
 // Solution 2:
 // Refer to
 // http://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array/
+public int findKthLargest(int[] nums, int k) {
+        final int N = nums.length;
+        Arrays.sort(nums);
+        return nums[N - k];
+}
+
 
 
 
