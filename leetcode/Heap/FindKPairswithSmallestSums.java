@@ -14,6 +14,7 @@ public class Solution {
             return result;
         }
         MinPQ minPQ = new MinPQ(pairs);
+        // Create all pairs and insert onto MinPQ
         for(int i = 0; i < length1; i++) {
             for(int j = 0; j < length2; j++) {
                 int sum = nums1[i] + nums2[j];
@@ -21,6 +22,8 @@ public class Solution {
                 minPQ.insert(pair);
             }
         }
+        // Print out required k pairs, come with different cases as
+        // k smaller than existing pairs or not
         if(k <= pairs) {
             for(int i = 0; i < k; i++) {
                 Pair pair = minPQ.delMin();
@@ -37,6 +40,7 @@ public class Solution {
         return result;
     }
     
+    // Store sum used for MinPQ and related indexes on both arrays
     private class Pair {
         int sum;
         int index1;
