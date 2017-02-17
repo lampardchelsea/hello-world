@@ -139,3 +139,42 @@ public class Solution {
         }   
     }
 }
+
+
+// Solution 3: Java O(n) Solution - Bucket Sort
+// Refer to 
+// https://discuss.leetcode.com/topic/44237/java-o-n-solution-bucket-sort
+public class Solution {
+    public List<Integer> topKFrequent(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(int i = 0; i < nums.length; i++) {
+            if(!map.containsKey(nums[i])) {
+                map.put(nums[i], 1);
+            } else {
+                map.put(nums[i], map.get(nums[i]) + 1);
+            }
+        }
+        // Array index represent frequence, list on certain index
+        // represent values happen as that frequence (range 1 to n)
+        // that's why increase length with 1 to include frequence = n
+        // Note: Don't write as "new List<Integer>[nums.length + 1]",
+        // will throw out generic array creation
+        List<Integer>[] bucket = new List[nums.length + 1];
+        for(Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if(bucket[entry.getValue()] == null) {
+                bucket[entry.getValue()] = new ArrayList<Integer>();
+            }
+            bucket[entry.getValue()].add(entry.getKey());
+        }
+        // Loop the bucket and print all bucket not null from highest freq
+        // which equals to start from right index
+        // Note: Don't forget limitation on k with "result.size() < k"
+        List<Integer> result = new ArrayList<Integer>();
+        for(int i = bucket.length - 1; i >= 0 && result.size() < k; i--) {
+            if(bucket[i] != null) {
+                result.addAll(bucket[i]);
+            }
+        }
+        return result;
+    }
+}
