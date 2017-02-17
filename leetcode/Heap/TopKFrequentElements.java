@@ -95,7 +95,7 @@ public class Solution {
     }
 }
 
-// Solution 2: Priority Queue MaxPQ
+// Solution 2: PriorityQueue MaxPQ
 // Refer to 
 // Use a Comparator to create a PriorityQueue for messages
 // http://www.java2s.com/Tutorial/Java/0140__Collections/UseaComparatortocreateaPriorityQueueformessages.htm
