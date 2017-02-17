@@ -1,3 +1,4 @@
+// Solution 1: Customized MaxPQ
 /**
  * Refer to
  * https://leetcode.com/problems/top-k-frequent-elements/
@@ -91,5 +92,50 @@ public class Solution {
             pq[v] = pq[w];
             pq[w] = swap;
         }
+    }
+}
+
+// Solution 2: Priority Queue MaxPQ
+// Refer to 
+// Use a Comparator to create a PriorityQueue for messages
+// http://www.java2s.com/Tutorial/Java/0140__Collections/UseaComparatortocreateaPriorityQueueformessages.htm
+//
+// comparator for Map.Entry<K,V>
+// http://stackoverflow.com/questions/17211291/comparator-for-map-entryk-v
+//
+// 3 Java Solution using Array, MaxHeap, TreeMap
+// https://discuss.leetcode.com/topic/48158/3-java-solution-using-array-maxheap-treemap
+public class Solution {
+    public List<Integer> topKFrequent(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(int i = 0; i < nums.length; i++) {
+            if(!map.containsKey(nums[i])) {
+                map.put(nums[i], 1);
+            } else {
+                map.put(nums[i], map.get(nums[i]) + 1);
+            }
+        }
+        // Initial MaxPQ with Map.Entry<Integer, Integer> as items type and comparator
+        PriorityQueue<Map.Entry<Integer, Integer>> maxPQ = new PriorityQueue<Map.Entry<Integer, Integer>>(new FreqComparator<Integer, Integer>());
+        // Put all map entries onto MaxPQ
+        for(Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            maxPQ.add(entry);
+        }
+        List<Integer> result = new ArrayList<Integer>();
+        for(int i = 0; i < k; i++) {
+            result.add(maxPQ.poll().getKey());
+        }
+        return result;
+    }
+
+    // Declare K and V as generic type parameters to FreqComparator
+    // Note that V must extend Comparable<V>, in order to be able to call compareTo() on o1.getValue()
+    // ScoreComparator takes two generic type arguments K and V. Map.Entry<K, V> is not a valid 
+    // generic type definition, but you may well use it to bind to Comparator<T>'s T type.
+    private class FreqComparator<K, V extends Comparable<V>> implements Comparator<Map.Entry<K, V>> {
+        public int compare(Map.Entry<K, V> o1, Map.Entry<K, V> o2) {
+            // Call compareTo() on V, which is known to be a Comparable<V>
+            return o2.getValue().compareTo(o1.getValue());
+        }   
     }
 }
