@@ -189,6 +189,7 @@ public class FindKPairswithSmallestSums {
             return result;
         }
         MinPQ minPQ = new MinPQ(pairs);
+	// Create initial MinPQ by adding all pair based on all nums1 items and nums2[0]
         for(int i = 0; i < length1 && i < k; i++) {
             int sum = nums1[i] + nums2[0];
             Pair pair = new Pair(sum, i, 0);
@@ -203,6 +204,8 @@ public class FindKPairswithSmallestSums {
                 continue;
             }
             // The next inserted pair(candidate) depends on current deleted minPair from MinPQ
+            // Logic: deleted pair -> nums1.index, nums2.index
+            //        candidate pair -> nums1.index, nums2.index + 1
             int curNums1Val = nums1[minPair.index1];
             int nextNums2Val = nums2[++minPair.index2];
             int sum = curNums1Val + nextNums2Val;
