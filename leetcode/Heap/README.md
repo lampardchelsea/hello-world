@@ -28,3 +28,8 @@
 
 <p>Kth Largest Element in an Array
 <p>1. [K’th Smallest/Largest Element in Unsorted Array] (http://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array/)
+
+<p>Find K Pairs with Smallest Sums
+<p>1. [Slow 1-liner to Fast solutions] (https://discuss.leetcode.com/topic/50450/slow-1-liner-to-fast-solutions)
+<p>2. [Brute Force] (http://www.cnblogs.com/grandyang/p/5653127.html)
+<p>3. [simple Java O(KlogK) solution with explanation] (https://discuss.leetcode.com/topic/50885/simple-java-o-klogk-solution-with-explanation)
