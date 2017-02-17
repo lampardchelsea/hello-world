@@ -206,6 +206,17 @@ public class FindKPairswithSmallestSums {
             // The next inserted pair(candidate) depends on current deleted minPair from MinPQ
             // Logic: deleted pair -> nums1.index, nums2.index
             //        candidate pair -> nums1.index, nums2.index + 1
+            // This logic also related to initial MinPQ inserting based on all nums1 items 
+            // and nums2[0], that means no matter which pair been deleted from MinPQ on
+            // current loop, its already the smallest pair from nums1's perspective, two
+            // situations: (1) if deleted pairs are initial inserted ones, they are always
+            // with smallest item on nums2 (2) if deleted pairs are ones newly inserted,
+            // they are always ones smaller than other pairs left on MinPQ recently, then
+            // we can also keep nums1.index and increase nums2.index to find next smallest pair
+            // Some observations: For every numbers in nums1, its best partner(yields min sum) 
+            // always starts from nums2[0] since arrays are all sorted; And for a specific number 
+            // in nums1, its next candidate should be 
+            // [this specific number] + nums2[current_associated_index + 1], unless out of boundary;)
             int curNums1Val = nums1[minPair.index1];
             int nextNums2Val = nums2[++minPair.index2];
             int sum = curNums1Val + nextNums2Val;
