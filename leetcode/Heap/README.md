@@ -33,3 +33,4 @@
 <p>1. [Slow 1-liner to Fast solutions] (https://discuss.leetcode.com/topic/50450/slow-1-liner-to-fast-solutions)
 <p>2. [Brute Force] (http://www.cnblogs.com/grandyang/p/5653127.html)
 <p>3. [simple Java O(KlogK) solution with explanation] (https://discuss.leetcode.com/topic/50885/simple-java-o-klogk-solution-with-explanation)
+<p>4. [Princeton MinPQ] (http://algs4.cs.princeton.edu/24pq/MinPQ.java.html)
