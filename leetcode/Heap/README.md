@@ -40,7 +40,7 @@
 <p>2. [comparator for Map.Entry<K,V>] (http://stackoverflow.com/questions/17211291/comparator-for-map-entryk-v)
 <p>3. [3 Java Solution using Array, MaxHeap, TreeMap] (https://discuss.leetcode.com/topic/48158/3-java-solution-using-array-maxheap-treemap)
 <p>4. [Java O(n) Solution - Bucket Sort] (https://discuss.leetcode.com/topic/44237/java-o-n-solution-bucket-sort)
-
+<p>5. [Generic array creation error] (http://stackoverflow.com/questions/7131652/generic-array-creation-error)
 
 
 
