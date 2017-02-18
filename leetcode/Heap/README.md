@@ -34,3 +34,13 @@
 <p>2. [Brute Force] (http://www.cnblogs.com/grandyang/p/5653127.html)
 <p>3. [simple Java O(KlogK) solution with explanation] (https://discuss.leetcode.com/topic/50885/simple-java-o-klogk-solution-with-explanation)
 <p>4. [Princeton MinPQ] (http://algs4.cs.princeton.edu/24pq/MinPQ.java.html)
+
+<p>Top K Frequent Elements
+<p>1. [Use a Comparator to create a PriorityQueue for messages] (http://www.java2s.com/Tutorial/Java/0140__Collections/UseaComparatortocreateaPriorityQueueformessages.htm)
+<p>2. [comparator for Map.Entry<K,V>] (http://stackoverflow.com/questions/17211291/comparator-for-map-entryk-v)
+<p>3. [3 Java Solution using Array, MaxHeap, TreeMap] (https://discuss.leetcode.com/topic/48158/3-java-solution-using-array-maxheap-treemap)
+<p>4. [Java O(n) Solution - Bucket Sort] (https://discuss.leetcode.com/topic/44237/java-o-n-solution-bucket-sort)
+
+
+
+
