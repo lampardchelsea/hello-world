@@ -159,6 +159,8 @@ public class Solution {
         // that's why increase length with 1 to include frequence = n
         // Note: Don't write as "new List<Integer>[nums.length + 1]",
         // will throw out generic array creation
+        // Refer to
+        // http://stackoverflow.com/questions/7131652/generic-array-creation-error
         List<Integer>[] bucket = new List[nums.length + 1];
         for(Map.Entry<Integer, Integer> entry : map.entrySet()) {
             if(bucket[entry.getValue()] == null) {
