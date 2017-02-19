@@ -42,5 +42,11 @@
 <p>4. [Java O(n) Solution - Bucket Sort] (https://discuss.leetcode.com/topic/44237/java-o-n-solution-bucket-sort)
 <p>5. [Generic array creation error] (http://stackoverflow.com/questions/7131652/generic-array-creation-error)
 
+<p>Merge k Sorted Lists
+<p>1. [A java solution based on Priority Queue] (https://discuss.leetcode.com/topic/2780/a-java-solution-based-on-priority-queue/9)
+<p>2. [How to create ListIterator ?] (http://algs4.cs.princeton.edu/13stacks/Queue.java.html)
+
+
+
 
 
