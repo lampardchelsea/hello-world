@@ -24,10 +24,10 @@ import java.util.List;
 	findMedian() -> 2
  *
  * Solution
- * https://discuss.leetcode.com/topic/27521/short-simple-java-c-python-o-log-n-o-1
- * https://segmentfault.com/a/1190000003709954
- * http://wiki.jikexueyuan.com/project/for-offer/question-sixty-four.html
+ * MinPQ
  * http://algs4.cs.princeton.edu/24pq/MinPQ.java.html
+ * How to calculate the median of an array ?
+ * http://stackoverflow.com/questions/11955728/how-to-calculate-the-median-of-an-array
  */
 public class MedianFinder {
     List<Integer> list;
