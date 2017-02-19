@@ -1,4 +1,4 @@
-// Time exceed limitation solution
+// Time limit exceeded solution
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,6 +78,7 @@ public class MedianFinder {
         
         if(list.size() % 2 == 0) {
             int index = list.size() / 2;
+            // To get real double value require (double) cast on each section
             return ((double)list.get(index) + (double)list.get(index - 1)) / 2;
         } else {
             int index = list.size() / 2;
@@ -116,6 +117,9 @@ public class MedianFinder {
             return min;
         }
         
+        // Introduce resize() method is necessary for this case, 
+        // as we cannot assume how many times addNum() will be
+        // called, so the size of minPQ will be varying
         public void resize(int len) {
             int[] temp = new int[len];
             for(int i = 1; i <= n; i++) {
@@ -180,5 +184,3 @@ public class MedianFinder {
  * obj.addNum(num);
  * double param_2 = obj.findMedian();
  */
-
-
