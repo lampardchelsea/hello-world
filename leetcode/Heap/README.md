@@ -46,6 +46,12 @@
 <p>1. [A java solution based on Priority Queue] (https://discuss.leetcode.com/topic/2780/a-java-solution-based-on-priority-queue/9)
 <p>2. [How to create ListIterator ?] (http://algs4.cs.princeton.edu/13stacks/Queue.java.html)
 
+<p>Find Median from Data Stream
+<p>1. [Find Median from Data Stream 数据流中位数] (https://segmentfault.com/a/1190000003709954)
+<p>2. [Short simple Java/C++/Python, O(log n) + O(1)] (https://discuss.leetcode.com/topic/27521/short-simple-java-c-python-o-log-n-o-1)
+<p>3. [数据流中的中位数] (http://wiki.jikexueyuan.com/project/for-offer/question-sixty-four.html)
+
+
 
 
 
