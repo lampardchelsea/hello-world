@@ -50,7 +50,7 @@
 <p>1. [Find Median from Data Stream 数据流中位数] (https://segmentfault.com/a/1190000003709954)
 <p>2. [Short simple Java/C++/Python, O(log n) + O(1)] (https://discuss.leetcode.com/topic/27521/short-simple-java-c-python-o-log-n-o-1)
 <p>3. [数据流中的中位数] (http://wiki.jikexueyuan.com/project/for-offer/question-sixty-four.html)
-
+<p>4. [How to calculate the median of an array ?] (http://stackoverflow.com/questions/11955728/how-to-calculate-the-median-of-an-array)
 
 
 
