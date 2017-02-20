@@ -260,7 +260,9 @@ public class MedianFinder {
      */
     public void addNum(int num) {
     	// If MaxPQ is empty or the number is smaller than peek,
-    	// add number into MaxPQ
+    	// add number into MaxPQ, the first time comparison
+    	// between number and peek depends on Integer.MAX_VALUE
+    	// as MaxPQ is empty
         if(maxPQ.isEmpty() || num <= maxPQ.peek()) {
         	// If MaxPQ size is larger than MinPQ size, need to
         	// make a balance by moving the peek of MaxPQ into
@@ -272,7 +274,9 @@ public class MedianFinder {
             maxPQ.insert(num);
         } 
     	// If MinPQ is empty or the number is larger than peek,
-    	// add number into MinPQ
+    	// add number into MinPQ, the first time comparison
+    	// between number and peek depends on Integer.MIN_VALUE
+    	// as MinPQ is empty
         else if(minPQ.isEmpty() || num > minPQ.peek()) {
         	// If MinPQ size is larger than MaxPQ size, need to
         	// make a balance by moving the peek of MinPQ into
