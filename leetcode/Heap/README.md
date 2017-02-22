@@ -53,13 +53,13 @@
 <p>4. [How to calculate the median of an array ?] (http://stackoverflow.com/questions/11955728/how-to-calculate-the-median-of-an-array)
 
 <p>Sliding Window Maximum
-<p>Heap Solution
+<p>------Heap Solution
 <p>1. [Sliding Window Maximum 滑动窗口最大值.优先队列] (https://segmentfault.com/a/1190000003903509)
 <p>2. [Sliding Window Maximum Article] (http://articles.leetcode.com/sliding-window-maximum/)
 <p>3. [Priority Queue source code remove method implementation] (http://grepcode.com/file_/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/util/PriorityQueue.java/?v=source)
 <p>4. [How to implement remove method with Princeton version] (http://algs4.cs.princeton.edu/24pq/IndexMaxPQ.java.html)
 <p>5. [Apache commons objectutils source code (Generic version)] (http://commons.apache.org/proper/commons-lang/apidocs/src-html/org/apache/commons/lang3/ObjectUtils.html)
-<p>Deque Solution(Doubly-Linked list solution)
+<p>------Deque Solution(Doubly-Linked list solution)
 
 
 
