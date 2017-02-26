@@ -60,8 +60,14 @@
 <p>4. [How to implement remove method with Princeton version] (http://algs4.cs.princeton.edu/24pq/IndexMaxPQ.java.html)
 <p>5. [Apache commons objectutils source code (Generic version)] (http://commons.apache.org/proper/commons-lang/apidocs/src-html/org/apache/commons/lang3/ObjectUtils.html)
 <p>------Deque Solution(Doubly-Linked list solution)
-
-
+<p>1. [Sliding Window Maximum 滑动窗口最大值.双向队列] (https://segmentfault.com/a/1190000003903509)
+<p>2. [Relation between Java LinkedList implementation and Deque] (https://www.quora.com/What-is-the-difference-between-a-deque-and-a-doubly-linked-list)
+<p>3. [Java LinkedList Implementation] (http://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html)
+<p>4. [Java Deque Implementation] (http://docs.oracle.com/javase/7/docs/api/java/util/Deque.html)
+<p>5. [modCount related] (http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/util/AbstractList.java#AbstractList.0modCount)
+<p>6. [Bit shift operation] (http://stackoverflow.com/questions/1050989/double-greater-than-sign-in-java)
+<p>7. [Optimization on iterator loop direction] (http://www.jianshu.com/p/0c458f335daf)
+<p>8. [Right-associativity of assignment operators] (https://en.wikipedia.org/wiki/Operator_associativity)
 
 
 
