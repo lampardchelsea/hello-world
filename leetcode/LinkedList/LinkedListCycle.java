@@ -12,5 +12,10 @@
  * Explain how finding cycle start node in cycle linked list work ?
  * Refer to
  * http://stackoverflow.com/questions/2936213/explain-how-finding-cycle-start-node-in-cycle-linked-list-work
+ * 
+ * Why need runner.next != null && runner.next.next != null ?
+ * there is a reason why we use runner.next != null && runner.next.next != null. 
+ * We need to make sure that the runner can really move two steps. 
+ * If runner can move two steps, walker can move one step
 */
 
