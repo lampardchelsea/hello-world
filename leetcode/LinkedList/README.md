@@ -11,3 +11,10 @@
 
 <p>Linked List Cycle II
 <p>1. [O(n) solution by using two pointers without change anything] (https://discuss.leetcode.com/topic/2975/o-n-solution-by-using-two-pointers-without-change-anything)
+
+<p>Remove Duplicates from Sorted List
+<p>1. [My pretty solution. Java.] (https://discuss.leetcode.com/topic/8345/my-pretty-solution-java)
+
+<p>Remove Linked List Elements
+<p>1. [LeetCode – Remove Linked List Elements (Java)] (http://www.programcreek.com/2014/04/leetcode-remove-linked-list-elements-java/)
+<p>2. [AC Java solution] (https://discuss.leetcode.com/topic/12725/ac-java-solution)
