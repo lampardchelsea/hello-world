@@ -17,6 +17,11 @@
  */
 public class Solution {
     public ListNode deleteDuplicates(ListNode head) {
+        // As check for duplicates, no need to create fakeHeader,
+        // as current header is first to check, not possible as
+        // duplicate to remove
+        // For fakeHeader setup check on
+        // https://leetcode.com/problems/remove-linked-list-elements/?tab=Description
         ListNode iterator = head;
         while(iterator != null) {
             if(iterator.next == null) {
