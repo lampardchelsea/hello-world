@@ -23,3 +23,4 @@
 <p>1. [Method to calculate length on both linkedlists] (https://discuss.leetcode.com/topic/5492/concise-java-solution-o-1-memory-o-n-time)
 <p>2. [My accepted simple and shortest C++ code with comments explaining the algorithm] (https://discuss.leetcode.com/topic/5527/my-accepted-simple-and-shortest-c-code-with-comments-explaining-the-algorithm-any-comments-or-improvements/2)
 <p>3. [Java solution without knowing the difference in len!] (https://discuss.leetcode.com/topic/28067/java-solution-without-knowing-the-difference-in-len/2)
+<p>4. [Intersection of Two Linked Lists 解题报告] (http://www.cnblogs.com/yuzhangcmu/p/4128794.html)
