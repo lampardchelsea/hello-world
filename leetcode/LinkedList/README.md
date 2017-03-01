@@ -18,3 +18,8 @@
 <p>Remove Linked List Elements
 <p>1. [LeetCode – Remove Linked List Elements (Java)] (http://www.programcreek.com/2014/04/leetcode-remove-linked-list-elements-java/)
 <p>2. [AC Java solution] (https://discuss.leetcode.com/topic/12725/ac-java-solution)
+
+<p>Intersection of Two Linked Lists
+<p>1. [Method to calculate length on both linkedlists] (https://discuss.leetcode.com/topic/5492/concise-java-solution-o-1-memory-o-n-time)
+<p>2. [My accepted simple and shortest C++ code with comments explaining the algorithm] (https://discuss.leetcode.com/topic/5527/my-accepted-simple-and-shortest-c-code-with-comments-explaining-the-algorithm-any-comments-or-improvements/2)
+<p>3. [Java solution without knowing the difference in len!] (https://discuss.leetcode.com/topic/28067/java-solution-without-knowing-the-difference-in-len/2)
