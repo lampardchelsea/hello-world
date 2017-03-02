@@ -7,6 +7,7 @@
  * http://algorithms.tutorialhorizon.com/reverse-a-linked-list/
  * http://algorithms.tutorialhorizon.com/reverse-a-linked-list-part-2/
  * http://stackoverflow.com/questions/354875/reversing-a-linked-list-in-java-recursively
+ * http://www.java2blog.com/2014/07/how-to-reverse-linked-list-in-java.html
  */
 public class ReverseLinkedList {
 	private class ListNode {
