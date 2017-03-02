@@ -24,3 +24,11 @@
 <p>2. [My accepted simple and shortest C++ code with comments explaining the algorithm] (https://discuss.leetcode.com/topic/5527/my-accepted-simple-and-shortest-c-code-with-comments-explaining-the-algorithm-any-comments-or-improvements/2)
 <p>3. [Java solution without knowing the difference in len!] (https://discuss.leetcode.com/topic/28067/java-solution-without-knowing-the-difference-in-len/2)
 <p>4. [Intersection of Two Linked Lists 解题报告] (http://www.cnblogs.com/yuzhangcmu/p/4128794.html)
+
+<p>Reverse Linked List
+<p>1. [Iterative & Recursive Way Reverse Linked List LeetCode Article] (https://leetcode.com/articles/reverse-linked-list/)
+<p>2. [Iterative explanation] (http://algorithms.tutorialhorizon.com/reverse-a-linked-list/)
+<p>3. [Recursive explanation] (http://algorithms.tutorialhorizon.com/reverse-a-linked-list-part-2/)
+<p>4. [Reversing a linked list in Java, recursively
+] (http://stackoverflow.com/questions/354875/reversing-a-linked-list-in-java-recursively)
+<p>5. [Best explaination on removing circle] (http://www.java2blog.com/2014/07/how-to-reverse-linked-list-in-java.html)
