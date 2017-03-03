@@ -37,6 +37,10 @@
 <p>1. [Traverse with two pointers or counter] (http://www.geeksforgeeks.org/write-a-c-function-to-print-the-middle-of-the-linked-list/)
 
 <p>Palindrome Linked List
-<p>
+<p>1. [Java, easy to understand] (https://discuss.leetcode.com/topic/33376/java-easy-to-understand)
+<p>2. [Function to check if a singly linked list is palindrome] (http://www.geeksforgeeks.org/function-to-check-if-a-singly-linked-list-is-palindrome/)
+
+
+
 
 
