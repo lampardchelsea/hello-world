@@ -36,6 +36,7 @@
 <p>Find the middle of a given linked list
 <p>1. [Traverse with two pointers or counter] (http://www.geeksforgeeks.org/write-a-c-function-to-print-the-middle-of-the-linked-list/)
 
-
+<p>Palindrome Linked List
+<p>
 
 
