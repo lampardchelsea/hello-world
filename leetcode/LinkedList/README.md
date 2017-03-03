@@ -32,3 +32,10 @@
 <p>4. [Reversing a linked list in Java, recursively
 ] (http://stackoverflow.com/questions/354875/reversing-a-linked-list-in-java-recursively)
 <p>5. [Best explaination on removing circle] (http://www.java2blog.com/2014/07/how-to-reverse-linked-list-in-java.html)
+
+<p>Find the middle of a given linked list
+<p>1. [Traverse with two pointers or counter] (http://www.geeksforgeeks.org/write-a-c-function-to-print-the-middle-of-the-linked-list/)
+
+
+
+
