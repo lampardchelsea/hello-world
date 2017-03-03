@@ -44,6 +44,10 @@ public class FindMiddleOfLinkedList {
 	}
 	
 	// Method 2: Two pointers traverse
+	// Important: This method not handle one case, if the original list
+	// length is only 2 (head itself and its next), we cannot pass while 
+	// condition check and will not return what we need as walker.next
+	// e.g [1, 2], we expect 2, but return as 1
 	public ListNode findMiddle2(ListNode head) {
 		if(head == null) {
 			return head;
