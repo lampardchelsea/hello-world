@@ -7,6 +7,7 @@
  * Could you do it in O(n) time and O(1) space ?
  * 
  * Refer to
+ * https://discuss.leetcode.com/topic/33376/java-easy-to-understand
  * http://www.geeksforgeeks.org/function-to-check-if-a-singly-linked-list-is-palindrome/
  * This method takes O(n) time and O(1) extra space.
  * 1) Get the middle of the linked list.
