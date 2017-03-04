@@ -40,7 +40,9 @@
 <p>1. [Java, easy to understand] (https://discuss.leetcode.com/topic/33376/java-easy-to-understand)
 <p>2. [Function to check if a singly linked list is palindrome] (http://www.geeksforgeeks.org/function-to-check-if-a-singly-linked-list-is-palindrome/)
 
-
+<p>Merge Two Sorted Lists
+<p>1. [Merge two sorted linked lists 2 solutions] (http://www.geeksforgeeks.org/merge-two-sorted-linked-lists/)
+<p>2. [Recursive solution] (https://discuss.leetcode.com/topic/5513/my-recursive-way-to-solve-this-problem-java-easy-understanding/2)
 
 
 
