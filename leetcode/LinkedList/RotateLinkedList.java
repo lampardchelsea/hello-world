@@ -1,7 +1,9 @@
 /**
  * Refer to
  * https://leetcode.com/problems/rotate-list/?tab=Description
- *
+ * 
+ * Refer to
+ * http://www.geeksforgeeks.org/rotate-a-linked-list/
  */
 public class RotateLinkedList {
     private class ListNode {
