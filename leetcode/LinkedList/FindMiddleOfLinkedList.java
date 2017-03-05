@@ -53,6 +53,8 @@ public class FindMiddleOfLinkedList {
 		//	return head;
 		//}
 		// Solve above issue
+		// Refer to
+		// http://www.cnblogs.com/springfor/p/3869372.html
 		if(head == null || head.next == null) {
 			return head;
 		}
