@@ -35,6 +35,7 @@
 
 <p>Find the middle of a given linked list
 <p>1. [Traverse with two pointers or counter] (http://www.geeksforgeeks.org/write-a-c-function-to-print-the-middle-of-the-linked-list/)
+<p>2. [Fix problem in two pointers solution] (http://www.cnblogs.com/springfor/p/3869372.html)
 
 <p>Palindrome Linked List
 <p>1. [Java, easy to understand] (https://discuss.leetcode.com/topic/33376/java-easy-to-understand)
