@@ -44,5 +44,6 @@
 <p>1. [Merge two sorted linked lists 2 solutions] (http://www.geeksforgeeks.org/merge-two-sorted-linked-lists/)
 <p>2. [Recursive solution] (https://discuss.leetcode.com/topic/5513/my-recursive-way-to-solve-this-problem-java-easy-understanding/2)
 
-
+<P>Rotate Linked List
+<p>1. [Rotate a Linked List] (http://www.geeksforgeeks.org/rotate-a-linked-list/)
 
