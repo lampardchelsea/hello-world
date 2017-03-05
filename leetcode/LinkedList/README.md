@@ -48,3 +48,8 @@
 <P>Rotate Linked List
 <p>1. [Rotate a Linked List] (http://www.geeksforgeeks.org/rotate-a-linked-list/)
 
+<p>Sort List
+<p>1. [Java merge sort solution] (https://discuss.leetcode.com/topic/18100/java-merge-sort-solution)
+<p>2. [Sort List leetcode java] (http://www.cnblogs.com/springfor/p/3869372.html)
+
+
