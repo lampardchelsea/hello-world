@@ -49,7 +49,11 @@ public class FindMiddleOfLinkedList {
 	// condition check and will not return what we need as walker.next
 	// e.g [1, 2], we expect 2, but return as 1
 	public ListNode findMiddle2(ListNode head) {
-		if(head == null) {
+		//if(head == null) {
+		//	return head;
+		//}
+		// Solve above issue
+		if(head == null || head.next == null) {
 			return head;
 		}
 		ListNode walker = head;
