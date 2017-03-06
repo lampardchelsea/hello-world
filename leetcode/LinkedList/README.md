@@ -52,4 +52,9 @@
 <p>1. [Java merge sort solution] (https://discuss.leetcode.com/topic/18100/java-merge-sort-solution)
 <p>2. [Sort List leetcode java] (http://www.cnblogs.com/springfor/p/3869372.html)
 
+<p>Insertion Sort List
+<p>1. [Insertion Sort List Leetcode java] (http://www.cnblogs.com/springfor/p/3862468.html)
+<p>2. [An easy and clear way to sort ( O(1) space )] (https://discuss.leetcode.com/topic/8570/an-easy-and-clear-way-to-sort-o-1-space/23)
+
+
 
