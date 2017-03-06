@@ -7,7 +7,6 @@
  * http://algorithms.tutorialhorizon.com/reverse-a-linked-list/
  * http://algorithms.tutorialhorizon.com/reverse-a-linked-list-part-2/
  * http://stackoverflow.com/questions/354875/reversing-a-linked-list-in-java-recursively
- * http://www.java2blog.com/2014/07/how-to-reverse-linked-list-in-java.html
  */
 public class ReverseLinkedList {
 	private class ListNode {
@@ -82,7 +81,33 @@ public class ReverseLinkedList {
     	head.next = null;
     	return p;
     }
-  
+    
+    /**
+     * Solution 3: Iterative with dummy node
+     * Refer to
+     * https://leetcode.com/problems/reverse-linked-list-ii/?tab=Description
+     * This solution compare to Solution 1 is more generic, for detail check on
+     * http://www.cnblogs.com/springfor/p/3864303.html
+     * https://discuss.leetcode.com/topic/8976/simple-java-solution-with-clear-explanation/2
+     */
+    public ListNode reverseList3(ListNode head) {
+        if(head == null || head.next == null) {
+            return head;
+        }
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode pre = dummy;
+        ListNode start = pre.next;
+        ListNode then = start.next;
+        while(start.next != null) {
+            start.next = then.next;
+            then.next = pre.next;
+            pre.next = then;
+            then = start.next;
+        }
+        return dummy.next;
+    }
+    
     public static void main(String[] args) {
     	ReverseLinkedList r = new ReverseLinkedList();
     	ListNode one = r.new ListNode(1);
@@ -92,6 +117,6 @@ public class ReverseLinkedList {
     	two.next = three;
     	ListNode result = r.reverseList2(one);
     	System.out.println(result.val);
-    }  
+    }
+    
 }
-
