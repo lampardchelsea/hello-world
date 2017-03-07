@@ -60,7 +60,8 @@
 <p>1. [Reverse Linked List II leetcode java] (http://www.cnblogs.com/springfor/p/3864303.html)
 <p>2. [Simple Java solution with clear explanation] (https://discuss.leetcode.com/topic/8976/simple-java-solution-with-clear-explanation)
 
-
+<p>Reorder Linked List
+<p>1. [Java solution with 3 steps] (https://discuss.leetcode.com/topic/13869/java-solution-with-3-steps)
 
 
 
