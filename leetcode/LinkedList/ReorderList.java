@@ -65,9 +65,6 @@ public class ReorderList {
         	// (e.g in first loop, walker.next = 5, p2 update from 6 to 5)
         	p2 = walker.next;
         }
-        
-        @SuppressWarnings("unused")
-		ListNode one = new ListNode(-1);
     }
 	
 	public static void main(String[] args) {
