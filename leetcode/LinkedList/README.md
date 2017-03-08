@@ -63,5 +63,10 @@
 <p>Reorder Linked List
 <p>1. [Java solution with 3 steps] (https://discuss.leetcode.com/topic/13869/java-solution-with-3-steps)
 
+<p>Copy List with Random Pointer
+<p>1. [A solution with constant space complexity O(1) and linear time complexity O(N)] (https://discuss.leetcode.com/topic/7594/a-solution-with-constant-space-complexity-o-1-and-linear-time-complexity-o-n)
+<p>2. [Copy List with Random Pointer leetcode java] (http://www.cnblogs.com/springfor/p/3864457.html)
+
+
 
 
