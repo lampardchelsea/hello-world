@@ -44,23 +44,40 @@ public class FindMiddleOfLinkedList {
 	}
 	
 	// Method 2: Two pointers traverse
-	// Important: This method not handle one case, if the original list
-	// length is only 2 (head itself and its next), we cannot pass while 
-	// condition check and will not return what we need as walker.next
-	// e.g [1, 2], we expect 2, but return as 1
 	public ListNode findMiddle2(ListNode head) {
-		//if(head == null) {
-		//	return head;
-		//}
-		// Solve above issue
-		// Refer to
-		// http://www.cnblogs.com/springfor/p/3869372.html
-		if(head == null || head.next == null) {
+		if(head == null) {
 			return head;
 		}
 		ListNode walker = head;
 		ListNode runner = head;
-		while(runner.next != null && runner.next.next != null) {
+		while(runner != null && runner.next != null) {
+			walker = walker.next;
+			runner = runner.next.next;
+		}
+		return walker;
+	}
+	
+	// Method 3: Two pointers traverse with tail condition check(not null)
+	public ListNode findMiddle3(ListNode head) {
+		if(head == null) {
+			return head;
+		}
+		ListNode walker = head;
+		ListNode runner = head;
+		ListNode tail = head;
+		// Find the tail of linked list 
+		// (condition is node.next point to null)
+		while(tail.next != null) {
+			tail = tail.next;
+		}
+		// This is the same way as 
+		// while(runner != null && runner.next != null)
+		// and used with first get tail as a combination will
+		// help on more general cases, e.g Convert Sorted List to Binary Search Tree
+		// if use preorder way to convert, we need to recursively find mid node
+		// with given start node and end node
+		// https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/?tab=Description
+		while(runner != tail.next && runner.next != tail.next) {
 			walker = walker.next;
 			runner = runner.next.next;
 		}
@@ -75,16 +92,16 @@ public class FindMiddleOfLinkedList {
 		ListNode four = f.new ListNode(4);
 		ListNode five = f.new ListNode(5);
 		ListNode six = f.new ListNode(6);
-		ListNode seven = f.new ListNode(7);
+		//ListNode seven = f.new ListNode(7);
 		one.next = two;
 		two.next = three;
 		three.next = four;
 		four.next = five;
 		five.next = six;
-		six.next = seven;
+		//six.next = seven;
 //		int result = f.findMiddle(one).val;
-		int result = f.findMiddle2(one).val;
+//		int result = f.findMiddle2(one).val;
+		int result = f.findMiddle3(one).val;
 		System.out.println(result);
 	}
 }
-
