@@ -100,7 +100,7 @@ public class ConvertSortedListToBinarySearchTree {
 //        return parent;
 //    } 
 	
-	// Right Solution 1:
+	// Right Solution 1: Inorder traverse to construct BST
     private ListNode node;
     public TreeNode sortedListToBST(ListNode head) {
         if(head == null) {
@@ -148,16 +148,51 @@ public class ConvertSortedListToBinarySearchTree {
         return root;
     } 
 	
+    // Right Solution 2: Preorder traverse to construct BST
+    public TreeNode sortedListToBST2(ListNode head) {
+    	if(head == null) {
+    		return null;
+    	}
+    	// Pass into end node as null
+    	return preorderSortedListToBST(head, null);
+    }
+    
+    public TreeNode preorderSortedListToBST(ListNode start, ListNode end) {
+        ListNode walker = start;
+        ListNode runner = start;
+        // Base Case
+        if(start == end) {
+            return null;
+        }
+        // Find mid node
+        // Be careful, the check condition should NOT be
+        // while(runner.next != end && runner.next.next != end)
+        // also, the initial ListNode 'end' passed into should be 'null'
+        // Refer to FindMiddleOfLinkedList
+        // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/FindMiddleOfLinkedList.java
+        while(runner != end && runner.next != end) {
+            walker = walker.next;
+            runner = runner.next.next;
+        }
+        // Set mid node as tree root
+        TreeNode root = new TreeNode(walker.val);
+        root.left = preorderSortedListToBST(start, walker);
+        root.right = preorderSortedListToBST(walker.next, end);
+        return root;
+    } 
+    
     
     public static void main(String[] args) {
     	ConvertSortedListToBinarySearchTree c = new ConvertSortedListToBinarySearchTree();
     	ListNode three = c.new ListNode(3);
     	ListNode five = c.new ListNode(5);
     	ListNode eight = c.new ListNode(8);
+    	//ListNode ten = c.new ListNode(10);
     	three.next = five;
     	five.next = eight;
-    	TreeNode result = c.sortedListToBST(three);
+    	//eight.next = ten;
+//    	TreeNode result = c.sortedListToBST(three);
+    	TreeNode result = c.sortedListToBST2(three);
     	System.out.println(result.val);
     }
 }
-
