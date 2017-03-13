@@ -35,6 +35,22 @@ public class PartitionList {
         ListNode itr = head;
         ListNode itr1 = dummy1;
         ListNode itr2 = dummy2;
+	
+	// Wrong way as not cut off connection when pick up candidate node
+	// will encounter Time Limit Exceeded(TLE) issue
+	// while(itr != null) {
+        // 	//ListNode nextTemp = itr.next;
+        // 	//itr.next = null;
+        //     if(itr.val < x) {
+        //         itr1.next = itr;
+        //         itr1 = itr1.next;
+        //     } else {
+        //         itr2.next = itr;
+        //         itr2 = itr2.next;
+        //     }
+        //     //itr = nextTemp;
+        //     itr = itr.next;
+        // }
         while(itr != null) {
         	// Important Point: Cut off a node as candidate,
         	// but have to store its connection for next loop,
