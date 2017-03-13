@@ -74,7 +74,8 @@
 <p>4. [Convert Sorted List to Balanced Binary Search Tree (BST)] (http://articles.leetcode.com/convert-sorted-list-to-balanced-binary/)
 <p>5. [Preorder Solution: Share my JAVA solution, 1ms, very short and concise] (https://discuss.leetcode.com/topic/35997/share-my-java-solution-1ms-very-short-and-concise)
 
-
+<p>Partition List
+<p>1. [Concise java code with explanation, one pass] (https://discuss.leetcode.com/topic/7795/concise-java-code-with-explanation-one-pass)
 
 
 
