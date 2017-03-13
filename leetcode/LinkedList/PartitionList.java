@@ -8,6 +8,8 @@
  * Given 1->4->3->2->5->2 and x = 3,
  * return 1->2->2->4->3->5.
  * 
+ * Implement this as same idea on
+ * https://discuss.leetcode.com/topic/7795/concise-java-code-with-explanation-one-pass
  */
 public class PartitionList {
 	private class ListNode {
