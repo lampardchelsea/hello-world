@@ -77,6 +77,8 @@
 <p>Partition List
 <p>1. [Concise java code with explanation, one pass] (https://discuss.leetcode.com/topic/7795/concise-java-code-with-explanation-one-pass)
 
-
+<p>Remove Duplicates From Sorted List II
+<p>1. [Remove Duplicates from Sorted List II leetcode java] (http://www.cnblogs.com/springfor/p/3862077.html)
+<p>2. [My accepted Java code] (https://discuss.leetcode.com/topic/3890/my-accepted-java-code)
 
 
