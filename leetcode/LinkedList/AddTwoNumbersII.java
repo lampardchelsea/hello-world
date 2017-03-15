@@ -11,6 +11,7 @@
  * Input: (7 -> 2 -> 4 -> 3) + (5 -> 6 -> 4)
  * Output: 7 -> 8 -> 0 -> 7
  */
+// Solution 1: Reverse list
 public class AddTwoNumbersII {
 	private class ListNode {
 		int val;
@@ -89,3 +90,64 @@ public class AddTwoNumbersII {
     }
 }
 
+// Solution 2: Use 3 stacks
+// Refer to
+// https://discuss.leetcode.com/topic/65279/easy-o-n-java-solution-using-stack
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        Stack<Integer> s1 = new Stack<Integer>();
+        Stack<Integer> s2 = new Stack<Integer>();
+        Stack<Integer> s = new Stack<Integer>();
+        while(l1 != null) {
+            s1.push(l1.val);
+            l1 = l1.next;
+        }
+        while(l2 != null) {
+            s2.push(l2.val);
+            l2 = l2.next;
+        }
+        ListNode dummy = new ListNode(-1);
+        ListNode itr = dummy;
+        int temp = 0;
+        while(!s1.empty() || !s2.empty()) {
+            temp = temp / 10;
+            if(!s1.empty()) {
+                temp += s1.pop();
+            }
+            if(!s2.empty()) {
+                temp += s2.pop();
+            }
+            // Important, as using two stacks, we are adding
+            // two least significant numbers first, but for
+            // result must come with most significant digit
+            // first, we have to either use stack or trickily
+            // appending result list from dummy as end(not as
+            // head as normal)
+            //itr.next = new ListNode(temp % 10);
+            //itr = itr.next;
+            s.push(temp % 10);
+        }
+        // if(temp / 10 == 1) {
+        //     itr.next = new ListNode(1);
+        // }
+        if(temp / 10 == 1) {
+            s.push(1);
+        }
+        while(!s.empty()) {
+            itr.next = new ListNode(s.pop());
+            itr = itr.next;
+        }
+        return dummy.next;
+    }
+}
+
+
+// Solution 3:
