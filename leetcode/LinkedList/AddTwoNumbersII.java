@@ -93,6 +93,16 @@ public class AddTwoNumbersII {
 // Solution 2: Use 3 stacks
 // Refer to
 // https://discuss.leetcode.com/topic/65279/easy-o-n-java-solution-using-stack
+// http://www.cnblogs.com/grandyang/p/6216480.html
+/**
+ * 这道题是之前那道Add Two Numbers的拓展，我们可以看到这道题的最高位在链表首位置，如果我们给链表翻转一下的话就跟之前
+ * 的题目一样了，这里我们来看一些不修改链表顺序的方法。由于加法需要从最低位开始运算，而最低位在链表末尾，链表只能从前
+ * 往后遍历，没法取到前面的元素，那怎么办呢？我们可以利用栈来保存所有的元素，然后利用栈的后进先出的特点就可以从后往前
+ * 取数字了，我们首先遍历两个链表，将所有数字分别压入两个栈s1和s2中，我们建立一个值为0的res节点，然后开始循环，如果
+ * 栈不为空，则将栈顶数字加入sum中，然后将res节点值赋为sum%10，然后新建一个进位节点head，赋值为sum/10，如果没有进位，
+ * 那么就是0，然后我们head后面连上res，将res指向head，这样循环退出后，我们只要看res的值是否为0，为0返回res->next，
+ * 不为0则返回res即可
+*/
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -148,6 +158,3 @@ public class Solution {
         return dummy.next;
     }
 }
-
-
-// Solution 3:
