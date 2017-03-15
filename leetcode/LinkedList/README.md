@@ -81,4 +81,10 @@
 <p>1. [Remove Duplicates from Sorted List II leetcode java] (http://www.cnblogs.com/springfor/p/3862077.html)
 <p>2. [My accepted Java code] (https://discuss.leetcode.com/topic/3890/my-accepted-java-code)
 
+<p>Add Two Numbers
+<p>1. [Is this Algorithm optimal or what?] (https://discuss.leetcode.com/topic/799/is-this-algorithm-optimal-or-what/2)
+
+
+
+
 
