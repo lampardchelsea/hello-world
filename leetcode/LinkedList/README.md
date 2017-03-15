@@ -89,6 +89,9 @@
 <p>1. [Add Two Numbers] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/AddTwoNumbers.java)
 <p>2. [Reverse Linked List] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/ReverseLinkedList.java)
 
+<p>Odd Even Linked List
+<p>1. [Odd Even Linked List 奇偶链表] (http://www.cnblogs.com/grandyang/p/5138936.html)
+<p>2. [Simple O(N) time, O(1), space Java solution] (https://discuss.leetcode.com/topic/34292/simple-o-n-time-o-1-space-java-solution)
 
 
 
