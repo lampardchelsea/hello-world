@@ -158,3 +158,69 @@ public class Solution {
         return dummy.next;
     }
 }
+
+// Solution 3: No need to use 3 stacks, just use 2 stacks
+// and continously insert new head before old head to
+// construct the final linked list
+// Refer to
+// https://discuss.leetcode.com/topic/65279/easy-o-n-java-solution-using-stack
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        Stack<Integer> s1 = new Stack<Integer>();
+        Stack<Integer> s2 = new Stack<Integer>();
+
+        while(l1 != null) {
+            s1.push(l1.val);
+            l1 = l1.next;
+        }
+        while(l2 != null) {
+            s2.push(l2.val);
+            l2 = l2.next;
+        }
+
+        int temp = 0;
+        // Create a dummy old head as null for this case 
+        // (as repeatly adding new head before the old head)
+        ListNode oldHead = null;
+        ListNode itr = oldHead;
+        ListNode newHead;
+        while(!s1.empty() || !s2.empty()) {
+            temp = temp / 10;
+            if(!s1.empty()) {
+                temp += s1.pop();
+            }
+            if(!s2.empty()) {
+                temp += s2.pop();
+            }
+            // Important, as using two stacks, we are adding
+            // two least significant numbers first, but for
+            // result must come with most significant digit
+            // first, we have to either use stack or trickily
+            // appending result list from dummy as end(not as
+            // head as normal)
+            //itr.next = new ListNode(temp % 10);
+            //itr = itr.next;
+            newHead = new ListNode(temp % 10);
+            // Insert before old tail
+            newHead.next = itr;
+            // Update pointer from old tail to new tail
+            itr = newHead;
+        }
+        if(temp / 10 == 1) {
+            newHead = new ListNode(1);
+            newHead.next = itr;
+            itr = newHead;
+        }
+        return itr;
+    }
+
+}
+
