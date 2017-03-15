@@ -85,6 +85,13 @@
 <p>1. [Is this Algorithm optimal or what?] (https://discuss.leetcode.com/topic/799/is-this-algorithm-optimal-or-what/2)
 <p>2. [Add Two Numbers 链表数相加] (https://segmentfault.com/a/1190000002986101)
 
+<p>Add Two Numbers II
+<p>1. [Add Two Numbers] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/AddTwoNumbers.java)
+<p>2. [Reverse Linked List] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/ReverseLinkedList.java)
+
+
+
+
 
 
 
