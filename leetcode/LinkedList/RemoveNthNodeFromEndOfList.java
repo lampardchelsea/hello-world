@@ -66,3 +66,56 @@ public class RemoveNthNodeFromEndOfList {
     	//System.out.println(result.val);
     }
 }
+
+
+
+// Solution 2:
+// Refer to
+// https://leetcode.com/articles/remove-nth-node-end-list/
+// https://discuss.leetcode.com/topic/7031/simple-java-solution-in-one-pass
+/**
+ * The above algorithm could be optimized to one pass. Instead of one pointer, we could use two pointers. 
+ * The first pointer advances the list by n+1n+1 steps from the beginning, while the second pointer starts 
+ * from the beginning of the list. Now, both pointers are exactly separated by nn nodes apart. We maintain 
+ * this constant gap by advancing both pointers together until the first pointer arrives past the last node. 
+ * The second pointer will be pointing at the nnth node counting from the last. We relink the next pointer 
+ * of the node referenced by the second pointer to point to the node's next next node.
+*/
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        if(head == null) {
+            return null;
+        }
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode walker = dummy;
+        ListNode runner = dummy;
+        // If runner ahead (n + 1) positions of walker,
+        // it will move forward about length + 1 - (n + 1)
+        // = length - n steps to reach past of last node
+        // as null, and we move forward walker and runner
+        // pointers at the same pace, then walker will
+        // also move length - n steps forward, which will
+        // be n steps to away from end
+        int steps = n + 1;
+        while(steps > 0) {
+            runner = runner.next;
+            steps--;
+        }
+        while(runner != null) {
+            walker = walker.next;
+            runner = runner.next;
+        }
+        walker.next = walker.next.next;
+        return dummy.next;
+    }
+    
+}
