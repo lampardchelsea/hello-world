@@ -52,16 +52,32 @@ public class SwapNodesInPairs {
         return dummy.next;   
     }
     
+    // Solution 2: Recursive with additional stack space usage caused by recursion
+    // Refer to
+    // https://discuss.leetcode.com/topic/4351/my-accepted-java-code-used-recursion
+    public ListNode swapPairs2(ListNode head) {
+        if(head == null || head.next == null) {
+            return head;
+        }
+        ListNode newHead = head.next;
+        // Below statements order should not reverse
+        head.next = swapPairs2(head.next.next);
+        newHead.next = head;
+        return newHead;
+    }
+    
+    
     public static void main(String[] args) {
     	SwapNodesInPairs s = new SwapNodesInPairs();
     	ListNode one = s.new ListNode(1);
     	ListNode two = s.new ListNode(2);
-    	ListNode three = s.new ListNode(3);
-    	ListNode four = s.new ListNode(4);
+//    	ListNode three = s.new ListNode(3);
+//    	ListNode four = s.new ListNode(4);
     	one.next = two;
-    	two.next = three;
-    	three.next = four;
-    	ListNode result = s.swapPairs(one);
+//    	two.next = three;
+//    	three.next = four;
+//    	ListNode result = s.swapPairs(one);
+    	ListNode result = s.swapPairs2(one);
     	System.out.println(result.val);
     }
 }
