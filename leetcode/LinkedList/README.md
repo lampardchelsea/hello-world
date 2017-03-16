@@ -93,8 +93,10 @@
 <p>1. [Odd Even Linked List 奇偶链表] (http://www.cnblogs.com/grandyang/p/5138936.html)
 <p>2. [Simple O(N) time, O(1), space Java solution] (https://discuss.leetcode.com/topic/34292/simple-o-n-time-o-1-space-java-solution)
 
-
-
+<p>Swap Nodes In Pairs
+<p>1. [Iterative and use constant space] (https://discuss.leetcode.com/topic/10649/my-simple-java-solution-for-share/5)
+<p>2. [Recursive with additional stack space usage caused by recursion] (https://discuss.leetcode.com/topic/4351/my-accepted-java-code-used-recursion)
+<p>3. [三指针法] (https://segmentfault.com/a/1190000003884214)
 
 
 
