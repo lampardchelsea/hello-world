@@ -24,6 +24,7 @@ public class RemoveNthNodeFromEndOfList {
 		}
 	}
 	
+	// Solution 1: Two pass solution
     public ListNode removeNthFromEnd(ListNode head, int n) {
     	// Be careful, as may delete the only head node,
     	// no set for 'head.next == null' case
