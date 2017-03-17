@@ -91,7 +91,11 @@ public class ReverseLinkedListII {
         for(int i = 0; i < m - 1; i++) {
         	itr = itr.next;
         }
-        // Make a pointer 'pre' as a marker for the node before reversing
+        // Make a pointer 'pre' as a marker for the node before reversing section
+	// Actually, we can direclty use 'itr' either, without set up a 'pre' to
+	// separately declare the same thing again, refer to
+	// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/ReverseNodesInKGroup.java
+        // http://www.cnblogs.com/lichen782/p/leetcode_Reverse_Nodes_in_kGroup.html
         ListNode pre = itr;
         // A pointer to the beginning of a sub-list that will be reversed
         ListNode start = pre.next;
