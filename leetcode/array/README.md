@@ -51,7 +51,8 @@
 <p>Combinations Of Subset Of Size K From Given Array
 <p>1. [Print All Combinations of subset of size K from Given Array] (http://algorithms.tutorialhorizon.com/print-all-combinations-of-subset-of-size-k-from-given-array/)
 
-
+<p>Search Insert Position
+<p>1. [C++ O(logn) Binary Search that handles duplicate] (https://discuss.leetcode.com/topic/15955/c-o-logn-binary-search-that-handles-duplicate/2)
 
 
 
