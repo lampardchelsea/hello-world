@@ -182,6 +182,49 @@
   * care magnitude, it just care whether result is positive or negative. While comparing two integral fields you can use subtraction 
   * if you are absolutely sure that both operands are positive integer or more precisely there different must be less than Integer.MAX_VALUE. 
   * In this case there will be no overflow and your compareTo will be concise and faster.
+  *
+  * Note 5: Calculating mid in binary search
+  * http://stackoverflow.com/questions/6735259/calculating-mid-in-binary-search
+  * https://research.googleblog.com/2006/06/extra-extra-read-all-about-it-nearly.html
+  * So what's the bug? Here's a standard binary search, in Java. (It's one that I wrote for the java.util.Arrays):
+	1:     public static int binarySearch(int[] a, int key) {
+	2:         int low = 0;
+	3:         int high = a.length - 1;
+	4:
+	5:         while (low <= high) {
+	6:             int mid = (low + high) / 2;
+	7:             int midVal = a[mid];
+	8:
+	9:             if (midVal < key)
+	10:                 low = mid + 1
+	11:             else if (midVal > key)
+	12:                 high = mid - 1;
+	13:             else
+	14:                 return mid; // key found
+	15:         }
+	16:         return -(low + 1);  // key not found.
+	17:     }
+   * The bug is in this line:
+ 	6:             int mid =(low + high) / 2;
+   * In Programming Pearls Bentley says that the analogous line "sets m to the average of l and u, 
+   * uncated down to the nearest integer." On the face of it, this assertion might appear correct, 
+   * but it fails for large values of the int variables low and high. Specifically, it fails if 
+   * the sum of low and high is greater than the maximum positive int value ((2)31 - 1). The sum 
+   * overflows to a negative value, and the value stays negative when divided by two. In C this 
+   * causes an array index out of bounds with unpredictable results. 
+   * In Java, it throws ArrayIndexOutOfBoundsException.
+   * This bug can manifest itself for arrays whose length (in elements) is (2)30 or greater 
+   * (roughly a billion elements). This was inconceivable back in the '80s, when Programming Pearls 
+   * was written, but it is common these days at Google and other places. In Programming Pearls, 
+   * Bentley says "While the first binary search was published in 1946, the first binary search 
+   * that works correctly for all values of n did not appear until 1962." The truth is, very few 
+   * correct versions have ever been published, at least in mainstream programming languages.
+   * So what's the best way to fix the bug? Here's one way:
+        6:             int mid = low + ((high - low) / 2);
+   * Probably faster, and arguably as clear is:
+        6:             int mid = (low + high) >>> 1; 
+   * In C and C++ (where you don't have the >>> operator), you can do this:
+        6:             mid = ((unsigned int)low + (unsigned int)high)) >> 1;
  */
 import java.util.Arrays;
 
