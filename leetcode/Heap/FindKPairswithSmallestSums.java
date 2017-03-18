@@ -281,7 +281,8 @@ public class FindKPairswithSmallestSums {
         }
         
         public boolean greater(int v, int w) {
-            return pq[v].sum - pq[w].sum > 0;
+//             return pq[v].sum - pq[w].sum > 0;
+	     return pq[v].sum > pq[w].sum;
         }
         
         public void exch(int v, int w) {
@@ -299,6 +300,13 @@ public class FindKPairswithSmallestSums {
     	FindKPairswithSmallestSums f = new FindKPairswithSmallestSums();
     	int[] nums1 = {1, 7, 11, 16};
     	int[] nums2 = {2, 9, 10, 15};
+	// Consider what happend on here add one test case
+	// The wrong format here can be check with below input
+	// int[][] matrix = {{-2147483648, 5, 9}, {10, 11, 13}, {12, 13, 15}};
+	// Refer to
+	// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/ThirdMaximumNumber.java
+	//int[] nums1 = {7, 11, 16, 2147483647};
+    	//int[] nums2 = {1, 9, 10, 15};
     	int k = 4;
 //    	int[] nums1 = {1, 1, 2};
 //    	int[] nums2 = {1, 2, 3};
