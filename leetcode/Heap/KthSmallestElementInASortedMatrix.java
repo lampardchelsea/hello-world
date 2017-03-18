@@ -97,6 +97,11 @@ public class KthSmallestElementInASortedMatrix {
     	
     	public boolean less(int m, int n) {
     		return pq[m] < pq[n];
+    		// The wrong format here can be check with below input
+    		// int[][] matrix = {{-2147483648, 5, 9}, {10, 11, 13}, {12, 13, 15}};
+    		// Refer to
+    		// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/ThirdMaximumNumber.java
+    		//return pq[m] - pq[n] < 0;
     	}
     	
     	public void exch(int m, int n) {
@@ -169,11 +174,12 @@ public class KthSmallestElementInASortedMatrix {
     
     
     public static void main(String[] args) {
-    	int[][] matrix = {{1, 5, 9}, {10, 11, 13}, {12, 13, 15}};
+    	//int[][] matrix = {{1, 5, 9}, {10, 11, 13}, {12, 13, 15}};
+    	int[][] matrix = {{-2147483648, 1, 9}, {10, 11, 13}, {12, 13, 15}};
     	int k = 8;
     	KthSmallestElementInASortedMatrix a = new KthSmallestElementInASortedMatrix();
-    	//int result = a.kthSmallest(matrix, k);
-    	int result = a.kthSmallest2(matrix, k);
+    	int result = a.kthSmallest(matrix, k);
+    	//int result = a.kthSmallest2(matrix, k);
     	System.out.println(result);
     	
     	// For testing on MaxPQ
