@@ -71,7 +71,14 @@ public class Solution {
         }
         
         public boolean less(int v, int w) {
-            return pq[v] - pq[w] < 0;
+            // The error prone format here
+            // return pq[v] - pq[w] < 0;
+            // but as this question will find the kth largest number, and -2147483648 is surely
+            // sit at the last position, so will not reflect problem here
+    		   // Refer to
+    		   // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/ThirdMaximumNumber.java
+            
+            return pq[v] < pq[w];
         }
     }
 }
