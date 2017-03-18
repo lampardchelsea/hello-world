@@ -85,7 +85,28 @@ public class MergekSortedLists {
         }
         
         public boolean greater(int v, int w) {
-            return pq[v].val - pq[w].val > 0;
+            //return pq[v].val - pq[w].val > 0;
+            /**
+             * Refer to
+             * http://stackoverflow.com/questions/12535095/java-integers-min-value-negative-then-compare
+             * The change on compare format is really tricky, the exception can be test by
+             * {-2147483648, 1, 1}, the first number -2147483648 actually the Integer.MIN_VALUE,
+             * if we use pq[v] - pq[w] = -2147483648 - 1, the result is 2147483647, which is
+             * Integer.MAX_VALUE, not satisfy < 0, which we expected. We need to change compare
+             * format to pq[v] < pq[w] without 'minus' operation
+             * 
+             * Similar problem happen on
+             * https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Heap/KthSmallestElementInASortedMatrix.java
+             * 
+             * So here we have test case with below
+             * If the full test case as , 
+				[[1, 4, 5], [-2147483648, 2, 3, 6]]
+				which suppose to return 
+				[-2147483648, 1, 2, 3, 4, 5, 6]
+				in error code above, it will return
+				[1, 4, 5, -2147483648, 2, 3, 6]
+             */
+        	return pq[v].val > pq[w].val;
         }
         
         public void exch(int v, int w) {
@@ -145,18 +166,21 @@ public class MergekSortedLists {
 	public static void main(String[] args) {
 		MergekSortedLists m = new MergekSortedLists();
 		// 1 --> 4 --> 5
-		// 2 --> 3 --> 6
+		// -2147483648 --> 2 --> 3 --> 6
+		ListNode special = m.new ListNode(-2147483648);
 		ListNode one = m.new ListNode(1);
 		ListNode two = m.new ListNode(2);
 		ListNode three = m.new ListNode(3);
 		ListNode four = m.new ListNode(4);
 		ListNode five = m.new ListNode(5);
 		ListNode six = m.new ListNode(6);
+		special.next = two;
 		one.next = four;
 		two.next = three;
 		four.next = five;
 		three.next = six;
-		ListNode[] lists = {one, two};		
+//		ListNode[] lists = {one, two};
+		ListNode[] lists = {one, special};
 		// For debug
 		//ListNode result = m.mergeKLists(lists);
 		ListIterator iterator = m.iterator(lists);
@@ -165,4 +189,3 @@ public class MergekSortedLists {
 		}
 	}
 }
-
