@@ -150,7 +150,17 @@ public class MedianFinder {
         }
         
         public boolean greater(int v, int w) {
-            return pq[v] - pq[w] > 0;
+	/**
+         * Refer to
+         * http://stackoverflow.com/questions/12535095/java-integers-min-value-negative-then-compare
+         * The change on compare format is really tricky, the exception can be test by
+         * {-2147483648, 1, 1}, the first number -2147483648 actually the Integer.MIN_VALUE,
+         * if we use pq[v] - pq[w] = -2147483648 - 1, the result is 2147483647, which is
+         * Integer.MAX_VALUE, not satisfy < 0, which we expected. We need to change compare
+         * format to pq[v] < pq[w] without 'minus' operation
+         */	
+//             return pq[v] - pq[w] > 0;
+	     return pq[v] > pq[w];
         }
         
         public void exch(int v, int w) {
@@ -372,7 +382,17 @@ public class MedianFinder {
         }
         
         public boolean less(int v, int w) {
-            return pq[v] - pq[w] < 0;
+         /**
+         * Refer to
+         * http://stackoverflow.com/questions/12535095/java-integers-min-value-negative-then-compare
+         * The change on compare format is really tricky, the exception can be test by
+         * {-2147483648, 1, 1}, the first number -2147483648 actually the Integer.MIN_VALUE,
+         * if we use pq[v] - pq[w] = -2147483648 - 1, the result is 2147483647, which is
+         * Integer.MAX_VALUE, not satisfy < 0, which we expected. We need to change compare
+         * format to pq[v] < pq[w] without 'minus' operation
+         */   
+//             return pq[v] - pq[w] < 0;
+	     return pq[v] < pq[w];
         }
         
         public void exch(int v, int w) {
@@ -460,7 +480,8 @@ public class MedianFinder {
         }
         
         public boolean greater(int v, int w) {
-            return pq[v] - pq[w] > 0;
+//             return pq[v] - pq[w] > 0;
+	     return pq[v] > pq[w];
         }
         
         public void exch(int v, int w) {
