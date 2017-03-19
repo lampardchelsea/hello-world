@@ -23,3 +23,38 @@ public class Solution {
         return a - sum;
     } 
 }
+
+
+// Solution 2: Binary Search
+// Refer to
+// https://discuss.leetcode.com/topic/23427/3-different-ideas-xor-sum-binary-search-java-code/26
+public class Solution {
+    public int missingNumber(int[] nums) {
+        // Refer to
+        // Will Arrays.sort() increase time complexity and space time complexity?
+        // http://stackoverflow.com/questions/22571586/will-arrays-sort-increase-time-complexity-and-space-time-complexity
+        Arrays.sort(nums);
+        int len = nums.length;
+        int lo = 0;
+        int hi = len - 1;
+        while(lo <= hi) {
+            /**
+             * Refer to
+             * https://discuss.leetcode.com/topic/23427/3-different-ideas-xor-sum-binary-search-java-code/33
+             * If the nums is already sorted, we can use binary search to find out the missing element.
+             * And the time complexity is O(logN), better than the XOR solution O(N).
+             * The logic behind the binary search solution is:
+             * If nums[index] > index, it means that something is missing on the left of the element.
+             * Therefore, we can discard the elements on the right, and focus on searching on the right 
+             * half of the array. 
+             */
+            int mid = lo + (hi - lo)/2;
+            if(nums[mid] > mid) {
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        return lo;
+    }
+}
