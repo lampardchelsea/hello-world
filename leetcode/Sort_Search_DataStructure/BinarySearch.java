@@ -183,7 +183,7 @@
   * if you are absolutely sure that both operands are positive integer or more precisely there different must be less than Integer.MAX_VALUE. 
   * In this case there will be no overflow and your compareTo will be concise and faster.
   *
-  * Note 5: Calculating mid in binary search
+  * Note 6: Calculating mid in binary search
   * http://stackoverflow.com/questions/6735259/calculating-mid-in-binary-search
   * https://research.googleblog.com/2006/06/extra-extra-read-all-about-it-nearly.html
   * So what's the bug? Here's a standard binary search, in Java. (It's one that I wrote for the java.util.Arrays):
