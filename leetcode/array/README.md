@@ -69,5 +69,6 @@ binary-search-java-code/29)
 <p>Two Sum II - Input array is sorted
 <p>1. [Share my java AC solution] (https://discuss.leetcode.com/topic/6229/share-my-java-ac-solution)
 
-
+<p>K-diff Pairs in an Array
+<p>1. [Java O(n) solution - one Hashmap, easy to understand] (https://discuss.leetcode.com/topic/81714/java-o-n-solution-one-hashmap-easy-to-understand)
 
