@@ -54,5 +54,13 @@
 <p>Search Insert Position
 <p>1. [C++ O(logn) Binary Search that handles duplicate] (https://discuss.leetcode.com/topic/15955/c-o-logn-binary-search-that-handles-duplicate/2)
 
+<p>Third Maximum Number
+<p>1. [Java Integers Min_Value negative then compare
+] (http://stackoverflow.com/questions/12535095/java-integers-min-value-negative-then-compare)
+<p>2. [Java PriorityQueue O(n) + O(1)] (https://discuss.leetcode.com/topic/63086/java-priorityqueue-o-n-o-1)
+<p>3. [Java neat and easy understand solution, O(n) time, O(1) space] (https://discuss.leetcode.com/topic/63715/java-neat-and-easy-understand-solution-o-n-time-o-1-space)
+
+
+
 
 
