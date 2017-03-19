@@ -60,7 +60,10 @@
 <p>2. [Java PriorityQueue O(n) + O(1)] (https://discuss.leetcode.com/topic/63086/java-priorityqueue-o-n-o-1)
 <p>3. [Java neat and easy understand solution, O(n) time, O(1) space] (https://discuss.leetcode.com/topic/63715/java-neat-and-easy-understand-solution-o-n-time-o-1-space)
 
-
-
+<p>Missing Number
+<p>1. [Will Arrays.sort() increase time complexity and space time complexity?
+] (http://stackoverflow.com/questions/22571586/will-arrays-sort-increase-time-complexity-and-space-time-complexity)
+<p>2. [3 different ideas: XOR, SUM, Binary Search. Java code] (https://discuss.leetcode.com/topic/23427/3-different-ideas-xor-sum-
+binary-search-java-code/29)
 
 
