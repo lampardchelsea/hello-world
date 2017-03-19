@@ -66,4 +66,8 @@
 <p>2. [3 different ideas: XOR, SUM, Binary Search. Java code] (https://discuss.leetcode.com/topic/23427/3-different-ideas-xor-sum-
 binary-search-java-code/29)
 
+<p>Two Sum II - Input array is sorted
+<p>1. [Share my java AC solution] (https://discuss.leetcode.com/topic/6229/share-my-java-ac-solution)
+
+
 
