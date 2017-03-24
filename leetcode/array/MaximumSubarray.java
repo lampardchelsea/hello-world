@@ -10,7 +10,7 @@
  */
 public class MaximumSubarray {
 	/**
-	 * Solution 1: DP Solution
+	 * Solution 1: DP Solution with O(n) extra space
 	 * Refer to
 	 * https://discuss.leetcode.com/topic/6413/dp-solution-some-thoughts
 	 * Analysis of this problem:
@@ -41,6 +41,70 @@ public class MaximumSubarray {
         	max = Math.max(dp[i], max);
         }
         return max;
+    }
+    
+    
+    /**
+     * Solution 2: DP Solution with O(1) extra space
+     * Refer to
+     * https://discuss.leetcode.com/topic/6413/dp-solution-some-thoughts/13
+     * To calculate sum(0,i), you have 2 choices: either adding sum(0,i-1) to a[i], or not. 
+     * If sum(0,i-1) is negative, adding it to a[i] will only make a smaller sum, so we add only if it's non-negative.
+     * sum(0,i) = a[i] + (sum(0,i-1) < 0 ? 0 : sum(0,i-1))
+     * We can then use O(1) space to keep track of the max sum(0, i) so far.
+     */
+    public int maxSubArray2(int[] nums) {
+    	int len = nums.length;
+    	int max = nums[0];
+    	int sum = nums[0];
+    	for(int i = 1; i < len; i++) {
+    		if(sum < 0) {
+    			sum = nums[i];
+    		} else {
+    			sum += nums[i];
+    		}
+    		max = Math.max(sum, max);
+    	}
+    	return max;
+    }
+    
+    
+    /**
+     * Solution 3: Divide and conquer:
+     * Refer to
+     * https://discuss.leetcode.com/topic/4175/share-my-solutions-both-greedy-and-divide-and-conquer/2
+     * http://www.cnblogs.com/grandyang/p/4377150.html
+     * 题目还要求我们用分治法Divide and Conquer Approach来解，这个分治法的思想就类似于二分搜索法，我们需要把数组一分为二，
+     * 分别找出左边和右边的最大子数组之和，然后还要从中间开始向左右分别扫描，求出的最大值分别和左右两边得出的最大值相比较取
+     * 最大的那一个，代码如下：
+     */
+    public int maxSubArray3(int[] nums) {
+    	if(nums.length == 0) {
+    		return 0;
+    	}
+    	return helper(nums, 0, nums.length - 1);
+    }
+    
+    public int helper(int[] nums, int left, int right) {
+    	// Base case
+    	if(left >= right) {
+    		return nums[left];
+    	}
+    	int mid = left + (right - left) / 2;
+    	int lmax = helper(nums, left, mid - 1);
+    	int rmax = helper(nums, mid + 1, right);
+    	int mmax = nums[mid];
+    	int t = mmax;
+    	for(int i = mid - 1; i >= left; --i) {
+    		t += nums[i];
+    		mmax = Math.max(mmax, t);
+    	}
+    	t = mmax;
+    	for(int i = mid + 1; i <= right; ++i) {
+    		t += nums[i];
+    		mmax = Math.max(mmax, t);
+    	}
+    	return Math.max(mmax, Math.max(lmax, rmax));
     }
     
     public static void main(String[] args) {
