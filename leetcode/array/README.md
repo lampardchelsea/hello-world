@@ -72,3 +72,9 @@ binary-search-java-code/29)
 <p>K-diff Pairs in an Array
 <p>1. [Java O(n) solution - one Hashmap, easy to understand] (https://discuss.leetcode.com/topic/81714/java-o-n-solution-one-hashmap-easy-to-understand)
 
+<p>Maximum Subarray
+<p>1. [DP Solution with O(n) extra space] (https://discuss.leetcode.com/topic/6413/dp-solution-some-thoughts)
+<p>2. [DP Solution with O(1) extra space] (https://discuss.leetcode.com/topic/6413/dp-solution-some-thoughts/13)
+<p>3. [Divide and conquer] (http://www.cnblogs.com/grandyang/p/4377150.html)
+
+
