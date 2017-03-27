@@ -77,4 +77,8 @@ binary-search-java-code/29)
 <p>2. [DP Solution with O(1) extra space] (https://discuss.leetcode.com/topic/6413/dp-solution-some-thoughts/13)
 <p>3. [Divide and conquer] (http://www.cnblogs.com/grandyang/p/4377150.html)
 
+<p>Max Consecutive Ones
+<p>1. [Easy Java Solution] (https://discuss.leetcode.com/topic/75430/easy-java-solution)
+
+
 
