@@ -9,7 +9,7 @@
  * The input array will only contain 0 and 1.
  * The length of input array is a positive integer and will not exceed 10,000
 */
-// Solution 1:
+// Solution 1: Quick solution --> 12ms (because no Math.max check)
 public class Solution {
     public int findMaxConsecutiveOnes(int[] nums) {
         int count = 0;
@@ -39,3 +39,27 @@ public class Solution {
         return max;
     }
 }
+
+// Solution 2: 15ms
+// Refer to
+// https://discuss.leetcode.com/topic/75430/easy-java-solution
+public class Solution {
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int count = 0;
+        int max = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 1) {
+            	count++;
+            	max = Math.max(count, max);
+            } else {
+                count = 0;
+            }
+        }
+        return max;
+    }
+}
+
+
+
+
+
