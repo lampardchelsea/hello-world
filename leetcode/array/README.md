@@ -80,5 +80,6 @@ binary-search-java-code/29)
 <p>Max Consecutive Ones
 <p>1. [Easy Java Solution] (https://discuss.leetcode.com/topic/75430/easy-java-solution)
 
-
+<p>Find All Numbers Disappeared in an Array
+<p>1. [Java accepted simple solution] (https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/#/description)
 
