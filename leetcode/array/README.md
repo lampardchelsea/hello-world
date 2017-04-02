@@ -90,6 +90,9 @@ binary-search-java-code/29)
 <p>3. [My easy understood solution with O(n) time and O(1) space without modifying the array. With clear explanation.] (https://discuss.leetcode.com/topic/25913/my-easy-understood-solution-with-o-n-time-and-o-1-space-without-modifying-the-array-with-clear-explanation)
 <p>4. [Linked List Cycle II] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/LinkedListCycleII.java)
 
-
+<p>Triangle
+<p>1. [一道动态规划的经典题目, 需要自底向上求解, O(n) extra space] (http://www.cnblogs.com/springfor/p/3887908.html)
+<p>2. [DP Solution for Triangle] (https://discuss.leetcode.com/topic/1669/dp-solution-for-triangle)
+<p>3. [Triangle 三角形, no extra space] (https://segmentfault.com/a/1190000003502873)
 
 
