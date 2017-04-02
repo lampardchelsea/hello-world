@@ -13,7 +13,8 @@
  * Note:
  * Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.
  *  
- * Solution
+ // Solution 1: Need O(n) extra space
+ /**
  * Refer to
  * https://discuss.leetcode.com/topic/1669/dp-solution-for-triangle
  * This problem is quite well-formed in my opinion. The triangle has a tree-like structure, which would lead people to think 
@@ -57,11 +58,6 @@
  * 一道动态规划的经典题目。需要自底向上求解。
  * 递推公式是： dp[i][j] = dp[i+1][j] + dp[i+1][j+1] ，当前这个点的最小值，由他下面那一行临近的2个点的最小值与当前点的值相加得到。
  * 由于是三角形，且历史数据只在计算最小值时应用一次，所以无需建立二维数组，每次更新1维数组值，最后那个值里存的就是最终结果。
- *
- * https://segmentfault.com/a/1190000003502873
- * 这题我们可以从上往下依次计算每个节点的最短路径，也可以自下而上。自下而上要简单一些，因为我们只用在两个下方元素中选一个较小的，
- * 就能得到确定解。如果将上一层的累加和存在一个一维数组里，则可以只用O(n)空间，但实际上我们可以直接in place在输入list中修改值，
- * 就可以不用额外空间了。
 */
 public class Solution {
     public int minimumTotal(List<List<Integer>> triangle) {
@@ -80,5 +76,24 @@ public class Solution {
             }
         }
         return dp[0];
+    }
+}
+
+// Solution 2: No extra space
+/**
+ * Refer to
+ * https://segmentfault.com/a/1190000003502873
+ * 这题我们可以从上往下依次计算每个节点的最短路径，也可以自下而上。自下而上要简单一些，因为我们只用在两个下方元素中选一个较小的，
+ * 就能得到确定解。如果将上一层的累加和存在一个一维数组里，则可以只用O(n)空间，但实际上我们可以直接in place在输入list中修改值，
+ * 就可以不用额外空间了。
+*/
+public class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        for(int i = triangle.size() - 2; i >= 0; i--){
+            for(int j = 0; j < triangle.get(i).size(); j++){
+                triangle.get(i).set(j,triangle.get(i).get(j)+Math.min(triangle.get(i+1).get(j), triangle.get(i+1).get(j+1)));
+            }
+        }
+        return triangle.get(0).get(0);
     }
 }
