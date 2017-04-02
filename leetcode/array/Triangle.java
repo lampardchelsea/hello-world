@@ -64,7 +64,7 @@ public class Solution {
             return triangle.get(0).get(0); 
         }
         int[] dp = new int[triangle.size()];
-        //initial by last row 
+        // initial by last row 
         for (int i = 0; i < triangle.get(triangle.size() - 1).size(); i++) {
             dp[i] = triangle.get(triangle.size() - 1).get(i);
         }
