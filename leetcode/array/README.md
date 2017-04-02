@@ -83,3 +83,13 @@ binary-search-java-code/29)
 <p>Find All Numbers Disappeared in an Array
 <p>1. [Java accepted simple solution] (https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/#/description)
 <p>2. [Find all the missing number(s) Code Review] (http://codereview.stackexchange.com/questions/48756/find-all-the-missing-numbers)
+
+<p>Find the Duplicate Number
+<p>1. [Find the Duplicate Number 找到重复数字] (https://segmentfault.com/a/1190000003817671)
+<p>2. [Find the Duplicate Number 寻找重复数] (http://www.cnblogs.com/grandyang/p/4843654.html)
+<p>3. [My easy understood solution with O(n) time and O(1) space without modifying the array. With clear explanation.] (https://discuss.leetcode.com/topic/25913/my-easy-understood-solution-with-o-n-time-and-o-1-space-without-modifying-the-array-with-clear-explanation)
+<p>4. [Linked List Cycle II] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/LinkedListCycleII.java)
+
+
+
+
