@@ -52,14 +52,7 @@ public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
 	 *  就可以在中序遍历中也定位出根节点的位置，并以根节点的位置将中序遍历拆分为左右两个部分，分别对其
 	 *  递归调用原函数: 通过后续遍历找到根节点，然后在中序遍历数据中根据根节点拆分成两个部分，同时将对
 	 *  应的后序遍历的数据也拆分成两个部分，重复递归，就可以得到整个二叉树了。
-	 */
-	 
-	
-	 // Solution 1: Without Hashmap using recursive
-	/**
-	 *  Refer to
-	 *  https://discuss.leetcode.com/topic/3296/my-recursive-java-code-with-o-n-time-and-o-n-space/2
-	 * 
+	 *  
 	 *  Refer to
 	 *  http://www.geeksforgeeks.org/construct-a-binary-tree-from-postorder-and-inorder/
 	 *  Input : 
@@ -93,6 +86,46 @@ public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
 	 *  as we decrease index of postorder index whenever we create a new node.
 	 */
 	
+	// Solution 1: Without Hashmap using recursive
+	/**
+	 *  Refer to
+	 *  https://discuss.leetcode.com/topic/3296/my-recursive-java-code-with-o-n-time-and-o-n-space/2
+	 */
+	int inorderIndex;
+	int postorderIndex;
+	public TreeNode buildTree(int[] inorder, int[] postorder) {
+		inorderIndex = inorder.length - 1;
+		postorderIndex = postorder.length - 1;
+		return buildTreeHelper(inorder, postorder, null);
+	}
+	
+	public TreeNode buildTreeHelper(int[] inorder, int[] postorder, TreeNode end) {
+		if(postorderIndex < 0) {
+			return null;
+		}
+		// Create root based on postorder array
+		// Tricky tip: postorderIndex will decrease 1 every recursion from root
+		// node which always at end of array
+		TreeNode root = new TreeNode(postorder[postorderIndex--]);
+		// If right node exist, create right subtree
+		// inorder: left -> root -> right
+		// postorder: left -> right -> root
+		// Tricky tip: root -> right / right -> root, the order difference help
+		// us find current item on inorder has right child tree, because only
+		// one case will not influenced by order difference, as this item already 
+		// seat as leave node on binary tree has the same value as root node
+		// generated from postorder array
+		if(inorder[inorderIndex] != root.val) {
+			root.right = buildTreeHelper(inorder, postorder, root);
+		}
+		inorderIndex--;
+		// If left node exist, create left subtree
+		// Be careful, here the condition change from 'root' to 'end'
+		if(end == null || inorder[inorderIndex] != end.val) {
+			root.left= buildTreeHelper(inorder, postorder, end);
+		}
+		return root;
+	}
 	
 	
 	// Solution 2: Using Hashmap with recursive
@@ -111,10 +144,10 @@ public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
         for(int i = 0; i < inorder.length; i++) {
             map.put(inorder[i], i);
         }
-        return buildTreeHelper(inorder, 0, inorder.length - 1, postorder, 0, postorder.length - 1, map);
+        return buildTreeHelper2(inorder, 0, inorder.length - 1, postorder, 0, postorder.length - 1, map);
     }
     
-    public TreeNode buildTreeHelper(int[] inorder, int inorderStart, int inorderEnd, int[] postorder, int postorderStart, int postorderEnd, Map<Integer, Integer> map) {
+    public TreeNode buildTreeHelper2(int[] inorder, int inorderStart, int inorderEnd, int[] postorder, int postorderStart, int postorderEnd, Map<Integer, Integer> map) {
         if(inorderStart > inorderEnd || postorderStart > postorderEnd) {
             return null;
         }
@@ -123,6 +156,7 @@ public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
         /**
          * Refer to
          * https://discuss.leetcode.com/topic/3296/my-recursive-java-code-with-o-n-time-and-o-n-space/11
+         * https://discuss.leetcode.com/topic/3296/my-recursive-java-code-with-o-n-time-and-o-n-space/21
          * The post order array will give you the root, the last one.
          * With the root, you can go to the in order array, notice the traverse sequence: left, root, right.
          * Then we know the left child array size, right child array size.
@@ -140,8 +174,8 @@ public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
          * as section start, the additional "+ 1" for next index after left child array section, also requires
          * {postorderEnd - 1} as section end, the additional "- 1" for previous index of final item as root in 'postorder'
          */
-        TreeNode leftChild = buildTreeHelper(inorder, inorderStart, rootIndexOnInorder - 1, postorder, postorderStart, postorderStart + (rootIndexOnInorder - inorderStart) - 1, map);
-        TreeNode rightChild = buildTreeHelper(inorder, rootIndexOnInorder + 1, inorderEnd, postorder, postorderStart + (rootIndexOnInorder - inorderStart), postorderEnd - 1, map);
+        TreeNode leftChild = buildTreeHelper2(inorder, inorderStart, rootIndexOnInorder - 1, postorder, postorderStart, postorderStart + (rootIndexOnInorder - inorderStart) - 1, map);
+        TreeNode rightChild = buildTreeHelper2(inorder, rootIndexOnInorder + 1, inorderEnd, postorder, postorderStart + (rootIndexOnInorder - inorderStart), postorderEnd - 1, map);
         root.left = leftChild;
         root.right = rightChild;
         return root;
@@ -151,8 +185,8 @@ public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
 		ConstructBinaryTreeFromInorderAndPostorderTraversal c = new ConstructBinaryTreeFromInorderAndPostorderTraversal();
 		int[] inorder = {4, 8, 2, 5, 1, 6, 3, 7};
 		int[] postorder = {8, 4, 5, 2, 6, 7, 3, 1};
-		TreeNode result = c.buildTree2(inorder, postorder);
+		TreeNode result = c.buildTree(inorder, postorder);
+		//TreeNode result = c.buildTree2(inorder, postorder);
 		System.out.println(result.val);
 	}
 }
-
