@@ -95,4 +95,13 @@ binary-search-java-code/29)
 <p>2. [DP Solution for Triangle] (https://discuss.leetcode.com/topic/1669/dp-solution-for-triangle)
 <p>3. [Triangle 三角形, no extra space] (https://segmentfault.com/a/1190000003502873)
 
+<p>Construct Binary Tree from Inorder and Postorder Traversal
+<p>1. [Tree_traversal] (https://en.wikipedia.org/wiki/Tree_traversal)
+<p>2. [Construct a Binary Tree from Postorder and Inorder] (http://www.geeksforgeeks.org/construct-a-binary-tree-from-postorder-and-inorder/)
+<p>3. [Without Hashmap using recursive] (https://discuss.leetcode.com/topic/3296/my-recursive-java-code-with-o-n-time-and-o-n-space/2)
+<p>4. [Using Hashmap with recursive] (https://discuss.leetcode.com/topic/3296/my-recursive-java-code-with-o-n-time-and-o-n-space)
+
+
+
+
 
