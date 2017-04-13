@@ -6,6 +6,7 @@
 // Refer to
 // https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/#/description
 // https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/#/description
+// https://discuss.leetcode.com/topic/3158/my-accepted-java-solution/2
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
