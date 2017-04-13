@@ -105,6 +105,7 @@ binary-search-java-code/29)
 <p>1. [My Accepted Java Solution] (https://discuss.leetcode.com/topic/3695/my-accepted-java-solution/8)
 <p>2. [Similar way with Inorder and Postorder] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/ConstructBinaryTreeFromInorderAndPostorderTraversal.java)
 
-
+<p>Convert Sorted Array to Binary Search Tree
+<p>1. [Recursive Solution] (https://discuss.leetcode.com/topic/3158/my-accepted-java-solution/2)
 
 
