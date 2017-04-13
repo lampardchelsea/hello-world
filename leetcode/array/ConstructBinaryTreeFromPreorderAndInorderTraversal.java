@@ -1,4 +1,6 @@
-
+// Refer to
+// https://discuss.leetcode.com/topic/3695/my-accepted-java-solution/8
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/ConstructBinaryTreeFromInorderAndPostorderTraversal.java
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
