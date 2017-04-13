@@ -101,6 +101,9 @@ binary-search-java-code/29)
 <p>3. [Without Hashmap using recursive] (https://discuss.leetcode.com/topic/3296/my-recursive-java-code-with-o-n-time-and-o-n-space/2)
 <p>4. [Using Hashmap with recursive] (https://discuss.leetcode.com/topic/3296/my-recursive-java-code-with-o-n-time-and-o-n-space)
 
+<p>Construct Binary Tree from Preorder and Inorder Traversal
+<p>1. [My Accepted Java Solution] (https://discuss.leetcode.com/topic/3695/my-accepted-java-solution/8)
+<p>2. [Similar way with Inorder and Postorder] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/ConstructBinaryTreeFromInorderAndPostorderTraversal.java)
 
 
 
