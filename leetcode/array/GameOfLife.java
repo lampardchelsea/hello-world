@@ -49,6 +49,9 @@
 	
 	To get the next state, simply do
 	board[i][j] >> 1
+ * 
+ * Refer to
+ * https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/Document/%5BLeetcode%5D%20Game%20of%20Life%20%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F%20-%20Ethan%20Li%20%E7%9A%84%E6%8A%80%E6%9C%AF%E4%B8%93%E6%A0%8F%20-%20SegmentFault.pdf
  */
 public class GameOfLife {
     public void gameOfLife(int[][] board) {
