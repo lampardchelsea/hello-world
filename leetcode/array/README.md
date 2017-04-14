@@ -108,4 +108,11 @@ binary-search-java-code/29)
 <p>Convert Sorted Array to Binary Search Tree
 <p>1. [Recursive Solution] (https://discuss.leetcode.com/topic/3158/my-accepted-java-solution/2)
 
+<p>Game Of Life
+<p>1. [Best Solution] (https://discuss.leetcode.com/topic/29054/easiest-java-solution-with-explanation)
+<p>2. [Game of Life 生命游戏 and follow up answers] (https://segmentfault.com/a/1190000003819277)
+<p>3. [Bitwise Operations Precedence] (https://en.wikipedia.org/wiki/Order_of_operations)
+
+
+
 
