@@ -78,6 +78,9 @@ public class GameOfLife {
         int lives = 0;
         for(int x = Math.max(i - 1, 0); x <= Math.min(i + 1, rows - 1); x++) {
             for(int y = Math.max(j - 1, 0); y <= Math.min(j + 1, columns - 1); y++) {
+		// No need braces
+		// Refer to
+		// https://en.wikipedia.org/wiki/Order_of_operations
                 lives += board[x][y] & 1;
             }
         }
