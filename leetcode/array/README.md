@@ -113,6 +113,7 @@ binary-search-java-code/29)
 <p>2. [Game of Life 生命游戏 and follow up answers] (https://segmentfault.com/a/1190000003819277)
 <p>3. [Bitwise Operations Precedence] (https://en.wikipedia.org/wiki/Order_of_operations)
 
-
+<p>Search in Rotated Sorted Array
+<p>1. [Concise O(log N) Binary search solution] (https://discuss.leetcode.com/topic/3538/concise-o-log-n-binary-search-solution)
 
 
