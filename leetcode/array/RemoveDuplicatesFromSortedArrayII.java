@@ -31,6 +31,7 @@ public class Solution {
 // Solution 2
 // Refer to
 // https://segmentfault.com/a/1190000003752035
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/RemoveDuplicates.java
 /**
  * 双指针法
  * 复杂度
