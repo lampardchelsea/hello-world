@@ -116,4 +116,8 @@ binary-search-java-code/29)
 <p>Search in Rotated Sorted Array I & II
 <p>1. [Concise O(log N) Binary search solution] (https://discuss.leetcode.com/topic/3538/concise-o-log-n-binary-search-solution)
 
+<p>Remove Duplicates from Sorted Array II
+<p>1. [Short and Simple Java solution (easy to understand)] (https://discuss.leetcode.com/topic/46519/short-and-simple-java-solution-easy-to-understand)
+
+
 
