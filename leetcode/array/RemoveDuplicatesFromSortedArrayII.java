@@ -14,5 +14,16 @@
 /**
  * Question wants us to return the length of new array after removing duplicates and that 
  * we don't care about what we leave beyond new length , hence we can use i to keep track 
- * of the position and update the array.
+ * of the position and update the array. Taking full advantage of the sorted nature.
 */
+public class Solution {
+    public int removeDuplicates(int[] nums) {
+        int i = 0;
+        for(int n : nums) {
+            if(i < 2 || n > nums[i - 2]) {
+                nums[i++] = n;
+            }
+        }
+        return i;
+    }
+}
