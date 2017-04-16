@@ -22,3 +22,40 @@
  * 虽然起点小于等于中间，但不代表右边就不是有序的，因为中点也小于等于终点，所有右边也是有序的。
  * 所以，如果遇到这种中点和两边相同的情况，我们两边都要搜索。
 */
+public class Solution {
+    public boolean search(int[] nums, int target) {
+        return helper(nums, 0, nums.length - 1, target);
+    }
+    
+    public boolean helper(int[] nums, int lo, int hi, int target) {
+        // Base case: if not match --> min <= max, return false
+        if(lo > hi) {
+            return false;
+        }
+        int mid = lo + (hi - lo)/2;
+        if(nums[mid] == target) {
+            return true;
+        }
+        boolean left = false;
+        boolean right = false;
+        // If left part in order
+        if(nums[lo] <= nums[mid]) {
+            // Check if target in inorder left part
+            if(nums[lo] <= target && target < nums[mid]) {
+                left = helper(nums, lo, mid - 1, target);
+            } else {
+                left = helper(nums, mid + 1, hi, target);
+            }
+        } 
+        // If right part in order
+        if(nums[mid] <= nums[hi]){
+            // Check if target in inorder right part
+            if(nums[mid] < target && target <= nums[hi]) {
+                right = helper(nums, mid + 1, hi, target);
+            } else {
+                right = helper(nums, lo, mid - 1, target);
+            }
+        }
+        return left || right;
+    }
+}
