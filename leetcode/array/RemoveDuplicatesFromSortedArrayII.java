@@ -40,6 +40,24 @@ public class Solution {
  * 思路和上题一样，区别在于记录前两个遍历到的数字来帮助我们判断是否出现了第三遍。
  * 如果当前数字和前一个数字的前一个一样的话，说明出现了第三次。
 */
-
+public class Solution {
+    public int removeDuplicates(int[] nums) {
+        if(nums.length <= 2) {
+            return nums.length;
+        }
+        int temp1 = nums[0];
+        int temp2 = nums[1];
+        int len = 2;
+        for(int i = 2; i < nums.length; i++) {
+            if(nums[i] != temp1) {
+                nums[len] = nums[i];
+                temp1 = temp2;
+                temp2 = nums[i];
+                len++;
+            }
+        }
+        return len;
+    }
+}
 
 
