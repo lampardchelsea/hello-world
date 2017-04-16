@@ -118,6 +118,7 @@ binary-search-java-code/29)
 
 <p>Remove Duplicates from Sorted Array II
 <p>1. [Short and Simple Java solution (easy to understand)] (https://discuss.leetcode.com/topic/46519/short-and-simple-java-solution-easy-to-understand)
+<p>2. [Remove Duplicates from Sorted Array II leetcode java] (http://www.cnblogs.com/springfor/p/3889632.html)
 
 
 
