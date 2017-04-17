@@ -120,5 +120,7 @@ binary-search-java-code/29)
 <p>1. [Short and Simple Java solution (easy to understand)] (https://discuss.leetcode.com/topic/46519/short-and-simple-java-solution-easy-to-understand)
 <p>2. [Remove Duplicates from Sorted Array II leetcode java] (http://www.cnblogs.com/springfor/p/3889632.html)
 
-
+<p>Search a 2D Matrix
+<p>1. [Binary search on an ordered matrix] (https://discuss.leetcode.com/topic/4846/binary-search-on-an-ordered-matrix)
+<p>2. [Don't treat it as a 2D matrix, just treat it as a sorted list] (https://discuss.leetcode.com/topic/3227/don-t-treat-it-as-a-2d-matrix-just-treat-it-as-a-sorted-list)
 
