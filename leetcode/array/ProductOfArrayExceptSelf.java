@@ -26,3 +26,26 @@
  * 因为第一位在第一轮从左向右乘的时候乘不到，结果数组中会得到0，所以要先将第一位置为1，即res[0] = 1，其他的不用初始化
  * 因为涉及左右两边的数，所有数组长度为1的时候就直接返回自身就行了
 */
+public class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int len = nums.length;
+        if(len <= 1) {
+            return nums;
+        }
+        int[] result = new int[len];
+        result[0] = 1;
+        int left = 1;
+        int right = 1;
+        // Computer every point's left multiple 
+        for(int i = 1; i < len; i++) {
+            left = left * nums[i - 1];
+            result[i] = left;
+        }
+        // Computer every point's right multiple
+        for(int i = len - 2; i >= 0; i--) {
+            right = right * nums[i + 1];
+            result[i] = result[i] * right;
+        }
+        return result;
+    }
+}
