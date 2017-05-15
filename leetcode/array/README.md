@@ -124,3 +124,10 @@ binary-search-java-code/29)
 <p>1. [Binary search on an ordered matrix] (https://discuss.leetcode.com/topic/4846/binary-search-on-an-ordered-matrix)
 <p>2. [Don't treat it as a 2D matrix, just treat it as a sorted list] (https://discuss.leetcode.com/topic/3227/don-t-treat-it-as-a-2d-matrix-just-treat-it-as-a-sorted-list)
 
+<p>Majority Elements II
+<p>1. [Majority Elements I] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/MajorityElementLinearTime.java)
+<p>2. [Majority Element II 求众数之二] (http://www.cnblogs.com/grandyang/p/4606822.html)
+<p>3. [Majority Element 众数] (https://segmentfault.com/a/1190000003740925)
+
+
+
