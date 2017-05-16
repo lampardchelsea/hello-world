@@ -129,5 +129,6 @@ binary-search-java-code/29)
 <p>2. [Majority Element II 求众数之二] (http://www.cnblogs.com/grandyang/p/4606822.html)
 <p>3. [Majority Element 众数] (https://segmentfault.com/a/1190000003740925)
 
-
+<p>Summary Range
+<p>1. [Summary Ranges 统计区间] (https://segmentfault.com/a/1190000003768803)
 
