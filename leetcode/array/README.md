@@ -145,5 +145,10 @@ binary-search-java-code/29)
 <p>Find All Duplicates In An Array
 <p>1. [Java Simple Solution (Same as Find All Numbers Disappeared in an Array)] (https://discuss.leetcode.com/topic/64735/java-simple-solution)
 
+<p>Find Minimum In Rotated Sorted Array
+<p>1. [A concise solution with proof in the comment] (https://discuss.leetcode.com/topic/5170/java-solution-with-binary-search)
+<p>2. [Find Minimum in Rotated Sorted Array 找旋转有序数组的最小值] (https://segmentfault.com/a/1190000003488815)
+
+
 
 
