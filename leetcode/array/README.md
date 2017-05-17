@@ -149,6 +149,8 @@ binary-search-java-code/29)
 <p>1. [A concise solution with proof in the comment] (https://discuss.leetcode.com/topic/5170/java-solution-with-binary-search)
 <p>2. [Find Minimum in Rotated Sorted Array 找旋转有序数组的最小值] (https://segmentfault.com/a/1190000003488815)
 
-
+<p>Find Minimum In Rotated Sorted Array II
+<p>1. [二分递归法] (https://segmentfault.com/a/1190000003488815)
+<p>2. [Similar way as Search in Rotated Sorted Array II] (https://leetcode.com/submissions/detail/100222655/)
 
 
