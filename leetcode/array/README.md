@@ -135,3 +135,8 @@ binary-search-java-code/29)
 <p>Combination Sum I & II & III
 <p>1. [Combination Sum 组合数之和] (https://segmentfault.com/a/1190000003743112)
 
+<p>Find Peak Element
+<p>1. [O(logN) Solution JavaCode] (https://discuss.leetcode.com/topic/5848/o-logn-solution-javacode/2)
+<p>2. [Find Peak Element 找峰值] (https://segmentfault.com/a/1190000003488794)
+
+
