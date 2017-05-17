@@ -82,6 +82,12 @@ public class FindMinimumInRotatedSortedArray {
 		            if(nums[mid] > nums[max]) {
 		                min = mid + 1;
 		            } else {
+		                // https://discuss.leetcode.com/topic/6468/my-pretty-simple-code-to-solve-it/38
+		                // Why hi = mid and not hi = mid - 1?
+		                // in the case of nums[mid] < nums[hi], it means that nums[mid] is the smallest on right side, 
+		                // it could be the smallest on the left side too, so we need to include it in the following search.
+						// e.g. 4,5,6,7,0,1,2,3,4
+						// mid is 0. If we use hi = mid - 1, 0 would be omitted.
 		                max = mid;
 		            }
 		        }
