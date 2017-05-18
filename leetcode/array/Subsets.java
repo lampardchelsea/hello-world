@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -20,8 +21,7 @@ import java.util.List;
 	  []
 	]
  * 
- *  Solution
- *  https://discuss.leetcode.com/topic/46159/a-general-approach-to-backtracking-questions-in-java-subsets-permutations-combination-sum-palindrome-partitioning
+ *  Solution 1:
  *  https://segmentfault.com/a/1190000003498803
  *  深度优先搜索
  *  复杂度
@@ -31,12 +31,16 @@ import java.util.List;
  *  以此类推，左子节点的左子节点是加上第二个元素，左子节点的右子节点是不加上第二个元素。而解就是这个二叉树所有的路径，我们要做的就是根据加，或者
  *  不加下一元素，来产生一个新的集合，然后继续递归直到终点。另外需要先排序以满足题目要求。
  *  注意
- *  这里要先排序，不然过不了leetcode，但实际上是不用的
- *  如果递归之前先将空集加入结果，那么递归尽头就不需要再加一次空集。反之则需要。
- *  LinkedList在这里效率要高于ArrayList。
- *  新的集合要new一个新的list，防止修改引用。
+ *  (1) 这里要先排序，不然过不了leetcode，但实际上是不用的
+ *  (2) 如果递归之前先将空集加入结果，那么递归尽头就不需要再加一次空集。反之则需要。
+ *  (3) LinkedList在这里效率要高于ArrayList。
+ *  (4) 新的集合要new一个新的list，防止修改引用。
+ *  
+ *  Solution 2:
+ *  https://discuss.leetcode.com/topic/46159/a-general-approach-to-backtracking-questions-in-java-subsets-permutations-combination-sum-palindrome-partitioning
  */
 public class Subsets {
+	// Solution 1: DFS
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         // Add an empty set first
@@ -71,6 +75,30 @@ public class Subsets {
         // Logic branch-2: Add nums[index] into current subset and its inheritance chain sets
         helper(result, oneSubset, nums, index + 1);
     }
+    
+    // Solution 2: Using backtrack template
+    public List<List<Integer>> subsets2(int[] nums) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        //Arrays.sort(nums); -- > This is NOT necessary
+        helper2(result, new ArrayList<Integer>(), nums, 0);
+        // Add empty set
+        result.add(new ArrayList<Integer>()); 
+        return result;
+    }
+    
+    public void helper2(List<List<Integer>> result, List<Integer> tmp, int[] nums, int index) {
+        // Move this line into for loop require adding empty set initially before start
+    	// backtrack on main method 'subsets2'
+    	//result.add(new ArrayList<Integer>(tmp));
+        for(int i = index; i < nums.length; i++) {
+            tmp.add(nums[i]);
+            // Create new ArrayList in case to avoid change on original 'tmp' reference
+            result.add(new ArrayList<Integer>(tmp));
+            helper(result, tmp, nums, i + 1);
+            tmp.remove(tmp.size() - 1);
+        }
+    }
+    
     
     public static void main(String[] args) {
     	int[] nums = {1, 2, 3};
