@@ -153,4 +153,9 @@ binary-search-java-code/29)
 <p>1. [二分递归法] (https://segmentfault.com/a/1190000003488815)
 <p>2. [Similar way as Search in Rotated Sorted Array II] (https://leetcode.com/submissions/detail/100222655/)
 
+<p>Maximum Product Subarray
+<P>1. [Sharing my solution: O(1) space, O(n) running time] (https://discuss.leetcode.com/topic/3607/sharing-my-solution-o-1-space-o-n-running-time/9)
+
+
+
 
