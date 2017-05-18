@@ -8,7 +8,7 @@
  *
  * Solution
  * https://discuss.leetcode.com/topic/3607/sharing-my-solution-o-1-space-o-n-running-time
- * https://discuss.leetcode.com/topic/3607/sharing-my-solution-o-1-space-o-n-running-time/8
+ * https://discuss.leetcode.com/topic/3607/sharing-my-solution-o-1-space-o-n-running-time/9
  */
 public class MaximumProductSubarray {
 	public int maxProduct(int[] nums) {
