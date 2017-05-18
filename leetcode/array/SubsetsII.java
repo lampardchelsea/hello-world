@@ -18,7 +18,7 @@ import java.util.List;
 	  []
 	]
  *
- * Solution
+ * Solution 1
  * https://segmentfault.com/a/1190000003498803
  * 深度优先搜索
  * 复杂度
@@ -27,8 +27,12 @@ import java.util.List;
  * 思路和上题一样，区别在于如果有重复的只能加一次。好在我们已经先将数组排序（数组中有重复一般都可以用排序解决），所以重复元素是相邻的，
  * 我们为了保证重复元素只加一次，要把这些重复的元素在同一段逻辑中一起处理，而不是在递归中处理，不然就太麻烦了。所以我们可以先统计好
  * 重复的有n个，然后分别在集合中加上0个，1个，2个...n个，然后再分别递归
+ * 
+ * Solution 2
+ * https://discuss.leetcode.com/topic/46159/a-general-approach-to-backtracking-questions-in-java-subsets-permutations-combination-sum-palindrome-partitioning/2
  */
 public class SubsetsII {
+	// Solution 1: DFS
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         Arrays.sort(nums);
@@ -73,6 +77,29 @@ public class SubsetsII {
         }
     }
 	
+    // Solution 2: Using backtrack template
+    public List<List<Integer>> subsetsWithDup2(int[] nums) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        // This sort is required to remove duplicates
+        Arrays.sort(nums);
+        result.add(new ArrayList<Integer>());
+        helper2(result, new ArrayList<Integer>(), nums, 0);
+        return result;
+    }
+    
+    public void helper2(List<List<Integer>> result, List<Integer> tmp, int[] nums, int index) {
+        for(int i = index; i < nums.length; i++) {
+            if(i > index && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            tmp.add(nums[i]);
+            // Create new ArrayList in case to avoid change on original 'tmp' reference
+            result.add(new ArrayList<Integer>(tmp));
+            helper(result, tmp, nums, i + 1);
+            tmp.remove(tmp.size() - 1);
+        }
+    }
+      
     public static void main(String[] args) {
     	int[] nums = {1, 2, 2};
     	SubsetsII s = new SubsetsII();
