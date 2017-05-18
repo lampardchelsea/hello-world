@@ -156,7 +156,7 @@ binary-search-java-code/29)
 <p>Maximum Product Subarray
 <P>1. [Sharing my solution: O(1) space, O(n) running time] (https://discuss.leetcode.com/topic/3607/sharing-my-solution-o-1-space-o-n-running-time/9)
 
-<p>Subsets
+<p>Subsets I & II
 <p>1. [Subset子集] (https://segmentfault.com/a/1190000003498803)
 
 
