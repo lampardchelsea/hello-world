@@ -73,6 +73,15 @@ public class Subsets {
     }
     
     public static void main(String[] args) {
-    	
+    	int[] nums = {1, 2, 3};
+    	Subsets s = new Subsets();
+    	List<List<Integer>> result = s.subsets(nums);
+    	for(List<Integer> a : result) {
+    		System.out.println("------------");
+    		for(Integer i : a) {
+    			System.out.println(i);
+    		}
+    		System.out.println("------------");
+    	}
     }
 }
