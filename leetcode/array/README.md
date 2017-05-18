@@ -158,5 +158,5 @@ binary-search-java-code/29)
 
 <p>Subsets I & II
 <p>1. [Subset子集] (https://segmentfault.com/a/1190000003498803)
-
+<p>2. [A general approach to backtracking questions in Java (Subsets, Permutations, Combination Sum, Palindrome Partitioning)] (https://discuss.leetcode.com/topic/46159/a-general-approach-to-backtracking-questions-in-java-subsets-permutations-combination-sum-palindrome-partitioning)
 
