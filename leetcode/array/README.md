@@ -169,6 +169,11 @@ binary-search-java-code/29)
 <p>1. [Set Matrix Zeroes 矩阵置零] (https://segmentfault.com/a/1190000003747491)
 <p>2. [My AC java O(1) solution (easy to read)] (https://discuss.leetcode.com/topic/15193/my-ac-java-o-1-solution-easy-to-read)
 
+<p>Unique Paths I & II
+<p>1. [Unique Paths 唯一路径] (https://segmentfault.com/a/1190000003502805)
+<p>2. [0ms, 5-lines DP Solution in C++ with Explanations] (https://discuss.leetcode.com/topic/15265/0ms-5-lines-dp-solution-in-c-with-explanations)
+
+
 
 
 
