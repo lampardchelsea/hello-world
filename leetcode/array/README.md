@@ -162,6 +162,7 @@ binary-search-java-code/29)
 
 <p>Sort Colors
 <p>1. [Sort Colors 颜色排序] (https://segmentfault.com/a/1190000003761919)
-
+<p>2. [Sharing C++ solution with Good Explanation] (https://discuss.leetcode.com/topic/36832/sharing-c-solution-with-good-explanation)
+<p>3. [Why when mid==2 satisfy, we dont need mid++?] (https://discuss.leetcode.com/topic/36832/sharing-c-solution-with-good-explanation/10)
 
 
