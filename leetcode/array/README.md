@@ -165,4 +165,10 @@ binary-search-java-code/29)
 <p>2. [Sharing C++ solution with Good Explanation] (https://discuss.leetcode.com/topic/36832/sharing-c-solution-with-good-explanation)
 <p>3. [Why when mid==2 satisfy, we dont need mid++?] (https://discuss.leetcode.com/topic/36832/sharing-c-solution-with-good-explanation/10)
 
+<p>Set Matrix Zeros
+<p>1. [Set Matrix Zeroes 矩阵置零] (https://segmentfault.com/a/1190000003747491)
+<p>2. [My AC java O(1) solution (easy to read)] (https://discuss.leetcode.com/topic/15193/my-ac-java-o-1-solution-easy-to-read)
+
+
+
 
