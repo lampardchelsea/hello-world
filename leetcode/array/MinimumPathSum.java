@@ -1,5 +1,11 @@
 /**
  * Refer to
+ * https://leetcode.com/problems/minimum-path-sum/#/description
+ * Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right 
+ * which minimizes the sum of all numbers along its path.
+ * Note: You can only move either down or right at any point in time.
+ *
+ * Solution
  * https://discuss.leetcode.com/topic/15269/10-lines-28ms-o-n-space-dp-solution-in-c-with-explanations
  * This is a typical DP problem. Suppose the minimum path sum of arriving at point (i, j) is S[i][j], 
  * then the state equation is S[i][j] = min(S[i - 1][j], S[i][j - 1]) + grid[i][j].
