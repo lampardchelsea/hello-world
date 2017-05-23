@@ -181,7 +181,8 @@ binary-search-java-code/29)
 <p>1. [MergeSort on ArrayList only work with ArrayList(Collection<? extends E> c) not ArrayList(int initialCapacity)?] (https://stackoverflow.com/questions/44102578/mergesort-on-arraylist-only-work-with-arraylistcollection-extends-e-c-not-a)
 <p>2. [Merge Intervals and Insert Interval 合并间隔与插入间隔] (https://segmentfault.com/a/1190000003768795)
 
-
+<p>Jump Game
+<p>1. [Jump Game 跳跃游戏] (https://segmentfault.com/a/1190000003488956)
 
 
 
