@@ -184,7 +184,8 @@ binary-search-java-code/29)
 <p>Jump Game
 <p>1. [Jump Game 跳跃游戏] (https://segmentfault.com/a/1190000003488956)
 
-
+<p>Rotate Image
+<p>1. [A common method to rotate the image clockwise & anti-clockwise] (https://discuss.leetcode.com/topic/6796/a-common-method-to-rotate-the-image)
 
 
 
