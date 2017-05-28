@@ -57,7 +57,8 @@ public class NextPermutation {
 		// E.g For 124651 -> 125641
 		if(i >= 0) {
 			int j = nums.length - 1;
-			// For case as '151', we need to skip last '1', must including equal
+			// For case as '151', we need to skip last '1', must including equal,
+			// E.g For 124651 we need to find 5 to exchange with 4
 			while(j > i && nums[j] <= nums[i]) {
 				j--;
 			}
@@ -92,4 +93,3 @@ public class NextPermutation {
     	}
     }
 }
-
