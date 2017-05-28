@@ -194,5 +194,19 @@ binary-search-java-code/29)
 <p>Next Permutation
 <p>1. [Next Permutation 下一个排列] (https://segmentfault.com/a/1190000003766260)
 
+<p>Two Sum For Three And Four Sum
+<p>1. [Two Sum 两数和排序双指针法 Sorting with Two Pointers] (https://segmentfault.com/a/1190000002986095)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
