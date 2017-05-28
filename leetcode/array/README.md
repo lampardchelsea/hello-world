@@ -191,4 +191,8 @@ binary-search-java-code/29)
 <p>1. [Search for a Range 寻找区间] (https://segmentfault.com/a/1190000003817863)
 <p>2. [Clean iterative solution with two binary searches (with explanation)] (https://discuss.leetcode.com/topic/5891/clean-iterative-solution-with-two-binary-searches-with-explanation)
 
+<p>Next Permutation
+<p>1. [Next Permutation 下一个排列] (https://segmentfault.com/a/1190000003766260)
+
+
 
