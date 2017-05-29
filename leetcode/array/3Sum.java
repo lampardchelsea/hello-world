@@ -72,6 +72,12 @@ public class ThreeSum {
         // Since we should reserve 2 positions for 2 numbers used
         // for 'twoSum', so we only need to find nums[i] at most
         // (nums.length - 2) times, range [0, nums.length - 3](inclusively)
+	// 
+	// Or refer to 3SumCloset.java
+	// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/3SumCloset.java
+	// The range of 'i' must take care of the situation
+        // on 'left' < 'right', which means (i + 1 < nums.length - 1)
+        // => i < nums.length - 2
         for(int i = 0; i < nums.length - 2; i++) {
             // Skip all duplicates of nums[i]
             if(i > 0 && nums[i] == nums[i - 1]) {
