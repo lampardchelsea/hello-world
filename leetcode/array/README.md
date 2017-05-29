@@ -197,7 +197,9 @@ binary-search-java-code/29)
 <p>Two Sum For Three And Four Sum
 <p>1. [Two Sum 两数和排序双指针法 Sorting with Two Pointers] (https://segmentfault.com/a/1190000002986095)
 
-
+<p>3Sum / 3SumCloset / 4Sum
+<p>1. [3Sum 4Sum 3Sum Closet 多数和] (https://segmentfault.com/a/1190000003740669)
+<p>2. [3SumCloset Java solution with O(n2) for reference] (https://discuss.leetcode.com/topic/5192/java-solution-with-o-n2-for-reference)
 
 
 
