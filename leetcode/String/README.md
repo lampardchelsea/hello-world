@@ -95,7 +95,9 @@
 <p>Reverse Words in a String III
 <p>1. [Java Solution, StringBuilder] (https://discuss.leetcode.com/topic/85753/java-solution-stringbuilder/3)
 
-
+<p>Student Attendance Record I
+<p>1. [Using lastIndexOf without counter] (https://discuss.leetcode.com/topic/86559/java-simple-without-regex-3-lines)
+<p>2. [Using Regex] (https://discuss.leetcode.com/topic/86466/java-1-liner)
 
 
 
