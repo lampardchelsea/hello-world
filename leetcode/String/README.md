@@ -102,8 +102,8 @@
 <p>Reverse String II
 <p>1. [Java Concise Solution] (https://discuss.leetcode.com/topic/82626/java-concise-solution)
 
-
-
+<p>Detect Capital
+<p>1. [Simple Java Solution O(n) time O(1) space] (https://discuss.leetcode.com/topic/79911/simple-java-solution-o-n-time-o-1-space)
 
 
 
