@@ -105,7 +105,10 @@
 <p>Detect Capital
 <p>1. [Simple Java Solution O(n) time O(1) space] (https://discuss.leetcode.com/topic/79911/simple-java-solution-o-n-time-o-1-space)
 
-
+<p>Next Greater Element III
+<p>1. [Next Permutation] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/NextPermutation.java)
+<p>2. [Same idea here without needing to sort or using long] (https://discuss.leetcode.com/topic/86049/simple-java-solution-4ms-with-explanation/4)
+<p>3. [java.lang.NumberFormatException: For input string] (https://stackoverflow.com/questions/13935167/java-lang-numberformatexception-for-input-string)
 
 
 
