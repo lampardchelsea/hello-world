@@ -110,7 +110,9 @@
 <p>2. [Same idea here without needing to sort or using long] (https://discuss.leetcode.com/topic/86049/simple-java-solution-4ms-with-explanation/4)
 <p>3. [java.lang.NumberFormatException: For input string] (https://stackoverflow.com/questions/13935167/java-lang-numberformatexception-for-input-string)
 
-
+<p>Minimum Time Difference
+<p>1. [Java sorting with a sentinel node] (https://discuss.leetcode.com/topic/82582/java-sorting-with-a-sentinel-node)
+<p>2. [Verbose Java Solution, Bucket] (https://discuss.leetcode.com/topic/82573/verbose-java-solution-bucket)
 
 
 
