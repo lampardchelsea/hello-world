@@ -114,6 +114,11 @@
 <p>1. [Java sorting with a sentinel node] (https://discuss.leetcode.com/topic/82582/java-sorting-with-a-sentinel-node)
 <p>2. [Verbose Java Solution, Bucket] (https://discuss.leetcode.com/topic/82573/verbose-java-solution-bucket)
 
+<p>Longest Uncommon Subsequence II
+<p>1. [Java Hashing Solution] (https://discuss.leetcode.com/topic/85027/java-hashing-solution)
+
+
+
 
 
 
