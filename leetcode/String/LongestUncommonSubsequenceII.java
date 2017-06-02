@@ -39,6 +39,8 @@ public class Solution {
         // Find all frequence = 1 subsequence in map then find longest one
         // Set default value as '-1' based on requirement if uncommon
         // subsequence doesn't exist
+        // Note: Don't set as longest = Integer.MIN_VALUE, for test case
+        // as ["aaa","aaa","aa"] will return -2147483648
         int longest = -1;
         for(Map.Entry<String, Integer> entry : frequenceMap.entrySet()) {
             if(entry.getValue() == 1) {
