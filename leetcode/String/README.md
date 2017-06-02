@@ -117,7 +117,10 @@
 <p>Longest Uncommon Subsequence II
 <p>1. [Java Hashing Solution] (https://discuss.leetcode.com/topic/85027/java-hashing-solution)
 
-
+<p>Validate IP Address
+<p>1. [Seperate checking tokens] (https://discuss.leetcode.com/topic/71444/java-simple-solution)
+<p>2. [The split() method in Java does not work on a dot (.)] (https://stackoverflow.com/questions/7935858/the-split-method-in-java-does-not-work-on-a-dot)
+<p>3. [Hexadecimal] (https://en.wikipedia.org/wiki/Hexadecimal)
 
 
 
