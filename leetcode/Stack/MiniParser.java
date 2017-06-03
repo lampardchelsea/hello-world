@@ -163,7 +163,7 @@ public class MiniParser {
                 }
                 curr = new NestedInteger();
                 // The possible next num start after '[', use 'left' to nominate
-                //left = right + 1;
+                left = right + 1;
             } else if(chars[right] == ']') {
                 String num = s.substring(left, right);
                 if(!num.isEmpty()) {
@@ -179,7 +179,7 @@ public class MiniParser {
                     pop.add(curr);
                     curr = pop;
                 }
-                //left = right + 1;
+                left = right + 1;
             } else if(chars[right] == ',') {
                 // If not adding check as "chars[right - 1] != ']'"
             	// E.g
@@ -193,7 +193,7 @@ public class MiniParser {
                     String num = s.substring(left, right);
                     curr.add(new NestedInteger(Integer.parseInt(num)));
                 }
-                //left = right + 1;
+                left = right + 1;
             }
             // Don't move 'left = right + 1' out of above if branch
             // Because for example like char = '-', if we don't move 'left = right + 1' 
@@ -205,7 +205,7 @@ public class MiniParser {
             // E.g
             // Runtime Error Message:Line 62: java.lang.NumberFormatException: For input string: ""
             // Last executed input:"[-1,-2]"
-            left = right + 1;
+            //left = right + 1;
         }
         return curr;
     }
