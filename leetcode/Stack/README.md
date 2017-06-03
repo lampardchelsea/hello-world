@@ -9,3 +9,6 @@
 <p>Symmetric Tree
 <p>1. [Symmetric Tree Stack Solution] (http://www.acmerblog.com/leetcode-solution-symmetric-tree-6291.html)
 
+<p>Mini Parser
+<p>1. [An Java Iterative Solution] (https://discuss.leetcode.com/topic/54270/an-java-iterative-solution)
+<p>2. [Straightforward Java solution with explanation and a simple implementation of NestedInteger for your ease of testing] (https://discuss.leetcode.com/topic/54268/straightforward-java-solution-with-explanation-and-a-simple-implementation-of-nestedinteger-for-your-ease-of-testing)
