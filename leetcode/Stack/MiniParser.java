@@ -163,13 +163,14 @@ public class MiniParser {
                 }
                 curr = new NestedInteger();
                 // The possible next num start after '[', use 'left' to nominate
-                left = right + 1;
+                //left = right + 1;
             } else if(chars[right] == ']') {
                 String num = s.substring(left, right);
                 if(!num.isEmpty()) {
                     curr.add(new NestedInteger(Integer.parseInt(num)));
                 }
                 // If not adding check as "!stack.isEmpty()"
+                // E.g
                 // Runtime Error Message:Line 60: java.util.EmptyStackException
                 // Last executed input:"[]"
                 // Because if input as '[]', you have nothing stored on stack for pop out
@@ -178,9 +179,10 @@ public class MiniParser {
                     pop.add(curr);
                     curr = pop;
                 }
-                left = right + 1;
+                //left = right + 1;
             } else if(chars[right] == ',') {
                 // If not adding check as "chars[right - 1] != ']'"
+            	// E.g
                 // Runtime Error Message:Line 70: java.lang.NumberFormatException: For input string: ""
                 // Last executed input:"[123,456,[788,799,833],[[]],10,[]]"
                 // If encounters ',', append a new number to current NestedInteger, 
@@ -191,15 +193,28 @@ public class MiniParser {
                     String num = s.substring(left, right);
                     curr.add(new NestedInteger(Integer.parseInt(num)));
                 }
-                left = right + 1;
+                //left = right + 1;
             }
+            // Don't move 'left = right + 1' out of above if branch
+            // Because for example like char = '-', if we don't move 'left = right + 1' 
+            // out of if branch, the '-' will be ignored and no operation on execute
+            // 'left = right + 1', which means not change the pointer value for start
+            // position of current number. But if move it out, we will always execute 
+            // 'left = right + 1', no matter encounter '-' or not, current number start
+            // position will always increased, that's not right
+            // E.g
+            // Runtime Error Message:Line 62: java.lang.NumberFormatException: For input string: ""
+            // Last executed input:"[-1,-2]"
+            left = right + 1;
         }
         return curr;
     }
     
     public static void main(String[] args) {
-    	
+    	String s = "[-1,-2]";
+    	MiniParser m = new MiniParser();
+    	@SuppressWarnings("unused")
+	NestedInteger n = m.deserialize(s);
     }
     
 }
-
