@@ -122,6 +122,7 @@
 <p>2. [The split() method in Java does not work on a dot (.)] (https://stackoverflow.com/questions/7935858/the-split-method-in-java-does-not-work-on-a-dot)
 <p>3. [Hexadecimal] (https://en.wikipedia.org/wiki/Hexadecimal)
 
-
+<p>Encode and Decode Strings
+<p>1. [Encode and Decode Strings 字符串编解码] (https://segmentfault.com/a/1190000003791865)
 
 
