@@ -186,6 +186,7 @@ public class BasicCalculator {
             } else if(s.charAt(i) == '(') {
                 // Always use stack.peek() to get last context sign
                 stack.push(current_context_sign * stack.peek());
+		// Very Important !!!
                 // Reset current context sign to 1, as entering
                 // a new cotext start with '(', and treat as current 
                 // context, the last context sign(all sign(computed) 
