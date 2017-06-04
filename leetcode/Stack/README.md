@@ -15,3 +15,6 @@
 
 <p>Basic Calculator I & II
 <p>1. [Basic Calculator 基本计算器] (https://segmentfault.com/a/1190000003796804)
+<p>2. [The following answer might be more slick (18ms)] (https://discuss.leetcode.com/topic/15816/iterative-java-solution-with-stack/7)
+<p>3. [Iterative Java solution with stack] (https://discuss.leetcode.com/topic/15816/iterative-java-solution-with-stack)
+<p>4. [Basic Calculator 基本计算器 2种方法] (http://www.cnblogs.com/grandyang/p/4570699.html)
