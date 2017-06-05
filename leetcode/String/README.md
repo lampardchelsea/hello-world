@@ -132,7 +132,8 @@
 <p>Edit Distance
 <p>1. [20ms Detailed Explained C++ Solutions (O(n) Space)] (https://discuss.leetcode.com/topic/17639/20ms-detailed-explained-c-solutions-o-n-space)
 
-
+<p>One Edit Distance
+<p>1. [One Edit Distance 编辑距离为一] (https://segmentfault.com/a/1190000003906621)
 
 
 
