@@ -138,3 +138,8 @@
 <p>Restore IP Address
 <p>1. [Restore IP Address 修复IP地址] (https://segmentfault.com/a/1190000003704558)
 
+<p>Decode Ways
+<p>1. [Decode Ways 解码方式] (https://segmentfault.com/a/1190000003813921)
+
+
+
