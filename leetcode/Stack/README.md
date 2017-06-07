@@ -18,3 +18,9 @@
 <p>2. [The following answer might be more slick (18ms)] (https://discuss.leetcode.com/topic/15816/iterative-java-solution-with-stack/7)
 <p>3. [Iterative Java solution with stack] (https://discuss.leetcode.com/topic/15816/iterative-java-solution-with-stack)
 <p>4. [Basic Calculator 基本计算器 2种方法] (http://www.cnblogs.com/grandyang/p/4570699.html)
+
+<p>Simplify Path
+<p>1. [Can someone please explain what does simplify means in this context?] (https://discuss.leetcode.com/topic/20502/can-someone-please-explain-what-does-simplify-means-in-this-context)
+<p>2. [Simplify Path 化简路径] (https://segmentfault.com/a/1190000003815508)
+<p>3. [Java 10-lines solution with stack] (https://discuss.leetcode.com/topic/7675/java-10-lines-solution-with-stack)
+<p>4. [java: use StringBuilder to insert at the beginning] (https://stackoverflow.com/questions/5931261/java-use-stringbuilder-to-insert-at-the-beginning)
