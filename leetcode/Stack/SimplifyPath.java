@@ -18,6 +18,9 @@ import java.util.Stack;
  *     
  * Solution
  * https://discuss.leetcode.com/topic/20502/can-someone-please-explain-what-does-simplify-means-in-this-context
+ * Open a Linux Terminal window, and try some paths. for example: . means current folder, .. means parent folder. 
+ * So "/a/b/.." means from a to b folder, and from b to b's parent folder, finally we can simplified it as "/a"
+ * 
  * https://segmentfault.com/a/1190000003815508
  * 栈法
  * 复杂度
