@@ -144,3 +144,7 @@
 <p>Group Anagrams
 <p>1. [Group Anagrams 变形词] (https://segmentfault.com/a/1190000003740929)
 
+<p>Multiply Strings
+<p>1. [Easiest JAVA Solution with Graph Explanation] (https://discuss.leetcode.com/topic/30508/easiest-java-solution-with-graph-explanation)
+
+
