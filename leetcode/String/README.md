@@ -147,4 +147,9 @@
 <p>Multiply Strings
 <p>1. [Easiest JAVA Solution with Graph Explanation] (https://discuss.leetcode.com/topic/30508/easiest-java-solution-with-graph-explanation)
 
+<p>Generate Parentheses
+<p>1. [Easy to understand Java backtracking solution] (https://discuss.leetcode.com/topic/8724/easy-to-understand-java-backtracking-solution)
+<p>2. [Generate Parentheses 产生括号] (https://segmentfault.com/a/1190000003884251)
+
+
 
