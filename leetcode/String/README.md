@@ -151,5 +151,12 @@
 <p>1. [Easy to understand Java backtracking solution] (https://discuss.leetcode.com/topic/8724/easy-to-understand-java-backtracking-solution)
 <p>2. [Generate Parentheses 产生括号] (https://segmentfault.com/a/1190000003884251)
 
+<p>Letter Combinations of a Phone Number
+<p>1. [Letter Combinations of a Phone Number 电话号码组合 - DFS] (https://segmentfault.com/a/1190000003766442)
+<p>2. [My java solution with FIFO queue - BFS] (https://discuss.leetcode.com/topic/8465/my-java-solution-with-fifo-queue)
+
+
+
+
 
 
