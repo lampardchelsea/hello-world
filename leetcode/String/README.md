@@ -155,7 +155,8 @@
 <p>1. [Letter Combinations of a Phone Number 电话号码组合 - DFS] (https://segmentfault.com/a/1190000003766442)
 <p>2. [My java solution with FIFO queue - BFS] (https://discuss.leetcode.com/topic/8465/my-java-solution-with-fifo-queue)
 
-
+<p>String to Integer
+<p>1. [My simple solution] (https://discuss.leetcode.com/topic/2666/my-simple-solution/14)
 
 
 
