@@ -158,6 +158,7 @@
 <p>String to Integer
 <p>1. [My simple solution] (https://discuss.leetcode.com/topic/2666/my-simple-solution/14)
 
-
+<p>Longest Substring Without Repeating Characters 
+<p>1. [11-line simple Java solution, O(n) with explanation] (https://discuss.leetcode.com/topic/8232/11-line-simple-java-solution-o-n-with-explanation)
 
 
