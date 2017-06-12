@@ -161,4 +161,15 @@
 <p>Longest Substring Without Repeating Characters 
 <p>1. [11-line simple Java solution, O(n) with explanation] (https://discuss.leetcode.com/topic/8232/11-line-simple-java-solution-o-n-with-explanation)
 
+<p>Palindrome Pairs & Palindrome Pairs Trie
+<p>1. [150-ms-45-lines-java-solution] (https://discuss.leetcode.com/topic/40657/150-ms-45-lines-java-solution)
+<p>2. [中文解释] (https://leetcode.com/problems/palindrome-pairs/#/description)
+<p>3. [O(n*k^2) java solution with Trie structure (n: total number of words; k: average length of each word)] (https://discuss.leetcode.com/topic/39585/o-n-k-2-java-solution-with-trie-structure-n-total-number-of-words-k-average-length-of-each-word)
+
+
+
+
+
+
+
 
