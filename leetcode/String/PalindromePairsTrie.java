@@ -233,17 +233,17 @@ public class PalindromePairsTrie {
 			s    -> end at n9
 			sssll-> end at n16
 			
-			   			           root (-1, [3])
+			   			       root (-1, [3])
 					 / 'a'         | 'd'         | 'l'            \ 's'
 				n5 (-1, [])	    n1 (-1, [])     n12 (-1, [])    n9 (3, [2,3])        
-			        | 'b'          | 'c'         | 'l'            | 'l'
-			    n6 (-1, [])     n2 (-1, [])		n13 (-1, [4])   n10 (-1, [2])
-					| 'c'	       | 'b'         | 's'            | 'l'
-				n7 (-1, [1])	n3 (-1, [0])    n14 (-1, [4])   n11 (2, [2])
-					| 'd'		   | 'a'         | 's'
+			            | 'b'              | 'c'         | 'l'            | 'l'
+			        n6 (-1, [])         n2 (-1, [])     n13 (-1, [4])   n10 (-1, [2])
+			            | 'c'	       | 'b'         | 's'            | 'l'
+				n7 (-1, [1])	    n3 (-1, [0])    n14 (-1, [4])   n11 (2, [2])
+				    | 'd'	       | 'a'         | 's'
 				n8 (1, [1])	    n4 (0, [0])     n15 (-1, [4])
-				                                 | 's'
-												n16 (4, [4]) 
+				                                     | 's'
+							            n16 (4, [4]) 
 
 	     * In this example, we first will search for "abcd" which locate at
 	     * position 0 of words array, the special thing is we not directly
