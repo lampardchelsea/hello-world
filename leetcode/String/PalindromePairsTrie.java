@@ -268,6 +268,10 @@ public class PalindromePairsTrie {
 	     * (2) Current word "abcd", left part empty string "" forms a palindrome
 		 */
          for (int j : root.list) {
+		// If miss this check, can be test with
+		// Input:["abcd","dcba","lls","s","sssll"]
+		// Output:[[0,1],[1,0],[2,4],[3,2],[3,3]]
+                // Expected:[[0,1],[1,0],[3,2],[2,4]]
          	if(i == j) {
          		continue;
          	}
