@@ -166,7 +166,8 @@
 <p>2. [中文解释] (https://leetcode.com/problems/palindrome-pairs/#/description)
 <p>3. [O(n*k^2) java solution with Trie structure (n: total number of words; k: average length of each word)] (https://discuss.leetcode.com/topic/39585/o-n-k-2-java-solution-with-trie-structure-n-total-number-of-words-k-average-length-of-each-word)
 
-
+<p>Integer To English Words
+<p>1. [My clean Java solution, very easy to understand] (https://discuss.leetcode.com/topic/23054/my-clean-java-solution-very-easy-to-understand)
 
 
 
