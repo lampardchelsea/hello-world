@@ -173,6 +173,7 @@
 <p>1. [广度优先搜索] (https://segmentfault.com/a/1190000003698569)
 <p>2. [another-accepted-java-solution-bfs] (https://discuss.leetcode.com/topic/17890/another-accepted-java-solution-bfs)
 
-
+<p>Minimum Window Substring
+<p>1. [Minimum Window Substring 最小字符串窗口] (https://segmentfault.com/a/1190000003707313)
 
 
