@@ -176,4 +176,13 @@
 <p>Minimum Window Substring
 <p>1. [Minimum Window Substring 最小字符串窗口] (https://segmentfault.com/a/1190000003707313)
 
+<p>Scramble String
+<p>1. [Scramble String 爬行字符串] (http://www.cnblogs.com/grandyang/p/4318500.html)
+<p>2. [Can you partition a string at ANY index at ANY time in producing a scramble?] (https://discuss.leetcode.com/topic/861/can-you-partition-a-string-at-any-index-at-any-time-in-producing-a-scramble)
+<p>3. [Accepted Java solution] (https://discuss.leetcode.com/topic/19158/accepted-java-solution)
+
+
+
+
+
 
