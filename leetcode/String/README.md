@@ -181,7 +181,9 @@
 <p>2. [Can you partition a string at ANY index at ANY time in producing a scramble?] (https://discuss.leetcode.com/topic/861/can-you-partition-a-string-at-any-index-at-any-time-in-producing-a-scramble)
 <p>3. [Accepted Java solution] (https://discuss.leetcode.com/topic/19158/accepted-java-solution)
 
-
+<p>Interleaving String
+<p>1. [8ms C++ solution using BFS, with explanation] (https://discuss.leetcode.com/topic/6562/8ms-c-solution-using-bfs-with-explanation)
+<p>2. [Summary of solutions, BFS, DFS, DP] (https://discuss.leetcode.com/topic/30127/summary-of-solutions-bfs-dfs-dp )
 
 
 
