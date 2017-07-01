@@ -184,7 +184,8 @@
 <p>Interleaving String
 <p>1. [8ms C++ solution using BFS, with explanation] (https://discuss.leetcode.com/topic/6562/8ms-c-solution-using-bfs-with-explanation)
 <p>2. [Summary of solutions, BFS, DFS, DP] (https://discuss.leetcode.com/topic/30127/summary-of-solutions-bfs-dfs-dp )
-
+<p>3. [DFS] (https://discuss.leetcode.com/topic/31991/1ms-tiny-dfs-beats-94-57)
+<p>4. [DP] (https://discuss.leetcode.com/topic/7728/dp-solution-in-java)
 
 
 
