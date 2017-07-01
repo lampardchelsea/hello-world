@@ -14,7 +14,7 @@ import java.util.Set;
 	When s3 = "aadbbcbcac", return true.
 	When s3 = "aadbbbaccc", return false. 
  * 
- * Solution
+ * Solution 1.1 (BFS)
  * https://discuss.leetcode.com/topic/6562/8ms-c-solution-using-bfs-with-explanation
  * If we expand the two strings s1 and s2 into a chessboard, then this problem can be transferred into 
  * a path seeking problem from the top-left corner to the bottom-right corner. The key is, each cell 
@@ -72,15 +72,41 @@ import java.util.Set;
  * finding a path from (0,0) to (len1, len2). It actually becomes a
  * BFS on grid. Since we don't need exact paths, a HashSet of
  * coordinates is used to eliminate duplicated paths.
+ * 
+ * Solution 1.2 (BFS)
+ * https://discuss.leetcode.com/topic/6562/8ms-c-solution-using-bfs-with-explanation/11
+ * Instead of using HashSet to filter duplicate candidate positions in grid, use traditional
+ * two-dimensional array to identify whether the position been visited before
+ * I rethink BFS by your inspiration. I thought it is usually applicable for Min/Shortest problem. 
+ * Why it works here? I assume the recursive tree for this problem is very "skinny", since branch 
+ * appears only when s1[0]=s2[0]=s3[0] and then it only splits out 2 children. Here is my Java BFS 
+ * solution for anyone's reference. Forgive that Java has no built-in Tuple class making code a 
+ * little messy...
+ * 
+ * Solution 2 (DFS)
+ * https://discuss.leetcode.com/topic/31991/1ms-tiny-dfs-beats-94-57
+ * https://discuss.leetcode.com/topic/30127/summary-of-solutions-bfs-dfs-dp/2
+ * This looks slow but is actually faster than BFS! Think about it carefully, in this
+ * particular problem, search always ends at the same depth. DFS with memorization
+ * searches about the same amount of paths with the same length as BFS, if it is doesn't
+ * terminate on the first path found. Without the queue operations, the overall cost
+ * is only smaller if we don't count call stack. The most significant runtime reducer is
+ * probably the early termination
+ * 
+ * Solution 3 (DP)
+ * https://discuss.leetcode.com/topic/7728/dp-solution-in-java
+ * 
  */
 public class InterleavingString {
-	public boolean isInterleave(String s1, String s2, String s3) {
+	// Solution 1.1
+	public boolean isInterleave1_1(String s1, String s2, String s3) {
         int len1 = s1.length();
         int len2 = s2.length();
         int len3 = s3.length();
         if(len1 + len2 != len3) {
             return false;
         }
+        // Use HashSet to filter the positions in grid, make sure no duplicates
         Set<Integer> set = new HashSet<Integer>();
         Queue<Integer> queue = new LinkedList<Integer>();
         int matched = 0;
@@ -119,6 +145,95 @@ public class InterleavingString {
         return queue.size() > 0 && matched == len3;
     }
 	
+	// Solution 1.2
+	// Easier understanding than Solution 1.1
+    public boolean isInterleave1_2(String s1, String s2, String s3) {
+        int len1 = s1.length();
+        int len2 = s2.length();
+        int len3 = s3.length();
+		if(len1 + len2 != len3) {
+            return false;
+        }
+        boolean[][] visited = new boolean[len1 + 1][len2 + 1];
+        Queue<int[]> queue = new LinkedList<int[]>();
+        queue.offer(new int[]{0, 0});
+       	while(!queue.isEmpty()) {
+			int[] pos = queue.poll();
+            if(visited[pos[0]][pos[1]]) {
+                continue;
+            }
+            if(pos[0] == len1 && pos[1] == len2) {
+                return true;
+            }
+            if(pos[0] < len1 && s1.charAt(pos[0]) == s3.charAt(pos[0] + pos[1])) {
+                queue.offer(new int[]{pos[0] + 1, pos[1]});
+            }
+            if(pos[1] < len2 && s2.charAt(pos[1]) == s3.charAt(pos[0] + pos[1])) {
+                queue.offer(new int[]{pos[0], pos[1] + 1});
+            }
+            visited[pos[0]][pos[1]] = true;
+        }
+        return false;
+    }
+	
+    // Solution 2 (DFS)
+    public boolean isInterleave2(String s1, String s2, String s3) {
+        int len1 = s1.length();
+        int len2 = s2.length();
+        int len3 = s3.length();
+		if(len1 + len2 != len3) {
+            return false;
+        }
+        boolean[][] visited = new boolean[len1 + 1][len2 + 1];
+		return dfs(s1, s2, s3, 0, 0, visited);
+    }
+    
+    public boolean dfs(String s1, String s2, String s3, int posX, int posY, boolean[][] visited) {
+		if(posX + posY == s3.length()) {
+            return true;
+        }
+        if(visited[posX][posY]) {
+            return false;
+        }
+        visited[posX][posY] = true;
+        boolean match1 = posX < s1.length() && s1.charAt(posX) == s3.charAt(posX + posY);
+        boolean match2 = posY < s2.length() && s2.charAt(posY) == s3.charAt(posX + posY);
+        if(match1 && match2) {
+            return dfs(s1, s2, s3, posX + 1, posY, visited) || dfs(s1, s2, s3, posX, posY + 1, visited);
+        } else if(match1) {
+            return dfs(s1, s2, s3, posX + 1, posY, visited);
+        } else if(match2) {
+            return dfs(s1, s2, s3, posX, posY + 1, visited);
+        } else {
+            return false;
+        }
+    }
+    
+    // Solution 3 (DP)
+    public boolean isInterleave3(String s1, String s2, String s3) {
+        int len1 = s1.length();
+        int len2 = s2.length();
+        int len3 = s3.length();
+		if(len1 + len2 != len3) {
+            return false;
+        }
+        boolean[][] matrix = new boolean[len1 + 1][len2 + 1];
+		matrix[0][0] = true;
+        for(int i = 1; i < matrix[0].length; i++) {
+            matrix[0][i] = matrix[0][i - 1] && (s2.charAt(i - 1) == s3.charAt(i - 1));
+        }
+        for(int i = 1; i < matrix.length; i++) {
+            matrix[i][0] = matrix[i - 1][0] && (s1.charAt(i - 1) == s3.charAt(i - 1));
+        }
+        for (int i = 1; i < matrix.length; i++){
+        	for (int j = 1; j < matrix[0].length; j++){
+            	matrix[i][j] = (matrix[i - 1][j] && (s1.charAt(i - 1) == s3.charAt(i + j - 1)))
+                    || (matrix[i][j - 1] && (s2.charAt(j - 1) == s3.charAt(i + j - 1)));
+        	}
+    	}
+        return matrix[len1][len2];
+    }
+
 	public static void main(String[] args) {
 		
 	}
