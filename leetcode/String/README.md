@@ -187,5 +187,7 @@
 <p>3. [DFS] (https://discuss.leetcode.com/topic/31991/1ms-tiny-dfs-beats-94-57)
 <p>4. [DP] (https://discuss.leetcode.com/topic/7728/dp-solution-in-java)
 
+<p>Longest Valid Parentheses
+<p>1. [Using Stack [Accepted]] (https://leetcode.com/articles/longest-valid-parentheses/)
 
 
