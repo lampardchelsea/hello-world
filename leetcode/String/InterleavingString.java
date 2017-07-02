@@ -198,6 +198,13 @@ public class InterleavingString {
         visited[posX][posY] = true;
         boolean match1 = posX < s1.length() && s1.charAt(posX) == s3.charAt(posX + posY);
         boolean match2 = posY < s2.length() && s2.charAt(posY) == s3.charAt(posX + posY);
+	// We have three cases to working with:
+	// (1) If current char in s1 match that in s3, we want to check next char of s1 on s3
+	//     The position relation is (current char → next char)
+	// (2) If current char in s2 match that in s3, we want to check next char of s2 on s3
+	//     The position relation is (current char ↓ next char)    
+	// (3) We also want to check if the next char on diagonal in s3
+	//     The position relation is (current char ↘ next char)      
         if(match1 && match2) {
             return dfs(s1, s2, s3, posX + 1, posY, visited) || dfs(s1, s2, s3, posX, posY + 1, visited);
         } else if(match1) {
