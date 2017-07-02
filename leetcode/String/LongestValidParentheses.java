@@ -24,6 +24,9 @@ import java.util.Stack;
  * becomes empty, we push the current element's index onto the stack. In this way, we keep 
  * on calculating the lengths of the valid substrings, and return the length of the longest 
  * valid string at the end.
+ * We can use to simulate the process
+ * ( ) ) ( ( ( ) ) 
+ * 0 1 2 3 4 5 6 7
  * 
  * Complexity Analysis
  * Time complexity : O(n). n is the length of the given string.
@@ -39,6 +42,8 @@ public class LongestValidParentheses {
 			if(s.charAt(i) == '(') {
 				stack.push(i);
 			} else {
+				// Make sure pop first, the magic push of -1 avoid
+				// problem on string stack with push ')'
 				stack.pop();
 				if(stack.empty()) {
 					stack.push(i);
@@ -54,4 +59,3 @@ public class LongestValidParentheses {
 		
 	}
 }
-
