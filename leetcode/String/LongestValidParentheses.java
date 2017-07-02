@@ -43,13 +43,13 @@ import java.util.Stack;
  * corresponding {dp} indices. Thus, we update the {dp} array only when ‘)’ is encountered.
  * To fill {dp} array we will check every two consecutive characters of the string and if
 
-    s[i]=‘)’ and s[i−1]=‘(’ , i.e. string looks like ‘‘.......()"⇒``.......()" ⇒
+    s[i]=‘)’ and s[i−1]=‘(’ , i.e. string looks like '.......()' ⇒
     dp[i]=dp[i−2]+2
     
  * We do so because the ending "()" portion is a valid substring anyhow and leads to an increment of 2 in the
  * length of the just previous valid substring's length.
 
-   s[i]=‘)’ and s[i−1]=‘)’ , i.e. string looks like ‘‘.......))"⇒``.......))" ⇒
+   s[i]=‘)’ and s[i−1]=‘)’ , i.e. string looks like '.......))' ⇒
    if s[i−dp[i−1]−1]=‘(’ then
     dp[i]=dp[i−1]+dp[i−dp[i−1]−2]+2
 
