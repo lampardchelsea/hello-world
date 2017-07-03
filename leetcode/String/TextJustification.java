@@ -30,7 +30,7 @@ import java.util.List;
  * In this case, that line should be left-justified.
  *
  * Solution
- * https://discuss.leetcode.com/topic/9147/simple-java-solution/8
+ * https://discuss.leetcode.com/topic/9147/simple-java-solution/7
  * 
  */
 public class TextJustification {
