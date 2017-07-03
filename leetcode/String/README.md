@@ -193,3 +193,7 @@
 <p>Substring With Concatenation Of All Words
 <P>1. [Substring with Concatenation of All Words 单词组合子字符串] (https://segmentfault.com/a/1190000003903467)
 
+<p>Text Justification
+<p>1. [Simple Java Solution] (https://discuss.leetcode.com/topic/9147/simple-java-solution/7)
+
+
