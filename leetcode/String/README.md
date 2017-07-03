@@ -190,4 +190,6 @@
 <p>Longest Valid Parentheses
 <p>1. [Using Stack [Accepted]] (https://leetcode.com/articles/longest-valid-parentheses/)
 
+<p>Substring With Concatenation Of All Words
+<P>1. [Substring with Concatenation of All Words 单词组合子字符串] (https://segmentfault.com/a/1190000003903467)
 
