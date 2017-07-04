@@ -98,4 +98,9 @@
 <p>2. [Other explain] (http://www.cnblogs.com/grandyang/p/5931874.html)
 <p>3. [Top Solution of LeetCode Discuss] (https://discuss.leetcode.com/topic/61300/simple-hashset-solution-java/4)
 
+<p>Keyboard Row
+<p>1. [Short Easy Java with Explanation] (https://discuss.leetcode.com/topic/77773/short-easy-java-with-explanation)
+
+
+
 
