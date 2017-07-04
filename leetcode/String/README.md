@@ -196,4 +196,5 @@
 <p>Text Justification
 <p>1. [Simple Java Solution] (https://discuss.leetcode.com/topic/9147/simple-java-solution/7)
 
-
+<p>Wildcard Matching
+<p>1. [Wildcard Matching 通配符匹配] (https://segmentfault.com/a/1190000003786247)
