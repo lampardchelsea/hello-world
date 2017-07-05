@@ -43,6 +43,11 @@
  * ement list2[j] as the only entry in it.
  * If the sum is equal to the minimum sum obtained till now, we put an extra entry corresponding 
  * to the element list2[j] in the resresres list.
+ * Complexity Analysis
+ *
+ * Time complexity : O(l1+l2). Every item of list2 is checked in a map of list1. l1 and l2
+ * are the lengths of list1 and list2 respectively.
+ * Space complexity : O(l1∗x). hashmap size grows upto l1, where x refers to average string length.
 */
 public class Solution {
     public String[] findRestaurant(String[] list1, String[] list2) {
