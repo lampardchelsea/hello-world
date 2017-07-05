@@ -101,6 +101,7 @@
 <p>Keyboard Row
 <p>1. [Short Easy Java with Explanation] (https://discuss.leetcode.com/topic/77773/short-easy-java-with-explanation)
 
-
+<p>Minimum Index Sum Of Two Lists
+<p>1. [Approach #3 Using HashMap (linear) [Accepted]] (https://leetcode.com/articles/minimum-index-sum-of-two-lists/)
 
 
