@@ -107,6 +107,8 @@
 <p>4 Sum II
 <p>1. [Clean java solution O(n^2)] (https://leetcode.com/problems/4sum-ii/#/solutions)
 
+<p>Maximum Size Subarray Sum Equals K
+<p>1. [O(n) super clean 9-line Java solution with HashMap] (https://discuss.leetcode.com/topic/33259/o-n-super-clean-9-line-java-solution-with-hashmap/2?page=1)
 
 
 
