@@ -43,7 +43,52 @@ import java.util.Map;
  *     consuming part of it? How to optimize?
  * (5) How to make sure the duplicated files you find are not false positive?
  * 
- * Solution
+ * Refer to
+ * https://discuss.leetcode.com/topic/91430/c-clean-solution-answers-to-follow-up
+ * Follow up questions:
+ * 1. Imagine you are given a real file system, how will you search files? DFS or BFS ?
+ *    In general, BFS will use more memory then DFS. However BFS can take advantage of the locality of files 
+ *    in inside directories, and therefore will probably be faster
+ * 
+ * 2. If the file content is very large (GB level), how will you modify your solution?
+ *    In a real life solution we will not hash the entire file content, since it's not practical. 
+ *    Instead we will first map all the files according to size. Files with different sizes are guaranteed 
+ *    to be different. We will than hash a small part of the files with equal sizes (using MD5 for example). 
+ *    Only if the md5 is the same, we will compare the files byte by byte
+ * 
+ * 3. If you can only read the file by 1kb each time, how will you modify your solution?
+ *    This won't change the solution. We can create the hash from the 1kb chunks, and then read the entire 
+ *    file if a full byte by byte comparison is required.
+ * 
+ * 4. What is the time complexity of your modified solution? What is the most time consuming part and memory 
+ *    consuming part of it? How to optimize?
+ *    Time complexity is O(n^2 * k) since in worse case we might need to compare every file to all others. 
+ *    k is the file size
+ *    
+ * 5. How to make sure the duplicated files you find are not false positive?
+ *    We will use several filters to compare: File size, Hash and byte by byte comparisons.
+ * 
+ * 
+ * Solution 1: Brute Force
+ * https://leetcode.com/articles/find-duplicate/
+ * Approach #1 Brute Force [Time Limit Exceeded]
+ * Algorithm
+ * For the brute force solution, firstly we obtain the directory paths, the filenames and file contents separately by 
+ * appropriately splitting the elements of the paths list. While doing so, we keep on creating a list which 
+ * contains the full path of every file along with the contents of the file. The list contains data in the form 
+ * [[file1_full_path,file1_contents],[file2_full_path,file2_contents]...,[filen_full_path,filen_contents]].
+ * Once this is done, we iterate over this list. For every element iii chosen from the list, we iterate over the whole
+ *  list to find another element j whose file contents are the same as the ith element. For every such element found, 
+ *  we put the jth element's file path in a temporary list l and we also mark the jth​​ element as visited so that this 
+ *  element isn't considered again in the future. Thus, when we reach the end of the array for every ith​​ element, 
+ *  we obtain a list of file paths in l, which have the same contents as the file corresponding to the ith element. 
+ *  If this list isn't empty, it indicates that there exists content duplicate to the ith element. Thus, we also need 
+ *  to put the ith element's file path in the l.
+ *  At the end of each iteration, we put this list l obtained in the resultant list res and reset the list l for finding 
+ *  the duplicates of the next element.
+ * 
+ * 
+ * Solution 2: HashMap
  * https://leetcode.com/articles/find-duplicate/
  * Approach #2 Using HashMap [Accepted]
  * In this approach, firstly we obtain the directory paths, the file names and their contents separately by 
@@ -60,7 +105,45 @@ import java.util.Map;
     Space complexity : O(n ∗ x). map and res size grows up to n*x.
  */
 public class FindDuplicateFileInSystem {
-    public List<List<String>> findDuplicate(String[] paths) {
+	// Solution 1: Brute Force
+	public List<List<String>> findDuplicate(String[] paths) {
+		List<List<String>> result = new ArrayList<List<String>>();
+		if(paths.length == 0) {
+			return result;
+		}
+		List<String[]> list = new ArrayList<String[]>();
+		for(String path : paths) {
+			String[] sections = path.split(" ");
+			for(int i = 1; i < sections.length; i++) {
+				String[] values = sections[i].split("\\(");
+				String content = values[1].replace(")", "");
+				list.add(new String[]{sections[0] + "/" + values[0], content});
+			}
+		}
+		boolean[] visited = new boolean[list.size()];
+		List<List<String>> res = new ArrayList<List<String>>();
+		for(int i = 0; i < list.size(); i++) {
+			if(visited[i]) {
+				continue;
+			}
+			List<String> l = new ArrayList<String>();
+			for(int j = i + 1; j < list.size(); j++) {
+				if(list.get(i)[1].equals(list.get(j)[1])) {
+					visited[j] = true;
+					l.add(list.get(j)[0]);
+				}
+			}
+			if(l.size() > 0) {
+				// Don't forget to put the ith element's file path in the l
+				l.add(list.get(i)[0]);
+				res.add(l);
+			}	
+		}
+		return res;
+	}
+	
+	// Solution 2: HashMap
+    public List<List<String>> findDuplicate2(String[] paths) {
         List<List<String>> result = new ArrayList<List<String>>();
         if(paths.length == 0) {
             return result;
