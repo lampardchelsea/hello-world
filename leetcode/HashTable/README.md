@@ -121,4 +121,9 @@
 <p>4. [Same Solution in Java] (https://discuss.leetcode.com/topic/81637/two-solutions-and-thoughts/4)
 <p>5. [Math.random() explained] (https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java)
 
+<p>Most Frequent Subtree Sum
+<p>1. [Verbose Java solution, postOrder traverse, HashMap (18ms)] (https://discuss.leetcode.com/topic/77775/verbose-java-solution-postorder-traverse-hashmap-18ms)
+<p>2. [Without loop through whole HashMap] (https://discuss.leetcode.com/topic/77775/verbose-java-solution-postorder-traverse-hashmap-18ms/5)
+
+
 
