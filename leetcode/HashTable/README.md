@@ -119,6 +119,6 @@
 <p>2. [Two solutions and thoughts] (https://discuss.leetcode.com/topic/81637/two-solutions-and-thoughts)
 <p>3. [Encode and Decode TinyURL 编码和解码精简URL地址] (http://www.cnblogs.com/grandyang/p/6562209.html)
 <p>4. [Same Solution in Java] (https://discuss.leetcode.com/topic/81637/two-solutions-and-thoughts/4)
-<p>5. [Math.random() explained] (https://stackoverflow.com/questions/7961788/math-random-explained)
+<p>5. [Math.random() explained] (https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java)
 
 
