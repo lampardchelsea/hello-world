@@ -110,5 +110,8 @@
 <p>Maximum Size Subarray Sum Equals K
 <p>1. [O(n) super clean 9-line Java solution with HashMap] (https://discuss.leetcode.com/topic/33259/o-n-super-clean-9-line-java-solution-with-hashmap/2?page=1)
 
+<p>Find Duplicate File In System
+<p>1. [C++ clean solution, answers to follow up] (https://discuss.leetcode.com/topic/91430/c-clean-solution-answers-to-follow-up)
+<p>2. [Brute Force & HashMap] (https://leetcode.com/articles/find-duplicate/)
 
 
