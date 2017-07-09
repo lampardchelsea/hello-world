@@ -25,6 +25,8 @@
  *
  * Solution
  * https://discuss.leetcode.com/topic/77775/verbose-java-solution-postorder-traverse-hashmap-18ms
+ * Idea is post-order traverse the tree and get sum of every sub-tree, put sum to count mapping 
+ * to a HashMap. Then generate result based on the HashMap.
 */
 /**
  * Definition for a binary tree node.
