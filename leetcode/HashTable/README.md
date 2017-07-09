@@ -114,4 +114,11 @@
 <p>1. [C++ clean solution, answers to follow up] (https://discuss.leetcode.com/topic/91430/c-clean-solution-answers-to-follow-up)
 <p>2. [Brute Force & HashMap] (https://leetcode.com/articles/find-duplicate/)
 
+<p>Encode And Decode TinyURL
+<p>1. [Easy solution in java, 5 line code] (https://discuss.leetcode.com/topic/81633/easy-solution-in-java-5-line-code/2)
+<p>2. [Two solutions and thoughts] (https://discuss.leetcode.com/topic/81637/two-solutions-and-thoughts)
+<p>3. [Encode and Decode TinyURL 编码和解码精简URL地址] (http://www.cnblogs.com/grandyang/p/6562209.html)
+
+
+
 
