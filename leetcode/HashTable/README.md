@@ -109,6 +109,8 @@
 
 <p>Maximum Size Subarray Sum Equals K
 <p>1. [O(n) super clean 9-line Java solution with HashMap] (https://discuss.leetcode.com/topic/33259/o-n-super-clean-9-line-java-solution-with-hashmap/2?page=1)
+<p>2. [Java O(n) explain how I come up with this idea] (https://discuss.leetcode.com/topic/33537/java-o-n-explain-how-i-come-up-with-this-idea)
+<p>3. [Get more details about the reasons of "map.put(0, -1);"] (https://discuss.leetcode.com/topic/33537/java-o-n-explain-how-i-come-up-with-this-idea/8)
 
 <p>Find Duplicate File In System
 <p>1. [C++ clean solution, answers to follow up] (https://discuss.leetcode.com/topic/91430/c-clean-solution-answers-to-follow-up)
