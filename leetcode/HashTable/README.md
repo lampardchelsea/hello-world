@@ -125,5 +125,9 @@
 <p>1. [Verbose Java solution, postOrder traverse, HashMap (18ms)] (https://discuss.leetcode.com/topic/77775/verbose-java-solution-postorder-traverse-hashmap-18ms)
 <p>2. [Without loop through whole HashMap] (https://discuss.leetcode.com/topic/77775/verbose-java-solution-postorder-traverse-hashmap-18ms/5)
 
+<p>Insert Delete Get Random O1
+<p>1. [Java solution using a HashMap and an ArrayList along with a follow-up.] (https://discuss.leetcode.com/topic/53216/java-solution-using-a-hashmap-and-an-arraylist-along-with-a-follow-up-131-ms)
+<p>2. [Allow Duplicates] (https://discuss.leetcode.com/topic/53216/java-solution-using-a-hashmap-and-an-arraylist-along-with-a-follow-up-131-ms/4)
+
 
 
