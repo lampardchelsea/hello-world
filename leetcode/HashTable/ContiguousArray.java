@@ -25,6 +25,9 @@
  * 就减1，这样如果某个子数组和为0，就说明0和1的个数相等，这个想法真是太叼了，不过博主木有想出来。知道了这一点，我们用
  * 一个哈希表建立子数组之和跟结尾位置的坐标之间的映射。如果某个子数组之和在哈希表里存在了，说明当前子数组减去哈希表中存
  * 的那个子数字，得到的结果是中间一段子数组之和，必然为0，说明0和1的个数相等，我们更新结果res
+ *
+ * Similar idea on LC325: MaximumSizeSubarraySumEqualsK.java
+ * https://github.com/lampardchelsea/hello-world/blob/master/leetcode/HashTable/MaximumSizeSubarraySumEqualsK.java
 */
 public class Solution {
     public int findMaxLength(int[] nums) {
