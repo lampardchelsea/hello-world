@@ -136,4 +136,10 @@
 <p>2. [What is the time complexity for a set to return its iterator?] (https://discuss.leetcode.com/topic/53216/java-solution-using-a-hashmap-and-an-arraylist-along-with-a-follow-up-131-ms/6)
 <p>3. [HashSet vs LinkedHashSet] (https://stackoverflow.com/a/38141941/6706875)
 
+<p>Contiguous Array
+<p>1. [Easy Java O(n) Solution, PreSum + HashMap] (https://discuss.leetcode.com/topic/79906/easy-java-o-n-solution-presum-hashmap)
+<p>2. [Contiguous Array 邻近数组] (http://www.cnblogs.com/grandyang/p/6529857.html)
+<p>3. [LC325: Maximum Size Subarray Sum Equals K] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/HashTable/MaximumSizeSubarraySumEqualsK.java)
+
+
 
