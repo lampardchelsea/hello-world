@@ -129,5 +129,9 @@
 <p>1. [Java solution using a HashMap and an ArrayList along with a follow-up.] (https://discuss.leetcode.com/topic/53216/java-solution-using-a-hashmap-and-an-arraylist-along-with-a-follow-up-131-ms)
 <p>2. [Allow Duplicates] (https://discuss.leetcode.com/topic/53216/java-solution-using-a-hashmap-and-an-arraylist-along-with-a-follow-up-131-ms/4)
 
+<p>Insert Delete Get Random O1 Duplicate Allowed
+<p>1. [Add a set to the hashMap to remember all the locations of a duplicated number] (https://discuss.leetcode.com/topic/53216/java-solution-using-a-hashmap-and-an-arraylist-along-with-a-follow-up-131-ms/4)
+<p>2. [What is the time complexity for a set to return its iterator?] (https://discuss.leetcode.com/topic/53216/java-solution-using-a-hashmap-and-an-arraylist-along-with-a-follow-up-131-ms/6)
+<p>3. [HashSet vs LinkedHashSet] (https://stackoverflow.com/a/38141941/6706875)
 
 
