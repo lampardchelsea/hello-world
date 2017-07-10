@@ -15,6 +15,7 @@
  * 
  * Solution
  * https://discuss.leetcode.com/topic/79906/easy-java-o-n-solution-presum-hashmap
+ * https://discuss.leetcode.com/topic/79906/easy-java-o-n-solution-presum-hashmap/3
  * The idea is to change 0 in the original array to -1. Thus, if we find SUM[i, j] == 0 then 
  * we know there are even number of -1 and 1 between index i and j. Also put the sum to index 
  * mapping to a HashMap to make search faster.
