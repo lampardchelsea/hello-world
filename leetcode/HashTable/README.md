@@ -154,3 +154,9 @@
 <p>4. [Explain of two sets use] (https://discuss.leetcode.com/topic/8894/clean-java-solution-hashmap-bits-manipulation/15?page=1)
 <p>5. [Improvement on holding fixed size window] (https://discuss.leetcode.com/topic/8894/clean-java-solution-hashmap-bits-manipulation/16?page=1)
 
+<p>Line Reflection
+<p>1. [Line Reflection 直线对称] (http://www.cnblogs.com/grandyang/p/5579271.html)
+<p>2. [Simple java hashset solution] (https://discuss.leetcode.com/topic/48172/simple-java-hashset-solution)
+<p>3. [11ms two-pass HashSet-based Java Solution] (https://discuss.leetcode.com/topic/47851/11ms-two-pass-hashset-based-java-solution)
+
+
