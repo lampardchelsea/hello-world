@@ -141,5 +141,12 @@
 <p>2. [Contiguous Array 邻近数组] (http://www.cnblogs.com/grandyang/p/6529857.html)
 <p>3. [LC325: Maximum Size Subarray Sum Equals K] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/HashTable/MaximumSizeSubarraySumEqualsK.java)
 
+<p>H Index
+<p>1. [My O(n) time solution use Java] (https://discuss.leetcode.com/topic/23307/my-o-n-time-solution-use-java)
+<p>2. [Java bucket sort O(n) solution with detail explanation] (https://discuss.leetcode.com/topic/40765/java-bucket-sort-o-n-solution-with-detail-explanation)
+<p>3. [H Index Wiki] (https://en.wikipedia.org/wiki/H-index)
+<p>4. [H-Index H指数] (https://segmentfault.com/a/1190000003794831)
+
+
 
 
