@@ -151,5 +151,6 @@
 <p>1. [Clean Java solution (hashmap + bits manipulation)] (https://discuss.leetcode.com/topic/8894/clean-java-solution-hashmap-bits-manipulation)
 <p>2. [7 lines simple Java, O(n)] (https://discuss.leetcode.com/topic/27517/7-lines-simple-java-o-n)
 <p>3. [Repeated DNA Sequences 重复DNA序列] (https://segmentfault.com/a/1190000003922976)
-
+<p>4. [Explain of two sets use] (https://discuss.leetcode.com/topic/8894/clean-java-solution-hashmap-bits-manipulation/15?page=1)
+<p>5. [Improvement on holding fixed size window] (https://discuss.leetcode.com/topic/8894/clean-java-solution-hashmap-bits-manipulation/16?page=1)
 
