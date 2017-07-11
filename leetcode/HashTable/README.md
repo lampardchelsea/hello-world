@@ -147,6 +147,9 @@
 <p>3. [H Index Wiki] (https://en.wikipedia.org/wiki/H-index)
 <p>4. [H-Index H指数] (https://segmentfault.com/a/1190000003794831)
 
-
+<p>Repeated DNA Sequences
+<p>1. [Clean Java solution (hashmap + bits manipulation)] (https://discuss.leetcode.com/topic/8894/clean-java-solution-hashmap-bits-manipulation)
+<p>2. [7 lines simple Java, O(n)] (https://discuss.leetcode.com/topic/27517/7-lines-simple-java-o-n)
+<p>3. [Repeated DNA Sequences 重复DNA序列] (https://segmentfault.com/a/1190000003922976)
 
 
