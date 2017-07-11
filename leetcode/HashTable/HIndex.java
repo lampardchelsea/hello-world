@@ -10,6 +10,23 @@ import java.util.Arrays;
  * https://discuss.leetcode.com/topic/23307/my-o-n-time-solution-use-java
  * 
  * https://discuss.leetcode.com/topic/40765/java-bucket-sort-o-n-solution-with-detail-explanation
+ * This type of problems always throw me off, but it just takes some getting used to. The idea behind 
+ * it is some bucket sort mechanisms. First, you may ask why bucket sort. Well, the h-index is defined 
+ * as the number of papers with reference greater than the number. So assume n is the total number of 
+ * papers, if we have n+1 buckets, number from 0 to n, then for any paper with reference corresponding 
+ * to the index of the bucket, we increment the count for that bucket. The only exception is that for 
+ * any paper with larger number of reference than n, we put in the n-th bucket.
+ * Then we iterate from the back to the front of the buckets, whenever the total count exceeds the 
+ * index of the bucket, meaning that we have the index number of papers that have reference greater 
+ * than or equal to the index. Which will be our h-index result. The reason to scan from the end of 
+ * the array is that we are looking for the greatest h-index. For example, given array [3,0,6,5,1], 
+ * we have 6 buckets to contain how many papers have the corresponding index. 
+ * Hope to image and explanation help.
+ * 
+ * [3, 0, 6, 5, 1]
+ *                                     <------------ count
+ *    1       1                 1                 2 
+ * bucket0  bucket1  bucket2  bucket3  bucket4  bucket5  (index)
  *
  * https://segmentfault.com/a/1190000003794831
  * 复杂度
@@ -19,6 +36,16 @@ import java.util.Arrays;
  * 文献的数量是citations.length - i，而当前的H-Index则是Math.min(citations[i], citations.length - i)，
  * 我们将这个当前的H指数和全局最大的H指数来比较，得到最大H指数。
  * 
+ * 数组映射法
+ * 复杂度
+ * 时间 O(N) 空间 O(N)
+ * 思路
+ * 也可以不对数组排序，我们额外使用一个大小为N+1的数组stats。stats[i]表示有多少文章被引用了i次，这里如果一篇文章
+ * 引用大于N次，我们就将其当为N次，因为H指数不会超过文章的总数。为了构建这个数组，我们需要先将整个文献引用数组遍历一遍，
+ * 对相应的格子加一。统计完后，我们从N向1开始遍历这个统计数组。如果遍历到某一个引用次数时，大于或等于该引用次数的文章
+ * 数量，大于引用次数本身时，我们可以认为这是H指数。之所以不用再向下找，因为我们要取最大的H指数。那如何求大于或等于某个
+ * 引用次数的文章数量呢？我们可以用一个变量，从高引用次的文章数累加下来。因为我们知道，如果有x篇文章的引用大于等于3次，
+ * 那引用大于等于2次的文章数量一定是x加上引用次数等于2次的文章数量。
  * 
  * http://www.cnblogs.com/grandyang/p/4781203.html
  * 这道题让我们求H指数，这个质数是用来衡量研究人员的学术水平的质数，定义为一个人的学术文章有n篇分别被引用了n次，
@@ -62,5 +89,31 @@ public class HIndex {
         }
         return h;
     }
+	
+	// Solution 2:
+	public int hIndex2(int[] citations) {
+        int n = citations.length;
+        int[] buckets = new int[n+1];
+        // 统计各个引用次数对应多少篇文章
+        for(int c : citations) {
+            if(c >= n) {
+                buckets[n]++;
+            } else {
+                // c = citations[i] -> buckets[citations[i]]
+                buckets[c]++;
+            }
+        }
+        int count = 0;
+        // 找出最大的H指数
+        for(int i = n; i >= 0; i--) {
+        	// 引用大于等于i次的文章数量，等于引用大于等于i+1次的文章数量，加上引用等于i次的文章数量 
+            count += buckets[i];
+            // 如果引用大于等于i次的文章数量，大于引用次数i，说明是H指数
+            if(count >= i) {
+                return i;
+            }
+        }
+        return 0;
+	}
+	
 }
-
