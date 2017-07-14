@@ -23,7 +23,7 @@
  *  
  * Solution
  * https://discuss.leetcode.com/topic/40371/easy-dp-java-solution-with-detailed-explanation
- * 
+ * https://discuss.leetcode.com/topic/40371/easy-dp-java-solution-with-detailed-explanation/43
  * https://discuss.leetcode.com/topic/40371/easy-dp-java-solution-with-detailed-explanation/18?page=1
  * E.g 
  * s = aab, p = c*a*, dp[0][0] = true
