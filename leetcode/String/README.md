@@ -198,3 +198,17 @@
 
 <p>Wildcard Matching
 <p>1. [Wildcard Matching 通配符匹配] (https://segmentfault.com/a/1190000003786247)
+
+<p>Regular Expression Matching
+<p>1. [Easy DP Java Solution with detailed Explanation] (https://discuss.leetcode.com/topic/40371/easy-dp-java-solution-with-detailed-explanation?page=1)
+<p>2. [Important tips for 3 cases] (https://discuss.leetcode.com/topic/40371/easy-dp-java-solution-with-detailed-explanation/43)
+<p>3. [Graphic explaination] (https://discuss.leetcode.com/topic/40371/easy-dp-java-solution-with-detailed-explanation/18?page=1)
+<p>4. [2D dp matrix coordinate index relation with array index] (https://discuss.leetcode.com/topic/17852/9-lines-16ms-c-dp-solutions-with-explanations/28?page=2)
+
+
+
+
+
+
+
+
