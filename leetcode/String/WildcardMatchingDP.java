@@ -82,19 +82,19 @@ public class WildcardMatching {
 	
 	// Solution 2: 2D Array dp 
 	public boolean isMatch2(String s, String p) {
-        int m = s.length() + 1;
-        int n = p.length() + 1;
+        int m = s.length() + 1;  // Y-axis
+        int n = p.length() + 1;  // X-axis
         boolean[][] dp = new boolean[m][n];
         dp[0][0] = true;
         
-        // Initialize dp[i][0]
+        // Initialize dp[i][0] (Y-axis, 1st column)
         for(int i = 1; i < m; i++) {
             // First, we need to initialize dp[i][0], i = [1,m). 
             // All the dp[i][0] should be false because p has nothing in it.
             dp[i][0] = false;
         }
         
-        // Initialize dp[0][j]
+        // Initialize dp[0][j] (X-axis, 1st row)
         for(int j = 1;  j < n; j++) {
             // Then, initialize dp[0][j], j = [1, n). In this case, 
             // s has nothing, to get dp[0][j] = true, p must be '*', **', '***', etc. 
