@@ -47,15 +47,15 @@
  */
 public class RegularExpressionMatching {
 	public boolean isMatch(String s, String p) {
-		int m = s.length() + 1;
-		int n = p.length() + 1;
+	int m = s.length() + 1;  // Y-axis
+	int n = p.length() + 1;  // X-axis
         boolean[][] dp = new boolean[m][n];
         dp[0][0] = true;
 		        
-        // Initialize dp[i][0] as Column 1 on dp matrix
+        // Initialize dp[i][0] (Y-axis) as Column 1 on dp matrix
         // As default values all false, no need to initialize
         
-        // Initialize dp[0][j] as Row 1 on dp martix
+        // Initialize dp[0][j] (X-axis) as Row 1 on dp martix
         for(int j = 2; j < n; j++) {
         	// The relation between j of dp matrix and 
         	// index of p is p_index = j - 1
