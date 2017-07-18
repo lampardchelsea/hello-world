@@ -24,3 +24,6 @@
 <p>2. [Simplify Path 化简路径] (https://segmentfault.com/a/1190000003815508)
 <p>3. [Java 10-lines solution with stack] (https://discuss.leetcode.com/topic/7675/java-10-lines-solution-with-stack)
 <p>4. [java: use StringBuilder to insert at the beginning] (https://stackoverflow.com/questions/5931261/java-use-stringbuilder-to-insert-at-the-beginning)
+
+<p>Construct String From Binary Tree
+<p>1. [Iterative and Stack ways] (https://leetcode.com/articles/construct-string-from-binary-tree/)
