@@ -209,7 +209,7 @@
 
 <p>Distinct Subsequences
 <p>1. [Easy to understand DP in Java] (https://discuss.leetcode.com/topic/9488/easy-to-understand-dp-in-java)
-
+<p>2. [Distinct Subsequences 不同顺序字串] (https://segmentfault.com/a/1190000003481216)
 
 
 
