@@ -207,7 +207,8 @@
 <p>3. [Graphic explaination] (https://discuss.leetcode.com/topic/40371/easy-dp-java-solution-with-detailed-explanation/18?page=1)
 <p>4. [2D dp matrix coordinate index relation with array index] (https://discuss.leetcode.com/topic/17852/9-lines-16ms-c-dp-solutions-with-explanations/28?page=2)
 
-
+<p>Distinct Subsequences
+<p>1. [Easy to understand DP in Java] (https://discuss.leetcode.com/topic/9488/easy-to-understand-dp-in-java)
 
 
 
