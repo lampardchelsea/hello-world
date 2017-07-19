@@ -211,7 +211,8 @@
 <p>1. [Easy to understand DP in Java] (https://discuss.leetcode.com/topic/9488/easy-to-understand-dp-in-java)
 <p>2. [Distinct Subsequences 不同顺序字串] (https://segmentfault.com/a/1190000003481216)
 
-
-
+<p>Delete Operation For Two Strings
+<p>1. [5 Approaches, DP and LCS] (https://leetcode.com/articles/delete-operation-for-two-strings/)
+<p>2. [2D Array DP] (https://discuss.leetcode.com/topic/89283/java-dp-solution-same-as-edit-distance)
 
 
