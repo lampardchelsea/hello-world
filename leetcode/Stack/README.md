@@ -27,3 +27,10 @@
 
 <p>Construct String From Binary Tree
 <p>1. [Iterative and Stack ways] (https://leetcode.com/articles/construct-string-from-binary-tree/)
+
+<p>Decode String
+<p>1. [Java short and easy-understanding solution using stack] (https://discuss.leetcode.com/topic/57250/java-short-and-easy-understanding-solution-using-stack)
+<p>2. [Some improvements] (https://discuss.leetcode.com/topic/57250/java-short-and-easy-understanding-solution-using-stack/6)
+<p>3. [Why should I use Deque over Stack?] (https://stackoverflow.com/questions/12524826/why-should-i-use-deque-over-stack)
+
+
