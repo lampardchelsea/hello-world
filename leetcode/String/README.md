@@ -215,4 +215,14 @@
 <p>1. [5 Approaches, DP and LCS] (https://leetcode.com/articles/delete-operation-for-two-strings/)
 <p>2. [2D Array DP] (https://discuss.leetcode.com/topic/89283/java-dp-solution-same-as-edit-distance)
 
+<p>Is Subsequence
+<p>1. [Two Pointers for basic case] (https://discuss.leetcode.com/topic/57147/straight-forward-java-simple-solution)
+<p>2. [Binary search solution for follow-up with detailed comments] (https://discuss.leetcode.com/topic/58367/binary-search-solution-for-follow-up-with-detailed-comments)
+<p>3. [Java code for the follow-up question (HashMap & Binary Search)] (https://discuss.leetcode.com/topic/67167/java-code-for-the-follow-up-question)
+<p>4. [Prev variable in Binary Search] (https://discuss.leetcode.com/topic/58367/binary-search-solution-for-follow-up-with-detailed-comments/5)
+
+
+
+
+
 
