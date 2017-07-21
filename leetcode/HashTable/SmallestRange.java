@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -103,12 +104,99 @@ public class SmallestRange {
 	
 	
 	// Solution 2
+	// Approach #2 Better Brute Force [Time Limit Exceeded]
+	// In the last approach, we consider every possible range and then traverse over every list to 
+	// check if at least one of the elements from these lists lies in the required range. Instead of 
+	// doing this traversal for every range, we can make use of Binary Search to find the index of 
+	// the element just larger than(or equal to) the lower limit of the range currently considered. 
+	// If all the elements in the current list are lesser than this lower limit, we'll get the index 
+	// as nums[k].length.length for the kth list being currently checked. 
+	// In this case, none of the elements of the current list lies in the current range.
+	// On the other hand, if all the elements in this list are larger than this lower limit, we'll get 
+	// the index of the first element(minimum) in the current list. If this element happens to be larger 
+	// than the upper limit of the range currently considered, then also, none of the elements of the 
+	// current list lies within the current range.
+	// Whenever a range is found which satisfies the required criteria, we can compare it with the minimum 
+	// range found so far to determine the required minimum range.
+	// Complexity Analysis
+	// Time complexity : O(n2log(k)). The time required to consider every possible range is O(n2). 
+	//                   For every range currently considered, a Binary Search requiring O(log(k)) time 
+	//                   is required. Here, n refers to the total number of elements in the given lists 
+	//                   and k refers to the average length of each list.
+    // Space complexity : O(1). Constant extra space is used.
+	public int[] smallestRange2(List<List<Integer>> nums) {
+		int minX = 0;
+		int minY = Integer.MAX_VALUE;
+		/**
+		 * Example status change on a loop
+		 * Input: [[4,10,15,24,26], [0,9,12,20], [5,18,22,30]] 
+		   ij = 00, 00, 00, 00, 00, 00, 00, 00, 00,...   
+           kl = 00, 00, 01, 01, 01, 01, 02, 02, 02,... 
+           min, max = (4,4),(4,4),(4,10),(4,10),(4,10),(4,10),(4,15),(4,15),(4,15),...
+           minX, minY = (0,2147483647),(0,2147483647),(0,2147483647),(0,2147483647),(0,2147483647),(4,10),(4,10),(4,10),(4,10),...
+           m = 0, 1, 0, 1, 2, 3, 0, 1, 2,...
+           n = 0, 1, 0, 1, 0,  , 0, 1, 0,... 
+           nums.get(m).get(n) = 4, 9, 4, 9, 5,  , 4, 9, 5,...
+		 */
+		for(int i = 0; i < nums.size(); i++) {
+			for(int j = 0; j < nums.get(i).size(); j++) {
+				for(int k = i; k < nums.size(); k++) {
+					for(int l = (k == i ? j : 0); l < nums.get(k).size(); l++) {
+						int min = Math.min(nums.get(i).get(j), nums.get(k).get(l));
+						int max = Math.max(nums.get(i).get(j), nums.get(k).get(l));
+						int n, m;
+						for(m = 0; m < nums.size(); m++) {
+							List<Integer> list = nums.get(m);
+							Integer[] temp = list.toArray(new Integer[0]);
+							// Binary search to find the item(return its position) equal or very next to 'min' value in current list 'temp'
+							// Also, for binary search implementation
+							// Refer to 'IsSubsequence.java'
+							// https://github.com/lampardchelsea/hello-world/blob/8b4b53738efce1e76afd37b2eb341ff7f16347f8/leetcode/String/IsSubsequence.java
+ 						    n = Arrays.binarySearch(temp, min);
+ 						    if(n < 0) {
+ 						    	n = -1 - n;
+ 						    }
+ 						    // Write the customized binary search method
+							//n = binarySearchHelper(min, list);
+ 						    // Target item nums.get(m).get(n) not exist in current range between [min, max], break out
+ 						    if(n == nums.get(m).size() || nums.get(m).get(n) < min || nums.get(m).get(n) > max) {
+ 						    	break;
+ 						    }
+						}
+						if(m == nums.size()) {
+							if(minY - minX > max - min || (minY - minX == max - min && minX > min)) {
+								minY = max;
+								minX = min;
+							}
+						}
+					}
+				}
+			}
+		}
+		return new int[] {minX, minY};
+	}
 	
-//	public int[] smallestRange2(List<List<Integer>> nums) {
-//		
-//	}
-	
-	
+    // As given conditions, list is already sorted into ascending order,
+    // can directly used for binary search
+    public int binarySearchHelper(int target, List<Integer> list) {
+        int start = 0;
+        int end = list.size() - 1;
+        // The condition must including '='
+        while(start <= end) {
+            int mid = start + (end - start) / 2;
+            if(list.get(mid) < target) {
+                start = mid + 1;
+            } else if(list.get(mid) > target) {
+                end = mid - 1;
+            } else {
+                return mid;
+            }
+        }
+        // If not found, return the very next position
+        // Since 'start = mid + 1', it already represent
+        // the very next position of final 'mid'
+        return start;
+    }
 	
 	public static void main(String[] args) {
 		SmallestRange s = new SmallestRange();
@@ -133,11 +221,10 @@ public class SmallestRange {
 		nums.add(one);
 		nums.add(two);
 		nums.add(three);
-		int[] result = s.smallestRange(nums);
+		int[] result = s.smallestRange2(nums);
 		for(int i = 0; i < result.length; i++) {
 			System.out.println(result[i]);
 		}
 		
 	}
 }
-
