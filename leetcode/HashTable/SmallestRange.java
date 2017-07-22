@@ -147,6 +147,9 @@ public class SmallestRange {
 						int n, m;
 						for(m = 0; m < nums.size(); m++) {
 							List<Integer> list = nums.get(m);
+							// Refer to
+							// Converting 'ArrayList<String> to 'String[]' in Java
+							// https://stackoverflow.com/questions/4042434/converting-arrayliststring-to-string-in-java
 							Integer[] temp = list.toArray(new Integer[0]);
 							// Binary search to find the item(return its position) equal or very next to 'min' value in current list 'temp'
 							// Also, for binary search implementation
@@ -198,6 +201,78 @@ public class SmallestRange {
         return start;
     }
 	
+    
+    // Solution 3
+    // Approach #3 Using Pointers [Time Limit Exceeded]
+    // We'll discuss about the implementation used in the current approach along with the idea behind it.
+    // This approach makes use of an array of pointers, next, whose length is equal to the number of 
+    // given lists. In this array, next[i] refers to the element which needs to be considered next in 
+    // the (i−1)th​​ list. The meaning of this will become more clearer when we look at the process.
+    // We start by initializing all the elements of next to 0. Thus, currently, we are considering the 
+    // first(minimum) element among all the lists. Now, we find out the index of the list containing 
+    // the maximum(max_i​​) and minimum(min_i​) elements from amongst the elements currently pointed by 
+    // next. The range formed by these maximum and minimum elements surely contains at least one element 
+    // from each list.
+    // But, now our objective is to minimize this range. To do so, there are two options: Either decrease 
+    // the maximum value or increase the minimum value. Now, the maximum value can't be reduced any further, 
+    // since it already corresponds to the minimum value in one of the lists. Reducing it any further will 
+    // lead to the exclusion of all the elements of this list(containing the last maximum value) from the 
+    // new range. Thus, the only option left in our hand is to try to increase the minimum value. To do so, 
+    // we now need to consider the next element in the list containing the last minimum value. Thus, we 
+    // increment the entry at the corresponding index in next, to indicate that the next element in this 
+    // list now needs to be considered.
+    // Thus, at every step, we find the maximum and minimum values being pointed currently, update the next
+    // values appropriately, and also find out the range formed by these maximum and minimum values to 
+    // find out the smallest range satisfying the given criteria.
+    // While doing this process, if any of the lists gets completely exhausted, it means that the minimum 
+    // value being increased for minimizing the range being considered can't be increased any further, 
+    // without causing the exclusion of all the elements in at least one of the lists. Thus, we can stop 
+    // the search process whenever any list gets completely exhausted. We can also stop the process, when 
+    // all the elements of the given lists have been exhausted
+    public int[] smallestRange2_2(List<List<Integer>> nums) {
+        int minX = 0;
+        int minY = Integer.MAX_VALUE;
+        // This approach makes use of an array of pointers, next, whose length is equal 
+        // to the number of given lists. In this array, next[i] refers to the element 
+        // which needs to be considered next in the (i−1)th list
+        int[] next = new int[nums.size()];
+        boolean flag = true;
+        for(int i = 0; i < nums.size() && flag; i++) {
+            for(int j = 0; j < nums.get(i).size() && flag; j++) {
+                int min_i = 0;
+                int max_i = 0;
+                // Vertically search all the lists and store info about which list
+                // contains current minimum / maximum value in next array
+                for(int k = 0; k < nums.size(); k++) {
+                    if(nums.get(k).get(next[k]) < nums.get(min_i).get(next[min_i])) {
+                        min_i = k;
+                    }
+                    if(nums.get(k).get(next[k]) > nums.get(max_i).get(next[max_i])) {
+                        max_i = k;
+                    }
+                }
+                // Update the range
+                if(minY - minX > nums.get(max_i).get(next[max_i]) - nums.get(min_i).get(next[min_i])) {
+                    minY = nums.get(max_i).get(next[max_i]);
+                    minX = nums.get(min_i).get(next[min_i]);
+                }
+                // Moving forward the minimum 
+                next[min_i]++;
+                // While doing this process, if any of the lists gets completely exhausted, 
+                // it means that the minimum value being increased for minimizing the range 
+                // being considered can't be increased any further, without causing the 
+                // exclusion of all the elements in atleast one of the lists. Thus, we can 
+                // stop the search process whenver any list gets completely exhausted
+                if(next[min_i] == nums.get(min_i).size()) {
+                    flag = false;
+                }
+            }
+        }
+        return new int[] {minX, minY};
+    }
+    
+    
+    
 	public static void main(String[] args) {
 		SmallestRange s = new SmallestRange();
 		// [[4,10,15,24,26], [0,9,12,20], [5,18,22,30]]
