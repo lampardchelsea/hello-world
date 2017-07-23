@@ -281,7 +281,27 @@ public class SmallestRange {
     
     // Solution 4
     // Approach #4 Using Priority Queue [Accepted]
-    // 
+    // From the last approach, at each step, we update the pointer corresponding to the current 
+    // minimum element and traverse over the whole next array to determine the new maximum and 
+    // minimum values. We can do some optimization here, by making use of a simple observation.
+    // Whenever we update a single entry of next to consider the new maximum and minimum 
+    // values(if we already know the last maximum and minimum values), all the elements to be 
+    // considered for finding the maximum and minimum values remain the same except the new 
+    // element being pointed by a single updated entry in next. This new entry is certainly larger 
+    // than the last minimum value(since that was the reasoning behind the updation). Thus, we 
+    // can't be sure whether this is the new minimum element or not. But, since it is larger than 
+    // the last value being considered, it could be a potential competitor for the new maximum 
+    // value. Thus, we can directly compare it with the last maximum value to determine the 
+    // current maximum value.
+    // Now, we're left with finding the minimum value iteratively at every step. To avoid this 
+    // iterative process, a better idea is to make use of a Min-Heap, which stores the values 
+    // being pointed currently by the next array. Thus, the minimum value always lies at the top 
+    // of this heap, and we need not do the iterative search process.
+    // At every step, we remove the minimum element from this heap and find out the range formed 
+    // by the current maximum and minimum values, and compare it with the minimum range found so 
+    // far to determine the required minimum range. We also update the increment the index in next
+    // corresponding to the list containing this minimum entry and add this element to the heap as well.
+    // The rest of the process remains the same as the last approach.
     public int[] smallestRange3(List<List<Integer>> nums) {
         int minX = 0;
         int minY = Integer.MAX_VALUE;
