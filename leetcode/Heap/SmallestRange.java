@@ -302,6 +302,12 @@ public class SmallestRange {
     // far to determine the required minimum range. We also update the increment the index in next
     // corresponding to the list containing this minimum entry and add this element to the heap as well.
     // The rest of the process remains the same as the last approach.
+    // Complexity Analysis
+    // Time complexity : O(n∗log(m)). Heapification of m elements requires O(log(m)) time. 
+    //                   This step could be done for all the elements of the given lists in the worst case. 
+    //                   Here, n refers to the total number of elements in all the lists. 
+    //                   m refers to the total number of lists.
+    // Space complexity : O(m). next array of size m is used. A Min-Heap with m elements is also used.
     public int[] smallestRange3(List<List<Integer>> nums) {
         int minX = 0;
         int minY = Integer.MAX_VALUE;
