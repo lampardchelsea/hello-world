@@ -69,9 +69,10 @@
 <p>7. [Optimization on iterator loop direction] (http://www.jianshu.com/p/0c458f335daf)
 <p>8. [Right-associativity of assignment operators] (https://en.wikipedia.org/wiki/Operator_associativity)
 
-
-
-
+<p>Smallest Range
+<P>1. [4 methods to solve] (https://leetcode.com/articles/smallest-range/)
+<p>2. [Converting 'ArrayList<String> to 'String[]' in Java] (https://stackoverflow.com/questions/4042434/converting-arrayliststring-to-string-in-java)
+<p>3. [Is Subsequence] (https://github.com/lampardchelsea/hello-world/blob/8b4b53738efce1e76afd37b2eb341ff7f16347f8/leetcode/String/IsSubsequence.java)
 
 
 
