@@ -16,7 +16,10 @@
     Given [1, 3, 6, 9, 21, …], and target = 3, return 1.
     Given [1, 3, 6, 9, 21, …], and target = 4, return -1.
 *
+*
 * Solution
+* Refer to
+* http://blog.leanote.com/post/westcode/%5B%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%5D-LintCode-Search-in-Big-Sorted-Array
 * 思路
   这题可能如果二分不熟悉的话，一开始看有点懵逼，因为题目并没有把所有二分的条件都直接给出来，考的就是让你如果把二分的所有条件都找齐。
 
