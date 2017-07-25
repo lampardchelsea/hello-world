@@ -31,15 +31,16 @@ class Solution {
                 // not return directly)
                 end = mid;
             } else if(nums[mid] < target) {
-                // Use this template should not write as 
-                // 'start = mid + 1' or 'end = mid - 1',
-                // because if we find the 'mid' position
-                // item is the last one matching target,
+                // For first position template, 'start = mid - 1' or
+                // 'end = mid - 1' are both fine, but this is quite
+                // different when come to last position template
                 start = mid;
             } else if(nums[mid] > target) {
                 end = mid;
             }
         }
+        // Check on 'start' first for requirement
+        // about find the first position 
         if(nums[start] == target) {
             return start;
         }
