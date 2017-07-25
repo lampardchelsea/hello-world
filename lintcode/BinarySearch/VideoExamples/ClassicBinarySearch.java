@@ -60,27 +60,3 @@ public class Solution {
         return -1;
     }
 }
-
-
-
-    int start = 0, end = nums.length-1;
-
-    while (start+1<end) {
-        // 装逼求中点，防溢出
-        int mid = start + (end-start)/2;
-        if (nums[mid] == target)
-            return mid;
-        else if (nums[mid] < target)
-            start = mid;
-        else 
-            end = mid;
-    }
-    // double check start 和 end
-    if (nums[start] == target)
-        return start;
-    if (nums[end] == target)
-        return end;
-    // 没找着，gg
-    reutrn -1;
-
-
