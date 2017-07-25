@@ -40,6 +40,17 @@ public class Solution {
         // of Binary Search is more like recursion. Based on this, the template
         // while loop not target on find final result, but limit the result into
         // 1 or 2 item.
+        // 相邻就退出，最后再检查 start 和 end 的值
+        /*  e.g. search for 5 in [5,6,7,8,9]
+        idx 0 1 2 3 4         0 1 2 3 4        
+            5 6 7 8 9   =>    5 6 7 8 9  =>    
+            s   m   e         s m e            
+            0 1 2 3 4
+            5 6 7 8 9  
+            s e 
+            这时候循环就退出了，答案存在 start 里
+            所以我们最后要 double check 看答案到底是在 start 还是 end
+        */
         if(nums[start] == target) {
             return start;
         } 
@@ -49,3 +60,27 @@ public class Solution {
         return -1;
     }
 }
+
+
+
+    int start = 0, end = nums.length-1;
+
+    while (start+1<end) {
+        // 装逼求中点，防溢出
+        int mid = start + (end-start)/2;
+        if (nums[mid] == target)
+            return mid;
+        else if (nums[mid] < target)
+            start = mid;
+        else 
+            end = mid;
+    }
+    // double check start 和 end
+    if (nums[start] == target)
+        return start;
+    if (nums[end] == target)
+        return end;
+    // 没找着，gg
+    reutrn -1;
+
+
