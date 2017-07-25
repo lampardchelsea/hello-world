@@ -19,3 +19,5 @@
 <p>First Bad Version
 <p>1. [Problem] (http://www.lintcode.com/en/problem/first-bad-version/)
 
+<p>Search In Big Sorted Array
+<p>1. [[刷题笔记] LintCode - Search in Big Sorted Array] (http://blog.leanote.com/post/westcode/%5B%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%5D-LintCode-Search-in-Big-Sorted-Array)
