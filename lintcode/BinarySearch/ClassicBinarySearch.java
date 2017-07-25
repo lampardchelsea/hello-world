@@ -33,6 +33,13 @@ public class Solution {
             }
         }
         // Don't use 'else if' format here
+        // The original idea of Binary Search is to shrink until only 1 item left,
+        // but actually Binary Search purpose is not as this, the target is in
+        // each loop we will cut off half of original inbound size, until left
+        // 1 or 2 item, which can manually figure out is fine. So, the natural
+        // of Binary Search is more like recursion. Based on this, the template
+        // while loop not target on find final result, but limit the result into
+        // 1 or 2 item.
         if(nums[start] == target) {
             return start;
         } 
