@@ -16,3 +16,5 @@
 <p>Smallest Rectangle Enclosing Black Pixels
 <p>1. [Template] (https://www.jiuzhang.com/solutions/smallest-rectangle-enclosing-black-pixels)
 
+<p>First Bad Version
+<p>1. [Problem] (http://www.lintcode.com/en/problem/first-bad-version/)
