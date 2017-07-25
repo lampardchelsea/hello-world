@@ -1,3 +1,11 @@
+/**
+ * For a given sorted array (ascending order) and a target number, find the first index of 
+ * this number in O(log n) time complexity.
+ * If the target number does not exist in the array, return -1.
+ * Have you met this question in a real interview?
+ * Example
+ * If the array is [1, 2, 3, 3, 4, 5, 10], for given target 3, return 2.
+*/
 class Solution {
     /**
      * @param nums: The integer array.
