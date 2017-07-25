@@ -20,6 +20,7 @@ public class Solution {
         }
         int start = 0;
         int end = nums.length - 1;
+        // 相邻就退出，出了 loop 再 检查
         while(start + 1 < end) {
             int mid = start + (end - start) / 2;
             if(nums[mid] == target) {
