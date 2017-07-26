@@ -75,4 +75,34 @@ public class Solution {
         }
         return false;
     }
+
+    public boolean searchMatrix_Divide_Conqure(int[][] matrix, int target) {
+        // Check null and empty case
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return false;
+        }
+        int height = matrix.length;
+        int width = matrix[0].length;
+        int col = 0;
+        int row = matrix.length - 1;
+        // Divide and Conqure
+        // 这题 divide and conqure的法非常有意思，我是看了九章的小视频学会的，但是真是非常机智，我觉得临场写的话除非
+        // 很擅长这种智力题不然是很难想到的。。 方法的实现就是利用了这个 matrix 两个特性，即每行每列都是递增的。
+        // 假设我们从最左下角的点开始看，这个点就是当前列的最大值，还有当前行的最小值，那么如果这个点比 
+        // target要大，那么我们是不是就可以把整行都给排除了？
+        // 如果这个点比 target 要小，我们可以把整个列都排除，所以我们就可以用一个 while 
+        // 循环，来从左下角开始比较，直到我们目标找到或者整个 matrix 都排除完为止。
+        while(col < width && row >= 0) {
+            if(matrix[row][col] == target) {
+                return true;
+            } else if(matrix[row][col] < target) {
+                col++;
+            } else {
+                row--;
+            }
+        }
+        return false;
+    }
+
+    
 }
