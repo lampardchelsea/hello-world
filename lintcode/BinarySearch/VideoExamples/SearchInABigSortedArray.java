@@ -40,5 +40,28 @@
   这里我们就会每次乘2直到end = 8,那么我们的右边界就找到了。
  */
 public int searchBigSortedArray(ArrayReader reader, int target) {
-    
+    int start = 0;
+    int end = 1;
+    // Recursively double 'end' until no smaller than target
+    while(reader.get(end) < target) {
+        end = end * 2;
+    }
+    // Find the first item equal to target
+    while(start + 1 < end) {
+        int mid = start + (end - start) / 2;
+        if(reader.get(mid) == target) {
+            end = mid;
+        } else if(reader.get(mid) < target) {
+            start = mid;
+        } else if(reader.get(mid) > target) {
+            end = mid;
+        }
+    }
+    if(reader.get(start) == target) {
+        return start;
+    }
+    if(reader.get(end) == target) {
+        return end;
+    }
+    return -1;
 }
