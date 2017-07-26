@@ -15,6 +15,16 @@
  * Solution
  * Refer to
  * https://www.jiuzhang.com/solutions/smallest-rectangle-enclosing-black-pixels
+ *
+ * Refer to
+ * https://discuss.leetcode.com/topic/29006/c-java-python-binary-search-solution-with-explanation
+ * This means we can do a binary search in each half to find the boundaries, 
+ * if we know one black pixel's position. And we do know that.
+ * To find the left boundary, do the binary search in the [0, y) range and find the first 
+ * column vector who has any black pixel.
+ * To determine if a column vector has a black pixel is O(m) so the search in total is O(m log n)
+ * We can do the same for the other boundaries. The area is then calculated by the boundaries.
+ * Thus the algorithm runs in O(m log n + n log m)
 */
 public class SmallestRectangleEnclosingBlackPixels {
 	public int minArea(char[][] image, int x, int y) {
