@@ -25,3 +25,4 @@
 <p>Find Minimum In Rotated Sorted Array 
 <p>1. [Problem] (http://www.lintcode.com/en/problem/find-minimum-in-rotated-sorted-array/)
 <p>2. [[刷题笔记] LintCode 159 - Find Minimum in Rotated Sorted Array ] (http://blog.leanote.com/post/westcode/%5B%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%5D-LintCode-159-Find-Minimum-in-Rotated-Sorted-Array)
+<p>3. [C++/Java/Python Binary Search solution with explanation] (https://discuss.leetcode.com/topic/29006/c-java-python-binary-search-solution-with-explanation)
