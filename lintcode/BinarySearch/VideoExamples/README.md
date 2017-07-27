@@ -36,4 +36,10 @@
 <p>Maximum Number In Mountain Sequence
 <p>1. [[刷题笔记] LintCode 585 - Maximum Number in Mountain Sequence] (http://blog.leanote.com/post/westcode/c0469ec79225)
 
+<p>Find Peak Element
+<p>1. [Template] (https://www.jiuzhang.com/solutions/find-peak-element/)
+
+
+
+
 
