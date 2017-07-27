@@ -39,7 +39,8 @@
 <p>Find Peak Element
 <p>1. [Template] (https://www.jiuzhang.com/solutions/find-peak-element/)
 
-
+<p>Search In A Rotated Sorted Array
+<p>1. [Template] (http://www.jiuzhang.com/solutions/search-in-rotated-sorted-array/)
 
 
 
