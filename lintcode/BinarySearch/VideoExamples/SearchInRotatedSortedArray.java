@@ -13,14 +13,10 @@
  * Refer to
  * http://www.jiuzhang.com/solutions/search-in-rotated-sorted-array/
 */
-public class Solution {
-    /** 
-     *@param A : an integer rotated sorted array
-     *@param target :  an integer to be searched
-     *return : an integer
-     */
+
+public class SearchInRotatedSortedArray {
     public int search(int[] A, int target) {
-        // Check null and empty case
+    	// Check null and empty case
         if(A == null || A.length == 0) {
             return -1;
         }
@@ -58,4 +54,16 @@ public class Solution {
         }
         return -1;
     }
+    
+    public static void main(String[] args) {
+    	//int[] A = {1001,10001,10007,1,10,101,201};
+    	int[] A = {0,1,2,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1};
+    	//int target = 10001;
+    	int target = -9;
+    	SearchInRotatedSortedArray s = new SearchInRotatedSortedArray();
+    	int result = s.search(A, target);
+    	System.out.println(result);
+    }
+    
 }
+
