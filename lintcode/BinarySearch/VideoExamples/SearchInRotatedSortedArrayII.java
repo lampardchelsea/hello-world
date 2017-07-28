@@ -18,9 +18,12 @@
  * http://www.jiuzhang.com/solutions/search-in-rotated-sorted-array-ii/
  * 这个问题在面试中不会让实现完整程序
  * 只需要举出能够最坏情况的数据是 [1,1,1,1... 1] 里有一个0即可。
- * 在这种情况下是无法使用二分法的，复杂度是O(n) ??? (有误)
+ * 在这种情况下是无法使用二分法的，复杂度是O(n) ??? (这里说的无法使用并不完全恰当，实际情况是依然可以使用二分法，二分法的局限在于对
+ * 有序数组进行搜索，但是问题在于像[1,1,1,1... 1] 这样每一项都相等的数组由于总是进入A[mid] == A[start]的分支，所以只能index++，
+ * 这样一来就有问题了，在稳定使用二分法的最坏情况下比如[1,1,1,... 1]里面没有0却要找一个0，时间复杂度依然是O(logn)， 但这个
+ * A[mid] == A[start]的分支却不是二分法，无法一次砍掉一半，所以导致了时间复杂度在此情况的最坏情况下变为O(n))
  ------------------------------------------------------------------------------------------------------------------
- * ------> 最坏情况下比如[1,1,1,... 1]里面没有0却要找一个0，时间复杂度依然是log(n)，结论是依然可以用二分法写，但是用for写也可以 
+ * ------> ，结论是依然可以用二分法
  ------------------------------------------------------------------------------------------------------------------
  * 因此写个for循环最坏也是O(n)，那就写个for循环就好了
  * 如果你觉得，不是每个情况都是最坏情况，你想用二分法解决不是最坏情况的情况，那你就写一个二分吧。
@@ -77,6 +80,10 @@ public class Solution {
             //         'mid' value, because you don't know if this is already
             //         the only one
             } else {
+                // Important: Worst case of this branch, [1,1,1,.....1] all
+                // elements are same, only can increase/decline by 1 each
+                // time, not like binary search cut half, so time complexity
+                // not stable as O(logn) but may max to O(n)
                 start++;
                 // If use A[mid] compare with 'end', change 'start++' to 'end--'
             }
