@@ -63,6 +63,9 @@ public class SearchInRotatedSortedArray {
             // 1. 'mid' item happen in first rise zone (e.g 4 -- 7)
             // 2. 'mid' item happen in second rise zone (e.g 0 -- 2)
             // First rise zone
+            // Note 1: Both 'A[mid] > A[start]' or 'A[mid] > A[end]' works,
+            // as both represent 'mid' item happen in first rise zone
+            // Note 2: Use 'else if' or 'if' here both works
             else if(A[mid] > A[start]) {
                 if(A[start] <= target && target <= A[mid]) {
                     end = mid;
