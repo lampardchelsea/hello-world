@@ -73,3 +73,54 @@ public class Solution {
         }
     }
 }
+
+
+
+// Solution 2: Divide And Conquer
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+public class Solution {
+    /**
+     * @param root the root of the binary tree
+     * @return all root-to-leaf paths
+     */
+    public List<String> binaryTreePaths(TreeNode root) {
+        // Base case
+        List<String> paths = new ArrayList<String>();
+        if(root == null) {
+            return paths;
+        }
+        // Base case, root is leaf
+        if(root.left == null && root.right == null) {
+            paths.add("" + root.val);
+        }
+        
+        // Divide
+        List<String> leftPaths = binaryTreePaths(root.left);
+        List<String> rightPaths = binaryTreePaths(root.right);
+        // Merge
+        for(String path : leftPaths) {
+            // Why not (path + "->" + root.val) ?
+            // Must think about the sequence of how the path is build up,
+            // e.g start from '1', '1' as root value must put on path
+            // as first item, then we add "->" and continue add '2' or '3'
+            // which calculate by leftPaths and rightPaths
+            paths.add(root.val + "->" + path);
+        }
+        for(String path : rightPaths) {
+            paths.add(root.val + "->" + path);
+        }
+        return paths;
+    }
+}
+
+
