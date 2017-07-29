@@ -41,8 +41,9 @@ public class Solution {
         return result;
     }
     
-    // Define helper method to help adding 'node' based preorder
-    // sequence onto 'list'
+    // Definition: Create helper method to help adding 'node' 
+    // based preorder sequence onto 'list', return as void,
+    // pass in global variable 'list' as parameter
     public void traverse(ArrayList<Integer> list, TreeNode node) {
         // Base case
         // Note: Usually very limited chance to care about
@@ -59,6 +60,8 @@ public class Solution {
     }
 }
 
+// Note: This problem not very suitable on Divide And Conquer, as
+// required return ArrayList, the time complexity will increase
 // Solution 2: Divide And Conquer
 /**
  * Definition of TreeNode:
@@ -76,6 +79,8 @@ public class Solution {
      * @param root: The root of binary tree.
      * @return: Preorder in ArrayList which contains node values.
      */
+    // Definition: Return preorder based on 'root', not like traverse
+    // method return as null, not pass in global 'result' as parameter
     public ArrayList<Integer> preorderTraversal(TreeNode root) {
         // Divide and Conquer
         ArrayList<Integer> result = new ArrayList<Integer>();
@@ -84,8 +89,10 @@ public class Solution {
             return result;
         }
         
-        // Divide (Use preorderTraversal method itself, not depend on
-        // helper method, also no need to pass global variable result in)
+        // Divide (Use preorderTraversal method itself, thearatically
+        // separate task and handle by sub method and return sub result, 
+        // not depend on helper method, also no need to pass global 
+        // variable result in)
         ArrayList<Integer> left = preorderTraversal(root.left);
         ArrayList<Integer> right = preorderTraversal(root.right);
         
