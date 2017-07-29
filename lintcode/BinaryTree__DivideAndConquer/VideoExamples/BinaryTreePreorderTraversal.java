@@ -15,6 +15,9 @@
  * Solution
  * http://www.jiuzhang.com/solutions/binary-tree-preorder-traversal/
 */
+
+
+// Solution 1: Traverse
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -26,7 +29,6 @@
  *     }
  * }
  */
-// Solution 1: Traverse
 public class Solution {
     /**
      * @param root: The root of binary tree.
@@ -50,3 +52,42 @@ public class Solution {
         traverse(list, node.right);
     }
 }
+
+// Solution 2: Divide And Conquer
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+public class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: Preorder in ArrayList which contains node values.
+     */
+    public ArrayList<Integer> preorderTraversal(TreeNode root) {
+        // Divide and Conquer
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        // Base case (null or leaf)
+        if(root == null) {
+            return result;
+        }
+        
+        // Divide
+        ArrayList<Integer> left = preorderTraversal(root.left);
+        ArrayList<Integer> right = preorderTraversal(root.right);
+        
+        // Merge
+        result.add(root.val);
+        result.addAll(left);
+        result.addAll(right);
+        return result;
+    }
+}
+
+
