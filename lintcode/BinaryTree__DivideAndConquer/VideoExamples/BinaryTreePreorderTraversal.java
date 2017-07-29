@@ -41,11 +41,17 @@ public class Solution {
         return result;
     }
     
+    // Define helper method to help adding 'node' based preorder
+    // sequence onto 'list'
     public void traverse(ArrayList<Integer> list, TreeNode node) {
         // Base case
+        // Note: Usually very limited chance to care about
+        // leaf node cases, only handle root node as null
+        // is fine
         if(node == null) {
             return;
         }
+        // Divide into 3 parts: node/ left/ right
         list.add(node.val);
         // Call helper method itself recursively
         traverse(list, node.left);
