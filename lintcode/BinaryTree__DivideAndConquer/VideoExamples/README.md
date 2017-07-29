@@ -9,5 +9,6 @@
 <p>6.很好的比喻是遍历法都是亲力亲为自带记事本(e.g shared result)，分治法都是把事情交给下面的人去做
 <p>7.题目的含义是找出所有的方案的时候马上考虑DFS，e.g Binary Tree Paths
 <p>8.二叉树高度不一定是logn，非平衡二叉树高度在logn到n之间
+<p>9.二叉树问题一般都是用通过O(n)的时间，把n的问题，变为了两个n/2的问题，时间复杂度也为O(n)
 
 # Useful links for specific questions
