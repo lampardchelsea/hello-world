@@ -78,11 +78,13 @@ public class Solution {
             return result;
         }
         
-        // Divide
+        // Divide (Use preorderTraversal method itself, not depend on
+        // helper method, also no need to pass global variable result in)
         ArrayList<Integer> left = preorderTraversal(root.left);
         ArrayList<Integer> right = preorderTraversal(root.right);
         
-        // Merge
+        // Merge (As required by preorder, adding order as 
+        // root -> left -> right)
         result.add(root.val);
         result.addAll(left);
         result.addAll(right);
