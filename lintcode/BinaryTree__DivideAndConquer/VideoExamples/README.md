@@ -12,3 +12,14 @@
 <p>9.二叉树问题一般都是用通过O(n)的时间，把n的问题，变为了两个n/2的问题，时间复杂度也为O(n)
 
 # Useful links for specific questions
+<p>Binary Tree Preorder Traversal
+<p>1. [Template] (http://www.jiuzhang.com/solutions/binary-tree-preorder-traversal/)
+
+<p>Maximum Depth Of Binary Tree
+<p>1. [Template] (http://www.jiuzhang.com/solutions/maximum-depth-of-binary-tree/)
+
+<p>Binary Tree Paths
+<p>1. [Template] (http://www.jiuzhang.com/solutions/binary-tree-paths/)
+
+<p>Minimum Subtree
+<p>1. [Template] (http://www.jiuzhang.com/solutions/minimum-subtree/)
