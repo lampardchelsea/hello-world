@@ -65,6 +65,11 @@ public class Solution {
             return;
         }
         // Divide and merge(for 'path' and result already merge here)
+        // Note: The order here must be 'path' before 'root.left.val' or 'root.right.val'
+        // which exactly reverse than the order in Divide and Conquer way, which is
+        // 'path' after 'root.left.val' or 'root.right.val'
+        // Refer to
+        // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/BinaryTreePaths.java
         if(root.left != null) {
             helper(root.left, path + "->" + String.valueOf(root.left.val), result);            
         }
