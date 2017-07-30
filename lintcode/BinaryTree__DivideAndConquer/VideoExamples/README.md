@@ -23,3 +23,4 @@
 
 <p>Minimum Subtree
 <p>1. [Template] (http://www.jiuzhang.com/solutions/minimum-subtree/)
+<p>2. [[刷题笔记]LintCode 596 - Minimum Subtree] (http://blog.leanote.com/post/westcode/%5B%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%5D-LeetCode-LintCode-3)
