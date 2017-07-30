@@ -62,3 +62,8 @@
 <p>Symmetric Tree
 <p>1. [Recursive and Iterative Way for Symmetric Tree] (https://leetcode.com/articles/symmetric-tree/)
 <p>2. [Recursive and Iterative Way for Symmetric Tree 2] (http://www.acmerblog.com/leetcode-solution-symmetric-tree-6291.html)
+
+<p>Binary Tree Paths(LintCode)
+<p>1. [Template] (http://www.jiuzhang.com/solutions/binary-tree-paths/)
+
+
