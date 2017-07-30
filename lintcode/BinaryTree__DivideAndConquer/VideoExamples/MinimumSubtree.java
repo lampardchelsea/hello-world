@@ -56,7 +56,7 @@ public class Solution {
     public int helper(TreeNode root) {
         // Base case
         if(root == null) {
-            return root;
+            return 0;
         }
         int sum = helper(root.left) + helper(root.right) + root.val;
         if(sum <= subSum) {
