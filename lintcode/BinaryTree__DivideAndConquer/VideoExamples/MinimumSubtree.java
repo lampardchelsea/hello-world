@@ -15,6 +15,25 @@
 * Solution
 * http://www.jiuzhang.com/solutions/minimum-subtree/
 * http://blog.leanote.com/post/westcode/%5B%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%5D-LeetCode-LintCode-3
+* 思路
+* 第一种做法是比较直接的方法，之所以划分为 traver + divide&conquer 是因为全局变量的应用。
+* 没什么特别复杂的，做法就是把 minSubroot 和 minSum 都当成全局变量存起来，然后每个 node 都遍历一遍，用递归（分治）得到
+* 两子树的 sum 拿来算当前 node 的 sum，然后和全局的 minSum 进行比较。如何小于就把当前 subroot 和 sum 更新成minSubroot 和 minSum。
+* 第二种做法是只用 divide conquer，也就是不用全局变量。
+* 不用全局变量那么就需要创建一个 custom class 来保存minSubroot 之类的信息。 所以我这里用了 这个 ResultType class。 
+* 每个 ResultType object 里面存着3个东西：
+    这个 subtree 下算出来的 minSum
+    minSubroot
+    当前 subtree 的 sum， 注意这个和（1）的区别，这个是当前 tree 的所有 sum，（1）当前树下的 min subtree 的 sum
+* 再 helper 里也是用递归来把 result 从下往上传，然后和当前的这个 root 的 sum 进行比较和更新。最后把 minSubroot 传回 顶部
+* 复杂度分析
+* 时间
+* O(n), 每个 treenode traverse 一遍，每遍 O(1)
+* 空间
+    Combo: O(1), no extra space needed
+    Divide & Conquer: O(n), 每个 node allocate 一个 result type
+* 总结
+* 这题总体来说思路还是很简单的。重点是对两种不同方法的理解和应用。还有对 result type 的应用和练习。
 */
 
 // Solution 1: Traverse + Divide And Conquer
