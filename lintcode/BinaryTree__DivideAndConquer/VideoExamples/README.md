@@ -20,6 +20,7 @@
 
 <p>Binary Tree Paths
 <p>1. [Template] (http://www.jiuzhang.com/solutions/binary-tree-paths/)
+<p>2. [Explaination on details] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/BinaryTreePaths.java) 
 
 <p>Minimum Subtree
 <p>1. [Template] (http://www.jiuzhang.com/solutions/minimum-subtree/)
