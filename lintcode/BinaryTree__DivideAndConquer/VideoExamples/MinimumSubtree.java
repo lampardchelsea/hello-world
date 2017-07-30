@@ -55,6 +55,9 @@ public class Solution {
 // Solution 2: Pure Divide And Conquer
 public class Solution {    
     public TreeNode findSubtree(TreeNode root) {
+        // Important: We need to create a new named method as 'helper()'
+        // even with same kind of parameter, because we need to return
+        // different kind of object, not as TreeNode but ResultType
         ResultType result = helper(root);
         return result.minSubtree;
     }
