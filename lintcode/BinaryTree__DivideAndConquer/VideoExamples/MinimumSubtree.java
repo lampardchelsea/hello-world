@@ -17,7 +17,7 @@
 * http://blog.leanote.com/post/westcode/%5B%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%5D-LeetCode-LintCode-3
 */
 
-// Solution 1: Traverse
+// Solution 1: Traverse + Divide And Conquer
 public class Solution {
     private TreeNode subTree = null;
     private int subSum = Integer.MAX_VALUE;
@@ -30,6 +30,10 @@ public class Solution {
         return subTree;
     }
     
+    // Actually as must return current sum value, not
+    // exactly match the traverse requirement as
+    // return void, so its combination of Traverse
+    // and Divide & Conquer
     public int helper(TreeNode root) {
         // Base case
         if(root == null) {
