@@ -33,6 +33,7 @@ public class BinaryTreePaths {
 		}
     }
 	
+	// Traverse
     public List<String> binaryTreePaths(TreeNode root) {
         List<String> paths = new ArrayList<String>();
         if(root == null) {
@@ -71,6 +72,50 @@ public class BinaryTreePaths {
         }
     }
     
+    // Divide and Conquer
+    public List<String> binaryTreePaths2(TreeNode root) {
+    	List<String> result = new ArrayList<String>();
+    	// Base case
+    	if(root == null) {
+    		return result;
+    	}
+    	// Leaf case
+    	if(root.left == null && root.right == null) {
+    		result.add("" + root.val);
+    	}
+    	// Divide (We can call this method itself without create
+    	// a new helper method as we only need same type input
+    	// as parameter)
+    	List<String> leftPaths = binaryTreePaths2(root.left);
+    	List<String> rightPaths = binaryTreePaths2(root.right);
+    	// Merge
+    	for(String path : leftPaths) {
+    		// Note: Must put 'root.val' before 'path' as the
+    		// Divide and Conquer way based on bottom-up order
+    		// which will reach to bottom first as node '4' or
+    		// node '5' first, then back to parent node as '2',
+    		// then '1'. This process exactly reverse to the
+    		// traverse way
+    		/**
+    		 * result value change process:
+    		 * [4] (root is 4)
+    		 * [5] (root is 5)
+    		 * [2->4] (root is 2)
+    		 * [2->5] (root is 2)
+    		 * [1->2->4] (root is 1)
+    		 * [1->2->5] (root is 1)
+    		 * [3] (root is 3)
+    		 * [1->3] (root is 1)
+    		 */
+    		result.add(root.val + "->" + path);
+    	}
+    	for(String path : rightPaths) {
+    		result.add(root.val + "->" + path);
+    	}
+    	return result;
+    }
+    
+    
     public static void main(String[] args) {
     	/**
     	 *       1
@@ -89,7 +134,7 @@ public class BinaryTreePaths {
     	one.right = three;
     	two.left = four;
     	two.right = five;
-    	List<String> result = b.binaryTreePaths(one);
+    	List<String> result = b.binaryTreePaths2(one);
     	for(String s : result) {
     		System.out.println(s);
     	}
