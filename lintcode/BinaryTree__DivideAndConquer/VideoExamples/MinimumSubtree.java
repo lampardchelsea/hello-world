@@ -50,3 +50,47 @@ public class Solution {
     }
     
 }
+
+
+// Solution 2: Pure Divide And Conquer
+public class Solution {    
+    public TreeNode findSubtree(TreeNode root) {
+        ResultType result = helper(root);
+        return result.minSubtree;
+    }
+    
+    public ResultType helper(TreeNode node) {
+        // Base case
+        if(node == null) {
+            return new ResultType(null, Integer.MAX_VALUE, 0);
+        }
+        // Divide
+        ResultType leftResult = helper(root.left);
+        ResultType rightResult = helper(root.right);
+        // Merge
+        ResultType result = new ResultType(node, leftResult.sum + rightResult.sum + node.val, leftResult.sum + rightResult.sum + node.val);
+        if(leftResult.minSum <= result.minSum) {
+            result.minSum = leftResult.minSum;
+            result.minSubtree = leftResult.minSubtree;
+        }
+        if(rightResult.minSum <= result.minSum) {
+            result.minSum = rightResult.minSum;
+            result.minSubtree = rightResult.minSubtree;
+        }
+        return result;
+    }
+}
+// Create helper class for returning multiple values
+class ResultType {
+    public TreeNode minSubtree;
+    public int sum;
+    public int minSum;
+    public ResultType(TreeNode minSubtree, int minSum, int sum) {
+        this.minSubtree = minSubtree;
+        this.minSum = minSum;
+        this.sum = sum;
+    }
+}
+
+
+
