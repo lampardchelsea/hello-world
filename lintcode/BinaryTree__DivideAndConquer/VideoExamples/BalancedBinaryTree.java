@@ -71,3 +71,56 @@ public class Solution {
     }
     
 }
+
+
+// Solution 2: Traverse + Divide and Conquer (With ResultType)
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+class ResultType {
+    public int height;
+    public boolean isBalanced;
+    public ResultType(int height, boolean isBalanced) {
+        this.height = height;
+        this.isBalanced = isBalanced;
+    }
+} 
+ 
+ 
+public class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: True if this Binary tree is Balanced, or false.
+     */
+    public boolean isBalanced(TreeNode root) {
+        return helper(root).isBalanced;
+    }
+    
+    public ResultType helper(TreeNode root) {
+        // Base case
+        if(root == null) {
+            return new ResultType(0, true);
+        }
+        // Divide
+        ResultType leftResult = helper(root.left);
+        ResultType rightResult = helper(root.right);
+        // Merge
+        // Is subtree balanced ?
+        if(!leftResult.isBalanced || !rightResult.isBalanced) {
+            return new ResultType(-1, false);
+        }
+        // Is root balanced ?
+        if(Math.abs(leftResult.height - rightResult.height) > 1) {
+            return new ResultType(-1, false);
+        }
+        return new ResultType(Math.max(leftResult.height, rightResult.height) + 1, true);
+    }
+}
