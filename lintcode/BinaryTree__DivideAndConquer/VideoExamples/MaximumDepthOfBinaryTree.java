@@ -43,6 +43,13 @@ public class Solution {
         return depth;
     }
     
+    // Use traverse method: The 'currDepth' is very
+    // similar like we pass in a 'notebook' to record
+    // each step, we only need to update result on
+    // this 'notebook' instead of return related value
+    // (sometimes return other types instead of same
+    // result type required in main method) which 
+    // Divide and Conquer ask for
     private void helper(TreeNode node, int currDepth) {
         if(node == null) {
             return;
