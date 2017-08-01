@@ -28,3 +28,7 @@
 
 <p>Balanced Binary Tree
 <p>1. [Template] (http://www.jiuzhang.com/solution/balanced-binary-tree/)
+
+<p>Subtree With Maximum Average
+<p>1. [Template] (https://www.jiuzhang.com/solutions/subtree-with-maximum-average/)
+<p>2. [[刷题笔记] LintCode 597 - Subtree with Maximum Average] (http://blog.leanote.com/post/westcode/53751fcb4502)
