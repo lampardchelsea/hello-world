@@ -23,7 +23,7 @@
  * 
  * Solution
  * https://www.jiuzhang.com/solutions/flatten-binary-tree-to-linked-list/
- * 
+ * https://discuss.leetcode.com/topic/11444/my-short-post-order-traversal-java-solution-for-share?page=1
  *
  */
 public class FlattenBinaryTreeToLinkedList {
@@ -100,6 +100,32 @@ public class FlattenBinaryTreeToLinkedList {
         return root;
     }
     
+	
+     /**
+     * Refer to
+     * https://discuss.leetcode.com/topic/11444/my-short-post-order-traversal-java-solution-for-share?page=1
+     * 
+     * Tips:
+     * 1. Base on solution of lintcode 'BinaryTreePaths', the Divide and Conquer way always bottom-up,
+     *    but since the traverse way here, we need to handle it top-down.
+     * 2. The traverse way use global variable to store 'previous' node and recursively update it,
+     * 3. Traverse order as 6, 5, 4, 3, 2, 1   
+     */
+    private TreeNode prev = null;
+    public void flatten2(TreeNode root) {
+        // Base case
+        if(root == null) {
+            return;
+        }
+        // Divide
+        flatten2(root.right);
+        flatten2(root.left);
+        root.right = prev;
+        root.left = null;
+        prev = root;
+    }	
+	
+	
     public static void main(String[] args) {
     	/**
 	    	  		      1
@@ -126,7 +152,8 @@ public class FlattenBinaryTreeToLinkedList {
     	two.left = three;
     	two.right = four;
     	five.right = six;
-    	f.flatten(one);
+    	//f.flatten(one);
+        f.flatten2(one);
     }
     
 }
