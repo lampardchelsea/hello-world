@@ -36,3 +36,7 @@
 <p>Flatten Binary Tree to Linked List
 <p>1. [Template] (https://www.jiuzhang.com/solutions/flatten-binary-tree-to-linked-list/)
 <p>2. [Leetcode concise 2 ways] (https://discuss.leetcode.com/topic/11444/my-short-post-order-traversal-java-solution-for-share?page=1)
+
+<p>Invert Binary Tree
+<p>1. [Template] (http://www.jiuzhang.com/solutions/invert-binary-tree/?source=zhmhw)
+
