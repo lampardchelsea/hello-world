@@ -126,6 +126,49 @@ public class FlattenBinaryTreeToLinkedList {
     }	
 	
 	
+    /**
+     * Process order: 
+     *           1
+			    / \ 
+			   2   5 
+			  / \   \  
+			 3   4   6 
+     * push [1] --> pop [1] --> node = 1 --> push [5] --> push [2](peek) --> 1 right connect 2 --> on stack [2]
+     * pop [2] --> node = 2 --> push [4] --> push [3](peek) --> 2 right connect 3 --> on stack [3, 4, 5]
+     * pop [3] --> node = 3 --> 4 is peek now --> 3 right connect 4 --> on stack [4, 5]
+     * pop [4] --> node = 4 --> 5 is peek now --> 4 right connect 5 --> on stack [5]
+     * pop [5] --> node = 5 --> push [6](peek) --> 5 right connect 6 --> on stack [6]
+     * pop [6] --> node = 6 --> stack is empty --> while loop end
+     * Now 1 --> 2 --> 3 --> 4 --> 5 --> 6 concatenate finished   
+     */
+    public void flatten3(TreeNode root) {
+    	// Base case
+    	if(root == null) {
+    		return;
+    	}
+    	Stack<TreeNode> stack = new Stack<TreeNode>();
+    	stack.push(root);
+    	while(!stack.isEmpty()) {
+    		TreeNode node = stack.pop();
+    		// We must push right first
+    		if(node.right != null) {
+    			stack.push(node.right);
+    		}
+    		if(node.left != null) {
+    			stack.push(node.left);
+    		}
+    		// Connect
+    		node.left = null;
+    		if(stack.isEmpty()) {
+    			node.right = null;
+    		} else {
+    			// Use peek() instead of pop() as we still
+    			// need to keep this for pop out next loop
+    			node.right = stack.peek();
+    		}
+    	}
+    }	
+	
     public static void main(String[] args) {
     	/**
 	    	  		      1
