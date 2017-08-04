@@ -33,4 +33,8 @@
 <p>2. [Some improvements] (https://discuss.leetcode.com/topic/57250/java-short-and-easy-understanding-solution-using-stack/6)
 <p>3. [Why should I use Deque over Stack?] (https://stackoverflow.com/questions/12524826/why-should-i-use-deque-over-stack)
 
+<p>Flatten Binary Tree to Linked List
+<p>1. [Stack way to solve] (https://www.jiuzhang.com/solutions/flatten-binary-tree-to-linked-list/)
+
+
 
