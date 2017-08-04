@@ -144,7 +144,7 @@ public class FlattenBinaryTreeToLinkedList {
     
     /**
      * Process order: 
-     *           1
+     *                       1
 			    / \ 
 			   2   5 
 			  / \   \  
