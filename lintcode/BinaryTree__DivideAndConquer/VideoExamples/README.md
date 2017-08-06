@@ -48,6 +48,8 @@
 <p>2. [Template] (http://www.jiuzhang.com/solutions/binary-tree-longest-consecutive-sequence/)
 <p>3. [Easy Java DFS, is there better time complexity solution?] (https://discuss.leetcode.com/topic/28234/easy-java-dfs-is-there-better-time-complexity-solution/2)
 
-
+<p>Binary Tree Maximum Path Sum
+<p>1. [Purely Divide and Conquer] (http://www.jiuzhang.com/solutions/binary-tree-maximum-path-sum/)
+<p>2. [Traverse + Divide and Conquer] (https://discuss.leetcode.com/topic/4407/accepted-short-solution-in-java/8)
 
 
