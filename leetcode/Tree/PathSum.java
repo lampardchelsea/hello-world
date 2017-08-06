@@ -97,3 +97,68 @@ public class Solution {
         }
     }
 }
+
+// Use template on Divide and Conquer
+/**
+ * Refer to
+ * https://leetcode.com/problems/path-sum/description/
+ *  Given a binary tree and a sum, determine if the tree has a root-to-leaf path 
+ *  such that adding up all the values along the path equals the given sum.
+ *  For example:
+ *  Given the below binary tree and sum = 22,
+
+              5
+             / \
+            4   8
+           /   / \
+          11  13  4
+         /  \      \
+        7    2      1
+
+ * return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
+ * 
+ * 
+ * Solution
+ * https://discuss.leetcode.com/topic/3149/accepted-my-recursive-solution-in-java/16
+ * A:if(root.left == null && root.right == null && sum - root.val == 0) return true;
+ * B:if(root.left == null && root.right == null) return sum == root.val;
+ * the two expression are not equivalence.
+ * when root is a leaf node,
+ * in A solution, if sum - root.val == 0 got false, the code will enter next recursive.
+ * but in B, whether sum equals to root.val or not, it will return a result, the code 
+ * exit, never enter next recursive
+ *
+ */
+public class PathSum {
+	private class TreeNode {
+		public int val;
+		public TreeNode left, right;
+		public TreeNode(int val) {
+		    this.val = val;
+		    this.left = this.right = null;
+		}
+    }
+	
+    public boolean hasPathSum(TreeNode root, int sum) {
+        // Base case
+        if(root == null) {
+            return false;
+        }
+        // Leaf case
+        if(root.left == null && root.right == null) {
+            return sum == root.val;
+        }
+        // Divide (Since we can apply same format, no need for
+        // creating new helper method)
+        boolean left = hasPathSum(root.left, sum - root.val);
+        boolean right = hasPathSum(root.right, sum - root.val);
+        // Conquer
+        return left || right;
+    }
+	
+	
+}
+
+
+
+
