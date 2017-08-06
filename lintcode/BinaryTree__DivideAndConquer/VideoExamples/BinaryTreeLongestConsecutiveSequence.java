@@ -117,6 +117,41 @@ public class BinaryTreeLongestConsecutiveSequence {
 		return result;
 	}
 	
+	
+	// Solution 2: Traverse + Divide and Conquer
+	// Global variable for longest path
+	private int longest = 0;
+	public int longestConsecutive2(TreeNode root) {
+		helper2(root);
+		return longest;
+	}
+	
+	public int helper2(TreeNode root) {
+		// Base case
+		if(root == null) {
+			return 0;
+		}
+		// Divide
+		// Get the longest path from two subtrees
+		int left = helper2(root.left);
+		int right = helper2(root.right);
+		
+		// Conquer
+		// Already known subroot can calculate as 1
+		int subtreeLongest = 1;
+		if(root.left != null && root.val + 1 == root.left.val) {
+			subtreeLongest = Math.max(subtreeLongest, left + 1);
+		}
+		if(root.right != null && root.val + 1 == root.right.val) {
+			subtreeLongest = Math.max(subtreeLongest, right + 1);
+		}
+		if(subtreeLongest > longest) {
+			longest = subtreeLongest;
+		}
+		return subtreeLongest;
+	}
+	
+	
 	public static void main(String[] args) {
 		/**
 		   1
@@ -137,8 +172,7 @@ public class BinaryTreeLongestConsecutiveSequence {
     	three.left = two;
     	three.right = four;
     	four.right = five;
-    	int result = b.longestConsecutive(one);
+    	int result = b.longestConsecutive2(one);
     	System.out.println(result);
 	}
 }
-
