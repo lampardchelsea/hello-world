@@ -66,4 +66,7 @@
 <p>Binary Tree Paths(LintCode)
 <p>1. [Template] (http://www.jiuzhang.com/solutions/binary-tree-paths/)
 
+<p>Path Sum I & II
+<p>1. [DFS with one LinkedList , accepted java solution] (https://discuss.leetcode.com/topic/5414/dfs-with-one-linkedlist-accepted-java-solution)
+
 
