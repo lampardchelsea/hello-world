@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import PathSum.TreeNode;
-
 /**
  * Refer to
  * https://leetcode.com/problems/path-sum-ii/description/
@@ -78,4 +76,3 @@ public class PathSumII {
 		currResult.remove(currResult.size() - 1);
 	}
 }
-
