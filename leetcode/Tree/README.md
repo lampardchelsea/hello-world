@@ -69,4 +69,10 @@
 <p>Path Sum I & II
 <p>1. [DFS with one LinkedList , accepted java solution] (https://discuss.leetcode.com/topic/5414/dfs-with-one-linkedlist-accepted-java-solution)
 
+<p>Binary Tree Maximum Path Sum
+<p>1. [Purely Divide and Conquer] (http://www.jiuzhang.com/solutions/binary-tree-maximum-path-sum/)
+<p>2. [Traverse + Divide and Conquer] (https://discuss.leetcode.com/topic/4407/accepted-short-solution-in-java/8)
+
+
+
 
