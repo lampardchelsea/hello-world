@@ -46,6 +46,13 @@
  * 2.当前子树为起点的最大长度
  * 使用了单独建立的 ResultType class
  * 
+ * 复杂度分析
+ * 时间 O(n)
+ * 两种方法都是每个 node 都访问一次，每次做 O(1) 工作
+ * 空间
+ * Traverse + Divide Conquer: O(1)
+ * Pure Divide Conquer： O(n) 每个 node 都创建了新的 ResultType
+ * 
  * http://www.jiuzhang.com/solutions/binary-tree-longest-consecutive-sequence/
  * https://discuss.leetcode.com/topic/28234/easy-java-dfs-is-there-better-time-complexity-solution
  *
