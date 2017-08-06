@@ -43,4 +43,11 @@
 <p>Lowest Common Ancestor
 <P>1. [Template] (http://www.jiuzhang.com/solutions/lowest-common-ancestor/)
 
+<p>Binary Tree Longest Consecutive Sequence
+<p>1. [[刷题笔记] LeetCode 298 /LintCode 595 - Binary Tree Longest Consecutive Sequence] (http://blog.leanote.com/post/westcode/%5B%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%5D-LeetCode-LintCode-5)
+<p>2. [Template] (http://www.jiuzhang.com/solutions/binary-tree-longest-consecutive-sequence/)
+<p>3. [Easy Java DFS, is there better time complexity solution?] (https://discuss.leetcode.com/topic/28234/easy-java-dfs-is-there-better-time-complexity-solution/2)
+
+
+
 
