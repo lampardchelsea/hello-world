@@ -52,4 +52,8 @@
 <p>1. [Purely Divide and Conquer] (http://www.jiuzhang.com/solutions/binary-tree-maximum-path-sum/)
 <p>2. [Traverse + Divide and Conquer] (https://discuss.leetcode.com/topic/4407/accepted-short-solution-in-java/8)
 
+<p>Validate Binary Search Tree
+<p>1. [Template - Purely Traverse] (http://www.jiuzhang.com/solution/validate-binary-search-tree/)
+<p>2. [Purely Divide and Conquer] (https://discuss.leetcode.com/topic/7179/my-simple-java-solution-in-3-lines)
+<p>3. [Iterative with Stack by InOrder traverse] (https://discuss.leetcode.com/topic/46016/learn-one-iterative-inorder-traversal-apply-it-to-multiple-tree-questions-java-solution)
 
