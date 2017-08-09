@@ -78,4 +78,15 @@
 <p>2. [Purely Divide and Conquer] (https://discuss.leetcode.com/topic/7179/my-simple-java-solution-in-3-lines)
 <p>3. [Iterative with Stack by InOrder traverse] (https://discuss.leetcode.com/topic/46016/learn-one-iterative-inorder-traversal-apply-it-to-multiple-tree-questions-java-solution)
 
+<p>Graph Valid Tree
+<p>1. [[LeetCode] Graph Valid Tree 图验证树] (http://www.cnblogs.com/grandyang/p/5257919.html)
+<p>2. [BFS Template] (http://www.jiuzhang.com/solutions/graph-valid-tree/)
+<p>3. [AC Java Graph DFS solution with adjacency list] (https://discuss.leetcode.com/topic/21714/ac-java-graph-dfs-solution-with-adjacency-list)
+<p>4. [[Leetcode] Graph Valid Tree 图与树] (https://segmentfault.com/a/1190000003791051)
+<p>5. [Convert BFS to DFS] (https://discuss.leetcode.com/topic/21714/ac-java-graph-dfs-solution-with-adjacency-list/14)
+
+
+
+
+
 
