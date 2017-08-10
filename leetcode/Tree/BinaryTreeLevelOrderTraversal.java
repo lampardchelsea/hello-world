@@ -94,35 +94,30 @@ public class Solution {
  */
 public class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<List<Integer>>();        
-        Queue<TreeNode> q = new LinkedList<TreeNode>();
-        
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
         if(root == null) {
             return result;
         }
-        
-        q.add(root);
-        
-        while(!q.isEmpty()) {
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        while(!queue.isEmpty()) {
+            int size = queue.size();
             // Note: Everytime enter in while loop, which means
             // everytime when we start scan a new level, only use 
             // a new arraylist to record nodes value of this level
-            List<Integer> level = new ArrayList<Integer>();
-            int size = q.size();
+            List<Integer> curr = new ArrayList<Integer>();
             for(int i = 0; i < size; i++) {
-                TreeNode x = q.poll();
-                level.add(x.val);
-                if(x.left != null) {
-                    q.add(x.left);
+                TreeNode node = queue.poll();
+                curr.add(node.val);
+                if(node.left != null) {
+                    queue.offer(node.left);
                 }
-                if(x.right != null) {
-                    q.add(x.right);
+                if(node.right != null) {
+                    queue.offer(node.right);
                 }
             }
-			
-            result.add(level);
+            result.add(curr);
         }
-        
         return result;
     }
 }
