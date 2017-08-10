@@ -12,3 +12,7 @@
 <p>Binary Tree Serialization
 <p>1. [Template] (https://www.jiuzhang.com/solution/binary-tree-serialization/)
 <p>2. [Easy to understand Java Solution] (https://discuss.leetcode.com/topic/28029/easy-to-understand-java-solution?page=1)
+
+<p>Binary Tree Level Order Traversal
+<p>1. [BFS] (https://discuss.leetcode.com/topic/28535/java-clean-and-concise-using-a-queue/2)
+<p>2. [DFS] (https://discuss.leetcode.com/topic/7332/java-solution-using-dfs)
