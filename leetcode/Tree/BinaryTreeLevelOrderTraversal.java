@@ -77,6 +77,8 @@ public class Solution {
 
 
 // Soltuon 2: BFS with one queue
+// Refer to
+// https://discuss.leetcode.com/topic/28535/java-clean-and-concise-using-a-queue/2
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
