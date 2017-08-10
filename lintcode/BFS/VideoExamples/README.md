@@ -7,3 +7,4 @@
 <p>3. [AC Java Graph DFS solution with adjacency list] (https://discuss.leetcode.com/topic/21714/ac-java-graph-dfs-solution-with-adjacency-list)
 <p>4. [[Leetcode] Graph Valid Tree 图与树] (https://segmentfault.com/a/1190000003791051)
 <p>5. [Convert BFS to DFS] (https://discuss.leetcode.com/topic/21714/ac-java-graph-dfs-solution-with-adjacency-list/14)
+<p>6. [并查集(Union-Find)算法介绍] (http://blog.csdn.net/dm_vincent/article/details/7655764)
