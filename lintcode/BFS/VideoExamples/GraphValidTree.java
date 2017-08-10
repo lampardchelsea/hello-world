@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -24,17 +23,17 @@ import java.util.Set;
  * 
  * Solution
  * http://www.cnblogs.com/grandyang/p/5257919.html
- * 这道题给了我们一个无向图，让我们来判断其是否为一棵树，我们知道如果是树的话，所有的节点必须是连接的，也就是说必须是连通图，
- * 而且不能有环，所以我们的焦点就变成了验证是否是连通图和是否含有环。
+ * 杩欓亾棰樼粰浜嗘垜浠竴涓棤鍚戝浘锛岃鎴戜滑鏉ュ垽鏂叾鏄惁涓轰竴妫垫爲锛屾垜浠煡閬撳鏋滄槸鏍戠殑璇濓紝鎵�湁鐨勮妭鐐瑰繀椤绘槸杩炴帴鐨勶紝涔熷氨鏄蹇呴』鏄繛閫氬浘锛�
+ * 鑰屼笖涓嶈兘鏈夌幆锛屾墍浠ユ垜浠殑鐒︾偣灏卞彉鎴愪簡楠岃瘉鏄惁鏄繛閫氬浘鍜屾槸鍚﹀惈鏈夌幆銆�
  * 
- * 我们首先用DFS来做，根据pair来建立一个图的结构，用邻接链表来表示，还需要一个一位数组v来记录某个节点是否被访问过，然后
- * 我们用DFS来搜索节点0，遍历的思想是，当DFS到某个节点，先看当前节点是否被访问过，如果已经被访问过，说明环存在，直接返回
- * false，如果未被访问过，我们现在将其状态标记为已访问过，然后我们到邻接链表里去找跟其相邻的节点继续递归遍历，注意我们还
- * 需要一个变量pre来记录上一个节点，以免回到上一个节点，这样遍历结束后，我们就把和节点0相邻的节点都标记为true，然后我们
- * 在看v里面是否还有没被访问过的节点，如果有，则说明图不是完全连通的，返回false，反之返回true
+ * 鎴戜滑棣栧厛鐢―FS鏉ュ仛锛屾牴鎹畃air鏉ュ缓绔嬩竴涓浘鐨勭粨鏋勶紝鐢ㄩ偦鎺ラ摼琛ㄦ潵琛ㄧず锛岃繕闇�涓�釜涓�綅鏁扮粍v鏉ヨ褰曟煇涓妭鐐规槸鍚﹁璁块棶杩囷紝鐒跺悗
+ * 鎴戜滑鐢―FS鏉ユ悳绱㈣妭鐐�锛岄亶鍘嗙殑鎬濇兂鏄紝褰揇FS鍒版煇涓妭鐐癸紝鍏堢湅褰撳墠鑺傜偣鏄惁琚闂繃锛屽鏋滃凡缁忚璁块棶杩囷紝璇存槑鐜瓨鍦紝鐩存帴杩斿洖
+ * false锛屽鏋滄湭琚闂繃锛屾垜浠幇鍦ㄥ皢鍏剁姸鎬佹爣璁颁负宸茶闂繃锛岀劧鍚庢垜浠埌閭绘帴閾捐〃閲屽幓鎵捐窡鍏剁浉閭荤殑鑺傜偣缁х画閫掑綊閬嶅巻锛屾敞鎰忔垜浠繕
+ * 闇�涓�釜鍙橀噺pre鏉ヨ褰曚笂涓�釜鑺傜偣锛屼互鍏嶅洖鍒颁笂涓�釜鑺傜偣锛岃繖鏍烽亶鍘嗙粨鏉熷悗锛屾垜浠氨鎶婂拰鑺傜偣0鐩搁偦鐨勮妭鐐归兘鏍囪涓簍rue锛岀劧鍚庢垜浠�
+ * 鍦ㄧ湅v閲岄潰鏄惁杩樻湁娌¤璁块棶杩囩殑鑺傜偣锛屽鏋滄湁锛屽垯璇存槑鍥句笉鏄畬鍏ㄨ繛閫氱殑锛岃繑鍥瀎alse锛屽弽涔嬭繑鍥瀟rue
  * 
- * 下面我们来看BFS的解法，思路很相近，需要用queue来辅助遍历，这里我们没有用一维向量来标记节点是否访问过，而是用了一个set，
- * 如果遍历到一个节点，在set中没有，则加入set，如果已经存在，则返回false，还有就是在遍历邻接链表的时候，遍历完成后需要将节点删掉
+ * 涓嬮潰鎴戜滑鏉ョ湅BFS鐨勮В娉曪紝鎬濊矾寰堢浉杩戯紝闇�鐢╭ueue鏉ヨ緟鍔╅亶鍘嗭紝杩欓噷鎴戜滑娌℃湁鐢ㄤ竴缁村悜閲忔潵鏍囪鑺傜偣鏄惁璁块棶杩囷紝鑰屾槸鐢ㄤ簡涓�釜set锛�
+ * 濡傛灉閬嶅巻鍒颁竴涓妭鐐癸紝鍦╯et涓病鏈夛紝鍒欏姞鍏et锛屽鏋滃凡缁忓瓨鍦紝鍒欒繑鍥瀎alse锛岃繕鏈夊氨鏄湪閬嶅巻閭绘帴閾捐〃鐨勬椂鍊欙紝閬嶅巻瀹屾垚鍚庨渶瑕佸皢鑺傜偣鍒犳帀
  * 
  * http://www.jiuzhang.com/solutions/graph-valid-tree/
  * 
@@ -43,7 +42,26 @@ import java.util.Set;
  * 
  * 
  * https://segmentfault.com/a/1190000003791051
- * 
+ * http://blog.csdn.net/dm_vincent/article/details/7655764
+ * 并查集
+ * 复杂度
+ * 时间 O(N^M) 空间 O(1)
+ * 思路
+ * 判断输入的边是否能构成一个树，我们需要确定两件事：
+ * 这些边是否构成环路，如果有环则不能构成树
+ * 这些边是否能将所有节点连通，如果有不能连通的节点则不能构成树
+ * 因为不需要知道具体的树长什么样子，只要知道连通的关系，所以并查集相比深度优先搜索是更好的方法。我们定义一个并查集的数据结构，并提供标准的四个接口：
+
+	union 将两个节点放入一个集合中
+	find 找到该节点所属的集合编号
+	areConnected 判断两个节点是否是一个集合
+	count 返回该并查集中有多少个独立的集合
+
+ * 具体并查集的原理，参见这篇文章。简单来讲，就是先构建一个数组，节点0到节点n-1，刚开始都各自独立的属于自己的集合。这时集合的编号是节点号。然后，
+ * 每次union操作时，我们把整个并查集中，所有和第一个节点所属集合号相同的节点的集合号，都改成第二个节点的集合号。这样就将一个集合的节点归属到
+ * 同一个集合号下了。我们遍历一遍输入，把所有边加入我们的并查集中，加的同时判断是否有环路。最后如果并查集中只有一个集合，则说明可以构建树。
+ * 注意
+ * 因为要判断是否会产生环路，union方法要返回一个boolean，如果两个节点本来就在一个集合中，就返回假，说明有环路
  */
 public class GraphValidTree {
 	// Solution 1: BFS
@@ -228,6 +246,69 @@ public class GraphValidTree {
     }
 	
 
+    // Solution 4: Union-Find
+    // Refer to
+    // https://segmentfault.com/a/1190000003791051
+    // http://blog.csdn.net/dm_vincent/article/details/7655764
+    public boolean validTree4(int n, int[][] edges) {
+    	if(n == 0 || edges.length != n - 1) {
+    		return false;
+    	}
+    	UnionFind uf = new UnionFind(n);
+    	for(int i = 0; i < edges.length; i++) {
+    		// 如果两个节点已经在同一集合中，说明新的边将产生环路
+    		if(!uf.union(edges[i][0], edges[i][1])) {
+    			return false;
+    		}
+    	}
+    	return uf.count() == 1;
+    }
+    
+    private class UnionFind {
+    	int[] ids;
+    	int setCount;
+    	public UnionFind(int size) {
+    		ids = new int[size];
+    		//初始化并查集，每个节点对应自己的集合号
+    		for(int i = 0; i < size; i++) {
+    			ids[i] = i;
+    		}
+    		setCount = size;
+    	}
+    	
+    	public boolean union(int m, int n) {
+    		int src = find(m);
+    		int dst = find(n);
+    		//如果两个节点不在同一集合中，将两个集合合并为一个
+    		if(src != dst) {
+    			//注意：必须把所有等于src集合的转化为dst集合
+    			for(int i = 0; i < ids.length; i++) {
+    			    if(ids[i] == src) {
+    			    	ids[i] = dst;
+    			    }
+    			}
+    			// 合并完集合后，集合数减一
+    			setCount--;
+    			return true;
+    		} else {
+    			return false;
+    		}
+    	}
+    	
+    	public int find(int x) {
+    		return ids[x];
+    	}
+    	
+    	public boolean isConnected(int m, int n) {
+    		return find(m) == find(n);
+    	}
+    	
+    	public int count() {
+    		return setCount;
+    	}
+    }
+    
+    
 	
     public static void main(String[] args) {
     	GraphValidTree g = new GraphValidTree();
