@@ -126,3 +126,34 @@ public class Solution {
         return result;
     }
 }
+
+
+// Solution 3: Traverse (One kind of DFS)
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    List<List<Integer>> result = new ArrayList<List<Integer>>();
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        helper(result, root, 0);
+        return result;
+    }
+    
+    private void helper(List<List<Integer>> result, TreeNode root, int height) {
+        if(root == null) {
+            return;
+        }
+        if(height >= result.size()) {
+            result.add(new LinkedList<Integer>());
+        }
+        result.get(height).add(root.val);
+        helper(result, root.left, height + 1);
+        helper(result, root.right, height + 1);
+    }
+}
