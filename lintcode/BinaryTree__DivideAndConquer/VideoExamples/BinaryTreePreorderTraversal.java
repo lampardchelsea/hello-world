@@ -103,6 +103,51 @@ public class Solution {
         result.addAll(right);
         return result;
     }
+   
+    // Solution 3: Using Stack
+    // Refer to
+    // http://www.jiuzhang.com/solutions/binary-tree-preorder-traversal/
+      /**
+       * Definition of TreeNode:
+       * public class TreeNode {
+       *     public int val;
+       *     public TreeNode left, right;
+       *     public TreeNode(int val) {
+       *         this.val = val;
+       *         this.left = this.right = null;
+       *     }
+       * }
+       */
+      public class Solution {
+          /**
+           * @param root: The root of binary tree.
+           * @return: Preorder in ArrayList which contains node values.
+           */
+          public ArrayList<Integer> preorderTraversal(TreeNode root) {
+              // Divide and Conquer
+              ArrayList<Integer> result = new ArrayList<Integer>();
+              // Base case (null or leaf)
+              if(root == null) {
+                  return result;
+              }
+              Stack<TreeNode> stack = new Stack<TreeNode>();
+              stack.push(root);
+              while(!stack.isEmpty()) {
+                  TreeNode node = stack.pop();
+                  result.add(node.val);
+                  // Must push right first then push left 
+                  // as we need stack pop out left first
+                  if(node.right != null) {
+                      stack.push(node.right);
+                  }
+                  if(node.left != null) {
+                      stack.push(node.left);    
+                  }
+
+              }
+              return result;
+          }
+      }
 }
 
 
