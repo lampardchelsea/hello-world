@@ -129,6 +129,8 @@ public class Solution {
 
 
 // Solution 3: Traverse (One kind of DFS)
+// Refer to
+// https://discuss.leetcode.com/topic/7332/java-solution-using-dfs
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
