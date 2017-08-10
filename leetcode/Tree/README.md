@@ -13,6 +13,8 @@
 <p>1. [Four ways to implement binary tree level order traversal] (http://www.jiuzhang.com/solutions/binary-tree-level-order-traversal/)
 <p>2. [How do I instantiate a Queue object in java ?] (http://stackoverflow.com/questions/4626812/how-do-i-instantiate-a-queue-object-in-java)
 <p>3. [Difference between add() and offer() methods of Queue interface] (http://stackoverflow.com/questions/20526910/difference-between-add-and-offer-methods-of-queue-interface)
+<p>4. [Traverse (DFS)] (https://discuss.leetcode.com/topic/7332/java-solution-using-dfs)
+<p>5. [BFS] (https://discuss.leetcode.com/topic/28535/java-clean-and-concise-using-a-queue/2)
 
 <p>Binary Tree Level Order Traversal II
 <p>1. [Reverse Level Order Traversal] (http://www.geeksforgeeks.org/reverse-level-order-traversal/)
