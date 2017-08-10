@@ -8,3 +8,7 @@
 <p>4. [[Leetcode] Graph Valid Tree 图与树] (https://segmentfault.com/a/1190000003791051)
 <p>5. [Convert BFS to DFS] (https://discuss.leetcode.com/topic/21714/ac-java-graph-dfs-solution-with-adjacency-list/14)
 <p>6. [并查集(Union-Find)算法介绍] (http://blog.csdn.net/dm_vincent/article/details/7655764)
+
+<p>Binary Tree Serialization
+<p>1. [Template] (https://www.jiuzhang.com/solution/binary-tree-serialization/)
+<p>2. [Easy to understand Java Solution] (https://discuss.leetcode.com/topic/28029/easy-to-understand-java-solution?page=1)
