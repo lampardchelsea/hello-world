@@ -92,6 +92,10 @@ public class Solution {
             order.add(startNode);
             queue.offer(startNode);
         }
+	// Note: The time complexity of this nested while loop is not O(V * E),
+	// but O(V + E), the critical issue is the inner for loop is only
+	// execute one time when preceed node (dependency node) been removed
+	// from queue, so it is not mulitply relation, its linear realtion
         while(!queue.isEmpty()) {
             DirectedGraphNode startNode = queue.poll();
             for(DirectedGraphNode neighbor : startNode.neighbors) {
