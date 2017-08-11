@@ -90,6 +90,8 @@ public class CloneGraph {
             }
         }
 
+	// Should not return original node directly, must return map.get(node)
+        // as newly created copy
         // Refer to
         // Convert Set to List without creating new List
         // https://stackoverflow.com/a/19077309/6706875
