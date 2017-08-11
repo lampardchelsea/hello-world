@@ -96,9 +96,9 @@ public class Solution {
 	// but O(V + E), the critical issue is the inner for loop is only
 	// execute one time when preceed node (dependency node) been removed
 	// from queue, so it is not mulitply relation, its linear realtion
-        while(!queue.isEmpty()) {
+        while(!queue.isEmpty()) {  // O(V)
             DirectedGraphNode startNode = queue.poll();
-            for(DirectedGraphNode neighbor : startNode.neighbors) {
+            for(DirectedGraphNode neighbor : startNode.neighbors) {  // O(E)
                 // startNode -> neighbors
                 // When we move current node out of queue, which means move
                 // current node out of Topological graph, all its neighbors
