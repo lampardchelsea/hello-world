@@ -22,5 +22,8 @@
 <p>1. [Template] (http://www.jiuzhang.com/solutions/clone-graph/)
 <P>2. [Convert Set to List without creating new List] (https://stackoverflow.com/a/19077309/6706875)
 
+<p>Topological Sort
+<p>1. [拓扑排序（Topological Sorting] (https://songlee24.github.io/2015/05/07/topological-sorting/)
+<p>2. [Template] (http://www.jiuzhang.com/solutions/topological-sorting/)
 
 
