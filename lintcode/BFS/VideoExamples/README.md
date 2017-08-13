@@ -26,4 +26,6 @@
 <p>1. [拓扑排序（Topological Sorting] (https://songlee24.github.io/2015/05/07/topological-sorting/)
 <p>2. [Template] (http://www.jiuzhang.com/solutions/topological-sorting/)
 
-
+<p>Course Schedule
+<p>1. [Toplogical Sort With BFS 3 Steps Template (70ms)] (https://discuss.leetcode.com/topic/13854/easy-bfs-topological-sort-java/11)
+<p>2. [9 Seconds with adjacency of node (9ms)] (https://discuss.leetcode.com/topic/13854/easy-bfs-topological-sort-java/6?page=1)
