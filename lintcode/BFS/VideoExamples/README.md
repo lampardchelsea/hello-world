@@ -30,3 +30,9 @@
 <p>1. [Toplogical Sort With BFS 3 Steps Template (70ms)] (https://discuss.leetcode.com/topic/13854/easy-bfs-topological-sort-java/11)
 <p>2. [9 Seconds with adjacency of node (9ms)] (https://discuss.leetcode.com/topic/13854/easy-bfs-topological-sort-java/6?page=1)
 <p>3. [Concise JAVA solution based on BFS with comments] (https://discuss.leetcode.com/topic/27940/concise-java-solution-based-on-bfs-with-comments)
+
+<p>Number Of Islands
+<p>1. [Template] (http://www.jiuzhang.com/solutions/number-of-islands/)
+<p>2. [Number of Islands Union Find Explain] (https://aaronice.gitbooks.io/lintcode/content/graph_search/number_of_islands.html)
+
+
