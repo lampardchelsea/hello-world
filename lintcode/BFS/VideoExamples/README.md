@@ -35,4 +35,13 @@
 <p>1. [Template] (http://www.jiuzhang.com/solutions/number-of-islands/)
 <p>2. [Number of Islands Union Find Explain] (https://aaronice.gitbooks.io/lintcode/content/graph_search/number_of_islands.html)
 
+<p>Knight Shortest Path
+<p>1. [Knight Shortest Path Lintcode 中文答案1] (http://www.cnblogs.com/aprilyang/p/6505037.html)
+<p>2. [Knight Shortest Path Lintcode 中文答案2] (http://www.cnblogs.com/EdwardLiu/p/6546118.html)
+<p>3. [Number Of Islands] (https://github.com/lampardchelsea/hello-world/blob/master/lintcode/BFS/VideoExamples/NumberOfIslands.java)
+
+
+
+
+
 
