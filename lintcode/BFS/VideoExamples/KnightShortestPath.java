@@ -42,6 +42,7 @@ import java.util.Queue;
  * http://www.cnblogs.com/aprilyang/p/6505037.html
  * http://www.cnblogs.com/EdwardLiu/p/6546118.html
  * https://github.com/lampardchelsea/hello-world/blob/master/lintcode/BFS/VideoExamples/NumberOfIslands.java
+ * Same way as build up helper private class as Coordinate as NumberOfIslands.java
  */
 public class KnightShortestPath {
 	private class Coordinate {
