@@ -41,6 +41,7 @@ import java.util.Queue;
  * Solution
  * http://www.cnblogs.com/aprilyang/p/6505037.html
  * http://www.cnblogs.com/EdwardLiu/p/6546118.html
+ * https://github.com/lampardchelsea/hello-world/blob/master/lintcode/BFS/VideoExamples/NumberOfIslands.java
  */
 public class KnightShortestPath {
 	private class Coordinate {
