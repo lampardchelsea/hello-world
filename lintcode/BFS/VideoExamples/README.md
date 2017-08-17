@@ -43,7 +43,7 @@
 <p>Build Post Office
 <p>1. [Find median of houses as start point and BFS its adjacents] (https://zhengyang2015.gitbooks.io/lintcode/build_post_office_573.html)
 
-<p>Word Ladder
+<p>Word Ladder I & II
 <p>1. [Template] (http://www.jiuzhang.com/solutions/word-ladder/)
-
-
+<p>2. [Template] (http://www.jiuzhang.com/solutions/word-ladder-ii/)
+<P>3. [Share two similar Java solution that Accpted by OJ] (https://discuss.leetcode.com/topic/2857/share-two-similar-java-solution-that-accpted-by-oj/21?page=2Share two similar Java solution that Accpted by OJ)
