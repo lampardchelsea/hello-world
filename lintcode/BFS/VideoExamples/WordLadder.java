@@ -69,12 +69,17 @@ public class WordLadder {
 		return 0;
 	}
 	
+	// replace character of a string at given index to a given character
+        // return a new string
 	private String replace(String s, int index, char c) {
 		char[] chars = s.toCharArray();
 		chars[index] = c;
 		return new String(chars);
 	}
 	
+	// get connections with given word.
+        // for example, given word = 'hot', dict = {'hot', 'hit', 'hog'}
+        // it will return ['hit', 'hog']
 	private List<String> getNextWords(String word, Set<String> dict) {
 		List<String> nextWords = new ArrayList<String>();
 		// The best strategy here is not change one character of one word
