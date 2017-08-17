@@ -117,6 +117,7 @@ public class WordLadderII {
 			// of current node. use distance.get(beginWord)+1 we can make sure the path is the 
 			// shortest one.
 			if(distance.get(neighbor) == distance.get(beginWord) + 1) {
+				// Be careful: Use 'neighbor' instead of 'beginWord' for next traverse
 				dfs(neighbor, endWord, nodeNeighbors, distance, individualSequence, results);
 			}
 		}
@@ -168,4 +169,3 @@ public class WordLadderII {
 		}
 	}
 }
-
