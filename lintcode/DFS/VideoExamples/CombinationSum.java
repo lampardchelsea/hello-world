@@ -25,6 +25,7 @@ class Solution {
         if(target < 0 || candidates == null || candidates.length == 0) {
             return result;
         }
+	// Must sort first
         Arrays.sort(candidates);
         List<Integer> combination = new ArrayList<Integer>();
         helper(candidates, target, result, combination, 0);
