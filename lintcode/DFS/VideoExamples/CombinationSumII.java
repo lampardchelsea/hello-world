@@ -20,7 +20,8 @@
 	  [1, 1, 6]
 	]
  * 
- *
+ * Different than Combination Sum I is given candidate set contains duplicates like '1' in example
+ * 
  * Solution
  * https://discuss.leetcode.com/topic/46159/a-general-approach-to-backtracking-questions-in-java-subsets-permutations-combination-sum-palindrome-partitioning/2
 */
