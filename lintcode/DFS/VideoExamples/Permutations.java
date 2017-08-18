@@ -46,3 +46,43 @@ public class Solution {
         }
     }
 }
+
+
+/**
+ * Check with boolean visited
+*/
+public class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if(nums == null) {
+            return result;
+        }
+        if(nums.length == 0) {
+            result.add(new ArrayList<Integer>());
+            return result;
+        }
+        List<Integer> combination = new ArrayList<Integer>();
+        helper(nums, result, combination, new boolean[nums.length]);
+        return result;
+    }
+    
+    private void helper(int[] nums, List<List<Integer>> result, List<Integer> combination, boolean[] visited) {
+        if(combination.size() == nums.length) {
+            result.add(new ArrayList<Integer>(combination));
+        }
+        for(int i = 0; i < nums.length; i++) {
+            if(visited[i]) {
+                continue;
+            }
+            combination.add(nums[i]);
+            visited[i] = true;
+            helper(nums, result, combination, visited);
+            combination.remove(combination.size() - 1);
+            visited[i] = false;
+        }
+    }
+}
+
+
+
+
