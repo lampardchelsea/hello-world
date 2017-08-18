@@ -30,6 +30,7 @@ public class Solution {
         return result;
     }
     
+    // We can also use 'boolean[] visited' instead of usage of 'combination.contains()' check
     private void helper(int[] nums, List<List<Integer>> result, List<Integer> combination) {
         if(combination.size() == nums.length) {
             result.add(new ArrayList<Integer>(combination));
