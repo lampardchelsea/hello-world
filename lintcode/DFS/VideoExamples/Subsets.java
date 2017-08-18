@@ -20,7 +20,7 @@
  * 
  * Solution
  * http://www.jiuzhang.com/solutions/subsets/
- * 
+ * https://discuss.leetcode.com/topic/46159/a-general-approach-to-backtracking-questions-in-java-subsets-permutations-combination-sum-palindrome-partitioning
 */
 public class Solution {
     public List<List<Integer>> subsets(int[] nums) {
