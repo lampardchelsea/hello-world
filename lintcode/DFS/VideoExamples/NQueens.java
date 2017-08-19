@@ -42,6 +42,9 @@ class Solution {
         for (int i = 0; i < cols.size(); i++) {
             StringBuilder sb = new StringBuilder();
             for (int j = 0; j < cols.size(); j++) {
+                // Because cols stores all column indexes in each row,
+                // so mask each position at cols.get(i) as 'Q', other
+                // positions leave as '.'
                 sb.append(j == cols.get(i) ? 'Q' : '.');
             }
             chessboard.add(sb.toString());
