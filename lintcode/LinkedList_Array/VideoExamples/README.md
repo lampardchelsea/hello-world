@@ -13,3 +13,6 @@
 <p>Linked List Cycle II
 <p>1. [O(n) solution by using two pointers without change anything] (https://discuss.leetcode.com/topic/2975/o-n-solution-by-using-two-pointers-without-change-anything?page=1)
 <p>2. [Concise O(n) solution by using C++ with Detailed Alogrithm Description] (https://discuss.leetcode.com/topic/5284/concise-o-n-solution-by-using-c-with-detailed-alogrithm-description)
+
+<p>Merge Two Sorted List
+<p>1. [Template (use dummy node)] (http://www.jiuzhang.com/solutions/merge-two-sorted-lists/)
