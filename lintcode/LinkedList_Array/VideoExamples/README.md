@@ -16,3 +16,6 @@
 
 <p>Merge Two Sorted List
 <p>1. [Template (use dummy node)] (http://www.jiuzhang.com/solutions/merge-two-sorted-lists/)
+
+<p>Parition List
+<p>1. [Template (use dummy node)] (http://www.jiuzhang.com/solutions/partition-list/)
