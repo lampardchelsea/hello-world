@@ -5,3 +5,7 @@
 <p>Copy List with Random Pointer
 <p>1. [Template] (http://www.jiuzhang.com/solutions/copy-list-with-random-pointer/)
 <p>2. [A solution with constant space complexity O(1) and linear time complexity O(N)] (https://discuss.leetcode.com/topic/7594/a-solution-with-constant-space-complexity-o-1-and-linear-time-complexity-o-n)
+
+<p>Intersection Of Two Linked Lists
+<p>1. [Approach #3 (Two Pointers) [Accepted]] (https://leetcode.com/problems/intersection-of-two-linked-lists/solution/)
+<p>2. [Java solution without knowing the difference in len!] (https://discuss.leetcode.com/topic/28067/java-solution-without-knowing-the-difference-in-len)
