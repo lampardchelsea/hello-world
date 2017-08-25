@@ -25,3 +25,7 @@
 <p>2. [Java solution with 3 steps] (https://discuss.leetcode.com/topic/13869/java-solution-with-3-steps)
 <p>3. [Memory Limited Exceed problem] (https://discuss.leetcode.com/topic/13869/java-solution-with-3-steps/19)
 <p>4. [Memory Limited Exceed problem 2] (https://discuss.leetcode.com/topic/335/help-time-limited-exceed/2)
+
+<p>Reverse Linked List II
+<p>1. [Tempate (use dummy node)] (http://www.jiuzhang.com/solutions/reverse-linked-list-ii/)
+<p>2. [Simple Java solution with clear explanation] (https://github.com/lampardchelsea/hello-world/blob/108b14f402d6d323029bcec9db8ee67cc755b23b/leetcode/LinkedList/ReverseLinkedListII.java)
