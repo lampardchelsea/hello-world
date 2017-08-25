@@ -19,3 +19,9 @@
 
 <p>Parition List
 <p>1. [Template (use dummy node)] (http://www.jiuzhang.com/solutions/partition-list/)
+
+<p>Reorder List
+<p>1. [Template (use dummy node)] (http://www.jiuzhang.com/solutions/reorder-list/)
+<p>2. [Java solution with 3 steps] (https://discuss.leetcode.com/topic/13869/java-solution-with-3-steps)
+<p>3. [Memory Limited Exceed problem] (https://discuss.leetcode.com/topic/13869/java-solution-with-3-steps/19)
+<p>4. [Memory Limited Exceed problem 2] (https://discuss.leetcode.com/topic/335/help-time-limited-exceed/2)
