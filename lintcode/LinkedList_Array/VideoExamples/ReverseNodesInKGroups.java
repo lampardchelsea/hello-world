@@ -64,11 +64,13 @@ public class Solution {
 		ListNode nodek = prev;
 		ListNode node1 = prev.next;
 		for(int i = 0; i < k; i++) {
+		    // This check is necessary
 		    if(nodek == null) {
 			    return null;
 			}
 		    nodek = nodek.next;
 		}
+	        // This check is also necessary
 		if(nodek == null) {
 		    return null;
 		}
