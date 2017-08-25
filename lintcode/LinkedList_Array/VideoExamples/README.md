@@ -29,3 +29,11 @@
 <p>Reverse Linked List II
 <p>1. [Tempate (use dummy node)] (http://www.jiuzhang.com/solutions/reverse-linked-list-ii/)
 <p>2. [Simple Java solution with clear explanation] (https://github.com/lampardchelsea/hello-world/blob/108b14f402d6d323029bcec9db8ee67cc755b23b/leetcode/LinkedList/ReverseLinkedListII.java)
+
+<p>Reverse Nodes In K Group
+<p>1. [Reverse Linked List II Leetcode Template] (https://github.com/lampardchelsea/hello-world/blob/6f1916b90009115b28a930ad3f6920a0bf3d84e0/leetcode/LinkedList/ReverseLinkedListII.java)
+<p>2. [Reverse Nodes In K Group Leetcode Template] (https://github.com/lampardchelsea/hello-world/blob/6f1916b90009115b28a930ad3f6920a0bf3d84e0/leetcode/LinkedList/ReverseNodesInKGroup.java)
+
+
+
+
