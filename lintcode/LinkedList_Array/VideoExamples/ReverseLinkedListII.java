@@ -11,7 +11,7 @@
  *
  * Solution
  * http://www.jiuzhang.com/solutions/reverse-linked-list-ii/
- * https://github.com/lampardchelsea/hello-world/blob/108b14f402d6d323029bcec9db8ee67cc755b23b/leetcode/LinkedList/ReverseLinkedListII.java#L102
+ * https://github.com/lampardchelsea/hello-world/blob/108b14f402d6d323029bcec9db8ee67cc755b23b/leetcode/LinkedList/ReverseLinkedListII.java
 */
 
 /**
