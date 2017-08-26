@@ -129,7 +129,13 @@ public class ReverseLinkedListII {
     }
     
     /**
-	 * 关键问题：两种方法中循环部分的区别：
+         之所以尝试方法2是因为九章的讲解，但是不是这道题，是来自Reverse Nodes In K Group那题，两题很相似，
+	 所以我想试试能否先找到最后的那个需要reverse的节点，相当于对原链接分3段处理，m node之前的不变顺序，
+	 n node 之后的不变顺序，m到n之间的用reverse方法，但是发现有问题，我把两题一并发上来，其中九章那题
+	 是我这个思路的来由，有一句话我加了注释： Try to locate the last node need to reverse，九章就是
+	 用node k先标记了reverse前的最后一个节点
+         
+	 关键问题：两种方法中循环部分的区别：
 	 在第一种方法的循环里，一共有三个指针：pre, start, then, 
 	 其中，start 和 then 两个指针指向的目标是在 m 到 n 这个区间里的。
 	 也就是说，每次循环，他都能改变 m 到 n 这个区间里两个节点。
