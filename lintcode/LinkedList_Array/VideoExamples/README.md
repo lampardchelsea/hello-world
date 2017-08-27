@@ -44,5 +44,6 @@
 <p>Swap Nodes In Pairs
 <p>1. [Template (use dummy node)] (http://www.jiuzhang.com/solutions/swap-nodes-in-pairs/)
 
-
+<p>Swap Two Nodes In Linked List
+<p>1. [Template (use dummy node and sepcial adjacency case handling)] (http://www.jiuzhang.com/solutions/swap-two-nodes-in-linked-list)
 
