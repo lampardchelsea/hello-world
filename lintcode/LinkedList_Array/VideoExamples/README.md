@@ -41,7 +41,8 @@
 <p>Sort List
 <p>1. [Merge Sort and Quick Sort Template] (http://www.jiuzhang.com/solutions/sort-list/)
 
-
+<p>Swap Nodes In Pairs
+<p>1. [Template (use dummy node)] (http://www.jiuzhang.com/solutions/swap-nodes-in-pairs/)
 
 
 
