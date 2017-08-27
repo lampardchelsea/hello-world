@@ -120,6 +120,11 @@
 <p>10. [Merging K- Sorted Lists using Priority Queue] (http://stackoverflow.com/questions/19474924/merging-k-sorted-lists-using-priority-queue)
 <p>11. [Algorithm for N-way merge] (http://stackoverflow.com/questions/5055909/algorithm-for-n-way-merge)
 
+<p>Quick Sort
+<p>1. [用Java写算法之五：快速排序] (http://flyingcat2013.blog.51cto.com/7061638/1281614)
+<p>2. [白话经典算法系列之六 快速排序 快速搞定] (http://blog.csdn.net/morewindows/article/details/6684558)
+
+
 <p>Heap Sort And Priority Queue
 <p>1. [Princeton Priority Queue and Heap Sort] (http://algs4.cs.princeton.edu/24pq/)
 <p>2. [Princeton Heap Sort Implementation Start At Array Position 1] (http://algs4.cs.princeton.edu/24pq/Heap.java.html)
