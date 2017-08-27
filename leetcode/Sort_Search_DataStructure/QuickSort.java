@@ -20,11 +20,11 @@ public class QuickSort {
         int pivot = arr[low];     //枢轴记录
         while(low < high) {
             while(low < high && arr[high] >= pivot) {
-                --high;            
+                high--;            
             }
             arr[low] = arr[high];            //交换比枢轴小的记录到左端
             while(low < high && arr[low] <= pivot) {
-                ++low;           
+                low++;           
             }
             arr[high] = arr[low];           //交换比枢轴小的记录到右端
         }
