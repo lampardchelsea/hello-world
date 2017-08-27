@@ -4,11 +4,11 @@
  * http://blog.csdn.net/morewindows/article/details/6684558
 */
 public class QuickSort {
-    public static void quickSort(int[] arr) {
+	public void quickSort(int[] arr) {
         qsort(arr, 0, arr.length - 1);
     }
   
-    private static void qsort(int[] arr, int low, int high) {
+    private void qsort(int[] arr, int low, int high) {
         if (low < high){
             int pivot = partition(arr, low, high);        //将数组分为两部分
             qsort(arr, low, pivot - 1);                   //递归排序左子数组
@@ -16,7 +16,7 @@ public class QuickSort {
         }
     }
   
-    private static int partition(int[] arr, int low, int high) {
+    private int partition(int[] arr, int low, int high) {
         int pivot = arr[low];     //枢轴记录
         while(low < high) {
             while(low < high && arr[high] >= pivot) {
@@ -32,5 +32,20 @@ public class QuickSort {
         arr[low] = pivot;
         //返回的是枢轴的位置
         return low;
+    }
+    
+    public static void main(String[] args) {
+    	QuickSort q = new QuickSort();
+    	int[] arr = {2,3,1};
+    	q.quickSort(arr);
+    	StringBuilder sb = new StringBuilder();
+    	for(int i = 0; i < arr.length; i++) {
+    		if(i == arr.length - 1) {
+        	    sb.append(arr[i]);  			
+    		} else {
+    		    sb.append(arr[i]).append("->");
+    		}
+    	}
+    	System.out.println(sb.toString());
     }
 }
