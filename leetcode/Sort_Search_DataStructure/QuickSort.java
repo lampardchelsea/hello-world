@@ -4,7 +4,7 @@
  * http://blog.csdn.net/morewindows/article/details/6684558
 */
 public class QuickSort {
-	public void quickSort(int[] arr) {
+    public void quickSort(int[] arr) {
         qsort(arr, 0, arr.length - 1);
     }
   
