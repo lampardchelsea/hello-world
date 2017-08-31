@@ -47,3 +47,10 @@
 <p>Swap Two Nodes In Linked List
 <p>1. [Template (use dummy node and sepcial adjacency case handling)] (http://www.jiuzhang.com/solutions/swap-two-nodes-in-linked-list)
 
+<p>Intersection Of Two Arrays
+<p>1. [Three Java Solutions] (https://discuss.leetcode.com/topic/45685/three-java-solutions)
+<p>2. [Template] (http://www.jiuzhang.com/solution/intersection-of-two-arrays/)
+
+
+
+
