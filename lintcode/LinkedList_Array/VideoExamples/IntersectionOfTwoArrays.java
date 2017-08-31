@@ -69,4 +69,53 @@ public class Solution {
 }
 
 
-
+// Binary search
+// Time complexity: O(nlogn)
+public class Solution {
+    /**
+     * @param nums1 an integer array
+     * @param nums2 an integer array
+     * @return an integer array
+     */
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> set = new HashSet<Integer>();
+        // nums2 must be sorted to fit Binary Search require
+        Arrays.sort(nums2);
+        for(int a : nums1) {
+            if(binarySearch(nums2, a)) {
+                set.add(a);
+            }
+        }
+        int i = 0;
+        int[] result = new int[set.size()];
+        for(int b : set) {
+            result[i++] = b;
+        }
+        return result;
+    }
+    
+    private boolean binarySearch(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return false;
+        }
+        int low = 0;
+        int high = nums.length - 1;
+        while(low + 1 < high) {
+            int mid = low + (high - low) / 2;
+            if(nums[mid] < target) {
+                low = mid;  
+            } else if(nums[mid] > target) {
+                high = mid;
+            } else {
+                return true;
+            }
+        }
+        if(nums[low] == target) {
+            return true;
+        }
+        if(nums[high] == target) {
+            return true;
+        }
+        return false;
+    }
+}
