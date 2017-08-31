@@ -35,3 +35,38 @@ public class Solution {
 }
 
 
+// Sort both arrays, use two pointers
+// Time complexity: O(nlogn)
+public class Solution {
+    /**
+     * @param nums1 an integer array
+     * @param nums2 an integer array
+     * @return an integer array
+     */
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> set = new HashSet<Integer>();
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        int i = 0, j = 0;
+        while(i < nums1.length && j < nums2.length) {
+            if(nums1[i] < nums2[j]) {
+                i++;
+            } else if(nums1[i] > nums2[j]) {
+                j++;
+            } else {
+                set.add(nums1[i]);
+                i++;
+                j++;
+            }
+        }
+        int[] result = new int[set.size()];
+        int k = 0;
+        for(int a : set) {
+            result[k++] = a;
+        }
+        return result;
+    }
+}
+
+
+
