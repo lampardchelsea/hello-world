@@ -51,6 +51,7 @@
 <p>1. [Three Java Solutions] (https://discuss.leetcode.com/topic/45685/three-java-solutions)
 <p>2. [Template] (http://www.jiuzhang.com/solution/intersection-of-two-arrays/)
 
-
+<p>Maximum Subarray
+<p>1. [Template] (http://www.jiuzhang.com/solutions/maximum-subarray/)
 
 
