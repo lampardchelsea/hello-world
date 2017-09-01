@@ -46,7 +46,8 @@
 <p>1. [Template] (https://www.kancloud.cn/kancloud/data-structure-and-algorithm-notes/72974)
 <p>2. [Binary Search Worst Case Time Complex] (https://www.csd.uwo.ca/Courses/CS2210a/slides/binsearch.pdf)
 
-
+<p>Median Of Two Sorted Arrays
+<p>1. [Concise JAVA solution based on Binary Search] (https://discuss.leetcode.com/topic/28602/concise-java-solution-based-on-binary-search/32?page=2)
 
 
 
