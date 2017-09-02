@@ -11,6 +11,13 @@
  * 
  * Solution
  * https://leetcode.com/problems/subarray-sum-equals-k/solution/#approach-1-brute-force-time-limit-exceeded
+ *
+ * Complexity Analysis
+ * Time complexity : O(n^2)
+   Considering every possible subarray takes O(n^2)time. 
+   Finding out the sum of any subarray takes O(1) time after the initial processing of O(n) 
+   for creating the cumulative sum array.
+   Space complexity : O(n). Cumulative sum array sumsum of size n+1 is used.
 */
 
 // Solution 1: preSum way
