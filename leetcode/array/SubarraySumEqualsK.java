@@ -66,6 +66,10 @@ class Solution {
  equals the required kk value, we can update the count value. We do so while iterating over all 
  the end indices possible for every start index. Whenver, we update the start index, we need to 
  reset the sum value to 0.
+ Complexity Analysis
+
+Time complexity : O(n^2). We need to consider every subarray possible
+Space complexity : O(1) Constant space is used.
 */
 class Solution {
     public int subarraySum(int[] nums, int k) {
