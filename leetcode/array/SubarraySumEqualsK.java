@@ -53,3 +53,32 @@ class Solution {
         return count;
     }
 }
+
+
+// Solution 2: 
+/**
+ Approach #3 Without space [Accepted]
+ Algorithm
+ Instead of considering all the startstart and endend points and then finding the sum for each subarray 
+ corresponding to those points, we can directly find the sum on the go while considering different end
+ points. i.e. We can choose a particular start point and while iterating over the end points, 
+ we can add the element corresponding to the end point to the sum formed till now. Whenver the sum
+ equals the required kk value, we can update the count value. We do so while iterating over all 
+ the end indices possible for every start index. Whenver, we update the start index, we need to 
+ reset the sum value to 0.
+*/
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        int count = 0;
+        for(int start = 0; start < nums.length; start++) {
+            int sum = 0;
+            for(int end = start; end < nums.length; end++) {
+                sum += nums[end];
+                if(sum == k) {
+                    count++;
+                }                
+            }
+        }
+        return count;
+    }
+}
