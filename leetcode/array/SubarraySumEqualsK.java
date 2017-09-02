@@ -104,6 +104,9 @@ class Solution {
    since it will determine the number of times a subarray with sum k has occured upto the current index. 
    We increment the countcount by the same amount.
    After the complete array has been traversed, the count gives the required result.
+   Complexity Analysis
+   Time complexity : O(n) The entire nums array is traversed only once.
+   Space complexity : O(n) Hashmap map can contain upto nn distinct entries in the worst case.
 */
 class Solution {
     public int subarraySum(int[] nums, int k) {
