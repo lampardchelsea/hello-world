@@ -17,7 +17,7 @@ public class QuickSort {
     }
   
     private int partition(int[] arr, int low, int high) {
-        int pivot = arr[low];     //枢轴记录
+        int pivot = arr[low];     //枢轴记录,一般默认取low, 即第一个为初始枢轴，有些优化的quick sort算法会不一样
         while(low < high) {
             while(low < high && arr[high] >= pivot) {
                 high--;            
