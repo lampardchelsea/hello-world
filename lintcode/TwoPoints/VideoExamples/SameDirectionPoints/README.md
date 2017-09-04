@@ -13,4 +13,5 @@
 <p>2. [Approach #1 (Two Pointers)] (https://leetcode.com/problems/remove-duplicates-from-sorted-array/solution/)
 
 <p>Remove Duplicates from Sorted Array II
-<p>1. [] ()
+<p>1. [Template (Same direction Points)] (http://www.jiuzhang.com/solutions/remove-duplicates-from-sorted-array-ii/)
+<p>2. [双指针法] (https://segmentfault.com/a/1190000003752035)
