@@ -34,9 +34,6 @@ public class Solution {
         if(nums == null || nums.length == 0) {
             return 0;
         }
-        if(nums.length < 2) {
-            return 1;
-        }
         int i = 0;
         for(int j = 0; j < nums.length; j++) {
             if(nums[j] != nums[i]) {
