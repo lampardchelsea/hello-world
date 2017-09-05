@@ -13,3 +13,6 @@
 
 <p>Two Sum Unique Pairs
 <p>1. [Template (Two opposite points)] (http://www.jiuzhang.com/solutions/two-sum-unique-pairs)
+
+<p>3 Sum
+<p>1. [Template (Two opposite points)] (http://www.jiuzhang.com/solutions/3sum/)
