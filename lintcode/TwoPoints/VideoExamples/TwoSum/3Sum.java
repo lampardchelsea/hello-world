@@ -92,4 +92,16 @@ public class Solution {
             }
         } 
     }
+     
+    public static void main(String[] args) {
+    	ThreeSum t = new ThreeSum();
+    	int[] numbers = {1,0,-1,-1,-1,-1,0,1,1,1};
+    	List<List<Integer>> result = t.threeSum(numbers);
+    	for(List<Integer> a : result) {
+    		System.out.println("----------");
+    		for(Integer b : a) {
+    			System.out.print(b);
+    		}
+    	}
+    }
 }
