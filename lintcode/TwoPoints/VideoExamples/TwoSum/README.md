@@ -7,3 +7,6 @@
 
 <p>Two Sum II Input Array Is Sorted
 <p>1. [Template (Two opposite points)] (https://github.com/lampardchelsea/hello-world/blob/f598027b1c7a0ab2757ee86c30eea9e0be7961f1/leetcode/array/TwoSumII.java)
+
+<p>Two Sum III Data Structure Design
+<p>1. [[LeetCode] Two Sum III - Data structure design 两数之和之三 - 数据结构设计] (http://www.cnblogs.com/grandyang/p/5184143.html)
