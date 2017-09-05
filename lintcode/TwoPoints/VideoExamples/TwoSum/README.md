@@ -22,3 +22,6 @@
 
 <p>Two Sum - Less than or equal to target
 <p>1. [Template (Two opposite points)] (https://yeqiuquan.blogspot.com/2017/04/lintcode-609-two-sum-less-than-or-equal.html)
+
+<p>Two SUm - Greater than target
+<p>1. [Template (Two opposite points)] (https://yeqiuquan.blogspot.com/2017/03/lintcode-443-two-sum-greater-than-target.html)
