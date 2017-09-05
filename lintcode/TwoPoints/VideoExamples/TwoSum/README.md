@@ -10,3 +10,6 @@
 
 <p>Two Sum III Data Structure Design
 <p>1. [[LeetCode] Two Sum III - Data structure design 两数之和之三 - 数据结构设计] (http://www.cnblogs.com/grandyang/p/5184143.html)
+
+<p>Two Sum Unique Pairs
+<p>1. [Template (Two opposite points)] (http://www.jiuzhang.com/solutions/two-sum-unique-pairs)
