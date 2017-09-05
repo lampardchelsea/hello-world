@@ -16,3 +16,6 @@
 
 <p>3 Sum
 <p>1. [Template (Two opposite points)] (http://www.jiuzhang.com/solutions/3sum/)
+
+<p>Triangle Count
+<p>1. [Template (Two opposite points)] (http://www.cnblogs.com/Dylan-Java-NYC/p/6362616.html)
