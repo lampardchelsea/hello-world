@@ -25,7 +25,7 @@ public class Solution {
      */
     public List<List<Integer>> threeSum(int[] numbers) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
-        if(numbers == null || numbers.length == 0) {
+        if(numbers == null || numbers.length < 3) {
             return result;
         }
         // First need to sort as ascending order
