@@ -23,24 +23,24 @@ public class Solution {
     }
     
     private void mergeSort(int[] A, int start, int end, int[] temp) {
+        // Don't forget the base case
         if(start >= end) {
             return;
         }
-        int left = start;
-        int right = end;
         int mid = start + (end - start) / 2;
         mergeSort(A, start, mid, temp);
         mergeSort(A, mid + 1, end, temp);
         merge(A, start, mid, end, temp);
     }
-    
+
     private void merge(int[] A, int start, int mid, int end, int[] temp) {
         int left = start;
         int right = mid + 1;
         int index = start;
+        // Combination two conditions
         while(left <= mid && right <= end) {
             if(A[left] < A[right]) {
-                temp[index++] = A[left++]; 
+                temp[index++] = A[left++];
             } else {
                 temp[index++] = A[right++];
             }
@@ -55,5 +55,4 @@ public class Solution {
             A[index] = temp[index];
         }
     }
-
 }
