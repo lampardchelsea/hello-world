@@ -18,6 +18,12 @@
  * https://www.jiuzhang.com/solutions/partition-array/
  * Similar template as QuickSort
  * https://www.jiuzhang.com/solutions/quick-sort/
+ * http://www.code123.cc/docs/leetcode-notes/integer_array/partition_array.html
+   源码分析
+   大循环能正常进行的条件为 left<=right, 对于左边索引，向右搜索直到找到小于 k 的索引为止；
+   对于右边索引，则向左搜索直到找到大于等于 k 的索引为止。注意在使用while循环时务必进行越界检查！
+   找到不满足条件的索引时即交换其值，并递增left, 递减right. 紧接着进行下一次循环。最后返回left即可，
+   当nums为空时包含在left = 0之中，不必单独特殊考虑，所以应返回left而不是right.
 */
 
 public class Solution {
