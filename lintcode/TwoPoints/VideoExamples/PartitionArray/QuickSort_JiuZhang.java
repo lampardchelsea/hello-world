@@ -20,6 +20,7 @@ public class Solution {
     }
     
     private void quickSort(int[] A, int start, int end) {
+        // Don't forget the base case, same as Quick Sort
         if(start >= end) {
             return;
         }
