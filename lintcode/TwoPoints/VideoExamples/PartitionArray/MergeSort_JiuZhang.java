@@ -23,7 +23,7 @@ public class Solution {
     }
     
     private void mergeSort(int[] A, int start, int end, int[] temp) {
-        // Don't forget the base case
+        // Don't forget the base case, same as Quick Sort
         if(start >= end) {
             return;
         }
