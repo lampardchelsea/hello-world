@@ -28,3 +28,6 @@
 
 <p>Two Sum - Closet to target
 <p>1. [Template (Two opposite points)] (https://aaronice.gitbooks.io/lintcode/content/high_frequency/2sum_closest.html)
+
+<p>3 Sum Closet
+<p>1. [Template (Two opposite points)] (http://www.jiuzhang.com/solutions/3sum-closest/)
