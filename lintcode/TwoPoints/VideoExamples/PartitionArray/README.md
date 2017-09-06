@@ -9,3 +9,6 @@
 
 <p>Quick Sort / Sort Integers II
 <p>1. [Template] (https://www.jiuzhang.com/solutions/quick-sort/)
+
+<p>Merge Sort / Sort Integers II
+<p>1. [Template] (http://www.jiuzhang.com/solutions/merge-sort/)
