@@ -23,7 +23,7 @@ public class Solution {
      * @param target an integer
      * @return [index1 + 1, index2 + 1] (index1 < index2)
      */
-    public int[] twoSum7(int[] nums, int target) {
+    public int[] twoSumDifferenceEqualsToTarget(int[] nums, int target) {
     
     }
 }
