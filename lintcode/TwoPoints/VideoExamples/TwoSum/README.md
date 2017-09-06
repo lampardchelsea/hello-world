@@ -34,3 +34,7 @@
 
 <p>Two Sum - Difference equals to target
 <p>1. [Template (Same direction points & private class)] (https://yeqiuquan.blogspot.com/2017/04/lintcode-610-two-sum-difference-equals.html)
+
+<p>4 Sum
+<p>1. [Template (Two opposite points)] (http://www.jiuzhang.com/solutions/4sum/)
+
