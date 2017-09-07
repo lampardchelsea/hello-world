@@ -13,6 +13,21 @@
  * Solution
  * http://www.jiuzhang.com/solution/kth-largest-element
  * https://aaronice.gitbooks.io/lintcode/content/data_structure/kth_largest_element.html
+    Time Complexity: average = O(n); worst case O(n^2), O(1) space
+    注意事项：
+    partition的主要思想：将比pivot小的元素放到pivot左边，比pivot大的放到pivot右边
+    pivot的选取决定了partition所得结果的效率，可以选择left pointer，更好的选择是在left和right范围内随机生成一个；
+    Time Complexity O(n)来自于O(n) + O(n/2) + O(n/4) + ... ~ O(2n)，此时每次partition的pivot大约将区间对半分。
+    Source: 
+    https://discuss.leetcode.com/topic/15256/4-c-solutions-using-partition-max-heap-priority_queue-and-multiset-respectively
+    So, in the average sense, the problem is reduced to approximately half of its original size, 
+    giving the recursion T(n) = T(n/2) + O(n) in which O(n) is the time for partition. 
+    This recursion, once solved, gives T(n) = O(n) and thus we have a linear time solution. 
+    Note that since we only need to consider one half of the array, the time complexity 
+    is O(n). If we need to consider both the two halves of the array, like quicksort, then 
+    the recursion will be T(n) = 2T(n/2) + O(n) and the complexity will be O(nlogn).
+    Of course, O(n) is the average time complexity. In the worst case, the recursion may 
+    become T(n) = T(n - 1) + O(n) and the complexity will be O(n^2).
 */
 // Solution 1: O(nlogn)
 class Solution {
