@@ -62,41 +62,42 @@ public class KthSmallestNumbersInUnsortedArray {
     }
 
     private int quickSelect(int[] nums, int start, int end, int k) {
-    	if(start == end) {
-			return nums[start];
+	// Little different than QuickSort template on base condition
+	if(start == end) {
+		return nums[start];
+	}
+	int left = start;
+	int right = end;
+	int mid = left + (right - left) / 2;
+	int pivot = nums[mid];
+	while(left <= right) {
+		while(left <= right && nums[left] < pivot) {
+			left++;
 		}
-		int left = start;
-		int right = end;
-		int mid = left + (right - left) / 2;
-		int pivot = nums[mid];
-		while(left <= right) {
-			while(left <= right && nums[left] < pivot) {
-				left++;
-			}
-			while(left <= right && nums[right] > pivot) {
-				right--;
-			}
-			if(left <= right) {
-				int temp = nums[left];
-				nums[left] = nums[right];
-				nums[right] = temp;
-				left++;
-				right--;
-			}
+		while(left <= right && nums[right] > pivot) {
+			right--;
 		}
-		/**
-		 * Refer to
-		 * http://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array/
-		 * Method 4 (QuickSelect) 
-		 * This is an optimization over method 1 if QuickSort is used as a sorting algorithm 
-		 * in first step. In QuickSort, we pick a pivot element, then move the pivot element 
-		 * to its correct position and partition the array around it. The idea is, not to do 
-		 * complete quicksort, but stop at the point where pivot itself is k’th smallest element. 
-		 * Also, not to recur for both left and right sides of pivot, but recur for one of them 
-		 * according to the position of pivot. The worst case time complexity of this method 
-		 * is O(n2), but it works in O(n) on average.
-		 */
-		if (right >= k && start <= right)
+		if(left <= right) {
+			int temp = nums[left];
+			nums[left] = nums[right];
+			nums[right] = temp;
+			left++;
+			right--;
+		}
+	}
+	/**
+	 * Refer to
+	 * http://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array/
+	 * Method 4 (QuickSelect) 
+	 * This is an optimization over method 1 if QuickSort is used as a sorting algorithm 
+	 * in first step. In QuickSort, we pick a pivot element, then move the pivot element 
+	 * to its correct position and partition the array around it. The idea is, not to do 
+	 * complete quicksort, but stop at the point where pivot itself is k’th smallest element. 
+	 * Also, not to recur for both left and right sides of pivot, but recur for one of them 
+	 * according to the position of pivot. The worst case time complexity of this method 
+	 * is O(n2), but it works in O(n) on average.
+	 */
+        if (right >= k && start <= right)
             return quickSelect(nums, start, right, k);
         else if (left <= k && left <= end)
             return quickSelect(nums, left, end, k);
