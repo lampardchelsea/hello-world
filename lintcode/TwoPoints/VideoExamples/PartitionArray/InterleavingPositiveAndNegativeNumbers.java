@@ -55,6 +55,11 @@ class Solution {
             while(posInd < A.length && A[posInd] > 0) {
                 posInd += 2;
             }
+            // This check is necessary because even we
+            // check 'negInd' and 'posInd' in previous
+            // two while loop, but after final +2, it
+            // will out of A.length range, so just
+            // require check again
             if(negInd < A.length && posInd < A.length) {
                 swap(A, negInd, posInd);
             }
