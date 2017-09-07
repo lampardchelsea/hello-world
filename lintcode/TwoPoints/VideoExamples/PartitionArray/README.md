@@ -18,3 +18,7 @@
 
 <p>Partition Array By Odd And Even
 <p>1. [Template (Two opposite points)] (https://zhengyang2015.gitbooks.io/lintcode/partition_array_by_odd_and_even_373.html)
+
+<p>Kth Smallest Numbers in Unsorted Array
+<p>1. [Template (Quick Select)] (https://www.jiuzhang.com/solutions/kth-smallest-numbers-in-unsorted-array/)
+<p>2. [Quick Select as O(n) time complexity] (http://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array/)
