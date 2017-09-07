@@ -26,3 +26,6 @@
 <p>Kth Largest Element
 <p>1. [Template (Quick Select)] (http://www.jiuzhang.com/solution/kth-largest-element)
 <p>2. [Quick Select] (https://aaronice.gitbooks.io/lintcode/content/data_structure/kth_largest_element.html)
+
+<p>Interleaving Positive And Negative Numbers
+<p>1. [Template (Same direction points)] (http://www.cnblogs.com/EdwardLiu/p/4314781.html)
