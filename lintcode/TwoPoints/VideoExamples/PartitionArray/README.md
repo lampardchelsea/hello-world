@@ -15,3 +15,6 @@
 
 <p>Bubble Sort / Sort Integers
 <p>1. [Template] (http://www.jiuzhang.com/solution/sort-integers/)
+
+<p>Partition Array By Odd And Even
+<p>1. [Template (Two opposite points)] (https://zhengyang2015.gitbooks.io/lintcode/partition_array_by_odd_and_even_373.html)
