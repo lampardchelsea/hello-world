@@ -22,3 +22,7 @@
 <p>Kth Smallest Numbers in Unsorted Array
 <p>1. [Template (Quick Select)] (https://www.jiuzhang.com/solutions/kth-smallest-numbers-in-unsorted-array/)
 <p>2. [Quick Select as O(n) time complexity] (http://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array/)
+
+<p>Kth Largest Element
+<p>1. [Template (Quick Select)] (http://www.jiuzhang.com/solution/kth-largest-element)
+<p>2. [Quick Select] (https://aaronice.gitbooks.io/lintcode/content/data_structure/kth_largest_element.html)
