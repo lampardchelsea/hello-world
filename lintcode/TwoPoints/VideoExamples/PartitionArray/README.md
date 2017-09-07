@@ -12,3 +12,6 @@
 
 <p>Merge Sort / Sort Integers II
 <p>1. [Template] (http://www.jiuzhang.com/solutions/merge-sort/)
+
+<p>Bubble Sort / Sort Integers
+<p>1. [Template] (http://www.jiuzhang.com/solution/sort-integers/)
