@@ -29,3 +29,7 @@
 
 <p>Interleaving Positive And Negative Numbers
 <p>1. [Template (Same direction points)] (http://www.cnblogs.com/EdwardLiu/p/4314781.html)
+
+<p>Sort Colors
+<p>1. [Template (Two opposite pionts)] (http://www.jiuzhang.com/solutions/sort-colors/)
+<p>2. [Tricks] (https://github.com/lampardchelsea/hello-world/blob/a807022744ebfd4cfa59df8f7b99f9098bf20e8e/leetcode/array/SortColors.java)
