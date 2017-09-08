@@ -30,9 +30,10 @@
 <p>Interleaving Positive And Negative Numbers
 <p>1. [Template (Same direction points)] (http://www.cnblogs.com/EdwardLiu/p/4314781.html)
 
-<p>Sort Colors
+<p>Sort Colors I & II
 <p>1. [Template (Two opposite points)] (http://www.jiuzhang.com/solutions/sort-colors/)
 <p>2. [Tricks] (https://github.com/lampardchelsea/hello-world/blob/a807022744ebfd4cfa59df8f7b99f9098bf20e8e/leetcode/array/SortColors.java)
+<p>3. [Template (RainbowSort totally same as QuickSort)] (http://www.jiuzhang.com/solution/sort-colors-ii/)
 
 <p>Sort Letters by Case
 <p>1. [Template (Two opposite points)] (http://www.jiuzhang.com/solutions/sort-letters-by-case/)
