@@ -110,6 +110,12 @@ public class Solution {
             }
             itr.next = newNode;
             // re-mapping old random node to new node
+            // Don't forget to check if head.random exist or not
+            // E.g if not exist will through exception
+            // Input
+            // -1->null, [null]
+            // Expected
+            // -1->null, [null]
             if(head.random != null) {
                 // 由于 random 节点也在第一次遍历加入哈希表中, 故生成新节点时也需要判断哈希表中
                 // 是否已经存在, 如果已经存在则直接从hash table的对应key的value一栏中提取
