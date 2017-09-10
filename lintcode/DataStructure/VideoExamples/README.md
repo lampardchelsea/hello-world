@@ -3,7 +3,10 @@
 
 # Useful links for specific questions
 <p>Reharshing
-<p>1. [Template] (http://www.jiuzhang.com/solutions/rehashing/)
+<p>1. [Template (HashMap)] (http://www.jiuzhang.com/solutions/rehashing/)
 
 <p>LRU Cache
-<p>1. [Template] (http://www.jiuzhang.com/solutions/lru-cache/)
+<p>1. [Template (HashMap + DoublyLinkedList)] (http://www.jiuzhang.com/solutions/lru-cache/)
+
+<p>Subarray Sum
+<p>1. [Template (HashMap)] (http://www.cnblogs.com/yuzhangcmu/p/4174507.html)
