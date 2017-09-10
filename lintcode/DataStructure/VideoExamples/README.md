@@ -10,3 +10,6 @@
 
 <p>Subarray Sum
 <p>1. [Template (HashMap)] (http://www.cnblogs.com/yuzhangcmu/p/4174507.html)
+
+<P>Anagrams
+<p>1. [Template (HashMap)] (http://www.cnblogs.com/yuzhangcmu/p/4067507.html)
