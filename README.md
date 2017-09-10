@@ -9,3 +9,4 @@ Useful links
 <p>6. [The 10 must-know algorithms and data structures for a software engineer] (https://www.linkedin.com/pulse/10-must-know-algorithms-data-structures-software-pablo-g-cisneros)
 <p>7. [Top 10 Algorithms for Coding Interview] (http://www.programcreek.com/2012/11/top-10-algorithms-for-coding-interview/)
 <p>8. [MIT Software Construction] (http://web.mit.edu/6.005/www/fa15/)
+<p>9. [数据结构与算法/leetcode/lintcode题解] (https://www.kancloud.cn/kancloud/data-structure-and-algorithm-notes/72897)
