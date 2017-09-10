@@ -13,3 +13,6 @@
 
 <P>Anagrams
 <p>1. [Template (HashMap)] (http://www.cnblogs.com/yuzhangcmu/p/4067507.html)
+
+<p>Copy List with Random Pointer
+<p>1. [Template (HashMap)] (https://www.kancloud.cn/kancloud/data-structure-and-algorithm-notes/73016)
