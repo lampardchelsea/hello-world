@@ -15,6 +15,16 @@
  *
  * Solution
  * http://www.jiuzhang.com/solutions/anagrams/
+ * http://www.cnblogs.com/yuzhangcmu/p/4067507.html
+ * 建Hashtable，用排序过的string作为key，它的anagram作为ArrayList
+
+     这道题之前用暴力写的O(N^2)的TLE了，改用Hashtable来写
+     题目的意思是给一个String数组，找出其中由相同字母组成的单词。
+     例如：
+     S = ["abc", "bca", "bac", "bbb", "bbca", "abcb"]
+     答案为：
+     ["abc", "bca", "bac", "bbca", "abcb"]
+     只有"bbb"没有相同字母组成的单词。
 */
 public class Solution {
     /**
