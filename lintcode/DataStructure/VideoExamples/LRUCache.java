@@ -10,6 +10,7 @@
  * Solution
  * http://www.jiuzhang.com/solutions/lru-cache/
 */
+// Solution 1: HashMap + DoublyLinkedList
 public class LRUCache {
     private class Node {
         int key;
@@ -85,3 +86,8 @@ public class LRUCache {
         current.next = tail;
     }
 }
+
+
+// Solution 2: HashMap + SingleLinkedList
+
+
