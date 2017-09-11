@@ -16,3 +16,6 @@
 
 <p>Copy List with Random Pointer
 <p>1. [Template (HashMap)] (https://www.kancloud.cn/kancloud/data-structure-and-algorithm-notes/73016)
+
+<p>Longest Consecutive Sequence
+<p>1. [Template (HashTable)] (http://www.cnblogs.com/springfor/p/3869981.html)
