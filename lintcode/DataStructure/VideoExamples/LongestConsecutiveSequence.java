@@ -11,6 +11,7 @@
     The longest consecutive elements sequence is [1, 2, 3, 4]. Return its length: 4.
  *
  * Solution
+ * https://discuss.leetcode.com/topic/25493/simple-fast-java-solution-using-set
  * http://www.cnblogs.com/springfor/p/3869981.html
  * 这道题利用HashSet的唯一性解决，能使时间复杂度达到O(n)。首先先把所有num值放入HashSet，
    然后遍历整个数组，如果HashSet中存在该值，就先向下找到边界，找的同时把找到的值一个一个
