@@ -7,3 +7,4 @@
 
 <p>Ugly Number II
 <p>1. [Template (HashMap + Heap)] (http://www.jiuzhang.com/solutions/ugly-number-ii/)
+<p>2. [Long VS Integer] (https://discuss.leetcode.com/topic/25088/java-solution-using-priorityqueue/6)
