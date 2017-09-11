@@ -14,6 +14,7 @@
  *
  * Solution
  * http://www.jiuzhang.com/solutions/ugly-number-ii/
+ * https://discuss.leetcode.com/topic/25088/java-solution-using-priorityqueue/6
 */
 // Solution 1: Scan (O(n) time)
 public class Solution {
@@ -59,7 +60,7 @@ public class Solution {
 	 * because limitation of 'num' = result.get(p2/p3/p5) * primes[j] <= lastNum', here,
 	 * p2/p3/p5 may different, and cause 'num' also different 
 	 */
-	public int nthUglyNumber3(int n) {
+    public int nthUglyNumber3(int n) {
         Queue<Long> queue = new PriorityQueue<Long>();
         // Set is necessary to filter duplicate numbers
         // e.g given n = 9, expected num = 10, but return 9,
@@ -74,6 +75,18 @@ public class Solution {
             queue.offer(Long.valueOf(primes[i]));
             set.add(Long.valueOf(primes[i]));
         }
+	/**
+	 * Refer to
+	 * https://discuss.leetcode.com/topic/25088/java-solution-using-priorityqueue/6
+	  The key here is that auto-boxing wraps to the corresponding wrapper class: int -> Integer and long -> Long. 
+	  While calling a method with a long parameter works, if you pass an int, because a widening conversion happens. 
+          However, Java doesn't try to figure out all the possible widened types and their wrappers, you have to be 
+          explicit. Easy to remember: 1L == (long)1. Be careful because (long)2147483648 (and anything above that) 
+          is a compile error, while 2147483648L is valid.
+          There are two other similar suffixes: d and f for double and float respectively. The suffixes are case 
+          insensitive, but I suggest you prefer 10L, 10d because otherwise it's harder to read due to similarity: 
+          10l vs 101 and 10 VS 1D.
+	*/
         Long num = 1L;
         for(int i = 1; i < n; i++) {
             num = queue.poll();
