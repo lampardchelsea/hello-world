@@ -59,6 +59,8 @@ public class TopKLargestNumberII {
 			}
 			
 		};
+		// maxSize = initialCapacity - the initial capacity for this priority queue
+		// we can set any value larger than given maxSize
 		maxHeap = new PriorityQueue<Integer>(maxSize, comparator);
 		
 	}
