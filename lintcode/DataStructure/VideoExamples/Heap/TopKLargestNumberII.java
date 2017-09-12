@@ -37,6 +37,7 @@ import java.util.PriorityQueue;
  * 与top k问题1类似，不太一样的一点在于动态添加，使用min heap来实现，能够比较好地通过更新min heap来记录top k。
  * 当添加的元素数目在1 ~ k时，直接插入这一元素到min heap中； 当添加的元素数目超出k时，对于新添加的元素，需要与
  * min heap的根进行比较，如果比minheap.peek()大，那么便删除根，添加该新元素。
+ * 或者改进后用max heap做也行
  */
 public class TopKLargestNumberII {
 	private PriorityQueue<Integer> maxHeap;
