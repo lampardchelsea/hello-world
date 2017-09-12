@@ -50,6 +50,7 @@ public class TopKLargestNumberII {
 	
 	public TopKLargestNumberII(int k) {
 		maxSize = k;
+		// Create max heap comparator (a > b return -1)
 		comparator = new Comparator<Integer>(){
 			@Override
 			public int compare(Integer a, Integer b) {
