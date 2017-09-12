@@ -22,3 +22,6 @@
 <p>High Five
 <p>1. [613 High Five 解题报告 (MinHeap)] (https://yeqiuquan.blogspot.com/2017/03/lintcode-613-high-five.html)
 <p>2. [Five score average Leetcode] (https://discuss.leetcode.com/topic/61493/five-score-average/2)
+
+<p>K Closest Points
+<p>1. [612 K Closest Points 解题报告 (MaxHeap)] (https://yeqiuquan.blogspot.com/2017/03/lintcode-612-k-closest-points.html)
