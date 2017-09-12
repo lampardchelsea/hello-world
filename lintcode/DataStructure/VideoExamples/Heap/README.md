@@ -11,3 +11,6 @@
 
 <p>Top K Largest Number
 <p>1. [Template (MaxHeap + MinHeap)] (https://aaronice.gitbooks.io/lintcode/content/data_structure/top_k_largest_numbers.html)
+
+<p>Top K Largest Number II
+<p>1. [Template (MaxHeap)] (https://aaronice.gitbooks.io/lintcode/content/data_structure/top_k_largest_numbers_ii.html)
