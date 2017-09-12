@@ -61,13 +61,53 @@ public class TopKLargestNumber {
 
 
 // Solution 2: Min Heap
-class Solution {
-    /*
-     * @param nums an integer array
-     * @param k an integer
-     * @return the top k largest numbers in array
-     */
-    public int[] topk(int[] nums, int k) {
-    
-    }
-}
+public class TopKLargestNumber {
+	public int[] topK(int[] nums, int k) {
+		Comparator<Integer> comparator = new Comparator<Integer>(){
+			@Override
+			public int compare(Integer a, Integer b) {
+				if(a > b) {
+					return -1;
+				} else if(a < b) {
+					return 1;
+				} else {
+					return 0;
+				}
+			}
+			
+		};
+		
+		PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(k, comparator);
+		for(int i = 0; i < k; i++) {
+			maxHeap.add(nums[i]);
+		}
+		int[] result = new int[k];
+		for(int i = 0; i < k; i++) {
+			result[i] = maxHeap.poll();
+		}
+		return result;
+	}
+	
+	
+	public int[] topK1(int[] nums, int k) {
+		PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
+		for(int i = 0; i < k; i++) {
+			minHeap.add(nums[i]);
+		}
+		int[] result = new int[k];
+		for(int i = k - 1; i >= 0; i--) {
+			result[i] = minHeap.poll();
+		}
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		TopKLargestNumber t = new TopKLargestNumber();
+		int[] nums = {13,4,14,-4,1};
+		int k = 3;
+		int[] result = t.topK1(nums, k);
+		for(int i = 0; i < k; i++) {
+			System.out.print(result[i] + " ");
+		}
+	}
+}	
