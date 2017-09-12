@@ -71,6 +71,8 @@ public class Solution {
 // Solution 2: Merge two by two
 // Use O(n) time to half problem size
 // T(k) = T(k/2) + O(n)
+// Refer to
+// https://aaronice.gitbooks.io/lintcode/content/linked_list/merge_k_sorted_lists.html
 // 归并k个已排序链表，可以分解问题拆解成为，重复k次，归并2个已排序链表。
 // 不过这种方法会在LeetCode中TLE（超出时间限制）。总共需要k次merge two sorted lists的合并过程。+
 // 改进方法：
