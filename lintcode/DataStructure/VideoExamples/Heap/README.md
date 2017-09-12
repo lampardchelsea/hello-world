@@ -14,3 +14,6 @@
 
 <p>Top K Largest Number II
 <p>1. [Template (MaxHeap)] (https://aaronice.gitbooks.io/lintcode/content/data_structure/top_k_largest_numbers_ii.html)
+
+<p>Merge K Sorted Lists
+<p>1. [Template (MinHeap)] (http://www.jiuzhang.com/solutions/merge-k-sorted-lists/)
