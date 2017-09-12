@@ -38,6 +38,10 @@ import java.util.PriorityQueue;
  * 当添加的元素数目在1 ~ k时，直接插入这一元素到min heap中； 当添加的元素数目超出k时，对于新添加的元素，需要与
  * min heap的根进行比较，如果比minheap.peek()大，那么便删除根，添加该新元素。
  * 或者改进后用max heap做也行
+ * For heap operation time complexcity
+ * Refer to
+ * https://github.com/lampardchelsea/hello-world/blob/master/lintcode/DataStructure/VideoExamples/Heap/Document/heaps.pdf
+ * Summary page
  */
 public class TopKLargestNumberII {
 	private PriorityQueue<Integer> maxHeap;
@@ -64,7 +68,7 @@ public class TopKLargestNumberII {
 		maxHeap = new PriorityQueue<Integer>(maxSize, comparator);
 		
 	}
-	
+	// Time Complexity (logk) --> insert operation on heap
 	public void add(int num) {
 		if(maxHeap.size() < maxSize) {
 			maxHeap.offer(num);
@@ -75,7 +79,7 @@ public class TopKLargestNumberII {
 			}
 		}
 	}
-	
+	// Time Complexity (klogk) --> repeat k times deleteMin operation on heap
 	public List<Integer> topk() {
 		List<Integer> result = new ArrayList<Integer>();
 		while(maxSize > 0) {
