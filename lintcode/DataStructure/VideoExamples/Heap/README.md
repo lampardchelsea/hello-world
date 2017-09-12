@@ -17,3 +17,4 @@
 
 <p>Merge K Sorted Lists
 <p>1. [Template (MinHeap)] (http://www.jiuzhang.com/solutions/merge-k-sorted-lists/)
+<p>2. [题解思路] (https://aaronice.gitbooks.io/lintcode/content/linked_list/merge_k_sorted_lists.html)
