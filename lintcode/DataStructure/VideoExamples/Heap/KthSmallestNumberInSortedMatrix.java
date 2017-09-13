@@ -43,6 +43,8 @@ import java.util.PriorityQueue;
  * Every time when you poll out the root(Top Element in Heap), you need to know the row number 
  * and column number of that element(so we can create a tuple class here), replace that root 
  * with the next element from the same column.
+ * For this question, you can also build a min Heap from the first column, and do the similar 
+ * operations as above.(Replace the root with the next element from the same row)
  * 
  * Solution 1 and 2 difference is on Solution 1 when we supply new Pair onto queue, 
  * we consider both directions as x-axis (0,1) and y-axis (1,0), so we add two new
