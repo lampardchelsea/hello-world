@@ -25,3 +25,7 @@
 
 <p>K Closest Points
 <p>1. [612 K Closest Points 解题报告 (MaxHeap)] (https://yeqiuquan.blogspot.com/2017/03/lintcode-612-k-closest-points.html)
+
+<p>Kth Smallest Number in Sorted Matrix
+<p>1. [Template (MinHeap + Magic Array)] (http://www.jiuzhang.com/solutions/kth-smallest-number-in-sorted-matrix/)
+<p>2. [Share my thoughts and Clean Java Code] (https://discuss.leetcode.com/topic/52948/share-my-thoughts-and-clean-java-code?page=1)
