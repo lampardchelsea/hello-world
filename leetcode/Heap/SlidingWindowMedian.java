@@ -100,6 +100,9 @@ public class SlidingWindowMedian {
             return new double[0];
         }
         double[] result = new double[n];
+	// Caution: The condition here is i <= nums.length, not normal i < nums.length,
+	// E.g as given example in problem, for 8 numbers and k = 3, we need 6 rounds
+	// to go through, result build up since i = 3 to i = nums.length = 8 (6 rounds)
         for(int i = 0; i <= nums.length; i++) {
             if(i >= k) {
                 result[i - k] = getMedian();
