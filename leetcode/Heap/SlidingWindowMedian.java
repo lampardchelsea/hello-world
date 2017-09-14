@@ -123,6 +123,11 @@ public class SlidingWindowMedian {
     }
     
     private void add(int num) {
+	// Tricky Point: Not like Data Stream Median,
+	// Refer to
+	// https://github.com/lampardchelsea/hello-world/blob/master/lintcode/DataStructure/VideoExamples/Heap/DataStreamMedian.java
+	// we compare new 'num' with maxPQ.peek(), we compare 'num' with 'median',
+	// which also require an initialized status of 'median' value, check 'getMedian()' method
         if(num < getMedian()) {
             maxPQ.add(num);
         } else {
