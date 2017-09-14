@@ -40,6 +40,8 @@
 <p>2. [Trapping Rain Water II 收集雨水之二] (http://www.cnblogs.com/grandyang/p/5928987.html)
 <p>3. [Java solution using PriorityQueue] (https://discuss.leetcode.com/topic/60418/java-solution-using-priorityqueue)
 
-
+<p>Sliding Window Median
+<p>1. [Template] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Heap/SlidingWindowMedian.java)
+<p>2. [Working version] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Heap/SlidingWindowMedian_ExchangeMaxPQMinPQCondition_Version.java)
 
 
