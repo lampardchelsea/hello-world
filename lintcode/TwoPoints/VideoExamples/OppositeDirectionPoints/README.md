@@ -18,3 +18,6 @@
 <p>1. [中文解释] (https://aaronice.gitbooks.io/lintcode/content/two_pointers/trapping_rain_water.html)
 <p>2. [Trapping Rain Water 收集雨水] (http://www.cnblogs.com/grandyang/p/4402392.html)
 <p>3. [4 ways to solve articles (Brute Force/ DP/ Stack/ Two Points)] (https://leetcode.com/articles/trapping-rain-water/)
+
+<p>Contain With Most Water
+<p>1. [Template] (https://leetcode.com/problems/container-with-most-water/solution/)
