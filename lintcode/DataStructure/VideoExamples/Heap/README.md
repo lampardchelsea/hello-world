@@ -34,3 +34,12 @@
 <p>1. [Template (MaxHeap + MinHeap)] (http://www.jiuzhang.com/solutions/median-in-data-stream/)
 <p>2. [中文解析] (https://aaronice.gitbooks.io/lintcode/content/data_structure/data_stream_median.html)
 <p>3. [Find Median from Data Stream 数据流中位数] (https://segmentfault.com/a/1190000003709954)
+
+<p>Trapping Rain Water II
+<p>1. [中文解析] (https://aaronice.gitbooks.io/lintcode/content/heap/trapping_rain_water_ii.html)
+<p>2. [Trapping Rain Water II 收集雨水之二] (http://www.cnblogs.com/grandyang/p/5928987.html)
+<p>3. [Java solution using PriorityQueue] (https://discuss.leetcode.com/topic/60418/java-solution-using-priorityqueue)
+
+
+
+
