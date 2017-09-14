@@ -17,6 +17,7 @@
  * 
  * http://www.cnblogs.com/grandyang/p/5928987.html
  * https://discuss.leetcode.com/topic/60418/java-solution-using-priorityqueue/2
+ * https://github.com/lampardchelsea/hello-world/blob/master/lintcode/DataStructure/VideoExamples/Heap/Document/%5BLeetCode%5D%20Trapping%20Rain%20Water%20II%20%E6%94%B6%E9%9B%86%E9%9B%A8%E6%B0%B4%E4%B9%8B%E4%BA%8C%20-%20Grandyang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD.pdf
 */
 public class Solution {
     public int trapRainWater(int[][] heightMap) {
