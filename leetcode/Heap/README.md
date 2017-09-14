@@ -74,6 +74,13 @@
 <p>2. [Converting 'ArrayList<String> to 'String[]' in Java] (https://stackoverflow.com/questions/4042434/converting-arrayliststring-to-string-in-java)
 <p>3. [Is Subsequence] (https://github.com/lampardchelsea/hello-world/blob/8b4b53738efce1e76afd37b2eb341ff7f16347f8/leetcode/String/IsSubsequence.java)
 
+<p>Sliding Window Median & Sliding Window Median Exchange MaxPQ MinPQ Condition Version
+<p>1. [Data Stream Median] (https://github.com/lampardchelsea/hello-world/blob/master/lintcode/DataStructure/VideoExamples/Heap/DataStreamMedian.java)
+<p>2. [Template] (https://discuss.leetcode.com/topic/74724/java-solution-using-two-priorityqueues)
+<p>3. [Java Integers Min_Value negative then compare ?] (https://stackoverflow.com/questions/12535095/java-integers-min-value-negative-then-compare  )
+<p>4. [Priority Queue remove complexity time ?] (https://stackoverflow.com/questions/12719066/priority-queue-remove-complexity-time
+
+
 
 
 
