@@ -22,6 +22,9 @@
    turn out to be beneficial, as per the same argument, despite the reduction in the width. 
    This is done since a relatively longer line obtained by moving the shorter line's pointer 
    might overcome the reduction in area caused by the width reduction.
+   Complexity Analysis
+   Time complexity : O(n). Single pass.
+   Space complexity : O(1). Constant space is used.
 */
 public class Solution {
     /*
