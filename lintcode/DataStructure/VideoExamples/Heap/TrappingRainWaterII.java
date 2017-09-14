@@ -16,7 +16,7 @@
    此外，为了方便，可以定义一个Cell类，包含其坐标x,y，以及高度h，并定义其Comparator规则（也可以在初始化PriorityQueue的时候定义）。
  * 
  * http://www.cnblogs.com/grandyang/p/5928987.html
- * https://discuss.leetcode.com/topic/60418/java-solution-using-priorityqueue/2
+ * https://discuss.leetcode.com/topic/60418/java-solution-using-priorityqueue
  * https://github.com/lampardchelsea/hello-world/blob/master/lintcode/DataStructure/VideoExamples/Heap/Document/%5BLeetCode%5D%20Trapping%20Rain%20Water%20II%20%E6%94%B6%E9%9B%86%E9%9B%A8%E6%B0%B4%E4%B9%8B%E4%BA%8C%20-%20Grandyang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD.pdf
 */
 public class Solution {
