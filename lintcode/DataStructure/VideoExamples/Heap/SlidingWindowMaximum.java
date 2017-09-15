@@ -63,25 +63,25 @@ public class SlidingWindowMaximum {
         // Style 1:
         // Refer to
         // http://wxx5433.github.io/sliding-window-maximum.html
-//        for(int i = 0; i < nums.length; i++) {
-//            maxPQ.add(nums[i]);
-//            if(i >= k - 1) {
-//            	result[i - (k - 1)] = maxPQ.peek();
-//            	maxPQ.remove(nums[i - (k - 1)]);
-//            }
-//        }
+       for(int i = 0; i < nums.length; i++) {
+           maxPQ.add(nums[i]);
+           if(i >= k - 1) {
+           	result[i - (k - 1)] = maxPQ.peek();
+           	maxPQ.remove(nums[i - (k - 1)]);
+           }
+       }
         // Style 2:
         // Refer to
         // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Heap/SlidingWindowMedian.java
-        for(int i = 0; i <= nums.length; i++) {
-            if(i >= k) {
-            	result[i - k] = maxPQ.peek();
-            	maxPQ.remove(nums[i - k]);
-            }
-        	if(i < nums.length) {
-                maxPQ.add(nums[i]);       		
-        	}
-        }
+//         for(int i = 0; i <= nums.length; i++) {
+//             if(i >= k) {
+//             	result[i - k] = maxPQ.peek();
+//             	maxPQ.remove(nums[i - k]);
+//             }
+//         	if(i < nums.length) {
+//                 maxPQ.add(nums[i]);       		
+//         	}
+//         }
         return result;
     }
 	
