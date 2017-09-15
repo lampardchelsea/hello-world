@@ -103,7 +103,7 @@ public class SlidingWindowMedian {
 	// We have two same effect style to handle sliding window problem
 	// Same way as SlidingWindowMaximum
 	// Refer to
-	// https://github.com/lampardchelsea/hello-world/blob/master/lintcode/DataStructure/VideoExamples/Heap/SlidingWindowMaximum.java
+	// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Heap/SlidingWindowMaximum_Rework.java
 	// Style 1: i < nums.length (Recommand)
 	for(int i = 0; i < nums.length; i++) {
             add(nums[i]);
