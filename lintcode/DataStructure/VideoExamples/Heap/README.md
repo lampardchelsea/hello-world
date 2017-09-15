@@ -44,4 +44,13 @@
 <p>1. [Template] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Heap/SlidingWindowMedian.java)
 <p>2. [Working version] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Heap/SlidingWindowMedian_ExchangeMaxPQMinPQCondition_Version.java)
 
+<p>Sliding Window Maximum
+<p>1. [PriorityQueue Explain 1] (http://wxx5433.github.io/sliding-window-maximum.html)
+<p>2. [PriorityQueue Explain 2] (http://articles.leetcode.com/sliding-window-maximum/)
+<p>3. [PriorityQueue Explain 3] (https://discuss.leetcode.com/topic/20165/my-java-solution-using-priorityqueue)
+<p>4. [Deque Explain 1] (https://discuss.leetcode.com/topic/19055/java-o-n-solution-using-deque-with-explanation)
+<p>5. [Deque Explain 2] (https://segmentfault.com/a/1190000003903509)
+
+
+
 
