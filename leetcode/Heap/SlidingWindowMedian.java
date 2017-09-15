@@ -100,25 +100,39 @@ public class SlidingWindowMedian {
             return new double[0];
         }
         double[] result = new double[n];
+	// We have two same effect style to handle sliding window problem
+	// Same way as SlidingWindowMaximum
+	// Refer to
+	// https://github.com/lampardchelsea/hello-world/blob/master/lintcode/DataStructure/VideoExamples/Heap/SlidingWindowMaximum.java
+	// Style 1: i < nums.length (Recommand)
+	for(int i = 0; i < nums.length; i++) {
+            add(nums[i]);
+            if(i >= k - 1) {
+                result[i - k + 1] = getMedian();
+                remove(nums[i - k + 1]);
+            }
+        }
+	    
+	// Style 2: i <= nums.length
 	// Caution: The condition here is i <= nums.length, not normal i < nums.length,
 	// E.g as given example in problem, for 8 numbers and k = 3, we need 6 rounds
 	// to go through, result build up since i = 3 to i = nums.length = 8 (6 rounds)
-        for(int i = 0; i <= nums.length; i++) {
-            if(i >= k) {
-                result[i - k] = getMedian();
-                // Refer to
-                // Priority Queue remove complexity time ?
-                // https://stackoverflow.com/questions/12719066/priority-queue-remove-complexity-time
-                // The confusion is actually caused by your "remove" function. In java, there are two remove functions.
-                // remove() -> This is to remove the head/root, it takes O(logN) time.
-                // remove(Object o) -> This is to remove an arbitrary object. Finding this object takes 
-                //                     O(N) time, and removing it takes O(logN) time.
-                remove(nums[i - k]);
-            }
-            if(i < nums.length) {
-                add(nums[i]);
-            }
-        }
+//         for(int i = 0; i <= nums.length; i++) {
+//             if(i >= k) {
+//                 result[i - k] = getMedian();
+//                 // Refer to
+//                 // Priority Queue remove complexity time ?
+//                 // https://stackoverflow.com/questions/12719066/priority-queue-remove-complexity-time
+//                 // The confusion is actually caused by your "remove" function. In java, there are two remove functions.
+//                 // remove() -> This is to remove the head/root, it takes O(logN) time.
+//                 // remove(Object o) -> This is to remove an arbitrary object. Finding this object takes 
+//                 //                     O(N) time, and removing it takes O(logN) time.
+//                 remove(nums[i - k]);
+//             }
+//             if(i < nums.length) {
+//                 add(nums[i]);
+//             }
+//         }
         return result;
     }
     
