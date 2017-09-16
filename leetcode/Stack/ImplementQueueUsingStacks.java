@@ -17,7 +17,7 @@
 
  *
  * Solution (Time Complexity O(1))
- * https://discuss.leetcode.com/topic/17974/short-o-1-amortized-c-java-ruby/2
+ * https://discuss.leetcode.com/topic/17974/short-o-1-amortized-c-java-ruby
  * I have one input stack, onto which I push the incoming elements, and one output stack, 
    from which I peek/pop. I move elements from input stack to output stack when needed, 
    i.e., when I need to peek/pop but the output stack is empty. When that happens, I move 
