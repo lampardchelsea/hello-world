@@ -36,5 +36,11 @@
 <p>Flatten Binary Tree to Linked List
 <p>1. [Stack way to solve] (https://www.jiuzhang.com/solutions/flatten-binary-tree-to-linked-list/)
 
+<p>Min Stack
+<p>1. [Java: Integer equals vs. ==] (https://stackoverflow.com/questions/3637936/java-integer-equals-vs)
+<p>2. [Template] (http://www.cnblogs.com/yuzhangcmu/p/4106783.html)
+
+
+
 
 
