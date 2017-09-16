@@ -13,6 +13,8 @@
 // Style 1:
 // Refer to
 // http://www.cnblogs.com/Dylan-Java-NYC/p/6751689.html
+// DFS recursion 方法, 终止条件有两个，遇到了']', 或者到了s的末位.
+// Time Complexity: O(s.length()). Space: O(s.length()).
 // Base on definition here we implement Traversal + Divide and Conquer way together on this problem as
 // we use native method (Divide and Conquer) and return void (Traversal), also set i as global variable
 // to control the loop condition (Traversal), they are both DFS recursive way
