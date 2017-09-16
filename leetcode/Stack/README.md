@@ -41,6 +41,8 @@
 <p>2. [Template] (http://www.cnblogs.com/yuzhangcmu/p/4106783.html)
 <p>3. [Intutive Way vs. Optimization] (http://www.jiuzhang.com/solutions/min-stack/)
 
+<p>Implement Queue using Stacks
+<p>1. [Template] (https://discuss.leetcode.com/topic/17974/short-o-1-amortized-c-java-ruby/2)
 
 
 
