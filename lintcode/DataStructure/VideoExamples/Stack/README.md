@@ -8,3 +8,4 @@
 
 <p>翻转Stack的运用
 <p>Implement Queue by Two Stacks
+<p>1. [Short O(1) amortized, C++ / Java / Ruby] (https://discuss.leetcode.com/topic/17974/short-o-1-amortized-c-java-ruby)
