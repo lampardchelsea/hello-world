@@ -1,4 +1,66 @@
+// Refer to
+// http://www.jiuzhang.com/solutions/min-stack/
+// Difference between Solution 1 and Solution 2:
+// Solution 1 is intuitive solution, always push value onto minStack at same time as Stack, just differ on push
+// given input x or original minStack top value
+// Solution 2 has optimization as no need to push value onto minStack each time when push on Stack, just push
+// on minStack if given input x no larger than (<=) minStack top value
+// Solution 2 saves more space than Solution 1, but not change extra O(n) space requirement
 
+// Solution 1: Intuitive way (O(n) extra space required)
+class MinStack {
+    Stack<Integer> stack;
+    Stack<Integer> minStack; 
+    /** initialize your data structure here. */
+    public MinStack() {
+        stack = new Stack<Integer>();
+        minStack = new Stack<Integer>(); 
+    }
+    
+    public void push(int x) {
+        // Style 1:
+        if(minStack.isEmpty() || minStack.peek() >= x) {
+            minStack.push(x);
+        } else {
+            minStack.push(minStack.peek());
+        }
+        // Style 2:
+        // Refer to
+        // http://www.jiuzhang.com/solutions/min-stack/
+        // if (minStack.isEmpty()) {
+        //     minStack.push(number);
+        // } else {
+        //     minStack.push(Math.min(number, minStack.peek()));
+        // }
+        stack.push(x);
+    }
+    
+    public void pop() {
+        minStack.pop();
+        stack.pop();
+    }
+    
+    public int top() {
+        return stack.peek();
+    }
+    
+    public int getMin() {
+        return minStack.peek();
+    }
+}
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(x);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.getMin();
+ */
+
+
+
+// Solution 2: Optimizaiton to save more extra space (still O(n) extra space required)
 import java.util.Stack;
 
 /**
