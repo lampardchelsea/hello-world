@@ -39,7 +39,7 @@
 <p>Min Stack
 <p>1. [Java: Integer equals vs. ==] (https://stackoverflow.com/questions/3637936/java-integer-equals-vs)
 <p>2. [Template] (http://www.cnblogs.com/yuzhangcmu/p/4106783.html)
-
+<p>3. [Intutive Way vs. Optimization] (http://www.jiuzhang.com/solutions/min-stack/)
 
 
 
