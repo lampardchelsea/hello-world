@@ -42,7 +42,7 @@
 <p>3. [Intutive Way vs. Optimization] (http://www.jiuzhang.com/solutions/min-stack/)
 
 <p>Implement Queue using Stacks
-<p>1. [Template] (https://discuss.leetcode.com/topic/17974/short-o-1-amortized-c-java-ruby/2)
+<p>1. [Short O(1) amortized, C++ / Java / Ruby] (https://discuss.leetcode.com/topic/17974/short-o-1-amortized-c-java-ruby)
 
 
 
