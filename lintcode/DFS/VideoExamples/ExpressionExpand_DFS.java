@@ -14,7 +14,8 @@
 // Refer to
 // http://www.cnblogs.com/Dylan-Java-NYC/p/6751689.html
 // Base on definition here we implement Traversal + Divide and Conquer way together on this problem as
-// we use native method (Divide and Conquer) and return void (Traversal), they are both DFS recursive way
+// we use native method (Divide and Conquer) and return void (Traversal), also set i as global variable
+// to control the loop condition (Traversal), they are both DFS recursive way
 
 
 
@@ -24,5 +25,6 @@
 // Refer to
 // http://www.cnblogs.com/lishiblog/p/5874147.html
 // Base on definition here we implement Traversal + Divide and Conquer way together on this problem as
-// we create new helper method (Traversal) and return value not void (Divide and Conquer), they are both
-// DFS recursive way
+// we create new helper method (Traversal) and return value not void (Divide and Conquer), also set
+// StringBuilder builder as global variable to store each recursion temporary result (Traversal), 
+// they are both DFS recursive way
