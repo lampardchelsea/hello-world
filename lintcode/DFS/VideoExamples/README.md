@@ -20,3 +20,7 @@
 
 <p>N-Queens
 <p>1. [Template] (http://www.jiuzhang.com/solutions/n-queens/)
+
+<p>Expression Expand
+<p>1. [DFS style 1] (http://www.cnblogs.com/Dylan-Java-NYC/p/6751689.html)
+<p>2. [DFS style 2] (http://www.cnblogs.com/lishiblog/p/5874147.html)
