@@ -12,4 +12,5 @@
 
 <p>利用Stack暂且保存有效信息 + 翻转Stack + Stack优化DFS变非递归
 <p>Expression Expand
-<p>1. [] ()
+<p>1. [Stack style 1] (http://www.cnblogs.com/Dylan-Java-NYC/p/6751689.html)
+<p>2. [Stack style 2] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Stack/DecodeString.java)
