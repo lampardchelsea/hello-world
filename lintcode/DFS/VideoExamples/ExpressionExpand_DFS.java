@@ -74,8 +74,6 @@ public class Solution {
 }
 
 
-
-
 // Style 2: 
 // Refer to
 // http://www.cnblogs.com/lishiblog/p/5874147.html
@@ -83,3 +81,47 @@ public class Solution {
 // we create new helper method (Traversal) and return value not void (Divide and Conquer), also set
 // StringBuilder builder as global variable to store each recursion temporary result (Traversal), 
 // they are both DFS recursive way
+public class Solution {
+    /*
+     * @param s: an expression includes numbers, letters and brackets
+     * @return: a string
+     */
+    public String expressionExpand(String s) {
+       if(s == null || s.length() == 0) {
+           return "";
+       } 
+       StringBuilder sb = new StringBuilder();
+       helper(s.toCharArray(), sb, 0);
+       return sb.toString();
+    }
+    
+    // Must return 'index', otherwise 'index' will not update to new value
+    // after recursive calling (e.g drop back to initial value = 0 when
+    // return to previous recursion level), because the 'index' used in
+    // control while loop break out condition
+    private int helper(char[] chars, StringBuilder sb, int start) {
+        if(start >= chars.length) {
+            return start;
+        }
+        int index = start;
+        while(index < chars.length && chars[index] != ']') {
+            if(Character.isLetter(chars[index])) {
+                sb.append(chars[index++]);
+            } else {
+                // get the following encoded string
+                // get the number first
+                int val = 0;
+                while(Character.isDigit(chars[index])) {
+                    val = val * 10 + (chars[index++] - '0');
+                }
+                // get the string
+                StringBuilder tempSb = new StringBuilder();
+                index = helper(chars, tempSb, index + 1);
+                for(int i = 0; i < val; i++) {
+                    sb.append(tempSb);
+                }
+            }
+        }
+        return index + 1;
+    }
+}
