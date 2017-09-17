@@ -100,7 +100,49 @@ public class Solution {
    add到底append几次，怎么append：直接append add 是不可以的，因为add是在变的，必须要先将第一个add
    保存起来，类似于dummy node，预先保存queue size这种“锚定”
 */
-
+public class Solution {
+    /*
+     * @param s: an expression includes numbers, letters and brackets
+     * @return: a string
+     */
+    public String expressionExpand(String s) {
+        if(s == null || s.length() == 0) {
+            return "";
+        }
+        Stack<Object> stack = new Stack<Object>();
+        int number = 0;
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(Character.isDigit(c)) {
+                number = number * 10 + c - '0';
+            } else if(c == '[') {
+                stack.push(Integer.valueOf(number));
+                number = 0;
+            } else if(c == ']') {
+                String newStr = popStack(stack);
+                Integer count = (Integer)stack.pop();
+                while(count-- > 0) {
+                    stack.push(newStr);
+                }
+            } else {
+                stack.push(String.valueOf(c));
+            }
+        }
+        return popStack(stack);
+    }
+    
+    private String popStack(Stack stack) {
+        Stack<String> buffer = new Stack<String>();
+        while(!stack.isEmpty() && stack.peek() instanceof String) {
+            buffer.push((String)stack.pop());
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!buffer.isEmpty()) {
+            sb.append(buffer.pop());
+        }
+        return sb.toString();
+    }
+}
 
 
 
