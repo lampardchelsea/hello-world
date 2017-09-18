@@ -1,0 +1,49 @@
+1. Graph
+这几个概念了解一下，不需要背下来，但是脑子里要有数：
+Vertex/Node: a vertex (plural vertices) or node is the fundamental unit of which graphs are formed: an undirected graph consists of a set of vertices and a set of edges (unordered pairs of vertices).
+Edge/Path: An edge is (together with vertices) one of the two basic units out of which graphs are constructed. Each edge has two (or in hypergraphs, more) vertices to which it is attached, called its endpoints.
+Graph: a structure amounting to a set of objects in which some pairs of the objects are in some sense "related". The objects correspond to mathematical abstractions called vertices (also called nodes or points) and each of the related pairs of vertices is called an edge (also called an arc or line).
+Tree: an undirected graph in which any two vertices are connected by exactly one path. In other words, any acyclic connected graph is a tree.
+Forest: a disjoint union of trees.
+
+2. Tree
+树有两个特性，解题时偶尔会用到：
+(1) no cycles
+(2) has n - 1 edges, where n is the number of nodes
+另外还要记住，当我们说 tree 时，不一定是 binary 的。面试时的 clarification 一定要问清楚。
+K-tree：
+https://en.wikipedia.org/wiki/K-tree
+
+3. Binary Tree
+这是本讲核心。
+A binary tree is a tree data structure in which each node has at most two children, which are referred to as the left child and the right child.
+划重点：at most two children。做题时记得考虑只有一个 child 的情况。
+几种需要了解的 binary tree：full/proper、perfect、complete、balanced
+https://en.wikipedia.org/wiki/Binary_tree#Types_of_binary_trees
+虽然背下来更好，但不是必需的。面试时如果记不住哪个是哪个，就问面试官。
+
+4. Binary Tree Traversal
+In-order
+Pre-order
+Post-order
+http://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
+Morris Traversal
+http://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/
+Level Order Tree Traversal：最简单的BFS，下一讲讲到 search 时还会提它。
+http://www.geeksforgeeks.org/?p=2686
+
+5. Binary Search Tree (BST)
+The key in each node must be greater than or equal to any key stored in the left sub-tree, and less than or equal to any key stored in the right sub-tree.
+重点：上面这条规则适用于每一个节点，而不单单是 root。
+JAVA 里的 TreeMap 就是一个 self-balancing BST。那么这里就有一个问题了，为什么要 balancing？你猜呢？
+BST 有一个重要的特性：Inorder traversal gives nodes in non-decreasing order.
+
+6. 其他一些树
+B-tree/B+ tree: B-tree is optimized for systems that read and write large blocks of data. B-trees are a good example of a data structure for external memory. It is commonly used in databases and filesystems.
+Trie tree/prefix tree: https://en.wikipedia.org/wiki/Trie
+
+树的题目超级多，在 LeetCode 里面搜索 Tree，然后把题目标题里面带 Tree 的都做一遍就好。
+基本操作一定要熟练，Traversal 要练到基本不需要思考就能敲出来的地步。
+
+Thanks,
+QiQi
