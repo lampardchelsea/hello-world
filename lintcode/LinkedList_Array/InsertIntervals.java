@@ -25,6 +25,7 @@
  *     }
  */
 
+// Solution 1
 // Just remember this intutive way is good, separate 3 cases based on overlapping or not
 public class Solution {
     /*
@@ -55,6 +56,52 @@ public class Solution {
             }
         }
         result.add(insertPos, newInterval);
+        return result;
+    }
+}
+
+
+// Solution 2: Based on Merge Intervals 
+// First insert new interval into original intervals without considering overlapping, then do the same as merge intervals
+/**
+ * Definition of Interval:
+ * public classs Interval {
+ *     int start, end;
+ *     Interval(int start, int end) {
+ *         this.start = start;
+ *         this.end = end;
+ *     }
+ */
+
+
+public class Solution {
+    /*
+     * @param intervals: Sorted interval list.
+     * @param newInterval: new interval.
+     * @return: A new interval list.
+     */
+    public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+        if(intervals == null || newInterval == null) {
+            return intervals;
+        }
+        List<Interval> result = new ArrayList<Interval>();
+        // First insert new interval into original intervals without considering overlapping
+        int insertPos = 0;
+        while(insertPos < intervals.size() && intervals.get(insertPos).start < newInterval.start) {
+            insertPos++;
+        }
+        intervals.add(insertPos, newInterval);
+        // Then do the same as merge intervals
+        Interval last = null;
+        for(Interval interval : intervals) {
+            Interval cur = interval;
+            if(last == null || last.end < cur.start) {
+                last = cur;
+                result.add(cur);
+            } else {
+                last.end = Math.max(cur.end, last.end);   
+            }
+        }
         return result;
     }
 }
