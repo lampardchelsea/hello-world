@@ -80,7 +80,9 @@
 <p>3. [Java Integers Min_Value negative then compare ?] (https://stackoverflow.com/questions/12535095/java-integers-min-value-negative-then-compare  )
 <p>4. [Priority Queue remove complexity time ?] (https://stackoverflow.com/questions/12719066/priority-queue-remove-complexity-time
 
-
+<p>Meeting Rooms II
+<p>1. [AC Java solution using min heap] (https://discuss.leetcode.com/topic/20958/ac-java-solution-using-min-heap)
+<p>2. [Meeting Rooms II 会议室] (https://segmentfault.com/a/1190000003894670)
 
 
 
