@@ -204,7 +204,8 @@ binary-search-java-code/29)
 <p>Container With Most Water
 <p>1. [Container With Most Water 最大盛水容器] (https://segmentfault.com/a/1190000003815582)
 
-
+<p>Meeting Rooms
+<p>1. [Intuitive O(n^2logn) way and customized Comparator O(nlogn) way] (https://discuss.leetcode.com/topic/20959/ac-clean-java-solution/2)
 
 
 
