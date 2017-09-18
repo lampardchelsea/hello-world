@@ -12,8 +12,7 @@ import java.util.Comparator;
  * 
  * 
  * Solution
- * https://segmentfault.com/a/1190000003894670\
- * https://discuss.leetcode.com/topic/20959/ac-clean-java-solution/2
+ * https://discuss.leetcode.com/topic/20959/ac-clean-java-solution
  */
 public class MeetingRooms {
 	private class Interval {
