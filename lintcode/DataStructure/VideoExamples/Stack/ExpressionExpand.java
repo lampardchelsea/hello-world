@@ -110,21 +110,25 @@ public class Solution {
             return "";
         }
         Stack<Object> stack = new Stack<Object>();
-        int number = 0;
+        int val = 0;
         for(int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if(Character.isDigit(c)) {
-                number = number * 10 + c - '0';
-            } else if(c == '[') {
-                stack.push(Integer.valueOf(number));
-                number = 0;
-            } else if(c == ']') {
-                String newStr = popStack(stack);
-                Integer count = (Integer)stack.pop();
-                while(count-- > 0) {
-                    stack.push(newStr);
+                int start = i;
+                while(Character.isDigit(s.charAt(i + 1))) {
+                    i++;
                 }
-            } else {
+                val = Integer.parseInt(s.substring(start, i + 1));
+            } else if(c == '[') {
+                stack.push(Integer.valueOf(val));
+                val = 0;
+            } else if(c == ']') {
+                String str = popStack(stack);
+                Integer times = (Integer)stack.pop();
+                while(times-- > 0) {
+                    stack.push(str);
+                }
+            } else if(Character.isLetter(c)) {
                 stack.push(String.valueOf(c));
             }
         }
@@ -132,7 +136,12 @@ public class Solution {
     }
     
     private String popStack(Stack stack) {
+        // We create a buffer to reverse the input string order
+        // which will return as original order, because when we
+        // push on given stack, string order reverse once, now
+        // we reverse twice to get it back to normal
         Stack<String> buffer = new Stack<String>();
+        // pop stack until get a number of empty
         while(!stack.isEmpty() && stack.peek() instanceof String) {
             buffer.push((String)stack.pop());
         }
