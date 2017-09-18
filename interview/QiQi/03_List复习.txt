@@ -1,0 +1,65 @@
+List
+An ordered collection.
+
+1. List vs Array
+正如第01讲里面提到的，Array 在建立之后不能改变尺寸。所以，通常来说，当你需要一个 collection 来存放一些东西的时候，如果你知道你有多少东西需要放进去，就用 Array；如果你不知道你需要放多少，就用 List。
+
+2. ArrayList vs LinkedList
+这两个 class 是 JAVA 里最常用到的两个 List。
+这几个时间复杂度要清楚：
+https://stackoverflow.com/questions/322715/when-to-use-linkedlist-over-arraylist/322742#322742
+
+3. ArrayList vs Vector
+http://www.javaworld.com/article/2077425/java-se/vector-or-arraylist-which-is-better.html
+
+4. Linked List
+这个不是刚才讲的 JAVA class java.util.LinkedList，这个是指“链表”。
+https://en.wikipedia.org/wiki/Linked_list
+注意区分 Singly linked list 和 Doubly linked list。
+
+5. 链表是否有环问题
+LeetCode 141. Linked List Cycle
+https://leetcode.com/problems/linked-list-cycle/description/
+LeetCode 142. Linked List Cycle II
+https://leetcode.com/problems/linked-list-cycle-ii/description/
+
+下面是 LeetCode 上面关于链表的题目：
+
+Easy:
+203. Remove Linked List Elements
+https://leetcode.com/problems/remove-linked-list-elements/description/
+83. Remove Duplicates from Sorted List
+https://leetcode.com/problems/remove-duplicates-from-sorted-list/description/
+2. Add Two Numbers
+https://leetcode.com/problems/add-two-numbers/description/
+21. Merge Two Sorted Lists
+https://leetcode.com/problems/merge-two-sorted-lists/description/
+328. Odd Even Linked List
+https://leetcode.com/problems/odd-even-linked-list/description/
+
+Middle:
+206. Reverse Linked List - 用 recursion 和 iterative 两种方法做
+https://leetcode.com/problems/reverse-linked-list/description/
+86. Partition List
+https://leetcode.com/problems/partition-list/description/
+19. Remove Nth Node From End of List
+https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/
+24. Swap Nodes in Pairs - 用 recursion 和 iterative 两种方法做
+https://leetcode.com/problems/swap-nodes-in-pairs/description/
+82. Remove Duplicates from Sorted List II
+https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/description/
+
+Hard:
+160. Intersection of Two Linked Lists
+https://leetcode.com/problems/intersection-of-two-linked-lists/description/
+143. Reorder List
+https://leetcode.com/problems/reorder-list/description/
+25. Reverse Nodes in k-Group
+https://leetcode.com/problems/reverse-nodes-in-k-group/description/
+61. Rotate List
+https://leetcode.com/problems/rotate-list/description/
+445. Add Two Numbers II
+https://leetcode.com/problems/add-two-numbers-ii/description/
+
+Thanks,
+QiQi
