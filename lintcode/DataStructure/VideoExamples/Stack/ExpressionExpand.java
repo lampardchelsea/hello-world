@@ -23,7 +23,47 @@
  * https://segmentfault.com/a/1190000008883991
 */
 // Style 1
-
+// 当s的长度小于4的时候可以直接返回s, 因为缩写的s格式k[encoded_string]最小长度是4.
+// 利用两个Stack完成DFS. stringStk 保存遇到缩写前上层的String值, intStk保存当前层应该repeat的次数.
+// 遇到数字, 就说明遇到缩写了, 把需要repeat的次数先保存进inStk中. 把上一层的string保存到stringStk中.
+// 遇到"]"说明缩写结束. 把上一层的string 从stingStk中pop出来，后面append上repeat次数的当前层string.
+// Time Complexity: O(s.length()). Space: O(s.length()), s是缩写的极致时用了最大的Stack.
+public class Solution {
+    public String decodeString(String s) {
+        if(s == null || s.length() < 4){
+            return s;
+        }
+        StringBuilder res = new StringBuilder();
+        Stack<String> stringStk = new Stack<String>();
+        Stack<Integer> intStk = new Stack<Integer>();
+        int index = 0;
+        while(index < s.length()){
+            if(Character.isDigit(s.charAt(index))){
+                int n = 0;
+                while(index<s.length() && Character.isDigit(s.charAt(index))){
+                    n = n*10 + (int)(s.charAt(index)-'0');
+                    index++;
+                }
+                intStk.push(n);
+                stringStk.push(res.toString());
+                res = new StringBuilder();
+                index++; //跳过"["
+            }else if(s.charAt(index) == ']'){
+                String formerRes = stringStk.pop();
+                StringBuilder sb = new StringBuilder(formerRes);
+                int n = intStk.pop();
+                while(n-- > 0){
+                    sb.append(res);
+                }
+                res = sb;
+                index++;
+            }else{
+                res.append(s.charAt(index++));
+            }
+        }
+        return res.toString();
+    }
+}
 
 
 // Style 2
