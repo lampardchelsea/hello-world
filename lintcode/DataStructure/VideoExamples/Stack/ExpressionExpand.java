@@ -109,6 +109,7 @@ public class Solution {
         if(s == null || s.length() == 0) {
             return "";
         }
+        // Because need to store both Integer and String onto stack, use Object
         Stack<Object> stack = new Stack<Object>();
         int val = 0;
         for(int i = 0; i < s.length(); i++) {
@@ -119,6 +120,8 @@ public class Solution {
                     i++;
                 }
                 val = Integer.parseInt(s.substring(start, i + 1));
+                // or we can write as below
+                // val = val * 10 + c - '0';
             } else if(c == '[') {
                 stack.push(Integer.valueOf(val));
                 val = 0;
