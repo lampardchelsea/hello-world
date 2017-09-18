@@ -1,5 +1,5 @@
 # Lintcode LinkedList and Array issues
-<p>1. [Lintcode binary search issues]
+<p>1. [Lintcode LinkedList and Array issues]
 
 # Useful links for specific questions
 <p>Copy List with Random Pointer
