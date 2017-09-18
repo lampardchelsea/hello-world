@@ -14,5 +14,47 @@
  *
  * Solution
  * http://www.jiuzhang.com/solutions/insert-interval/
- * 
 */
+/**
+ * Definition of Interval:
+ * public classs Interval {
+ *     int start, end;
+ *     Interval(int start, int end) {
+ *         this.start = start;
+ *         this.end = end;
+ *     }
+ */
+
+// Just remember this intutive way is good, separate 3 cases based on overlapping or not
+public class Solution {
+    /*
+     * @param intervals: Sorted interval list.
+     * @param newInterval: new interval.
+     * @return: A new interval list.
+     */
+    public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+        if(intervals == null || newInterval == null) {
+            return intervals;
+        }
+        List<Interval> result = new ArrayList<Interval>();
+        int insertPos = 0;
+        for(Interval interval : intervals) {
+            // If no overlapping and current interval before newInterval
+            // add current interval and increase insert position for newInterval
+            if(interval.end < newInterval.start) {
+                result.add(interval);
+                insertPos++;
+            // If no overlapping and new interval before current interval
+            // add current interval and no change on insert position for newInteval
+            } else if(interval.start > newInterval.end) {
+                result.add(interval);
+            // If overlapping, update newInterval
+            } else {
+                newInterval.start = Math.min(interval.start, newInterval.start);
+                newInterval.end = Math.max(interval.end, newInterval.end);
+            }
+        }
+        result.add(insertPos, newInterval);
+        return result;
+    }
+}
