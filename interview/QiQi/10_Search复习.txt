@@ -1,0 +1,48 @@
+1. Search
+一个通用的 search 的逻辑是这样：
+
+Set<Node> visited;
+Collection<Node> needToVisit;
+needToVisit.add(firstNode);
+while (!needToVisit.isEmpty()) {
+    Node current = needToVisit.remove();
+    if (visited.contains(current)) {
+        continue;
+    }
+    if (current == targetNode) {
+        return FOUND;
+    }
+    for (Node n : current.neighbours()) {
+        needToVisit.add(n);
+    }
+}
+return NOT_FOUND;
+
+(1) 如果你的这个 needToVisit Collection 是一个 FIFO 的 Queue，那么，上一 Node 的 neighbours 将比当前 Node 的 neighbours 先从这个 Collection 里面出来，这就是 Breadth-first Search（BFS）。
+(2) 如果你的这个 needToVisit Collection 是一个 FILO 的 Stack，那么，上一 Node 的 neighbours 将比当前 Node 的 neighbours 后从这个 Collection 里面出来，这就是 Depth-first Search（DFS）。
+(3) 如果你的这个 needToVisit Collection 是一个 PriorityQueue，里面的 Node 会按照一个你预先设定好的顺序出来，那么这就是 iterative DFS。
+https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search
+(4) 如果你的这个 needToVisit Collection 不仅是一个 PriorityQueue，而且 priority 是到终点的距离，那么这就是 A*。
+https://en.wikipedia.org/wiki/A*_search_algorithm
+
+最重要的部分是，访问过的节点不能再次访问。所以，搜索的时间复杂度，最高是 O(n) 的，其中 n 是节点数量。如果你写出来是其他复杂度的，就一定是写错了。当然，节点数量在不同题目中有不同的具体含义。
+这也就是为什么我在 Tree 的一讲里面说，Level Order Tree Traversal 是最简单的BFS。因为按照树的结构，你不需要额外记录哪些节点是访问过的，只要按照 parent -> children 的方向一直走，根据 Tree 无环的特性，不会有重复的节点。
+
+2. Backtracking
+回溯法
+复杂的 search。你要记录每一个节点的状态，要记录哪些节点访问过、哪些需要访问，还要保证当你回到一个节点的时候，你还存有那个节点的正确状态。
+GeeksforGeeks 有一系列经典例题，供你学习，从这里开始：
+http://www.geeksforgeeks.org/backtracking-set-1-the-knights-tour-problem/
+
+3.
+Search 在面试中，是非常容易被考到的知识点。
+不仅仅是 Search in a Tree，很多题目最后都可归结到 search 上。
+其实，我们的日常生活就是这样。很多高阶、复杂的业务逻辑，都可以通过一定的抽象变成图论。把图和搜索学好了，不仅对你的面试有用，也对你整个编程能力有很大的提高。
+
+https://leetcode.com/tag/breadth-first-search/
+https://leetcode.com/tag/depth-first-search/
+https://leetcode.com/tag/binary-search/
+https://leetcode.com/tag/backtracking/
+
+Thanks,
+QiQi
