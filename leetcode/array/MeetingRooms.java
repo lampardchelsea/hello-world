@@ -12,7 +12,8 @@ import java.util.Comparator;
  * 
  * 
  * Solution
- * https://segmentfault.com/a/1190000003894670
+ * https://segmentfault.com/a/1190000003894670\
+ * https://discuss.leetcode.com/topic/20959/ac-clean-java-solution/2
  */
 public class MeetingRooms {
 	private class Interval {
@@ -42,6 +43,8 @@ public class MeetingRooms {
 	
 	
 	// Solution 2: 
+	// Refer to
+	// https://discuss.leetcode.com/topic/20959/ac-clean-java-solution/2
 	/**
 	 * In the above implementation, you use the sort method to get all objects 
 	 * sorted - O(nlogn) time complexity.
