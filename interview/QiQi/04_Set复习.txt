@@ -1,0 +1,19 @@
+Set
+A collection that contains no duplicate elements.
+
+1. HashSet
+在 JAVA 中，最常用到的就是 HashSet 了。
+offers constant time performance for the basic operations (add, remove, contains and size)
+
+2. LinkedHashSet and TreeSet
+JAVA 中，另外两个会用到的 Set 是这两个。
+LinkedHashSet：里面的元素按照插入的顺序排序。
+TreeSet：(1) log(n) time cost for the basic operations (add, remove and contains); (2) 里面的元素按照自然顺序排序。（比如从小到大）
+
+除此以外，在 JAVA 中的这三个 Set，都是用对应的三个 Map 实现的。等我下次讲 Map 的时候再细说。
+
+因为 Set 在LeetCode 里面并没有单独的题目分类，我找了半天没找到需要用到 Set 的题目。
+通常，可以用 Set 来记录 searching 时已经访问过了的节点。
+
+Thanks,
+QiQi
