@@ -1,0 +1,67 @@
+第一讲，从最简单的数据结构开始。
+
+Array
+定义：stores a fixed-size sequential collection of elements of the same type.
+Array 最大的特点在于 fixed-size。一旦创建，size 不可更改。
+
+在这里插一句，JAVA 里，size 在创建之后不可更改的，需要用 length 得到尺寸。
+创建之后 size 可以更改的，用 size 得到尺寸。
+比如：
+array.length
+String.length()
+java.util.Collection.size()
+
+另外要记得 JAVA 自带 java.util.Arrays 这个辅助工具，下面这几个方法都比较常用：
+Arrays.fill, Arrays.sort, Arrays.binarySearch
+
+Array 看似简单，其实也就因为简单，反而是最常被考到的结构。
+LeetCode 上按照知识点分类，得到的 Popular Topics，Array 排第一的。
+下面是我浏览过所有 Array 题目之后，挑的几个只用到 Array 自身的题目。
+Array 和其他算法、结构一起考的题目，以后再说。
+
+这5个是简单到不能再简单的了：
+283. Move Zeroes
+https://leetcode.com/problems/move-zeroes/description/
+228. Summary Ranges
+https://leetcode.com/problems/summary-ranges/description/
+414. Third Maximum Number
+https://leetcode.com/problems/third-maximum-number/description/
+26. Remove Duplicates from Sorted Array
+https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/
+88. Merge Sorted Array
+https://leetcode.com/problems/merge-sorted-array/description/
+
+这5个不难，但是很复杂，index 运算比较多：
+75. Sort Colors
+https://leetcode.com/problems/sort-colors/description/
+54. Spiral Matrix
+https://leetcode.com/problems/spiral-matrix/description/
+189. Rotate Array
+https://leetcode.com/problems/rotate-array/description/
+48. Rotate Image
+https://leetcode.com/problems/rotate-image/description/
+59. Spiral Matrix II
+https://leetcode.com/problems/spiral-matrix-ii/description/
+
+这5个需要用到一点数学：
+121. Best Time to Buy and Sell Stock
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
+122. Best Time to Buy and Sell Stock II
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/description/
+11. Container With Most Water
+https://leetcode.com/problems/container-with-most-water/description/
+238. Product of Array Except Self
+https://leetcode.com/problems/product-of-array-except-self/description/
+370. Range Addition
+https://leetcode.com/problems/range-addition/description/
+
+这3个算 Hard 题目，比较高阶：
+280. Wiggle Sort
+https://leetcode.com/problems/wiggle-sort/description/
+15. 3Sum
+https://leetcode.com/problems/3sum/description/
+42. Trapping Rain Water
+https://leetcode.com/problems/trapping-rain-water/description/
+
+加油，
+QiQi
