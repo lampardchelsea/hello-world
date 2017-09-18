@@ -15,3 +15,7 @@
 <p>1. [Stack style 1] (http://www.cnblogs.com/Dylan-Java-NYC/p/6751689.html)
 <p>2. [Stack style 2] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Stack/DecodeString.java)
 <p>3. [Stack style 3] (https://segmentfault.com/a/1190000008883991)
+
+<p>单调Stack的运用
+<p>Largest Rectangle in Histogram
+<p>1. [] ()
