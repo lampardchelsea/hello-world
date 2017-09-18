@@ -14,3 +14,4 @@
 <p>Expression Expand
 <p>1. [Stack style 1] (http://www.cnblogs.com/Dylan-Java-NYC/p/6751689.html)
 <p>2. [Stack style 2] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Stack/DecodeString.java)
+<p>3. [Stack style 3] (https://segmentfault.com/a/1190000008883991)
