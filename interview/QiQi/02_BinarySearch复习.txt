@@ -1,0 +1,64 @@
+昨天讲完最基本的数据结构以后，今天讲第一个算法。
+
+Binary Search
+is a search algorithm that finds the position of a target value within a sorted array.
+划重点：within a sorted array，不是 sorted 的不能用这个算法。
+
+有以下几点需要注意：
+
+1. 实现方式有 recursive 和 iterative 两种，一定要都会写。
+http://www.geeksforgeeks.org/binary-search/
+通常，因为 recursive 需要往 call stack 上面加很多东西，会比 iterative 慢一点，所以在面试时一般都用 iterative。
+
+2. 注意 overflow
+JAVA 是有数据溢出的问题的，所以你在求左右边界的平均值时，必须使用这样的语句：
+int mid = l + (r - l) / 2;
+如果写成这样就会溢出：
+int mid = (l + r) / 2;
+这里有个小故事，这个溢出的错误存在了将近20年才被后来者发现。JAVA 系统库里对这个算法的实现也有溢出的问题，直到9年后被人发现。
+https://research.googleblog.com/2006/06/extra-extra-read-all-about-it-nearly.html
+
+3. 复杂度
+标准的 binary search 是 O(log n) 的。
+你可以这样想：一开始的搜索范围长度是 n，每搜索一次，范围缩小一半，所以每次的范围就变成了：n/2, n/4, n/8, ...，直到1。
+那么，如果反过来看，从1开始每次乘2，乘以多少次之后可以得到 n？这就是 log2(n)。
+如果需要更严格的数学分析，可以直接套主定理（Master theorem）：
+https://en.wikipedia.org/wiki/Master_theorem#Application_to_common_algorithms
+另外其实把主定理的这三种情况背下来，遇到任何 recursive 问题的复杂度分析时，就都不怕了。
+
+下面几个挑出来的 LeetCode 题目做练习用：
+
+首先是5道热身题，基本就是标准的 binary search，或者稍加变形：
+374. Guess Number Higher or Lower
+https://leetcode.com/problems/guess-number-higher-or-lower/description/
+278. First Bad Version
+https://leetcode.com/problems/first-bad-version/description/
+35. Search Insert Position
+https://leetcode.com/problems/search-insert-position/description/
+367. Valid Perfect Square
+https://leetcode.com/problems/valid-perfect-square/description/
+167. Two Sum II - Input array is sorted
+https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
+
+然后是5道中档题，更复杂一些了：
+74. Search a 2D Matrix
+https://leetcode.com/problems/search-a-2d-matrix/description/
+69. Sqrt(x)
+https://leetcode.com/problems/sqrtx/description/
+34. Search for a Range
+https://leetcode.com/problems/search-for-a-range/description/
+153. Find Minimum in Rotated Sorted Array
+https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/
+33. Search in Rotated Sorted Array
+https://leetcode.com/problems/search-in-rotated-sorted-array/description/
+
+最后是3道难题。你可能需要先想明白为什么可以用 binary search：
+475. Heaters
+https://leetcode.com/problems/heaters/description/
+4. Median of Two Sorted Arrays
+https://leetcode.com/problems/median-of-two-sorted-arrays/description/
+410. Split Array Largest Sum
+https://leetcode.com/problems/split-array-largest-sum/description/
+
+Thanks,
+QiQi
