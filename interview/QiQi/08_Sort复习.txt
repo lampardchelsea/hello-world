@@ -1,0 +1,50 @@
+Sort
+Puts elements of a list in a certain order.
+
+Sort 是最常用的算法，很多题目都需要它。
+时间和空间复杂度可以参考：
+https://en.wikipedia.org/wiki/Sorting_algorithm
+
+1. 三种需要掌握的 O(n^2) 的 sort：
+Bubble sort
+Selection sort
+Insertion sort
+
+2. 三种需要掌握的 O(n log n) 的 sort：
+Merge sort
+Quick sort
+Heap sort
+
+3. Divide and Conquer
+中文翻译是分治法，这是一种解题思想。把一个大问题分成小问题，然后再把小问题的解合成大问题的解。
+Merge sort 就是基于这种思想而创造出来的 sort。
+这种思想不仅可以用于 sort，Dynamic Programming 的核心也是分治法。
+
+4. Sort 在面试中的应用
+基本不会看到要求你手写一个 sort 的题目，但是你还是要了解前面几种 sort 是怎么实现的。
+如果你在面试中遇到一个题，你能想到的最好的方法是 O(n^2)的，那么就试试看，先 sort，再求解，会不会有 O(n log n) 的解法。这可以算是一个 hint。
+面试中遇到需要 sort 的情况，所用 Arrays.sort 和 Collections.sort，简单高效。
+
+5. Comparator vs Comparable
+要分得清这两个 Interface。
+通常在新建一个 helper class 的时候用 Comparable，在用 Arrays.sort 和 Collections.sort 的时候用 Comparator。
+“从大到小”排列可以用 Collections.reverseOrder() 来简化代码，例如：Collections.sort(myCollection, Collections.reverseOrder())
+最后，要记得用 JAVA 8 的 Lamdba 表达式来写 Comparator： https://www.mkyong.com/java8/java-8-lambda-comparator-example/
+
+148. Sort List
+https://leetcode.com/problems/sort-list/description/
+147. Insertion Sort List
+https://leetcode.com/problems/insertion-sort-list/description/
+56. Merge Intervals
+https://leetcode.com/problems/merge-intervals/description/
+57. Insert Interval
+https://leetcode.com/problems/insert-interval/description/
+252. Meeting Rooms
+https://leetcode.com/problems/meeting-rooms/description/
+253. Meeting Rooms II
+https://leetcode.com/problems/meeting-rooms-ii/description/
+527. Word Abbreviation
+https://leetcode.com/problems/word-abbreviation/description/
+
+Thanks,
+QiQi
