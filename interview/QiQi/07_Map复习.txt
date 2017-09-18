@@ -1,0 +1,86 @@
+Map
+An object that maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value.
+
+在 JAVA 中，最常用到的是 HashMap。HashMap 的 get(), put() 都是 O(1) 的复杂度，这是用 Map 的最主要原因。
+TreeMap 有时会用作 heap。至于什么是 heap，之后再单独讲解。
+
+1. HashMap vs TreeMap
+http://arnosoftwaredev.blogspot.com/2010/10/hash-tables-vs-binary-search-tree.html
+2. HashMap vs Hashtable vs LinkededHashMap
+https://stackoverflow.com/questions/40471/differences-between-hashmap-and-hashtable
+3. HashMap vs ConcurrentHashMap vs SynchronizedMap
+https://crunchify.com/hashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java/
+4. 昨天讲 Set 的时候提到：
+在 JAVA 中，HashSet、LinkedHashSet 和 TreeSet，都是用对应的三个 Map 实现的。
+这三个 Set 其实是用 HashMap、 LinkededHashMap 和 TreeMap 实现的，只不过，对应的 value 是一个 static Object。
+Source Code:
+http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8-b132/java/util/HashSet.java
+Line: 98
+
+这5道是简单题热身用：
+3. Longest Substring Without Repeating Characters
+https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
+242. Valid Anagram
+https://leetcode.com/problems/valid-anagram/description/
+266. Palindrome Permutation
+https://leetcode.com/problems/palindrome-permutation/description/
+500. Keyboard Row
+https://leetcode.com/problems/keyboard-row/description/
+94. Longest Harmonious Subsequence
+https://leetcode.com/problems/longest-harmonious-subsequence/description/
+
+Deep Copy 也是需要用到 Map 的经典场景，你不仅需要记录哪些节点已经访问过，还要立刻拿到那些节点：
+138. Copy List with Random Pointer
+https://leetcode.com/problems/copy-list-with-random-pointer/description/
+133. Clone Graph
+https://leetcode.com/problems/clone-graph/description/
+
+这几道题用到了昨天讲的 Set：
+217. Contains Duplicate
+https://leetcode.com/problems/contains-duplicate/description/
+36. Valid Sudoku
+https://leetcode.com/problems/valid-sudoku/description/
+349. Intersection of Two Arrays
+https://leetcode.com/problems/intersection-of-two-arrays/description/
+202. Happy Number
+https://leetcode.com/problems/happy-number/description/
+187. Repeated DNA Sequences
+https://leetcode.com/problems/repeated-dna-sequences/description/
+219. Contains Duplicate II
+https://leetcode.com/problems/contains-duplicate-ii/description/
+
+这5道是中档题：
+1. Two Sum
+https://leetcode.com/problems/two-sum/description/
+525. Contiguous Array
+https://leetcode.com/problems/contiguous-array/description/
+288. Unique Word Abbreviation
+https://leetcode.com/problems/unique-word-abbreviation/description/
+290. Word Pattern
+https://leetcode.com/problems/word-pattern/description/
+350. Intersection of Two Arrays II
+https://leetcode.com/problems/intersection-of-two-arrays-ii/description/
+
+还有3道难题：
+554. Brick Wall
+https://leetcode.com/problems/brick-wall/description/
+49. Group Anagrams
+https://leetcode.com/problems/group-anagrams/description/
+76. Minimum Window Substring
+https://leetcode.com/problems/minimum-window-substring/description/
+
+Thanks,
+QiQi
+
+
+在这一讲后面补充一个高级数据结构：Bloom Filter
+
+我在看 Facebook HR 给我发的资料。
+其中有一个 on-site 面试 tips，里面说为了面试，要复习数据结构。提到了诸如 array, binary tree 等等常规数据结构，还提到了 Bloom Filter。
+Bloom Filter 在去年年底的面试中被考到过，但是因为这个东西太少见了，所以我没有放在正常内容里。今天看到了，顺便提一句。
+
+你需要了解这个东西是做什么，为什么存在，有什么优点有什么问题。
+http://llimllib.github.io/bloomfilter-tutorial/
+
+Thanks,
+QiQi
