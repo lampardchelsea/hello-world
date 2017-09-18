@@ -1,0 +1,65 @@
+Stack 和 Queue
+两种 collection
+Stack: FILO
+Queue: FIFO
+
+Stack 主要用在 reverse 一个东西。
+Queue 在搜索中用到很多，用来记住接下来要搜哪些节点。当我讲到搜索的时候，你会发现很多题目都会需要一个 queue 来存东西。
+
+1. JAVA 有 Stack 这个 class，直接用就好了。
+
+2. 在 JAVA 中，有 Queue 这个 Interface，还有 Deque 这个 Interface。
+Queue 是单队列，只有一个头。Deque 是双队列，有前后两个头。
+我建议你仔细阅读官方文档：
+https://docs.oracle.com/javase/8/docs/api/java/util/Deque.html
+你需要知道 Queue 和 Deque 的不同，还有 Throws exception / Special value 的不同。
+
+3. Queue 有好几种，最主要的是 LinkedList 和 ArrayDeque。
+这两种最重要的区别是：LinkedList 是用双链表实现的，ArrayDeque 是用 Array 实现的。
+ArrayDeque 的官方文档里说：
+Null elements are prohibited. This class is likely to be faster than Stack when used as a stack, and faster than LinkedList when used as a queue.
+所以只要不需要放 null 进去，就都可以用 ArrayDeque。
+另外，Stack 是一个 class 而不是 Interface，所以如果你用 ArrayDeque 当作 Stack，一定要自己注意什么时候 addFirst、pollFirst，什么时候 addLast、pollLast。
+
+4. PriorityQueue
+这是一个重点，我之后在讲 heap 的时候再细说。
+
+5. BlockingQueue
+https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/BlockingQueue.html
+
+下面是几个关于 Stack 的题目：
+
+Easy:
+20. Valid Parentheses
+https://leetcode.com/problems/valid-parentheses/description/
+150. Evaluate Reverse Polish Notation
+https://leetcode.com/problems/evaluate-reverse-polish-notation/description/
+385. Mini Parser
+https://leetcode.com/problems/mini-parser/description/
+224. Basic Calculator
+https://leetcode.com/problems/basic-calculator/description/
+71. Simplify Path
+https://leetcode.com/problems/simplify-path/description/
+
+Middle:
+232. Implement Queue using Stacks
+https://leetcode.com/problems/implement-queue-using-stacks/description/
+225. Implement Stack using Queues
+https://leetcode.com/problems/implement-stack-using-queues/description/
+155. Min Stack
+https://leetcode.com/problems/min-stack/description/
+394. Decode String
+https://leetcode.com/problems/decode-string/description/
+636. Exclusive Time of Functions
+https://leetcode.com/problems/exclusive-time-of-functions/description/
+
+Hard:
+439. Ternary Expression Parser
+https://leetcode.com/problems/ternary-expression-parser/description/
+341. Flatten Nested List Iterator
+https://leetcode.com/problems/flatten-nested-list-iterator/description/
+456. 132 Pattern
+https://leetcode.com/problems/132-pattern/description/
+
+Thanks,
+QiQi
