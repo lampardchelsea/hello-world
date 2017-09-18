@@ -1,0 +1,51 @@
+昨天下午进行了 Facebook 的电话技术面试。晚上 HR 跟我说通过了，可以准备下一轮了。我在这里把题目和面试过程分享给你，供你准备面试的时候参考。
+
+题目：
+实现一个叫做 Index 的 class。有两个函数：
+Contractor: Index(String[] words)
+用给定的 words 建立一个 object。
+boolean isMem(String s)
+检查 s 是否在 words 里。
+其中：s可能包含字符 '.' ，表示这个位置匹配任意字符。
+
+举例：
+Index i = new Index(new String[] {"foo", "bar"});
+i.isMem("foo");  // ture
+i.isMem("bar");  // ture
+i.isMem("Not-a-Word");  // false
+i.isMem("f.o");  // ture
+i.isMem("..r");  // ture
+
+Clarification:
+我问了如果 String[] 是个空数组，是不是所有 isMem() 永远返回 false，面试官说是的。
+我问了在这个题目里面，一个 String 有可能有哪些字符，面试官说 'a' - 'z'，和 '.'。
+我问了 isMem("") 应该是什么结果，面试官说这个取决于 empty String 是否在 words 里。
+
+我的解法：
+Trie
+每个 Node 有一个 boolean 表示是否是一个 word 的结尾。
+每个 Node 有一个 Node[26] 表示之后的节点。
+然后就是把这个 Index 用这个方法实现出来。
+创建了一个 isMem(String s, TrieNode node) 的 helper method 反复调用。
+
+代码写完了以后，面试官问我时间复杂度。
+我说 Contractor 是 O(n * l) 的，其中 n 是 words.length()，l 是每个 word 的 length()。
+isMem() 是 O(26 ^ N + l)的，其中 N 是字符串中 '.' 的数量，l 是字符串长度。
+
+最后问我如何改进。
+我说 TrieNode 里面不用 array，改用一个 map，可以减少遇到 '.' 时搜索的数量。
+
+然后就是我提问了。
+
+我对这个题目的解法，在 LeetCode 上有类似的：
+208. Implement Trie (Prefix Tree)
+https://leetcode.com/problems/implement-trie-prefix-tree/#/description
+'.' 的作用可以参见这个题：
+10. Regular Expression Matching
+https://leetcode.com/problems/regular-expression-matching/#/description
+（这个题目本身的难点在于 '*'，'.'其实很容易处理）
+
+另外这个面试官看我选的语言是 Java，一上来就说他 Java不怎么样。面试的时候连新建一个 String[] 的语法都不对……我说我不在乎，但这其实表示他也不在乎这些语法细节问题，考的是我整体的思路。
+
+希望对你有用，
+QiQi
