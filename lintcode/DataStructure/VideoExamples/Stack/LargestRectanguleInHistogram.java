@@ -21,9 +21,14 @@ import java.util.Stack;
  * Note
  * Handle fake column
  * Also work for Maximal Rectangle problem
+ * With fake column
  * https://github.com/lampardchelsea/hello-world/edit/master/leetcode/Stack/MaximalRectangle.java
  * https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/22
+ * Without fake column
  * https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/27
+ *
+ * Detail explain on this problem without fake column
+ * http://www.geeksforgeeks.org/largest-rectangle-under-histogram/
  */
 public class LargestRectangleInHistogram {
     // Solution 1: Brute Force
@@ -175,6 +180,10 @@ public class LargestRectangleInHistogram {
         
         return max;
     }
+	
+	// Solution 4: Without fake column
+	// Refer to
+	// http://www.geeksforgeeks.org/largest-rectangle-under-histogram/
 	
 	public static void main(String[] args) {
 		LargestRectangleInHistogram l = new LargestRectangleInHistogram();
