@@ -149,7 +149,7 @@ public class LargestRectangleInHistogram {
         return maxArea;
 	}
 	
-	// Solution 3: Introduce fake column
+	// Solution 3: Introduce fake column at the end of height array
 	// Template from JiuZhang --> Seems more clean and no i-- tricky part
 	public int largestRectangleArea3(int[] height) {
         if (height == null || height.length == 0) {
@@ -158,7 +158,9 @@ public class LargestRectangleInHistogram {
         Stack<Integer> stack = new Stack<Integer>();
         int max = 0;
         for (int i = 0; i <= height.length; i++) {
-	    // Fake column handling
+	    // Handle fake column case, when it is fake column, set height to random non-positive 
+	    // value (e.g here set as -1 or any other value in range [0, Integer.MIN_VALUE]),
+	    // because just need to use this column index as target rectangle right bound mark
             int curt = (i == height.length) ? -1 : height[i];
             while (!stack.isEmpty() && curt <= height[stack.peek()]) {
                 int h = height[stack.pop()];
@@ -170,6 +172,11 @@ public class LargestRectangleInHistogram {
         
         return max;
     }
+	
+	// Solution 4: Without fake column
+	// Refer to
+	// http://www.geeksforgeeks.org/largest-rectangle-under-histogram/
+	
 	
 	public static void main(String[] args) {
 		LargestRectangleInHistogram l = new LargestRectangleInHistogram();
