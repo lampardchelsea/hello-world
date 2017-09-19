@@ -127,7 +127,11 @@ public class MaximalRectangle {
     
     // Solution 2: Not introduce fake column
     // Refer to
-    // https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/27 
+    // https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/27
+    // This is the unsimplified approach, notice how we had to process the elements in the stack twice. 
+    // Shichaotan reused the same segment of code by making the row array 1 element larger than the actual 
+    // size. And inside the forloop, he made it so that you modify the height array only if (j < n-1) so 
+    // you don't get an out of bound error. Brilliant!
     public int maximalRectangle(char[][] matrix) {
         if(matrix.length == 0) return 0;
         int[] height = new int[matrix[0].length];
