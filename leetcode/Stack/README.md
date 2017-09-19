@@ -50,6 +50,13 @@
 <p>3. [Stack style 2] (http://www.jiuzhang.com/solutions/largest-rectangle-in-histogram/)
 <p>4. [中文解释] (https://segmentfault.com/a/1190000003498304)
 
+<p>Maximal Rectangle
+<p>1. [A O(n^2) solution based on Largest Rectangle in Histogram] (https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/23?page=2 )
+<p>2. [中文解释] (https://siddontang.gitbooks.io/leetcode-solution/content/array/maximal_rectangle.html)
+<p>3. [Largest Rectangule In Histogram Template] (https://github.com/lampardchelsea/hello-world/blob/master/lintcode/DataStructure/VideoExamples/Stack/LargestRectanguleInHistogram.java
+)
+
+
 
 
 
