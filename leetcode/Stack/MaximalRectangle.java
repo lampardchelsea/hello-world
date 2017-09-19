@@ -45,14 +45,25 @@ import java.util.Stack;
 	Refer to
 	https://github.com/lampardchelsea/hello-world/blob/master/lintcode/DataStructure/VideoExamples/Stack/LargestRectanguleInHistogram.java
 	Solution 3 is suitable
+ *
+ * Note: Handle fake column
+ * https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/22
+ * https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/27
  */
 public class MaximalRectangle {
+    // Solution 1: Fake column introduced
+    // Style 1: Increase a fake column
     public int maximalRectangle(char[][] matrix) {
         if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
             return 0;
         }
         int rows = matrix.length;
         int cols = matrix[0].length;
+	// Increase a fake column
+	// Why add fake column and how to handle it?
+        // Handle fake column case, when it is fake column, set height to random non-positive 
+	// value (e.g here set as -1 or any other value in range [0, Integer.MIN_VALUE]),
+	// because just need to use this column index as target rectangle right bound mark
         int[] heights = new int[cols + 1];
         // Set up global variable 'max' to record final maximum rectangle after compare each row
         int max = 0;
@@ -79,4 +90,69 @@ public class MaximalRectangle {
         }
         return max;
     }
+	
+    // Style 2: Not increase array size but separate handling its case	
+    public int maximalRectangle(char[][] matrix) {
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return 0;
+        }
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int[] heights = new int[cols];
+        int max = 0;
+        for(int i = 0; i < rows; i++) {
+            Stack<Integer> stack = new Stack<Integer>();
+            for(int j = 0; j <= heights.length; j++) {
+                int curH;
+                if(j == heights.length) {
+                    curH = Integer.MIN_VALUE;
+                } else {
+                   if(matrix[i][j] == '1') {
+                        heights[j] += 1;
+                    } else {
+                        heights[j] = 0;
+                    }
+                    curH = heights[j];
+                }
+                while(!stack.isEmpty() && curH <= heights[stack.peek()]) {
+                    int h = heights[stack.pop()];
+                    int w = stack.isEmpty() ? j : j - stack.peek() - 1;
+                    max = Math.max(max, h * w);
+                }
+                stack.push(j);
+            }
+        }
+        return max;
+    }
+    
+    // Solution 2: Not introduce fake column
+    // Refer to
+    // https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/27 
+    public int maximalRectangle(char[][] matrix) {
+        if(matrix.length == 0) return 0;
+        int[] height = new int[matrix[0].length];
+        int maxArea = 0;
+        Stack<Integer> stack = new Stack<Integer>();
+        for(int i = 0; i < matrix.length; i++) {
+            for(int j = 0; j < matrix[0].length; j++) {
+                if(matrix[i][j] == '1') height[j]++;
+                else height[j] = 0;
+                
+                while(!stack.isEmpty() && height[j] <= height[stack.peek()]) {
+                    int pop = stack.pop();
+                    int width = stack.isEmpty() ? j : j - 1 - stack.peek();
+                    maxArea = Math.max(maxArea, height[pop] * width);
+                }
+                 
+                stack.push(j);
+            }
+            while(!stack.isEmpty()) {
+                int pop = stack.pop();
+                int width = stack.isEmpty() ? height.length : height.length - 1 - stack.peek();
+                maxArea = Math.max(maxArea, height[pop] *width);
+            } 
+        }
+        return maxArea;
+    }	
+	
 }
