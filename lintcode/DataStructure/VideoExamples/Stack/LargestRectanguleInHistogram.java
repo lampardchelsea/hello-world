@@ -17,10 +17,13 @@ import java.util.Stack;
  * 
  * Solution
  * https://gist.github.com/pengqianhu/2371fdb2972844ac40ff
- * 
  * http://www.jiuzhang.com/solutions/largest-rectangle-in-histogram/
- * 
- * 
+ * Note
+ * Handle fake column
+ * Also work for Maximal Rectangle problem
+ * https://github.com/lampardchelsea/hello-world/edit/master/leetcode/Stack/MaximalRectangle.java
+ * https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/22
+ * https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/27
  */
 public class LargestRectangleInHistogram {
     // Solution 1: Brute Force
