@@ -21,3 +21,4 @@
 <p>1. [Brute Force] (https://gist.github.com/pengqianhu/2371fdb2972844ac40ff)
 <p>2. [Stack style 1] (https://discuss.leetcode.com/topic/7599/o-n-stack-based-java-solution)
 <p>3. [Stack style 2] (http://www.jiuzhang.com/solutions/largest-rectangle-in-histogram/)
+<p>4. [中文解释] (https://segmentfault.com/a/1190000003498304)
