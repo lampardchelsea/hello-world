@@ -18,4 +18,6 @@
 
 <p>单调Stack的运用
 <p>Largest Rectangle in Histogram (找每个元素左边或者右边第一个比它自身小/大的元素，用单调Stack维护)
-<p>1. [] ()
+<p>1. [Brute Force] (https://gist.github.com/pengqianhu/2371fdb2972844ac40ff)
+<p>2. [Stack style 1] (https://discuss.leetcode.com/topic/7599/o-n-stack-based-java-solution)
+<p>3. [Stack style 2] (http://www.jiuzhang.com/solutions/largest-rectangle-in-histogram/)
