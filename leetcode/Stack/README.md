@@ -44,5 +44,12 @@
 <p>Implement Queue using Stacks
 <p>1. [Short O(1) amortized, C++ / Java / Ruby] (https://discuss.leetcode.com/topic/17974/short-o-1-amortized-c-java-ruby)
 
+<p>Largest Rectangule In Histogram
+<p>1. [Brute Force] (https://gist.github.com/pengqianhu/2371fdb2972844ac40ff)
+<p>2. [Stack style 1] (https://discuss.leetcode.com/topic/7599/o-n-stack-based-java-solution)
+<p>3. [Stack style 2] (http://www.jiuzhang.com/solutions/largest-rectangle-in-histogram/)
+
+
+
 
 
