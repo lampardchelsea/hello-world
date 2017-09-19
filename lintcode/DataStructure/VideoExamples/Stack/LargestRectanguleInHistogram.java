@@ -127,10 +127,10 @@ public class LargestRectangleInHistogram {
          heights[stack.peek()] = 2 <= h(heights[3] = 6), push 4 onto stack
          ......
          */
-        // Caution: include '='
+        // Caution: include '=' for fake column
         for(int i = 0; i <= heights.length; i++) {
             // Corner case as when i == heights.length, we need a dummy value present
-            // its height, no matter what its value, either 0, -1 or Integer.MIN_VALUE...
+            // its height can be any non-positive value, either 0, -1 or Integer.MIN_VALUE...
             int h = (i == heights.length ? -1 : heights[i]);
             // If current stack empty or peek's value indexed bar height <= candidate heights[i],
             // we push candidate's index i onto stack
