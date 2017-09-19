@@ -51,6 +51,7 @@
 <p>4. [中文解释] (https://segmentfault.com/a/1190000003498304)
 <p>5. [Introduce fake column] (https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/22)
 <p>6. [Not introduce fake column] (https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/27)
+<p>7. [Largest Rectangular Area in a Histogram | Set 2] (http://www.geeksforgeeks.org/largest-rectangle-under-histogram/)
 
 <p>Maximal Rectangle
 <p>1. [A O(n^2) solution based on Largest Rectangle in Histogram] (https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/23?page=2 )
@@ -58,6 +59,6 @@
 <p>3. [Largest Rectangule In Histogram Template] (https://github.com/lampardchelsea/hello-world/blob/master/lintcode/DataStructure/VideoExamples/Stack/LargestRectanguleInHistogram.java)
 <p>4. [Introduce fake column] (https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/22)
 <p>5. [Not introduce fake column] (https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/27)
-
+<p>6. [Largest Rectangular Area in a Histogram | Set 2] (http://www.geeksforgeeks.org/largest-rectangle-under-histogram/)
 
 
