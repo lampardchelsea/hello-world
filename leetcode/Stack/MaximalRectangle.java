@@ -47,8 +47,11 @@ import java.util.Stack;
 	Solution 3 is suitable
  *
  * Note: Handle fake column
+ * With fake column
  * https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/22
+ * Without fake column
  * https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/27
+ * http://www.geeksforgeeks.org/largest-rectangle-under-histogram/
  */
 public class MaximalRectangle {
     // Solution 1: Fake column introduced
@@ -132,6 +135,8 @@ public class MaximalRectangle {
     // Shichaotan reused the same segment of code by making the row array 1 element larger than the actual 
     // size. And inside the forloop, he made it so that you modify the height array only if (j < n-1) so 
     // you don't get an out of bound error. Brilliant!
+    // For detail explain:
+    // http://www.geeksforgeeks.org/largest-rectangle-under-histogram/
     public int maximalRectangle(char[][] matrix) {
         if(matrix.length == 0) return 0;
         int[] height = new int[matrix[0].length];
