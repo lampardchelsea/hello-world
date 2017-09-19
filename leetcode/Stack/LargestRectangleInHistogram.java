@@ -18,8 +18,9 @@ import java.util.Stack;
  * https://gist.github.com/pengqianhu/2371fdb2972844ac40ff
  * 
  * http://www.jiuzhang.com/solutions/largest-rectangle-in-histogram/
- * 
- * 
+ *
+ * For detail explain (Without fake column)
+ * http://www.geeksforgeeks.org/largest-rectangle-under-histogram/
  */
 public class LargestRectangleInHistogram {
     // Solution 1: Brute Force
@@ -148,7 +149,7 @@ public class LargestRectangleInHistogram {
         return maxArea;
 	}
 	
-	// Solution 3:
+	// Solution 3: Introduce fake column
 	// Template from JiuZhang --> Seems more clean and no i-- tricky part
 	public int largestRectangleArea3(int[] height) {
         if (height == null || height.length == 0) {
@@ -157,6 +158,7 @@ public class LargestRectangleInHistogram {
         Stack<Integer> stack = new Stack<Integer>();
         int max = 0;
         for (int i = 0; i <= height.length; i++) {
+	    // Fake column handling
             int curt = (i == height.length) ? -1 : height[i];
             while (!stack.isEmpty() && curt <= height[stack.peek()]) {
                 int h = height[stack.pop()];
