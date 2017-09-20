@@ -50,6 +50,15 @@ public class One_Three_Two_Pattern {
 	 * so List seems to be too "powerful" at this time, and Stack is a perfect LIFO container.
 	 * BTW, for all Stack questions, we can always use List, but Stack makes it easier to code and maintain.
 	 */
+	// Solution 1: Stack
+	// Refer to
+	// https://discuss.leetcode.com/topic/68193/java-o-n-solution-using-stack-in-detail-explanation
+	// Complexity Analysis
+	// Time complexity : O(n). We traverse over the nums array of size n once to fill the min array. 
+	//                         After this, we traverse over nums to find the nums[k]. During this process, we also push and 
+	//                         pop the elements on the stack. But, we can note that at most n elements can be pushed and 
+	//                         popped off the stack in total. Thus, the second traversal requires only O(n) time.
+	// Space complexity : O(n). The stack can grow up to a maximum depth of n. Further, min array of size n is used.
 	private class Pair{
         int min, max;
         public Pair(int min, int max){
@@ -57,10 +66,7 @@ public class One_Three_Two_Pattern {
             this.max = max;
         }
     }
-	
-	
 
-	
 	// A good test case for this method: 
 	// Refer to
 	// https://leetcode.com/articles/132-pattern/
@@ -113,6 +119,69 @@ public class One_Three_Two_Pattern {
 //            else if(n == stack.peek().min) {
 //            	continue;
 //            }
+        }
+        return false;
+    }
+    
+    // Solution 2: Brute force
+    // Refer to
+    // https://leetcode.com/articles/132-pattern/
+    // The simplest solution is to consider every triplet (i, j, k)(i,j,k) and check if the 
+    // corresponding numbers satisfy the 132 criteria. If any such triplet is found, we can 
+    // return a True value. If no such triplet is found, we need to return a False value.
+    // Complexity Analysis
+    // Time complexity : O(n^3) Three loops are used to consider every possible triplet. 
+    //                          Here, nn refers to the size of numsnums array.
+    // Space complexity : O(1). Constant extra space is used.
+    public boolean find132pattern_brute_force(int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return false;
+        }
+        
+        for(int i = 0; i < nums.length - 2; i++) {
+            for(int j = i + 1; j < nums.length - 1; j++) {
+                for(int k = j + 1; k < nums.length; k++) {
+                    if(nums[k] > nums[i] && nums[k] < nums[j]) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    
+    // Solution 3: Better brute force
+    // Refer to
+    // https://leetcode.com/articles/132-pattern/
+    // We can improve the last approach to some extent, if we make use of some observations. 
+    // We can note that for a particular number nums[j] chosen as 2nd element in the 
+    // 132 pattern, if we don't consider nums[k](the 3rd element) for the time being, 
+    // our job is to find out the first element, nums[i](i) which is lesser than nums[j].
+    // Now, assume that we have somehow found a nums[i],nums[j] pair. Our task now reduces to 
+    // finding out a nums[k](k>j>i), which falls in the range (nums[i], nums[j]). Now, 
+    // to maximize the likelihood of a nums[k] falling in this range, we need to increase 
+    // this range as much as possible.
+    // Since, we started off by fixing a nums[j], the only option in our hand is to choose a 
+    // minimum value of nums[i] given a particular nums[j]. Once, this pair nums[i],nums[j]
+    // , has been found out, we simply need to traverse beyond the index j to find if a nums[k] 
+    // exists for this pair satisfying the 132 criteria.
+    // Based on the above observations, while traversing over the nums array choosing various 
+    // values of nums[j], we simultaneously keep a track of the minimum element found 
+    // so far(excluding nums[j]). This minimum element always serves as the nums[i] for 
+    // the current nums[j]. Thus, we only need to traverse beyond the jth index to check the 
+    // nums[k]'s to determine if any of them satisfies the 132 criteria.
+    public boolean find132pattern_better_brute_force(int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return false;
+        }
+        int min_i = Integer.MAX_VALUE;
+        for(int j = 0; j < nums.length; j++) {
+        	min_i = Math.min(min_i, nums[j]);
+        	for(int k = j + 1; k < nums.length; k++) {
+        		if(nums[k] < nums[j] && nums[k] > min_i) {
+        			return true;
+        		}
+        	}
         }
         return false;
     }
