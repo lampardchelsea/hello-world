@@ -31,9 +31,25 @@ import java.util.Stack;
  * Solution
  * https://leetcode.com/articles/132-pattern/
  * https://discuss.leetcode.com/topic/68193/java-o-n-solution-using-stack-in-detail-explanation
+ * https://discuss.leetcode.com/topic/68193/java-o-n-solution-using-stack-in-detail-explanation/5
  * https://discuss.leetcode.com/topic/68193/java-o-n-solution-using-stack-in-detail-explanation/11
  */
 public class One_Three_Two_Pattern {
+	/**
+	 * Refer to
+	 * Why we come up with Stack ?
+	 * https://discuss.leetcode.com/topic/68193/java-o-n-solution-using-stack-in-detail-explanation/5
+	 * You are absolutely right because intuition doesn't lead us to Stack solution for this problem.
+	 * At the very beginning, I tried to use two variables, i.e. min, max, to denote the min-max intervals, 
+	 * and update them as I encounter new numbers, but I soon found that only two variables cannot easily 
+	 * maintain the position information (as you update min and max, the previous ones lost).
+	 * So we need to keep "multiple min-max pairs" here. Then what can we use? We can use a List, which 
+	 * is definitely feasible. And what is the advantage of List? That is we can randomly access any 
+	 * position, but as I go along my thinking process to figure out how to maintain/merge different 
+	 * intervals, I found that we only need to fetch those intervals from the List sequentially, 
+	 * so List seems to be too "powerful" at this time, and Stack is a perfect LIFO container.
+	 * BTW, for all Stack questions, we can always use List, but Stack makes it easier to code and maintain.
+	 */
 	private class Pair{
         int min, max;
         public Pair(int min, int max){
@@ -41,6 +57,9 @@ public class One_Three_Two_Pattern {
             this.max = max;
         }
     }
+	
+	
+
 	
 	// A good test case for this method: 
 	// Refer to
@@ -105,4 +124,3 @@ public class One_Three_Two_Pattern {
 		System.out.print(result);
 	}
 }
-
