@@ -33,3 +33,9 @@
 <p>4. [Introduce fake column] (https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/22)
 <p>5. [Not introduce fake column] (https://discuss.leetcode.com/topic/1634/a-o-n-2-solution-based-on-largest-rectangle-in-histogram/27)
 <p>6. [Largest Rectangular Area in a Histogram | Set 2] (http://www.geeksforgeeks.org/largest-rectangle-under-histogram/)
+
+<p>132 Pattern
+<p>1. [6 approaches to solve this problem] (https://leetcode.com/articles/132-pattern/)
+<p>2. [Stack solution] (https://discuss.leetcode.com/topic/68193/java-o-n-solution-using-stack-in-detail-explanation)
+<p>3. [中文解释] (https://discuss.leetcode.com/topic/68193/java-o-n-solution-using-stack-in-detail-explanation/11)
+<p>4. [Why we come up with Stack ?] (https://discuss.leetcode.com/topic/68193/java-o-n-solution-using-stack-in-detail-explanation/5)
