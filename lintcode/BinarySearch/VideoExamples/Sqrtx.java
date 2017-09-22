@@ -17,6 +17,8 @@
  *
  * Solution
  * https://aaronice.gitbooks.io/lintcode/content/number/sqrt_x.html
+ * Follow up --> Input as double
+ * https://segmentfault.com/a/1190000004199865
  *
  * The template below
     int start = 1, end = max // 1. 找到可行解范围
