@@ -8,3 +8,6 @@
 
 <p>Search A 2D Matrix
 <p>1. [[刷题笔记] LeetCode 240 - Search a 2D Matrix II ] (http://blog.leanote.com/post/westcode/%5B%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%5D-LeetCode-240-Search-a-2D-Matrix-II)
+
+<p>Validate Perfect Square
+<P>1. [[LeetCode] Valid Perfect Square 检验完全平方数 Math method] (http://www.cnblogs.com/grandyang/p/5619296.html)
