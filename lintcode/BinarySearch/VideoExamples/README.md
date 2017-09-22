@@ -56,7 +56,10 @@
 <p>4. [3种方法英文解释] (http://www.tangjikai.com/algorithms/lintcode-390-find-peak-element-ii)
 <p>5. [Time Complexity分析] (http://courses.csail.mit.edu/6.006/spring11/lectures/lec02.pdf)
 
-
+<p>SqrtX
+<p>1. [Template] (https://aaronice.gitbooks.io/lintcode/content/number/sqrt_x.html)
+<p>2. [Tricky Part, why choose start == mid when mid * mid == target] (http://www.cnblogs.com/yuzhangcmu/p/4198907.html)
+<p>3. [Sqrt(X) follow up, how about input is Double ?] (https://segmentfault.com/a/1190000004199865)
 
 
 
