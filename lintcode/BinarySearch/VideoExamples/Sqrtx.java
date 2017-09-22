@@ -29,3 +29,48 @@
       }
     }
 */
+
+public class Sqrtx {
+	public int mySqrt(int x) {
+        if(x == 0) {
+            return 0;
+        }
+        // Caution: Using 'long' instead of 'int'
+        // E.g 
+        // Input: 2147395599
+        // Output: 2147395598
+        // Expected: 46339
+        // When given this case, mid * mid over integer range −32,768 to 32,767
+        long start = 1, end = x;
+        while(start + 1 < end) {
+            long mid = start + (end - start) / 2;
+            if(mid * mid < x) {
+                start = mid;
+            } else if(mid * mid > x){
+                end = mid;
+            } else {
+            	// When mid * mid == x, must assign to start not end, why ?
+            	// Because if evolution a number only take its floor value (not ceiling)
+            	// E.g Evolution 90 => 9
+            	// Refer to
+            	// http://www.cnblogs.com/yuzhangcmu/p/4198959.html
+            	// 其实这里有一个非常trick地地方：就是当循环终止的时候，l一定是偏小，r一定是偏大（实际的值是介于l和r之间的）：
+            	// 比如以下的例子，90开根号是9.48 按照开方向下取整的原则, 我们应该返回L.
+            	// 以下展示了在循环过程中，L,R两个变量的变化过程
+                start = mid;
+            }
+        }
+        if(start * start <= x) {
+            return (int)start;
+        } else {
+            return (int)end;
+        }
+    }
+	
+	public static void main(String[] args) {
+		Sqrtx s = new Sqrtx();
+		int x = 2147395599;
+		int result = s.mySqrt(x);
+		System.out.print(result);
+	}
+}
