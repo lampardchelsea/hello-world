@@ -29,7 +29,6 @@
       }
     }
 */
-
 public class Sqrtx {
 	public int mySqrt(int x) {
         if(x == 0) {
@@ -67,10 +66,42 @@ public class Sqrtx {
         }
     }
 	
+	// Follow up: If given as double, how to handle ?
+	public double mySqrt_Double(double x) {
+		// 二分浮点数，和二分整数不同
+		// 一般都有一个精度要求，譬如这题要求精度为小数点后8位，即1e-8，
+		// 也就是只要我们二分的结果达到了这个精度的要求就可以了，
+		// 所以需要让right和left小于一个我们事先设定好的精度值eps
+		// 一般eps的设定是1e-8，因为这题的要求就是1e-8则设定为1e-12
+		// 最后选择left或right作为一个结果即可
+		double left = 0.0;
+		double right = x;
+		// EPS: Epsilon
+		// Floating-point relative accuracy
+		double eps = 1e-12;
+		if(right < 1.0) {
+			right = 1.0;
+		}
+		while(left + eps < right) {
+			double mid = (right + left) / 2;
+			if(mid * mid < x) {
+				left = mid;
+			} else if(mid * mid > x) {
+				right = mid;
+			} else {
+				left = mid;
+			}
+		}
+		return left;
+	}
+	
+	
 	public static void main(String[] args) {
 		Sqrtx s = new Sqrtx();
 		int x = 2147395599;
-		int result = s.mySqrt(x);
+		double x_double = 90.0003;
+		//int result = s.mySqrt(x);
+		double result = s.mySqrt_Double(x_double);
 		System.out.print(result);
 	}
 }
