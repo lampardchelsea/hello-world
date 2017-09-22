@@ -49,5 +49,17 @@
 <p>Median Of Two Sorted Arrays
 <p>1. [Concise JAVA solution based on Binary Search] (https://discuss.leetcode.com/topic/28602/concise-java-solution-based-on-binary-search/32?page=2)
 
+<p>Find Peak Element II
+<p>1. [Find Peak Element] (https://github.com/lampardchelsea/hello-world/blob/master/lintcode/BinarySearch/VideoExamples/FindPeakElement.java)
+<p>2. [二分法中文解释] (https://zhengyang2015.gitbooks.io/lintcode/find_peak_element_ii_390.html)
+<p>3. [LintCode Find Peak Element II（查找峰值II）3种方法] (http://blog.csdn.net/jmspan/article/details/51724388)
+<p>4. [3种方法英文解释] (http://www.tangjikai.com/algorithms/lintcode-390-find-peak-element-ii)
+<p>5. [Time Complexity分析] (http://courses.csail.mit.edu/6.006/spring11/lectures/lec02.pdf)
+
+
+
+
+
+
 
 
