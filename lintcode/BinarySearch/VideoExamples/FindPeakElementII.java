@@ -95,7 +95,63 @@ public class FindPeakElementII {
         }
     }
     
-    // Solution 2:
+    
+    
+    // Solution 2: Time Complexity O(mlogn) / Space O(1)
+    // Refer to
+    // http://www.tangjikai.com/algorithms/lintcode-390-find-peak-element-ii
+    /**
+     Solution 1: Binary search for row
+		Steps:
+		1. Get the maximum point in the center row, A[mid][col].
+		2. 
+		If A[mid][col] < A[mid + 1][col], cut off the top half(l = mid + 1)
+		                     A[mid][col] < A[mid + 1][col]: the bottom half mush contains a peak element
+		If A[mid][col] < A[mid - 1][col], cut off the top half(r = mid - 1)
+		                     A[mid][col] < A[mid - 1][col]: the top half mush contains a peak element
+		Else, return A[mid][col]
+		                     A[mid][col] > A[mid-1][col] and > A[mid+1][col] and 
+		                     it is the largest in row => peak element
+     */
+    public List<Integer> findPeakII_BinarySearch(int[][] A) {
+    	List<Integer> result = new ArrayList<Integer>();
+    	if(A == null || A.length == 0 || A[0].length == 0) {
+    		return result;
+    	}
+    	int start = 1;
+    	int end = A.length - 2;
+    	while(start + 1 < end) {
+    		int mid = start + (end - start) / 2;
+    		int col = findColumn(mid, A);
+    		if(A[mid][col] < A[mid - 1][col]) {
+    			end = mid;
+    		} else if(A[mid][col] < A[mid + 1][col]) {
+    			start = mid;
+    		} else {
+    			result.add(mid);
+    			result.add(col);
+    			break;
+    		}
+    	}
+    	return result;
+    }
+    
+    private int findColumn(int row, int[][] A) {
+    	int max_col = 0;
+    	for(int i = 0; i < A[row].length; i++) {
+    		if(A[row][i] > A[row][max_col]) {
+    			max_col = i;
+    		}
+    	}
+    	return max_col;
+    }
+    
+    
+    
+    
+    // Solution 3:Time Complexity O(m + n) / Space O(1)
+    // This solution is continuously optimization of Solution 2, which use binary search
+    // on both dimensions
     // Refer to
     // https://zhengyang2015.gitbooks.io/lintcode/find_peak_element_ii_390.html
     // 和在数组中find peak element一样，对行和列分别进行二分查找。
@@ -120,7 +176,7 @@ public class FindPeakElementII {
               = c(2n+m) 
               = O(m+n)
      */
-    public List<Integer> findPeakII_BinarySearch(int[][] A) {
+    public List<Integer> findPeakII_BinarySearch_2(int[][] A) {
     	List<Integer> result = new ArrayList<Integer>();
     	if(A == null || A.length == 0 || A[0].length == 0) {
     		return result;
@@ -193,9 +249,9 @@ public class FindPeakElementII {
     	            	 };
 //    	List<Integer> result = f.findPeakII(A);
     	List<Integer> result = f.findPeakII_BinarySearch(A);
+//    	List<Integer> result = f.findPeakII_BinarySearch_2(A);
     	for(Integer i : result) {
     		System.out.print(i + " ");
     	}
     }
 }
-
