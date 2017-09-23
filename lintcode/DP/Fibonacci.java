@@ -28,8 +28,9 @@
  * http://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
  * 
  * 
- * Follow up
+ * Follow up 1: 
  * Write a function which would check if a given number belongs to Fibonacci sequence ?
+ * https://stackoverflow.com/questions/3139645/determining-whether-a-number-is-a-fibonacci-number
  * First few Fibonacci numbers are 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 141, ..
 
 	Examples :
@@ -43,6 +44,11 @@
 	Input : 41
 	Output : No
  * 
+ * Follow up 2:
+ * How to print the fibonacci sequence in reverse order WITHOUT using a loop
+ * https://stackoverflow.com/questions/25836313/how-to-print-the-fibonacci-sequence-in-reverse-order-without-using-a-loop
+ * How to reverse the Fibonacci Series in c without using an Array?
+ * https://stackoverflow.com/questions/35116796/how-to-reverse-the-fibonacci-series-in-c-without-using-an-array
  * 
  * http://www.geeksforgeeks.org/check-number-fibonacci-number/
  * http://commoninterview.com/Programming_Interview_Questions/fibonacci-numbers-interview-questions-1/
@@ -127,7 +133,7 @@ public class Fibonacci {
         return fibonacci(n - 1) + fibonacci(n - 2);
     }
     
-    // Follow up
+    // Follow up 1:
     // Write a function which would check if a given number belongs to Fibonacci sequence
     // Refer to
     // http://www.geeksforgeeks.org/check-number-fibonacci-number/
@@ -194,10 +200,39 @@ public class Fibonacci {
         return (s*s == x);
     }
 
+    
+    // Follow up 2:
+    // How to print the fibonacci sequence in reverse order WITHOUT using a loop
+    // How to reverse the Fibonacci Series in c without using an Array?
+    public int reverseFibonacci(int n) {
+    	int a = 0;
+    	int b = 1;
+    	for(int i = 0; i < n - 1; i++) {
+    		int c = a + b;
+    		a = b;
+    		b = c;
+    	}
+    	// Inverse fibonacci
+    	// The while(a >= 0) + System.out.println(a); will cause one more 1,
+    	// because additional one more statement execute as a = t will assign
+    	// t = 1 back to a, just use while(b > 0) + System.out.println(a);
+    	// to exactly print out n numbers
+    	while(b > 0) {
+    		System.out.println(a);
+    		int t = b - a;
+    		b = a;
+    		a = t;
+    	}
+    	return 0;
+    }
+    
+    
     public static void main(String[] args) {
     	Fibonacci f = new Fibonacci();
-    	int num = 670067;
-    	boolean result = f.isANumberFibonacci(num);
-    	System.out.print(result);
+    	int num = 10;
+    	//boolean result = f.isANumberFibonacci(num);
+        //int result = f.fibonacci_2(num);
+        f.reverseFibonacci(10);
+    	//System.out.print(result);
     }
 }
