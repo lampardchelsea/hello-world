@@ -11,3 +11,7 @@
 <p>6. [How to print the fibonacci sequence in reverse order WITHOUT using a loop] (https://stackoverflow.com/questions/25836313/how-to-print-the-fibonacci-sequence-in-reverse-order-without-using-a-loop)
 <p>7. [How to reverse the Fibonacci Series in c without using an Array?] (https://stackoverflow.com/questions/35116796/how-to-reverse-the-fibonacci-series-in-c-without-using-an-array)
 <p>8. [Basically it's a fibonacci] (https://discuss.leetcode.com/topic/5371/basically-it-s-a-fibonacci)
+
+<p>Climbing Stairs
+<p>1. [Template] (http://www.jiuzhang.com/solutions/climbing-stairs/)
+<p>2. [Basically it's a fibonacci] (https://discuss.leetcode.com/topic/5371/basically-it-s-a-fibonacci)
