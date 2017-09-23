@@ -139,6 +139,48 @@ public class Fibonacci {
      * A number is Fibonacci if and only if one or both of (5*n2 + 4) or (5*n2 – 4) is a 
      * perfect square (Source: Wiki). Following is a simple program based on this concept.
      */
+    // Style 1:
+    // Refer to
+    // https://stackoverflow.com/questions/3139645/determining-whether-a-number-is-a-fibonacci-number
+    /**
+     * Given what you've done already, however, I'd probably use a more brute-force approach, 
+     * such as the following:
+     * Generate a fibonacci number
+		(1) If it's less than the target number, generate the next fibonacci and repeat
+		(2) If it is the target number, then success
+		(3) If it's bigger than the target number, then failure.
+		(4) I'd probably use a recursive method, passing in a current n-value 
+		    (ie. so it calculates the nth fibonacci number) and the target number.
+     */
+    public boolean isANumberFibonacci(int num) {
+    	int i = 1;
+    	while(i > 0) {
+    		int fibNum = generateFibonacci(i);
+    		if(fibNum != num) {
+    			if(fibNum > num) {
+    				return false;
+    			} else {
+    				i++;
+    			}
+    		} else {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+    
+    private int generateFibonacci(int n) {
+    	int a = 0;
+    	int b = 1;
+    	for(int i = 0; i < n - 1; i++) {
+    		int c = a + b;
+    		a = b;
+    		b = c;
+    	}
+    	return a;
+    }
+    
+    // Style 2:
     // Returns true if n is a Fibonacci Number, else false
     public boolean isFibonacci(int n) {
         // n is Fibonacci if one of 5*n*n + 4 or 5*n*n - 4 or both
@@ -147,10 +189,15 @@ public class Fibonacci {
                isPerfectSquare(5*n*n - 4);
     }
     // A utility method that returns true if x is perfect square
-    public boolean isPerfectSquare(int x) {
+    private boolean isPerfectSquare(int x) {
         int s = (int) Math.sqrt(x);
         return (s*s == x);
     }
 
-    
+    public static void main(String[] args) {
+    	Fibonacci f = new Fibonacci();
+    	int num = 670067;
+    	boolean result = f.isANumberFibonacci(num);
+    	System.out.print(result);
+    }
 }
