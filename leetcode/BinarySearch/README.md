@@ -11,3 +11,7 @@
 
 <p>Validate Perfect Square
 <P>1. [[LeetCode] Valid Perfect Square 检验完全平方数 Math method] (http://www.cnblogs.com/grandyang/p/5619296.html)
+
+<p>Pow (X, N)
+<p>1. [5 different choices when talk with interviewers] (https://discuss.leetcode.com/topic/21837/5-different-choices-when-talk-with-interviewers)
+<p>2. [Corner case handling] (https://discuss.leetcode.com/topic/21837/5-different-choices-when-talk-with-interviewers/3)
