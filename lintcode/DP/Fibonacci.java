@@ -89,16 +89,33 @@ public class Fibonacci {
      * two numbers only because that is all we need to get the next Fibonacci 
      * number in series
      */
+    // Style 1: i from 2 to n - 1
+    // Refer to
+    // https://discuss.leetcode.com/topic/5371/basically-it-s-a-fibonacci
     public int fibonacci_2(int n) {
         int a = 0;
         int b = 1;
-        for(int i = 0; i < n - 1; i++) {
-            int c = a + b;
+        int c = 0;
+        for(int i = 2; i < n; i++) {
+            c = a + b;
             a = b;
             b = c;
         }
-        return a;
+        return c;
     }
+    
+    // Style 2: i from 0 to n - 2
+//    public int fibonacci_2(int n) {
+//        int a = 0;
+//        int b = 1;
+//        for(int i = 0; i < n - 1; i++) {
+//            int c = a + b;
+//            a = b;
+//            b = c;
+//        }
+//        return a;
+//    }
+    
     
     // Solution 3: Recursive Solution (Bad)
     // Refer to
@@ -175,15 +192,18 @@ public class Fibonacci {
     	return false;
     }
     
+    // Refer to
+    // https://discuss.leetcode.com/topic/5371/basically-it-s-a-fibonacci
     private int generateFibonacci(int n) {
     	int a = 0;
     	int b = 1;
-    	for(int i = 0; i < n - 1; i++) {
-    		int c = a + b;
+    	int c = 0;
+    	for(int i = 2; i < n; i++) {
+    		c = a + b;
     		a = b;
     		b = c;
     	}
-    	return a;
+    	return c;
     }
     
     // Style 2:
@@ -204,6 +224,7 @@ public class Fibonacci {
     // Follow up 2:
     // How to print the fibonacci sequence in reverse order WITHOUT using a loop
     // How to reverse the Fibonacci Series in c without using an Array?
+    // Style 1: i from 0 to n - 2
     public int reverseFibonacci(int n) {
     	int a = 0;
     	int b = 1;
@@ -225,6 +246,25 @@ public class Fibonacci {
     	}
     	return 0;
     }
+    
+    // Style 2: i from 2 to n - 1
+//    public int reverseFibonacci(int n) {
+//    	int a = 0;
+//    	int b = 1;
+//    	int c = 0;
+//    	for(int i = 2; i < n; i++) {
+//    		c = a + b;
+//    		a = b;
+//    		b = c;
+//    	}
+//    	while(a >= 0) {
+//    		System.out.println(b);
+//    		int t = b - a;
+//    		b = a;
+//    		a = t;
+//    	}
+//    	return 0;
+//    }
     
     
     public static void main(String[] args) {
