@@ -28,6 +28,20 @@ public class FindTheMissingNumber {
 	 */
 	public int findMissing(int[] nums) {
 		/**
+		 *      int N = nums.size();
+			    int missing = N;  --> N is the special case which could not add
+			                          into for loop, use it as start value
+			    for (int i = 0; i < N; ++i) { --> 外层循环用于确保每个数都待在它应该在的位置，即nums[i] == i
+			        while (nums[i] != i) { --> 而内层循环用于把属于这个位置的数给「换」回来
+			            if (nums[i] == N) {
+			                missing = i;
+			                break;
+			            }
+			            swap(nums[i], nums[nums[i]]);
+			        }
+		    }		    
+			    return missing;
+		 *    
 		 * 外层循环用于确保每个数都待在它应该在的位置，即nums[i] == i，而内层循环用于把属于这个位置的数给「换」回来。
 		 * 这里有一个特殊情况，那就是数N，它很显然无法被放进数组，于是我们就把它当做缺失数的初始值，并且当在数组中碰到它时，
 		 * 我们就把它作为一个「锚」不去主动移动它。每次当我们在某个位置发现它时，那个位置应该存在的数就有可能是缺失数。
@@ -38,6 +52,9 @@ public class FindTheMissingNumber {
 		int n = nums.length;
 		int i = 0;
 		while(i < n) {
+			// Caution: Don't miss condition 'nums[i] < n'
+			// e.g [9,8,7,6,2,0,1,5,4] expected 3, if missing 'nums[i] < n'
+			// ArrayIndexOutOfBoundsException: 9 
 			while(nums[i] != i && nums[i] < n) {
 				int t = nums[i];
 				nums[i] = nums[t];
@@ -69,5 +86,12 @@ public class FindTheMissingNumber {
             sum -= i;
         }
         return (int)sum;
+    }
+    
+    public static void main(String[] args) {
+    	FindTheMissingNumber f = new FindTheMissingNumber();
+    	int[] nums = {9,8,7,6,2,0,1,5,4};
+    	int result = f.findMissing(nums);
+    	System.out.print(result);
     }
 }
