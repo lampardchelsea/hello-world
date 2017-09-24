@@ -52,8 +52,8 @@
    Then the algorithm removes the last element in q1. We swap q1 with q2 to avoid copying 
    all elements from q2 to q1.
    Complexity Analysis
-   Time complexity : O(n). The algorithm dequeues n elements from q1 and enqueues n - 1elements 
-   to q2, where nn is the stack size. This gives 2n - 12n−1 operations.
+   Time complexity : O(n). The algorithm dequeues n elements from q1 and enqueues n - 1  elements 
+   to q2, where n is the stack size. This gives 2n - 1 operations.
    Space complexity : O(1).
 */
 class MyStack {
@@ -68,18 +68,21 @@ class MyStack {
     }
     
     /** Push element x onto stack. */
+    // O(1)
     public void push(int x) {
         q1.add(x);
         top = x;
     }
     
     /** Removes the element on top of the stack and returns that element. */
+    // O(n)
     public int pop() {
         while(q1.size() > 1) {
             top = q1.remove();
             q2.add(top);
         }
         int result = q1.remove();
+        // We swap q1 with q2 to avoid copying all elements from q2 to q1.
         Queue<Integer> temp = q1;
         q1 = q2;
         q2 = temp;
@@ -97,11 +100,82 @@ class MyStack {
     }
 }
 
+
+// Solution 2:
 /**
- * Your MyStack object will be instantiated and called as such:
- * MyStack obj = new MyStack();
- * obj.push(x);
- * int param_2 = obj.pop();
- * int param_3 = obj.top();
- * boolean param_4 = obj.empty();
- */
+ * Algorithm
+   Push
+   The algorithm inserts each new element to queue q2 and keep it as the top element. 
+   In case queue q1 is not empty (there are elements in the stack), we remove all elements 
+   from q1 and add them to q2. In this way the new inserted element (top element in the stack) 
+   will be always positioned at the front of q2. We swap q1 with q2 to avoid copying all 
+   elements from q2 to q1.
+   Complexity Analysis
+   Time complexity : O(n). The algorithm removes n elements from q1 and inserts n + 1 
+   elements to q2, where n is the stack size. This gives 2n + 12n+1 operations. The operations 
+   add and remove in linked lists has O(1) complexity.
+   Space complexity : O(1).
+   Pop
+   The algorithm dequeues an element from queue q1 and keeps front element of q1 as top.
+   Complexity Analysis
+   Time complexity : O(1)
+   Space complexity : O(1)
+   In both approaches empty and top operations have the same implementation.
+   Empty
+   Queue q1 always contains all stack elements, so the algorithm checks q1 size to 
+   return if the stack is empty.
+   Time complexity : O(1).
+   Space complexity : O(1).
+   Top
+   The top element is kept in constant memory and is modified each time when we push or pop an element.
+   Time complexity : O(1)
+   The top element has been calculated in advance and only returned in top operation.
+   Space complexity : O(1)
+*/
+class MyStack {
+    Queue<Integer> q1;
+    Queue<Integer> q2;
+    int top;
+
+    /** Initialize your data structure here. */
+    public MyStack() {
+        q1 = new LinkedList<Integer>();
+        q2 = new LinkedList<Integer>();
+    }
+    
+    /** Push element x onto stack. */
+    public void push(int x) {
+        q2.add(x);
+        top = x;
+        while(!q1.isEmpty()) {
+            q2.add(q1.remove());
+        }
+        Queue<Integer> temp = q1;
+        q1 = q2;
+        q2 = temp;
+    }
+    
+    /** Removes the element on top of the stack and returns that element. */
+    public int pop() {
+        // Since already swap q2 to q1, just return q1's first element,
+        // also need to update top to next element as q1.peek()
+        int result = q1.remove(); 
+        if(!q1.isEmpty()) {
+            top = q1.peek();
+        }
+        return result;
+    }
+    
+    /** Get the top element. */
+    public int top() {
+        return top;
+    }
+    
+    /** Returns whether the stack is empty. */
+    public boolean empty() {
+        return q1.size() == 0;
+    }
+}
+
+
+
