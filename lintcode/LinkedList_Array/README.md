@@ -11,3 +11,8 @@
 <p>Find Missing Number
 <p>1. [Template (Math + Bukcet Sort)] (http://www.jiuzhang.com/solution/find-the-missing-number/)
 <p>2. [中文解释] (http://blog.hyoung.me/cn/2017/02/find-the-missing-number/)
+
+<p>First Missing Positive
+<p>1. [中文解释1] (http://blog.hyoung.me/cn/2017/02/find-the-missing-number/)
+<p>2. [中文解释2] (http://www.cnblogs.com/yuzhangcmu/p/4200096.html)
+<p>3. [中文解释3] (https://segmentfault.com/a/1190000003488849)
