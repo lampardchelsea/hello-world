@@ -178,4 +178,72 @@ class MyStack {
 }
 
 
+// Solution 3
+/**
+ * Algorithm
+   Push
+   When we push an element into a queue, it will be stored at back of the queue due to 
+   queue's properties. But we need to implement a stack, where last inserted element 
+   should be in the front of the queue, not at the back. To achieve this we can invert 
+   the order of queue elements when pushing a new element.
+   Complexity Analysis
+   Time complexity : O(n). The algorithm removes n elements and inserts n + 1 elements 
+   to q1 , where n is the stack size. This gives 2n + 1 operations. The operations add 
+   and remove in linked lists has O(1) complexity.
+   Space complexity : O(1).
+   Pop
+   The last inserted element is always stored at the front of q1 and we can pop it for constant time.
+   Complexity Analysis
+   Time complexity : O(1).
+   Space complexity : O(1).
+   Empty
+   Queue q1 contains all stack elements, so the algorithm checks if q1 is empty.
+   Time complexity : O(1).
+   Space complexity : O(1).
+   Top
+   The top element is always positioned at the front of q1. Algorithm return it.
+   Time complexity : O(1).
+   Space complexity : O(1).
+*/
+class MyStack {
+    Queue<Integer> q1;
+    int top;
+    
+    /** Initialize your data structure here. */
+    public MyStack() {
+        q1 = new LinkedList<Integer>();
+    }
+    
+    /** Push element x onto stack. */
+    public void push(int x) {
+        q1.add(x);
+        top = x;
+        int size = q1.size();
+        while(size > 1) {
+            q1.add(q1.remove());
+            size--;
+        }
+    }
+    
+    /** Removes the element on top of the stack and returns that element. */
+    public int pop() {
+        int result = q1.remove();
+        if(!q1.isEmpty()) {
+            top = q1.peek();
+        }
+        return result;
+    }
+    
+    /** Get the top element. */
+    public int top() {
+        return top;
+    }
+    
+    /** Returns whether the stack is empty. */
+    public boolean empty() {
+        return q1.size() == 0;
+    }
+}
+
+
 
