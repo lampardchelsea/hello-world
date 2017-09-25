@@ -61,7 +61,8 @@
 <p>2. [Tricky Part, why choose start == mid when mid * mid == target] (http://www.cnblogs.com/yuzhangcmu/p/4198907.html)
 <p>3. [Sqrt(X) follow up, how about input is Double ?] (https://segmentfault.com/a/1190000004199865)
 
-
+<p>Find The Duplicate Number
+<p>1. [Binary Search + Walker/Runner LinkedList Contains Cycle ?] (https://segmentfault.com/a/1190000003817671)
 
 
 
