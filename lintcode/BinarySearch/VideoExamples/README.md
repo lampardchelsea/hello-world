@@ -64,6 +64,7 @@
 <p>Find The Duplicate Number
 <p>1. [Binary Search + Walker/Runner LinkedList Contains Cycle ?] (https://segmentfault.com/a/1190000003817671)
 
-
+<p>Wood Cut
+<p>1. [Template] (http://www.jiuzhang.com/solutions/wood-cut/)
 
 
