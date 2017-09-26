@@ -56,6 +56,17 @@
 <p>4. [3种方法英文解释] (http://www.tangjikai.com/algorithms/lintcode-390-find-peak-element-ii)
 <p>5. [Time Complexity分析] (http://courses.csail.mit.edu/6.006/spring11/lectures/lec02.pdf)
 
+<p> For abnormal binary search questions use below template
+    int start = 1, end = max // 1. 找到可行解范围
+    while(start + 1 < end) {
+        int mid = start + (end - start) / 2; // 2.猜答案
+      if(check(mid)) {  // 3.检验答案
+          start = mid; // 4. 调查搜索范围 
+      } else {
+          end = mid; // 4. 调查搜索范围
+      }
+    }
+
 <p>SqrtX
 <p>1. [Template] (https://aaronice.gitbooks.io/lintcode/content/number/sqrt_x.html)
 <p>2. [Tricky Part, why choose start == mid when mid * mid == target] (http://www.cnblogs.com/yuzhangcmu/p/4198907.html)
