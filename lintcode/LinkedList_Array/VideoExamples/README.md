@@ -60,4 +60,8 @@
 <p>Search in a Big Sorted Array
 <p>1. [LintCode 447. Search in a Big Sorted Array 原创Java参考解答] (http://www.haobanfa.info/lintcode-447-search-big-sorted-array-%E5%8E%9F%E5%88%9Bjava%E5%8F%82%E8%80%83%E8%A7%A3%E7%AD%94/)
 
+<p>Number of Airplanes in the Sky
+<p>1. [中文解释] (https://aaronice.gitbooks.io/lintcode/content/data_structure/number_of_airplanes_in_the_sky.html)
+<p>2. [Sweep Line Template] (http://www.jiuzhang.com/solutions/number-of-airplanes-in-the-sky/)
+
 
