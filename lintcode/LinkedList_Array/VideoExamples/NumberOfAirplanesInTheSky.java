@@ -73,6 +73,7 @@ public class NumberOfAirplanesInTheSky {
 	
 	
 	// Solution 2: Sweep line
+	// Time Complexity: O(nlogn)
 	/**
 	 * Sweep Line - 扫描线法
 	 * 可以对于各个飞行时间段按照start时间进行排序（附加start，end的flag，如果time相同时，end在start前）。那么遍历
@@ -91,12 +92,12 @@ public class NumberOfAirplanesInTheSky {
     	if(airplanes == null || airplanes.size() == 0) {
     		return 0;
     	}
-        List<Point> list = new ArrayList<Point>();
-        for(Interval i : airplanes) {
+        List<Point> list = new ArrayList<Point>();     
+        for(Interval i : airplanes) {    --> O(2n) Time Complexity
             list.add(new Point(i.start, 1));
             list.add(new Point(i.end, 0));
         }
-        Collections.sort(list, new Comparator<Point>() {
+        Collections.sort(list, new Comparator<Point>() {   --> O(nlogn) Time Complexity
            public int compare(Point a, Point b) {
                // Caution: Must consider time equal case as below
                // E.g [[10,14],[10,15],[10,16],[1,10],[2,10],[3,10],[4,10]]
@@ -110,7 +111,7 @@ public class NumberOfAirplanesInTheSky {
         });
         int count = 0;
         int result = 0;
-        for(Point p : list) {
+        for(Point p : list) {   --> O(n) Time Complexity
             if(p.flag == 1) {
                 count++;
             } else {
