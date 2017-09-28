@@ -207,10 +207,11 @@ binary-search-java-code/29)
 <p>Meeting Rooms
 <p>1. [Intuitive O(n^2logn) way and customized Comparator O(nlogn) way] (https://discuss.leetcode.com/topic/20959/ac-clean-java-solution/2)
 
-<p>Max Average Subarray I
+<p>Maximum Average Subarray I
 <p>1. [PreSum + Slide Window] (https://leetcode.com/problems/maximum-average-subarray-i/solution/)
 
-
+<p>Maximum Average Subarray II
+<p>1. [Binary Search] (https://leetcode.com/articles/maximum-average-subarray-ii/)
 
 
 
