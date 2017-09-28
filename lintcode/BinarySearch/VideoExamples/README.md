@@ -78,4 +78,5 @@
 <p>Wood Cut
 <p>1. [Template] (http://www.jiuzhang.com/solutions/wood-cut/)
 
-
+<p>Maximum Average Subarray II
+<p>1. [Binary Search] (https://leetcode.com/articles/maximum-average-subarray-ii/)
