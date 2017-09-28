@@ -15,3 +15,6 @@
 <p>Pow (X, N)
 <p>1. [5 different choices when talk with interviewers] (https://discuss.leetcode.com/topic/21837/5-different-choices-when-talk-with-interviewers)
 <p>2. [Corner case handling] (https://discuss.leetcode.com/topic/21837/5-different-choices-when-talk-with-interviewers/3)
+
+<p>Maximum Average Subarray II
+<p>1. [Binary Search] (https://leetcode.com/articles/maximum-average-subarray-ii/)
