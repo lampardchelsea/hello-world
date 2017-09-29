@@ -80,3 +80,14 @@
 
 <p>Maximum Average Subarray II
 <p>1. [Binary Search] (https://leetcode.com/articles/maximum-average-subarray-ii/)
+
+<p>扫描线问题的思路
+<p>1.事件往往是以区间的形式存在
+<p>2.区间两端代表事件的开始和结束
+<p>3.需要排序
+
+<p>The Skyline Problem
+<p>1. [Best Explaination] (https://briangordon.github.io/2014/08/the-skyline-problem.html)
+<p>2. [The Skyline Problem 天际线问题] (https://segmentfault.com/a/1190000003786782)
+
+
