@@ -9,6 +9,12 @@ import java.util.PriorityQueue;
  * https://leetcode.com/problems/the-skyline-problem/description/
  * 
  * Solution
+ * 扫描线问题的思路
+   1.事件往往是以区间的形式存在
+   2.区间两端代表事件的开始和结束
+   3.需要排序
+ *
+ *
  * https://briangordon.github.io/2014/08/the-skyline-problem.html
  * Our final solution, then, in O(nlogn)O(nlog⁡n) time, is as follows. First, 
  * sort the critical points. Then scan across the critical points from left 
