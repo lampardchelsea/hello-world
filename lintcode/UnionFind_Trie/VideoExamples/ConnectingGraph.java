@@ -1,4 +1,3 @@
-
 /**
  * Refer to
  * https://yeqiuquan.blogspot.com/2017/03/lintcode-589-connecting-graph.html
@@ -21,6 +20,19 @@
  * 
  * Solution
  * https://yeqiuquan.blogspot.com/2017/03/lintcode-589-connecting-graph.html
+ * 
+ * 并查集的两个优化（秩优化+路径压缩）
+ * http://blog.csdn.net/kalilili/article/details/43014623
+ * 路径压缩
+ * 寻找祖先时采用递归，但是一旦元素一多起来，或退化成一条链，每次GetFather都将会使用O（n）的复杂度，这显然不是我们想要的。
+ * 对此，我们必须要进行路径压缩，即我们找到最久远的祖先时“顺便”把它的子孙直接连接到它上面。这就是路径压缩了。使用路径压缩的
+ * 代码如下，时间复杂度基
+ * 本可以认为是常数的。
+ * 路径压缩可以采用迭代和递归方式递归方式实现简单但是有些题目会爆栈的。
+ * 
+ * 并查集路径压缩方法
+ * http://www.cnblogs.com/vongang/archive/2011/07/31/2122763.html
+ * 
  * 
  * 并查集完整模板
 	public class UnionFind {
