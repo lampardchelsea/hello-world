@@ -72,7 +72,7 @@ public class ConnectingGraph {
 		return find(father[x]);
 	}
 	
-	public void union(int a, int b) {
+	public void connect(int a, int b) {
 		int root_a = find(a);
 		int root_b = find(b);
 		if(root_a != root_b) {
@@ -88,10 +88,10 @@ public class ConnectingGraph {
 		ConnectingGraph c = new ConnectingGraph(5);
 		boolean q1 = c.query(1, 2);
 		System.out.println(q1);
-		c.union(1, 2);
+		c.connect(1, 2);
 		boolean q2 = c.query(1, 3);
 		System.out.println(q2);
-		c.union(2,4);
+		c.connect(2,4);
 		boolean q3 = c.query(1, 4);
 		System.out.println(q3);
 	}
