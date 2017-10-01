@@ -20,6 +20,7 @@
  * 
  * Solution
  * https://yeqiuquan.blogspot.com/2017/03/lintcode-589-connecting-graph.html
+ * 这题就是implement一下Union Find
  * 
  * 并查集的两个优化（秩优化+路径压缩）
  * http://blog.csdn.net/kalilili/article/details/43014623
