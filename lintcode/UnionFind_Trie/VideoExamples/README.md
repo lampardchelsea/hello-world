@@ -12,3 +12,6 @@
 
 <p><p>Connecting Graph III
 <p>1. [中文解释] (https://yeqiuquan.blogspot.com/2017/03/lintcode-591-connecting-graph-iii.html)
+
+<p>Number Of Islands
+<p>1. [Template] (http://www.jiuzhang.com/solutions/number-of-islands/)
