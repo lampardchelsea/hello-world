@@ -13,5 +13,8 @@
 <p><p>Connecting Graph III
 <p>1. [中文解释] (https://yeqiuquan.blogspot.com/2017/03/lintcode-591-connecting-graph-iii.html)
 
-<p>Number Of Islands
+<p>Number Of Islands I & II
 <p>1. [Template] (http://www.jiuzhang.com/solutions/number-of-islands/)
+<p>2. [解释1] (https://discuss.leetcode.com/topic/29613/easiest-java-solution-with-explanations)
+<p>3. [解释2] (https://yeqiuquan.blogspot.com/2017/03/lintcode-434-number-of-islands-ii.html)
+<p>4. [Template II] (https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands%20II.java)
