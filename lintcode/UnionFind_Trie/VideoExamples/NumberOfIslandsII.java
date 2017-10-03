@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +62,10 @@ import java.util.List;
 	compression. However I suggest first finish the basis, then discuss the improvements.
 	
  * https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands%20II.java
- * 
+ * http://www.cnblogs.com/yrbbest/p/5050749.html
+ * 二刷:
+ * 加入了Path compression以及Weight， 速度快了不少。
+ * Time Complexity - (k * logmn)  Space Complexity - O(mn),  这里k是positions的长度
  */
 public class NumberOfIslandsII {
 	private class UnionFind {
@@ -107,6 +109,7 @@ public class NumberOfIslandsII {
 		}
 	}
 	
+	// O(mn * k) k is length of positions
 	public List<Integer> numIslands2(int m, int n, int[][] positions) {
 		List<Integer> result = new ArrayList<Integer>();
 		if(positions == null || positions.length == 0) {
@@ -127,11 +130,13 @@ public class NumberOfIslandsII {
 	    	int pos = x * m + y;
 	    	if(isLand[pos] != 1) {
 	    		isLand[pos] = 1;
+	    		// O(4 * k) --> O(k)
 	    		for(int j = 0; j < 4; j++) {
 	    			int next_x = x + dx[j];
 	    			int next_y = y + dy[j];
 	    			int newPos = next_x * m + next_y;
 	    			if(next_x >= 0 && next_x < n && next_y >= 0 && next_y < m && isLand[newPos] == 1) {
+	    				// UNION operation is only changing the root parent so the running time is O(1).
 	    				u.connect(pos, newPos);
 	    				count--;
 	    			}
