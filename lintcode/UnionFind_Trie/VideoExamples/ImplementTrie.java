@@ -6,7 +6,8 @@
  *
  * Solution
  * https://aaronice.gitbooks.io/lintcode/content/trie/implement_trie.html
- * 
+ * https://www.jiuzhang.com/solution/implement-trie/ 
+ *
  * Java Implementation 1
  * Each trie node can only contains 'a'-'z' characters. So we can use a 
  * small array to store the character.+
