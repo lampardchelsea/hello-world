@@ -17,7 +17,7 @@
  * Java solution.
  */
 
-// Solution 1
+// Solution 1: Array store characters version
 class TrieNode {
     // Initialize your data structure here.
     TrieNode[] array;
@@ -98,5 +98,14 @@ public class Trie {
         }
         return p;
     }
-    
 }
+
+
+// Solution 2: 
+
+
+
+
+
+
+
