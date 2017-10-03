@@ -102,8 +102,87 @@ public class Trie {
 }
 
 
-// Solution 2: 
+// Solution 2: Use HashMap instead of Array in TrieNode class
+class TrieNode {
+    char c;
+    Map<Character, TrieNode> children = new HashMap<Character, TrieNode>();
+    boolean isLeaf;
+    
+    public TrieNode() {}
+    
+    public TrieNode(char c) {
+        this.c = c;
+    }
+}
 
+public class Trie {
+    private TrieNode root;
+
+    public Trie() {
+        root = new TrieNode();
+    }
+
+    /*
+     * @param word: a word
+     * @return: nothing
+     */
+    public void insert(String word) {
+        Map<Character, TrieNode> children = root.children;
+        for(int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            TrieNode node;
+            if(children.containsKey(c)) {
+                node = children.get(c);
+            } else {
+                node = new TrieNode(c);
+                children.put(c, node);
+            }
+            children = node.children;
+            if(i == word.length() - 1) {
+                node.isLeaf = true;
+            }
+        }
+    }
+
+    /*
+     * @param word: A string
+     * @return: if the word is in the trie.
+     */
+    public boolean search(String word) {
+        TrieNode node = searchNode(word);
+        if(node != null && node.isLeaf) {
+            return true;
+        }
+        return false;
+    }
+
+    /*
+     * @param prefix: A string
+     * @return: if there is any word in the trie that starts with the given prefix.
+     */
+    public boolean startsWith(String prefix) {
+        TrieNode node = searchNode(prefix);
+        if(node != null) {
+            return true;
+        }
+        return false;
+    }
+    
+    private TrieNode searchNode(String s) {
+        Map<Character, TrieNode> children = root.children;
+        TrieNode node = null;
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(children.containsKey(c)) {
+                node = children.get(c);
+                children = node.children;
+            } else {
+                return null;
+            }
+        }
+        return node;
+    }
+}
 
 
 
