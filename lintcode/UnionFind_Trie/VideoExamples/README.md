@@ -19,3 +19,7 @@
 <p>3. [解释2] (https://yeqiuquan.blogspot.com/2017/03/lintcode-434-number-of-islands-ii.html)
 <p>4. [Template II] (https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands%20II.java)
 <p>5. [二刷的关键] (http://www.cnblogs.com/yrbbest/p/5050749.html)
+
+<p>Implement Trie
+<p>1. [Two Ways Template] (https://aaronice.gitbooks.io/lintcode/content/trie/implement_trie.html)
+<p>2. [Template] (https://www.jiuzhang.com/solution/implement-trie/)
