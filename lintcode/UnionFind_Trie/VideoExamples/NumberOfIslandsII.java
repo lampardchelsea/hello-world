@@ -63,6 +63,10 @@ import java.util.List;
 	
  * https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands%20II.java
  * http://www.cnblogs.com/yrbbest/p/5050749.html
+ * 又是一道Union Find的经典题。这道题代码主要参考了yavinci大神。风格还是princeton Sedgewick的那一套。
+ * 这里我们可以把二维的Union-Find映射为一维的Union Find。使用Quick-Union就可以完成。但这样的话
+ * Time Complexity是O(kmn)。 想要达到O(klogmn)的话可能还需要使用Weighted-Quick Union配合path compression。二刷一定要实现。
+ * Time Complexity - O(mn * k)， Space Complexity - O(mn)
  * 二刷:
  * 加入了Path compression以及Weight， 速度快了不少。
  * Time Complexity - (k * logmn)  Space Complexity - O(mn),  这里k是positions的长度
