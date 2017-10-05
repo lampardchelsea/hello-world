@@ -24,3 +24,7 @@
 <p>Expression Expand
 <p>1. [DFS style 1] (http://www.cnblogs.com/Dylan-Java-NYC/p/6751689.html)
 <p>2. [DFS style 2] (http://www.cnblogs.com/lishiblog/p/5874147.html)
+
+<p>Word Search
+<p>1. [DFS + BackTracking] (https://discuss.leetcode.com/topic/7907/accepted-very-short-java-solution-no-additional-space)
+<p>2. [Avoid TLE] (https://discuss.leetcode.com/topic/7907/accepted-very-short-java-solution-no-additional-space/40?page=2)
