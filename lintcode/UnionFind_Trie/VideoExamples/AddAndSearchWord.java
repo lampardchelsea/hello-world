@@ -20,6 +20,8 @@
  * 
  * https://discuss.leetcode.com/topic/40275/trie-tree-java-solution-very-easy-to-understand
  */
+
+// Solution 1: Array + DFS
 class TrieNode {
     TrieNode[] children;
     boolean isEnd;
@@ -73,6 +75,68 @@ public class WordDictionary {
             return false;
         } else if(node.children[c - 'a'] != null) {
             return find(word, index + 1, node.children[c - 'a']);
+        } else {
+            return false;
+        }
+    }
+}
+
+
+
+// Solution 2: HashMap + DFS (Then no limitation on characters between 'a' to 'z')
+class TrieNode {
+    Map<Character, TrieNode> map;
+    boolean isEnd;
+    public TrieNode() {
+        this.map = new HashMap<Character, TrieNode>();
+        this.isEnd = false;
+    }
+}
+
+public class WordDictionary {
+    private TrieNode root;
+
+    /** Initialize your data structure here. */
+    public WordDictionary() {
+        root = new TrieNode();
+    }
+    
+    /** Adds a word into the data structure. */
+    public void addWord(String word) {
+        TrieNode node = root;
+        for(int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if(!node.map.containsKey(c)) {
+                node.map.put(c, new TrieNode());
+            }
+            node = node.map.get(c);
+        }
+        node.isEnd = true;
+    }
+    
+    /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
+    public boolean search(String word) {
+        return find(word, 0, root);
+    }
+    
+    private boolean find(String word, int index, TrieNode node) {
+        if(index == word.length()) {
+            return node.isEnd;
+        }
+        char c = word.charAt(index);
+        // If we use HashMap, there is no limitation on characters only 
+        // between 'a' - 'z'
+        if(node.map.containsKey(c)) {
+            return find(word, index + 1, node.map.get(c));
+        } else if(c == '.') {
+            for(Map.Entry<Character, TrieNode> entry : node.map.entrySet()) {
+                if(entry.getValue() != null) {
+                    if(find(word, index + 1, entry.getValue())) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         } else {
             return false;
         }
