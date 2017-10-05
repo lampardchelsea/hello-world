@@ -1,4 +1,5 @@
 首先这部分是去年 Google HR 给我的。
+https://youtu.be/oWbUtlUhwa8
 
 If I were to give two tips leading up to your tech interviews:
 Get as much hands on practice as possible in the areas of coding, algorithms & data structures, CS fundamentals, and testing.
