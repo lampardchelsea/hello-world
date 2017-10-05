@@ -23,3 +23,9 @@
 <p>Implement Trie
 <p>1. [Two Ways Template] (https://aaronice.gitbooks.io/lintcode/content/trie/implement_trie.html)
 <p>2. [Template] (https://www.jiuzhang.com/solution/implement-trie/)
+
+<p>Add And Search Word
+<p>1. [中文解释1] (https://yeqiuquan.blogspot.com/2017/03/lintcode-473-add-and-search-word.html)
+<p>2. [Template + DFS] (https://discuss.leetcode.com/topic/40275/trie-tree-java-solution-very-easy-to-understand)
+<p>3. [Two Ways Template] (http://www.jiuzhang.com/solutions/add-and-search-word/)
+<p>4. [中文解释2] (http://www.cnblogs.com/grandyang/p/4507286.html)
