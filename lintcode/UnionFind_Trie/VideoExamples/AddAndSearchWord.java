@@ -14,6 +14,10 @@
  * 
  * 
  * https://yeqiuquan.blogspot.com/2017/03/lintcode-473-add-and-search-word.html
+ * 这题一看就应该想到用Trie来解决。
+ * 主要是implement trie要细心。
+ * find里面如果碰到"."，就把root下所有的都找一遍。只要里面能return true，就说明能找到。
+ * 
  * https://discuss.leetcode.com/topic/40275/trie-tree-java-solution-very-easy-to-understand
  */
 class TrieNode {
