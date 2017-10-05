@@ -1,0 +1,80 @@
+首先这部分是去年 Google HR 给我的。
+
+If I were to give two tips leading up to your tech interviews:
+Get as much hands on practice as possible in the areas of coding, algorithms & data structures, CS fundamentals, and testing.
+Practice Tips:
+
+It is important that you practice your coding and interviewing skills (you'll only have 45 minutes with the interviewer, including questions). The biggest thing I can recommend is to make sure to get some actual "hands on" practice. Another great practice routine would be to practice coding on a Google Doc!
+
+Interview Cake: Interview Cake is awesome because it helps you walk through the thought process of how you solve a problem as opposed to just giving you the problem and its answer.
+Topcoder: If you launch the "Arena" widget and then go to the practice rooms where you can play with the problems in the first/second division as a warm up.
+Hired in Tech: Hired in tech gives you a good thought process for working on top coder problems among other good info. Top Coder problems are by and large a step above what an engineer would give in an interview setting. Master these and you should be able to do quite well interviews.
+
+Additional resources:
+
+Tech Interview Coaching Video: Past candidates have noted this video as useful in preparing for interviews! It will inform you on the basic Google interview structure and discusses best practices.
+
+2. Another would be to practice tech interviews with your friends. With successful candidates, I've noticed that they often get together with a group of other in the industry that are passionate about interview prep and practice interviewing each other and solving coding questions.
+
+Interview Tips:
+
+The interview will include topics such as coding, data structures and algorithms. You may want to refresh hash tables, heaps, binary trees, linked lists, depth-first search, recursion.
+Think about how to write software to test software and why/how/where software breaks.
+Run a few examples to check the code and make sure you don’t assume that your code works. Make sure that your code works! Identify bugs along the way or let the interviewer know you will go back afterwards to find/fix all the bugs. Assume someone else wrote the code and step it through line by line to look for bugs.
+Check for edge cases. Check for corner cases. Try to implement null checks.
+Make sure you understand the difference between hash and binary search trees. When to use one versus the other, limitations of it, etc.
+Be able to convert your thoughts into code. Try to come up with the most optimal solution.
+Make sure there's no code repeats, if so refactor it!
+Make sure recursion terminates, no off by one errors, don’t plague your code.
+Try to use reasonable variable names to clean up the code (can use x or i).
+Before you refine the code, ask if the interviewer if he/she has any questions about code.
+Try to be efficient as possible with your implementation!  Don't make your code complicated.
+After the coding then have your test cases organized and systematically ready to catch all the bugs. Think about what testing would have to be done: Security, Scalability, Reliability, Performance, etc.
+
+Where people fail [DO NOT FALL INTO THESE TRAPS!]:
+
+When candidates just jump into design or coding without first analyzing the problem/question asked.
+When candidates make assumptions. (You will be asked a broad question and asking clarifying questions are key!)
+When candidates don't talk out loud what they're doing as they're doing it
+When candidates don’t pick up on hints or give up on a problem.
+Inability to solve problems or inability to come up with a good algorithm that they can implement. A lot of times candidates come up with an algorithm and "talk the talk" but they don't know how to write the code to implement it.
+Using non-optimal solutions. It's fine to go with something that's close to optimal, as long as you can implement it .
+If you flip languages mid-interview. If you start the interview coding in Java, don’t end in C++. It shows bad thought process and confuses interviewers.
+
+InterviewCake 有个小技巧，清空浏览器历史记录就能反复使用那 3 个免费额度。虽然只能看见题目，看不见答案，但是也够用了。
+HiredInTech 强烈推荐。免费、好用，而且讲的东西很有价值。
+
+然后是这次 Facebook HR 给的：
+
+Interview Prep Videos – Cracking the Coding Interview
+Online Version:
+Cracking the Facebook Coding Interview – The Approach
+Cracking the Facebook Coding Interview – Problem Walk-Through
+Password: FB_IPS
+ 
+Helpful links:
+Practice Coding Questions – FB Code Lab
+Short Prep Video
+What to Expect During the Recruiting Process
+Read this Blog from a FB Engineer - Get That Job at Facebook
+ 
+Be prepared for technical questions involving coding or algorithms in your best language, design patterns, and more specific questions to your background.  For coding questions, you will be asked to produce clean, efficient code in a reasonable amount of time.   If the interviewer gives you hints to improve your code, take them and run with them. It is good to adjust and work through the problems with the interviewer to show your thought process and problem-solving ability. 
+ 
+It will help to review core CS concepts (algorithms, data structures) as well as subjects pertaining to the scale of our environment.   As I mentioned, we’re looking at a purely technical interview.  Computer Science will be a major area.  We want to make sure you have a solid base in theory and things like algorithms, data structures, design patterns, languages, etc. will come into play. 
+ 
+Overall, just be very cognizant of including us in your thought processes.  Verbalize things that are going on in your head as you approach the problems.  It gives us a chance to see how well you collaborate and an inkling into what it’s like to work with you on a day-to-day basis.  Passion for work at Facebook is also important, so try to be ready to address what is it you like or what can improve about Facebook and how you can apply your skills here
+ 
+OTHER TIPS:
+- Please be sure to ask clarifying questions before you write code on the board!  Even if you think you know the solution… talk it through!
+- Don't worry about rote memorization such as runtimes or API/native calls. It's always good to know how to figure out approximate runtimes on the fly but the code you write is more important.
+- Generally avoid solutions that would have lots of edge cases or huge if/else if/... blocks. Most coding interview questions at most places are designed with semi-elegant solutions so try to identify patterns. Deciding between iteration and recursion is always an important step.
+- Remember to use examples to help you figure out the problem and to test your code.
+- Finally, be passionate! It can be a game-changer when interviewers notice how excited you are about learning new things or solving new problems.
+
+最后，还有我去年听的讲座，我觉得也不错。
+
+https://www.zhihu.com/lives/767470172897288192
+https://www.zhihu.com/lives/775392671689613312
+https://www.zhihu.com/lives/777551366913531904
+
+目前就这些，够你看一阵子的了。
