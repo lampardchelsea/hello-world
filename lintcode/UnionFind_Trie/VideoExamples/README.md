@@ -31,3 +31,6 @@
 <p>4. [中文解释2] (http://www.cnblogs.com/grandyang/p/4507286.html)
 
 <p>Word Search II
+<p>1. [Template Array + DFS] (https://discuss.leetcode.com/topic/14256/my-simple-and-clean-java-code-using-dfs-and-trie)
+<p>2. [Template Array Optimization + DFS] (https://discuss.leetcode.com/topic/33246/java-15ms-easiest-solution-100-00)
+<p>3. [Template HashMap + DFS] (https://aaronice.gitbooks.io/lintcode/content/trie/word_search_ii.html) 
