@@ -294,3 +294,67 @@ UPDATE: Thanks to @dietpepsi we further improved from 17ms to 15ms.
 15ms: Remove HashSet completely. dietpepsi's idea is awesome.
 The final run time is 15ms. Hope it helps!
 */
+class TrieNode {
+    TrieNode[] children;
+    String s;
+    public TrieNode() {
+        this.children = new TrieNode[26];
+    }
+}
+
+public class Solution {
+    int[] dx = {0,0,1,-1};
+    int[] dy = {1,-1,0,0};
+    public List<String> findWords(char[][] board, String[] words) {
+        List<String> result = new ArrayList<String>();
+        if(board == null || board.length == 0) {
+            return result;
+        }
+        TrieNode root = buildTrie(words);
+        for(int i = 0; i < board.length; i++) {
+            for(int j = 0; j < board[0].length; j++) {
+                dfs(board, i, j, root, result);
+            }
+        }
+        return result;
+    }
+    
+    private TrieNode buildTrie(String[] words) {
+        TrieNode root = new TrieNode();
+        for(String word : words) {
+            TrieNode node = root;
+            for(int i = 0; i < word.length(); i++) {
+                char c = word.charAt(i);
+                int index = c - 'a';
+                if(node.children[index] == null) {
+                    node.children[index] = new TrieNode();
+                }
+                node = node.children[index];
+            }
+            node.s = word;
+        }
+        return root;
+    }
+    
+    private void dfs(char[][] board, int i, int j, TrieNode node, List<String> result) {      
+        if(i < 0 || i >= board.length || j < 0 || j >= board[0].length) {
+            return;
+        }
+        char c = board[i][j];
+        if(c == '#' || node.children[c - 'a'] == null) {
+            return;
+        }
+        node = node.children[c - 'a'];
+        if(node.s != null) { // Find one
+            result.add(node.s);
+            node.s = null; // De-duplicate
+        }
+        board[i][j] = '#';
+        for(int k = 0; k < 4; k++) {
+            int next_i = i + dx[k];
+            int next_j = j + dy[k];
+            dfs(board, next_i, next_j, node, result);
+        }
+        board[i][j] = c;
+    }
+}
