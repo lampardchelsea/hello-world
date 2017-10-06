@@ -278,4 +278,19 @@ Never use c1 + c2 + c3. Use StringBuilder.
 No need to use O(n^2) extra space visited[m][n].
 No need to use StringBuilder. Storing word itself at leaf node is enough.
 No need to use HashSet to de-duplicate. Use "one time search" trie.
+
+Code Optimization
+
+UPDATE: Thanks to @dietpepsi we further improved from 17ms to 15ms.
+
+59ms: Use search and startsWith in Trie class like this popular solution.
+33ms: Remove Trie class which unnecessarily starts from root in every dfs call.
+30ms: Use w.toCharArray() instead of w.charAt(i).
+22ms: Use StringBuilder instead of c1 + c2 + c3.
+20ms: Remove StringBuilder completely by storing word instead of boolean in TrieNode.
+20ms: Remove visited[m][n] completely by modifying board[i][j] = '#' directly.
+18ms: check validity, e.g., if(i > 0) dfs(...), before going to the next dfs.
+17ms: De-duplicate c - a with one variable i.
+15ms: Remove HashSet completely. dietpepsi's idea is awesome.
+The final run time is 15ms. Hope it helps!
 */
