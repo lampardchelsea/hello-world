@@ -152,3 +152,111 @@ public class Solution {
         visited[i][j] = false;
     }
 }
+
+
+// Solution 2: HashMap + DFS
+class TrieNode {
+    Map<Character, TrieNode> children;
+    boolean isEnd;
+    public TrieNode() {
+        this.children = new HashMap<Character, TrieNode>();
+        this.isEnd = false;
+    }
+}
+
+class Trie {
+    private TrieNode root;
+    
+    public Trie() {
+        this.root = new TrieNode();
+    }
+    
+    public void insert(String word) {
+        TrieNode node = root;
+        for(int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if(node.children.get(c) == null) {
+                node.children.put(c, new TrieNode());
+            }
+            node = node.children.get(c);
+        }
+        node.isEnd = true;
+    }
+    
+    public boolean search(String word) {
+        TrieNode node = find(word);
+        if(node != null && node.isEnd) {
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean startWith(String word) {
+        if(find(word) != null) {
+            return true;
+        }
+        return false;
+    }
+    
+    public TrieNode find(String word) {
+        TrieNode node = root;
+        for(int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if(node.children.get(c) == null) {
+                return null;
+            }
+            node = node.children.get(c);
+        }
+        return node;
+    }
+}
+
+
+public class Solution {
+    // Caution: Use Hashset to filter out duplicate strings
+    // use input = {"a", "a"} to test out
+    // List<String> result = new ArrayList<String>();
+    Set<String> result = new HashSet<String>();
+    int[] dx = {0,0,-1,1};
+    int[] dy = {1,-1,0,0};
+    
+    public List<String> findWords(char[][] board, String[] words) {    
+        Trie trie = new Trie();
+        for(String word : words) {
+            trie.insert(word);
+        }
+        
+        int m = board.length;
+        int n = board[0].length;
+        boolean[][] visited = new boolean[m][n];
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                dfs(board, i, j, "", visited, trie);
+            }
+        }
+        return new ArrayList<String>(result);
+    }
+    
+    private void dfs(char[][] board, int i, int j, String str, boolean[][] visited, Trie trie) {
+        if(i < 0 || i >= board.length || j < 0 || j >= board[0].length || visited[i][j]) {
+            return;
+        }
+        char c = board[i][j];      
+        str += c;
+        if(!trie.startWith(str)) {
+            return;
+        }
+        if(trie.search(str)) {
+           result.add(str); 
+        }
+        visited[i][j] = true;
+        for(int k = 0; k < 4; k++) {
+            int next_i = i + dx[k];
+            int next_j = j + dy[k];
+            dfs(board, next_i, next_j, str, visited, trie);
+        }
+        visited[i][j] = false;
+    }
+}
+
+
