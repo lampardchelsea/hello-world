@@ -213,6 +213,8 @@ binary-search-java-code/29)
 <p>Maximum Average Subarray II
 <p>1. [Binary Search] (https://leetcode.com/articles/maximum-average-subarray-ii/)
 
-
+<p>Valid Word Square
+<p>1. [Template] (https://discuss.leetcode.com/topic/63387/java-ac-solution-easy-to-understand)
+<p>2. [Trick Explain] (https://discuss.leetcode.com/topic/63387/java-ac-solution-easy-to-understand/8)
 
 
