@@ -216,5 +216,5 @@ binary-search-java-code/29)
 <p>Valid Word Square
 <p>1. [Template] (https://discuss.leetcode.com/topic/63387/java-ac-solution-easy-to-understand)
 <p>2. [Trick Explain] (https://discuss.leetcode.com/topic/63387/java-ac-solution-easy-to-understand/8)
-
+<p>3. [中文解释] (http://www.cnblogs.com/grandyang/p/5991673.html)
 
