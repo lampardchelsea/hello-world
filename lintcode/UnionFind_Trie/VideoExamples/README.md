@@ -37,5 +37,5 @@
 
 <p>Word Squares
 <p>1. [Explained. My Java solution using Trie [126ms 16/16]] (https://discuss.leetcode.com/topic/63516/explained-my-java-solution-using-trie-126ms-16-16)
-<p>2. [中文解释] (http://www.cnblogs.com/grandyang/p/6006000.html)
+<p>2. [Trie + Backtracking 中文解释] (http://www.cnblogs.com/grandyang/p/6006000.html)
 
