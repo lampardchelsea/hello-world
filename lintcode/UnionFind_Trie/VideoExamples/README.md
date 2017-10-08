@@ -34,3 +34,8 @@
 <p>1. [Template Array + DFS] (https://discuss.leetcode.com/topic/14256/my-simple-and-clean-java-code-using-dfs-and-trie)
 <p>2. [Template Array Optimization + DFS] (https://discuss.leetcode.com/topic/33246/java-15ms-easiest-solution-100-00)
 <p>3. [Template HashMap + DFS] (https://aaronice.gitbooks.io/lintcode/content/trie/word_search_ii.html) 
+
+<p>Word Squares
+<p>1. [Explained. My Java solution using Trie [126ms 16/16]] (https://discuss.leetcode.com/topic/63516/explained-my-java-solution-using-trie-126ms-16-16)
+<p>2. [中文解释] (http://www.cnblogs.com/grandyang/p/6006000.html)
+
