@@ -74,7 +74,7 @@ import java.util.List;
  * 
  * Solution
  * https://discuss.leetcode.com/topic/63516/explained-my-java-solution-using-trie-126ms-16-16
- * https://www.jiuzhang.com/solutions/word-squares
+ * http://www.cnblogs.com/grandyang/p/6006000.html
  */
 public class WordSquares {
 	private class TrieNode {
