@@ -75,6 +75,10 @@ import java.util.List;
  * Solution
  * https://discuss.leetcode.com/topic/63516/explained-my-java-solution-using-trie-126ms-16-16
  * http://www.cnblogs.com/grandyang/p/6006000.html
+ * 这道题是之前那道Valid Word Square的延伸，由于要求出所有满足要求的单词平方，所以难度大大的增加了，不要幻想着可以利用之前那题的解法来
+ * 暴力破解，OJ不会答应的。那么根据以往的经验，对于这种要打印出所有情况的题的解法大多都是用递归来解，那么这题的关键是根据前缀来找单词，我们如果
+ * 能利用合适的数据结构来建立前缀跟单词之间的映射，使得我们能快速的通过前缀来判断某个单词是否存在，这是解题的关键。对于建立这种映射，这里主要有
+ * 两种方法，一种是利用哈希表来建立前缀和所有包含此前缀单词的集合之前的映射，第二种方法是建立前缀树Trie，顾名思义，前缀树专门就是为这种问题设计的。
  */
 public class WordSquares {
 	private class TrieNode {
@@ -195,4 +199,3 @@ public class WordSquares {
 		}
 	}
 }
-
