@@ -22,6 +22,7 @@
  *
  * Solution
  * http://www.jiuzhang.com/solutions/triangle/
+ * https://discuss.leetcode.com/topic/1669/dp-solution-for-triangle/2?page=1
 */
 public class Solution {
     /*
