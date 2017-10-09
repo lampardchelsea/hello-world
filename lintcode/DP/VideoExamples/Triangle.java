@@ -3,15 +3,12 @@
  * http://www.lintcode.com/en/problem/triangle/
  * Given a triangle, find the minimum path sum from top to bottom. Each step you may move 
    to adjacent numbers on the row below.
-
    Notice
   Bonus point if you are able to do this using only O(n) extra space, where n is the total 
   number of rows in the triangle.
-
   Have you met this question in a real interview? Yes
   Example
   Given the following triangle:
-
   [
        [2],
       [3,4],
@@ -23,35 +20,39 @@
  * Solution
  * http://www.jiuzhang.com/solutions/triangle/
  * https://discuss.leetcode.com/topic/1669/dp-solution-for-triangle/2?page=1
-*/
-public class Solution {
-    /*
-     * @param triangle: a list of lists of integers
-     * @return: An integer, minimum path sum
-     */
-    // Solution 1: Bottom Up
-    public int minimumTotal(int[][] triangle) {
-       // Bottom up
-       if(triangle == null || triangle.length == 0) {
-           return -1;
-       }
-       if(triangle[0].length == 0) {
-           return -1;
-       }
-       // state: f[x][y] = minimum path value from x,y to bottom
-       int n = triangle.length;
-       int[][] f = new int[n][n];
-       // initialize (bottom row)
-       for(int i = 0; i < n; i++) {
-           f[n - 1][i] = triangle[n - 1][i];
-       }
-       // bottom up function
-       for(int i = n - 2; i >= 0; i--) {
-           for(int j = 0; j <= i; j++) {
-               f[i][j] = Math.min(f[i + 1][j], f[i + 1][j + 1]) + triangle[i][j];
-           }
-       }
-       // answer (final status)
-       return f[0][0];
-    }
+ *
+ */
+public class Triangle {
+	// Solution 1: bottom-up
+	public int minimumTotal(int[][] triangle) {
+	    if(triangle == null || triangle.length == 0) {
+	    	return -1;
+	    }
+	    if(triangle[0].length == 0) {
+	    	return -1;
+	    }
+	    // state: f[x][y] = minimum path value from x,y to bottom
+	    int n = triangle.length;
+	    int[][] f = new int[n][n];
+	    // initialize (bottom row)
+	    for(int i = 0; i < n; i++) {
+	    	f[n - 1][i] = triangle[n - 1][i];
+	    }
+	    // bottom up function
+	    for(int i = n - 2; i >= 0; i--) {
+	    	// j <= i because other cell on current row no value assigned (= 0)
+	    	for(int j = 0; j <= i; j++) {
+	    		f[i][j] = Math.min(f[i + 1][j], f[i + 1][j + 1]) + triangle[i][j];
+	    	}
+	    }
+	    // answer
+	    return f[0][0];
+	}
+	
+	public static void main(String[] args) {
+		Triangle t = new Triangle();
+		int[][] triangle = {{2},{3,4},{6,5,7},{4,1,8,3}};
+		int result = t.minimumTotal(triangle);
+		System.out.println(result);
+	}
 }
