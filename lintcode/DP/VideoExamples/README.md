@@ -55,4 +55,11 @@ Frog jump
 
 
 # Useful links for specific questions
+<p>Triangle
+<p>1. [Template of 3 ways(bottom up/ top down/ traverse + memorization)] (http://www.jiuzhang.com/solutions/triangle/)
+<p>2. [DP Solution for Triangle] (https://discuss.leetcode.com/topic/1669/dp-solution-for-triangle/2?page=1)
+
+
+
+
 
