@@ -28,6 +28,7 @@ public class Solution {
      * @param triangle: a list of lists of integers
      * @return: An integer, minimum path sum
      */
+    // Solution 1: Bottom Up
     public int minimumTotal(int[][] triangle) {
        // Bottom up
        if(triangle == null || triangle.length == 0) {
