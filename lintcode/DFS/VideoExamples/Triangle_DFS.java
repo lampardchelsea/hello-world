@@ -5,6 +5,7 @@
  * Solution
  * https://github.com/lampardchelsea/hello-world/blob/master/lintcode/DP/VideoExamples/Triangle.java
 */
+// Purely DFS with Time Complexity O(2^N)
 public class Triangle {
     public int minPath;
     public int minimumTotal(int[][] triangle) {
