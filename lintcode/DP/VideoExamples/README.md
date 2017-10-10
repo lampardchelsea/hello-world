@@ -67,6 +67,10 @@ Frog jump
 <p>1. [Template] (http://www.jiuzhang.com/solutions/minimum-path-sum/)
 <p>2. [10-lines 28ms O(n)-space DP solution in C++ with Explanations] (https://discuss.leetcode.com/topic/15269/10-lines-28ms-o-n-space-dp-solution-in-c-with-explanations)
 
+<p>Unique Paths
+<p>1. [Template] (https://www.jiuzhang.com/solution/unique-paths/)
+<p>2. [0ms, 5-lines DP Solution in C++ with Explanations] (https://discuss.leetcode.com/topic/15265/0ms-5-lines-dp-solution-in-c-with-explanations)
+
 
 
 
