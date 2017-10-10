@@ -28,3 +28,7 @@
 <p>Word Search
 <p>1. [DFS + BackTracking] (https://discuss.leetcode.com/topic/7907/accepted-very-short-java-solution-no-additional-space)
 <p>2. [Avoid TLE] (https://discuss.leetcode.com/topic/7907/accepted-very-short-java-solution-no-additional-space/40?page=2)
+
+<p>Triangle
+<p>1. [Purely DFS with Time Complexity O(2^N)] (https://github.com/lampardchelsea/hello-world/blob/master/lintcode/DP/VideoExamples/Triangle.java)
+
