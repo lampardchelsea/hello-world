@@ -63,6 +63,9 @@ Frog jump
 <p>1. [Template of 3 ways(bottom up/ top down/ traverse + memorization)] (http://www.jiuzhang.com/solutions/triangle/)
 <p>2. [DP Solution for Triangle] (https://discuss.leetcode.com/topic/1669/dp-solution-for-triangle/2?page=1)
 
+<p>Minimum Path Sum
+<p>1. [Template] (http://www.jiuzhang.com/solutions/minimum-path-sum/)
+<p>2. [10-lines 28ms O(n)-space DP solution in C++ with Explanations] (https://discuss.leetcode.com/topic/15269/10-lines-28ms-o-n-space-dp-solution-in-c-with-explanations)
 
 
 
