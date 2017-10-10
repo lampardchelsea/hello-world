@@ -1,6 +1,10 @@
 # Lintcode DP issues
 <p>1. [Lintcode DP issues]
 <p>
+DFS与DP的主要区别：
+DFS(Divide and Conquer)不存在重复计算，比如二叉树不存在重复计算的可能性
+DP存在重复计算，比如和二叉树很像的Triangle在构建的时候能到达一个节点的路径不止一条，存在重复计算
+
 计算最长 DP DFS
 计算最短 DP BFS
 
