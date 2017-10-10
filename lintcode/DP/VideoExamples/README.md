@@ -71,6 +71,7 @@ Frog jump
 <p>1. [Template] (https://www.jiuzhang.com/solution/unique-paths/)
 <p>2. [0ms, 5-lines DP Solution in C++ with Explanations] (https://discuss.leetcode.com/topic/15265/0ms-5-lines-dp-solution-in-c-with-explanations)
 
-
+<p>Unique Paths II
+<p>1. [Template] (https://www.jiuzhang.com/solution/unique-paths-ii/)
 
 
