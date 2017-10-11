@@ -50,3 +50,61 @@ class Solution {
         return max;
     }
 }
+
+
+// Print Version --> p and p[i] relation seems Path Compression
+public class LongestIncreasingContinuousSubsequence {
+	public int longestIncreasingContinuousSubsequence(int[] A) {
+		int n = A.length;
+        int[] f = new int[n];
+        
+        // If you remove comments in code, it can print out the longest sequence
+        // 去掉所有加注释的地方可以打印方案
+        
+        int[] pi = new int[n];
+        int p = 0;
+        int max = 0;
+        for (int i = 0; i < n; i++) {
+            f[i] = 1;
+            pi[i] = -1;
+            for (int j = 0; j < i; j++) {
+                if (A[j] < A[i]) {
+                    f[i] = f[i] > f[j] + 1 ? f[i] : f[j] + 1;
+                    if (f[i] == f[j] + 1) {
+                        pi[i] = j;
+                    }
+                }
+            }
+            if (f[i] > max) {
+                max = f[i];
+                p = i;
+            }
+        }
+        
+        int[] seq = new int[max];
+        for (int i = max - 1; i >= 0; --i) {
+            seq[i] = A[p];
+            p = pi[p];
+        }
+        
+        for (int i = 0; i < max; ++i) {
+            System.out.println(seq[i]);
+        }
+        return max;
+	}
+	
+	public static void main(String[] args) {
+		LongestIncreasingContinuousSubsequence l = new LongestIncreasingContinuousSubsequence();
+		int[] nums = {1,3,5,4,7};
+		int result = l.longestIncreasingContinuousSubsequence(nums);
+		System.out.println(result);
+	}
+}
+
+
+
+
+
+
+
+
