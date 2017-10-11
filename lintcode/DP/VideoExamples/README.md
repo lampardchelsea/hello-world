@@ -77,9 +77,16 @@ Frog jump
 <p>Climbing Stairs
 <p>1. [Template] (https://leetcode.com/articles/climbing-stairs/)
 
-<p>Jump Games
+<p>Jump Game
 <p>1. [Approach #3 (Dynamic Programming Bottom-up) [Time limit exceeded]] (https://leetcode.com/articles/jump-game/)
 <p>2. [Template (DP)] (https://www.jiuzhang.com/solution/jump-game/)
+
+<p>Jump Game II
+<p>1. [Template (Same style as Jump Game)] (http://blog.unieagle.net/2012/09/29/leetcode%E9%A2%98%E7%9B%AE%EF%BC%9Ajump-game-ii%EF%BC%8C%E4%B8%80%E7%BB%B4%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/
+)
+<p>2. [Template (Different style)] (https://www.jiuzhang.com/solution/jump-game-ii/)
+<p>3. [中文解释] (https://segmentfault.com/a/1190000003488956)
+
 
 
 
