@@ -19,6 +19,8 @@
  * 
  * Solution
  * http://blog.unieagle.net/2012/09/29/leetcode%E9%A2%98%E7%9B%AE%EF%BC%9Ajump-game-ii%EF%BC%8C%E4%B8%80%E7%BB%B4%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/
+ * 这个简单，只需要在Jump Game的基础上用一个int来记录最小跳跃次数就行了
+ * 
  * https://www.jiuzhang.com/solution/jump-game-ii/
  * https://segmentfault.com/a/1190000003488956
 */
@@ -34,6 +36,7 @@ class Solution {
         for(int i = n - 2; i >= 0; i--) {
             // Compare to Jump Game, use one more variable to
             // record minimum steps on status function
+            // and this value must be (n + 1), not Integer.MAX_VALUE
             int minSteps = n + 1;
             int furthestJump = Math.min(i + nums[i], n - 1);
             for(int j = i + 1; j <= furthestJump; j++) {
