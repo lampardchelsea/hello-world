@@ -11,3 +11,7 @@
 <p>Longest Increasing Subsequence
 <p>1. [Template] (https://www.jiuzhang.com/solution/longest-increasing-subsequence/)
 <p>2. [中文解释] (https://segmentfault.com/a/1190000003819886)
+
+<p>Longest Continuous Increasing Subsequence
+<p>1. [Tempalte] (https://www.jiuzhang.com/solution/longest-increasing-continuous-subsequence/)
+<p>2. [Based on solution of Longest Increasing Subsequence] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/LongestIncreasingSubsequence.java)
