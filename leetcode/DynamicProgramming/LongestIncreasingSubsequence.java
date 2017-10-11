@@ -49,7 +49,7 @@ class Solution {
                     f[i] = Math.max(f[i], f[j] + 1);
                 }
             }
-            // Update global result
+            // Update global result: every position can be the end ponit of LIS
             max = Math.max(max, f[i]);
         }
         return max;
