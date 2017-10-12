@@ -19,3 +19,6 @@
 <p>Number of Longest Increasing Subsequence
 <P>1. [Java with explanation, easy to understand] (https://discuss.leetcode.com/topic/102976/java-with-explanation-easy-to-understand)
 <P>2. [[Java/C++] Simple dp solution with explanation] (https://discuss.leetcode.com/topic/103020/java-c-simple-dp-solution-with-explanation)
+
+<p>Perfect Square
+<p>1. [An easy understanding DP solution in Java] (https://discuss.leetcode.com/topic/26400/an-easy-understanding-dp-solution-in-java)
