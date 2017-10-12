@@ -22,3 +22,9 @@
 
 <p>Perfect Square
 <p>1. [An easy understanding DP solution in Java] (https://discuss.leetcode.com/topic/26400/an-easy-understanding-dp-solution-in-java)
+
+<p>Largest Divisible Subset
+<p>1. [中文解释1] (http://www.cnblogs.com/grandyang/p/5625209.html)
+<p>2. [中文解释2] (http://blog.csdn.net/yeqiuzs/article/details/51773890)
+<p>3. [Classic DP solution similar to LIS, O(n^2)] (https://discuss.leetcode.com/topic/49652/classic-dp-solution-similar-to-lis-o-n-2)
+<p>4. [C++ Solution with Explanations] (https://discuss.leetcode.com/topic/49456/c-solution-with-explanations)
