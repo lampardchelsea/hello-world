@@ -15,3 +15,7 @@
 <p>Longest Continuous Increasing Subsequence
 <p>1. [Tempalte and How to print out result] (https://www.jiuzhang.com/solution/longest-increasing-continuous-subsequence/)
 <p>2. [Based on solution of Longest Increasing Subsequence] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/LongestIncreasingSubsequence.java)
+
+<p>Number of Longest Increasing Subsequence
+<P>1. [Java with explanation, easy to understand] (https://discuss.leetcode.com/topic/102976/java-with-explanation-easy-to-understand)
+<P>2. [[Java/C++] Simple dp solution with explanation] (https://discuss.leetcode.com/topic/103020/java-c-simple-dp-solution-with-explanation)
