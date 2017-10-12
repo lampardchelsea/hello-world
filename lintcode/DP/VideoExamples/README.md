@@ -87,6 +87,7 @@ Frog jump
 <p>2. [Template (Different style)] (https://www.jiuzhang.com/solution/jump-game-ii/)
 <p>3. [中文解释] (https://segmentfault.com/a/1190000003488956)
 
-
+<p>Perfect Square
+<p>1. [An easy understanding DP solution in Java] (https://discuss.leetcode.com/topic/26400/an-easy-understanding-dp-solution-in-java)
 
 
