@@ -218,3 +218,8 @@ binary-search-java-code/29)
 <p>2. [Trick Explain] (https://discuss.leetcode.com/topic/63387/java-ac-solution-easy-to-understand/8)
 <p>3. [中文解释] (http://www.cnblogs.com/grandyang/p/5991673.html)
 
+<p>Longest Continuous Increasing Subsequence
+<p>1. [[Java/C++]Clean solution] (https://discuss.leetcode.com/topic/102999/java-c-clean-solution)
+
+
+
