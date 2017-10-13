@@ -31,6 +31,6 @@
 
 <p>Maximal Square
 <p>1. [Artical of 2 Ways: Brute Force + DP] (https://leetcode.com/articles/maximal-square/)
-<p>2. [中文解释] (http://www.cnblogs.com/grandyang/p/4550604.html
+<p>2. [中文解释] (http://www.cnblogs.com/grandyang/p/4550604.html)
 
 
