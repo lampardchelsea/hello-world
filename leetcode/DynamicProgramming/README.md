@@ -29,7 +29,8 @@
 <p>3. [Classic DP solution similar to LIS, O(n^2)] (https://discuss.leetcode.com/topic/49652/classic-dp-solution-similar-to-lis-o-n-2)
 <p>4. [C++ Solution with Explanations] (https://discuss.leetcode.com/topic/49456/c-solution-with-explanations)
 
-<p>Maximum Square
+<p>Maximal Square
 <p>1. [Artical of 2 Ways: Brute Force + DP] (https://leetcode.com/articles/maximal-square/)
+<p>2. [中文解释] (http://www.cnblogs.com/grandyang/p/4550604.html
 
 
