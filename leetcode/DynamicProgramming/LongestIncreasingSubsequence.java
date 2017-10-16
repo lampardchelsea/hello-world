@@ -55,3 +55,8 @@ class Solution {
         return max;
     }
 }
+
+// Solution 2: Improved By Binary Search
+// Refer to
+// http://www.cnblogs.com/grandyang/p/4938187.html
+
