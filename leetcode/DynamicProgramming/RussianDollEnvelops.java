@@ -69,5 +69,5 @@ class Solution {
 // Refer to
 // http://www.cnblogs.com/grandyang/p/5568818.html
 // https://discuss.leetcode.com/topic/47469/java-nlogn-solution-with-explanation
-
+// http://www.cnblogs.com/grandyang/p/4938187.html
 
