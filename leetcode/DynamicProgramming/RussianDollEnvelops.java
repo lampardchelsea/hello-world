@@ -71,4 +71,38 @@ class Solution {
 // http://www.cnblogs.com/grandyang/p/5568818.html
 // https://discuss.leetcode.com/topic/47469/java-nlogn-solution-with-explanation
 // http://www.cnblogs.com/grandyang/p/4938187.html
+// https://leetcode.com/problems/longest-increasing-subsequence/solution/
+/**
+ Approach #4 Dynamic Programming with Binary Search[Accepted]:
+ Algorithm
+ In this approach, we scan the array from left to right. We also make use of a dp array initialized 
+ with all 0's. This dp array is meant to store the increasing subsequence formed by including the 
+ currently encountered element. While traversing the nums array, we keep on filling the dp array 
+ with the elements encountered so far. For the element corresponding to the jth index (nums[j]), we 
+ determine its correct position in the dp array(say ith index) by making use of Binary Search(which 
+ can be used since the dp array is storing increasing subsequence) and also insert it at the correct 
+ position. An important point to be noted is that for Binary Search, we consider only that portion of 
+ the dp array in which we have made the updations by inserting some elements at their correct 
+ positions(which remains always sorted). Thus, only the elements upto the ith index in the dp array 
+ can determine the position of the current element in it. Since, the element enters its correct 
+ position(i) in an ascending order in the dp array, the subsequence formed so far in it is surely 
+ an increasing subsequence. Whenever this position index ii becomes equal to the length of the LIS 
+ formed so far(len), it means, we need to update the len as len = len + 1.
+ Note: dp array does not result in longest increasing subsequence, but length of dpdp array will 
+ give you length of LIS.
+ 
+ Consider the example:
+ input: [0, 8, 4, 12, 2]
+ dp: [0]
+ dp: [0, 8]
+ dp: [0, 4]
+ dp: [0, 4, 12]
+ dp: [0 , 2, 12] which is not the longest increasing subsequence, but length of dp array results in 
+                 length of Longest Increasing Subsequence.
+ 
+ Complexity Analysis
+ Time complexity : O(nlog(n)). Binary search takes log(n) time and it is called n times.
+ Space complexity : O(n). dpdp array of size nn is used.
+*/
+
 
