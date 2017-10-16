@@ -59,4 +59,4 @@ class Solution {
 // Solution 2: Improved By Binary Search
 // Refer to
 // http://www.cnblogs.com/grandyang/p/4938187.html
-
+// https://segmentfault.com/a/1190000003819886
