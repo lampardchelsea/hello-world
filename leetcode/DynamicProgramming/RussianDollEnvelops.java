@@ -114,7 +114,7 @@ class Solution {
  
  Complexity Analysis
  Time complexity : O(nlog(n)). Binary search takes log(n) time and it is called n times.
- Space complexity : O(n). dpdp array of size nn is used.
+ Space complexity : O(n). dp array of size nn is used.
 */
 
 
