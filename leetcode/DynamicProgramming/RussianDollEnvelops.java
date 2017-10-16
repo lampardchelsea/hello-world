@@ -71,6 +71,13 @@ class Solution {
 // http://www.cnblogs.com/grandyang/p/5568818.html
 // https://discuss.leetcode.com/topic/47469/java-nlogn-solution-with-explanation
 // http://www.cnblogs.com/grandyang/p/4938187.html
+/**
+ 我们来看一种思路更清晰的二分查找法，跟上面那种方法很类似，思路是先建立一个空的dp数组，然后开始遍历原数组，
+ 对于每一个遍历到的数字，我们用二分查找法在dp数组找第一个不小于它的数字，如果这个数字不存在，那么直接在dp
+ 数组后面加上遍历到的数字，如果存在，则将这个数字更新为当前遍历到的数字，最后返回dp数字的长度即可，注意的是，
+ 跟上面的方法一样，特别注意的是dp数组的值可能不是一个真实的LIS
+*/
+
 // https://leetcode.com/problems/longest-increasing-subsequence/solution/
 /**
  Approach #4 Dynamic Programming with Binary Search[Accepted]:
