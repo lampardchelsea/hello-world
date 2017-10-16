@@ -100,6 +100,11 @@ class Solution {
  dp: [0 , 2, 12] which is not the longest increasing subsequence, but length of dp array results in 
                  length of Longest Increasing Subsequence.
  
+ Note: Arrays.binarySearch() method returns index of the search key, if it is contained in the array, 
+ else it returns (-(insertion point) - 1). The insertion point is the point at which the key would be 
+ inserted into the array: the index of the first element greater than the key, or a.length if all 
+ elements in the array are less than the specified key.
+ 
  Complexity Analysis
  Time complexity : O(nlog(n)). Binary search takes log(n) time and it is called n times.
  Space complexity : O(n). dpdp array of size nn is used.
