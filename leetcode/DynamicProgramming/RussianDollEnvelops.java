@@ -13,6 +13,7 @@
  *
  * Solution
  * http://www.cnblogs.com/grandyang/p/5568818.html
+ * https://segmentfault.com/a/1190000003819886
  * https://discuss.leetcode.com/topic/47404/simple-dp-solution
  * https://discuss.leetcode.com/topic/47469/java-nlogn-solution-with-explanation
 */
