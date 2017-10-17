@@ -71,6 +71,7 @@ class Solution {
 // http://www.cnblogs.com/grandyang/p/5568818.html
 // https://discuss.leetcode.com/topic/47469/java-nlogn-solution-with-explanation
 // http://www.cnblogs.com/grandyang/p/4938187.html
+// https://discuss.leetcode.com/topic/47469/java-nlogn-solution-with-explanation/31?page=2
 /**
  我们来看一种思路更清晰的二分查找法，跟上面那种方法很类似，思路是先建立一个空的dp数组，然后开始遍历原数组，
  对于每一个遍历到的数字，我们用二分查找法在dp数组找第一个不小于它的数字，如果这个数字不存在，那么直接在dp
@@ -117,4 +118,62 @@ class Solution {
  Space complexity : O(n). dp array of size nn is used.
 */
 
-
+class Solution {
+    public int maxEnvelopes(int[][] envelopes) {
+        if(envelopes == null || envelopes.length == 0 || envelopes[0] == null || envelopes[0].length == 0) {
+            return 0;
+        }
+        // sort
+        Arrays.sort(envelopes, new Comparator<int[]>() {
+            public int compare(int[] a, int[] b) {
+                if(a[0] != b[0]) {
+                    return a[0] - b[0];
+                } else {
+                    return b[1] - a[1];
+                }
+            }; 
+        });
+        // state
+        int m = envelopes.length;
+        int[] dp = new int[m];
+        // intialize
+        int size = 0;
+        // function
+        // Refer to
+        // https://discuss.leetcode.com/topic/47469/java-nlogn-solution-with-explanation/31?page=2
+        for(int[] envelop : envelopes) {
+            /**
+            我们来看一种思路更清晰的二分查找法，跟上面那种方法很类似，思路是先建立一个空的dp数组，
+            然后开始遍历原数组，对于每一个遍历到的数字，我们用二分查找法在dp数组找第一个不小于它
+            的数字，如果这个数字不存在，那么直接在dp数组后面加上遍历到的数字，如果存在，则将这个
+            数字更新为当前遍历到的数字，最后返回dp数字的长度即可，注意的是，跟上面的方法一样，
+            特别注意的是dp数组的值可能不是一个真实的LIS
+            */
+            int index = findIndex(dp, 0, size, envelop[1]);
+            dp[index] = envelop[1];
+            if(index == size) {
+                size++;
+            }
+        }
+        return size;
+    }
+    
+    // 我们用二分查找法在dp数组找第一个不小于它的数字
+    private int findIndex(int[] dp, int start, int end, int target) {
+        while(start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if(dp[mid] == target) {
+                return mid;
+            } else if(dp[mid] > target) {
+                end = mid;
+            } else {
+                start = mid;
+            }
+        }
+        if(dp[start] >= target) {
+            return start;
+        } else {
+            return end;
+        }
+    }
+}
