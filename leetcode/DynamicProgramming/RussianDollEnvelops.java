@@ -124,6 +124,14 @@ class Solution {
             return 0;
         }
         // sort
+        /**
+         binary search solution: O(nlogn) width is increasing, but if two widths are the same, 
+         the height is decreasing after sorting, all envolopes are valid 'based on width', 
+         so we just binary search based on 'heights' to choose 'some of them' to meet the 
+         requirement
+         Ex. after sorting: (1,3), (3,5), (6,8), (6,7), (8,4), (9,5)
+         transform to question find LIS: [3,5,8,7,4,5] => like '300. Longest Increasing Subsequence'
+        */
         Arrays.sort(envelopes, new Comparator<int[]>() {
             public int compare(int[] a, int[] b) {
                 if(a[0] != b[0]) {
