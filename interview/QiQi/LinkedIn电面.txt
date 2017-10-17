@@ -1,0 +1,5 @@
+1. Difference between thread and process in Java
+2. Why we need exception in java ? Why not use static value return instead of exception
+3. Minimum distance between two valid number, e.g 1,3,4 all match requires, but 3,4 distance is 1 smaller, we pick it
+4. 背包型DP
+5. 来自孟思的会议问题DP变形，如何在给定时间段内尽一切可能的安排下最多的会议（会议以时间区间形式给定), 原题
