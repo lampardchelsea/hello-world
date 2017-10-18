@@ -47,6 +47,6 @@
 <p>2. [中文解释2] (https://segmentfault.com/a/1190000003819886)
 <p>3. [O(N^2) solution] (https://discuss.leetcode.com/topic/47404/simple-dp-solution)
 <p>4. [O(NlogN) solution] (https://discuss.leetcode.com/topic/47469/java-nlogn-solution-with-explanation)
-
+<p>5. [binary search with jiuzhang template] (https://discuss.leetcode.com/topic/47469/java-nlogn-solution-with-explanation/31?page=2)
 
 
