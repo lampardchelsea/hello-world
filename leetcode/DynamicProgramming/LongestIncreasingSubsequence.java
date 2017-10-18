@@ -105,3 +105,56 @@ class Solution {
  Time complexity : O(nlog(n)). Binary search takes log(n) time and it is called n times.
  Space complexity : O(n). dp array of size nn is used.
 */
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        // state
+        int m = nums.length;
+        int[] dp = new int[m];
+        // initialize
+        int size = 0;
+        dp[0] = nums[0];
+        // Our strategy determined by the following conditions
+        // (1) If nums[i] is smallest among all end
+        // candidates of active lists, we will start
+        // new active list of length 1.
+        // (2) If nums[i] is largest among all end candidates of
+        // active lists, we will clone the largest active
+        // list, and extend it by nums[i].
+        // (3) If nums[i] is in between, we will find a list with
+        // largest end element that is smaller than nums[i].
+        // Clone and extend this list by nums[i]. We will discard all
+        // other lists of same length as that of this modified list."
+        for(int i = 1; i < m; i++) {
+            if(nums[i] < dp[0]) {
+                dp[0] = nums[i];
+            } else if(nums[i] > dp[size]) {
+                size++;
+                dp[size] = nums[i];
+            } else {
+                dp[index(dp, 0, size, nums[i])] = nums[i];
+            }
+        }
+        return size + 1;
+    }
+    
+    public int index(int[] dp, int start, int end, int target) {
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if (dp[mid] == target) {
+                return mid;
+            } else if (dp[mid] < target) { 
+                start = mid;
+            } else {
+                end = mid;
+            }
+        }
+        if (dp[start] >= target) {
+            return start;
+        } else {
+            return end;
+        }
+    }
+}
