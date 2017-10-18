@@ -36,5 +36,8 @@
 <p>Dungeon Game
 <p>1. [中文解释] (https://segmentfault.com/a/1190000003884349)
 
-
-
+<p>Longest Increasing Subsequence
+<p>1. [Template] (https://www.jiuzhang.com/solution/longest-increasing-subsequence/)
+<p>2. [中文解释] (https://segmentfault.com/a/1190000003819886)
+<p>3. [中文解释2] (http://www.cnblogs.com/grandyang/p/4938187.html)
+<p>4. [Article Solution] (https://leetcode.com/problems/longest-increasing-subsequence/solution/)
