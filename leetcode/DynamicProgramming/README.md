@@ -41,3 +41,12 @@
 <p>2. [中文解释] (https://segmentfault.com/a/1190000003819886)
 <p>3. [中文解释2] (http://www.cnblogs.com/grandyang/p/4938187.html)
 <p>4. [Article Solution] (https://leetcode.com/problems/longest-increasing-subsequence/solution/)
+
+<p>Russian Doll Envelopes
+<p>1. [中文解释] (http://www.cnblogs.com/grandyang/p/5568818.html)
+<p>2. [中文解释2] (https://segmentfault.com/a/1190000003819886)
+<p>3. [O(N^2) solution] (https://discuss.leetcode.com/topic/47404/simple-dp-solution)
+<p>4. [O(NlogN) solution] (https://discuss.leetcode.com/topic/47469/java-nlogn-solution-with-explanation)
+
+
+
