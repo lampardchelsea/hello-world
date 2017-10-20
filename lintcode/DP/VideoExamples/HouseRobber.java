@@ -80,8 +80,3 @@ class Solution {
     }
 }
 
-// Solution 3:
-/**
- 上述方法还可以进一步简洁如下:
-*/
-
