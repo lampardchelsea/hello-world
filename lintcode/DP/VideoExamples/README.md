@@ -93,4 +93,12 @@ Frog jump
 <p>Largest Divisible Subset
 <p>1. [Template] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/LargestDivisableSubset.java)
 
+<p>House Robber
+<p>1. [Template] (https://www.jiuzhang.com/solution/house-robber/)
+<p>2. [中文解释] (http://www.cnblogs.com/grandyang/p/4383632.html)
+
+
+
+
+
 
