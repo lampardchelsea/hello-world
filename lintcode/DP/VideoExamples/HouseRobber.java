@@ -12,6 +12,7 @@
  *
  * Solution
  * http://www.cnblogs.com/grandyang/p/4383632.html
+ * https://www.jiuzhang.com/solution/house-robber/
 */
 
 // Solution 1: 
@@ -52,9 +53,32 @@ class Solution {
 
 // Solution 2:
 /**
+ 滚动数组的方法（空间优化）
  还有一种解法，核心思想还是用DP，分别维护两个变量a和b，然后按奇偶分别来更新a和b，这样就可以保证组成最大和的数字不相邻
 */
-
+class Solution {
+    public int rob(int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        if(nums.length == 1) {
+            return nums[0];
+        }
+        // state
+        // only need 2 entries in an array
+        int[] dp = new int[2];
+        // initialize
+        int n = nums.length;
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0], nums[1]);
+        // function
+        for(int i = 2; i < n; i++) {
+            dp[i % 2] = Math.max(dp[(i - 1) % 2], dp[(i - 2) % 2] + nums[i]);
+        }
+        // answer
+        return dp[(n - 1) % 2];
+    }
+}
 
 // Solution 3:
 /**
