@@ -33,3 +33,54 @@
  且当前房子用红色刷的最小花费就等于当前房子用红色刷的钱加上刷到上一个房子用绿色和刷到上一个房子用蓝色
  的较小值，这样当我们算到最后一个房子时，我们只要取出三个累计花费的最小值即可
 */
+
+public class PaintHouse {
+	public int minCost(int[][] costs) {
+        if(costs == null || costs.length == 0) {
+            return 0;
+        }
+        // state
+        int n = costs.length;
+        //int[][] dp = new int[n][3];
+        // intialize
+        // Caution: not only for 1st row, we should keep all
+        // values from costs for later '+=' option
+        // for(int i = 0; i < 3; i++) {
+        //     dp[0][i] = costs[0][i];
+        // }
+        int[][] dp = costs;
+        // function
+        for(int i = 1; i < n; i++) {
+            for(int j = 0; j < 3; j++) {
+                // Caution: use '+=' to record each level value till final level
+                dp[i][j] += Math.min(dp[i - 1][(j + 1) % 3], dp[i - 1][(j + 2) % 3]);   
+            }
+        }
+        // answer
+        return Math.min(Math.min(dp[n - 1][0], dp[n - 1][1]), dp[n - 1][2]);
+    }
+	
+	// A more clear way
+    public int minCost_2(int[][] costs) {
+        if(costs == null || costs.length == 0) {
+            return 0;
+        }
+        for(int i = 1; i < costs.length; i++) {
+            // 涂第一种颜色的话，上一个房子就不能涂第一种颜色，这样我们要在上一个
+            // 房子的第二和第三个颜色的最小开销中找最小的那个加上
+            costs[i][0] = costs[i][0] + Math.min(costs[i - 1][1], costs[i - 1][2]);
+            // 涂第二或者第三种颜色同理
+            costs[i][1] = costs[i][1] + Math.min(costs[i - 1][0], costs[i - 1][2]);
+            costs[i][2] = costs[i][2] + Math.min(costs[i - 1][0], costs[i - 1][1]);
+        }
+        // 返回涂三种颜色中开销最小的那个
+        return Math.min(Math.min(costs[costs.length - 1][0], costs[costs.length - 1][1]), costs[costs.length - 1][2]);
+    }
+	
+	public static void main(String[] args) {
+		PaintHouse p = new PaintHouse();
+		int[][] costs = {{14,2,11},{11,14,5},{14,3,10}};
+		int result = p.minCost(costs);
+		System.out.print(result);
+	}
+}
