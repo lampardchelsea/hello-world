@@ -18,6 +18,8 @@
 // Solution 1:
 // Refer to
 // https://github.com/lampardchelsea/hello-world/blob/master/lintcode/DP/PaintHouse.java
+// Time Complexity: O(n * k * k)
+// Space Complexity: O(n * k)
 public class Solution {
     /*
      * @param costs: n x k cost matrix
