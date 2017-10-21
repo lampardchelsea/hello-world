@@ -15,3 +15,9 @@
 <p>Climbing Stairs
 <p>1. [Template] (http://www.jiuzhang.com/solutions/climbing-stairs/)
 <p>2. [Basically it's a fibonacci] (https://discuss.leetcode.com/topic/5371/basically-it-s-a-fibonacci)
+
+<p>Paint House
+<p>1. [中文解释] (http://www.cnblogs.com/grandyang/p/5319384.html)
+<p>2. [Template 1] (https://discuss.leetcode.com/topic/27057/simple-15-line-code-with-o-n-time-and-o-1-memory-solution-java)
+<p>3. [Template 2] (https://discuss.leetcode.com/topic/21311/simple-java-dp-solution)
+<p>4. [中文解释2] (https://segmentfault.com/a/1190000003903965)
