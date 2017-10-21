@@ -21,3 +21,9 @@
 <p>2. [Simple 15 line code with O(n) time and O(1) memory solution(Java)] (https://discuss.leetcode.com/topic/27057/simple-15-line-code-with-o-n-time-and-o-1-memory-solution-java)
 <p>3. [Simple java DP solution] (https://discuss.leetcode.com/topic/21311/simple-java-dp-solution)
 <p>4. [中文解释2] (https://segmentfault.com/a/1190000003903965)
+
+<p>Paint House II
+<p>1. [中文解释] (http://www.cnblogs.com/grandyang/p/5322870.html)
+<p>2. [中文解释2] (https://segmentfault.com/a/1190000003903965)
+<p>3. [Fast DP Java solution Runtime O(nk) space O(1)] (https://discuss.leetcode.com/topic/25489/fast-dp-java-solution-runtime-o-nk-space-o-1)
+<p>4. [AC Java solution without extra space] (https://discuss.leetcode.com/topic/22580/ac-java-solution-without-extra-space)
