@@ -58,3 +58,8 @@
 <p>2. [中文解释2] (http://www.cnblogs.com/grandyang/p/4518674.html)
 <p>3. [Template] (https://www.jiuzhang.com/solution/house-robber-ii/)
 <p>4. [Explaination] (https://discuss.leetcode.com/topic/14375/simple-ac-solution-in-java-in-o-n-with-explanation)
+
+<p>Nim Game
+<p>1. [Official Article] (https://leetcode.com/articles/nim-game/)
+<p>2. [中文解释] (http://www.cnblogs.com/grandyang/p/4873248.html)
+
