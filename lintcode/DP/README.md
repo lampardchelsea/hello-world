@@ -28,3 +28,10 @@
 <p>3. [Fast DP Java solution Runtime O(nk) space O(1)] (https://discuss.leetcode.com/topic/25489/fast-dp-java-solution-runtime-o-nk-space-o-1)
 <p>4. [AC Java solution without extra space] (https://discuss.leetcode.com/topic/22580/ac-java-solution-without-extra-space)
 <p>5. [Formal way as additional O(n * k) space required for Solution 2] (https://discuss.leetcode.com/topic/22580/ac-java-solution-without-extra-space/12)
+
+<p>Paint Fence
+<p>1. [中文解释] (https://segmentfault.com/a/1190000003790650)
+<p>2. [中文解释2] (http://www.cnblogs.com/grandyang/p/5231220.html)
+<p>3. [O(n) time java solution, O(1) space] (https://discuss.leetcode.com/topic/23426/o-n-time-java-solution-o-1-space)
+
+
