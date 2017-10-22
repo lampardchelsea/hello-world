@@ -57,6 +57,8 @@ public class Solution {
 
 
 // Solution 2:
+// Time Complexity: O(n * k)
+// Space Complexity: O(n * k)
 // Refer to
 // https://segmentfault.com/a/1190000003903965
 // 和I的思路一样，不过这里我们有K个颜色，不能简单的用Math.min方法了。如果遍历一遍颜色数组就找出除了自身外最小的颜色呢？
@@ -119,4 +121,49 @@ public class Solution {
         return dp[n - 1][min1];
     }
 }
+
+// Solution 3:
+// Time Complexity: O(n * k)
+// Space Complexity: O(1)
+// Refer to
+// https://discuss.leetcode.com/topic/25489/fast-dp-java-solution-runtime-o-nk-space-o-1
+/**
+ Explanation: dp[i][j] represents the min paint cost from house 0 to house i when house i use color j; 
+ The formula will be dp[i][j] = Math.min(any k!= j| dp[i-1][k]) + costs[i][j].
+ Take a closer look at the formula, we don't need an array to represent dp[i][j], we only need to know 
+ the min cost to the previous house of any color and if the color j is used on previous house to get 
+ prev min cost, use the second min cost that are not using color j on the previous house. So I have 
+ three variable to record: prevMin, prevMinColor, prevSecondMin. and the above formula will be 
+ translated into: dp[currentHouse][currentColor] = (currentColor == prevMinColor? prevSecondMin: prevMin) 
+ + costs[currentHouse][currentColor].
+*/
+public class Solution {
+   public int minCostII(int[][] costs) {
+       if(costs == null || costs.length == 0 || costs[0].length == 0) return 0;
+
+       int n = costs.length, k = costs[0].length;
+       if(k == 1) return (n==1? costs[0][0] : -1);
+
+       int prevMin = 0, prevMinInd = -1, prevSecMin = 0;//prevSecMin always >= prevMin
+       for(int i = 0; i<n; i++) {
+           int min = Integer.MAX_VALUE, minInd = -1, secMin = Integer.MAX_VALUE;
+           for(int j = 0; j<k;  j++) {
+               int val = costs[i][j] + (j == prevMinInd? prevSecMin : prevMin);
+               if(minInd< 0) {min = val; minInd = j;}//when min isn't initialized
+               else if(val < min) {//when val < min, 
+                   secMin = min;
+                   min = val;
+                   minInd = j;
+               } else if(val < secMin) { //when min<=val< secMin
+                   secMin = val;
+               }
+           }
+           prevMin = min;
+           prevMinInd = minInd;
+           prevSecMin = secMin;
+       }
+       return prevMin;
+   }
+}
+
 
