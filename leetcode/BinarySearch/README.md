@@ -22,3 +22,7 @@
 <p>The Skyline Problem
 <p>1. [Best Explaination] (https://briangordon.github.io/2014/08/the-skyline-problem.html)
 <p>2. [The Skyline Problem 天际线问题] (https://segmentfault.com/a/1190000003786782)
+
+<p>Guess Number Higher Or Lower
+<p>1. [Binary Search] (https://leetcode.com/articles/guess-number-higher-or-lower/)
+<p>2. [The key point is to read the problem carefully] (https://discuss.leetcode.com/topic/51083/the-key-point-is-to-read-the-problem-carefully)
