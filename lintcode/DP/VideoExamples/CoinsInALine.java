@@ -15,6 +15,7 @@
  * Solution
  * https://aaronice.gitbooks.io/lintcode/content/dynamic_programming/coins_in_a_line.html
  * https://www.jiuzhang.com/solution/coins-in-a-line/
+ * https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java
 */
 
 // Solution 1:
@@ -48,5 +49,45 @@
    唯一要素就是初始硬币数目，在不为3的整数倍情况下，先手都可以获胜。这样的话，算法时间复杂度和空间复杂度
    都为O(1)。
 */
+public class Solution {
+    /*
+     * @param n: An integer
+     * @return: A boolean which equals to true if the first player will win
+     */
+    public boolean firstWillWin(int n) {
+        if(n == 0) {
+            return false;
+        } else if(n == 1) {
+            return true;
+        } else if(n == 2) {
+            return true;
+        }
+        boolean[] dp = new boolean[n + 1];
+        dp[0] = false;
+        dp[1] = true;
+        dp[2] = true;
+        for(int i = 3; i < n + 1; i++) {
+            // Refer to
+            // https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java
+            dp[i] = dp[i - 3];
+        }
+        return dp[n];
+    }
+}
 
+
+// Solution 2:
+// N % 3 - Time O(1), Space O(1)
+public class Solution {
+    /*
+     * @param n: An integer
+     * @return: A boolean which equals to true if the first player will win
+     */
+    public boolean firstWillWin(int n) {
+        if(n % 3 == 0) {
+            return false;
+        }
+        return true;
+    }
+}
 
