@@ -44,7 +44,7 @@ public class Solution {
     }
 }
 
-// Solution 2
+// Solution 2: Stand DP Solution
 // Refer to
 // https://discuss.leetcode.com/topic/24432/java-dp-solution
 // https://discuss.leetcode.com/topic/24432/java-dp-solution/3
