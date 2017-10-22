@@ -33,5 +33,6 @@
 <p>1. [中文解释] (https://segmentfault.com/a/1190000003790650)
 <p>2. [中文解释2] (http://www.cnblogs.com/grandyang/p/5231220.html)
 <p>3. [O(n) time java solution, O(1) space] (https://discuss.leetcode.com/topic/23426/o-n-time-java-solution-o-1-space)
-
+<p>4. [Stand DP Solution] (https://discuss.leetcode.com/topic/24432/java-dp-solution)
+<p>5. [More detail explain] (https://discuss.leetcode.com/topic/24432/java-dp-solution/3)
 
