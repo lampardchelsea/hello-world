@@ -103,6 +103,13 @@ Frog jump
 <p>3. [Template] (https://www.jiuzhang.com/solution/house-robber-ii/)
 <p>4. [Explaination] (https://discuss.leetcode.com/topic/14375/simple-ac-solution-in-java-in-o-n-with-explanation)
 
+<p>Coins In A Line
+<p>1. [中文解释] (https://aaronice.gitbooks.io/lintcode/content/dynamic_programming/coins_in_a_line.html)
+<p>2. [Template] (https://www.jiuzhang.com/solution/coins-in-a-line/)
+<p>3. [递推公式dp[n] = dp[n - 3]] (https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)
+
+
+
 
 
 
