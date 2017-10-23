@@ -69,5 +69,13 @@
 <p>3. [Coin Change Problem] (http://romanenco.com/coin-change-problem)
 <p>4. [Stack Overflow Issue] (https://discuss.leetcode.com/topic/32475/c-o-n-amount-time-o-amount-space-dp-solution/22?page=2)
 
+<p>Coin Change II
+<p>1. [Knapsack problem - Java solution with thinking process O(nm) Time and O(m) Space] (https://discuss.leetcode.com/topic/79071/knapsack-problem-java-solution-with-thinking-process-o-nm-time-and-o-m-space)
+<p>2. [Can you please explain the difference between Combination Sum IV] (https://discuss.leetcode.com/topic/79071/knapsack-problem-java-solution-with-thinking-process-o-nm-time-and-o-m-space/7)
+
+<p>Combination Sum IV
+<p>1. [1ms Java DP Solution with Detailed Explanation] (https://discuss.leetcode.com/topic/52302/1ms-java-dp-solution-with-detailed-explanation)
+
+
 
 
