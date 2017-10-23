@@ -63,3 +63,11 @@
 <p>1. [Official Article] (https://leetcode.com/articles/nim-game/)
 <p>2. [中文解释] (http://www.cnblogs.com/grandyang/p/4873248.html)
 
+<p>Coin Change
+<p>1. [Official Article] (https://leetcode.com/articles/coin-change/)
+<p>2. [中文解释] (http://www.cnblogs.com/grandyang/p/5138186.html)
+<p>3. [Coin Change Problem] (http://romanenco.com/coin-change-problem)
+<p>4. [Stack Overflow Issue] (https://discuss.leetcode.com/topic/32475/c-o-n-amount-time-o-amount-space-dp-solution/22?page=2)
+
+
+
