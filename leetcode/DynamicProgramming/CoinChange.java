@@ -105,3 +105,49 @@ class Solution {
 }
 
 
+// Solution 3:
+/**
+ Approach #3 (Dynamic programming - Bottom up) [Accepted]
+ Complexity Analysis
+ Time complexity : O(S*n). On each step the algorithm finds the next F(i) in nn iterations, where 1 <= i <= S. 
+                     Therefore in total the iterations are S∗n.
+ Space complexity : O(S). We use extra space for the memoization table.
+*/
+public class CoinChange {
+    public int coinChange(int[] coins, int amount) {
+        if(amount < 1) {
+            return 0;
+        }
+        // state: dp[i] represent for amount = i the minimum coins we need
+        int[] dp = new int[amount + 1];
+        // initialize
+        dp[0] = 0;
+        for(int i = 1; i < amount + 1; i++) {
+            dp[i] = Integer.MAX_VALUE;
+        }
+        // function
+        for(int i = 1; i < amount + 1; i++) {
+            for(int coin : coins) {
+                // Refer to
+                // https://discuss.leetcode.com/topic/32475/c-o-n-amount-time-o-amount-space-dp-solution/22?page=2
+                // check on possible overflow problem (Integer.MAX_VALUE + 1 = Integer.MIN_VALUE)
+                // e.g coins = {2}, amount = 3 -> if not adding 'dp[i - coin] != Integer.MAX_VALUE'
+                // will cause output = -2147483648 which expected to be -1
+                //if(i - coin >= 0) {
+                if(i - coin >= 0 && dp[i - coin] != Integer.MAX_VALUE) {
+                    dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+                }
+            }
+        }
+        // answer
+        return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];
+    }
+    
+    public static void main(String[] args) {
+    	CoinChange c = new CoinChange();
+    	int[] coins = {2};
+    	int amount = 3;
+    	int result = c.coinChange(coins, amount);
+    	System.out.print(result);
+    }
+}
