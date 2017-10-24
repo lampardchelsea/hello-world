@@ -27,3 +27,6 @@
 <p>N Queens
 <p>1. [N Queen Implementation 1] (http://www.cnblogs.com/springfor/p/3870944.html)
 <p>2. [N Queen Implementation 2] (https://segmentfault.com/a/1190000003762668)
+
+<p>Combination Sum III
+<p>1. [中文解释] (https://segmentfault.com/a/1190000003743112)
