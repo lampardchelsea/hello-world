@@ -116,31 +116,40 @@
 * https://discuss.leetcode.com/topic/79071/knapsack-problem-java-solution-with-thinking-process-o-nm-time-and-o-m-space/6
 * The difference is that if you update dp while:
 
-increasing i then the previous partial result dp[i - coin] is the result that has considered coin already
-decreasing i then the previous partial result dp[i - coin] is the result that has not considered coin yet
-/** 
- * @return number of ways to make sum s using repeated coins
- */
-public static int coinrep(int[] coins, int s) {
-    int[] dp = new int[s + 1]; 
-    dp[0] = 1;          
-    for (int coin : coins)      
-        for (int i = coin; i <= s; i++)         
-            dp[i] += dp[i - coin];                                  
-    return dp[s];
-}                                       
-                                            
-/**
- * @return number of ways to make sum s using non-repeated coins
- */
-public static int coinnonrep(int[] coins, int s) {
-    int[] dp = new int[s + 1];
-    dp[0] = 1;  
-    for (int coin : coins)
-        for (int i = s; i >= coin; i--)
-            dp[i] += dp[i - coin];              
-    return dp[s];                                                   
-} 
+      increasing i then the previous partial result dp[i - coin] is the result that has considered coin already
+      decreasing i then the previous partial result dp[i - coin] is the result that has not considered coin yet
+
+      @return number of ways to make sum s using repeated coins
+      public static int coinrep(int[] coins, int s) {
+          int[] dp = new int[s + 1]; 
+          dp[0] = 1;          
+          for (int coin : coins)      
+              for (int i = coin; i <= s; i++)         
+                  dp[i] += dp[i - coin];                                  
+          return dp[s];
+      }                                       
+
+      @return number of ways to make sum s using non-repeated coins
+      public static int coinnonrep(int[] coins, int s) {
+          int[] dp = new int[s + 1];
+          dp[0] = 1;  
+          for (int coin : coins)
+              for (int i = s; i >= coin; i--)
+                  dp[i] += dp[i - coin];              
+          return dp[s];                                                   
+      }
+      
+* 
+* Refer to
+* https://discuss.leetcode.com/topic/52302/1ms-java-dp-solution-with-detailed-explanation/8
+* Difference between bottom-up V.S top-down on Combination Sum IV ?
+* Good question guys! Actually if you look closely at the implementation of bottom-up approach, 
+  you will notice that it may have more "intermediate steps" than the top-down one.
+  For example, given nums = [100], target = 100, the top-down approach will get the result directly, 
+  while the bottom-up has to build comb[1] all the way to comb[100].
+  Is it possible to calculate only necessary intermediate steps in bottom-up approach? It's possible 
+  because you can find the next smallest sum with the nums given. But I think it's hard enough to 
+  be another independent problem.
 */
 
 // Solution 1: DFS (TLE)
@@ -207,6 +216,35 @@ class Solution {
 
 
 // Solution 3: Bottom-Up DP
-
+/**
+* Refer to
+* https://discuss.leetcode.com/topic/52302/1ms-java-dp-solution-with-detailed-explanation/8
+* Difference between bottom-up V.S top-down on Combination Sum IV ?
+* Good question guys! Actually if you look closely at the implementation of bottom-up approach, 
+  you will notice that it may have more "intermediate steps" than the top-down one.
+  For example, given nums = [100], target = 100, the top-down approach will get the result directly, 
+  while the bottom-up has to build comb[1] all the way to comb[100].
+  Is it possible to calculate only necessary intermediate steps in bottom-up approach? It's possible 
+  because you can find the next smallest sum with the nums given. But I think it's hard enough to 
+  be another independent problem.
+*/
+class Solution {
+    public int combinationSum4(int[] nums, int target) {
+        // state
+        int[] dp = new int[target + 1];
+        // initialize
+        dp[0] = 1;
+        // function
+        for(int i = 1; i < dp.length; i++) {
+            for(int j = 0; j < nums.length; j++) {
+                if(i - nums[j] >= 0) {
+                    dp[i] += dp[i - nums[j]]; 
+                } 
+            }
+        }
+        // answer
+        return dp[target];
+    }
+}
 
 
