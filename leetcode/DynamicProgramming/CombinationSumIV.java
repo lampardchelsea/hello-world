@@ -133,7 +133,49 @@ class Solution {
     }
 }
 
-// Solution 2:
+// Solution 2: Top-Down DP (kind of Knapsack problem + memorized search)
+/**
+ Now for a DP solution, we just need to figure out a way to store the intermediate results, 
+ to avoid the same combination sum being calculated many times. We can use an array to save 
+ those results, and check if there is already a result before calculation. We can fill the 
+ array with -1 to indicate that the result hasn't been calculated yet. 0 is not a good choice 
+ because it means there is no combination sum for the target.
+*/
+class Solution {
+    public int combinationSum4(int[] nums, int target) {
+        if(nums == null || nums.length == 0 || target < 0) {
+            return 0;
+        }
+        // state
+        int[] dp = new int[target + 1];
+        // initialize
+        dp[0] = 1;
+        for(int i = 1; i < dp.length; i++) {
+            // -1 is a better choice -> indicate that the result hasn't been calculated yet
+            // 0 is not a good choice -> means there is no combination sum for the target.
+            dp[i] = -1;
+        }
+        // function
+        return helper(dp, nums, target);
+    }
+    
+    private int helper(int[] dp, int[] nums, int remained) {
+        if(dp[remained] != -1) {
+            return dp[remained];
+        }
+        int res = 0;
+        for(int num : nums) {
+            if(remained >= num) {
+                res += helper(dp, nums, remained - num);
+            }
+        }
+        dp[remained] = res;
+        return res;
+    }
+}
+
+
+// Solution 3: Bottom-Up DP
 
 
 
