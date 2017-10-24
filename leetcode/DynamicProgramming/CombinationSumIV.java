@@ -111,3 +111,29 @@
   1, -1, 1, -1, ..., 1, -1, 1 (there are also others, of course, just to give an example). 
   So we should limit the length of the combination sequence, so as to give a bound to the problem.
 */
+
+// Solution 1: DFS (TLE)
+class Solution {
+    // TLE 
+    // E.g nums = {1,2,3} target = 32
+    public int combinationSum4(int[] nums, int target) {
+        if(nums == null || nums.length == 0 || target < 0) {
+            return 0;
+        }
+        if(target == 0) {
+            return 1;
+        }
+        int res = 0;
+        for(int num : nums) {
+            if(target >= num) {
+                res += combinationSum4(nums, target - num);
+            }
+        }
+        return res;
+    }
+}
+
+// Solution 2:
+
+
+
