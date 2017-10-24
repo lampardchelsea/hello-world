@@ -83,6 +83,9 @@ class Solution {
         // types of coins, so dp[i][0] should represent the number of combinations to make 
         // up 0 by the first i types of coins, the number of combinations is 0, 
         // so dp[i][0] = 0 right ? Why initialize as 1 ?
+        // 有两种理解方式：
+        // 1. “什么硬币都不用”是一种凑钱方式。凑出来的金额只有0一种可能。
+        // 2. 为了保证 dp[i][coin[i]] = 1 的一种简化了的初始化方式。
         dp[0][0] = 1;
         for(int i = 1; i < coins.length + 1; i++) {
             dp[i][0] = 1;
