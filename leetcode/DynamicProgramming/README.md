@@ -76,7 +76,7 @@
 
 <p>Combination Sum IV
 <p>1. [1ms Java DP Solution with Detailed Explanation] (https://discuss.leetcode.com/topic/52302/1ms-java-dp-solution-with-detailed-explanation)
-
-
-
+<p>2. [Follow Up] (https://discuss.leetcode.com/topic/52227/7-liner-in-python-and-follow-up-question)
+<p>3. [Combination Sum IV VS Coin Change 2] (https://discuss.leetcode.com/topic/79071/knapsack-problem-java-solution-with-thinking-process-o-nm-time-and-o-m-space/6)
+<p>4. [Difference between bottom-up V.S top-down on Combination Sum IV ?] (https://discuss.leetcode.com/topic/52302/1ms-java-dp-solution-with-detailed-explanation/8)
 
