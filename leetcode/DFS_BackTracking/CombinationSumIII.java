@@ -39,9 +39,11 @@ public class CombinationSumIII {
     // we will stop further search on this branch
     public void helper(List<List<Integer>> result, List<Integer> tmp, int k, int target, int i) {
         // Base case
-    	if(target < 0 || k < 0) {
-        	return;
-        } else if(target == 0 && k == 0) {
+    	// These condition redundant
+	//if(target < 0 || k < 0) {
+        //	return;
+        //} else if(target == 0 && k == 0) {
+        if(target == 0 && k == 0) {
         	List<Integer> oneComb = new ArrayList<Integer>(tmp);
         	result.add(oneComb);
         	return;
