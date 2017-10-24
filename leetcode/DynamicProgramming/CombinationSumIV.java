@@ -110,6 +110,37 @@
   arbitrary length that follow the patterns -1, 1, -1, 1, ..., -1, 1, 1 and 
   1, -1, 1, -1, ..., 1, -1, 1 (there are also others, of course, just to give an example). 
   So we should limit the length of the combination sequence, so as to give a bound to the problem.
+  
+* Can you please explain the difference between this solution ?
+* Combination Sum IV VS Coin Change 2
+* https://discuss.leetcode.com/topic/79071/knapsack-problem-java-solution-with-thinking-process-o-nm-time-and-o-m-space/6
+* The difference is that if you update dp while:
+
+increasing i then the previous partial result dp[i - coin] is the result that has considered coin already
+decreasing i then the previous partial result dp[i - coin] is the result that has not considered coin yet
+/** 
+ * @return number of ways to make sum s using repeated coins
+ */
+public static int coinrep(int[] coins, int s) {
+    int[] dp = new int[s + 1]; 
+    dp[0] = 1;          
+    for (int coin : coins)      
+        for (int i = coin; i <= s; i++)         
+            dp[i] += dp[i - coin];                                  
+    return dp[s];
+}                                       
+                                            
+/**
+ * @return number of ways to make sum s using non-repeated coins
+ */
+public static int coinnonrep(int[] coins, int s) {
+    int[] dp = new int[s + 1];
+    dp[0] = 1;  
+    for (int coin : coins)
+        for (int i = s; i >= coin; i--)
+            dp[i] += dp[i - coin];              
+    return dp[s];                                                   
+} 
 */
 
 // Solution 1: DFS (TLE)
