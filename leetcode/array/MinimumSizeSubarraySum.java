@@ -13,7 +13,18 @@
  * 
  * Solution
  * https://discuss.leetcode.com/topic/18583/accepted-clean-java-o-n-solution-two-pointers
+ * https://leetcode.com/articles/minimum-size-subarray-sum/
+ * http://likesky3.iteye.com/blog/2229475
+ * http://www.cnblogs.com/grandyang/p/4501934.html
+ * https://lefttree.gitbooks.io/leetcode-categories/twoPointer/minSizeSubarraySum.html
  */
+// Solution 1:
+
+// Solution 2:
+
+// Solution 3:
+
+// Solution 4: Two Points
 public class MinimumSizeSubarraySum {
     public int minSubArrayLen(int s, int[] nums) {
         int len = nums.length;
