@@ -64,6 +64,52 @@ class Solution {
 
 
 // Solution 2:
+class Solution {
+    /**
+     Approach #2 A better brute force [Accepted]
+     Intuition
+     In Approach #1, you may notice that the sum is calculated for every surarray in O(n) time. 
+     But, we could easily find the sum in O(1) time by storing the cumulative sum from the 
+     beginning(Memoization). After we have stored the cumulative sum in sums, we could easily 
+     find the sum of any subarray from i to j.
+     
+     Algorithm
+     The algorithm is similar to Approach #1.
+     The only difference is in the way of finding the sum of subarrays:
+     Create a vector sums of size of nums
+     Initialize sums[0]=nums[0]
+     Iterate over the sums vector:
+     Update sums[i]=sums[i−1]+nums[i]
+     Sum of subarray from i to j is calculated as: sum=sums[j]−sums[i]+nums[i], 
+     wherein sums[j]−sums[i] is the sum from (i+1)th element to the jth element.
+    */
+    public int minSubArrayLen(int s, int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        int n = nums.length;
+        int[] preSum = new int[n];
+        preSum[0] = nums[0];
+        for(int i = 1; i < n; i++) {
+            preSum[i] = preSum[i - 1] + nums[i];
+        }
+        int result = Integer.MAX_VALUE;
+        for(int i = 0; i < n; i++) {
+            for(int j = i; j < n; j++) {
+                int sum = preSum[j] - preSum[i] + nums[i];
+                if(sum >= s) {
+                    // Find the smallest subarray with sum >= s starting with index i,
+                    // hence break current loop and move to next start index i + 1
+                    result = Math.min(result, j - i + 1);
+                    break;
+                }
+            }
+        }
+        return result == Integer.MAX_VALUE ? 0 : result;
+    }
+}
+
+
 
 // Solution 3:
 
