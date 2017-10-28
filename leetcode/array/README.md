@@ -141,6 +141,10 @@ binary-search-java-code/29)
 
 <p>Minimum Size Subarray Sum
 <p>1. [Accepted clean Java O(n) solution (two pointers)] (https://discuss.leetcode.com/topic/18583/accepted-clean-java-o-n-solution-two-pointers)
+<p>2. [Official Artical] (https://leetcode.com/articles/minimum-size-subarray-sum/)
+<p>3. [中文解释] (http://likesky3.iteye.com/blog/2229475)
+<p>4. [中文解释2] (http://www.cnblogs.com/grandyang/p/4501934.html)
+<p>5. [中文解释3] (https://lefttree.gitbooks.io/leetcode-categories/twoPointer/minSizeSubarraySum.html)
 
 <p>Find All Duplicates In An Array
 <p>1. [Java Simple Solution (Same as Find All Numbers Disappeared in an Array)] (https://discuss.leetcode.com/topic/64735/java-simple-solution)
