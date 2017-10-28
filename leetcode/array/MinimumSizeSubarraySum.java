@@ -235,6 +235,15 @@ class Solution {
      It means that the first index can safely be incremented, since, the minimum subarray starting 
      with this index with sum≥s has been achieved
      Subtract nums[left] from sum and increment left
+     
+     Complexity analysis
+     Time complexity: O(n). Single iteration of O(n). 
+                      Each element can be visited atmost twice, once by the right pointer(i) and 
+                      (atmost)once by the left pointer. --> This is very important: for loop and
+                      inner while loop doesn't mean O(n^2), because the inner while loop not a
+                      fully loop, because left pointer will never move backward, it only keep
+                      increasing till end of nums array.
+     Space complexity: O(1) extra space. Only constant space required for left, sum, ans and i.
     */
     public int minSubArrayLen(int s, int[] nums) {
         if(nums == null || nums.length == 0) {
