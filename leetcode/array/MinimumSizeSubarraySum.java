@@ -217,25 +217,43 @@ class Solution {
 
 
 // Solution 4: Two Points
-public class MinimumSizeSubarraySum {
+class Solution {
+    /**
+     Approach #4 Using 2 pointers [Accepted]
+     Intuition
+     Until now, we have kept the starting index of subarray fixed, and found the last position. 
+     Instead, we could move the starting index of the current subarray as soon as we know that 
+     no better could be done with this index as the starting index. We could keep 2 pointer,one 
+     for the start and another for the end of the current subarray, and make optimal moves so 
+     as to keep the sum greater than ss as well as maintain the lowest size possible.
+     
+     Algorithm
+     Initialize left pointer to 0 and sum to 0
+     Iterate over the nums:Add nums[i] to sum
+     While sum is greater than or equal to s:
+     Update ans=min(ans,i+1−left), where i+1−left is the size of current subarray
+     It means that the first index can safely be incremented, since, the minimum subarray starting 
+     with this index with sum≥s has been achieved
+     Subtract nums[left] from sum and increment left
+    */
     public int minSubArrayLen(int s, int[] nums) {
-        int len = nums.length;
-        if(len == 0) return 0;
-        int minWindow = Integer.MAX_VALUE;
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        int n = nums.length;
+        int result = Integer.MAX_VALUE;
         int left = 0;
-        int right = 0;
         int sum = 0;
-        while(right < nums.length) {
-            sum += nums[right++];
+        for(int i = 0; i < n; i++) {
+            sum += nums[i];
             while(sum >= s) {
-                minWindow = Math.min(minWindow, right - left);
-                sum -= nums[left++];
+                // Update ans=min(ans,i+1−left), where i+1−left is the size of current subarray
+                result = Math.min(result, i - left + 1);
+                sum -= nums[left];
+                // Move forward 1 position for left bound
+                left++;
             }
         }
-        return minWindow == Integer.MAX_VALUE ? 0 : minWindow;
-    }
-    
-    public static void main(String[] args) {
-    	
+        return result == Integer.MAX_VALUE ? 0 : result;
     }
 }
