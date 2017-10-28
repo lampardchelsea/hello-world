@@ -242,7 +242,8 @@ class Solution {
                       (atmost)once by the left pointer. --> This is very important: for loop and
                       inner while loop doesn't mean O(n^2), because the inner while loop not a
                       fully loop, because left pointer will never move backward, it only keep
-                      increasing till end of nums array.
+                      increasing till end of nums array. So O(2n) actually still O(n) based on
+                      each element only visited twice.
      Space complexity: O(1) extra space. Only constant space required for left, sum, ans and i.
     */
     public int minSubArrayLen(int s, int[] nums) {
