@@ -16,6 +16,8 @@
       1）若目前遇到过字符种类不足k个，则直接加入；
       2）若目前遇到过的字符种类大于k个，则移动左边界减少字符，直到字符种类少于k个后再加入。
    3. 每次改变左边界时更新max的值。但是最后一次当right到数组尾部时，这一次不会改变左边界，所以要在循环结束后最后一次更新max。
+ *
+ * https://discuss.leetcode.com/topic/41671/15-lines-java-solution-using-slide-window/2
 */
 public class Solution {
     /**
