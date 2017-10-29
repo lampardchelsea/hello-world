@@ -39,8 +39,46 @@
           return best;
       } 
 */
-public class Solution {
-    public int lengthOfLongestSubstringKDistinct(String s, int k) {
-        
-    }
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class LongestSubstringWithAtMostKDistinctCharacters {
+	public int lengthOfLongestSubstringKDistinct(String s, int k) {
+		if(s == null || s.length() == 0) {
+			return 0;
+		}
+		Map<Character, Integer> map = new HashMap<Character, Integer>();
+		int left = 0;
+		int max = 0;
+		for(int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
+			if(!map.containsKey(c)) {
+				map.put(c, 1);
+			} else {
+				map.put(c, map.get(c) + 1);
+			}
+			while(map.size() > k) {
+				char leftChar = s.charAt(left);
+				if(map.containsKey(leftChar)) {
+					map.put(leftChar, map.get(leftChar) - 1);
+					if(map.get(leftChar) == 0) {
+						map.remove(leftChar);
+					}
+				}
+				left++;
+			}
+			max = Math.max(max, i - left + 1);
+		}
+		return max;
+	}
+	
+	public static void main(String[] args) {
+		LongestSubstringWithAtMostKDistinctCharacters l = new LongestSubstringWithAtMostKDistinctCharacters();
+		String s = "eceba";
+		int k = 3;
+		int result = l.lengthOfLongestSubstringKDistinct(s, k);
+		System.out.println(result);
+	}
 }
+
