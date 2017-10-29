@@ -15,6 +15,29 @@
    3. 每次改变左边界时更新max的值。但是最后一次当right到数组尾部时，这一次不会改变左边界，所以要在循环结束后最后一次更新max。
  *
  * https://discuss.leetcode.com/topic/41671/15-lines-java-solution-using-slide-window/2
+   A more generic solution as follows, can be solution for Unicode string:
+
+      public int lengthOfLongestSubstringKDistinct(String s, int k) {
+          Map<Character, Integer> map = new HashMap<>();
+          int left = 0;
+          int best = 0;
+          for(int i = 0; i < s.length(); i++) {
+              char c = s.charAt(i);
+              map.put(c, map.getOrDefault(c, 0) + 1);
+              while (map.size() > k) {
+                  char leftChar = s.charAt(left);
+                  if (map.containsKey(leftChar)) {
+                      map.put(leftChar, map.get(leftChar) - 1);                     
+                      if (map.get(leftChar) == 0) { 
+                          map.remove(leftChar);
+                      }
+                  }
+                  left++;
+              }
+              best = Math.max(best, i - left + 1);
+          }
+          return best;
+      } 
 */
 public class Solution {
     public int lengthOfLongestSubstringKDistinct(String s, int k) {
