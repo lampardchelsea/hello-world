@@ -221,6 +221,12 @@
 <p>3. [Java code for the follow-up question (HashMap & Binary Search)] (https://discuss.leetcode.com/topic/67167/java-code-for-the-follow-up-question)
 <p>4. [Prev variable in Binary Search] (https://discuss.leetcode.com/topic/58367/binary-search-solution-for-follow-up-with-detailed-comments/5)
 
+<p>Longest Substring with At Most K Distinct Characters
+<p>1. [15 lines java solution using slide window] (https://discuss.leetcode.com/topic/41671/15-lines-java-solution-using-slide-window/3)
+<p>2. [中文解释] (https://zhengyang2015.gitbooks.io/lintcode/longest_substring_with_at_most_k_distinct_characte.html)
+<p>3. [Sliding Window algorithm template to solve all the Leetcode substring search problem.] (https://discuss.leetcode.com/topic/71662/sliding-window-algorithm-template-to-solve-all-the-leetcode-substring-search-problem)
+
+
 
 
 
