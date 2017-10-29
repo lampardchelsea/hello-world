@@ -7,14 +7,6 @@ import java.util.Map;
  * 
  * Solution
  * https://discuss.leetcode.com/topic/8232/11-line-simple-java-solution-o-n-with-explanation
- * The basic idea is, keep a hashmap which stores the characters 
- * in string as keys and their positions as values, and keep two 
- * pointers which define the max substring. move the right pointer 
- * to scan through the string , and meanwhile update the hashmap. 
- * If the character is already in the hashmap, then move the left 
- * pointer to the right of the same character last found. 
- * Note that the two pointers can only move forward.
- *
  * https://leetcode.com/articles/longest-substring-without-repeating-characters/
  */
 
@@ -142,7 +134,18 @@ class Solution {
 
 
 
-
+// Solution 3: 
+// Refer to
+// https://discuss.leetcode.com/topic/8232/11-line-simple-java-solution-o-n-with-explanation
+/**
+ * The basic idea is, keep a hashmap which stores the characters 
+ * in string as keys and their positions as values, and keep two 
+ * pointers which define the max substring. move the right pointer 
+ * to scan through the string , and meanwhile update the hashmap. 
+ * If the character is already in the hashmap, then move the left 
+ * pointer to the right of the same character last found. 
+ * Note that the two pointers can only move forward.
+*/
 public class LongestSubstringWithoutRepeatingCharacters {
     public int lengthOfLongestSubstring(String s) {
         if(s.length() == 0) {
