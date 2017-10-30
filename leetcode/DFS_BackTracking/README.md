@@ -30,3 +30,8 @@
 
 <p>Combination Sum III
 <p>1. [中文解释] (https://segmentfault.com/a/1190000003743112)
+
+<p>Longest Increasing Path in a Matrix
+<p>1. [Template DP + DFS] (https://discuss.leetcode.com/topic/34835/15ms-concise-java-solution?page=1)
+<p>2. [中文解释] (http://www.cnblogs.com/grandyang/p/5148030.html)
+<p>3. [For Time Complexity O(m * n)] (https://discuss.leetcode.com/topic/34835/15ms-concise-java-solution/17?page=1)
