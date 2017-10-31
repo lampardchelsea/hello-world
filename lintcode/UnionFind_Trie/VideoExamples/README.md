@@ -39,3 +39,7 @@
 <p>1. [Explained. My Java solution using Trie [126ms 16/16]] (https://discuss.leetcode.com/topic/63516/explained-my-java-solution-using-trie-126ms-16-16)
 <p>2. [Trie + Backtracking 中文解释] (http://www.cnblogs.com/grandyang/p/6006000.html)
 
+<p>Number of Connected Components in an Undirected Graph
+<p>1. [中文解释] (http://www.cnblogs.com/grandyang/p/5166356.html)
+<p>2. [Union Find Template] (https://discuss.leetcode.com/topic/32752/easiest-2ms-java-solution)
+<p>3. [DFS Template] (https://discuss.leetcode.com/topic/34498/java-concise-dfs)
