@@ -47,8 +47,43 @@
  * Parentheses那道题是当前括号要不要keep在StringBuffer里，要或不要同样是两种选择。
  * Syntax：注意27行使用StringBuffer.setLength(), 因为count一直累加可能变成两位数三位数，
  * delete stringbuffer最后一个字母可能不行，所以干脆设置为最初进recursion的长度	
+ *
+ * About StringBuffer setLength() method
+ * https://www.tutorialspoint.com/java/lang/stringbuffer_setlength.htm
  */
-public class GenerateAbbreviation {
+public class Solution {
+    public List<String> generateAbbreviations(String word) {
+        List<String> res = new ArrayList<String>();
+        StringBuilder tmpRes = new StringBuilder();
+        char[] wordArray = word.toCharArray();
+        dfs(res, tmpRes, wordArray, 0, 0);
+        return res;
+    }
 
+    private void dfs(List<String> res, StringBuilder tmpRes, char[] wordArray, int pos, int numCount) {
+        if(pos == wordArray.length) {
+            if(numCount > 0) {
+                tmpRes.append(numCount);
+            }
+            res.add(tmpRes.toString());
+            return;     
+        }
+
+        // use number
+        int len = tmpRes.length();
+        dfs(res, tmpRes, wordArray, pos + 1, numCOunt + 1);
+        tmpRes.setLength(len);  // backtracking
+
+        // use characater
+        len = tmpRes.length();
+        if(numCount > 0) {
+            tmpRes.append(numCount).append(wordArray[pos]);
+            dfs(res, tmpRes, wordArray, pos + 1, 0);
+        } else {
+            tmpRes.append(wordArray[pos]);
+            dfs(res, tmpRes, wordArray, pos + 1, 0);
+        }
+        tmpRes.setLength(len);  // backtracking
+    }
 }
 
