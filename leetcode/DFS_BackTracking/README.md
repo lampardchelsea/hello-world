@@ -35,3 +35,16 @@
 <p>1. [Template DP + DFS] (https://discuss.leetcode.com/topic/34835/15ms-concise-java-solution?page=1)
 <p>2. [中文解释] (http://www.cnblogs.com/grandyang/p/5148030.html)
 <p>3. [For Time Complexity O(m * n)] (https://discuss.leetcode.com/topic/34835/15ms-concise-java-solution/17?page=1)
+  
+<p>Generalized Abbreviation
+<p>1. [] ()
+<p>2. [] ()
+<p>3. [] ()
+<p>4. [] ()
+
+
+
+
+  
+  
+  
