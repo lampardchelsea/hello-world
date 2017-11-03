@@ -8,7 +8,7 @@
  * 
  * 
  * Solution
- * https://discuss.leetcode.com/topic/30743/easiest-9ms-java-solution
+ * https://discuss.leetcode.com/topic/32765/java-14ms-beats-100
  * For each char c[i], either abbreviate it or not.
 
 	Abbreviate: count accumulate num of abbreviating chars, but don't append it yet.
