@@ -37,7 +37,7 @@
 <p>3. [For Time Complexity O(m * n)] (https://discuss.leetcode.com/topic/34835/15ms-concise-java-solution/17?page=1)
   
 <p>Generalized Abbreviation
-<p>1. [DFS + Backtracking template] (https://discuss.leetcode.com/topic/30743/easiest-9ms-java-solution)
+<p>1. [DFS + Backtracking template] (https://discuss.leetcode.com/topic/32765/java-14ms-beats-100)
 <p>2. [Backtracking Solution] (https://discuss.leetcode.com/topic/32270/java-backtracking-solution)
 <p>3. [Two small improvements] (https://discuss.leetcode.com/topic/32270/java-backtracking-solution/12)
 <p>4. [Why we use StringBuffer.setLength() instead of cut off last digit1] (https://segmentfault.com/a/1190000005762481)
