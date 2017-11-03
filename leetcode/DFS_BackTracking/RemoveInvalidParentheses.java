@@ -1,3 +1,34 @@
+/**
+ * Refer to
+ * https://leetcode.com/problems/remove-invalid-parentheses/description/
+ * Remove the minimum number of invalid parentheses in order to make the input string valid. 
+   Return all possible results.
+
+    Note: The input string may contain letters other than the parentheses ( and ).
+
+    Examples:
+    "()())()" -> ["()()()", "(())()"]
+    "(a)())()" -> ["(a)()()", "(a())()"]
+    ")(" -> [""]
+ *
+ * Solution
+ * https://discuss.leetcode.com/topic/30743/easiest-9ms-java-solution?page=1
+ * Here I share my DFS or backtracking solution. It's 10X faster than optimized BFS.
+
+    Limit max removal rmL and rmR for backtracking boundary. Otherwise it will exhaust all possible 
+    valid substrings, not shortest ones.
+    Scan from left to right, avoiding invalid strs (on the fly) by checking num of open parens.
+    If it's '(', either use it, or remove it.
+    If it's '(', either use it, or remove it.
+    Otherwise just append it.
+    Lastly set StringBuilder to the last decision point.
+    In each step, make sure:
+
+    i does not exceed s.length().
+    Max removal rmL rmR and num of open parens are non negative.
+    De-duplicate by adding to a HashSet.
+    Compared to 106 ms BFS (Queue & Set), it's faster and easier. Hope it helps! Thanks.
+*/
 class Solution {
     public List<String> removeInvalidParentheses(String s) {
         List<String> result = new ArrayList<String>();
