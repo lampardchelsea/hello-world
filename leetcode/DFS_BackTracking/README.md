@@ -42,8 +42,10 @@
 <p>3. [] ()
 <p>4. [] ()
 
-
-
+<p>Remove Invalid Parentheses
+<p>1. [Easiest 9ms Java Solution DFS + Backtracking] (https://discuss.leetcode.com/topic/30743/easiest-9ms-java-solution?page=1)
+<p>2. [DFS + Backtracking template] (https://discuss.leetcode.com/topic/30743/easiest-9ms-java-solution/3?page=1)
+<p>3. [The order to 'not use it' and 'use it' matters] (https://discuss.leetcode.com/topic/30743/easiest-9ms-java-solution/29?page=2)
 
   
   
