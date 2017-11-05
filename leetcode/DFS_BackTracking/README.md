@@ -49,6 +49,16 @@
 <p>2. [DFS + Backtracking template] (https://discuss.leetcode.com/topic/30743/easiest-9ms-java-solution/3?page=1)
 <p>3. [The order to 'not use it' and 'use it' matters] (https://discuss.leetcode.com/topic/30743/easiest-9ms-java-solution/29?page=2)
 
+<p>Expression Add Operators
+<p>1. [Java Standard Backtrace AC Solutoin, short and clear] (https://discuss.leetcode.com/topic/24523/java-standard-backtrace-ac-solutoin-short-and-clear?page=1)
+<p>2. [Optimization with change input String into char[] array] (https://discuss.leetcode.com/topic/24523/java-standard-backtrace-ac-solutoin-short-and-clear/38)
+<p>3. [Backtracing solution with StringBuilder ] (https://discuss.leetcode.com/topic/32068/java-simple-solution-beats-96-56)
+<p>4. [Explain for handling 'mutliple' with 'eval - multed + multed * cur'] (https://discuss.leetcode.com/topic/24523/java-standard-backtrace-ac-solutoin-short-and-clear/11?page=1)
+<p>5. [Explain for excluding 'leading zeros' with 'exclude numbers with leading zeros'] (https://discuss.leetcode.com/topic/24523/java-standard-backtrace-ac-solutoin-short-and-clear/63?page=4)
+  
+  
+  
+  
   
   
   
