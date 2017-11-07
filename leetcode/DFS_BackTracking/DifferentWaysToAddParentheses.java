@@ -29,3 +29,45 @@
  * https://www.youtube.com/watch?v=gxYV8eZY0eQ
  * https://en.wikipedia.org/wiki/Cartesian_product
 */
+// Solution 1: DFS (Divide and Conquer)
+class Solution {
+    public List<Integer> diffWaysToCompute(String input) {
+        List<Integer> result = new ArrayList<Integer>();
+        if(input == null || input.length() == 0) {
+            return result;
+        }
+        for(int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if(c == '+' || c == '*' || c == '-') {
+                String part1 = input.substring(0, i);
+                String part2 = input.substring(i + 1);
+                List<Integer> part1Result = diffWaysToCompute(part1);
+                List<Integer> part2Result = diffWaysToCompute(part2);
+                // Use basic rule as 'Cartesian Product'
+                // Refer to
+                // https://www.youtube.com/watch?v=gxYV8eZY0eQ
+                // https://en.wikipedia.org/wiki/Cartesian_product
+                for(int m : part1Result) {
+                    for(int n : part2Result) {
+                        int temp = 0;
+                        if(c == '+') {
+                            temp = m + n;
+                        } else if(c == '-') {
+                            temp = m - n;
+                        } else if(c == '*') {
+                            temp = m * n;
+                        }
+                        result.add(temp);
+                    }
+                }
+            }
+        }
+        // Note: Critical terminate condition as store only numeric number
+        // present in current level 'result' (recursively start from deepest
+        // level as single number) for upper level compute
+        if(result.size() == 0) {
+            result.add(Integer.valueOf(input));
+        }
+        return result;
+    }
+}
