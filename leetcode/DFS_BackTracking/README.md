@@ -56,8 +56,12 @@
 <p>4. [Explain for handling 'mutliple' with 'eval - multed + multed * cur'] (https://discuss.leetcode.com/topic/24523/java-standard-backtrace-ac-solutoin-short-and-clear/11?page=1)
 <p>5. [Explain for excluding 'leading zeros' with 'exclude numbers with leading zeros'] (https://discuss.leetcode.com/topic/24523/java-standard-backtrace-ac-solutoin-short-and-clear/63?page=4)
   
-  
-  
+<p>Different Ways To Add Parentheses  
+<p>1. [Normal solution without DP] (https://discuss.leetcode.com/topic/19901/a-recursive-java-solution-284-ms?page=1)
+<p>2. [Solution 2] (https://discuss.leetcode.com/topic/19906/c-4ms-recursive-dp-solution-with-brief-explanation)
+<p>3. [DP Solution] (https://discuss.leetcode.com/topic/25490/share-a-clean-and-short-java-solution/2)
+<p>4  [Video: How to figure out terminate condition and the machenism of why we need hashmap to accelrate calculating by filter out all computed values] (https://www.youtube.com/watch?v=gxYV8eZY0eQ)
+<p>5. [笛卡尔乘积] (https://en.wikipedia.org/wiki/Cartesian_product)
   
   
   
