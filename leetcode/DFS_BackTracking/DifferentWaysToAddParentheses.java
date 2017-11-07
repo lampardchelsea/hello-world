@@ -23,5 +23,9 @@
     Output: [-34, -14, -10, -10, 10]
  *
  * Solution
+ * https://discuss.leetcode.com/topic/19901/a-recursive-java-solution-284-ms?page=1
+ * https://discuss.leetcode.com/topic/19906/c-4ms-recursive-dp-solution-with-brief-explanation
+ * https://discuss.leetcode.com/topic/25490/share-a-clean-and-short-java-solution/2
+ * https://www.youtube.com/watch?v=gxYV8eZY0eQ
  * https://en.wikipedia.org/wiki/Cartesian_product
 */
