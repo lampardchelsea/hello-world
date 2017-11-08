@@ -159,4 +159,18 @@
 <p>2. [Simple java hashset solution] (https://discuss.leetcode.com/topic/48172/simple-java-hashset-solution)
 <p>3. [11ms two-pass HashSet-based Java Solution] (https://discuss.leetcode.com/topic/47851/11ms-two-pass-hashset-based-java-solution)
 
-
+<p>Shortest Word Distance
+<p>1. [Viewo for HashMap O(n^2) and O(n) Solution] (https://www.youtube.com/watch?v=2MviYrr7a-k)
+<p>2. [Java Solution using HashMap] (https://discuss.leetcode.com/topic/20643/java-solution-using-hashmap)
+<p>3. [中文解释] (https://segmentfault.com/a/1190000003906667)
+<p>4. [O(m * n) HashMap Solution] (https://discuss.leetcode.com/topic/20643/java-solution-using-hashmap/14)
+<p>5. [Basic idea on how to Java solution using minimum difference between 2 sorted arrays] (https://discuss.leetcode.com/topic/20641/java-solution-using-minimum-difference-between-2-sorted-arrays)  
+  
+  
+  
+  
+  
+  
+  
+  
+  
