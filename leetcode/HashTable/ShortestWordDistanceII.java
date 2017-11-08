@@ -19,6 +19,7 @@
  * https://www.youtube.com/watch?v=2MviYrr7a-k
  * https://segmentfault.com/a/1190000003906667
  * https://discuss.leetcode.com/topic/20643/java-solution-using-hashmap
+ * https://discuss.leetcode.com/topic/20641/java-solution-using-minimum-difference-between-2-sorted-arrays
 */
 // Solution 1:
 
