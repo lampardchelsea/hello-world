@@ -11,6 +11,90 @@
  * https://segmentfault.com/a/1190000003906667
 */
 
-// Solution 1: Brute Force
+package test;
 
-// Solution 2: Two Pointers
+public class ShortestWordDistance {
+	// Solution 1: 
+	// Time Complexity: O(n^2)
+	public int shortestDistance(String[] words, String word1, String word2) {
+		if(words == null || words.length == 0) {
+			return 0;
+		}
+		int result = words.length;
+		for(int i = 0; i < words.length; i++) {
+			for(int j = 0; j < words.length; j++) {
+				if(words[i].equals(word1) && words[j].equals(word2)) {
+					result = Math.min(result, Math.abs(i - j));
+				}
+			}
+		}
+		return result;
+	}
+	
+	// Solution 2:
+	// Time Complexity: O(n)
+	public int shortestDistance2(String[] words, String word1, String word2) {
+		if(words == null || words.length == 0) {
+			return 0;
+		}
+		int result = words.length;
+		// Initial pointer a, b as -1 based on words may not contain word1 or word2
+		int a = -1;
+		int b = -1;
+		for(int i = 0; i < words.length; i++) {
+			if(words[i].equals(word1)) {
+				a = i;
+			} else if(words[i].equals(word2)) {
+				b = i;
+			}
+			// If word1 and word2 both exist in words, then recursively compute
+			// its minimum position difference
+			if(a != -1 && b != -1) {
+				result = Math.min(result, Math.abs(a - b));	
+			}
+		}
+		return result;
+	}
+	
+	// Solution 3: Optimization on Solution 2
+	// Refer to
+	// https://discuss.leetcode.com/topic/20668/ac-java-clean-solution/11?page=1
+	// add a boolean to check if position has changed to save some extra time
+	public int shortestDistance3(String[] words, String word1, String word2) {
+		if(words == null || words.length == 0) {
+			return 0;
+		}
+		int result = words.length;
+		// Initial pointer a, b as -1 based on words may not contain word1 or word2
+		int a = -1;
+		int b = -1;
+		boolean changed = false;
+		for(int i = 0; i < words.length; i++) {
+			if(words[i].equals(word1)) {
+				a = i;
+				changed = true;
+			} else if(words[i].equals(word2)) {
+				b = i;
+				changed = true;
+			}
+			// If word1 and word2 both exist in words, then recursively compute
+			// its minimum position difference
+			if(changed && a != -1 && b != -1) {
+				result = Math.min(result, Math.abs(a - b));
+				changed = false;
+			}
+		}
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		ShortestWordDistance s = new ShortestWordDistance();
+		String[] words = {"practice", "makes", "perfect", "coding", "makes"};
+		String word1 = "coding";
+		String word2 = "practice";
+		//String word2 = "makes";
+		int result = s.shortestDistance3(words, word1, word2);
+		System.out.println(result);
+	}
+}
+
