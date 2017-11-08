@@ -17,6 +17,7 @@
  * 
  * Solution
  * https://www.youtube.com/watch?v=2MviYrr7a-k
+ * https://discuss.leetcode.com/topic/20643/java-solution-using-hashmap/14
  * https://segmentfault.com/a/1190000003906667
  * https://discuss.leetcode.com/topic/20643/java-solution-using-hashmap
  * https://discuss.leetcode.com/topic/20641/java-solution-using-minimum-difference-between-2-sorted-arrays
@@ -42,13 +43,19 @@ public class ShortestDistanceWordII {
 	}
 	
 	
-	// Solution 1: 
+	// Solution 1: HashMap with O(m * n) Time Complexity
 	// https://www.youtube.com/watch?v=2MviYrr7a-k
-	
-	
-	
-	
-	
+	// https://discuss.leetcode.com/topic/20643/java-solution-using-hashmap/14
+	public int shortest(String word1, String word2) {
+	    int min = Integer.MAX_VALUE;
+	    for(Integer num1: map.get(word1)) {
+		for(Integer num2: map.get(word2)) {
+		    min = Math.min(min, Math.abs(num1 - num2));
+		}
+	    }
+	    return min;
+	}
+		
         // Solution 2: HashMap with O(m + n) Time Complexity
 	// Refer to
 	// https://segmentfault.com/a/1190000003906667
