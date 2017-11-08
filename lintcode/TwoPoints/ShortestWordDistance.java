@@ -9,6 +9,7 @@
  * Solution
  * https://www.youtube.com/watch?v=N0j3Sc_3wB4
  * https://segmentfault.com/a/1190000003906667
+ * https://discuss.leetcode.com/topic/20668/ac-java-clean-solution/11?page=1
 */
 
 package test;
