@@ -69,6 +69,9 @@ public class ShortestWordDistance {
 		// Initial pointer a, b as -1 based on words may not contain word1 or word2
 		int a = -1;
 		int b = -1;
+		// Only when pointer a or b changed we update result, because if either a
+		// or b or both keep on original position, the new calculated result will
+		// surely >= previous calculated result
 		boolean changed = false;
 		for(int i = 0; i < words.length; i++) {
 			if(words[i].equals(word1)) {
