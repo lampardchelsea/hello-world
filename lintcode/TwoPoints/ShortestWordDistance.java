@@ -10,6 +10,7 @@
  * https://www.youtube.com/watch?v=N0j3Sc_3wB4
  * https://segmentfault.com/a/1190000003906667
  * https://discuss.leetcode.com/topic/20668/ac-java-clean-solution/11?page=1
+ * https://discuss.leetcode.com/topic/20641/java-solution-using-minimum-difference-between-2-sorted-arrays
 */
 
 package test;
@@ -98,12 +99,41 @@ public class ShortestWordDistance {
 		return result;
 	}
 	
+        // Solution 4: Java solution using minimum difference between 2 sorted arrays
+	// Refer to
+	// https://discuss.leetcode.com/topic/20641/java-solution-using-minimum-difference-between-2-sorted-arrays
+	// The part of finding minimum difference between two sorted lists is interesting :-) 
+	// It can be used to solve Shortest Word Distance II.
+	public int shortestDistance4(String[] words, String word1, String word2) {
+		List<Integer> list1 = new ArrayList<Integer>();
+		List<Integer> list2 = new ArrayList<Integer>();
+		for(int i = 0; i < words.length; i++) {
+			if(words[i].equals(word1)) {
+				list1.add(i);
+			} else if(words[i].equals(word2)) {
+				list2.add(i);
+			}
+		}
+		int result = words.length;
+		int p1 = 0;
+		int p2 = 0;
+		while(p1 < list1.size() && p2 < list2.size()) {
+			result = Math.min(result, Math.abs(list1.get(p1) - list2.get(p2)));
+			if(list1.get(p1) < list2.get(p2)) {
+				p1++;
+			} else {
+				p2++;
+			}
+		}
+		return result;
+	}
+	
 	public static void main(String[] args) {
 		ShortestWordDistance s = new ShortestWordDistance();
 		String[] words = {"practice", "makes", "perfect", "coding", "makes"};
 		String word1 = "coding";
-		String word2 = "practice";
-		//String word2 = "makes";
+		//String word2 = "practice";
+		String word2 = "makes";
 		int result = s.shortestDistance3(words, word1, word2);
 		System.out.println(result);
 	}
