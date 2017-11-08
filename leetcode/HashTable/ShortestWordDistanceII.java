@@ -41,7 +41,19 @@ public class ShortestDistanceWordII {
 		}
 	}
 	
-   // Solution 2: HashMap with O(m + n) Time Complexity
+	
+	// Solution 1: 
+	// https://www.youtube.com/watch?v=2MviYrr7a-k
+	
+	
+	
+	
+	
+        // Solution 2: HashMap with O(m + n) Time Complexity
+	// Refer to
+	// https://segmentfault.com/a/1190000003906667
+	// https://discuss.leetcode.com/topic/20643/java-solution-using-hashmap
+	// https://discuss.leetcode.com/topic/20641/java-solution-using-minimum-difference-between-2-sorted-arrays
 	public int shortest(String word1, String word2) {
 		List<Integer> list1 = map.get(word1);
 		List<Integer> list2 = map.get(word2);
