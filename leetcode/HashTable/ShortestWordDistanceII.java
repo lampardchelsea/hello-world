@@ -1,4 +1,6 @@
 /**
+ * Linkedin phone interview question (by QiQi)
+ *
  * Refer to
  * https://segmentfault.com/a/1190000003906667
  * This is a follow up of Shortest Word Distance. The only difference is now you are given the list of words 
