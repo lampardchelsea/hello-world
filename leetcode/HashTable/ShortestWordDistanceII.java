@@ -18,6 +18,7 @@
  * Solution
  * https://www.youtube.com/watch?v=2MviYrr7a-k
  * https://segmentfault.com/a/1190000003906667
+ * https://discuss.leetcode.com/topic/20643/java-solution-using-hashmap
 */
 // Solution 1:
 
