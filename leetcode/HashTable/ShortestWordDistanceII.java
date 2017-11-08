@@ -29,6 +29,19 @@ import java.util.Map;
 
 
 public class ShortestDistanceWordII { 
+	/**
+	 * Refer to
+	 * https://segmentfault.com/a/1190000003906667
+	 * 哈希表法
+	 * 复杂度
+	 * 时间 O(N) 空间 O(N)
+	 * 思路
+	 * 因为会多次调用，我们不能每次调用的时候再把这两个单词的下标找出来。我们可以用一个哈希表，
+	   在传入字符串数组时，就把每个单词的下标找出存入表中。这样当调用最短距离的方法时，我们只要
+	   遍历两个单词的下标列表就行了。具体的比较方法，则类似merge two list，每次比较两个list
+	   最小的两个值，得到一个差值。然后把较小的那个给去掉。因为我们遍历输入数组时是从前往后的，
+	   所以下标列表也是有序的。
+	*/
 	Map<String, List<Integer>> map = new HashMap<String, List<Integer>>();
 	public ShortestDistanceWordII(String[] words) {
 		for(int i = 0; i < words.length; i++) {
