@@ -34,6 +34,13 @@ public class ShortestWordDistance {
 	
 	// Solution 2:
 	// Time Complexity: O(n)
+	// Refer to
+	// https://segmentfault.com/a/1190000003906667
+	// 复杂度
+	// 时间 O(N) 空间 O(1)
+	// 思路
+	// 一个指针指向word1上次出现的位置，一个指针指向word2上次出现的位置。因为两个单词如果比较接近的话，
+	// 肯定是相邻的word1和word2的位置之差，所以我们只要每次得到一个新位置和另一个单词的位置比较一下就行了。
 	public int shortestDistance2(String[] words, String word1, String word2) {
 		if(words == null || words.length == 0) {
 			return 0;
