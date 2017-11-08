@@ -21,7 +21,52 @@
  * https://discuss.leetcode.com/topic/20643/java-solution-using-hashmap
  * https://discuss.leetcode.com/topic/20641/java-solution-using-minimum-difference-between-2-sorted-arrays
 */
-// Solution 1:
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
-// Solution 2:
+public class ShortestDistanceWordII { 
+	Map<String, List<Integer>> map = new HashMap<String, List<Integer>>();
+	public ShortestDistanceWordII(String[] words) {
+		for(int i = 0; i < words.length; i++) {
+			if(!map.containsKey(words[i])) {
+				List<Integer> list = new ArrayList<Integer>();
+				list.add(i);
+				map.put(words[i], list);
+			} else {
+				map.get(words[i]).add(i);
+			}			
+		}
+	}
+	
+   // Solution 2: HashMap with O(m + n) Time Complexity
+	public int shortest(String word1, String word2) {
+		List<Integer> list1 = map.get(word1);
+		List<Integer> list2 = map.get(word2);
+		int p1 = 0;
+		int p2 = 0;
+		int result = Integer.MAX_VALUE;
+		while(p1 < list1.size() && p2 < list2.size()) {
+			result = Math.min(result, Math.abs(list1.get(p1) - list2.get(p2)));
+			if(list1.get(p1) < list2.get(p2)) {
+				p1++;
+			} else {
+				p2++;
+			}
+		}
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		String[] strings = {"practice", "makes", "perfect", "coding", "makes"};
+		ShortestDistanceWordII s = new ShortestDistanceWordII(strings);
+		String word1 = "coding";
+		//String word2 = "practice";
+		String word2 = "makes";
+		int result = s.shortest(word1, word2);
+		System.out.println(result);
+	}
+}
+
