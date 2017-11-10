@@ -11,6 +11,7 @@
    Note: You may assume word1 and word2 are both in the list.
  * 
  * Solution
+ * http://www.cnblogs.com/grandyang/p/5192426.html
  * https://segmentfault.com/a/1190000003906667
  * https://discuss.leetcode.com/topic/20887/12-16-lines-java-c/8
 */
