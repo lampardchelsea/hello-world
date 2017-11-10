@@ -9,3 +9,6 @@
 <p>4. [Java solution using minimum difference between 2 sorted arrays] (https://discuss.leetcode.com/topic/20641/java-solution-using-minimum-difference-between-2-sorted-arrays)
 
 <p>Shortest Word Distance III
+<p>1. [中文解释] (http://www.cnblogs.com/grandyang/p/5192426.html)
+<p>2. [中文解释2] (https://segmentfault.com/a/1190000003906667)
+<p>3. [O(n) Time Complexity Template] (https://discuss.leetcode.com/topic/20887/12-16-lines-java-c/8)
