@@ -63,6 +63,8 @@
 <p>4  [Video: How to figure out terminate condition and the machenism of why we need hashmap to accelrate calculating by filter out all computed values] (https://www.youtube.com/watch?v=gxYV8eZY0eQ)
 <p>5. [笛卡尔乘积] (https://en.wikipedia.org/wiki/Cartesian_product)
   
-  
+<p>Search A 2D Matrix II  
+<p>1. [Divide And Conquer Solution] (https://discuss.leetcode.com/topic/33240/java-an-easy-to-understand-divide-and-conquer-method?page=1)
+<p>2. [More reliable version of divide and conquer] (https://discuss.leetcode.com/topic/33240/java-an-easy-to-understand-divide-and-conquer-method/4?page=1)
   
   
