@@ -92,5 +92,15 @@
 <p>1. [Template] (https://www.jiuzhang.com/solution/binary-tree-serialization/)
 <p>2. [Easy to understand Java Solution] (https://discuss.leetcode.com/topic/28029/easy-to-understand-java-solution?page=1)
 
-
+<p>Kth Smallest Element In A BST
+<p>1. [DFS inorder recursive and interative traverse] (https://discuss.leetcode.com/topic/17810/3-ways-implemented-in-java-python-binary-search-in-order-iterative-recursive)
+<p>2. [Explaination of why put count-- behind left node check] (https://discuss.leetcode.com/topic/17810/3-ways-implemented-in-java-python-binary-search-in-order-iterative-recursive/35?page=2)
+<p>3. [DFS inorder iterative traverse optimization] (https://discuss.leetcode.com/topic/17810/3-ways-implemented-in-java-python-binary-search-in-order-iterative-recursive/18)
+<p>4. [BFS property] (http://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/)
+  
+  
+  
+  
+  
+  
 
