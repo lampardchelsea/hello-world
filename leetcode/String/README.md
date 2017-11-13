@@ -226,7 +226,9 @@
 <p>2. [中文解释] (https://zhengyang2015.gitbooks.io/lintcode/longest_substring_with_at_most_k_distinct_characte.html)
 <p>3. [Sliding Window algorithm template to solve all the Leetcode substring search problem.] (https://discuss.leetcode.com/topic/71662/sliding-window-algorithm-template-to-solve-all-the-leetcode-substring-search-problem)
 
-
+<p>Permutation Sequence
+<p>1. ["Explain-like-I'm-five" Java Solution in O(n)] (https://discuss.leetcode.com/topic/17348/explain-like-i-m-five-java-solution-in-o-n)
+<p>2. [中文解释] (https://segmentfault.com/a/1190000003766760)
 
 
 
