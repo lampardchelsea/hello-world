@@ -98,7 +98,9 @@
 <p>3. [DFS inorder iterative traverse optimization] (https://discuss.leetcode.com/topic/17810/3-ways-implemented-in-java-python-binary-search-in-order-iterative-recursive/18)
 <p>4. [BFS property] (http://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/)
   
-  
+<p>Recover Binary Search Tree
+<p>1. [No Fancy Algorithm, just Simple and Powerful In-Order Traversal] (https://discuss.leetcode.com/topic/3988/no-fancy-algorithm-just-simple-and-powerful-in-order-traversal)
+<p>2. [Youtube Solution] (https://www.youtube.com/watch?v=2rsGbHnIDV0)
   
   
   
