@@ -85,4 +85,14 @@
 <p>2. [中文解释] (http://www.cnblogs.com/grandyang/p/5148030.html)
 <p>3. [For Time Complexity O(m * n)] (https://discuss.leetcode.com/topic/34835/15ms-concise-java-solution/17?page=1)
 
+<p>Word Break
+<p>1. [中文解释1] (http://blog.csdn.net/linhuanmars/article/details/22358863)
+<p>2. [中文解释2] (https://segmentfault.com/a/1190000003698693)
+<p>3. [Youtube Solution 1] (https://www.youtube.com/watch?v=JqOIRBC0_9c)
+<p>4. [Youtube Solution 2] (https://www.youtube.com/watch?v=Vrxhx_rSslc)
+
+
+
+
+
 
