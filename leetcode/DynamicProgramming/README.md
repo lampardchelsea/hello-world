@@ -91,7 +91,9 @@
 <p>3. [Youtube Solution 1] (https://www.youtube.com/watch?v=JqOIRBC0_9c)
 <p>4. [Youtube Solution 2] (https://www.youtube.com/watch?v=Vrxhx_rSslc)
 
-
+<p>Word Break II
+<p>1. [Youtube Solution] (https://www.youtube.com/watch?v=GXB4rrd68OQ&t=827s)
+<p>2. [My concise JAVA solution based on memorized DFS] (https://discuss.leetcode.com/topic/27855/my-concise-java-solution-based-on-memorized-dfs)
 
 
 
