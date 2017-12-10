@@ -83,9 +83,14 @@ public class WordBreakII {
     }
     
     private List<String> dfs(String s, List<String> wordDict, int start) {
+	// For DP quick return
         if(map.containsKey(start)) {
             return map.get(start);
         }
+	// Base case
+	// e.g for given string as "catsanddog",
+	// when start = 10, rest.add("") is prepare for
+	// concatenation "dog" ahead.
         List<String> rest = new ArrayList<String>();
         if(start == s.length()) {
             rest.add("");
