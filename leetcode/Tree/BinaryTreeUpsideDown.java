@@ -95,6 +95,7 @@ public class BinaryTreeUpsideDown {
 	// Iterative Solution
 	// Style 1
 	// 第二个思路是直接用迭代代替递归，做起来也不麻烦，并且效率会更高，因为省去了递归所用的栈空间。
+	// 迭代的方法，和递归方法相反的时，这个是从上往下开始翻转，直至翻转到最左子节点
 	/**
 	 *     prev ->    1
 	 *              /   \
