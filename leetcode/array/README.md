@@ -225,5 +225,11 @@ binary-search-java-code/29)
 <p>Longest Continuous Increasing Subsequence
 <p>1. [[Java/C++]Clean solution] (https://discuss.leetcode.com/topic/102999/java-c-clean-solution)
 
+<p>Factorial Trailing Zeros
+<p>1. [Factorials and Trailing Zeroes] (http://www.purplemath.com/modules/factzero.htm)
+<p>2. [Simple C/C++ Solution (with detailed explaination)] (https://discuss.leetcode.com/topic/6513/simple-c-c-solution-with-detailed-explaination)
+<p>3. [Solution to avoid number overflow] (https://discuss.leetcode.com/topic/6513/simple-c-c-solution-with-detailed-explaination/4)
+
+
 
 
