@@ -230,7 +230,9 @@
 <p>1. ["Explain-like-I'm-five" Java Solution in O(n)] (https://discuss.leetcode.com/topic/17348/explain-like-i-m-five-java-solution-in-o-n)
 <p>2. [中文解释] (https://segmentfault.com/a/1190000003766760)
 
-
+<p>Excel Sheet Column Title
+<p>1. [Youtube Solution] (https://www.youtube.com/watch?v=zURc9uRxV_o)
+<p>2. [Share my simple solution, just a little trick to handle corner case 26] (https://discuss.leetcode.com/topic/6212/share-my-simple-solution-just-a-little-trick-to-handle-corner-case-26)
 
 
 
