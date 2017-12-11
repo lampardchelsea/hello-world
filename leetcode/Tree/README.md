@@ -102,7 +102,10 @@
 <p>1. [No Fancy Algorithm, just Simple and Powerful In-Order Traversal] (https://discuss.leetcode.com/topic/3988/no-fancy-algorithm-just-simple-and-powerful-in-order-traversal)
 <p>2. [Youtube Solution] (https://www.youtube.com/watch?v=2rsGbHnIDV0)
   
-  
+<p>Binary Tree Upside Down
+<p>1. [Java recursive (O(logn) space) and iterative solutions (O(1) space) with explanation and figure] (https://discuss.leetcode.com/topic/40924/java-recursive-o-logn-space-and-iterative-solutions-o-1-space-with-explanation-and-figure)
+<p>2. [Binary Tree Upside Down的三种解法] (http://blog.csdn.net/whuwangyi/article/details/43186045)
+<p>3. [Binary Tree Upside Down 二叉树的上下颠倒] (http://www.cnblogs.com/grandyang/p/5172838.html)
   
   
 
