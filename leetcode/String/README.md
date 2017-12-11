@@ -234,5 +234,13 @@
 <p>1. [Youtube Solution] (https://www.youtube.com/watch?v=zURc9uRxV_o)
 <p>2. [Share my simple solution, just a little trick to handle corner case 26] (https://discuss.leetcode.com/topic/6212/share-my-simple-solution-just-a-little-trick-to-handle-corner-case-26)
 
+<p>Excel Sheet Column Number
+<p>1. [My 2ms JAVA solution] (https://discuss.leetcode.com/topic/36499/my-2ms-java-solution)
+
+
+
+
+
+
 
 
