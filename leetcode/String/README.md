@@ -237,7 +237,9 @@
 <p>Excel Sheet Column Number
 <p>1. [My 2ms JAVA solution] (https://discuss.leetcode.com/topic/36499/my-2ms-java-solution)
 
-
+<p>Largest Number
+<p>1. [Youtube Solution] (https://www.youtube.com/watch?v=3Ku0hxpASJ4)
+<p>2. [My Java Solution to share] (https://discuss.leetcode.com/topic/8018/my-java-solution-to-share)
 
 
 
