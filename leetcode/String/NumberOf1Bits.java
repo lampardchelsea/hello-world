@@ -13,6 +13,7 @@
 public class Solution {
     // you need to treat n as an unsigned value
     // Style 1:
+    // https://discuss.leetcode.com/topic/11385/simple-java-solution-bit-shifting
     /**
         An Integer in Java has 32 bits, e.g. 00101000011110010100001000011010.
         To count the 1s in the Integer representation we put the input int
@@ -50,5 +51,35 @@ public class Solution {
             n = n >>> 1;
         }
         return ones;
+    }
+   
+   
+    // Style 2:
+    // https://leetcode.com/articles/number-1-bits/
+    /**
+     * Approach #1 (Loop and Flip) [Accepted]
+       Algorithm
+       The solution is straight-forward. We check each of the 32 bits of the number. 
+       If the bit is 1, we add one to the number of 1-bits.
+       We can check the ith bit of a number using a bit mask. We start with a mask m=1, 
+       because the binary representation of 1 is,
+       0000 0000 0000 0000 0000 0000 0000 0001
+       Clearly, a logical AND between any number and the mask 1 gives us the least 
+       significant bit of this number. To check the next bit, we shift the mask to the 
+       left by one.
+       0000 0000 0000 0000 0000 0000 0000 0010
+       And so on.
+    */
+    public int hammingWeight2(int n) {
+        int result = 0;
+        int mask = 1;
+        for(int i = 0; i < 32; i++) {
+            if((n & mask) != 0) {
+                result++;
+            }
+            // In this style we shift mask
+            mask <<= 1;
+        }
+        return result;
     }
 }
