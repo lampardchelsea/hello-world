@@ -48,7 +48,7 @@ public class Solution {
         int ones = 0;
         while(n != 0) {
             ones += (n & 1);
-            // In this style we shift n
+            // In this style we shift given input number n, but it will face n = 2147483648 issue
             n = n >>> 1;
         }
         return ones;
@@ -78,7 +78,7 @@ public class Solution {
             if((n & mask) != 0) {
                 result++;
             }
-            // In this style we shift mask
+            // In this style we shift mask, we don't need to face given input number n = 2147483648 issue
             mask <<= 1;
         }
         return result;
