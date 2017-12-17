@@ -241,7 +241,8 @@
 <p>1. [Youtube Solution] (https://www.youtube.com/watch?v=3Ku0hxpASJ4)
 <p>2. [My Java Solution to share] (https://discuss.leetcode.com/topic/8018/my-java-solution-to-share)
 
-
+<p>Number Of 1 Bits
+<p>1. [Simple Java Solution, Bit Shifting] (https://discuss.leetcode.com/topic/11385/simple-java-solution-bit-shifting)
 
 
 
