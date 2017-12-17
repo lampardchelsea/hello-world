@@ -247,5 +247,6 @@
 
 <p>Reverse Bits
 <p>1. [Java Solution and Optimization] (https://discuss.leetcode.com/topic/9764/java-solution-and-optimization)
+<p>2. [How does bitshifting work in Java?] (https://stackoverflow.com/questions/3312853/how-does-bitshifting-work-in-java)
 
 
