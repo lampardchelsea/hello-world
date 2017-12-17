@@ -10,6 +10,7 @@
  *
  * Solution
  * https://discuss.leetcode.com/topic/9764/java-solution-and-optimization
+ * https://stackoverflow.com/questions/3312853/how-does-bitshifting-work-in-java
 */
 public class Solution {
     // you need treat n as an unsigned value
@@ -49,6 +50,7 @@ public class Solution {
     public int reverseBits(int n) {
         byte[] bytes = new byte[4];
         for(int i = 0; i < 4; i++) {
+            // Refer to explanation on reverseByte 'b'
             bytes[i] = (byte)((n >>> 8 * i) & 0xFF);
         }
         int result = 0;
@@ -70,6 +72,11 @@ public class Solution {
         // reverse by bit
         value = 0;
         for(int i = 0; i < 8; i++) {
+            // As we didn't assgin result of 'b >>> i' back to 'b',
+            // the value of 'b' will not change after each loop,
+            // that's why we can use 'b >>> i' to mask with 1 and
+            // get the original bit value on that position
+            // e.g if b = 2, and i = 1, 2 >>> 1 = 1, but b = 2 still
             value += ((b >>> i) & 1);
             if(i < 7) {
                 value <<= 1;
