@@ -8,9 +8,11 @@
  *
  * Solution
  * https://discuss.leetcode.com/topic/11385/simple-java-solution-bit-shifting
+ * https://leetcode.com/articles/number-1-bits/
 */
 public class Solution {
     // you need to treat n as an unsigned value
+    // Style 1:
     /**
         An Integer in Java has 32 bits, e.g. 00101000011110010100001000011010.
         To count the 1s in the Integer representation we put the input int
