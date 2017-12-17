@@ -41,6 +41,8 @@ public class Solution {
 }
 
 // For follow up
+// How to optimize if this function is called multiple times? We can divide an int into 4 bytes, 
+// and reverse each byte then combine into an int. For each byte, we can use cache to improve performance.
 public class Solution {
     // you need treat n as an unsigned value
     Map<Byte, Integer> cache = new HashMap<Byte, Integer>();
