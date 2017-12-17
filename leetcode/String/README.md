@@ -243,7 +243,9 @@
 
 <p>Number Of 1 Bits
 <p>1. [Simple Java Solution, Bit Shifting] (https://discuss.leetcode.com/topic/11385/simple-java-solution-bit-shifting)
+<p>2. [Official Solution] (https://leetcode.com/articles/number-1-bits/)
 
-
+<p>Reverse Bits
+<p>1. [Java Solution and Optimization] (https://discuss.leetcode.com/topic/9764/java-solution-and-optimization)
 
 
