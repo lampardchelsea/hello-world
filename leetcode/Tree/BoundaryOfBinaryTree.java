@@ -55,5 +55,81 @@
  *
  *
  * Solution
- * 
+ * http://www.cnblogs.com/grandyang/p/6833459.html
+ * http://blog.csdn.net/sundawei2016/article/details/73649430
+ * https://discuss.leetcode.com/topic/84275/java-12ms-left-boundary-left-leaves-right-leaves-right-boundary
+ * http://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
 */
+public class BoundaryOfBinaryTree {
+private class TreeNode {
+		TreeNode left;
+		TreeNode right;
+		int val;
+		public TreeNode(int x) {
+			this.val = x;
+		}
+	}
+	
+	public List<Integer> boundaryOfBinaryTree(TreeNode root) {  
+	    List<Integer> res = new ArrayList<>();  
+	    if (root == null) return res;  
+	    if (root.left != null || root.right != null) res.add(root.val);  
+	    left_bound(root.left, res);  
+	    leaves(root, res);  
+	    right_bound(root.right, res);  
+	     
+	    return res;  
+	}  
+	  
+	private void left_bound(TreeNode root, List<Integer> res) {  
+	    if (root == null || (root.left == null && root.right == null)) return;  
+	    res.add(root.val);  
+	    if (root.left == null) left_bound(root.right, res);  
+	    else left_bound(root.left, res);  
+	}  
+	  
+	private void right_bound(TreeNode root, List<Integer> res) {  
+	    if (root == null || (root.left == null && root.right == null)) return;  
+	    if (root.right == null) right_bound(root.left, res);  
+	    else right_bound(root.right, res);  
+	    res.add(root.val);  
+	}  
+	  
+	private void leaves(TreeNode root, List<Integer> res) {  
+	    if (root == null) return;  
+	    if (root.left == null && root.right == null) res.add(root.val);  
+	    leaves(root.left, res);  
+	    leaves(root.right, res);  
+	}
+   
+   public static void main(String[] args) {
+		BoundaryOfBinaryTree b = new BoundaryOfBinaryTree();
+		TreeNode one = b.new TreeNode(1);
+		TreeNode two = b.new TreeNode(2);
+		TreeNode three = b.new TreeNode(3);
+		TreeNode four = b.new TreeNode(4);
+		TreeNode five = b.new TreeNode(5);
+		TreeNode six = b.new TreeNode(6);
+		TreeNode seven = b.new TreeNode(7);
+		TreeNode eight = b.new TreeNode(8);
+		TreeNode nine = b.new TreeNode(9);
+		TreeNode ten = b.new TreeNode(10);
+		one.left = two;
+		one.right = three;
+		two.left = four;
+		two.right = five;
+		five.left = seven;
+		five.right = eight;
+		three.left = six;
+		six.left = nine;
+		six.right = ten;
+		List<Integer> result = b.boundaryOfBinaryTree(one);
+		for(int i : result) {
+			System.out.print(i + " ");
+		}
+
+
+}
+
+
+
