@@ -62,4 +62,54 @@ class Solution {
 
 
 
-
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> result = new ArrayList<Integer>();
+        if(root == null) {
+            return result;
+        }
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.offer(root);
+        while(!queue.isEmpty()) {
+            // level traverse
+            int size = queue.size();
+            for(int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                // Style 1: right -> left
+                // i == 0 means the most right node at that level
+                if(i == 0) {
+                    result.add(node.val);
+                }
+                // First add right node of next level to queue, then left
+                if(node.right != null) {
+                    queue.offer(node.right);
+                }
+                if(node.left != null) {
+                    queue.offer(node.left);
+                }
+                // Style 2: left -> right
+                // i == size - 1 means the most right node at that level
+                // if(i == size - 1) {
+                //     result.add(node.val);
+                // }
+                // // First add left node of next level to queue, then right
+                // if(node.left != null) {
+                //     queue.offer(node.left);
+                // }
+                // if(node.right != null) {
+                //     queue.offer(node.right);
+                // }
+            }
+        }
+        return result;
+    }
+}
