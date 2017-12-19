@@ -44,6 +44,8 @@
     ]
  *
  * Solution
- * 
- *
+ * https://discuss.leetcode.com/topic/21082/my-recursive-dfs-java-solution?page=1
+ * http://www.cnblogs.com/grandyang/p/5332722.html
+ * https://stackoverflow.com/questions/33879434/java-arraylist-initialization
+ * https://web.stanford.edu/class/archive/cs/cs108/cs108.1082/106a-java-handouts/HO49ArrayList.pdf
 */
