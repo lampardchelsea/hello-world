@@ -49,6 +49,7 @@
  * http://www.cnblogs.com/airwindow/p/4822572.html
  * https://stackoverflow.com/questions/33879434/java-arraylist-initialization
  * https://web.stanford.edu/class/archive/cs/cs108/cs108.1082/106a-java-handouts/HO49ArrayList.pdf
+ * https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/Document/HO49ArrayList.pdf
 */
 
 public class FactorCombinations {
