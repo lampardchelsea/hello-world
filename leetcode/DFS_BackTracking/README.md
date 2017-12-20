@@ -70,4 +70,12 @@
 <p>Soduku Solver  
 <p>1. [Straight Forward Java Solution Using Backtracking] (https://discuss.leetcode.com/topic/11327/straight-forward-java-solution-using-backtracking)
 
-
+<p>Factor Combinations
+<p>1. [My Recursive DFS Java Solution] (https://discuss.leetcode.com/topic/21082/my-recursive-dfs-java-solution?page=1)
+<p>2. [Factor Combinations 因子组合] (http://www.cnblogs.com/grandyang/p/5332722.html)
+<p>3. [Detail explaination] (http://www.cnblogs.com/airwindow/p/4822572.html)
+<p>4. [Why need new ArrayList<String>(tmp) as deep copy of original passed in list] (https://stackoverflow.com/questions/33879434/java-arraylist-initialization)
+<p>5. [Java ArrayList as object explaination] (https://web.stanford.edu/class/archive/cs/cs108/cs108.1082/106a-java-handouts/HO49ArrayList.pdf)  
+  
+  
+  
