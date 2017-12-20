@@ -198,10 +198,16 @@ public List<List<Integer>> getFactors(int n) {
 			return;
 		}
 		for(int i = start; i <= end; i++) {
-			// Special Case
+		        // Special Case: Don't miss the possibility in internal dfs level,
+			// then 'start' may larger than 'upper', need to set i directly to 'end'
 			// e.g n = 12
 			// dfs level 1 -> start = 2, end = 12, upper = 3
-			// dfs level 2 -> 
+			//                i = 2 -> tmp.add(2)
+			//                         dfs level 2 -> start = 2, end = 12/2 = 6, upper = 2
+			//                                        i = 2 -> tmp.add(2)
+			//                                                 dfs level 3 -> start = 2, end = 6/2 = 3, upper = 1
+			//                                                                i = 2 > upper = 1 --> i = 3
+			//                                                                on dfs level 3 need to set i as 'end'
 			if(i > upper) {
 				i = end;
 			}
