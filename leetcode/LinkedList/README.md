@@ -98,5 +98,8 @@
 <p>2. [Recursive with additional stack space usage caused by recursion] (https://discuss.leetcode.com/topic/4351/my-accepted-java-code-used-recursion)
 <p>3. [三指针法] (https://segmentfault.com/a/1190000003884214)
 
-
+<p>Flatten 2D Vector
+<p>1. [Java Solution, Beats 60.10%] (https://discuss.leetcode.com/topic/30277/java-solution-beats-60-10)
+<p>2. [Youtube Solution] (https://www.youtube.com/watch?v=Hwk1CD86YmA)
+<p>3. [Flatten 2D Vector 压平二维向量] (http://www.cnblogs.com/grandyang/p/5209621.html)
 
