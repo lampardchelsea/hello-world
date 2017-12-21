@@ -30,6 +30,38 @@
     
  *
  * Solution
- * 
- * 
+ * https://discuss.leetcode.com/topic/30277/java-solution-beats-60-10
+ * https://www.youtube.com/watch?v=Hwk1CD86YmA
+ * http://www.cnblogs.com/grandyang/p/5209621.html
 */
+import java.util.List;
+
+public class Flatten2DVector {
+    private int listIndex;
+	private int elementIndex;
+	// For later use of given 'vec2d', need copy
+	// to a new global reference
+	private List<List<Integer>> list;
+	public Flatten2DVector(List<List<Integer>> vec2d) {
+		this.listIndex = 0;
+		this.elementIndex = 0;
+		this.list = vec2d;
+	}
+	
+	
+	public Integer next() {
+		return list.get(listIndex).get(elementIndex++);
+	}
+	
+	public boolean hasNext() {
+		while(listIndex < list.size()) {
+			if(elementIndex < list.get(listIndex).size()) {
+				return true;
+			} else {
+				listIndex++;
+				elementIndex = 0;
+			}
+		}
+		return false;
+	}
+}
