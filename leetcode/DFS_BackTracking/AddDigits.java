@@ -11,7 +11,7 @@
     Could you do it without any loop/recursion in O(1) runtime?
  * 
  * Solution
- * 
+ * https://stackoverflow.com/questions/4968323/java-parse-int-value-from-a-char
 */
 class Solution {
     int result = 0;
