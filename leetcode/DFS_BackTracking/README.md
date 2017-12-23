@@ -77,5 +77,8 @@
 <p>4. [Why need new ArrayList<String>(tmp) as deep copy of original passed in list] (https://stackoverflow.com/questions/33879434/java-arraylist-initialization)
 <p>5. [Java ArrayList as object explaination] (https://web.stanford.edu/class/archive/cs/cs108/cs108.1082/106a-java-handouts/HO49ArrayList.pdf)  
   
+<p>Add digits
+<p>1. [Java: parse int value from a char] (https://stackoverflow.com/questions/4968323/java-parse-int-value-from-a-char)  
+  
   
   
