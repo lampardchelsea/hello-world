@@ -24,6 +24,8 @@
    大于当前数，而最小值就是最后一个pop出来的数，最后再把该数push进去。对于降序的时候，直接向里面push就行了。
    这样，序列无效的条件就是违反了这个最小值的限定
 */
+
+// For this problem just remember is fine, no need too much understanding
 public class Solution {
     public boolean verifyPreorder(int[] preorder) {
         Stack<Integer> stk = new Stack<Integer>();
