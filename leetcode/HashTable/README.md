@@ -166,7 +166,9 @@
 <p>4. [O(m * n) HashMap Solution] (https://discuss.leetcode.com/topic/20643/java-solution-using-hashmap/14)
 <p>5. [Basic idea on how to Java solution using minimum difference between 2 sorted arrays] (https://discuss.leetcode.com/topic/20641/java-solution-using-minimum-difference-between-2-sorted-arrays)  
   
-  
+<p>Palindrome Permutation
+<p>1. [Official Artical] (https://leetcode.com/articles/palindrome-permutation/)
+<p>2. [Youtube Solution] (https://www.youtube.com/watch?v=4TjNTeX4yyw)
   
   
   
