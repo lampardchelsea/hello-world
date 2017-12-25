@@ -88,6 +88,6 @@
 <p>2. [Palindrome Permutation II 回文全排列之二] (http://www.cnblogs.com/grandyang/p/5315227.html)
 <p>3. [Official Artical] (https://leetcode.com/articles/palindrome-permutation-ii/)
 <p>4. [Youtube Solution] (https://www.youtube.com/watch?v=tV-n9qZNiW0)  
-  
+<p>5. [Why we don't need the duplicate check like we did for Permutation II here? How to ensure there is no duplicate string s?] (https://discuss.leetcode.com/topic/28020/short-backtracking-solution-in-java-3-ms/8)
 
   
