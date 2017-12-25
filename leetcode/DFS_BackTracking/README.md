@@ -80,5 +80,14 @@
 <p>Add digits
 <p>1. [Java: parse int value from a char] (https://stackoverflow.com/questions/4968323/java-parse-int-value-from-a-char)  
   
+<p>Permutations II
+<p>1. [Backtracking Solution] (https://leetcode.com/submissions/detail/114437976/)
   
+<p>Palindrome Permutation II
+<p>1. [Short backtracking solution in Java (3 ms)] (https://discuss.leetcode.com/topic/28020/short-backtracking-solution-in-java-3-ms)
+<p>2. [Palindrome Permutation II 回文全排列之二] (http://www.cnblogs.com/grandyang/p/5315227.html)
+<p>3. [Official Artical] (https://leetcode.com/articles/palindrome-permutation-ii/)
+<p>4. [Youtube Solution] (https://www.youtube.com/watch?v=tV-n9qZNiW0)  
+  
+
   
