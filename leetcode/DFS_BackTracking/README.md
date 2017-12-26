@@ -89,5 +89,11 @@
 <p>3. [Official Artical] (https://leetcode.com/articles/palindrome-permutation-ii/)
 <p>4. [Youtube Solution] (https://www.youtube.com/watch?v=tV-n9qZNiW0)  
 <p>5. [Why we don't need the duplicate check like we did for Permutation II here? How to ensure there is no duplicate string s?] (https://discuss.leetcode.com/topic/28020/short-backtracking-solution-in-java-3-ms/8)
-
+<p>6. [String is immutable. What exactly is the meaning?] (https://stackoverflow.com/questions/8798403/string-is-immutable-what-exactly-is-the-meaning)
+<p>7. [String, StringBuffer, and StringBuilder] (https://stackoverflow.com/questions/2971315/string-stringbuffer-and-stringbuilder)
+  
+  
+  
+  
+  
   
