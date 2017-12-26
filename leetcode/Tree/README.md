@@ -122,6 +122,14 @@
 <p>1. [Youtube Solution] (https://www.youtube.com/watch?v=95FNN8210lY)
 <p>2. [Verify Preorder Sequence in Binary Search Tree 验证先序序列] (https://segmentfault.com/a/1190000003874375)
   
+<p>Closest Binary Search Tree Value
+<p>1. [Youtube Solution] (https://www.youtube.com/watch?v=s7QcJi1qGEM)
+<p>2. [Closest Binary Search Tree Value 最近二叉搜索树值] (https://segmentfault.com/a/1190000003797291)
+  
+  
+  
+  
+  
   
   
   
