@@ -12,7 +12,10 @@
    celebrity in the party. If there is no celebrity, return -1.
  *
  * Solution
- *  
+ * http://www.cnblogs.com/grandyang/p/5310649.html
+ * https://discuss.leetcode.com/topic/23511/straight-forward-c-solution-with-explaination
+ * https://discuss.leetcode.com/topic/23534/java-solution-two-pass
+ * https://discuss.leetcode.com/topic/23534/java-solution-two-pass/14
 */
 public class Solution extends Relation {
     // Solution 1: Brute force 
