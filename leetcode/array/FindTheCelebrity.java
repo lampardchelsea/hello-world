@@ -15,9 +15,9 @@
  *  
 */
 public class Solution extends Relation {
-    // Solution 1: Brute force
-	  // Refer to
-	  // http://www.cnblogs.com/grandyang/p/5310649.html
+    // Solution 1: Brute force 
+    // Refer to
+    // http://www.cnblogs.com/grandyang/p/5310649.html
     /**
      * 这道题让我们在一群人中寻找名人，所谓名人就是每个人都认识他，他却不认识任何人，限定了只有1个或0个名人，
      * 给定了一个API函数，输入a和b，用来判断a是否认识b，让我们尽可能少的调用这个函数，来找出人群中的名人。
@@ -30,29 +30,34 @@ public class Solution extends Relation {
     public int findCelebrity(int n) {
         boolean[] candidate = new boolean[n];
         for(int i = 0; i < n; i++) {
-		        candidate[i] = true;
-		    }		
+            candidate[i] = true;
+        }		
         for(int i = 0; i < n; i++) {
-		        for(int j = 0; j < n; j++) {
-			          if(candidate[i] && i != j) {
-				            if(knows(i, j) || !knows(j, i)) {
-					              candidate[i] = false;
-						            break;
-					          } else {
-					              // Contains 2 major conditions
-						            // (1) if(!knows(i, j)) -> If i don't know j, j must not be celebrity
-						            // (2) if(knows(j, i)) -> If j know i, j must not be celebrity
-					              candidate[j] = false;
-					          }
-				        }
-			      }
-			      if(candidate[i]) {
-			          return i;
-			      }
-			      return -1;
-   		  }
-	  }
-  
-    
-  
-  
+            for(int j = 0; j < n; j++) {
+                if(candidate[i] && i != j) {
+	            if(knows(i, j) || !knows(j, i)) {
+	                candidate[i] = false;
+		        break;
+                    } else {
+                        // Contains 2 major conditions
+	                // (1) if(!knows(i, j)) -> If i don't know j, j must not be celebrity
+	                // (2) if(knows(j, i)) -> If j know i, j must not be celebrity
+	                candidate[j] = false;
+                    }
+                }
+	    }
+	    if(candidate[i]) {
+	        return i;
+	    }
+	    return -1;
+         }
+     }
+     
+     // Solution 2:
+     // Refer to
+     // https://discuss.leetcode.com/topic/23534/java-solution-two-pass
+     // http://www.cnblogs.com/grandyang/p/5310649.html
+     public int findCelebrity(int n) {
+         
+     }
+}
