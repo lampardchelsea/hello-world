@@ -230,6 +230,15 @@ binary-search-java-code/29)
 <p>2. [Simple C/C++ Solution (with detailed explaination)] (https://discuss.leetcode.com/topic/6513/simple-c-c-solution-with-detailed-explaination)
 <p>3. [Solution to avoid number overflow] (https://discuss.leetcode.com/topic/6513/simple-c-c-solution-with-detailed-explaination/4)
 
-
+<p>Find The Celebrity
+<p>1. [Find The Celebrity] (http://www.cnblogs.com/grandyang/p/5310649.html)
+<p>2. [Straight forward C++ solution with explaination] (https://discuss.leetcode.com/topic/23511/straight-forward-c-solution-with-explaination)  
+<p>3. [Java Solution. Two Pass] (https://discuss.leetcode.com/topic/23534/java-solution-two-pass) 
+<p>4. [Optimization on shrink using knows() method] (https://discuss.leetcode.com/topic/23534/java-solution-two-pass/14)
+  
+  
+  
+  
+  
 
 
