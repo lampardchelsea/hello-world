@@ -236,7 +236,10 @@ binary-search-java-code/29)
 <p>3. [Java Solution. Two Pass] (https://discuss.leetcode.com/topic/23534/java-solution-two-pass) 
 <p>4. [Optimization on shrink using knows() method] (https://discuss.leetcode.com/topic/23534/java-solution-two-pass/14)
   
-  
+<p>Wiggle Sort
+<p>1. [Wiggle Sort 摆动排序] (http://www.cnblogs.com/grandyang/p/5177285.html)
+<p>2. [Java O(N) solution] (https://discuss.leetcode.com/topic/23871/java-o-n-solution)
+<p>3. [Simple Java Solution O(nlogn)] (https://discuss.leetcode.com/topic/33418/simple-java-solution-o-n-log-n)
   
   
   
