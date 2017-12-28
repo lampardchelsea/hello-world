@@ -57,7 +57,65 @@ public class Solution extends Relation {
      // Refer to
      // https://discuss.leetcode.com/topic/23534/java-solution-two-pass
      // http://www.cnblogs.com/grandyang/p/5310649.html
-     public int findCelebrity(int n) {
-         
+     /**
+      * 下面这种方法是网上比较流行的一种方法，设定候选人res为0，原理是先遍历一遍，对于遍历到的人i，若候选人res认识i，
+      * 则将候选人res设为i，完成一遍遍历后，我们来检测候选人res是否真正是名人，我们如果判断不是名人，则返回-1，
+      * 如果并没有冲突，返回res
+     */
+     // https://discuss.leetcode.com/topic/23511/straight-forward-c-solution-with-explaination
+     /**
+      * First, if person A knows person B, then B could be the candidate of being a celebrity, 
+      * A must not be a celebrity. We iterate all the n persons and we will have a candidate 
+      * that everyone knows this candidate.
+      * Second, we check two things after we get this candidate. 
+      * 1. If this candidate knows other person in the group, if the candidate knows anyone 
+      * in the group, then the candidate is not celebrity, return -1; 
+      * 2. if everyone knows this candidate, if anyone does not know the candidate, return -1;
+     */
+     public int findCelebrity2(int n) {
+         int candidate = 0;
+	 for(int i = 1; i < n; i++) {
+	     if(knows(candidate, i)) {
+	         candidate = i;
+	     }
+	 }
+	 for(int i = 0; i < n; i++) {
+	     if(i != candidate && (knows(candidate, i) || !knows(i, candidate))) {
+	          return -1;
+	     }
+	 }
+	 return candidate;
+     }
+	
+     // Solution 3: Optimization on Solution 2
+     // https://discuss.leetcode.com/topic/23534/java-solution-two-pass/14
+     /**
+      * The first loop is to find the candidate as the author explains. In detail, suppose the 
+      * candidate after the first for loop is person k, it means 0 to k-1 cannot be the celebrity, 
+      * because they know a previous or current candidate. Also, since k knows no one between k+1 
+      * and n-1, k+1 to n-1 can not be the celebrity either. Therefore, k is the only possible 
+      * celebrity, if there exists one.
+      * The remaining job is to check if k indeed does not know any other persons and all other 
+      * persons know k.
+      * To this point, I actually realize that we can further shrink the calling of knows method. 
+      * For example, we don't need to check if k knows k+1 to n-1 in the second loop, because the 
+      * first loop has already done that.
+     */
+     public int findCelebrity3(int n) {
+         int candidate = 0;
+	 for(int i = 1; i < n; i++) {
+	     if(knows(candidate, i)) {
+	         candidate = i;
+	     }
+	 }
+	 for(int i = 0; i < n; i++) {
+	     if(i < candidate && knows(candidate, i)) {
+	         return -1;
+	     }
+             if(i > candidate && !knows(i, candidate)) {
+	         return -1;
+	     }
+	 }
+	 return candidate;
      }
 }
