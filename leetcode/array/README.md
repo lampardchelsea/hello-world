@@ -241,7 +241,9 @@ binary-search-java-code/29)
 <p>2. [Java O(N) solution] (https://discuss.leetcode.com/topic/23871/java-o-n-solution)
 <p>3. [Simple Java Solution O(nlogn)] (https://discuss.leetcode.com/topic/33418/simple-java-solution-o-n-log-n)
   
-  
-  
+<p>Zigzag Iterator  
+<p>1. [Zigzag Iterator Z形迭代器] (https://segmentfault.com/a/1190000003786218)
+<p>2. [Zigzag Iterator 之字形迭代器] (http://www.cnblogs.com/grandyang/p/5212785.html)
+<p>3. [Youtube Solution] (https://www.youtube.com/watch?v=NgZ9SafshhA)
 
 
