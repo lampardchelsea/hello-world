@@ -57,10 +57,7 @@ public class ZigzagIterator {
      * E.g
      * v1 = [1,2]
      * v2 = [3,4,5,6]
-     * list -> ((1,2),(3,4,5,6)) --> (1,2) and (3,4,5,6) represent 2 iterators, not these 6 elements
-     * 
-     *
-     * 
+     * list -> ((1,2),(3,4,5,6)) --> (1,2) and (3,4,5,6) represent 2 iterators, not these 6 elements 
     */
     LinkedList<Iterator> list;
     public ZigzagIterator2(List<Integer> v1, List<Integer> v2) {
@@ -93,6 +90,11 @@ public class ZigzagIterator {
     public boolean hasNext2() {
         return !list.isEmpty();
     }
+     
+    // Follow up: 
+    // What if you are given k 1d vectors? How well can your code be extended to such cases?
+    
+ 
 }
 
 
