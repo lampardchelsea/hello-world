@@ -27,16 +27,25 @@
  * http://www.cnblogs.com/grandyang/p/5212785.html
 */
 public class ZigzagIterator {
+    // Solution 1: Switch two iterator each time
+    // Refer to
+    // https://www.youtube.com/watch?v=NgZ9SafshhA
+    private Iterator<Integer> i, j, temp;
     public ZigzagIterator(List<Integer> v1, List<Integer> v2) {
-        
+        i = v2.iterator();
+        j = v1.iterator();
     }
  
     public int next() {
-    
+        if(j.hasNext()) {
+            temp = j;
+            j = i;
+            i = temp;
+        }
     }
     
     public boolean hasNext() {
-    
+        return i.hasNext() || j.hasNext();
     }
 }
 
