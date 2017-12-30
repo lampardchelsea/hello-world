@@ -22,9 +22,23 @@
  * 
  *
  * Solution
- * 
+ * https://segmentfault.com/a/1190000003786218
+ * https://www.youtube.com/watch?v=NgZ9SafshhA
+ * http://www.cnblogs.com/grandyang/p/5212785.html
 */
-
+public class ZigzagIterator {
+    public ZigzagIterator(List<Integer> v1, List<Integer> v2) {
+        
+    }
+ 
+    public int next() {
+    
+    }
+    
+    public boolean hasNext() {
+    
+    }
+}
 
 
 
