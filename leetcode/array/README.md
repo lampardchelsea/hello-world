@@ -245,5 +245,5 @@ binary-search-java-code/29)
 <p>1. [Zigzag Iterator Z形迭代器] (https://segmentfault.com/a/1190000003786218)
 <p>2. [Zigzag Iterator 之字形迭代器] (http://www.cnblogs.com/grandyang/p/5212785.html)
 <p>3. [Youtube Solution] (https://www.youtube.com/watch?v=NgZ9SafshhA)
-
+<p>4. [Simple Java solution for K-vector] (https://discuss.leetcode.com/topic/26654/simple-java-solution-for-k-vector)
 
