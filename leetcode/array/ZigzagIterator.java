@@ -47,6 +47,52 @@ public class ZigzagIterator {
     public boolean hasNext() {
         return i.hasNext() || j.hasNext();
     }
+    
+    
+    // Solution 2: LinkedList + Iterator
+    // Refer to
+    // https://www.youtube.com/watch?v=NgZ9SafshhA
+    // Note: This list contains not 'Integer', but 'Iterator'
+    /**
+     * E.g
+     * v1 = [1,2]
+     * v2 = [3,4,5,6]
+     * list -> ((1,2),(3,4,5,6)) --> (1,2) and (3,4,5,6) represent 2 iterators, not these 6 elements
+     * 
+     *
+     * 
+    */
+    LinkedList<Iterator> list;
+    public ZigzagIterator2(List<Integer> v1, List<Integer> v2) {
+        list = new LinkedList<Iterator>();
+        if(!v1.isEmpty()) {
+            list.add(v1.itertor());
+        }
+        if(!v2.isEmpty()) {
+            list.add(v2.iterator());
+        }
+    }
+    
+    public int next2() {
+        // Use LinkedList is for defaultly remove first item in list
+        // e.g list -> ((1,2),(3,4,5,6)) --> first time list.remove() will remove iterator of (1,2)
+        // and list becomes to ((3,4,5,6))
+        Iterator poll = list.remove();
+        // first time poll.next() will get 1 in (1,2)
+        int result = (Integer)poll.next();
+        // first time check poll.hasNext() will return true as after select out 1 (iterator default next() operation) 
+        // and left (2) in (1,2)
+        if(poll.hasNext()) {
+            // first time list.add(poll) will add back iterator of (2) to list and list becomes to ((3,4,5,6),(2))
+            // for next time calling next2() method, will start with list -> ((3,4,5,6),(2))
+            list.add(poll);
+        }
+        return list;
+    }
+    
+    public boolean hasNext2() {
+        return !list.isEmpty();
+    }
 }
 
 
