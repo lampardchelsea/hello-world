@@ -103,3 +103,9 @@
 <p>2. [Youtube Solution] (https://www.youtube.com/watch?v=Hwk1CD86YmA)
 <p>3. [Flatten 2D Vector 压平二维向量] (http://www.cnblogs.com/grandyang/p/5209621.html)
 
+<p>Peeking Iterator
+<p>1. [Cache next solution] (https://discuss.leetcode.com/topic/24883/concise-java-solution)
+<p>2. [Youtube Solution] (https://www.youtube.com/watch?v=5UjAYV1xt0A)
+
+
+
