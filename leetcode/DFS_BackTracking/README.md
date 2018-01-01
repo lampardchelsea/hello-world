@@ -92,7 +92,10 @@
 <p>6. [String is immutable. What exactly is the meaning?] (https://stackoverflow.com/questions/8798403/string-is-immutable-what-exactly-is-the-meaning)
 <p>7. [String, StringBuffer, and StringBuilder] (https://stackoverflow.com/questions/2971315/string-stringbuffer-and-stringbuilder)
   
-  
+<p>Flip Game II
+<p>1. [Share my Java backtracking solution] (https://discuss.leetcode.com/topic/27250/share-my-java-backtracking-solution)
+<p>2. [Optimize with HashMap recording] (https://discuss.leetcode.com/topic/27250/share-my-java-backtracking-solution/5)
+
   
   
   
