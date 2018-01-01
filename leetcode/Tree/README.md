@@ -131,7 +131,11 @@
 <p>2. [AC clean Java solution using two stacks] (https://discuss.leetcode.com/topic/22940/ac-clean-java-solution-using-two-stacks)
 <p>3. [Java in-order traversal 1ms solution] (https://discuss.leetcode.com/topic/30081/java-in-order-traversal-1ms-solution)
   
-  
+<p>Inorder Successor In BST
+<p>1. [*Java* 5ms short code with explanations] (https://discuss.leetcode.com/topic/33228/java-5ms-short-code-with-explanations)
+<p>2. [Youtube Solution] (https://www.youtube.com/watch?v=PyK4nl-MfNs)
+<p>3. [Share my Java recursive solution] (https://discuss.leetcode.com/topic/25076/share-my-java-recursive-solution)
+<p>4. [Understand return (left != null) ? left : root] (https://discuss.leetcode.com/topic/25076/share-my-java-recursive-solution/14)
   
   
   
