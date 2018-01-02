@@ -252,5 +252,11 @@ binary-search-java-code/29)
 <p>2. [Youtube Solution] (https://www.youtube.com/watch?v=vCRnwe0L0sg)
 <p>3. [The theory behind (why the median works)] (https://discuss.leetcode.com/topic/46212/the-theory-behind-why-the-median-works)
   
+<p>Range Sum Query Immutable
+<p>1. [Official Artical] (https://leetcode.com/articles/range-sum-query-immutable/)
+<p>2. [Java solution using sum array built in constructor] (https://discuss.leetcode.com/topic/29322/java-solution-using-sum-array-built-in-constructor)
+<p>3. [Java simple O(n) init and O(1) query solution] (https://discuss.leetcode.com/topic/29194/java-simple-o-n-init-and-o-1-query-solution?page=1)
+  
+  
   
   
