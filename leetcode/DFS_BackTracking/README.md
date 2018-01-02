@@ -96,7 +96,9 @@
 <p>1. [Share my Java backtracking solution] (https://discuss.leetcode.com/topic/27250/share-my-java-backtracking-solution)
 <p>2. [Optimize with HashMap recording] (https://discuss.leetcode.com/topic/27250/share-my-java-backtracking-solution/5)
 
-  
+<p>Additive Number
+<p>1. [Java Recursive and Iterative Solutions] (https://discuss.leetcode.com/topic/29856/java-recursive-and-iterative-solutions)
+<p>2. [Youtube Solution] (https://www.youtube.com/watch?v=LziJZT2uRwc)
   
   
   
