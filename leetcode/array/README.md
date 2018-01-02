@@ -247,3 +247,10 @@ binary-search-java-code/29)
 <p>3. [Youtube Solution] (https://www.youtube.com/watch?v=NgZ9SafshhA)
 <p>4. [Simple Java solution for K-vector] (https://discuss.leetcode.com/topic/26654/simple-java-solution-for-k-vector)
 
+<p>Best Meeting Point
+<p>1. [Best Meeting Point 最佳见面点] (https://segmentfault.com/a/1190000003894693)
+<p>2. [Youtube Solution] (https://www.youtube.com/watch?v=vCRnwe0L0sg)
+<p>3. [The theory behind (why the median works)] (https://discuss.leetcode.com/topic/46212/the-theory-behind-why-the-median-works)
+  
+  
+  
