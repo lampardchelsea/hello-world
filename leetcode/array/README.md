@@ -257,6 +257,7 @@ binary-search-java-code/29)
 <p>2. [Java solution using sum array built in constructor] (https://discuss.leetcode.com/topic/29322/java-solution-using-sum-array-built-in-constructor)
 <p>3. [Java simple O(n) init and O(1) query solution] (https://discuss.leetcode.com/topic/29194/java-simple-o-n-init-and-o-1-query-solution?page=1)
   
-  
+<p>Range Sum Query 2D Immutable 
+<p>1. [Official Article] (https://leetcode.com/articles/range-sum-query-2d-immutable/)  
   
   
