@@ -69,6 +69,20 @@ class NumArray {
         return sum[j] - sum[i - 1];
     }
     
+    // Style 3:
+    // Refer to
+    // https://leetcode.com/articles/range-sum-query-immutable/
+    int[] sum;
+    public NumArray(int[] nums) {
+        sum = new int[nums.length + 1];
+        for(int i = 0; i < nums.length; i++) {
+            sum[i + 1] = sum[i] + nums[i];
+        }
+    }
+    
+    private int sumRange(int i, int j) {
+        return sum[i + 1] - sum[j];
+    }
 }
 
 
