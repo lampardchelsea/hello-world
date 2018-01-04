@@ -95,6 +95,10 @@
 <p>1. [Youtube Solution] (https://www.youtube.com/watch?v=GXB4rrd68OQ&t=827s)
 <p>2. [My concise JAVA solution based on memorized DFS] (https://discuss.leetcode.com/topic/27855/my-concise-java-solution-based-on-memorized-dfs)
 
+<p>Best Time to Buy and Sell Stock with Cooldown
+<p>1. [Share my thinking process] (https://discuss.leetcode.com/topic/30421/share-my-thinking-process?page=1)
 
+<p>Best Time to Buy and Sell Stock with Transaction Fee
+<p>1. [Most consistent ways of dealing with the series of stock problems] (https://discuss.leetcode.com/topic/107998/most-consistent-ways-of-dealing-with-the-series-of-stock-problems)
 
 
