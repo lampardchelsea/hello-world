@@ -15,3 +15,5 @@
 <p>2. [Union Find Template] (https://discuss.leetcode.com/topic/32752/easiest-2ms-java-solution)
 <p>3. [DFS Template] (https://discuss.leetcode.com/topic/34498/java-concise-dfs)
   
+<p>Minimum Height Trees
+<p>1. [Graph + BFS] (https://discuss.leetcode.com/topic/30572/share-some-thoughts)
