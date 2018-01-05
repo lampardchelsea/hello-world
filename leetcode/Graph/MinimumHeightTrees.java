@@ -142,6 +142,19 @@ class Solution {
             n -= leaves.size();
             List<Integer> newLeaves = new ArrayList<Integer>();
             for(int i : leaves) {
+                /**
+                  * Since current node is leave node, it only have 1 connection node
+                  * e.g       4
+                  *         / | \ 
+                  *        1  2  3
+                  * For nodes 1, 2, 3, they are all leave node, and connection node as
+                  * only 4, to find node 1, 2, 3's connection node 4 is able to get by
+                  * Set's iterator, as only 1 item 4 will be in 1, 2, 3's adjacence set
+                  * so, we can say 
+                  * adj.get(1).iterator().next() = 4
+                  * adj.get(2).iterator().next() = 4
+                  * adj.get(3).iterator().next() = 4
+                  */
                 int j = adj.get(i).iterator().next();
                 adj.get(j).remove(i);
                 if(adj.get(j).size() == 1) {
