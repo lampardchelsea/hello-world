@@ -137,7 +137,9 @@
 <p>3. [Share my Java recursive solution] (https://discuss.leetcode.com/topic/25076/share-my-java-recursive-solution)
 <p>4. [Understand return (left != null) ? left : root] (https://discuss.leetcode.com/topic/25076/share-my-java-recursive-solution/14)
   
-  
+<p>Binary Tree Vertical Order Traversal
+<p>1. [BFS Level Order Traverse] (https://discuss.leetcode.com/topic/31954/5ms-java-clean-solution)
+<p>2. [Binary Tree Vertical Order Traversal 二叉树的竖直遍历] (http://www.cnblogs.com/grandyang/p/5278930.html)
   
   
 
