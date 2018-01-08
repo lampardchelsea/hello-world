@@ -71,3 +71,8 @@
 <p>1. [Youtube Solution] (https://www.youtube.com/watch?v=jTx2FZb1Who)
 <p>2. [Inorder Tree Traversal without Recursion] (http://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion/)
 
+<p>Remove Duplicate Letters
+<p>1. [Java solution using Stack with comments] (https://discuss.leetcode.com/topic/32259/java-solution-using-stack-with-comments)
+
+
+
