@@ -141,5 +141,7 @@
 <p>1. [BFS Level Order Traverse] (https://discuss.leetcode.com/topic/31954/5ms-java-clean-solution)
 <p>2. [Binary Tree Vertical Order Traversal 二叉树的竖直遍历] (http://www.cnblogs.com/grandyang/p/5278930.html)
   
-  
+<p>Binary Tree Zigzag Level Order Traversal
+<p>1. [BFS] (https://discuss.leetcode.com/topic/10157/c-5ms-version-one-queue-and-without-reverse-operation-by-using-size-of-each-level/9)
+<p>2. [DFS] (https://discuss.leetcode.com/topic/3413/my-accepted-java-solution)
 
