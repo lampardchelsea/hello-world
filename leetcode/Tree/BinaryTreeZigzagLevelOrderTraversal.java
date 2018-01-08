@@ -20,6 +20,7 @@
  *
  * Solution
  * https://discuss.leetcode.com/topic/10157/c-5ms-version-one-queue-and-without-reverse-operation-by-using-size-of-each-level/9
+ * https://discuss.leetcode.com/topic/3413/my-accepted-java-solution
 */
 // Solution 1: BFS
 // Refer to
