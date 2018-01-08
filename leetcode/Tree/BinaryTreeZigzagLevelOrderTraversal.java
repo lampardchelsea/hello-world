@@ -67,3 +67,46 @@ class Solution {
         return result;
     }
 }
+
+// Solution 2: DFS
+// Refer to
+// https://discuss.leetcode.com/topic/3413/my-accepted-java-solution
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        helper(result, root, 0);
+        return result;
+    }
+    
+    private void helper(List<List<Integer>> result, TreeNode node, int level) {
+        if(node == null) {
+            return;
+        }
+        // Tricky condition
+        if(result.size() <= level) {
+            List<Integer> newLevel = new ArrayList<Integer>();
+            result.add(newLevel);
+        }
+        List<Integer> list = result.get(level);
+        if(level % 2 == 0) {
+            list.add(node.val);
+        } else {
+            list.add(0, node.val);
+        }
+        helper(result, node.left, level + 1);
+        helper(result, node.right, level + 1);
+    }
+}
+
+
+
+
