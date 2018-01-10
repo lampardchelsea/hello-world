@@ -14,3 +14,6 @@
 <p>1. [BFS + DFS] (https://discuss.leetcode.com/topic/35242/benchmarks-of-dfs-and-bfs)
 <p>2. [Walls and Gates 墙和门] (http://www.cnblogs.com/grandyang/p/5285868.html)
 <p>3. [DFS] (https://discuss.leetcode.com/topic/33459/my-short-java-solution-very-easy-to-understand)
+
+<p>Shortest Distance From All Buildings
+<p>1. [Java BFS solution with explanation and time complexity analysis] (https://discuss.leetcode.com/topic/31925/java-solution-with-explanation-and-time-complexity-analysis)
