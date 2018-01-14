@@ -7,6 +7,7 @@
  * https://discuss.leetcode.com/topic/47195/4-different-ways-to-solve-iterative-recursive-bit-operation-math
 */
 // Solution 1: Iterative
+// Time complexity = O(log n)
 class Solution {
     public boolean isPowerOfTwo(int n) {
         if(n == 0) {
