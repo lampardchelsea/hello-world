@@ -145,3 +145,10 @@
 <p>1. [BFS] (https://discuss.leetcode.com/topic/10157/c-5ms-version-one-queue-and-without-reverse-operation-by-using-size-of-each-level/9)
 <p>2. [DFS] (https://discuss.leetcode.com/topic/3413/my-accepted-java-solution)
 
+<p>Count Of Smaller Number After Self
+<p>1. [9ms short Java BST solution get answer when building BST] (https://discuss.leetcode.com/topic/31405/9ms-short-java-bst-solution-get-answer-when-building-bst)
+<p>2. [Initial size for the ArrayList] (https://stackoverflow.com/questions/8896758/initial-size-for-the-arraylist)
+
+
+
+
