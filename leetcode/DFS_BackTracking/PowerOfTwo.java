@@ -21,8 +21,23 @@ class Solution {
 }
 
 // Solution 2: DFS
-
-
+// Time complexity = O(log n)
+class Solution {
+    public boolean isPowerOfTwo(int n) {
+        if(n == 0) {
+            return false;
+        }
+        return helper(n);
+    }
+    
+    private boolean helper(int n) {
+        if(n == 1) {
+            return true;
+        } else {
+            return n % 2 == 0 && helper(n / 2);
+        }
+    }
+}
 
 
 
