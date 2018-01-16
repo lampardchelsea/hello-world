@@ -100,5 +100,6 @@
 <p>1. [Java Recursive and Iterative Solutions] (https://discuss.leetcode.com/topic/29856/java-recursive-and-iterative-solutions)
 <p>2. [Youtube Solution] (https://www.youtube.com/watch?v=LziJZT2uRwc)
   
-  
+<p>Power Of Two
+<p>1. [4 different ways to solve -- Iterative / Recursive / Bit operation / Math] (https://discuss.leetcode.com/topic/47195/4-different-ways-to-solve-iterative-recursive-bit-operation-math)
   
