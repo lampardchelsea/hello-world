@@ -41,6 +41,7 @@ class Solution {
 
 
 // Solution 3: Bit Operation
+// Time complexity = O(1)
 /**
     If n is the power of two:
     n = 2 ^ 0 = 1 = 0b0000...00000001, and (n - 1) = 0 = 0b0000...0000.
@@ -56,6 +57,28 @@ class Solution {
         return n>0 && ((n & (n-1)) == 0);
     }
 }
+
+
+// Solution 4: Math
+// Time complexity = O(1)
+/**
+ Because the range of an integer = -2147483648 (-2^31) ~ 2147483647 (2^31-1), the max possible power of two = 2^30 = 1073741824.
+
+(1) If n is the power of two, let n = 2^k, where k is an integer.
+
+We have 2^30 = (2^k) * 2^(30-k), which means (2^30 % 2^k) == 0.
+
+(2) If n is not the power of two, let n = j*(2^k), where k is an integer and j is an odd number.
+
+We have (2^30 % j*(2^k)) == (2^(30-k) % j) != 0.
+
+return n>0 && (1073741824 % n == 0);
+Time complexity = O(1)
+*/
+
+
+
+
 
 
 
