@@ -4,6 +4,17 @@
    List<String> list2 = new ArrayList<String>();
    Find common and uncommon parts between two big arraylist,
    require time complexity very low
+   
+* Follow up
+* If list store the lists of objects not String, then need to modify hashcode() and equals()
+* You need refer to some document for change hashcode and equals method relation when compare two objects
+   https://stackoverflow.com/questions/17027777/relationship-between-hashcode-and-equals-method-in-java
+
+   Sometimes you may want two object which contains same content hash to same value,
+   https://stackoverflow.com/a/17027953/6706875 
+
+    then you may need re-design the hashcode function to calculate out same hash, refer to below, define your own rule either same function or not same
+   https://stackoverflow.com/questions/27581/what-issues-should-be-considered-when-overriding-equals-and-hashcode-in-java
 */
 // Step1: Build HashSet as filter for list1 to select out all unique Strings from list1
 Set<String> set1 = new HashSet<String>();
