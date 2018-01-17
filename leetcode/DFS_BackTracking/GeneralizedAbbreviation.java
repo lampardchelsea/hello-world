@@ -48,6 +48,8 @@
  * Syntax：注意27行使用StringBuffer.setLength(), 因为count一直累加可能变成两位数三位数，
  * delete stringbuffer最后一个字母可能不行，所以干脆设置为最初进recursion的长度	
  *
+ * https://www.youtube.com/watch?v=ZMclRBDIGco
+ * 
  * About StringBuffer setLength() method
  * https://www.tutorialspoint.com/java/lang/stringbuffer_setlength.htm
  */
