@@ -249,4 +249,13 @@
 <p>1. [Java Solution and Optimization] (https://discuss.leetcode.com/topic/9764/java-solution-and-optimization)
 <p>2. [How does bitshifting work in Java?] (https://stackoverflow.com/questions/3312853/how-does-bitshifting-work-in-java)
 
+<p>Maximum Product Of Word Lengths
+<p>1. [JAVA----------Easy Version To Understand!!!!!!!!!!!!!!!!!] (https://discuss.leetcode.com/topic/35539/java-easy-version-to-understand)
+<p>2. [Youtube Solution] (https://www.youtube.com/watch?v=tNM44ZCknp8)
+
+
+
+
+
+
 
