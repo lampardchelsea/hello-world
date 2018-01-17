@@ -43,6 +43,7 @@
 <p>4. [Why we use StringBuffer.setLength() instead of cut off last digit1] (https://segmentfault.com/a/1190000005762481)
 <p>5. [Why we use StringBuffer.setLength() instead of cut off last digit2] (http://www.cnblogs.com/EdwardLiu/p/5092886.html)
 <p>6. [About StringBuffer setLength() method] (https://www.tutorialspoint.com/java/lang/stringbuffer_setlength.htm)
+<p>7. [Youtube Solution] (https://www.youtube.com/watch?v=ZMclRBDIGco)
 
 <p>Remove Invalid Parentheses
 <p>1. [Easiest 9ms Java Solution DFS + Backtracking] (https://discuss.leetcode.com/topic/30743/easiest-9ms-java-solution?page=1)
