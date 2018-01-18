@@ -119,7 +119,7 @@
 <p>4. [Inorder-preorder-postorder traverse] (http://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/)
   
 <p>Verify Preorder Sequence In Binary Search Tree
-<p>1. [Youtube Solution] (https://www.youtube.com/watch?v=95FNN8210lY)
+<p>1. [Youtube Solution] (https://www.youtube.com/watch?v=_k944o5yilQ)
 <p>2. [Verify Preorder Sequence in Binary Search Tree 验证先序序列] (https://segmentfault.com/a/1190000003874375)
   
 <p>Closest Binary Search Tree Value
