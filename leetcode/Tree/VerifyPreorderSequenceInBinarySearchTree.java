@@ -7,7 +7,7 @@
    Follow up: Could you do it using only constant space complexity?
  *
  * Solution
- * https://www.youtube.com/watch?v=95FNN8210lY
+ * https://www.youtube.com/watch?v=_k944o5yilQ
  * https://segmentfault.com/a/1190000003874375
    二叉搜索树先序遍历序列的特点是降序的部分一定是向左走的，一旦开始升序说明开始向右走了，则上一个降序的
    点则限定了后面的数的最小值。如果继续降序，说明又向左走了，这样等到下次向右走得时候也要再次更新最小值。
