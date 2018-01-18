@@ -26,8 +26,33 @@
 */
 
 // For this problem just remember is fine, no need too much understanding
-public class Solution {
-    public boolean verifyPreorder(int[] preorder) {
+public class VerifyPreorderSequenceInBinarySearchTree {
+    private class TreeNode {
+		TreeNode left;
+		TreeNode right;
+		int val;
+		public TreeNode(int x) {
+			this.val = x;
+		}
+	}
+	
+	// Create preorder traverse for given tree
+	public List<Integer> preorderTraverse(TreeNode root) {
+		List<Integer> result = new ArrayList<Integer>();
+		helper(result, root);
+		return result;
+	}
+	
+	private void helper(List<Integer> result, TreeNode node) {
+	    if(node == null) {
+	    	return;
+	    }
+	    result.add(node.val);
+	    helper(result, node.left);
+	    helper(result, node.right);
+	}
+	
+	public boolean verifyPreorder(int[] preorder) {
         Stack<Integer> stk = new Stack<Integer>();
         // 初始化最小值为最小整数
         int min = Integer.MIN_VALUE;
@@ -43,4 +68,34 @@ public class Solution {
         }
         return true;
     }
+	
+	public static void main(String[] args) {
+		VerifyPreorderSequenceInBinarySearchTree v = new VerifyPreorderSequenceInBinarySearchTree();
+		/**
+		    10
+	       /  \
+	      5    12
+	     / \
+	    2   6
+		 */
+		TreeNode ten = v.new TreeNode(10);
+		TreeNode five = v.new TreeNode(5);
+		TreeNode twelve = v.new TreeNode(12);
+		TreeNode two = v.new TreeNode(2);
+		TreeNode six = v.new TreeNode(6);
+		ten.left = five;
+		ten.right = twelve;
+		five.left = two;
+		five.right = six;
+		
+		// Create preorder traverse and suppose result will be true
+		List<Integer> list = v.preorderTraverse(ten);
+		int[] preorder = new int[list.size()];
+		for(int i = 0; i < list.size(); i++) {
+			preorder[i] = list.get(i);
+			System.out.print(preorder[i] + " ");
+		}
+		boolean result = v.verifyPreorder(preorder);
+		System.out.println(result);
+	}
 }
