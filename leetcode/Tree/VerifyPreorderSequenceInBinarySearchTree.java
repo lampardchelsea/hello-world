@@ -88,7 +88,8 @@ public class VerifyPreorderSequenceInBinarySearchTree {
 		five.left = two;
 		five.right = six;
 		
-		// Create preorder traverse and suppose result will be true
+		// Create preorder traverse for given tree as [10, 5, 2, 6, 12] 
+		// and suppose result will be true
 		List<Integer> list = v.preorderTraverse(ten);
 		int[] preorder = new int[list.size()];
 		for(int i = 0; i < list.size(); i++) {
