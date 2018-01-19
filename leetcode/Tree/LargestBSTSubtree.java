@@ -14,7 +14,7 @@
       / \   \ 
      1   8   7
     The Largest BST Subtree in this case is the highlighted one. 
-    The return value is the subtree's size, which is 3.
+    The return value is the subtree's (1,5,8) size, which is 3.
     
     Hint:
     You can recursively use algorithm similar to 98. Validate Binary Search Tree at each node of the tree, 
