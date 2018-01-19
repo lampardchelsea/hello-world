@@ -149,6 +149,9 @@
 <p>1. [9ms short Java BST solution get answer when building BST] (https://discuss.leetcode.com/topic/31405/9ms-short-java-bst-solution-get-answer-when-building-bst)
 <p>2. [Initial size for the ArrayList] (https://stackoverflow.com/questions/8896758/initial-size-for-the-arraylist)
 
-
+<p>Verify Preorder Serialization of a Binary Tree
+<p>1. [Youtube Solution] (https://www.youtube.com/watch?v=_mbnPPHJmTQ)
+<p>2. [Indegree - outdegree = 0] (https://discuss.leetcode.com/topic/35976/7-lines-easy-java-solution)
+<p>3. [Leaves - 1 = Nonleaves] (https://discuss.leetcode.com/topic/35976/7-lines-easy-java-solution/7)
 
 
