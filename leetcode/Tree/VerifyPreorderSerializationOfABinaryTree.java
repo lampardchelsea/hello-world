@@ -107,6 +107,28 @@ class Solution {
  If such prefix does not exist, then the serialization is definitely invalid; otherwise, the serialization 
  is valid if and only if the prefix is the entire sequence.
 */
-
+class Solution {
+    public boolean isValidSerialization(String preorder) {
+        if(preorder == null || preorder.length() == 0) {
+            return false;
+        }
+        String[] nodes = preorder.split(",");
+        int leaves = 0;
+        int nonleaves = 0;
+        int i;
+        for(i = 0; i < nodes.length; i++) {
+            if(leaves - nonleaves != 1) {
+                if(nodes[i].equals("#")) {
+                    leaves++;
+                } else {
+                    nonleaves++;
+                }    
+            } else {
+                return false;
+            }
+        }
+        return i == nodes.length && leaves - nonleaves == 1;
+    }
+}
 
 
