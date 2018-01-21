@@ -26,6 +26,7 @@
  *
  * Solution
  * www.cnblogs.com/grandyang/p/5188938.html
+ * https://www.youtube.com/watch?v=iqQ9td7OpiM
  * https://discuss.leetcode.com/topic/36995/share-my-o-n-java-code-with-brief-explanation-and-comments
 */
 import java.util.Stack;
