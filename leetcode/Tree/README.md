@@ -154,4 +154,11 @@
 <p>2. [Indegree - outdegree = 0] (https://discuss.leetcode.com/topic/35976/7-lines-easy-java-solution)
 <p>3. [Leaves - 1 = Nonleaves] (https://discuss.leetcode.com/topic/35976/7-lines-easy-java-solution/7)
 
+<p>Largest BST Subtree
+<p>1. [Largest BST Subtree 最大的二分搜索子树] (www.cnblogs.com/grandyang/p/5188938.html)
+<p>2. [Youtube Solution] (https://www.youtube.com/watch?v=iqQ9td7OpiM)
+<p>3. [Share my O(n) Java code with brief explanation and comments] (https://discuss.leetcode.com/topic/36995/share-my-o-n-java-code-with-brief-explanation-and-comments)
+
+
+
 
