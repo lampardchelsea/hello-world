@@ -101,4 +101,12 @@
 <p>Best Time to Buy and Sell Stock with Transaction Fee
 <p>1. [Most consistent ways of dealing with the series of stock problems] (https://discuss.leetcode.com/topic/107998/most-consistent-ways-of-dealing-with-the-series-of-stock-problems)
 
+<p>Increasing Triplet Subsequence
+<p>1. [Clean and short, with comments, C++] (https://discuss.leetcode.com/topic/37281/clean-and-short-with-comments-c)
+<p>2. [Youtube Solution] (https://www.youtube.com/watch?v=DbP5OCoEwFo)
+<p>3. [Longest Increasing Subsequence] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/LongestIncreasingSubsequence.java)
+
+
+
+
 
