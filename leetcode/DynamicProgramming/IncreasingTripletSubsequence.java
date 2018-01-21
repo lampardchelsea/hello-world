@@ -50,16 +50,23 @@ class Solution {
 // Solution 3:
 // Refer to
 // https://discuss.leetcode.com/topic/37281/clean-and-short-with-comments-c
+/**
+  c1 is min seen so far (it's a candidate for 1st element)
+  here when x > c1, i.e. x might be either c2 or c3
+  x is better than the current c2, store it
+  here when we have/had c1 < c2 already and x > c2
+  the increasing subsequence of 3 elements exists
+*/
 public class IncreasingTripleSubsequence {
   public boolean increasingTriplet(int[] nums) {
         int c1 = Integer.MAX_VALUE;
         int c2 = Integer.MAX_VALUE;
         for(int i = 0; i < nums.length; i++) {
             // Must contains '=' to make sure duplicate numbers
-        	// will set to same candidate, otherwise it will
-        	// go to next candidate and deduce 2 same candiates,
-        	// which violate the requirement as strictly asecending
-        	// sequence, e.g [1,1,-2,6]
+            // will set to same candidate, otherwise it will
+            // go to next candidate and deduce 2 same candiates,
+            // which violate the requirement as strictly asecending
+            // sequence, e.g [1,1,-2,6]
             if(nums[i] <= c1) {
                 c1 = nums[i];
             } else if(nums[i] <= c2) {
