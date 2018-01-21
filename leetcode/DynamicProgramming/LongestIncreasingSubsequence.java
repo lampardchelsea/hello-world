@@ -46,6 +46,24 @@ class Solution {
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < i; j++) {
                 if(nums[j] < nums[i]) {
+                    /**
+                     * What will happen if not compare f[i], f[j] + 1 ?
+                        20 / 24 test cases passed.
+                        Status: Wrong Answer
+                        Input:
+                        [1,3,6,7,9,4,10,5,6]
+                        Output:
+                        5
+                        Expected:
+                        6
+
+                        i = 6
+                        j = 5
+                        f[i] = 6
+                        f[j] = 3
+                        f[i] > f[j] + 1
+                        f[i] = Math.max(f[i], f[j] + 1) -> Should keep f[i] = 6
+                    */
                     f[i] = Math.max(f[i], f[j] + 1);
                 }
             }
