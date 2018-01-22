@@ -39,7 +39,7 @@
   Complexity Analysis
   The run time depends on the number of bits in n. Because nn in this piece of code is a 32-bit integer, 
   the time complexity is O(1). -> For CountingBits is O(n * 1) = O(n)
-  The space complexity is O(1), since no additional space is allocated.
+  The space complexity is O(1), since no additional space is allocated.-> For CountingBits is O(n * 1) = O(n)
 */
 class Solution {
     public int[] countBits(int num) {
