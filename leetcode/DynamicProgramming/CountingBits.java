@@ -16,7 +16,7 @@
  *
  * Solution
  * https://leetcode.com/problems/number-of-1-bits/solution/
- * 
+ * https://discuss.leetcode.com/topic/40195/how-we-handle-this-question-on-interview-thinking-process-dp-solution
 */
 // Solution 1: Same as NumberOf1Bits.java
 // Refer to
