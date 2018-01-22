@@ -104,3 +104,9 @@
 <p>Power Of Two
 <p>1. [4 different ways to solve -- Iterative / Recursive / Bit operation / Math] (https://discuss.leetcode.com/topic/47195/4-different-ways-to-solve-iterative-recursive-bit-operation-math)
   
+<p>Nested List Weight Sum
+<p>1. [Nested List Weight Sum 嵌套链表权重和] (http://www.cnblogs.com/grandyang/p/5340305.html)
+<p>2. [DFS] (https://discuss.leetcode.com/topic/41357/2ms-easy-to-understand-java-solution)
+<p>3. [Java Solution: similar to tree level order traversal] (https://discuss.leetcode.com/topic/41495/java-solution-similar-to-tree-level-order-traversal)
+  
+  
