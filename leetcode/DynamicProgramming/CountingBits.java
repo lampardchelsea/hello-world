@@ -35,6 +35,11 @@
   of this number. 
   To check the next bit, we shift the mask to the left by one.
   0010 0000 0000 0000 0000 0000 0000 0000 0010
+  
+  Complexity Analysis
+  The run time depends on the number of bits in n. Because nn in this piece of code is a 32-bit integer, 
+  the time complexity is O(1). -> For CountingBits is O(n * 1) = O(n)
+  The space complexity is O(1), since no additional space is allocated.
 */
 class Solution {
     public int[] countBits(int num) {
