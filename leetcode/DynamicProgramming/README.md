@@ -106,7 +106,9 @@
 <p>2. [Youtube Solution] (https://www.youtube.com/watch?v=DbP5OCoEwFo)
 <p>3. [Longest Increasing Subsequence] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/LongestIncreasingSubsequence.java)
 
-
+<p>Counting Bits
+<p>1. [How we handle this question on interview [Thinking process + DP solution]] (https://discuss.leetcode.com/topic/40195/how-we-handle-this-question-on-interview-thinking-process-dp-solution)
+<p>2. [Number Of 1 Bits] (https://leetcode.com/problems/number-of-1-bits/solution/)
 
 
 
