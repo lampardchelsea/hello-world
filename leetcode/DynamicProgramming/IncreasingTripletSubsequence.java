@@ -45,6 +45,59 @@ class Solution {
 // Solution 2: DP + Binary Search
 // Same as Longest Increasing Subsequence
 // Time Compelxity: O(nlogn)
+class Solution {
+    public boolean increasingTriplet(int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return false;
+        }
+        int[] dp = new int[nums.length];
+        dp[0] = nums[0];
+        int size = 0;
+        for(int i = 1; i < nums.length; i++) {
+            if(nums[i] < dp[0]) {
+                dp[0] = nums[i];
+            } else if(nums[i] > dp[size]) {
+                size++;
+                dp[size] = nums[i];
+            } else {
+                dp[index(dp, 0, size, nums[i])] = nums[i];
+            }
+        }
+        return size + 1 >= 3;
+    }
+    
+    /**
+        Our strategy determined by the following conditions
+        (1) If nums[i] is smallest among all end
+        candidates of active lists, we will start
+        new active list of length 1.
+        (2) If nums[i] is largest among all end candidates of
+        active lists, we will clone the largest active
+        list, and extend it by nums[i].
+        (3) If nums[i] is in between, we will find a list with
+        largest end element that is smaller than nums[i].
+        Clone and extend this list by nums[i]. We will discard all
+        other lists of same length as that of this modified list."
+    */
+    private int index(int[] dp, int start, int end, int target) {
+        while(start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if(dp[mid] == target) {
+                return mid;
+            } else if(dp[mid] > target) {
+                end = mid;
+            } else {
+                start = mid;
+            }
+        }
+        if(dp[start] >= target) {
+            return start;
+        } else {
+            return end;
+        }
+    }
+}
+
 
 
 // Solution 3:
