@@ -109,4 +109,10 @@
 <p>2. [DFS] (https://discuss.leetcode.com/topic/41357/2ms-easy-to-understand-java-solution)
 <p>3. [Java Solution: similar to tree level order traversal] (https://discuss.leetcode.com/topic/41495/java-solution-similar-to-tree-level-order-traversal)
   
+<p>Nested List Weight Sum II
+<p>1. [No depth variable, no multiplication] (https://discuss.leetcode.com/topic/49041/no-depth-variable-no-multiplication)
+<p>2. [JAVA AC BFS solution] (https://discuss.leetcode.com/topic/49488/java-ac-bfs-solution)
+<p>3. [4 Ways (DFS + DFS Optimization + BFS)] (http://www.cnblogs.com/grandyang/p/5615583.html)
+  
+  
   
