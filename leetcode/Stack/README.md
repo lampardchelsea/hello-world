@@ -74,5 +74,11 @@
 <p>Remove Duplicate Letters
 <p>1. [Java solution using Stack with comments] (https://discuss.leetcode.com/topic/32259/java-solution-using-stack-with-comments)
 
+<p>Flatten Nested List Iterator
+<p>1. [Simple Java solution using a stack with explanation] (https://discuss.leetcode.com/topic/42042/simple-java-solution-using-a-stack-with-explanation)
+<p>2. [Youtube Solution] (https://www.youtube.com/watch?v=LkyK5mwT3KQ)
+
+
+
 
 
