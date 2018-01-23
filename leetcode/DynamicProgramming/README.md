@@ -110,5 +110,9 @@
 <p>1. [How we handle this question on interview [Thinking process + DP solution]] (https://discuss.leetcode.com/topic/40195/how-we-handle-this-question-on-interview-thinking-process-dp-solution)
 <p>2. [Number Of 1 Bits] (https://leetcode.com/problems/number-of-1-bits/solution/)
 
-
+<p>Integer Break
+<p>1. [DP] (https://discuss.leetcode.com/topic/42978/java-dp-solution/14)
+<p>2. [Math Explain 1] (https://discuss.leetcode.com/topic/43055/why-factor-2-or-3-the-math-behind-this-problem/10)
+<p>3. [Math Explain 2] (https://discuss.leetcode.com/topic/45341/a-simple-explanation-of-the-math-part-and-a-o-n-solution)
+<p>4. [Integer Break 整数拆分] (www.cnblogs.com/grandyang/p/5411919.html)
 
