@@ -21,6 +21,13 @@
 // https://discuss.leetcode.com/topic/44251/java-easy-to-understand-solution
 // https://www.youtube.com/watch?v=tEGSN17jP4A
 // Time Complexity: O(n)
+/**
+ 这道题定义了一个MovingAverage类，里面可以存固定个数字，然后我们每次读入一个数字，如果加上这个
+ 数字后总个数大于限制的个数，那么我们移除最早进入的数字，然后返回更新后的平均数，这种先进先出的
+ 特性最适合使用队列queue来做，而且我们还需要一个double型的变量sum来记录当前所有数字之和，这样
+ 有新数字进入后，如果没有超出限制个数，则sum加上这个数字，如果超出了，那么sum先减去最早的数字，
+ 再加上这个数字，然后返回sum除以queue的个数即可
+*/
 import java.util.LinkedList;
 import java.util.Queue;
 public class MovingAverage {
