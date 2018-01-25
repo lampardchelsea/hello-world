@@ -64,7 +64,56 @@ public class MovingAverage {
 // Refer to
 // https://discuss.leetcode.com/topic/44108/java-o-1-time-solution
 // Time Complexity: O(1)
+public class MovingAverage {
+//	Queue<Integer> queue;
+//	double prevSum = 0.0;
+//	int maxSize;
+//	
+//	public MovingAverage(int size) {
+//        queue = new LinkedList<Integer>();
+//        this.maxSize = size;
+//	}
+//
+//	public double next(int val) {
+//		if(queue.size() == maxSize) {
+//		    prevSum -= queue.remove();
+//		}
+//		prevSum += val;
+//		queue.offer(val);
+//		return prevSum / queue.size();
+//	}
+	
+	int[] window;
+	int n;
+	int insert;
+	long sum;
+	
+	public MovingAverage(int size) {
+        window = new int[size];
+        insert = 0;
+        sum = 0;
+	}
 
+	public double next(int val) {
+	if(n < window.length) {
+		n++;
+	}
+	sum -= window[insert];
+	sum += val;
+	window[insert] = val;
+	insert = (insert + 1) % window.length;
+	return (double)sum / n;
+	}
+		
+	public static void main(String[] args) {
+		MovingAverage m = new MovingAverage(3);
+		m.next(10);
+		m.next(3);
+		m.next(5);
+		double result = m.next(1);
+		System.out.print(result);
+	}
+}
 
 
 
