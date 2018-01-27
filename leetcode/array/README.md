@@ -260,4 +260,9 @@ binary-search-java-code/29)
 <p>Range Sum Query 2D Immutable 
 <p>1. [Official Article] (https://leetcode.com/articles/range-sum-query-2d-immutable/)  
   
+<p>Design Tic Tac Toe
+<p>1. [Design Tic-Tac-Toe 设计井字棋游戏] (http://www.cnblogs.com/grandyang/p/5467118.html)
+<p>2. [Youtube Solution] (https://www.youtube.com/watch?v=tpfmHHdfmoI)
+<p>3. [Design Pattern] (http://www.cs.toronto.edu/~hojjat/108w07/lectures/mar16/TicTacToe.java)
+<p>4. [TicTacToe logic in Java] (https://codereview.stackexchange.com/questions/15911/tictactoe-logic-in-java)  
   
