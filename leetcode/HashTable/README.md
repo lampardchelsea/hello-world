@@ -170,8 +170,9 @@
 <p>1. [Official Artical] (https://leetcode.com/articles/palindrome-permutation/)
 <p>2. [Youtube Solution] (https://www.youtube.com/watch?v=4TjNTeX4yyw)
   
-  
-  
+<p>Data Stream as Disjoint Intervals  
+<p>1. [TreeMap Solution] (https://discuss.leetcode.com/topic/46887/java-solution-using-treemap-real-o-logn-per-adding)
+<p>2. [Youtube Solution] (https://www.youtube.com/watch?v=mfBPUTW0cZY)
   
   
   
