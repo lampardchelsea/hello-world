@@ -7,3 +7,4 @@
 <p>Design Snake Game
 <p>1. [Java Deque and HashSet design with detailed comments] (https://discuss.leetcode.com/topic/48626/java-deque-and-hashset-design-with-detailed-comments)
 <p>2. [Youtube Solution] (https://www.youtube.com/watch?v=gEuzs0Jek2s)
+<p>3. [Design Snake Game 设计贪吃蛇游戏] (http://www.cnblogs.com/grandyang/p/5558033.html)
