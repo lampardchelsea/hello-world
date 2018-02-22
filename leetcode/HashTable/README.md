@@ -174,6 +174,8 @@
 <p>1. [TreeMap Solution] (https://discuss.leetcode.com/topic/46887/java-solution-using-treemap-real-o-logn-per-adding)
 <p>2. [Youtube Solution] (https://www.youtube.com/watch?v=mfBPUTW0cZY)
   
-  
+<p>First Unique Character In A String
+<p>1. [Youtube Solution] (https://www.youtube.com/watch?v=_vPDoOVNlKQ)
+<p>2. [Java 7 lines solution 29ms] (https://leetcode.com/problems/first-unique-character-in-a-string/discuss/86348/java-7-lines-solution-29ms/91418?page=1)
   
   
