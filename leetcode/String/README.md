@@ -253,7 +253,8 @@
 <p>1. [JAVA----------Easy Version To Understand!!!!!!!!!!!!!!!!!] (https://discuss.leetcode.com/topic/35539/java-easy-version-to-understand)
 <p>2. [Youtube Solution] (https://www.youtube.com/watch?v=tNM44ZCknp8)
 
-
+<p>FizzBuzz
+<p>1. [Java 4ms solution , Not using "%" operation] (https://leetcode.com/problems/fizz-buzz/discuss/89931/Java-4ms-solution-Not-using-%22%22-operation)
 
 
 
