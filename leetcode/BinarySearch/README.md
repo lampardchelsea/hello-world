@@ -26,3 +26,6 @@
 <p>Guess Number Higher Or Lower
 <p>1. [Binary Search] (https://leetcode.com/articles/guess-number-higher-or-lower/)
 <p>2. [The key point is to read the problem carefully] (https://discuss.leetcode.com/topic/51083/the-key-point-is-to-read-the-problem-carefully)
+
+<p>Sum Of Square Numbers
+<p>1. [Two Pointers] (https://leetcode.com/problems/sum-of-square-numbers/discuss/104930/Java-Two-Pointers-Solution)
