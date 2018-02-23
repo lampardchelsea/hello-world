@@ -16,8 +16,10 @@
 
 class Solution {
     public boolean judgeSquareSum(int c) {
+        // Since Non-negative, start with 0
         int start = 0;
         int end = (int)Math.sqrt(c);
+        // Two integers could be same value
         while(start <= end) {
             if(start * start + end * end < c) {
                 start++;   
