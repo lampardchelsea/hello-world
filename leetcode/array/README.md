@@ -266,3 +266,8 @@ binary-search-java-code/29)
 <p>3. [Design Pattern] (http://www.cs.toronto.edu/~hojjat/108w07/lectures/mar16/TicTacToe.java)
 <p>4. [TicTacToe logic in Java] (https://codereview.stackexchange.com/questions/15911/tictactoe-logic-in-java)  
   
+<p>Sum Of Two Integers
+<p>1. [Difference & vs && and | vs ||] (https://stackoverflow.com/questions/4014535/differences-in-boolean-operators-vs-and-vs)
+<p>2. [Java Easy Solution] (https://leetcode.com/problems/sum-of-two-integers/discuss/84290/Java-simple-easy-understand-solution-with-explanation)
+
+
