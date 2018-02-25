@@ -159,6 +159,8 @@
 <p>2. [Youtube Solution] (https://www.youtube.com/watch?v=iqQ9td7OpiM)
 <p>3. [Share my O(n) Java code with brief explanation and comments] (https://discuss.leetcode.com/topic/36995/share-my-o-n-java-code-with-brief-explanation-and-comments)
 
-
+<p>Populating Next Right Pointers in Each Node
+<p>1. [Java solution with O(1) memory+ O(n) time] (https://leetcode.com/problems/populating-next-right-pointers-in-each-node/discuss/37461/Java-solution-with-O(1)-memory+-O(n)-time)
+<p>2. [Youtube Solution] (https://www.youtube.com/watch?v=3MFL7L8HnUc&t=233s)
 
 
