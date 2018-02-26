@@ -35,6 +35,7 @@
  *
  * Solution
  * https://leetcode.com/problems/populating-next-right-pointers-in-each-node/discuss/37461/Java-solution-with-O(1)-memory+-O(n)-time
+ * https://leetcode.com/problems/populating-next-right-pointers-in-each-node/discuss/37603/Java-solution-traversing-by-level-without-extra-space
  * https://www.youtube.com/watch?v=3MFL7L8HnUc&t=233s
 */
 /**
