@@ -45,6 +45,17 @@
  *     TreeLinkNode(int x) { val = x; }
  * }
  */
+// Solution 1: Recursive
+/**
+   Strategy as pre-order traverse
+             1
+           /  \
+          2    3
+         / \  / \
+        4  5  6  7
+   If 4 has left child, then after connect 5,6 will not connect 
+   6,7 directly after that because it will go as pre-order traverse
+*/
 public class Solution {
     public void connect(TreeLinkNode root) {
         if(root == null) {
@@ -67,3 +78,50 @@ public class Solution {
         connect(root.right);
     }
 }
+
+// Solution 2: Iterative
+/**
+   Strategy as level order traverse
+*/
+/**
+ * Definition for binary tree with next pointer.
+ * public class TreeLinkNode {
+ *     int val;
+ *     TreeLinkNode left, right, next;
+ *     TreeLinkNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public void connect(TreeLinkNode root) {
+        if(root == null) {
+            return;
+        }
+        // 'start' node will record each level's left most node
+        TreeLinkNode start = root;
+        // Condition based on level exist or not
+        while(start != null) {
+            // 'cur' node used for traverse current level,
+            // start with 'start'
+            TreeLinkNode cur = start;
+            // Traverse on each level
+            while(cur != null) {
+                if(cur.left != null) {
+                    cur.left.next = cur.right;
+                }
+                if(cur.next != null && cur.right != null) {
+                    cur.right.next = cur.next.left;
+                }
+                // Move forward on current level
+                cur = cur.next;
+            }
+            // Go to next level
+            start = start.left;
+        }
+    }
+}
+
+
+
+
+
+
