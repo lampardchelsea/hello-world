@@ -161,6 +161,7 @@
 
 <p>Populating Next Right Pointers in Each Node
 <p>1. [Java solution with O(1) memory+ O(n) time] (https://leetcode.com/problems/populating-next-right-pointers-in-each-node/discuss/37461/Java-solution-with-O(1)-memory+-O(n)-time)
-<p>2. [Youtube Solution] (https://www.youtube.com/watch?v=3MFL7L8HnUc&t=233s)
+<p>2. [Java solution traversing by level without extra space] (https://leetcode.com/problems/populating-next-right-pointers-in-each-node/discuss/37603/Java-solution-traversing-by-level-without-extra-space)
+<p>3. [Youtube Solution (Pre-order traverse + level order traverse)] (https://www.youtube.com/watch?v=3MFL7L8HnUc&t=233s)
 
 
