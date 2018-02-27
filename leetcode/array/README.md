@@ -270,4 +270,14 @@ binary-search-java-code/29)
 <p>1. [Difference & vs && and | vs ||] (https://stackoverflow.com/questions/4014535/differences-in-boolean-operators-vs-and-vs)
 <p>2. [Java Easy Solution] (https://leetcode.com/problems/sum-of-two-integers/discuss/84290/Java-simple-easy-understand-solution-with-explanation)
 
+<p>Shuffle An Array
+<p>1. [Youtube Solution] (https://www.youtube.com/watch?v=VpSytdRat1Q&t=2s)
+
+
+
+
+
+
+
+
 
