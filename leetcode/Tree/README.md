@@ -164,10 +164,12 @@
 <p>2. [Java solution traversing by level without extra space] (https://leetcode.com/problems/populating-next-right-pointers-in-each-node/discuss/37603/Java-solution-traversing-by-level-without-extra-space)
 <p>3. [Youtube Solution (Pre-order traverse + level order traverse)] (https://www.youtube.com/watch?v=3MFL7L8HnUc&t=233s)
 
-<p><p>Populating Next Right Pointers in Each Node II
+<p>Populating Next Right Pointers in Each Node II
 <p>1. [O(1) space O(n) complexity Iterative Solution, 3 pointers to manager] (https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/discuss/37828/O(1)-space-O(n)-complexity-Iterative-Solution
 )
 <p>2. [Youtube Solution] (https://www.youtube.com/watch?v=4IRLLPnxc_Q)
 
+<p>Two Sum IV
+<p>1. [DFS] (https://leetcode.com/problems/two-sum-iv-input-is-a-bst/discuss/106059/JavaC++-Three-simple-methods-choose-one-you-like)
 
 
