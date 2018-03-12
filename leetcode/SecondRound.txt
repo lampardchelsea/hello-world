@@ -1,8 +1,6 @@
 Most Popular
-1. Two Sum
-2. Two Sum II - Input array is sorted
-3. Two Sum III - Data Structrue Design
-4. 
+1. Two Sum, Two Sum II - Input array is sorted, Two Sum III - Data Structrue Design, 
+2. 
 
 
 
