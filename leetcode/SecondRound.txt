@@ -2,7 +2,7 @@ Most Popular
 1. Two Sum, Two Sum II - Input array is sorted, Two Sum III - Data Structrue Design, Two Sum IV - Input is a BST, 3 Sum, 4 Sum, 
    3 Sum Closet, Subarray Sum Equals K, Subarray Product Less Than K
 2. Add Two Numbers, Add Strings, Add Binary, Multiply Strings, Add Two Numbers II, ReverseLinkedList
-3. Longest Substring Without Repeating Characters
+3. Longest Substring Without Repeating Characters, Longest Substring with At Most Two Distinct Characters, Longest Substring with At Most K Distinct Characters
 4. 
 
 
