@@ -260,4 +260,9 @@
 <p>1. [Two Pointers on Add Two Numbers] (https://leetcode.com/problems/add-two-numbers/discuss/1010/Is-this-Algorithm-optimal-or-what)
 <p>2. [Two Pointers in the same way] (https://leetcode.com/problems/add-strings/discuss/90436/Straightforward-Java-8-main-lines-25ms)
 
+<p>Palindromic Substrings
+<p>1. [Very Simple Java Solution with Detail Explanation] (https://leetcode.com/problems/palindromic-substrings/discuss/105688/Very-Simple-Java-Solution-with-Detail-Explanation)  
+
+
+
 
