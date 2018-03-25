@@ -263,6 +263,7 @@
 <p>Palindromic Substrings
 <p>1. [Very Simple Java Solution with Detail Explanation] (https://leetcode.com/problems/palindromic-substrings/discuss/105688/Very-Simple-Java-Solution-with-Detail-Explanation)  
 
-
+<p>Shortest Palindrome
+<p>1. [My 9-lines three pointers Java solution with explanation] (https://leetcode.com/problems/shortest-palindrome/discuss/60106/My-9-lines-three-pointers-Java-solution-with-explanation)
 
 
