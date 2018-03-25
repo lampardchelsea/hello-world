@@ -116,3 +116,8 @@
 <p>3. [Math Explain 2] (https://discuss.leetcode.com/topic/45341/a-simple-explanation-of-the-math-part-and-a-o-n-solution)
 <p>4. [Integer Break 整数拆分] (www.cnblogs.com/grandyang/p/5411919.html)
 
+<p>Longest Palindromic Subsequence
+<p>1. [Straight forward Java DP solution] (https://leetcode.com/problems/longest-palindromic-subsequence/discuss/99101/Straight-forward-Java-DP-solution)
+
+
+
