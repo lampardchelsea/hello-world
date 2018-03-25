@@ -14,7 +14,7 @@
  * Solution
  * https://leetcode.com/problems/shortest-palindrome/discuss/60106/My-9-lines-three-pointers-Java-solution-with-explanation
 */
-
+// TLE -> Time Complexity (O(n*n))
 class Solution {
     public String shortestPalindrome(String s) {
         if(s == null || s.length() == 0) {
