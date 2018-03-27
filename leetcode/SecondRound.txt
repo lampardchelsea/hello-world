@@ -8,6 +8,7 @@ Most Popular
 5. Reverse Integer
 6. Regular Expression Matching
 7. Container With Most Water, 
+8. Merge Intervals, 
 
 
 
