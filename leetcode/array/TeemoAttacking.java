@@ -32,8 +32,9 @@
  *
  * Solution
  * https://leetcode.com/problems/teemo-attacking/discuss/97465/O(n)-Java-Solution-using-same-idea-of-merge-intervals/101991
+ * https://leetcode.com/problems/teemo-attacking/discuss/97465/O(n)-Java-Solution-using-same-idea-of-merge-intervals/101994
 */
-// Solution 1: Intuitive Solution
+// Style 1: Intuitive Solution
 class Solution {
     public int findPoisonedDuration(int[] timeSeries, int duration) {
         if (timeSeries == null || timeSeries.length == 0 || duration == 0) {
@@ -70,3 +71,30 @@ class Solution {
         return result;
     }
 }
+
+
+// Sytle 2: Intuitive Solution
+// https://leetcode.com/problems/teemo-attacking/discuss/97465/O(n)-Java-Solution-using-same-idea-of-merge-intervals/101994
+class Solution {
+    public int findPoisonedDuration(int[] timeSeries, int duration) {
+        if (timeSeries == null || timeSeries.length == 0 || duration == 0) {
+            return 0;
+        }
+        int result = 0;
+        int len = timeSeries.length;
+        int start = timeSeries[0];
+        int end = timeSeries[0] + duration;
+        for(int i = 1; i < len; i++) {
+            if(timeSeries[i] >= end) {
+                result += duration;
+            } else {
+                result += timeSeries[i] - start;
+            }
+            start = timeSeries[i];
+            end = timeSeries[i] + duration; 
+        }
+        result += duration;
+        return result;
+    }
+}
+
