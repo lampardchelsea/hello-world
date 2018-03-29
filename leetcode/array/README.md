@@ -280,7 +280,8 @@ binary-search-java-code/29)
 <p>1. [Intuitive Solution] (https://leetcode.com/problems/teemo-attacking/discuss/97465/O(n)-Java-Solution-using-same-idea-of-merge-intervals/101991)
 <p>2. [Intuitive Solution 2] (https://leetcode.com/problems/teemo-attacking/discuss/97465/O(n)-Java-Solution-using-same-idea-of-merge-intervals/101994)
 
-
+<p>Can Place Flowers
+<p>1. [Single Scan] (https://leetcode.com/articles/can-place-flowers/)
 
 
 
