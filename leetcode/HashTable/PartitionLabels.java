@@ -20,7 +20,9 @@
  *
  * Solution
  * https://www.youtube.com/watch?v=s-1W5FDJ0lw
+ * https://leetcode.com/problems/partition-labels/discuss/113259/Java-2-pass-O(n)-time-O(1)-space-extending-end-pointer-solution
 */
+// Solution 1: HashMap + 2 Pass
 class Solution {
     public List<Integer> partitionLabels(String S) {
         Map<Character, Integer> map = new HashMap<Character, Integer>();
@@ -41,3 +43,11 @@ class Solution {
         return result;
     }
 }
+
+// Solution 2: Java 2 pass O(n) time O(1) space, extending end pointer solution
+
+
+
+
+
+
