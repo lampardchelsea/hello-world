@@ -266,4 +266,8 @@
 <p>Shortest Palindrome
 <p>1. [My 9-lines three pointers Java solution with explanation] (https://leetcode.com/problems/shortest-palindrome/discuss/60106/My-9-lines-three-pointers-Java-solution-with-explanation)
 
-
+<p>Valid Palindrome II
+<p>1. [Java solution, isPalindrome] (https://leetcode.com/problems/valid-palindrome-ii/discuss/107714/Java-solution-isPalindrome)
+  
+  
+  
