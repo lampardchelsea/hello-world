@@ -122,4 +122,10 @@
 <p>Surrounded Regions
 <p>1. [DFS Solution] (https://www.programcreek.com/2014/04/leetcode-surrounded-regions-java/)
 
+<p>Longest Word in Dictionary
+<p>1. [Trie + DFS Solution] (https://leetcode.com/problems/longest-word-in-dictionary/discuss/109118/Java-solution-with-Trie/113861)
+
+
+
+
 
