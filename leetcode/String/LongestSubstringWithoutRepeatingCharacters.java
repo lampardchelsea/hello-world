@@ -1,3 +1,50 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        if(s == null || s.length() == 0) {
+            return 0;
+        }
+        Map<Character, Integer> map = new HashMap<Character, Integer>();
+        // Caution: not create frequency map, just create bucket and set as 0 as
+        // template did
+        // Refer to
+        // https://leetcode.com/problems/minimum-window-substring/discuss/26808/Here-is-a-10-line-template-that-can-solve-most-'substring'-problems/25816
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            map.put(c, 0);
+        }
+        int start = 0;
+        int end = 0;
+        int maxLen = Integer.MIN_VALUE;
+        int count = 0; // count represent repeated character number
+        while(end < s.length()) {
+            // if this character already exist in map, meet again will
+            // increase number as repeated
+            if(map.get(s.charAt(end)) > 0) {
+                count++;
+            }
+            map.put(s.charAt(end), map.get(s.charAt(end)) + 1);
+            end++;
+            // if found repeated character, need to move start indicator forward
+            // to remove start characters on substring to make it without
+            // repeated characters again
+            while(count > 0) {
+                if(map.get(s.charAt(start)) > 1) {
+                    count--;
+                }
+                map.put(s.charAt(start), map.get(s.charAt(start)) - 1);
+                start++;
+            }
+            maxLen = Math.max(maxLen, end - start);
+        }
+        return maxLen;
+    }
+}
+
+
+
+
+
+
 import java.util.HashMap;
 import java.util.Map;
 
