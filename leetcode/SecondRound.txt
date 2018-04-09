@@ -3,7 +3,7 @@ Most Popular
    3 Sum Closet, Subarray Sum Equals K, Subarray Product Less Than K
 2. Add Two Numbers, Add Strings, Add Binary, Multiply Strings, Add Two Numbers II, ReverseLinkedList
 3. Longest Substring Without Repeating Characters, Longest Substring with At Most Two Distinct Characters, 
-   Longest Substring with At Most K Distinct Characters
+   Longest Substring with At Most K Distinct Characters, Minimum Window Substring, 
 4. Longest Palindromic Substring, Longest Palindromic Subsequence, Palindromic Substrings, Palindrome Permutation, Valid Palindrome, Shortest Palindrome, Palidrome Pairs
 5. Reverse Integer
 6. Regular Expression Matching
@@ -12,7 +12,7 @@ Most Popular
 9. Longest Common Prefix, Implement Trie, 
 10. Valid Palindrome, Valid Palindrome II, 
 11. Reverse Linked List, Reverse Linked List II, Palindrome Linked List, Longest Word in Dictionary,
-12. Minimum Window Substring, 
+12. 
 
 
 
