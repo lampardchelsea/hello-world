@@ -269,5 +269,6 @@
 <p>Valid Palindrome II
 <p>1. [Java solution, isPalindrome] (https://leetcode.com/problems/valid-palindrome-ii/discuss/107714/Java-solution-isPalindrome)
   
-  
+<p>Longest Substring with At Least K Repeating Characters
+<p>1. [Sliding Window Solution] (https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/discuss/87739/Java-Strict-O(N)-Two-Pointer-Solution)  
   
