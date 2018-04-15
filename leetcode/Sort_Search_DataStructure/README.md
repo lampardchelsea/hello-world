@@ -143,6 +143,10 @@
 <p>Shuffle
 <p>1. [Princeton Implementation Of Shuffle] (http://introcs.cs.princeton.edu/java/15inout/Shuffle.java.html)
 
+<p>Bucket Sort -> Maximum Gap
+<p>1. [Maximum Gap] (https://leetcode.com/problems/maximum-gap/description/)
+<p>2. [Bucket Sort] (https://leetcode.com/problems/maximum-gap/discuss/50643/bucket-sort-JAVA-solution-with-explanation-O(N)-time-and-space)
+
 
 # Graphs
 <p>1. [ideserve graph Interview Questions] (http://www.ideserve.co.in/learn/graph-interview-questions)
