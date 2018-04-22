@@ -283,5 +283,6 @@ binary-search-java-code/29)
 <p>Can Place Flowers
 <p>1. [Single Scan] (https://leetcode.com/articles/can-place-flowers/)
 
-
+<p>Maximum Product of Three Numbers
+<p>1. [Java O(1) space O(n) time solution beat 100%] (https://leetcode.com/problems/maximum-product-of-three-numbers/discuss/104729/Java-O(1)-space-O(n)-time-solution-beat-100)
 
