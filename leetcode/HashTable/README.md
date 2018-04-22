@@ -182,5 +182,13 @@
 <p>1. [Youtube Solution] (https://www.youtube.com/watch?v=s-1W5FDJ0lw)
 <p>2. [Java 2 pass O(n) time O(1) space, extending end pointer solution] (https://leetcode.com/problems/partition-labels/discuss/113259/Java-2-pass-O(n)-time-O(1)-space-extending-end-pointer-solution)  
   
+<p>Degree of an Array
+<p>1. [Two Points + HashMap] (https://leetcode.com/articles/degree-of-an-array/)
+  
+  
+  
+  
+  
+  
   
   
