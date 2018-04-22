@@ -25,6 +25,10 @@
  *
  * Solution
  * https://leetcode.com/articles/degree-of-an-array/
+ * Complexity Analysis
+   Time Complexity: O(N), where NN is the length of nums. Every loop is through O(N) items with O(1) 
+                    work inside the for-block.
+   Space Complexity: O(N), the space used by left, right, and count.
 */
 class Solution {
     public int findShortestSubArray(int[] nums) {
