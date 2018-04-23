@@ -125,7 +125,8 @@
 <p>Longest Word in Dictionary
 <p>1. [Trie + DFS Solution] (https://leetcode.com/problems/longest-word-in-dictionary/discuss/109118/Java-solution-with-Trie/113861)
 
-
+<p>Max Area of Island
+<p>1. [Straightforward  dfs solution] (https://leetcode.com/problems/max-area-of-island/discuss/108533/JavaC++-Straightforward-dfs-solution)
 
 
 
