@@ -128,5 +128,6 @@
 <p>Max Area of Island
 <p>1. [Straightforward  dfs solution] (https://leetcode.com/problems/max-area-of-island/discuss/108533/JavaC++-Straightforward-dfs-solution)
 
-
+<p>Flood Fill
+<p>1. [Java 9 liner, DFS] (https://leetcode.com/problems/flood-fill/discuss/109584/Java-9-liner-DFS)
 
