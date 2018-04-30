@@ -16,63 +16,49 @@
    transactions = [buy, sell, cooldown, buy, sell]
  *
  * Solution
- * Refer to
- * https://discuss.leetcode.com/topic/30421/share-my-thinking-process?page=1
-   The series of problems are typical dp. The key for dp is to find the variables to represent the 
-   states and deduce the transition function.
-
-   Of course one may come up with a O(1) space solution directly, but I think it is better to be 
-   generous when you think and be greedy when you implement.
-
-   The natural states for this problem is the 3 possible transactions : buy, sell, rest. Here rest 
-   means no transaction on that day (aka cooldown).
-
-   Then the transaction sequences can end with any of these three states.
-
-   For each of them we make an array, buy[n], sell[n] and rest[n].
-   buy[i] means before day i what is the maxProfit for any sequence end with buy.
-   sell[i] means before day i what is the maxProfit for any sequence end with sell.
-   rest[i] means before day i what is the maxProfit for any sequence end with rest.
-
-   Then we want to deduce the transition functions for buy sell and rest. By definition we have:
-
-   buy[i]  = max(rest[i-1]-price, buy[i-1]) 
-   sell[i] = max(buy[i-1]+price, sell[i-1])
-   rest[i] = max(sell[i-1], buy[i-1], rest[i-1])
-   
-   Where price is the price of day i. All of these are very straightforward. They simply represents :
-   (1) We have to `rest` before we `buy` and 
-   (2) we have to `buy` before we `sell`
-   
-   One tricky point is how do you make sure you sell before you buy, since from the equations it 
-   seems that [buy, rest, buy] is entirely possible.
-
-   Well, the answer lies within the fact that buy[i] <= rest[i] which means 
-   rest[i] = max(sell[i-1], rest[i-1]). That made sure [buy, rest, buy] is never occurred.
-
-   A further observation is that and rest[i] <= sell[i] is also true therefore
-   rest[i-1] <= sell[i-1], and max(sell[i-1], rest[i-1]) = sell[i-1], so
-   rest[i] = sell[i-1]
-   
-   Substitute this in to buy[i] we now have 2 functions instead of 3:
-   buy[i] = max(sell[i-2]-price, buy[i-1])
-   sell[i] = max(buy[i-1]+price, sell[i-1])
-   
-   This is better than 3, but we can do even better
-   Since states of day i relies only on i-1 and i-2 we can reduce the O(n) space to O(1). 
-   And here we are at our final solution:
+ * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/discuss/126065/Two-DP-methods-very-easy-to-understand-with-detail-explanation
 */
+class Solution {
+    /**
+      Refer to
+      https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/discuss/126065/Two-DP-methods-very-easy-to-understand-with-detail-explanation
+      Second method, also we can simplify state from three state to two state .
 
-   public int maxProfit(int[] prices) {
-       int sell = 0;
-       int prev_sell = 0;
-       int buy = Integer.MIN_VALUE;
-       int prev_buy;
-       for (int price : prices) {
-           prev_buy = buy;
-           buy = Math.max(prev_sell - price, prev_buy);
-           prev_sell = sell;
-           sell = Math.max(prev_buy + price, prev_sell);
-       }
-       return sell;
-   }
+        sell: don't have stock(selling stock or rest)
+        buy: have stock(buy or keep stock)
+
+        buy[i] means the maxProfit on day[i] if in buy state, becasue we could 
+        be in this state by keeping buy state or coming from sell state, but 
+        one thing we should be careful: because of the cooldown, if we buy on 
+        day[i], we can not sell on day[i-1], in this case sell[i-1] =sell[i-2]. 
+        Actually, we coming from sell[i-2].
+        buy[i] = Max(buy[i-1], sell[i-2] - price[i])
+
+        sell[i] means the maxProfit on day[i] if in sell state, becasue we could 
+        be in this state by selling stock or keeping rest:
+        sell[i] = Max(buy[i-1] + price[i], sell[i-1])
+
+        Base case:
+        buy[0] = -prices[0]
+        buy[1] = Max(-prices[1], -prices[0])
+        sell[0] = 0
+    */
+    public int maxProfit(int[] prices) {
+        if(prices == null || prices.length <= 1) {
+            return 0;
+        }
+        int len = prices.length;
+        int[] buy = new int[len];
+        int[] sell = new int[len];
+        buy[0] = -prices[0];     
+        for(int i = 1; i < len; i++) {
+            if(i == 1) {
+                buy[i] = Math.max(buy[i - 1], -prices[i]); 
+            } else {
+                buy[i] = Math.max(buy[i - 1], sell[i - 2] - prices[i]);    
+            }        
+            sell[i] = Math.max(sell[i - 1], buy[i - 1] + prices[i]);
+        }
+        return sell[len - 1];
+    }
+}
