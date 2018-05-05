@@ -185,6 +185,8 @@
 <p>Degree of an Array
 <p>1. [Two Points + HashMap] (https://leetcode.com/articles/degree-of-an-array/)
   
+<p>Sentence Similarity
+<p>1. [HashMap + HashSet] (http://zxi.mytechroad.com/blog/hashtable/leetcode-734-sentence-similarity/)
   
   
   
