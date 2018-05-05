@@ -34,3 +34,33 @@
     Idea:
     Use hashtable to store mapping from word to its similar words.
 */
+class Solution {
+    public boolean areSentencesSimilar(String[] words1, String[] words2, String[][] pairs) {
+        if(words1.length != words2.length) {
+           return false;
+        }
+        Map<String, Set<String>> similar_words = new HashMap<>();
+        for(String[] pair : pairs) {
+            if(!similar_words.containsKey(pair[0])) {
+                similar_words.put(pair[0], new HashSet<>());            
+            }
+            if(!similar_words.containsKey(pair[1])) {
+                similar_words.put(pair[1], new HashSet<>());
+            }
+            similar_words.get(pair[0]).add(pair[1]);
+            similar_words.get(pair[1]).add(pair[0]);
+        }
+        for(int i = 0; i < words1.length; ++i) {
+            if(words1[i].equals(words2[i])) {
+                continue;
+            }
+            if(!similar_words.containsKey(words1[i])) {
+                return false;
+            }
+            if(!similar_words.get(words1[i]).contains(words2[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
