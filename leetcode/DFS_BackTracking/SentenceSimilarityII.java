@@ -34,6 +34,35 @@
     Idea:
     DFS / Union Find
 * https://medium.com/@rebeccahezhang/leetcode-737-sentence-similarity-ii-2ca213f10115
+  This is more complicated than Sentence Similarity I. To check if two words are similar given the transitivity 
+  (for example If “A” = “B”, “B” = “C”, then “A” = “C”), we can use a graph to help us connect all similar words 
+  together. Then for each word pairs, we start from the source word, using DFS to find the destination word. 
+  In case of we do DFS to the same node twice, we can create a set to keep a record of visited nodes.
+
+   Let’s walk through a simple example:
+
+   words1 = [“A”, “B”, “C”], words2 = [“D”, “E”, “F”]
+
+   pairs[][] = [“A”, “G”],[“D”, “G”],[“B”, “E”],[“C”, “F”]
+
+   We construct the graph using a map to represent it. 
+   String |set<String>
+   A | [G]
+   G | [A, D] 
+   D | [G]
+   B | [E]
+   E | [B]
+   C | [F]
+   F | [C]
+
+   Now we begin to check A and D. A is the source, D is the target.
+
+   We go to the entry where the key is A, and check if this set contains D. It doesn’t, but contains G! It’s 
+   possible G has a set contains D, so we change our source from A to G and keep finding out. We get the set [A, D], 
+   and we need to check each word here. The first one is A again, oh we just checked this! We don’t want to go to 
+   an endless loop. So we need to skip this, and we see D. It’s equal to the target! We are done. Well, on the 
+   opposite, if we are not this lucky, we need to keep finding. After we go through the entire map we still can’t 
+   find the target, we failed.
 */
 class Solution {   
     public boolean areSentencesSimilarTwo(String[] words1, String[] words2, String[][] pairs) {
