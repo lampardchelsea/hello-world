@@ -33,9 +33,39 @@
     注意相似性可以传递，比如只给你”great”和”fine”相似、”fine”和”good”相似，能推断”great”和”good”也相似。
     Idea:
     DFS / Union Find
+* https://medium.com/@rebeccahezhang/leetcode-737-sentence-similarity-ii-2ca213f10115
 */
-class Solution {
+class Solution {   
     public boolean areSentencesSimilarTwo(String[] words1, String[] words2, String[][] pairs) {
-            
+        if(words1.length != words2.length) {
+            return false;   
+        }
+        Map<String, Set<String>> similar_words = new HashMap<>();
+        for(String[] pair : pairs) {
+            if(!similar_words.containsKey(pair[0])) {
+                similar_words.put(pair[0], new HashSet<>());            
+            }
+            if(!similar_words.containsKey(pair[1])) {
+                similar_words.put(pair[1], new HashSet<>());
+            }
+            similar_words.get(pair[0]).add(pair[1]);
+            similar_words.get(pair[1]).add(pair[0]);
+        }
+        for(int i = 0; i < words1.length; i++) {
+            if(words1[i].equals(words2[i])) {
+                continue;
+            }
+            if(!simiar_words.containsKey(words1[i]) || !simiar_words.containsKey(words2[i])) {
+                return false;
+            }
+            if(dfs(words1[i], words2[i], similar_words, new HashSet<String>())) {
+                return false;
+            }
+        }
+        return true;
+    }
+   
+    private boolean dfs(String source, String target, Map<String, Set<String>> similar_words, Set<String> set) {
+        
     }
 }
