@@ -133,6 +133,6 @@
 
 <p>Sentence Similarity II
 <p>1. [DFS / Union Found] (http://zxi.mytechroad.com/blog/hashtable/leetcode-737-sentence-similarity-ii/)
-
+<p>2. [LeetCode — 737. Sentence Similarity II] (https://medium.com/@rebeccahezhang/leetcode-737-sentence-similarity-ii-2ca213f10115)
 
 
