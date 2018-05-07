@@ -65,7 +65,19 @@ class Solution {
         return true;
     }
    
-    private boolean dfs(String source, String target, Map<String, Set<String>> similar_words, Set<String> set) {
-        
+    private boolean dfs(String source, String target, Map<String, Set<String>> similar_words, Set<String> visited) {
+        if(similar_words.get(source).contains(target)) {
+            return true;
+        }
+        // Mark as visited
+        visited.add(source);
+        for(String next : similar_words.get(source)) {
+            // DFS other connected node, except the mirrowed string
+            if(!visited.contains(next) && hext.equals(target) || !visited.contains(next) && dfs(next, target, similar_words, visited)) {
+                return true;
+            }
+        }
+        // We've done dfs still can't find the target
+        return false;
     }
 }
