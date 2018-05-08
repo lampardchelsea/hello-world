@@ -4,7 +4,7 @@ Most Popular
 2. Add Two Numbers, Add Strings, Add Binary, Multiply Strings, Add Two Numbers II, ReverseLinkedList
 3. Longest Substring Without Repeating Characters, Longest Substring with At Most Two Distinct Characters,
    Longest Substring with At Most K Distinct Characters, Minimum Window Substring, Longest Substring with At Least K Repeating Characters, 
-   Sliding Window Maximum, Merge Sorted Array, 
+   Sliding Window Maximum, Merge Sorted Array, Remove Duplicates from Sorted Array, 
 4. Longest Palindromic Substring, Longest Palindromic Subsequence, Palindromic Substrings, Palindrome Permutation, Valid Palindrome, Shortest Palindrome, Palidrome Pairs, Longest Word in Dictionary through Deleting, 
 5. Reverse Integer
 6. Regular Expression Matching
