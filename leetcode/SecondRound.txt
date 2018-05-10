@@ -20,7 +20,7 @@ Most Popular
 16. Flood Fill, Island Perimeter, Max Area Of Island, Letter Combinations of a Phone Number, Generate Parentheses, Remove Invalid Parentheses, Setense Similarity II, 
 17. Merge K Sorted List, Merge Two Sorted List, 
 18. Sentense Similarity, 
-19. Search in Rotated Sorted Array, Search in Rotated Sorted Array II,  
+19. Search in Rotated Sorted Array, Search in Rotated Sorted Array II, Find Minimum in Rotated Sorted Array, 
 
 
 
