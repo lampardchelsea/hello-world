@@ -21,6 +21,57 @@
  * 要看mid左边一位的的数是否和当前mid相同，如果相同要继续在左半边二分搜索。如果找右边边界，
  * 则要判断右边一位的数是否相同。
  */
+
+
+/**
+ * Refer to
+ * Best template as LintCode similar way
+ * leetcode.com/problems/search-for-a-range/discuss/14701/A-very-simple-Java-solution-with-only-one-binary-search-algorithm/119333
+*/
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        if(nums == null || nums.length == 0) {
+            return new int[]{-1, -1};
+        }
+        int start = firstGreatOrEqual(nums, target);
+        if(start == nums.length || nums[start] != target) {
+            return new int[]{-1, -1};
+        }
+        int end = firstGreatOrEqual(nums, target + 1);
+        return new int[]{start, nums[end] == target ? end : end - 1};
+    }
+    
+    private int firstGreatOrEqual(int[] nums, int target) {
+        int low = 0;
+        int high = nums.length - 1;
+        while(low + 1 < high) {
+            int mid = low + (high - low) / 2;
+            if(nums[mid] < target) {
+                low = mid;
+            } else if(nums[mid] > target) {
+                high = mid;
+            } else if(nums[mid] == target) {
+                high = mid;
+            }
+        }
+        if(nums[low] == target) {
+            return low;   
+        }
+        return high;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 public class SearchForARange {
 	public int[] searchRange(int[] nums, int target) {
 		// 找到左边界
