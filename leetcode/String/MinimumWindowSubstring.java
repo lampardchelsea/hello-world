@@ -63,7 +63,7 @@ class Solution {
                 count--;
             }
             // Decrease map.get(s.charAt(end)). If character not exist in t, 
-            // s.charAt(end) in map will be -1.
+            // s.charAt(end) in map will be set as -1.
             map.put(s.charAt(end), map.get(s.charAt(end)) - 1);
             end++;
             // When we found a valid window, move start to find smaller window.
