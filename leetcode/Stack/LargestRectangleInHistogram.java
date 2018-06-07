@@ -49,7 +49,7 @@ public class LargestRectangleInHistogram {
          */
         for(int i = 0; i < heights.length; i++) {
             int height = heights[i];
-            maxArea = Math.max(height * 1, maxArea);
+            maxArea = Math.max(height * 1, maxArea);   // --> This is a tricky way: Explain later
             for(int j = i; j < heights.length; j++) {
                 height = Math.min(height, heights[j]);
                 maxArea = Math.max(maxArea, height * (j - i + 1));
@@ -57,6 +57,52 @@ public class LargestRectangleInHistogram {
         }
         return maxArea;
     }
+	
+    /**
+      Explain for tricky part
+      Even this looks like a brute force, but ideally, this is not a good practise, since if write
+      as wrong way showing above, we actually not get the real minimum height into each inner loop,
+      for example, if given {2,1,5,6,2,3}, when i = 0, j = 2, the height[i] = 2, height[j] = 5, if
+      write as wrong way, the maxArea = (2 - 0 + 1) * Math.min(2, 5) = 6, which definitely wrong result,
+      as the actual minimum height should based on index = 1, which between i = 0 and j = 2, and
+      because of height[1] = 1, so the right answer here is (2 - 0 + 1) * 1 = 6, which not reflect by
+      Math.min(2, 5), we need to find as minimum height through index i to j, not only i and j.
+      The brute force list here give a dummy maxArea to recording each height in heights array as
+      external loop, then compare it with inner loop result, which approach to target to record minimum
+      height.
+      
+      The formal style to find minimum height each round will take O(n ^ 3) time complexity as below
+      and TLE
+    */
+	class Solution {
+	    public int largestRectangleArea(int[] heights) {
+		if(heights == null || heights.length < 1) {
+		    return 0;
+		}
+		int maxArea = 0;
+		for(int i = 0; i < heights.length; i++) {
+		    for(int j = i; j < heights.length; j++) {
+			// Find minimum height through i to j
+			int minHeight = findMinHeight(i, j, heights);
+			maxArea = Math.max(minHeight * (j - i + 1), maxArea);
+		    }
+		}
+		return maxArea;
+	    }
+
+	    private int findMinHeight(int i, int j, int[] heights) {
+		int minHeight = heights[i];
+		// Don't forget k could equal to j
+		for(int k = i; k <= j; k++) {
+		    if(heights[k] < minHeight) {
+			minHeight = heights[k];
+		    }
+		}
+		return minHeight;
+	    }
+	}
+	
+	
 	
 	// Solution 2: Stack
 	/**
