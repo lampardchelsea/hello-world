@@ -172,4 +172,8 @@
 <p>Two Sum IV
 <p>1. [DFS] (https://leetcode.com/problems/two-sum-iv-input-is-a-bst/discuss/106059/JavaC++-Three-simple-methods-choose-one-you-like)
 
+<p>Minimum Distance Between BST Nodes
+<p>1. [Inorder traverse] (leetcode.com/problems/minimum-distance-between-bst-nodes/discuss/114827/JAVA-in-order-one-pass-O(1)-extra-space/115671)
+
+
 
