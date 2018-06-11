@@ -175,5 +175,6 @@
 <p>Minimum Distance Between BST Nodes
 <p>1. [Inorder traverse] (leetcode.com/problems/minimum-distance-between-bst-nodes/discuss/114827/JAVA-in-order-one-pass-O(1)-extra-space/115671)
 
-
+<p>Find Mode in Binary Search Tree
+<p>1. [Java Clear Code using Map and Inorder Traversal] (https://leetcode.com/problems/find-mode-in-binary-search-tree/discuss/130034/Java-Clear-Code-using-Map-and-Inorder-Traversal)
 
