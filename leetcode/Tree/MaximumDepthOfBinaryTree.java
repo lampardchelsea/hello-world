@@ -47,3 +47,35 @@ public class Solution {
        helper(x.right, currentDepth + 1);
     }
 }
+
+// Solution 3:
+// Same way as how we handle Minimum Depth Of Binary Tree
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public int maxDepth(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        return helper(root);
+    }
+    
+    private int helper(TreeNode root) {
+        if(root == null) {
+            return Integer.MIN_VALUE;
+        }
+        if(root.left == null && root.right == null) {
+            return 1;
+        }
+        int left = helper(root.left);
+        int right = helper(root.right);
+        return Math.max(left, right) + 1;
+    }
+}
