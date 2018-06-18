@@ -177,4 +177,11 @@
 
 <p>Find Mode in Binary Search Tree
 <p>1. [Java Clear Code using Map and Inorder Traversal] (https://leetcode.com/problems/find-mode-in-binary-search-tree/discuss/130034/Java-Clear-Code-using-Map-and-Inorder-Traversal)
+  
+<p>Average of Levels in Binary Tree
+  
+  
+  
+  
+  
 
