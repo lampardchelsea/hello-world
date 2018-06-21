@@ -75,3 +75,51 @@ public class Solution {
         }
     }
 }
+
+// Better version
+/**
+ * Definition for binary tree with next pointer.
+ * public class TreeLinkNode {
+ *     int val;
+ *     TreeLinkNode left, right, next;
+ *     TreeLinkNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public void connect(TreeLinkNode root) {
+        if(root == null) {
+            return;
+        }
+        while(root != null) {
+            TreeLinkNode cur = root;
+            // Need to create dummy node since not sure cur.left exist or not
+            TreeLinkNode dummy = new TreeLinkNode(-1);
+            TreeLinkNode itr = dummy;
+            while(cur != null) {
+                if(cur.left != null) {
+                    itr.next = cur.left;
+                    itr = itr.next;
+                }
+                if(cur.right != null) {
+                    itr.next = cur.right;
+                    itr = itr.next;
+                }
+                cur = cur.next;
+            }
+            // Move to next level
+            /**
+             * Why it will move to next level by 'root = dummy.next' ?
+             * Refer to
+             * leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/discuss/37811/Simple-solution-using-constant-space/35829
+             * leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/discuss/37811/Simple-solution-using-constant-space/35823
+             * I think the explanation should be, when "TreeLinkNode currentChild = tempChild;" the currentChild is the address of the 
+               object, so every change to currentChild is the change to tempChild. So in the following two if(){}..., because of  "currentChild.next = root.right;" or"currentChild.next = root.right;" the tempChild.next is change into the first node of this level.   However, because of "currentChild = currentChild.next;" the currentChild change to the address of another object. So the tempChild will not change with it anymore and it will stay on the first node of this level. I think that's why tmpNode.next is the first node of each level. Am I correct
+            */
+            root = dummy.next;
+        }
+    }
+}
+
+
+
+
