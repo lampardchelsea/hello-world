@@ -180,7 +180,8 @@
   
 <p>Average of Levels in Binary Tree
   
-  
+<p>Path Sum III
+<p>1. [Simple AC Java Solution DFS] (https://leetcode.com/problems/path-sum-iii/discuss/91884/Simple-AC-Java-Solution-DFS)
   
   
   
