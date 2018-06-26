@@ -59,6 +59,7 @@ public class PathSumII {
 		if(root == null) {
 			return;
 		}
+		currResult.add(root.val);
 		// 7.Leaf case
 		if(root.left == null && root.right == null && sum == root.val) {
 			// Add current combination onto final result
