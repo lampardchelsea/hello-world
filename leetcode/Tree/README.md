@@ -184,5 +184,6 @@
 <p>1. [Simple AC Java Solution DFS] (https://leetcode.com/problems/path-sum-iii/discuss/91884/Simple-AC-Java-Solution-DFS)
 <p>2. [17 ms O(n) java Prefix sum method] (leetcode.com/problems/path-sum-iii/discuss/91878/17-ms-O(n)-java-Prefix-sum-method/96424)  
   
-  
+<p>Longest Univalue Path
+<p>1. [Clean Java Recursive solution] (https://leetcode.com/problems/longest-univalue-path/discuss/108160/Clean-Java-Recursive-solution)
 
