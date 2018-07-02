@@ -1,6 +1,6 @@
 Most Popular
 1. Two Sum, Two Sum II - Input array is sorted, Two Sum III - Data Structrue Design, Two Sum IV - Input is a BST, 3 Sum, 4 Sum, 
-   3 Sum Closet, Subarray Sum Equals K, Subarray Product Less Than K, Plus One, Sort Colors, Pascal's Triangle, Pascal's Triangle II, 
+   3 Sum Closet, Subarray Sum Equals K, Subarray Product Less Than K, Plus One, Sort Colors, Pascal's Triangle, Pascal's Triangle II, Longest Consecutive Sequence, 
 2. Add Two Numbers, Add Strings, Add Binary, Multiply Strings, Add Two Numbers II, ReverseLinkedList
 3. Longest Substring Without Repeating Characters, Longest Substring with At Most Two Distinct Characters,
    Longest Substring with At Most K Distinct Characters, Minimum Window Substring, Longest Substring with At Least K Repeating Characters, 
@@ -26,6 +26,10 @@ Most Popular
 21. Group Anagrams, 
 22. Largest Rectangle in Histogram, 
 23. Binary Tree Inorder Traversal, Inorder Successor In BST, Validate Binary Search Tree, Find Mode in Binary Search Tree, Symmetric Tree, Binary Tree Level Order Traversal, Binary Tree Zigzag Level Order Traversal, Binary Tree Level Order Traversal II, Minimum Depth of Binary Tree, Maximum Depth of Binary Tree, Balanced Binary Tree, Binary Tree Vertical Order Traversal, Average of Levels in Binary Tree, Binary Tree Upside Down, Construct Binary Tree from Preorder and Inorder Traversal, Construct Binary Tree from Inorder and Postorder Traversal, Convert Sorted Array to Binary Search Tree, Populating Next Right Pointers in Each Node, Binary Tree Right Side View, Binary Tree Maximum Path Sum, Path Sum, Path Sum II, Path Sum III, Longest Univalue Path, 
+
+
+
+
 
 
 From Yimusanfendi most recent real question
