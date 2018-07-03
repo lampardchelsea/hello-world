@@ -124,7 +124,9 @@ public class BinaryTreeLongestConsecutiveSequence {
 		return result;
 	}
 	
-	
+	// Similar implementation as Path Sum III, Longest Univalue Path
+	// Refer to
+	// 
 	// Solution 2: Traverse + Divide and Conquer
 	// Global variable for longest path
 	private int longest = 0;
