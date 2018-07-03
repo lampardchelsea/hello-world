@@ -126,7 +126,8 @@ public class BinaryTreeLongestConsecutiveSequence {
 	
 	// Similar implementation as Path Sum III, Longest Univalue Path
 	// Refer to
-	// 
+	// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/PathSumIII.java
+	// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/LongestUnivaluePath.java
 	// Solution 2: Traverse + Divide and Conquer
 	// Global variable for longest path
 	private int longest = 0;
