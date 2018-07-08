@@ -74,5 +74,22 @@ public class Solution {
         }
         return dummy.next;
     }
+	
+    // A more understandable style of splitList method
+    private RandomListNode splitList(RandomListNode head) {
+        RandomListNode dummy = new RandomListNode(0);
+        RandomListNode currCopyIter = dummy;
+        RandomListNode currCopy;
+        RandomListNode origNext;
+        while(head != null) {
+            origNext = head.next.next;
+            currCopy = head.next;
+            currCopyIter.next = currCopy;
+            currCopyIter = currCopy;
+            head.next = origNext;
+            head = origNext;
+        }
+        return dummy.next;
+    }	
     
 }
