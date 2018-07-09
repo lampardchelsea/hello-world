@@ -20,8 +20,9 @@
  * Solution
  * https://leetcode.com/problems/set-mismatch/discuss/112425/Java-HashMap-Solution-O(n)-time-O(1)-space
  * https://leetcode.com/problems/set-mismatch/discuss/105578/Java-Two-methods-using-sign-and-swap
+ * https://leetcode.com/problems/set-mismatch/discuss/105528/Simple-Java-O(n)-solution-HashSet
 */
-// Solution 1: HashMap solution
+// Solution 1: HashMap
 class Solution {
     public int[] findErrorNums(int[] nums) {
         int[] result = new int[2];
@@ -63,5 +64,31 @@ class Solution {
             }
         }
         return result;
+    }
+}
+
+
+// Solution 3: Math and HashSet
+class Solution {
+    public int[] findErrorNums(int[] nums) {
+        int expect = 0;
+        int real = 0;
+        for(int i = 1; i <= nums.length; i++) {
+            expect += i;
+        }
+        for(int i = 0; i < nums.length; i++) {
+            real += nums[i];
+        }
+        // Keep the sign bit as you don't know the duplicate
+        // number is larger or smaller than the original index
+        int diff = expect - real;
+        Set<Integer> set = new HashSet<Integer>();
+        int duplicate = 0;
+        for(int num : nums) {
+            if(!set.add(num)) {
+                duplicate = num;
+            }
+        }
+        return new int[] {duplicate, duplicate + diff};
     }
 }
