@@ -19,6 +19,7 @@
  * 
  * Solution
  * https://leetcode.com/problems/set-mismatch/discuss/112425/Java-HashMap-Solution-O(n)-time-O(1)-space
+ * https://leetcode.com/problems/set-mismatch/discuss/105578/Java-Two-methods-using-sign-and-swap
 */
 // Solution 1: HashMap solution
 class Solution {
@@ -33,6 +34,32 @@ class Solution {
                 result[1] = key;
             } else if(map.get(key) > 1) {
                 result[0] = key;
+            }
+        }
+        return result;
+    }
+}
+
+
+// Solution 2: Swap
+class Solution {
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+    
+    public int[] findErrorNums(int[] nums) {
+        int[] result = new int[2];
+        for(int i = 0; i < nums.length; i++) {
+            while(nums[nums[i] - 1] != nums[i]) {
+                swap(nums, i, nums[i] - 1);
+            }
+        }
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[i] != i + 1) {
+                result[0] = nums[i];
+                result[1] = i + 1;
             }
         }
         return result;
