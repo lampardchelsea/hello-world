@@ -188,7 +188,10 @@
 <p>Sentence Similarity
 <p>1. [HashMap + HashSet] (http://zxi.mytechroad.com/blog/hashtable/leetcode-734-sentence-similarity/)
   
-  
+<p>Set Mismatch
+<p>1. [HashMap Solution] (https://leetcode.com/problems/set-mismatch/discuss/112425/Java-HashMap-Solution-O(n)-time-O(1)-space)
+<p>2. [Swap Solution] (https://leetcode.com/problems/set-mismatch/discuss/105578/Java-Two-methods-using-sign-and-swap)
+<p>3. [Math and HashSet Solution] (https://leetcode.com/problems/set-mismatch/discuss/105528/Simple-Java-O(n)-solution-HashSet)
   
   
   
