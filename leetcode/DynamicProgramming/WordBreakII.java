@@ -45,15 +45,15 @@ public class WordBreakII {
 	                          map.put(10, "")
 	                          return rest
 	  ------------------------------------------------
-	                  start:7  map:{10=[]}
+	                  start:7  map:{10=[]}  list = dfs(s, wordDict, 10) => ""
 	                  end:10   rest.add("dog")
 	                           map.put(7,"dog")
 	                           return rest
-	           start:3   map:{7=[dog],10=[]}
+	           start:3   map:{7=[dog],10=[]}  list = dfs(s, wordDict, 7) => "dog"
 	           end:7     rest.add("sand dog")
 	                     map.put(3,"sand dog")
 	                     return rest
-	     start:0   map:{3=[sand dog],7=[dog],10=[]}
+	     start:0   map:{3=[sand dog],7=[dog],10=[]}  list = dfs(s, wordDict, 3) => "sand dog"
 	     end:3     rest.add("cat sand dog") --> 1st solution
 	               map.put(0,"cat sand dog")
 	               return rest
