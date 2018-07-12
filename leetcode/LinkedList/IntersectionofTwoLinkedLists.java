@@ -30,7 +30,7 @@ public class IntersectionOfTwoLinkedLists {
 	
 	 // Method to calculate length on both linkedlists
 	 // Refer to
-	 // https://discuss.leetcode.com/topic/5492/concise-java-solution-o-1-memory-o-n-time
+	 // https://leetcode.com/problems/intersection-of-two-linked-lists/discuss/49792/concise-java-solution-o1-memory-on-time
 	 public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
 		if(headA == null || headB == null) {
 		    return null;
