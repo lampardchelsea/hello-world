@@ -29,3 +29,6 @@
 
 <p>Sum Of Square Numbers
 <p>1. [Two Pointers] (https://leetcode.com/problems/sum-of-square-numbers/discuss/104930/Java-Two-Pointers-Solution)
+
+<p>Peak Index in a Mountain Array
+<p>1. [Java O(n) and O(log(n)) code] (https://leetcode.com/problems/peak-index-in-a-mountain-array/discuss/139840/Java-O(n)-and-O(log(n))-code)
