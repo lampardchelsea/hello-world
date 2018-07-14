@@ -286,3 +286,6 @@ binary-search-java-code/29)
 <p>Maximum Product of Three Numbers
 <p>1. [Java O(1) space O(n) time solution beat 100%] (https://leetcode.com/problems/maximum-product-of-three-numbers/discuss/104729/Java-O(1)-space-O(n)-time-solution-beat-100)
 
+<p>Majority Element K
+<p>1. [If change threshold to > nums.length / k, how to handle] (leetcode.com/problems/majority-element-ii/discuss/63500/JAVA-Easy-Version-To-Understand!!!!!!!!!!!!/64925)
+
