@@ -13,7 +13,7 @@ Most Popular
 6. Regular Expression Matching
 7. Container With Most Water, 
 8. Array: Merge Intervals, Meeting Rooms, Meeting Rooms II, Teemo Attacking, Can Place Flowers, Partition Labels, Insert Intervals, Trapping Rain Water, Product Of Array Except Self, Trapping Rain Water II, Decode Ways, Rotate Image, Spiral Matrix, Set Matrix Zeros,
-9. Longest Common Prefix, Implement Trie, 
+9. Trie: Longest Common Prefix, Implement Trie, 
 10. Valid Palindrome, Valid Palindrome II, 
 11. List: Reverse Linked List, Reverse Linked List II, Palindrome Linked List, Longest Word in Dictionary, Sort List, Insertion Sort List, Merge K Sorted List, Merge Two Sorted List, LRU Cache, Insertion of Two Linked Lists, Minimum Index Sum of Two Lists, Largest Number, Rotate List, 
 12. Stack: MinStack, Valid Parentheses, Largest Rectangle in Histogram, 
