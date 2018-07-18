@@ -17,7 +17,7 @@ Most Popular
 10. Valid Palindrome, Valid Palindrome II, 
 11. Reverse Linked List, Reverse Linked List II, Palindrome Linked List, Longest Word in Dictionary, Sort List, Insertion Sort List, Merge K Sorted List, Merge Two Sorted List, LRU Cache, Insertion of Two Linked Lists, Minimum Index Sum of Two Lists, Largest Number, Rotate List, 
 12. Stack: MinStack, Valid Parentheses, 
-13. Find Median from Data Stream, Sliding Window Median, 
+13. Heap: Find Median from Data Stream, Sliding Window Median, 
 14. BFS: Word Ladder, Word Ladder II, Shortest Word Distance I, II, III, 
 15. DP: Maximum Subarray, Maximum Product Subarray, House Robber I, II, III, Paint House I, II, Paint Fence, Best Time to Buy and Sell Stock I, II, III, IV, Best Time to Buy and Sell Stock with Cooldown, Best Time to Buy and Sell Stock with transaction fee, Climbing Stairs, Jump Game, Jump Game II, Unique Paths, Unique Paths II, Minimum Path Sum, Dungeon Game, Word Break, Word Break II, 
 16. BackTracking: Flood Fill, Island Perimeter, Max Area Of Island, Letter Combinations of a Phone Number, Generate Parentheses, Remove Invalid Parentheses, Setence Similarity II, Sudoku Solver, Android Unlock Patterns, Permutations, Permutations II, Subsets, Subsets II, Next Permutation, Combination Sum, Combinations, Combination Sum II, Factor Combinations, Palindrome Permutation, Palindrome Partitioning, Palindrome Permutation II, 
