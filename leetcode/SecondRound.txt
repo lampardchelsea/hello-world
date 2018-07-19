@@ -1,11 +1,11 @@
 Most Popular
 1. Two Sum, Two Sum II - Input array is sorted, Two Sum III - Data Structrue Design, Two Sum IV - Input is a BST, 3 Sum, 4 Sum, 
    3 Sum Closet, Subarray Sum Equals K, Subarray Product Less Than K, Plus One, Sort Colors, Pascal's Triangle, Pascal's Triangle II, Longest Consecutive Sequence, Majority Element, Majority Element II, Majority Element K, Rotate Array, Reverse Words In A String, Reverse Words In A String II, 
-2. String: Add Two Numbers, Add Strings, Add Binary, Multiply Strings, Add Two Numbers II, Excel Sheet Column Number, Excel Sheet Column Title, Factorial Trailing Zeroes, Longest Palindromic Substring, Palindromic Substrings, Valid Palindrome, Shortest Palindrome, 
+2. String: Add Two Numbers, Add Strings, Add Binary, Multiply Strings, Add Two Numbers II, Excel Sheet Column Number, Excel Sheet Column Title, Factorial Trailing Zeroes, Longest Palindromic Substring, Palindromic Substrings, Valid Palindrome, Shortest Palindrome, Longest Word in Dictionary through Deleting, 
 3. Longest Substring Without Repeating Characters, Longest Substring with At Most Two Distinct Characters,
    Longest Substring with At Most K Distinct Characters, Longest Substring with At Least K Repeating Characters, Merge Sorted Array, Remove duplicates from Sorted Array, 
    ================== need to re-assign 4 to other type ====================
-4. Longest Word in Dictionary through Deleting, Word Search, Word Search II, 
+4. Word Search, Word Search II, 
    ================== need to re-assign 4 to other type, 4 can be DFS ==================== 
    
 4. DFS: Number Of Islands, 
