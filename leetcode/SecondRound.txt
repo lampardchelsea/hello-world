@@ -2,12 +2,12 @@ Most Popular
 1. Two Sum, Two Sum II - Input array is sorted, Two Sum III - Data Structrue Design, Two Sum IV - Input is a BST, 3 Sum, 4 Sum, 
    3 Sum Closet, Subarray Sum Equals K, Subarray Product Less Than K, Plus One, Sort Colors, Pascal's Triangle, Pascal's Triangle II, Longest Consecutive Sequence, Majority Element, Majority Element II, Majority Element K, Rotate Array, Reverse Words In A String, Reverse Words In A String II, 
 2. String: Add Two Numbers, Add Strings, Add Binary, Multiply Strings, Add Two Numbers II, Excel Sheet Column Number, Excel Sheet Column Title, Factorial Trailing Zeroes, Longest Palindromic Substring, Palindromic Substrings, Valid Palindrome, Shortest Palindrome, Longest Word in Dictionary through Deleting, 
-3. Remove duplicates from Sorted Array, 
+3. 
 4. DFS: Number Of Islands, 
 5. Reverse Integer, 
 6. Regular Expression Matching
 7. Container With Most Water, 
-8. Array: Merge Intervals, Meeting Rooms, Meeting Rooms II, Teemo Attacking, Can Place Flowers, Partition Labels, Insert Intervals, Trapping Rain Water, Product Of Array Except Self, Trapping Rain Water II, Decode Ways, Rotate Image, Spiral Matrix, Set Matrix Zeros, Merge Sorted Array, 
+8. Array: Merge Intervals, Meeting Rooms, Meeting Rooms II, Teemo Attacking, Can Place Flowers, Partition Labels, Insert Intervals, Trapping Rain Water, Product Of Array Except Self, Trapping Rain Water II, Decode Ways, Rotate Image, Spiral Matrix, Set Matrix Zeros, Merge Sorted Array, Remove duplicates from Sorted Array, 
 9. Trie: Longest Common Prefix, Implement Trie, 
 10. Valid Palindrome, Valid Palindrome II, 
 11. List: Reverse Linked List, Reverse Linked List II, Palindrome Linked List, Longest Word in Dictionary, Sort List, Insertion Sort List, Merge K Sorted List, Merge Two Sorted List, LRU Cache, Insertion of Two Linked Lists, Minimum Index Sum of Two Lists, Largest Number, Rotate List, Reverse Linked List
