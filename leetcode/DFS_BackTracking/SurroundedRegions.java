@@ -77,13 +77,9 @@ class Solution {
     
     // dfs to set current cell and its adjacent cell to '1' if it is 'O'
     private void dfs(char[][] board, int row, int col) {
-        // Base condition to terminate dfs
+        // Base condition to terminate dfs (If cell not 'o', directly stop search)
         if(row < 0 || row >= board.length || col < 0 || col >= board[0].length || board[row][col] != 'O') {
             return;
-        }
-        // If cell not 'o', directly stop search
-        if(board[row][col] != 'O') {
-            return;   
         }
         board[row][col] = '1';
         for(int i = 0; i < 4; i++) {
