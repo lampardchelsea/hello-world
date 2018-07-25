@@ -186,12 +186,90 @@ public class NumberOfIslands {
                 }
             return uf.query();
         }
-    }
-    
-    
+    }   
 }
 
-// Solution 3: DFS
+
+// Best practise of Union-Find
+class Solution {
+    // Union find solution
+    // Refer to
+    // https://leetcode.com/problems/number-of-islands/discuss/56364/Java-Union-Find-Solution
+    public int numIslands(char[][] grid) {
+        if(grid == null || grid.length == 0 || grid[0] == null || grid[0].length == 0) {
+            return 0;
+        }
+        int rows = grid.length;
+        int cols = grid[0].length;
+        UnionFind u = new UnionFind(rows, cols, grid);
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < cols; j++) {
+                // Only need checking 2 directions
+                // Refer to
+                // leetcode.com/problems/number-of-islands/discuss/56364/Java-Union-Find-Solution/57926
+                if(grid[i][j] == '1') {
+                    // top -> down
+                    // p
+                    // |
+                    // q
+                    if(i > 0 && grid[i - 1][j] == '1') {
+                        int q = i * cols + j;
+                        int p = (i - 1) * cols + j;
+                        u.union(p, q);
+                    }
+                    // left -> right
+                    // p - q
+                    if(j > 0 && grid[i][j - 1] == '1') {
+                        int q = i * cols + j;
+                        int p = i * cols + (j - 1);
+                        u.union(p, q);
+                    }
+                }
+            }
+        }
+        return u.count;
+    }
+    
+    private class UnionFind {
+        private int count = 0;
+        private int[] father;
+        public UnionFind(int m, int n, char[][] grid) {
+            for(int i = 0; i < m; i++) {
+                for(int j = 0; j < n; j++) {
+                    if(grid[i][j] == '1') {
+                        count++;
+                    }
+                }
+            }
+            father = new int[m * n];
+            for(int i = 0; i < father.length; i++) {
+                father[i] = i;
+            }
+        }
+        
+        public int find(int p) {
+            while(p != father[p]) {
+                father[p] = father[father[p]];
+                p = father[p];
+            }
+            return p;
+        }
+        
+        public void union(int p, int q) {
+            int pRoot = find(p);
+            int qRoot = find(q);
+            if(pRoot != qRoot) {
+                father[pRoot] = qRoot;
+                count--;
+            }
+        }
+    }
+}
+
+
+
+
+// Solution 4: DFS
 // Refer to
 // leetcode.com/problems/number-of-islands/discuss/56359/Very-concise-Java-AC-solution/57905
 class Solution {
