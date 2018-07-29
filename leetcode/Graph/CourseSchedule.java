@@ -96,6 +96,8 @@ public class CourseSchedule {
     } 
     
     // Solution 2: 10ms (With adjacency list)
+    // Refer to
+    // https://blog.csdn.net/lisonglisonglisong/article/details/45543451
     /**
      * 为何第一个解法用了 70 ms, 第二个看上去没太大变化只用了 10ms，是哪里有个特别的优化吗 ? 
      * 首先定义 V 指节点数量，就是 numCourses。E 指边的数量，就是 prerequisites.length。
@@ -147,6 +149,9 @@ public class CourseSchedule {
     			allAdjacents[pair[1]] = list;
     		}
     		list.add(pair[0]);
+		// E.g the edge between as direction from pair[1] to pair[0], 
+		// pair[1] -> pair[0], since current node is pair[1], 
+		// so the indegree for its adjacent node as pair[0] plus 1
     		indegree[pair[0]]++;
     	} 
     	
