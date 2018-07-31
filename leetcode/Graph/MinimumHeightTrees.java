@@ -168,7 +168,7 @@ class Solution {
 }
 
 
-// Build graph with map to increase store and retrieve speed as O(1)
+// Build graph with map to increase store and retrieve speed as O(1) -> Speed 39ms
 class Solution {
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
         List<Integer> result = new ArrayList<Integer>();
@@ -210,4 +210,50 @@ class Solution {
     }
 }
 
+
+// Change HashSet to LinkedList -> Speed 30ms
+class Solution {
+    public List<Integer> findMinHeightTrees(int n, int[][] edges) {
+        List<Integer> result = new ArrayList<Integer>();
+        if(n == 1) {
+            result.add(0);
+            return result;
+        }
+        // Initialize graph
+        Map<Integer, List<Integer>> map = new HashMap<Integer, List<Integer>>();
+        for(int i = 0; i < n; i++) {
+            map.put(i, new LinkedList<Integer>());
+        }
+        for(int[] edge : edges) {
+            map.get(edge[0]).add(edge[1]);
+            map.get(edge[1]).add(edge[0]);
+        }
+        // Find leaves
+        List<Integer> leaves = new ArrayList<Integer>();
+        for(Map.Entry<Integer, List<Integer>> entry : map.entrySet()) {
+            if(entry.getValue().size() == 1) {
+                leaves.add(entry.getKey());
+            }
+        }
+        // BFS find final root
+        while(n > 2) {
+            n -= leaves.size();
+            List<Integer> newLeaves = new ArrayList<Integer>();
+            for(int i = 0; i < leaves.size(); i++) {
+                int leave = leaves.get(i);
+                int newLeaveCandidate = map.get(leave).iterator().next();
+                // If change from HashSet to LinkedList, need to change 
+                // map.get(newLeaveCandidate).remove(leave) as below,
+                // since remove(leave) will go via remove(int index),
+                // but we need here is remove(Object obj)
+                map.get(newLeaveCandidate).remove(new Integer(leave));
+                if(map.get(newLeaveCandidate).size() == 1) {
+                    newLeaves.add(newLeaveCandidate);
+                }
+            }
+            leaves = newLeaves;
+        }
+        return leaves;
+    }
+}
 
