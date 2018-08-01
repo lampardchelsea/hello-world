@@ -84,6 +84,10 @@
 <p>1. [AC Java solution using min heap] (https://discuss.leetcode.com/topic/20958/ac-java-solution-using-min-heap)
 <p>2. [Meeting Rooms II 会议室] (https://segmentfault.com/a/1190000003894670)
 
-
+<p>Kth Largest Element in a Stream
+<p>1. [Explanation of MinHeap solution (NO CODE)] (https://leetcode.com/problems/kth-largest-element-in-a-stream/discuss/152588/Explanation-of-MinHeap-solution-(NO-CODE))
+<p>2. [MinHeap solution] (https://leetcode.com/problems/kth-largest-element-in-a-stream/discuss/150400/MinHeap-solution)
+<p>3. [Optimized MinHeap solution with just calling add() method multiple times] (leetcode.com/problems/kth-largest-element-in-a-stream/discuss/150400/MinHeap-solution/156979)
+  
 
 
