@@ -44,7 +44,7 @@ class KthLargest {
     public KthLargest(int k, int[] nums) {
         this.size = k;
         for(int num : nums) {
-            add(num); // call add() function repeatly
+            add(num); // call add() method repeatly
         }
     }
     
