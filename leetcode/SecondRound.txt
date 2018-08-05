@@ -10,7 +10,7 @@ Most Popular
 8. Trie: Longest Common Prefix, Implement Trie, 
 9. List: Reverse Linked List, Reverse Linked List II, Palindrome Linked List, Longest Word in Dictionary, Sort List, Insertion Sort List, Merge K Sorted List, Merge Two Sorted List, LRU Cache, Insertion of Two Linked Lists, Minimum Index Sum of Two Lists, Largest Number, Rotate List, Reverse Linked List
 10. Stack: MinStack, Valid Parentheses, Largest Rectangle in Histogram, 
-11. Heap: Find Median from Data Stream, Sliding Window Median, Sliding Window Maximum, Kth Largest Element in a Stream, Top K Frequent Elements, 
+11. Heap: Find Median from Data Stream, Sliding Window Median, Sliding Window Maximum, Kth Largest Element in a Stream, Top K Frequent Elements, Sort Characters By Frequency, 
 12. BFS: Word Ladder, Word Ladder II, Shortest Word Distance I, II, III, 
 13. DP: Maximum Subarray, Maximum Product Subarray, House Robber I, II, III, Paint House I, II, Paint Fence, Best Time to Buy and Sell Stock I, II, III, IV, Best Time to Buy and Sell Stock with Cooldown, Best Time to Buy and Sell Stock with transaction fee, Climbing Stairs, Jump Game, Jump Game II, Unique Paths, Unique Paths II, Minimum Path Sum, Dungeon Game, Word Break, Word Break II, Longest Palindromic Subsequence, 
 14. BackTracking: Flood Fill, Island Perimeter, Max Area Of Island, Letter Combinations of a Phone Number, Generate Parentheses, Remove Invalid Parentheses, Setence Similarity II, Sudoku Solver, Android Unlock Patterns, Permutations, Permutations II, Subsets, Subsets II, Next Permutation, Combination Sum, Combinations, Combination Sum II, Factor Combinations, Palindrome Permutation, Palindrome Partitioning, Palindrome Permutation II, Word Search, Word Search II, 
