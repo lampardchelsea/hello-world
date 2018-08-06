@@ -74,6 +74,6 @@ public class Solution {
         }
         return false;
     }
- *
- *
+ * 
+ * This is trivial but quite nice example of space-time tradeoff.
 */
