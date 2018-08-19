@@ -187,3 +187,8 @@
 <p>Longest Univalue Path
 <p>1. [Clean Java Recursive solution] (https://leetcode.com/problems/longest-univalue-path/discuss/108160/Clean-Java-Recursive-solution)
 
+<p>Second Minimum Node In a Binary Tree
+<p>1. [Java divide and conquer solution] (leetcode.com/problems/second-minimum-node-in-a-binary-tree/discuss/107158/Java-divide-and-conquer-solution/109376)
+
+
+
