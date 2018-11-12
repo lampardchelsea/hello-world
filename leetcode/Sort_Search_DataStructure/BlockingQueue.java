@@ -3,8 +3,7 @@
  * http://tutorials.jenkov.com/java-util-concurrent/blockingqueue.html
  *
  * Java并发编程-阻塞队列(BlockingQueue)的实现原理
- * http://webcache.googleusercontent.com/search?q=cache:TzsVcr70HHAJ:blog.csdn.net/chenchaofuck1/article/details/51660119+&cd=4&hl=en&ct=clnk&gl=us
- *
+ * https://blog.csdn.net/chenchaofuck1/article/details/51660119
  * LinkedBlockingQueue源码分析(简书)
  * http://www.jianshu.com/p/cc2281b1a6bc
  *  
