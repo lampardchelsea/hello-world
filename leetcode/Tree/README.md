@@ -198,3 +198,6 @@
   
 <p>Univalued Binary Tree
 <p>1. [[Java/C++/Python] Straight Forward] (https://leetcode.com/problems/univalued-binary-tree/discuss/211190/JavaC++Python-Straight-Forward/214741)
+  
+<p>Search in a Binary Search Tree
+<p>1. [Java beats 100% concise method using recursion and iteration] (https://leetcode.com/problems/search-in-a-binary-search-tree/discuss/149274/Java-beats-100-concise-method-using-recursion-and-iteration)
