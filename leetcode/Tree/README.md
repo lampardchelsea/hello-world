@@ -190,5 +190,6 @@
 <p>Second Minimum Node In a Binary Tree
 <p>1. [Java divide and conquer solution] (leetcode.com/problems/second-minimum-node-in-a-binary-tree/discuss/107158/Java-divide-and-conquer-solution/109376)
 
-
+<p>Trim a Binary Search Tree
+<p>1. [Approach #1: Recursion] (https://leetcode.com/problems/trim-a-binary-search-tree/solution/)
 
