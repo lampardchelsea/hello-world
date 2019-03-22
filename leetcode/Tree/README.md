@@ -195,3 +195,6 @@
 
 <p>Merge Two Binary Trees
 <p>1. [Java Solution, 6 lines, Tree Traversal] (https://leetcode.com/problems/merge-two-binary-trees/discuss/104299/Java-Solution-6-lines-Tree-Traversal/155231)  
+  
+<p>Univalued Binary Tree
+<p>1. [[Java/C++/Python] Straight Forward] (https://leetcode.com/problems/univalued-binary-tree/discuss/211190/JavaC++Python-Straight-Forward/214741)
