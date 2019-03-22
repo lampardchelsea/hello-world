@@ -193,3 +193,5 @@
 <p>Trim a Binary Search Tree
 <p>1. [Approach #1: Recursion] (https://leetcode.com/problems/trim-a-binary-search-tree/solution/)
 
+<p>Merge Two Binary Trees
+<p>1. [Java Solution, 6 lines, Tree Traversal] (https://leetcode.com/problems/merge-two-binary-trees/discuss/104299/Java-Solution-6-lines-Tree-Traversal/155231)  
