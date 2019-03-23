@@ -68,3 +68,72 @@ The recursion recovery strategy for each node is:
 2. Add its left child as the next child of its parent if it has a left child. 
 3. Add its right child as the first child of the node itself if it has a right child.
 */
+
+// Style 1: Recursive method as void return and list onto parameter
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public List<Node> children;
+
+    public Node() {}
+
+    public Node(int _val,List<Node> _children) {
+        val = _val;
+        children = _children;
+    }
+};
+*/
+// In a N-ary tree, preorder means visit the root node first and 
+// then traverse the subtree rooted at its children one by one.
+class Solution {
+    public List<Integer> preorder(Node root) {
+        List<Integer> result = new ArrayList<Integer>();
+        preorder(root, result);
+        return result;
+    }
+    
+    public void preorder(Node root, List<Integer> result) {
+        if(root == null) {
+            return;
+        }
+        result.add(root.val);
+        List<Node> children = root.children;
+        for(Node child : children) {
+            preorder(child, result);
+        }
+    }
+}
+
+// Style 2: Recursive method return as list and list as class member variable
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public List<Node> children;
+
+    public Node() {}
+
+    public Node(int _val,List<Node> _children) {
+        val = _val;
+        children = _children;
+    }
+};
+*/
+// In a N-ary tree, preorder means visit the root node first and 
+// then traverse the subtree rooted at its children one by one.
+class Solution {
+    List<Integer> result = new ArrayList<Integer>();
+    public List<Integer> preorder(Node root) {
+        if(root == null) {
+            return result;
+        }
+        result.add(root.val);
+        List<Node> children = root.children;
+        for(Node node : children) {
+            preorder(node);
+        }
+        return result;
+    }
+}
+
