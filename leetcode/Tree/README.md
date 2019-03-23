@@ -204,3 +204,6 @@
   
 <p>N-ary Tree Preorder Traversal
 <p>1. [Java Iterative and Recursive Solutions] (https://leetcode.com/problems/n-ary-tree-preorder-traversal/discuss/147955/Java-Iterative-and-Recursive-Solutions)
+
+<p>N-ary Tree Postorder Traversal
+<p>1. [Java Iterative and Recursive Solutions] (https://leetcode.com/problems/n-ary-tree-postorder-traversal/discuss/147959/Java-Iterative-and-Recursive-Solutions/170833)
