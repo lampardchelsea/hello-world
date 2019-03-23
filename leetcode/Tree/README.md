@@ -207,3 +207,6 @@
 
 <p>N-ary Tree Postorder Traversal
 <p>1. [Java Iterative and Recursive Solutions] (https://leetcode.com/problems/n-ary-tree-postorder-traversal/discuss/147959/Java-Iterative-and-Recursive-Solutions/170833)
+  
+<p>Maximum Depth of N-ary Tree
+<p>1. [Java solution with explain, same logic with Maximum Depth of binary tree] (https://leetcode.com/problems/maximum-depth-of-n-ary-tree/discuss/152659/Java-solution-with-explain-same-logic-with-Maximum-Depth-of-binary-tree)
