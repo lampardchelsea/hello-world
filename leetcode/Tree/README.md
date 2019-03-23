@@ -201,3 +201,6 @@
   
 <p>Search in a Binary Search Tree
 <p>1. [Java beats 100% concise method using recursion and iteration] (https://leetcode.com/problems/search-in-a-binary-search-tree/discuss/149274/Java-beats-100-concise-method-using-recursion-and-iteration)
+  
+<p>N-ary Tree Preorder Traversal
+<p>1. [Java Iterative and Recursive Solutions] (https://leetcode.com/problems/n-ary-tree-preorder-traversal/discuss/147955/Java-Iterative-and-Recursive-Solutions)
