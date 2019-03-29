@@ -1,0 +1,371 @@
+1. 双方自我介绍
+    她介绍公司和 team 是做什么，我介绍我的背景
+2. Behavioral Questions
+    (1). 简要介绍一下我现在的公司的技术架构，以及我参与了哪些部分
+        我按照 linkedin Onsite Interview - Technical Communication 那一轮答的。
+	-- ?
+    (2). 我学到东西最多的 project 是什么
+	-- First project in GS and last project in TMobile
+    (3). 为什么跳槽
+	-- ?
+3. Coding
+    给你一个 String，reverse 里面所有的字母和数字，其他字符保持不动。
+    比如，"Ab,c1,de!$" -> "ed,1c,bA!$"
+    有一点类似 LeetCode 345. Reverse Vowels of a String，但不完全一样
+    https://leetcode.com/problems/reverse-vowels-of-a-string/description/
+	-- Just re-write the isVowel function to include all alphabet and numeric numbers
+	public static String reverseVowels(String s) {
+        int length = s.length();
+        int i = 0;
+        int j = length - 1;
+        char[] chars = s.toCharArray();
+        while(i < j) {
+            if(isVowel(chars[i]) && isVowel(chars[j])) {
+                char temp = chars[i];
+                chars[i] = chars[j];
+                chars[j] = temp;
+                i++;
+                j--;
+            } else if(isVowel(chars[i]) && !isVowel(chars[j])) {
+                j--;
+            } else if(!isVowel(chars[i]) && isVowel(chars[j])) {
+                i++;
+            } else {
+                i++;
+                j--;
+            }
+        }
+        return new String(chars);
+    }
+    
+    public static boolean isVowel(char c) {
+//        if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' 
+//        		|| c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U') {
+//            return true;
+//        }
+        if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')) {
+            return true;
+        }
+        return false;
+    }
+	
+4. Follow-up
+    (1). 如果这是一个企业级的 API，如何改进？
+        我答得基本都围绕 error handling
+		-- null, empty string handle, what else ?
+    (2). 如果这是一个企业级的 API，如何改进以支持其他字符集？
+        面试官提示后是把所有需要 reverse 的字符初始化到一个 HashSet 里
+    (3). 需要处理的 String input 很大怎么办？
+        我答的是两个 buffer，一个从前读，一个从后读，把需要 reverse 的字符 swap 一下，不需要 swap 的字符留在原地
+        -- StringBuffer ?
+
+
+第一场
+
+第1题：LeetCode 121. Best Time to Buy and Sell Stock，原题
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
+Approach 1: Brute Force
+public class Solution {
+    public int maxProfit(int prices[]) {
+        int maxprofit = 0;
+        for (int i = 0; i < prices.length - 1; i++) {
+            for (int j = i + 1; j < prices.length; j++) {
+                int profit = prices[j] - prices[i];
+                if (profit > maxprofit)
+                    maxprofit = profit;
+            }
+        }
+        return maxprofit;
+    }
+}
+
+Approach 2: One Pass
+class Solution {
+    public int maxProfit(int[] prices) {
+        int minprice = Integer.MAX_VALUE;
+        int maxprofit = 0;
+        for(int i = 0; i < prices.length; i++) {
+            if(prices[i] < minprice) {
+                minprice = prices[i];
+            } else if(maxprofit < prices[i] - minprice) {
+                maxprofit = prices[i] - minprice;
+            }
+        }
+        return maxprofit;
+    }
+}
+
+
+
+第2题：
+有一个 class：
+class myClass {
+    int i;
+    Map<String, String> myMap;
+}
+修改它，把它变成 immutable 的。
+https://stackoverflow.com/questions/29740709/example-of-an-immutable-class-with-hashmap
+https://codepumpkin.com/immutable-class-with-mutable-member-fields-in-java/
+https://dzone.com/articles/java-copy-shallow-vs-deep-in-which-you-will-swim 
+https://dzone.com/articles/how-to-create-an-immutable-class-in-java
+How to Create an Immutable Class in Java
+An object is immutable if its state cannot change after construction. Immutable objects don’t expose 
+any way for other objects to modify their state; the object’s fields are initialized only once inside 
+the constructor and never change again.
+
+In this article, we'll define the typical steps for creating an immutable class in Java and also shed 
+light on the common mistakes which are made by developers while creating immutable classes.
+
+1. Usage of Immutable Classes
+Nowadays, the “must-have” specification for every software application is to be distributed and 
+multi-threaded—multi-threaded applications always cause headaches for developers since developers are 
+required to protect the state of their objects from concurrent modifications of several threads at 
+the same time, for this purpose, developers normally use the Synchronized blocks whenever they modify 
+the state of an object.
+
+With immutable classes, states are never modified; every modification of a state results in a new instance, 
+hence each thread would use a different instance and developers wouldn’t worry about concurrent modifications.
+
+2. Some Popular Immutable Classes
+String is the most popular immutable class in Java. Once initialized its value cannot be modified. 
+Operations like trim(), substring(), replace() always return a new instance and don’t affect the current 
+instance, that’s why we usually call trim() as the following:
+
+String alex = "Alex";
+alex = alex.trim();
+Another example from JDK is the wrapper classes like: Integer, Float, Boolean … these classes don’t modify 
+their state, however they create a new instance each time you try to modify them.
+
+Integer a =3;
+a += 3;
+After calling a += 3, a new instance is created holding the value: 6 and the first instance is lost.
+
+3. How Do We Create an Immutable Class
+In order to create an immutable class, you should follow the below steps:
+
+Make your class final, so that no other classes can extend it.
+
+Make all your fields final, so that they’re initialized only once inside the constructor and never modified afterward.
+Don’t expose setter methods.
+When exposing methods which modify the state of the class, you must always return a new instance of the class.
+If the class holds a mutable object:
+Inside the constructor, make sure to use a clone copy of the passed argument and never set your mutable field 
+to the real instance passed through constructor, this is to prevent the clients who pass the object from 
+modifying it afterwards.
+Make sure to always return a clone copy of the field and never return the real object instance.
+
+3.1. Simple Immutable Class
+Let’s follow the above steps and create our own immutable class (ImmutableStudent.java).
+
+package com.programmer.gate.beans;
+public final class ImmutableStudent {
+    private final int id;
+    private final String name;
+    public ImmutableStudent(int id, String name) {
+        this.name = name;
+        this.id = id;
+    }
+    public int getId() {
+        return id;
+    }
+    public String getName() {
+        return name;
+    }
+}
+The above class is a very simple immutable class which doesn’t hold any mutable object and never expose 
+its fields in any way; these type of classes are normally used for caching purposes.
+
+3.2. Passing Mutable Objects to Immutable Class
+Now, let’s complicate our example a bit, we create a mutable class called Age and add it as a field to 
+ImmutableStudent:
+
+package com.programmer.gate.beans;
+public class Age {
+    private int day;
+    private int month;
+    private int year;
+    public int getDay() {
+        return day;
+    }
+    public void setDay(int day) {
+    this.day = day;
+    }
+    public int getMonth() {
+    return month;
+    }
+    public void setMonth(int month) {
+    this.month = month;
+    }
+    public int getYear() {
+    return year;
+    }
+    public void setYear(int year) {
+    this.year = year;
+    }
+}
+package com.programmer.gate.beans;
+public final class ImmutableStudent {
+    private final int id;
+    private final String name;
+    private final Age age;
+    public ImmutableStudent(int id, String name, Age age) {
+    this.name = name;
+    this.id = id;
+    this.age = age;
+    }
+    public int getId() {
+    return id;
+    }
+    public String getName() {
+    return name;
+    }
+    public Age getAge() {
+    return age;
+    }
+}
+So, we added a new mutable field of type Age to our immutable class and assign it as normal inside 
+the constructor.
+
+Let’s create a simple test class and verify that ImmutableStudent is no more immutable:
+
+public static void main(String[] args) {
+    Age age = new Age();
+    age.setDay(1);
+    age.setMonth(1);
+    age.setYear(1992);
+    ImmutableStudent student = new ImmutableStudent(1, "Alex", age);
+    System.out.println("Alex age year before modification = " + student.getAge().getYear());
+    age.setYear(1993);
+    System.out.println("Alex age year after modification = " + student.getAge().getYear());
+}
+After running the above test, we get the following output:
+
+Alex age year before modification = 1992
+Alex age year after modification = 1993
+We claim that ImmutableStudent is an immutable class whose state is never modified after construction, 
+however in the above example we are able to modify the age of Alex even after constructing Alex object. 
+If we go back to the implementation of ImmutableStudent constructor, we find that age field is being 
+assigned to the instance of the Age argument, so whenever the referenced Age is modified outside the 
+class, the change is reflected directly on the state of Alex. Check out my Pass by value OR pass by 
+reference article to more deeply understand this concept.
+
+In order to fix this and make our class again immutable, we follow step #5 from the steps that we mention 
+above for creating an immutable class. So we modify the constructor in order to clone the passed argument 
+of Age and use a clone instance of it.
+
+public ImmutableStudent(int id, String name, Age age) {
+    this.name = name;
+    this.id = id;
+    Age cloneAge = new Age();
+    cloneAge.setDay(age.getDay());
+    cloneAge.setMonth(age.getMonth());
+    cloneAge.setYear(age.getYear());
+    this.age = cloneAge;
+}
+Now, if we run our test, we get the following output:
+
+Alex age year before modification = 1992
+Alex age year after modification = 1992
+As you see now, the age of Alex is never affected after construction and our class is back to immutable.
+
+3.3. Returning Mutable Objects From Immutable Class
+However, our class still has a leak and is not fully immutable, let’s take the following test scenario:
+
+public static void main(String[] args) {
+    Age age = new Age();
+    age.setDay(1);
+    age.setMonth(1);
+    age.setYear(1992);
+    ImmutableStudent student = new ImmutableStudent(1, "Alex", age);
+    System.out.println("Alex age year before modification = " + student.getAge().getYear());
+    student.getAge().setYear(1993);
+    System.out.println("Alex age year after modification = " + student.getAge().getYear());
+}
+Output:
+
+Alex age year before modification = 1992
+Alex age year after modification = 1993
+Again according to step #4, when returning mutable fields from immutable object, you should return a clone 
+instance of them and not the real instance of the field.
+
+So we modify getAge() in order to return a clone of the object’s age:
+
+public Age getAge() {
+    Age cloneAge = new Age();
+    cloneAge.setDay(this.age.getDay());
+    cloneAge.setMonth(this.age.getMonth());
+    cloneAge.setYear(this.age.getYear());
+    return cloneAge;
+}
+Now the class becomes fully immutable and provides no way or method for other objects to modify its state.
+
+Alex age year before modification = 1992
+Alex age year after modification = 1992
+
+4. Conclusion
+Immutable classes provide a lot of advantages especially when used correctly in a multi-threaded environment. 
+The only disadvantage is that they consume more memory than the traditional class since upon each modification 
+of them a new object is created in the memory... but, a developer should not overestimate the memory consumption 
+as its negligible compared to the advantages provided by these type of classes.
+
+Finally, an object is immutable if it can present only one state to the other objects, no matter how and when 
+they call its methods. If so it’s thread safe by any definition of thread-safe.
+
+
+第3题：LeetCode 56. Merge Intervals，原题
+https://leetcode.com/problems/merge-intervals/description/
+class Solution {
+    public List<Interval> merge(List<Interval> intervals) {
+        List<Interval> result = new ArrayList<Interval>();
+        if(intervals == null || intervals.size() == 0) {
+            return result;
+        }
+        Collections.sort(intervals, new Comparator<Interval>() {
+            public int compare(Interval a, Interval b) {
+                return a.start - b.start;
+            } 
+        });
+        Interval last = intervals.get(0);
+        for(int i = 1; i < intervals.size(); i++) {
+            Interval curr = intervals.get(i);
+            if(last.end >= curr.start) {
+                last.end = Math.max(last.end, curr.end);
+            } else {
+                result.add(last);
+                last = curr;
+            }
+        }
+        result.add(last);
+        return result;
+    }
+}
+
+
+
+第二场
+
+第1题：
+第1问：用什么数据结构保存矩阵？
+我一开始想得复杂了，面试官说非常简单就行，我说用二维数组：int[][]，他说可以。
+第2问：写一段代码来计算矩阵里所有数的和
+第3问：给你一个 4*4 的矩阵，写一段代码来计算中间4个数的和
+
+第2题：
+有一些商店，每个商店有一些货架间的过道（aisle），每个过道分左右两个货架，每个货架分前后两个位置，每个位置有一种货物，每种货物有三种属性：名字、数量、过期日期。
+第1问：OO Design 这个系统
+第2问：写代码实现一个 API，给你一些商店，返回所有过期了的货物，以及它们的位置（aisle index，左/右，etc.）
+follow-up：怎么用 MongoDB 储存这个系统（还是 design 的问题）
+
+第三场
+
+聊简历聊了20分钟。
+题目：编程写一个队列，有一些 customer 进来，有一些 agent 服务这些 customer。所有 agent 都忙的时候，customer 排队。
+主要是考 JAVA 多线程。
+
+第四场
+
+一开始问了一些 JAVA 基本概念，什么是 Object，什么是 immutable，wait() 和 notify() 怎么用。
+然后是编程题。
+第一题：实现一个 int parse(String s)，要求遇见所有非数字字符就抛 exception，但是字符串开头可能有正负号（“+”、“-”）。
+第二题：实现一个 float parse(String s)。
+follow-up：对于第二个题，如果需要写 test case 做测试的话，都有哪些 case。
