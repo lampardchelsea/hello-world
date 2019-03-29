@@ -18,7 +18,9 @@ Input: [7,6,4,3,1]
 Output: 0
 Explanation: In this case, no transaction is done, i.e. max profit = 0.
 */
-Approach 1: Brute Force
+// Refer to
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock/solution/
+// Approach 1: Brute Force
 public class Solution {
     public int maxProfit(int prices[]) {
         int maxprofit = 0;
@@ -33,7 +35,14 @@ public class Solution {
     }
 }
 
-Approach 2: One Pass
+// Approach 2: One Pass
+/**
+ The points of interest are the peaks and valleys in the given graph. 
+ We need to find the largest peak following the smallest valley. 
+ We can maintain two variables - minprice and maxprofit corresponding 
+ to the smallest valley and maximum profit (maximum difference between 
+ selling price and minprice) obtained so far respectively.
+*/
 class Solution {
     public int maxProfit(int[] prices) {
         int minprice = Integer.MAX_VALUE;
