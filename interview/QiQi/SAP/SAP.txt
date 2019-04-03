@@ -1,0 +1,73 @@
+SAP Ariba in Palo Alto
+前面有一轮 HR Phone Screen，这是整个流程里的第二轮，但是是第一轮技术面试。
+HR 说面试官是一位 hiring manager。
+
+流程：
+1. 双方自我介绍
+    她介绍公司和 team 是做什么，我介绍我的背景
+2. Behavioral Questions
+    (1). 简要介绍一下我现在的公司的技术架构，以及我参与了哪些部分
+        我按照 linkedin Onsite Interview - Technical Communication 那一轮答的。
+    (2). 我学到东西最多的 project 是什么
+    (3). 为什么跳槽
+3. Coding
+    给你一个 String，reverse 里面所有的字母和数字，其他字符保持不动。
+    比如，"Ab,c1,de!$" -> "ed,1c,bA!$"
+    有一点类似 LeetCode 345. Reverse Vowels of a String，但不完全一样
+    https://leetcode.com/problems/reverse-vowels-of-a-string/description/
+4. Follow-up
+    (1). 如果这是一个企业级的 API，如何改进？
+        我答得基本都围绕 error handling
+    (2). 如果这是一个企业级的 API，如何改进以支持其他字符集？
+        面试官提示后是把所有需要 reverse 的字符初始化到一个 HashSet 里
+    (3). 需要处理的 String input 很大怎么办？
+        我答的是两个 buffer，一个从前读，一个从后读，把需要 reverse 的字符 swap 一下，不需要 swap 的字符留在原地
+
+这是面试流程的第三轮，也是最后一轮。
+
+这一轮一共有四场面试，每场一个小时。
+说的是视频面试，但其实只有最后一场的面试官用了视频，其他就都是打电话+白板的标准形式。
+
+第一场
+
+第1题：LeetCode 121. Best Time to Buy and Sell Stock，原题
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
+
+第2题：
+有一个 class：
+class myClass {
+    int i;
+    Map<String, String> myMap;
+}
+修改它，把它变成 immutable 的。
+
+第3题：LeetCode 56. Merge Intervals，原题
+https://leetcode.com/problems/merge-intervals/description/
+
+第二场
+
+第1题：
+第1问：用什么数据结构保存矩阵？
+我一开始想得复杂了，面试官说非常简单就行，我说用二维数组：int[][]，他说可以。
+第2问：写一段代码来计算矩阵里所有数的和
+第3问：给你一个 4*4 的矩阵，写一段代码来计算中间4个数的和
+
+第2题：
+有一些商店，每个商店有一些货架间的过道（aisle），每个过道分左右两个货架，每个货架分前后两个位置，每个位置有一种货物，每种货物有三种属性：名字、数量、过期日期。
+第1问：OO Design 这个系统
+第2问：写代码实现一个 API，给你一些商店，返回所有过期了的货物，以及它们的位置（aisle index，左/右，etc.）
+follow-up：怎么用 MongoDB 储存这个系统（还是 design 的问题）
+
+第三场
+
+聊简历聊了20分钟。
+题目：编程写一个队列，有一些 customer 进来，有一些 agent 服务这些 customer。所有 agent 都忙的时候，customer 排队。
+主要是考 JAVA 多线程。
+
+第四场
+
+一开始问了一些 JAVA 基本概念，什么是 Object，什么是 immutable，wait() 和 notify() 怎么用。
+然后是编程题。
+第一题：实现一个 int parse(String s)，要求遇见所有非数字字符就抛 exception，但是字符串开头可能有正负号（“+”、“-”）。
+第二题：实现一个 float parse(String s)。
+follow-up：对于第二个题，如果需要写 test case 做测试的话，都有哪些 case。
