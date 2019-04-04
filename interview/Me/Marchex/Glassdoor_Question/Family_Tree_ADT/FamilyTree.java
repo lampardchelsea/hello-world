@@ -1,0 +1,86 @@
+import java.util.ArrayList;
+import java.util.List;
+
+// Family Tree in Java
+// This program is finding its parent grandparent and siblings.There are
+// methods to find the grandchildren, most similar descendant, etc.
+
+public class FamilyTree {
+    Tree t;
+    public FamilyTree(Tree t) {
+        this.t = t;
+    }
+	
+    public String getParent(Node person) {
+        if (person.getParent() == null)
+            return "No parent";
+        return (String) person.getParent().getElement();
+    }
+	
+    public String getGrandparent(Node person) {
+        if (person.getParent() == null ||
+            person.getParent().getParent() == null)
+            return "No grandparent";
+        return (String) person.getParent().getParent().getElement();
+    }
+	
+    public List < String > getChildren(Node person) {
+        List < String > children = new ArrayList < String > ();
+        for (Node child: person.getChildren()) {
+            children.add((String) child.getElement());
+        }
+        return children;
+    }
+	
+    public List < String > getGrandchildren(Node person) {
+        List < String > grandchildren = new ArrayList < String > ();
+        for (Node child: person.getChildren()) {
+            grandchildren.addAll(getChildren(child));
+        }
+        return grandchildren;
+    }
+	
+    public List < String > getSiblings(Node person) {
+        List < String > siblings = new ArrayList < String > ();
+        if (person.getParent() == null)
+            return siblings;
+        for (Node sibling: person.getParent().getChildren()) {
+            if (sibling != person)
+                siblings.add((String) sibling.getElement());
+        }
+        return siblings;
+    }
+	
+    public int getSimilarityScore(String a, String b) {
+        int score = 0;
+        int minLength = Math.min(a.length(), b.length());
+        for (int i = 0; i < minLength; i++) {
+            if (a.charAt(i) == b.charAt(i))
+                score++;
+            else
+                break;
+        }
+        return score;
+    }
+	
+    public String mostSimilarDescendant(Node person) {
+		if (person.getChildren().isEmpty())
+			return null;
+		String mostSimilar = null;
+		int mostSimilarScore = -1;
+		for (String child: getChildren(person)) {
+			int score = getSimilarityScore((String) person.getElement(), child);
+			if (score > mostSimilarScore) {
+				mostSimilar = child;
+				mostSimilarScore = score;
+			}
+		}
+		for (String grandchild: getGrandchildren(person)) {
+			int score = getSimilarityScore((String) person.getElement(), grandchild);if (score > mostSimilarScore) {
+				mostSimilar = grandchild;
+				mostSimilarScore = score;
+			}
+		}
+		return mostSimilar;
+    }
+}
