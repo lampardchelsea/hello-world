@@ -1,0 +1,264 @@
+https://github.com/rpaulkennedy/war-card-game
+Helper classes increase Cardtable / CardDealer / Deck / Rank and Suit as enum class
+Main classes increase CardSession / Player / Rule / 
+
+1. Card class method
+   Constructor
+   	/** String representation of a card (Rank symbol + Suit symbol) */
+	protected final String symbol;
+
+	public Card(Rank rank, Suit suit) {
+		this.rank = rank;
+		this.suit = suit;
+		this.symbol = String.format("%s%s", rank.symbol(), suit.symbol());
+	}
+
+   Re-write compareTo / equals
+   	@Override
+	public int compareTo(Card that) {
+		final Integer thisValue = this.getValue(), thatValue = that.getValue();
+		return thisValue.compareTo(thatValue);
+	}
+
+	@Override
+	public boolean equals(Object that) {
+		if (this == that) {
+			return true;
+		}
+		else if (!this.getClass().isInstance(that)) {
+			return false;
+		}
+		else {
+			return this.getSymbol().equals(((Card)that).getSymbol());
+		}
+	}
+
+2. Cardtable class method
+   public class CardTable {
+	
+	/** Cards in play for Player 1 */
+	protected final Stack<Card> player1CardStack;
+	
+	/** Cards in play for Player 2 */
+	protected final Stack<Card> player2CardStack;
+	
+	/** 
+	 * Creates a new card table with places 
+	 * for cards in play for both players.
+	 */
+	public CardTable() {
+		this.player1CardStack = new Stack<>();
+		this.player2CardStack = new Stack<>();
+	}
+
+
+3. Carddealer class method
+        /** Creates a new dealer with a new deck of shuffled cards. */
+	public Dealer() {
+		this.deck = new Deck().shuffle();
+	}
+	
+	/**
+	 * @param players
+	 * For each {@code player} in order, alternating between all players,
+	 * removes a card from the deck and give it to the player until
+	 * all cards are removed from the deck.
+	 */
+	public void deal(Player... players) {
+		range(0, deck.getCards().size())
+			.forEach(i -> players[i % players.length]
+				.getHand()
+				.add(deck.getCards().remove(0)));
+	}
+
+4. Deck class method
+        public Deck() {
+		this.cards = createCards();
+	}
+
+	public Deck shuffle() {
+		Collections.shuffle(cards);
+		return this;
+	}
+  
+        protected List<Card> createCards() {
+		return Stream.of(Suit.values())
+			.flatMap(suit -> Stream.of(Rank.values())
+				.map(rank -> new Card(rank, suit)))
+			.collect(toList());
+	}
+
+5. Rank/Suit as enum class
+   public enum Rank {
+
+	Deuce('2')
+	, Three('3')
+	, Four('4')
+	, Five('5')
+	, Six('6')
+	, Seven('7')
+	, Eight('8')
+	, Nine('9')
+	, Ten('T')
+	, Jack('J')
+	, Queen('Q')
+	, King('K')
+	, Ace('A');
+
+	/** Rank symbol (2,3,4,...,A) */
+	final char symbol;
+
+	Rank(char symbol) {
+		this.symbol = symbol;
+	}
+
+	public char symbol() {
+		return this.symbol;
+	}
+	
+   }
+   
+   public enum Suit {
+
+	Diamonds('D')
+	, Clubs('C')
+	, Hearts('H')
+	, Spades('S');
+
+	/** Suit symbol (D, C, H, S)*/
+	final char symbol;
+
+	Suit(char symbol) {
+		this.symbol = symbol;
+	}
+
+	public char symbol() {
+		return this.symbol;
+	}
+   }
+
+===================================================================
+
+1. GameSession class intialize 2 players, table, dealer
+   public GameSession(Player player1, Player player2, CardTable table, boolean skipPlayerInput) {
+		this.player1 = player1;
+		this.player2 = player2;
+		this.table = table;
+		this.skipPlayerInput = skipPlayerInput; 
+   }
+
+   public static GameSession newInstance(boolean skipPlayerInput) {
+		Player player1 = new Player(Player1Name);
+		Player player2 = new Player(Player2Name);
+		new Dealer().deal(player1, player2);
+		CardTable table = new CardTable();
+		return new GameSession(player1, player2, table, skipPlayerInput); 
+   }
+
+2. Player class initialize with name and linkedlist to store cards
+	/** Cards held by player. */
+	protected final Queue<Card> hand;
+        public Player(String name) {
+		hand = new LinkedList<>();
+		this.name = name;
+	}
+
+	/** Put a card on the table for normal play */
+	public void playCard(Stack<Card> tableCards) {
+		tableCards.push(getHand().remove());
+	}
+
+	/** Put 3 cars on the table for a war */
+	public void playThreeCards(Stack<Card> tableCards) {
+		IntStream
+		.range(0, getHand().size() < 3 ? getHand().size() : 3)
+		.forEachOrdered(i -> playCard(tableCards));
+	}
+
+	/**
+	 * Takes all the cards from the card table, shuffles them, and puts them 
+	 * in the bottom of the player's hand.
+	 * @param table The card table
+	 * @param random  
+	 */
+	public void collectCards(CardTable table) {
+		// Take cards
+		final List<Card> wonCards = 
+			Stream.of(table.takePlayer1CardStack(), table.takePlayer2CardStack())
+				.parallel()
+				.flatMap(x -> x.parallelStream())
+				.collect(toList());
+		
+		// Shuffle cards
+		Collections.shuffle(wonCards);
+		
+		// Add cards to hand
+		getHand().addAll(wonCards);
+	}
+
+
+3. Rule class contains enum Result
+   	/** Result of a round */
+	public enum Result {
+		Player1Won
+		, Player2Won
+		, Tie
+	}
+
+        getRoundResult
+        playerHasLost
+        getWinner
+        thisCardWon
+        thatCardWon
+
+4. WarGame and WarGameRunner class
+       public void run(String[] args) {
+		// Initialize the game session.
+		final GameSession session = GameSession.newInstance(isSkipPlayerInput(args));
+
+		printIntro();
+
+		// Play the game as long as no player has lost.
+		while (!Rules.playerHasLost(session)) {
+
+			printScores(session);
+
+			promptForGamePlay(session);
+
+			playCards(session);
+
+			printCardValues(session);
+
+			evaluateRound(session);
+		}
+
+		printOutro(session);
+	}
+
+	protected static void evaluateRound(GameSession session, Result result) {
+		switch (result) {
+			case Player1Won: {
+				// Give all the cards on the table to player 1.
+				printWinner(session.getPlayer1());
+				collectCards(session.getPlayer1(), session);
+				break;
+			}
+			case Player2Won: {
+				// Give all the cards on the table to player 2.
+				printWinner(session.getPlayer2());
+				collectCards(session.getPlayer2(), session);
+				break;
+			}
+			case Tie:
+			default: {
+				// Put 3 cards on the table from both players.
+				printWar();
+				play3Cards(session);
+			}
+		}		
+	}
+
+
+	public static void main(String[] args) {
+		new WarGame().run(args);
+	}
