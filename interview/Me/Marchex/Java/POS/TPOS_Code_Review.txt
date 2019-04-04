@@ -1,0 +1,205 @@
+TPOS Code Review
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+
+Angular JS 1.4 
+https://docs.angularjs.org/tutorial/step_02 
+
+AngularJS: Service vs provider vs factory
+https://stackoverflow.com/questions/15666048/angularjs-service-vs-provider-vs-factory
+
+AngularJS 1.x WGW (What Goes Where) guide
+http://demisx.github.io/angularjs/2014/09/14/angular-what-goes-where.html
+
+AngularJS API Reference $http
+https://docs.angularjs.org/api/ng/service/$http
+Scenario: returnsService.js line 8 
+
+Angular HttpPromise: difference between `success`/`error` methods and `then`'s arguments
+https://stackoverflow.com/questions/16385278/angular-httppromise-difference-between-success-error-methods-and-thens-a
+Scenario: returnsScripts.js line 2017
+
+Returning response data from HTTP in Angular factory
+https://stackoverflow.com/questions/19121918/returning-response-data-from-http-in-angular-factory
+Scenario: returnsScripts.js line 2018
+
+AngularJS promise
+https://docs.angularjs.org/api#the-promise-api
+Scenario: baseService.js line 78
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+
+AngularJS ui router
+https://github.com/angular-ui/ui-router
+Scenario: AID v0.9 p75
+
+mainMenuPage.jsp line 53
+<div ui-view></div>
+
+AngularJS Routing Using UI-Router
+https://scotch.io/tutorials/angular-routing-using-ui-router
+
+angular.module(appName).config([...$httpProvider,$stateProvider,urlRouterProvider...])
+$stateProvider.state
+
+URL Routing
+https://github.com/angular-ui/ui-router/wiki/URL-Routing
+Scenario: commonDialogScripts.js line 347 - 362
+
+AngularJS routing without the hash '#'
+https://stackoverflow.com/questions/14319967/angularjs-routing-without-the-hash
+
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+
+Spring 4
+https://spring.io/blog/2015/01/12/spring-and-angular-js-a-secure-single-page-application 
+https://examples.javacodegeeks.com/enterprise-java/spring/mvc/angularjs-spring-integration-tutorial/ 
+https://samerabdelkafi.wordpress.com/2015/01/25/angularjs/
+
+WebApplicationInitializer
+https://examples.javacodegeeks.com/enterprise-java/spring/mvc/angularjs-spring-integration-tutorial/
+https://www.intertech.com/Blog/how-to-use-springs-webapplicationinitializer/
+http://www.baeldung.com/spring-xml-vs-java-config
+Scenario: WebAppInitializer.java
+
+
+WebMvcConfigurerAdapter
+https://examples.javacodegeeks.com/enterprise-java/spring/mvc/angularjs-spring-integration-tutorial/
+Scenario: MvcConfig.java
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------ 
+
+Wro4j
+https://wro4j.readthedocs.io/en/stable/
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+
+
+JavaScript
+function expression
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function
+Scenario: returnsScripts.js line 1989
+
+Function expressions vs. Function declarations
+http://kangax.github.io/nfe/#named-expr
+Scenario: returnsScripts.js line 1989 / line 1993 - 2154
+
+When (not) to use semicolons
+https://www.codecademy.com/en/forum_questions/507f6dd09266b70200000d7e
+Scenario: returnsScripts.js line 2154
+
+Working with objects
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects
+Scenario: returnsScripts.js line 2008 - 2012
+
+Where to place JavaScript in an HTML file?
+https://stackoverflow.com/questions/196702/where-to-place-javascript-in-an-html-file
+Scenario: mainMenuPage.jsp line 77 
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+
+
+Note:
+return.js is redundant -> part of real working js file as returnScripts.js which register in app.js according to returnItemValidation section
+app.js is redundant -> part of real working js file as commonDialogScripts.js which register in mainMenuPage.jsp body section
+
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+Framework check
+
+EIP Return example
+returnItemValidation.html
+Search Button on http://qatmpos521.unix.gsm1900.org:7002/mainMenu#/returnItemValidationPage
+<button class="btn  btn-primary col-xs-5 col-sm-5 col-md-5 col-xs-offset-3 col-sm-offset-3 col-md-offset-3" id="receiptsubmit" type="submit" ng-click="getTransactionDetailsCaller()" ng-disabled="isSearchDisabled" value="Search" disabled="disabled">Search</button>
+
+-> returnScript.js line 1963
+$scope.getTransactionDetailsCaller = function () {...};
+ 
+-> returnScript.js line 1993
+$scope.getTransactionDetails = function () {...};
+
+-> returnService.js line 2
+var returnsService = Object.create(BaseService);
+
+-> baseService.js line 3 / 13
+angular.module(appName).factory('BaseService', BaseServiceFactory);
+function BaseServiceFactory($q, $http, mposConfig, LoggingService) {...};
+
+-> returnService.js line 6
+returnsService.getTransactionDetails = function (data) {...};
+
+-> returnService.js line 8
+return this.invokeHttpPost(url, data);
+
+-> baseService.js line 34 - 42 / 57 - 79
+
+-> returnService.js line 7
+var url = "/returns";
+
+-> ReturnTransController.java line 130
+@RequestMapping(value = "/returns")
+
+-> returnService.js line 12
+var url = "/reasonCodes/lookupReturnsReasonCodes";
+
+-> ReasonCodesController.java line 33 / 97
+@RequestMapping(value = "/reasonCodes")
+@RequestMapping(value = "/lookupReturnsReasonCodes", method = RequestMethod.GET)
+
+-> ReasonCodesController.java line 226
+TransactionBusinessResponse  transactionBusinessResponse  = transactionBusinessService.getOriginalTransactionDetails(transactionBusinessRequest, false, false);
+
+-> TransactionBusinessServiceImpl.java line 2879
+public TransactionBusinessResponse getOriginalTransactionDetails(TransactionBusinessRequest request, boolean copyTender, boolean isdocusignRequired) {...} 
+
+-> TransactionBusinessServiceImpl.java line 2884
+TransactionLogDao transactionLogDao = new TransactionLogDao();
+
+==================================================================
+
+Daemon data -> Find relationship between below classes
+
+DaemonMapper.java
+DaemonDaoService.java
+DaemonDaoServiceImpl.java
+MemoStatusCheckServiceImpl.java
+daemon.xml -> all real queries are here
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+POS_QLAB02
+
+select * from EIP_TRANS_QUEUE;
+
+select * from TR_LOG;
+
+select * from SYSTEM_CONFIG where PROPERTY_NAME = 'pos.devicerecovery.statuscheck';
