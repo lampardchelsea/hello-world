@@ -1,0 +1,59 @@
+1.The system should fit different restaurant 
+  restaurant manager can define different type of tables in restaurant and rules for reserve the table
+  tables can construct with max seats
+  rules need to include max length for reversavtion on 1 table, required clean time duration,
+  must also include opening hours (for booking) based on calendar.
+  restaurant should also contains Managers, TableManager and other Restaurant information
+
+  class Restaurant{
+      RestaurantInfo rinfo;
+      TableManager tm;
+      Manager m;
+  }
+  class Manger{}
+  class BookingRule{}
+
+2. Manage the tables need new class as TableManager, it locates customer booking request, 
+   check table avaiabilities, update waiting list, customer will intialize booking request, 
+   and stored in TableManager class as linkedlist.
+   
+   class TableManager{
+       // Store customer booking request on LinkedList (Deque attribute FIFO)
+       LinkedList<BookingRequest> customerBookingRequest = new LinkedList<BookingRequest>();
+       getAllBookingRequests();
+       // Store tables
+       LinkedList<Table> tables = new LinkedList<Table>();
+       getAllAvailableTables();
+       scheduleTableForCustomer(customerBookingRequest, tables);
+       // Update waiting list by removing new allocated one and add all new incoming requests 
+       // during an interval from customerBookingRequest
+       updateWaitingList()
+       // Monitor allocated table status every 30 minutes to check if booking status expired 
+       // but customer not come, cancel booking and notify customer expired, release table
+       asych_task(30 minutes running once, monitorTableStatus());
+       // When customer seat on table update table status as occupied,
+       // when customer leave update table status as released
+       updateTableStatus();
+   }
+   class BookingRequest{
+        customer_info[name]
+        time_interval[start, end]     //e.g. Jan.5 -> <11:00 ->Table1>	
+                                      //                  <11:30  ->Table1>
+   }
+   class Customer{}
+   class Table{
+   	int tableid;
+	String type;
+	HashMap<Date, HashMap<String,String>> reserved;//e.g. Jan5 -><1100, 1200> indicated <start end>.
+	boolean isFitToRequest(TimeSpan ts){}
+   }
+
+For each restuarant there will be a schedular to help maximize the usage based on newest customers request list
+the algorithem check MeetingRoomII as protype, assign minimum table for all current request
+scheduleTableForCustomer() {
+     checkWaitListFirst();
+     int case = BookingRule.differentRuleProcessingResult();
+     case 0: add to a table, remove booking request from inbound queue and update tables status
+     case 1: no table available now, but able to assign later, add to waiting list
+     case 2: not available at all, violate rules, cancel booking and notify customer
+}

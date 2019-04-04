@@ -1,0 +1,58 @@
+https://www.careercup.com/question?id=15062886
+for this kind of problems first identify the problem entities: 
+---- Problem State 
+1. in a restaurent there are different tables (say x in no) of different capacities . 
+2 .we can book a table of capacity n for m people (m<=n); 
+3. a table can be booked only if there is suitable time difference between two bookings 
+4. booking can be done only for particular no of hours for which restaurent opens . 
+
+int CheckTableAvailability(int NumPeople, time_t TimeOfBooking, int *tableNumber, time_t *alternativeTime) {
+    if(isTable_Available(NumPeople,TimeOfBooking)) {
+        *tableNUmber=isTable_Available(NumPeople,TimeOfBooking);
+        return 1;
+    }
+    if(alternate_time(NumPeople,TimeOfBooking)) {
+        alternatetime=alternate_time(NumPeople,TimeOfBooking);
+        return 2;
+    } else {
+        cout<<"no Booking possible";
+        return 0;
+    }
+}
+
+- This function will tell whether the booking is possible or not. 
+If possible on the input time it will return 1 and file the tableNumber. 
+If not on the input time, but at some time near to that, it will return 2 with the alternativeTime 
+and TableNumber that can be booked. 
+If not at all possible then it will return 0. 
+bookTable(contactDetails, tableNumber, time_t TimeOfBooking) 
+Extra functionality for CheckTableAvailability , it can also return an array of tableNumber possible for booking. 
+Like some restaurants have different sections (smoking zone, pool side, garden side etc) which 
+will give the customer a choice to make.
+
+I would add the following functionality to your class. 
+1. CancelReservation (cancel the existing reservation) 
+2. AddToWaitList ( If there is no availability, add to the wait list.)
+
+use queue + hashmap, queue is for keeping order and hashmap is for lookup. 
+need to realize AddReservation(), DeleteReservation() and SearchReservation()
+
+
+Class: Table {
+    int TableId;
+    int SeatingCapacity;
+    string speciality;
+}
+
+Class Booking {
+    int bookingId;
+    int TableId;
+    time_t startTime;
+    customerDetails;
+}
+
+Class: BookedTables {
+    HashTable bookings ( key: timeslot, value: int booked[NumTables] );
+    // int array will contain whether the table is booked or not for this time slot. 
+    // A value of 0 means not booked. A value other than 0 represents a booking id
+}

@@ -1,0 +1,98 @@
+Based on Table_Reservation_System.pdf p20
+
+1.Customer
+Login {New User Registration}
+Restautrant Selection
+Check Seat Availibility
+Reserves Seat {Data & Time Selection / Seat Selection}
+Payment {Deposit / Use Credits / Use Card Details}
+Cancels Reservation
+
+2. Admin
+Login {New User Registration}
+Add / Remove Restaurant
+Add / Remove Restaurant Manager
+
+3. Restaurant Manager
+Login {New User Registration}
+Update Seat Availibility {Table Management Module / Booking Rules Module}
+Cancels Reservation {Monitor table / customer status}
+Note:
+  restaurant manager can define different type of tables in restaurant and rules for reserve the table
+  tables can construct with max seats
+  rules need to include max length for reversavtion on 1 table, required clean time duration,
+  must also include opening hours (for booking) based on calendar.
+
+
+4. Restaurant
+Tables
+Restaurant Information
+ 
+
+2. Manage the tables need new class as TableManager, it locates customer booking request, 
+   check table avaiabilities, update waiting list, customer will intialize booking request, 
+   and stored in TableManager class as linkedlist.
+   
+   class TableManager{
+       // Store customer booking request on LinkedList (Deque attribute FIFO)
+       LinkedList<BookingRequest> customerBookingRequest = new LinkedList<BookingRequest>();
+       getAllBookingRequests();
+       // Store tables
+       LinkedList<Table> tables = new LinkedList<Table>();
+       getAllAvailableTables();
+       scheduleTableForCustomer(customerBookingRequest, tables);
+       // Update waiting list by removing new allocated one and add all new incoming requests 
+       // during an interval from customerBookingRequest
+       updateWaitingList()
+       // Monitor allocated table status every 30 minutes to check if booking status expired 
+       // but customer not come, cancel booking and notify customer expired, release table
+       asych_task(30 minutes running once, monitorTableStatus());
+       // When customer seat on table update table status as occupied,
+       // when customer leave update table status as released
+       updateTableStatus();
+   }
+   class BookingRequest{
+        customer_info[name]
+        time_interval[start, end]     //e.g. Jan.5 -> <11:00 ->Table1>	
+                                      //                  <11:30  ->Table1>
+   }
+   class Table{
+   	int tableid;
+	String type;
+	HashMap<Date, HashMap<String,String>> reserved;//e.g. Jan5 -><1100, 1200> indicated <start end>.
+	boolean isFitToRequest(TimeSpan ts){}
+   }
+
+For each restuarant there will be a schedular to help maximize the usage based on newest customers request list
+the algorithem check MeetingRoomII as protype, assign minimum table for all current request
+scheduleTableForCustomer() {
+     checkWaitListFirst();
+     int case = BookingRule.differentRuleProcessingResult();
+     case 0: add to a table, remove booking request from inbound queue and update tables status
+     case 1: no table available now, but able to assign later, add to waiting list
+     case 2: not available at all, violate rules, cancel booking and notify customer
+}
+
+
+Steps Performed (Main Path)
+Information for Steps
+1. Customer logins directly to the system. [Includes: new customer creates an account and logs in]
+Customer ID, Password
+2. The customer will choose the table and requests to reserve it.
+Customer Record, UserID, Password
+3. The system will book the table requested by the customer and ask for the payment only if it is a weekend or high rush day.
+Confirmation Web Page
+4. The customer will make the payment (if applicable). [Extends: choose the payment option; Extends: cancel the reservation]
+Secure Credit Card Web Page
+5. The system verifies the account information. [Includes: Denial of confirmation due to non-availability of credit in the card; Includes: Invalid card information]
+Confirmation Web Page, Session Record
+6. The system provides the confirmation of the reserved table. [Extends: Ask for the method to provide confirmation number]
+Confirmation Web Page, Customer Record
+7. The customer gets the confirmation number.
+Registration Record Confirmation Number
+Variations in success flows
+1. Old customer can update the account information such as his demographics, card details and membership status (returning or new).
+2. Payment can be made using credit card or debit card.
+3. Customer can also cancel the reservation, if not needed any more.
+4. Confirmation can be available through text and e-mail.
+
