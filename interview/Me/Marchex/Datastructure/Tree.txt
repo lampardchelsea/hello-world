@@ -1,0 +1,354 @@
+94. Binary Tree Inorder Traversal (
+    Recursive:
+    private void helper(List<Integer> result, TreeNode node) {
+        
+        if(node == null) {
+return;
+}
+        
+        helper(result, node.left);
+        
+        result.add(node.val);
+        
+        helper(result, node.right);
+}
+    Stack:
+    while(root != null || !stack.isEmpty()) {
+            
+        while(root != null) {
+
+            stack.push(root);
+
+            root = root.left;
+
+        }
+            
+        root = stack.pop();
+            
+        result.add(root.val);
+            
+        root = root.right;
+})
+
+144. Binary Tree Preorder Traversal (
+        public void recur(TreeNode root, List<Integer> returnList){
+		if(root == null){
+			return;
+		}else{
+			returnList.add(root.val);
+			recur(root.left, returnList);
+			recur(root.right, returnList);
+		}		
+	})
+
+145. Binary Tree Postorder Traversal (    
+     public void recur(TreeNode root, List<Integer> resultList){
+        if(root == null){
+            return;
+        }else{
+            recur(root.left, resultList);
+            recur(root.right, resultList);
+            resultList.add(root.val);
+        }
+    })
+
+105. Construct Binary Tree from Preorder and Inorder Traversal
+106. Construct Binary Tree from Inorder and Postorder Traversal 
+     ( Input : 
+		in[]   = {4, 8, 2, 5, 1, 6, 3, 7}
+		post[] = {8, 4, 5, 2, 6, 7, 3, 1} 
+		
+		Output : Root of below tree
+		          1
+		       /     \
+		     2        3
+		   /    \   /   \
+		  4     5   6    7
+		    \
+		      8
+	 *  
+	 *  Let us see the process of constructing tree from in[] = {4, 8, 2, 5, 1, 6, 3, 7} 
+	 *  and post[] = {8, 4, 5, 2, 6, 7, 3, 1}
+	 *  1) We first find the last node in post[]. The last node is “1”, we know this value 
+	 *  is root as root always appear in the end of postorder traversal.
+	 *  2) We search “1” in in[] to find left and right subtrees of root. Everything on left 
+	 *  of “1” in in[] is in left subtree and everything on right is in right subtree.
+		         1
+		       /    \
+		[4,8,2,5]   [6,3,7] 
+		3) We recur the above process for following two.
+		….b) Recur for in[] = {6,3,7} and post[] = {6,7,3}
+		…….Make the created tree as right child of root.
+		….a) Recur for in[] = {4,8,2,5} and post[] = {8,4,5,2}.
+		…….Make the created tree as left child of root.
+	 *  One important observation is, we recursively call for right subtree before left subtree 
+	 *  as we decrease index of postorder index whenever we create a new node.
+
+
+    public TreeNode buildTreeHelper2(int[] inorder, int inorderStart, int inorderEnd, int[] postorder, int postorderStart, int postorderEnd, Map<Integer, Integer> map) {
+        if(inorderStart > inorderEnd || postorderStart > postorderEnd) {
+            return null;
+        }
+        TreeNode root = new TreeNode(postorder[postorderEnd]);
+        int rootIndexOnInorder = map.get(postorder[postorderEnd]);
+        /**
+         * Refer to
+         * https://discuss.leetcode.com/topic/3296/my-recursive-java-code-with-o-n-time-and-o-n-space/11
+         * https://discuss.leetcode.com/topic/3296/my-recursive-java-code-with-o-n-time-and-o-n-space/21
+         * The post order array will give you the root, the last one.
+         * With the root, you can go to the in order array, notice the traverse sequence: left, root, right.
+         * Then we know the left child array size, right child array size.
+         * With the size, we can then divide the post order array: left, right, root.
+         * Then, we have everything!
+         * The beauty is the root, with the root, you are able to divide two arrays~
+         * E.g 
+         * in[] = {4, 8, 2, 5, 1, 6, 3, 7} 
+         * post[] = {8, 4, 5, 2, 6, 7, 3, 1}
+         * In first iteration, the index of root "1" on in[] array is 4, left child array on 'inorder' size is
+         * 4(rootIndexOnInorder - inorderStart = 4 - 0), to find left child array section on 'postorder' requires
+         * {postorderStart + (rootIndexOnInorder - inorderStart) - 1} as section end, the additional "- 1" for get index. 
+         * right child array on 'inorder' size is 3(inorderEnd - rootIndexOnInorder = 7 - 4), to find right
+         * child array section on 'postorder' requires {postorderStart + (rootIndexOnInorder - inorderStart) - 1 + 1} 
+         * as section start, the additional "+ 1" for next index after left child array section, also requires
+         * {postorderEnd - 1} as section end, the additional "- 1" for previous index of final item as root in 'postorder'
+         */
+        TreeNode leftChild = buildTreeHelper2(inorder, inorderStart, rootIndexOnInorder - 1, postorder, postorderStart, postorderStart + (rootIndexOnInorder - inorderStart) - 1, map);
+        TreeNode rightChild = buildTreeHelper2(inorder, rootIndexOnInorder + 1, inorderEnd, postorder, postorderStart + (rootIndexOnInorder - inorderStart), postorderEnd - 1, map);
+        root.left = leftChild;
+        root.right = rightChild;
+        return root;
+    })
+
+98. Validate Binary Search Tree (    
+    public boolean helper(TreeNode root, long min, long max) {
+        // Base case
+    	if(root == null) {
+            return true;
+        }
+    	// BST require current root value satisfy: min < root.val < max
+    	// which defined on title as strictly large than and less than
+    	// given boundary [min, max]
+        if(root.val <= min || root.val >= max) {
+            return false;
+        }
+        // Based on BST definition, for left subtree, min value keeps,
+        // max value change to current root value, same for right
+        // subtree, max value keeps, min value change to current root value
+        return helper(root.left, min, root.val) && helper(root.right, root.val, max);
+    } )
+
+104. Maximum Depth Of Binary Tree (if(root == null) {return 0;} Math.max(maxDepth(root.left), maxDepth(root.right)) + 1)
+111. Minimum Depth Of Binary Tree (        
+        if(x == null) {
+            return Integer.MAX_VALUE; / Integer.MIN_VALUE; -> for 104.
+        }
+        
+        if(x.left == null && x.right == null) {
+            return 1;
+        }
+        
+        int left = helper(x.left);
+        int right = helper(x.right);
+        
+        return Math.min(left, right) + 1;)
+
+637. Average of Levels in Binary Tree (while(!queue.isEmpty()) {int size = queue.size();) 
+226. Invert Binary Tree (
+        BFS:
+        while(!queue.isEmpty()) {
+            TreeNode x = queue.poll();            
+            if(x.left != null) {
+                queue.add(x.left);
+            }
+            if(x.right != null) {
+                queue.add(x.right);
+            }         
+            TreeNode tmp = x.left;
+            x.left = x.right;
+            x.right = tmp;
+        }
+        DFS:
+        // First recursively go to the leave nodes of the tree
+        if(root.left != null) {
+            invertTree(root.left);
+        }
+        if(root.right != null) {
+            invertTree(root.right);
+        }
+        TreeNode tmp = root.left;
+        root.left = root.right;
+        root.right = tmp;
+        )
+
+653. Two Sum IV (if(set.contains(k - root.val)) {return true;})
+100. Same Tree (
+        if(p == null && q == null) {
+            return true;
+        } else if((p == null && q != null) || (p != null && q == null)) {
+            return false;
+        }
+        if(p.val == q.val) {
+            return (isSameTree(p.left, q.left) && isSameTree(p.right, q.right));
+        } else {
+            return false;
+        })
+
+404. Sum Of Left Leaves (
+        // Base Case
+        if(x.left == null && x.right == null && isLeft) {
+        	sum += Integer.valueOf(x.val);
+        } else {
+            // Recursive Steps
+            sum += sumOfLeftLeavesRec(x.left, true);
+            sum += sumOfLeftLeavesRec(x.right, false);
+        })
+
+108. Convert Sorted Array to Binary Search (
+        int indexMid = indexStart + (indexEnd - indexStart)/2;
+        
+        TreeNode root = new TreeNode(nums[indexStart + (indexEnd - indexStart)/2]);
+        
+        TreeNode leftChild = sortedArrayToBSTHelper(nums, indexStart, indexMid - 1);
+        
+        TreeNode rightChild = sortedArrayToBSTHelper(nums, indexMid + 1, indexEnd);
+        
+        root.left = leftChild;
+        
+        root.right = rightChild;)
+107. Binary Tree Level Order Traversal II (Collections.reverse(result);)
+257. Binary Tree Paths (        
+        // Base case
+        if(root == null) {
+            return;
+        }
+        if(root.left == null && root.right == null) {
+            paths.add("" + path);
+        }
+        // Divide and merge
+        if(root.left != null) {
+            helper(root.left, path + "->" + root.left.val, paths);            
+        }
+        if(root.right != null) {
+            helper(root.right, path + "->" + root.right.val, paths);   
+        })
+
+235. Lowest Common Ancestor of a Binary Search Tree (
+     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null) {
+            return null;
+        }  
+        // If both n1 and n2 are smaller than root, then LCA lies in left
+        if(root.val > p.val && root.val > q.val) {
+            return lowestCommonAncestor(root.left, p, q);
+        }
+        // If both n1 and n2 are bigger than root, then LCA lies in right
+        if(root.val < p.val && root.val < q.val) {
+            return lowestCommonAncestor(root.right, p, q);
+        }
+        // Directly return current node as it satisfy the only situation left
+        // root.val >= p.val && root.val <= q.val
+        return root;
+     })
+
+236. Lowest Common Ancestor of a Binary Tree (
+        if(root == null || root == p || root == q) {
+            return root;
+        }
+        TreeNode left_lca = lowestCommonAncestor(root.left, p, q);
+        TreeNode right_lca = lowestCommonAncestor(root.right, p, q);
+        // First check Case 3
+        if(left_lca != null && right_lca != null) {
+            return root;
+        }
+        // Then check Case 1 and 2
+        return left_lca != null ? left_lca : right_lca;)
+
+101. Symmetric Tree (   
+     public boolean isSymmetric(TreeNode x, TreeNode y) {
+       if(x == null && y == null) {
+           return true;
+       }
+       
+       if(x == null || y == null) {
+           return false;
+       }
+      
+       if(x.val != y.val) {
+           return false;
+       }
+       
+       return isSymmetric(x.left, y.right) && isSymmetric(x.right, y.left);
+     })
+
+437. Path Sum II (        
+        int result = 0;
+        if(root == null) {
+            return result;
+        }
+        if(root.val == remain) {
+            result++;
+        }
+        result += helper(root.left, remain - root.val);
+        result += helper(root.right, remain - root.val);)
+
+110. Balanced Binary Tree (
+        // If tree is empty(no root node), return true
+        if(root == null) {
+            return true;
+        }
+        // Computer the left and right subtree height
+        int leftHeight = height(root.left);
+        int rightHeight = height(root.right);
+        // Return true if difference between heights is not more than 1 and left 
+        // and right subtrees are balanced, otherwise return false.
+        if(Math.abs(leftHeight - rightHeight) <= 1 && isBalanced(root.left) && isBalanced(root.right)) {
+            return true;
+        }
+        return false;)
+
+297. Serialize and Deserialize Binary Tree (
+     private static final String spliter = ",";
+     private static final String NN = "#";
+     StringBuilder sb = new StringBuilder();
+        buildString(root, sb);
+     private void buildString(TreeNode root, StringBuilder sb) {
+        if(root == null) {
+            sb.append(NN).append(spliter);
+        } else {
+            sb.append(root.val).append(spliter);
+            buildString(root.left, sb);
+            buildString(root.right, sb);
+        }
+    }
+        Queue<String> queue = new LinkedList<String>();
+        queue.addAll(Arrays.asList(data.split(spliter)));
+        return buildTree(queue);
+    private TreeNode buildTree(Queue<String> queue) {
+        String val = queue.poll();
+        if(val.equals(NN)) {
+            return null;
+        } else {
+            TreeNode root = new TreeNode(Integer.valueOf(val));
+            root.left = buildTree(queue);
+            root.right = buildTree(queue);
+            return root;
+        }
+    })
+
+124. Binary Tree Maximum Path Sum (    
+     public int helper2(TreeNode root) {
+        // Base case
+        if(root == null) {
+            return 0;
+        }
+        // Divide
+        int left = Math.max(0, helper2(root.left));
+        int right = Math.max(0, helper2(root.right));
+        // Conquer
+        // Update maxValue (But not used for return)
+        // Same meaning as update 'maxPath'
+        maxValue = Math.max(maxValue, left + right + root.val);
+        // Returns the maximum sum of the path that can be extended to input node's parent.
+        // Same meaning as update 'singlePath'
+        return Math.max(left, right) + root.val;
+    })

@@ -1,0 +1,51 @@
+78.Subsets (backtrack
+            // base condition
+            if(index >= nums.length) {
+                return;
+            }
+            // Logic branch-1: Not add nums[index] into current subset and its inheritance chain sets
+            helper(result, tmp, nums, index + 1);)
+            // Create one subset contain nums[index]
+            List<Integer> oneSubset = new ArrayList<Integer>(tmp);
+            oneSubset.add(nums[index]);
+            result.add(oneSubset);
+            // Logic branch-2: Add nums[index] into current subset and its inheritance chain sets
+            helper(result, oneSubset, nums, index + 1);)
+
+79. Word Search (
+public boolean dfs(char[][] board, String word, int index, int rowIndex, int columnIndex, boolean[][] visited) {
+        // Base case, when index reach the end, and not return as false means we found the word in board
+        if(index == word.length()) {
+            return true;
+        } 
+        
+        // Boundary check must before conditional check, otherwise will throw out ArrayOutOfBound exception
+        if(rowIndex < 0 || rowIndex > board.length - 1 || columnIndex < 0 || columnIndex > board[0].length - 1) {
+            return false;
+        }
+        
+        // Condition to break out current level loop as this item on board is already visited
+        if(visited[rowIndex][columnIndex]) {
+            return false;
+        }
+        
+        // Condition to break out current level loop as this item on board not match the required character
+        if(board[rowIndex][columnIndex] != word.charAt(index)) {
+            return false;
+        }
+        
+        // Record current item in board has been visited before looply detect next character
+        // in potential item
+        visited[rowIndex][columnIndex] = true;
+        
+        // Detect potential item for next character(index + 1) on right/left/up/down four directions 
+        boolean result = dfs(board, word, index + 1, rowIndex + 1, columnIndex, visited) ||
+                         dfs(board, word, index + 1, rowIndex - 1, columnIndex, visited) ||
+                         dfs(board, word, index + 1, rowIndex, columnIndex + 1, visited) ||
+                         dfs(board, word, index + 1, rowIndex, columnIndex - 1, visited);
+        
+        // Restore the boolean tag for current item for next round detect
+        visited[rowIndex][columnIndex] = false;
+        
+        return result;
+    })

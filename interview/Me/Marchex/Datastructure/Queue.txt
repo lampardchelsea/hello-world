@@ -1,0 +1,211 @@
+private class MaxPQ {
+        int[] pq;
+        int n;
+        public MaxPQ(int initialCapacity) {
+            pq = new int[initialCapacity + 1];
+            n = 0;
+        }
+        
+        public void insert(int x) {
+            pq[++n] = x;
+            swim(n);
+        }
+        
+        public int delMax() {
+            int max = pq[1];
+            exch(1, n--);
+            sink(1);
+            return max;
+        }
+        
+        public void swim(int k) {
+            while(k > 1 && less(k/2, k)) {
+                exch(k/2, k);
+                k = k/2;
+            } 
+        }
+        
+        public void sink(int k) {
+            while(k <= n/2) {
+                int j = 2 * k;
+                if(j < n && less(j, j + 1)) {
+                    j++;
+                }
+                if(!less(k, j)) {
+                    break;
+                }
+                exch(k, j);
+                k = j;
+            }
+        }
+        
+        public void exch(int v, int w) {
+            int swap = pq[v];
+            pq[v] = pq[w];
+            pq[w] = swap;
+        }
+        
+        public boolean less(int v, int w) {
+            // The error prone format here
+            // return pq[v] - pq[w] < 0;
+            // but as this question will find the kth largest number, and -2147483648 is surely
+            // sit at the last position, so will not reflect problem here
+    		   // Refer to
+    		   // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/ThirdMaximumNumber.java
+            
+            return pq[v] < pq[w];
+        }
+    }
+}
+
+23. Merge k Sorted Lists (
+    PriorityQueue<ListNode> pq = new PriorityQueue<ListNode>(lists.length, new Comparator<ListNode>() {
+            
+        public int compare(ListNode a, ListNode b) {
+                
+            return a.val - b.val;
+            
+        }
+        
+    });
+        
+    ListNode dummy = new ListNode(-1);
+        
+    ListNode itr = dummy;
+        
+    for(ListNode node : lists) {
+            
+        if(node != null) {
+                
+            pq.add(node);
+            
+        }
+        
+    }
+        
+    while(!pq.isEmpty()) {
+            
+        ListNode head = pq.poll();
+            
+        itr.next = head;
+            
+        itr = head;
+            
+        if(head.next != null) {
+                
+            pq.add(head.next);
+            
+        }
+        
+    }
+        
+    return dummy.next;)
+
+239. Sliding Window Maximum (
+     public int[] maxSlidingWindow(int[] nums, int k) {
+		int len = nums.length;
+		if(nums == null || len == 0) {
+			return new int[0];
+		}
+		MaxPQ maxPQ = new MaxPQ();
+		int[] result = new int[len - k + 1];
+		for(int i = 0; i < len; i++) {
+			if(i >= k) {		
+				maxPQ.remove(nums[i - k]);
+			}
+			maxPQ.insert(nums[i]);
+			if(i + 1 >= k) {
+				result[i + 1 - k] = maxPQ.peek();
+			}
+		}
+		return result;
+    }
+)
+
+295. Find Median from Data Stream (
+public class MedianFinder {
+    MaxPQ maxPQ;
+    MinPQ minPQ;
+    
+    /** initialize your data structure here. */
+    public MedianFinder() {
+        maxPQ = new MaxPQ();
+        minPQ = new MinPQ();
+    }
+    
+    /**
+     * The smaller half of data stream will add onto MaxPQ, 
+     * the larger half will add onto MinPQ, basic idea is 
+     * the median will generate from peek of both PQ or from 
+     * newly added num which will locate on either MaxPQ or MinPQ
+     * Example 1: 
+     * Given 1, 2, 3, 4, 5, 6
+     * MaxPQ(store smaller half)       MinPQ(store larger half)
+     *   3                               4
+     *   1                               5
+     *   2                               6
+     * The peek of MaxPQ is 3, peek of MinPQ is 4, as equal size = 3,
+     * the median is between (double)(3 + 4) / 2 = 3.5
+     *   
+     * Example 2:
+     * Given 1, 2, 3, 4, 5, 6, 7
+     * MaxPQ(store smaller half)       MinPQ(store larger half)
+     *                                   4
+     *   3                               5
+     *   1                               6
+     *   2                               7
+     * The peek of MaxPQ is 3, peek of MinPQ is 4, MinPQ size > MaxPQ size,
+     * the median is from MinPQ peek = 4.0
+     */
+    public void addNum(int num) {
+    	// If MaxPQ is empty or the number is smaller than peek,
+    	// add number into MaxPQ, the first time comparison
+    	// between number and peek depends on Integer.MAX_VALUE
+    	// as MaxPQ is empty
+        if(maxPQ.isEmpty() || num <= maxPQ.peek()) {
+        	// If MaxPQ size is larger than MinPQ size, need to
+        	// make a balance by moving the peek of MaxPQ into
+        	// MinPQ, which make sure the size difference <= 1
+            if(maxPQ.size() > minPQ.size()) {
+                minPQ.insert(maxPQ.delMax());
+            }
+            // Then add the new number to MaxPQ
+            maxPQ.insert(num);
+        } 
+    	// If MinPQ is empty or the number is larger than peek,
+    	// add number into MinPQ, the first time comparison
+    	// between number and peek depends on Integer.MIN_VALUE
+    	// as MinPQ is empty
+        else if(minPQ.isEmpty() || num > minPQ.peek()) {
+        	// If MinPQ size is larger than MaxPQ size, need to
+        	// make a balance by moving the peek of MinPQ into
+        	// MaxPQ, which make sure the size difference <= 1
+            if(minPQ.size() > maxPQ.size()) {
+                maxPQ.insert(minPQ.delMin());
+            }
+            // Then add the new number to MinPQ
+            minPQ.insert(num);
+        } 
+        // If the number is smaller than MinPQ peek
+        // and larger than MaxPQ peek, then return
+        // size larger PQ's peek
+        else {
+            if(maxPQ.size() <= minPQ.size()) {
+                maxPQ.insert(num);
+            } else {
+                minPQ.insert(num);
+            }
+        }
+    }
+    
+    public double findMedian() {
+        if(maxPQ.size() > minPQ.size()) {
+            return (double)maxPQ.peek();
+        } else if(minPQ.size() > maxPQ.size()) {
+            return (double)minPQ.peek();
+        } else if(minPQ.isEmpty() && maxPQ.isEmpty()) {
+            return 0;
+        } else {
+            return ((double)maxPQ.peek() + (double)minPQ.peek()) / 2;
+        }
+    })

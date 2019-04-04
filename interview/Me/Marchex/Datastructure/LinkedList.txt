@@ -1,0 +1,391 @@
+206. Reverse Linked List (
+     public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        while(curr != null) {
+            ListNode nextTemp = curr.next;
+            curr.next = prev;
+            // Important: Should not reverse the setting order here,
+            // first assign 'curr' to 'prev'
+            //curr = nextTemp;
+            prev = curr;
+            curr = nextTemp;
+        }
+        return prev;
+    })
+
+92. Reverse Linked List II (
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode itr = dummy;
+        // Use (m - 1) to guarantee get the 'pre'
+        for(int i = 0; i < m - 1; i++) {
+        	itr = itr.next;
+        }
+        ListNode pre = itr;
+        ListNode start = pre.next;
+        ListNode then = start.next;
+        for(int i = 0; i < n - m; i++) {
+        	start.next = then.next; // Switch 'start' to the later position of 'then'
+        	then.next = pre.next; // Switch 'then' to the later position of 'pre'(beginning)
+        	pre.next = then; // Set 'then' as new beginning
+        	then = start.next; // Put 'then' back to the next of 'start' and prepare for next loop
+        }
+        return dummy.next;)
+
+237. Delete Node in a Linked List (node.val = node.next.val; node.next = node.next.next;)
+21. Merge Two Sorted Lists (
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if(l1 == null && l2 == null) {
+            return null;
+        }
+        ListNode dummy = new ListNode(-1);
+        ListNode itr = dummy;
+        ListNode itr1 = l1;
+        ListNode itr2 = l2;
+        while(itr1 != null || itr2 != null) {
+            if(itr1 != null && itr2 != null) {
+                if(itr1.val < itr2.val) {
+                    itr.next = itr1;
+                    itr1 = itr1.next;
+                } else {
+                    itr.next = itr2;
+                    itr2 = itr2.next;
+                } 
+            } else if(itr1 == null) {
+                itr.next = itr2;
+                itr2 = itr2.next;
+            } else if(itr2 == null) {
+                itr.next = itr1;
+                itr1 = itr1.next;
+            }
+            itr = itr.next;
+        }
+        return dummy.next;
+    })
+
+83. Remove Duplicates from Sorted List (        
+        ListNode iterator = head;
+        while(iterator != null) {
+            if(iterator.next == null) {
+                break;
+            } else if(iterator.next.val == iterator.val) {
+                iterator.next = iterator.next.next;
+            } else {
+                iterator = iterator.next;
+            }
+        }
+        return head;)
+
+82. Remove Duplicates from Sorted List II (
+        if(head == null || head.next == null) {
+            return head;
+        }
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode curr = head;
+        ListNode prev = dummy;
+        while(curr != null) {
+            while(curr.next != null && curr.val == curr.next.val) {
+                curr = curr.next;
+            }
+            if(prev.next == curr) {
+                prev = prev.next;
+            } else {
+                prev.next = curr.next;
+            }
+            curr = curr.next;
+        }
+        return dummy.next;)
+
+141. Linked List Cycle (
+        if(head == null) {
+            return false;
+        }
+        ListNode walker = head;
+        ListNode runner = head;
+        while(runner.next != null && runner.next.next != null) {
+            walker = walker.next;
+            runner = runner.next.next;
+            if(walker == runner) {
+                return true;
+            }
+        }
+        return false;)
+
+142. Linked List Cycle II (
+        ListNode walker = head;
+        ListNode runner = head;
+        boolean isCycle = false;
+        while(runner.next != null && runner.next.next != null) {
+            walker = walker.next;
+            runner = runner.next.next;
+            if(walker == runner) {
+                isCycle = true;
+                break;
+            }
+        }
+        if(!isCycle) {
+            return null;
+        } else {
+            walker = head;
+            while(walker != runner) {
+                walker = walker.next;
+                runner = runner.next;
+            }
+        }
+        return walker;)
+
+203. Remove Linked List Elements (
+        ListNode fakeHead = new ListNode(-1);
+        fakeHead.next = head;
+        ListNode itr = fakeHead;
+        while(itr.next != null) {
+            if(itr.next.val == val) {
+                itr.next = itr.next.next;
+            } else {
+                itr = itr.next;
+            }
+        }
+        return fakeHead.next;)
+
+234. Palindrome Linked List (
+    public boolean isPalindrome(ListNode head) {
+        ListNode secondHalfStart = findSecondHalfStart(head);
+        ListNode temp = reverseSecondHalf(secondHalfStart);
+        return checkIdentical(head, temp);
+    }
+
+    public ListNode findSecondHalfStart(ListNode head) {
+        if(head == null) {
+            return null;
+        }
+        int len = 1;
+        ListNode itr = head;
+        while(itr.next != null) {
+            len++;
+            itr = itr.next;
+        }
+        if(len == 1) {
+            return head;
+        } else if(len % 2 == 1) {
+            itr = head;
+            int x = len/2;
+            while(x > 0) {
+            	itr = itr.next;
+            	x--;
+            }
+            return itr.next;
+        } else {
+            itr = head;
+            int x = len/2;
+            while(x > 0) {
+            	itr = itr.next;
+            	x--;
+            }
+            return itr;
+        }
+    }
+
+    public ListNode reverseSecondHalf(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        while(curr != null) {
+            ListNode nextTemp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nextTemp;
+        }
+        return prev;
+    }
+    
+    public boolean checkIdentical(ListNode x, ListNode y) {
+        if(x == null && y == null) {
+            return true;
+        }
+        if(x == null || y == null) {
+            return false;
+        }
+        ListNode itr1 = x;
+        ListNode itr2 = y;
+        while(itr1 != null && itr2 != null) {
+            if(itr1.val != itr2.val) {
+                return false;
+            }
+            itr1 = itr1.next;
+            itr2 = itr2.next;
+        }
+        return true;
+    })
+
+160. Intersection of Two Linked Lists (
+        ListNode itrA = headA;
+        ListNode itrB = headB;
+        while(itrA != null && itrB != null && itrA != itrB) {
+            itrA = itrA.next;
+            itrB = itrB.next;
+            if(itrA == itrB) {
+                return itrA;
+            }
+            if(itrA == null) {
+                itrA = headB;
+            }
+            if(itrB == null) {
+                itrB = headA;
+            }
+        }
+        return itrA;)
+
+24. Swap Nodes in Pairs (
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode prev = dummy;
+        ListNode curr = null;
+        ListNode then = null;
+        // E.g
+        // dummy ->  1   ->   2   -> 3
+        //  prev -> curr -> then
+        while(prev.next != null && prev.next.next != null) {
+            // Store 1
+            curr = prev.next;
+            // Store 2
+            then = prev.next.next;
+            // 1 -> 3
+            curr.next = then.next;
+            // 2 -> 1
+            then.next = curr;
+            // dummy -> 2
+            prev.next = then;
+            // Move forward 1 step of 'prev', which will also update
+            // 'curr' and 'then' in next loop
+            prev = curr;
+            // After one loop
+            // dummy -> 2  ->  1   ->  3  ->  4
+            //                prev -> curr -> then
+        }
+        return dummy.next; )
+
+109. Convert Sorted List to Binary Search Tree (    
+     public TreeNode preorderSortedListToBST(ListNode start, ListNode end) {
+        ListNode walker = start;
+        ListNode runner = start;
+        if(start == end) {
+            return null;
+        }
+        while(runner != end && runner.next != end) {
+            walker = walker.next;
+            runner = runner.next.next;
+        }
+        
+        TreeNode root = new TreeNode(walker.val);
+        root.left = preorderSortedListToBST(start, walker);
+        root.right = preorderSortedListToBST(walker.next, end);
+        return root;
+    } )
+
+147. Insertion Sort List (
+     public ListNode insertionSortList(ListNode head) {
+        if(head == null || head.next == null) {
+            return head;
+        }
+        ListNode dummy = new ListNode(-1);
+        // Insert node between pre and pre.next
+        ListNode pre = dummy;
+        // 'curr' is the node will be inserted
+        ListNode curr = head;
+        // 'next' is the next node will be inserted
+        ListNode next = null;
+        // Not the end of input list
+        while(curr != null) {
+            // Find node need to insert in next loop
+            next = curr.next;
+            // Before insert, the 'pre' is at the last node of the sorted list. 
+            // Only the last node's value is larger than the current inserting node 
+            // should we move the temp back to the head
+            if(pre.val > curr.val) {
+            	pre = dummy;
+            }
+            // Find the right place to insert
+            while(pre.next != null && pre.next.val < curr.val) {
+                pre = pre.next;
+            }
+            // Insert 'curr' between pre and pre.next
+            curr.next = pre.next;
+            pre.next = curr;
+            // Reset 'pre' to dummy for next loop insert
+            //pre = dummy;
+            // Update 'curr' to 'next' that need to insert in next loop
+            curr = next;
+        }
+        return dummy.next;
+    })
+
+2. Add Two Numbers (        
+        ListNode dummy = new ListNode(-1);
+        ListNode itr = dummy;
+        int temp = 0;
+        while(l1 != null || l2 != null) {
+            temp = temp / 10;
+            if(l1 != null) {
+                temp += l1.val;
+                l1 = l1.next;
+            }
+            if(l2 != null) {
+                temp += l2.val;
+                l2 = l2.next;
+            }
+            itr.next = new ListNode(temp % 10);
+            itr = itr.next;
+        }
+        if(temp / 10 == 1) {
+            itr.next = new ListNode(1);
+        }
+        return dummy.next;)
+
+138. Copy List with Random Pointer (
+     public RandomListNode copyRandomList(RandomListNode head) {
+	// First round: make copy of each node,
+        // and link them together side-by-side in a single list.
+        RandomListNode itr = head;
+        RandomListNode nextTemp;
+        while(itr != null) {
+            RandomListNode copy = new RandomListNode(itr.label);
+            nextTemp = itr.next;
+            copy.next = nextTemp;
+            itr.next = copy;
+            // Advance 'itr' to original next node of 'itr' as 'nextTemp'
+            itr = nextTemp;
+        }
+        // Second round: assign random pointers for the copy nodes.
+        itr = head;
+        while(itr != null) {
+        	if(itr.random != null) {
+                itr.next.random = itr.random.next;        		
+        	}
+            itr = itr.next.next;
+        }
+        // Third round: restore the original list, and extract the copy list.
+        itr = head;
+        RandomListNode dummy = new RandomListNode(-1);
+        RandomListNode copy;
+        RandomListNode copyItr = dummy;
+        while(itr != null) {
+            // Reuse 'nextTemp' to reserve original next node of 'itr'
+            // E.g 1 -> 1' -> 3 -> 3', if itr = 1 now, we reserve 3 in nextTemp
+            nextTemp = itr.next.next;
+            // E.g 1 -> 1' -> 3 -> 3', if itr = 1 now, copy is 1'
+            copy = itr.next;
+            // Point copyItr to copy, e.g if copyItr = dummy now, 
+            // it will concatenate dummy to 1' to construct new list
+            copyItr.next = copy;
+            // Move copyItr to copy for next loop, e.g if copyItr = dummy now, move to 1'
+            copyItr = copy;
+            // Point itr to original next node which stored in 'nextTemp',
+            // e.g if itr = 1 now, it will concatenate 3 to reconstruct
+            // original list
+            itr.next = nextTemp;
+            // Move itr to nextTemp for next loop, e.g if itr = 1 now, move to 3
+            itr = nextTemp;
+        }       
+        return dummy.next;)
+

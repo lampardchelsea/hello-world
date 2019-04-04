@@ -1,0 +1,54 @@
+283. Move Zeros (index to skip)
+448. Find All Numbers Disappeared in an Array (binary search for each value)
+169. Majority Element (The majority element is the element that appears more than n/2 times)
+217. Contains Duplicate (set)
+167. Two Sum II - Input array is sorted (binary search for temp = numbers[lo] + numbers[hi])
+268. Missing Number (sum then substract, binary search nums[index] > index then discard the elements on half)
+628. Maximum Product Of Three Numbers (Math.max(max1 * max2 * max3, min1 * min2 * max1))
+746. Min Cost Climbing Stairs (dp[i] = cost[i] + Math.min(dp[i - 1], dp[i - 2]))
+674. Longest Continuous Increasing Subsequence (if(A[i] > A[i - 1]) {max++;})
+118. Pascal Triangle (Current row item[j] = previous row (index = i - 2) item[j - 1] + item[j])
+53. Maximum Subarray (dp[i] = nums[i] + (dp[i - 1] > 0 ? dp[i - 1] : 0);max = Math.max(dp[i], max))
+35. Search Insert Position (binary search, index is between [low, high+1])
+26. Remove Duplicates from Sorted Array (if(nums[j] != nums[i]) {
+nums[++i] = nums[j];
+}
+j++;)
+80. Remove Duplicates from Sorted Array II (if(i < 2 || n > nums[i - 2]) {nums[i++] = n;} / Set)
+643. Maximum Average Subarray I (preSum[0] = nums[0];preSum[i] = preSum[i - 1] + nums[i])
+219. Contains Duplicate II (if(i > k) {
+set.remove(nums[i - k - 1]);
+}
+if(!set.add(nums[i])) {
+return true;
+})
+88. Merge Sorted Array (nums1[m + n - 1] = nums2[n - 1] / nums1[m - 1])
+189. Rotate Array (int[] concatenate = new int[length * 2])
+442. Find All Duplicates in an Array (some elements appear twice, when find a number i, 
+                                      flip the number at position i-1 to negative. 
+                                      if the number at position i-1 is already negative, 
+                                      i is the number that occurs twice.)
+        for(int i = 0; i < nums.length; i++) {
+            int index = Math.abs(nums[i]) - 1;
+            if(nums[index] < 0) {
+                result.add(Math.abs(index + 1));
+            }
+            nums[index] = -nums[index];
+        }
+485. Max Consecutive Ones (if (nums[i] == 1) {count++;max = Math.max(count, max);} else {count = 0;})
+560. Subarray Sum Equals K (sum[i] = sum[i - 1] + nums[i - 1]; if(sum[end] - sum[start] == k) {count++;})
+11. Container With Most Water (Two Points,
+        while(left < right){
+            maxArea = Math.max(maxArea, Math.min(height[left], height[right]) * (right - left));
+            if(height[left] < height[right]){
+                left++;
+            } else {
+                right--;
+            })
+
+73. Set Matrix Zeros (Two boolean flags for whether first row & column contains 0 or not, 
+                      as we actually use first row & column to record whether that row or 
+                      column need to set to 0, firstRowZero = true; firstColZero = true;)
+
+
+
