@@ -1,0 +1,215 @@
+https://codereview.stackexchange.com/questions/43087/modelling-a-call-center
+
+Requirement:
+Imagine you have a call center with three levels of employees: fresher, technical lead (TL), 
+and product manager (PM). There can be multiple employees, but only one TL or PM. An incoming 
+telephone call must be allocated to a fresher who is free. If a fresher can't handle the call, 
+he or she must escalate the call to technical lead. If the TL is not free or not able to handle it, 
+then the call should be escalated to PM. Design the classes and data structures for this problem. 
+Implement a method getCallHandler().
+
+This sounds like if there are no free freshers, the call shouldn't be handled at all (an exception thrown?), 
+rather than skipping to the TL. This sort of makes sense as a real world requirement: 
+it may be preferable for a caller to have to call back a bit later if there are no freshers available, 
+rather than to waste the technical lead's time with a call that a fresher should be able to handle. 
+Whatever calls this could, for example, plan to catch that exception and do addCallToUnhandledCallQueue() 
+or whatever.
+
+This also goes a bit more to the meat of the question, which I believe is trying to get you to answer 
+with the chain-of-responsibility pattern. In this pattern each object (in this case an Employee) 
+responsible for processing a command (in this case a call) contains logic to check whether 
+it is capable of processing a given command, and if not, also knows the next object in the chain to call.
+
+So using this pattern, your getCallHandler(Call call) method would look something like this:
+
+Employee fresher = getAnyFreeFresher(); //Should throw if there are none
+return fresher.handle(call);
+Then the Employee class would look something like:
+
+public class Employee{
+    private Employee boss;
+
+    private bool canHandle(Call call){
+    //...
+    }
+
+    public Employee handle(Call call){
+        if(canHandle(call)){
+            return this;
+        }
+        if(boss == null){
+            //Nobody in the chain could handle, throw
+        }
+        return boss.handle(call);
+    }
+}
+That's a very rough outline, there's detail to fill in on how bosses are set, and you'd probably 
+want employee types to inherit from Employee to implement canHandle, etc.
+
+
+Full code
+Try not us use booleans, use enums instead.
+
+i.e.
+
+public enum EmployeeStatus {
+    OnCall,
+    Available        
+}
+This allows you to add more status as requirements change:
+
+public enum EmployeeStatus {
+    OnCall,
+    Available,
+    OutToLunch,
+    OnVacation,
+    OnBreak
+}
+
+I don't like that getCallHandler() can populate the freshers. I would inject the list or maybe a factory 
+that will be able to do that. This will decouple the code, and allow for much easier unit testing 
+in the future
+
+First I will comment on your implementation, then I will propose my version at the end.
+
+Here we go, from top to bottom:
+
+public interface CallAllocator {
+    public Employee getCallHandler() throws NoEmployeeInTheHouseException;
+    void setTL(TechnicalLead technicalLead);
+    void setPM(ProductManager productManager);
+    void addFresher(Fresher fresher);
+}
+"Employee" is too generic a term for somebody who handles calls. I would call it ICallHandler. 
+The actual employee classes are irrelevant in the discussion of handling calls, they should not 
+be part of the model design.
+
+The setTL, setPM, addFresher methods all use terms and arguments that are too implementation specific. 
+An interface definition should be as abstract as possible.
+
+Next:
+if (freshers.isEmpty() && technicalLead == null && productManager == null) {
+    throw new NoEmployeeInTheHouseException();
+}
+I see that in your implementation you handle the availability of freshers/lead/manager as being 
+empty or null. This is state management, not modeling. It would be better to capture the notion 
+of being available or not by the model, using explicit interface methods.
+
+if (!freshers.isEmpty()) {
+    Employee fresher = freshers.get(new Random().nextInt(freshers.size()));
+    if (fresher.getCanHandle()) {
+        return fresher;
+    }
+}
+
+getCanHandle is really awkward, canHandle would be more natural
+The notion of getting the next available fresher deserves its own method: you can think of different 
+implementations, such as pick any free fresher at random, or pick the least picked, or pick the most 
+picked, and so on.
+Ok so here's my solution to model the description quite accurately:
+
+interface ITicket {}
+
+interface ICallHandler {
+    boolean isAvailable();
+    boolean canHandle(ITicket ticket);
+}
+
+interface ICallHandlerPicker {
+    ICallHandler getAvailableCallHandler();
+}
+
+interface ICallCenter {
+    ICallHandler getCallHandler(ITicket ticket);
+}
+
+class SingleLeadSingleManagerCallCenter implements ICallCenter {
+    private final ICallHandlerPicker picker;
+    private final ICallHandler lead;
+    private final ICallHandler manager;
+
+    SingleLeadSingleManagerCallCenter(ICallHandlerPicker picker, ICallHandler lead, ICallHandler manager) {
+        this.picker = picker;
+        this.lead = lead;
+        this.manager = manager;
+    }
+
+    @Override
+    public ICallHandler getCallHandler(ITicket ticket) {
+        ICallHandler handler = picker.getAvailableCallHandler();
+        if (handler == null) {
+            // nobody available. perhaps throw new NoSuchElementException() ?
+            return null;
+        }
+        if (handler.canHandle(ticket)) {
+            return handler;
+        }
+        if (lead.isAvailable() && lead.canHandle(ticket)) {
+            return lead;
+        }
+        return manager;
+    }
+}
+
+This sticks to the well-defined parts of the description and leaves the undefined parts unimplemented on purpose, 
+such as:
+
+If there are many free freshers, which one to pick? --> implement as you like
+If there are no free freshers, what to do? --> null implies that there's nobody to handle, 
+though I admin I don't like this part much
+Other things to note:
+
+The interfaces are short and to the point, with only getters, no mutators
+The class members are all final, and the class is fully defined at construction time, 
+there's no room left for guessing
+In terms of handling calls, the tech lead and product manager are call handlers just like the freshers, 
+so using interfaces makes good sense, no need to give them dedicated classes
+Of course this is not scalable. The description itself excluded scalability by specifying a single tech lead 
+and a single product manager. I would fix that by modeling the multiple levels as a chain of call centers:
+class MultiLevelCallCenter implements ICallCenter {
+    private final ICallHandlerPicker picker;
+    private final ICallCenter nextCallCenter;
+
+    MultiLevelCallCenter(ICallHandlerPicker picker, ICallCenter nextCallCenter) {
+        this.picker = picker;
+        this.nextCallCenter = nextCallCenter;
+    }
+
+    @Override
+    public ICallHandler getCallHandler(ITicket ticket) {
+        ICallHandler handler = picker.getAvailableCallHandler();
+        if (handler == null) {
+            // nobody available. perhaps throw new NoSuchElementException() ?
+            return null;
+        }
+        if (handler.canHandle(ticket)) {
+            return handler;
+        }
+        return nextCallCenter.getCallHandler(ticket);
+    }
+}
+
+class UltimateCallCenter implements ICallCenter {
+    private final ICallHandler handler;
+
+    UltimateCallCenter(ICallHandler handler) {
+        this.handler = handler;
+    }
+
+    @Override
+    public ICallHandler getCallHandler(ITicket ticket) {
+        return handler.isAvailable() ? handler : null;
+    }
+}
+
+Then, we could implement the call center in the description in terms of these more scalable classes as:
+ICallCenter getSingleLeadSingleManagerCallCenter(ICallHandlerPicker picker, final ICallHandler lead, ICallHandler manager) {
+    ICallCenter managerCallCenter = new UltimateCallCenter(manager);
+    ICallCenter leadCallCenter = new MultiLevelCallCenter(new ICallHandlerPicker() {
+        @Override
+        public ICallHandler getAvailableCallHandler() {
+            return lead.isAvailable() ? lead : null;
+        }
+    }, managerCallCenter);
+    return new MultiLevelCallCenter(picker, leadCallCenter);
+}
