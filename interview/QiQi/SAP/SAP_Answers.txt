@@ -370,35 +370,8 @@ follow-up：怎么用 MongoDB 储存这个系统（还是 design 的问题）
 -- How to answer OO Design for this question ?
 -- Better way to design ? Such as implements/extends ? Enum class ? Marshall / Unmarshall ? / Singleton ?
 How to implement SerialID unique increasing when initialize, e.g  AisleID in store ?
-public class Store {
-	private int storeID;
-    private Aisle asile;
-	get / set
-}
-
-public class Aisle {
-	private long index;
-    private Shelf shelf;
-	get / set
-}
-
-public class Shelf {
-    private Position position;
-	get / set
-}
-
-public class Position {
-    private Merchandise merchandise;
-	
-}
-
-public class Merchandise {
-    private String name;
-	private long amonut;
-	private Date expirationDate;
-	get / set
-}
-
+// Detail design check on full code
+// MongoDB design
 {
  _id:101,
  uniqueStoreID:
@@ -475,5 +448,285 @@ http://tutorials.jenkov.com/java-concurrency/blocking-queues.html
 一开始问了一些 JAVA 基本概念，什么是 Object，什么是 immutable，wait() 和 notify() 怎么用。
 然后是编程题。
 第一题：实现一个 int parse(String s)，要求遇见所有非数字字符就抛 exception，但是字符串开头可能有正负号（“+”、“-”）。
+https://www.programcreek.com/2012/12/leetcode-string-to-integer-atoi/
+class Solution {
+    public int myAtoi(String str) {
+        // Situation need to handle
+        // (1) Remove leading white space
+        // (2) Check significant
+        // (3) Check char valid or not
+        // (4) Integer max or min overflow (by using double first then convert to int)
+        if(str == null || str.length() < 1) {
+            return 0;
+        }
+        // trim white spaces
+        str = str.trim();
+        // In case after removing leading and backing space left as empty string
+        if(str.length() > 0) {
+            char flag = '+';
+            // check negative or positive
+            int i = 0;
+            if(str.charAt(0) == '-') {
+                flag = '-';
+                i++;
+            } else if(str.charAt(0) == '+') {
+                i++;
+            }
+            // Why was double used for result?
+            // Integer has range [-2147483648 , 2147483647] in Java. If the number is
+            // -214748364, the algorithm processes it as a positive integer and then change
+            // sign. The number would exceed the integer range if an integer is used.
+            // use double to store result
+            double result = 0;
+            // calculate value
+            //while(str.length() > i && str.charAt(i) >= '0' && str.charAt(i) <= '9') {
+            //    result = result * 10 + (str.charAt(i) - '0');
+            //    i++;
+            //}
+			while(i < str.length()) {
+				if(str.charAt(i) >= '0' && str.charAt(i) <= '9') {
+				    result = result * 10 + (str.charAt(i) - '0');
+                    i++;
+				} else {
+				    throw new IllegalArgumentException("String contains invalid characters");
+				}
+            }
+            if(flag == '-') {
+                result = -result;
+            }
+            // handle max and min
+            if(result > Integer.MAX_VALUE) {
+                return Integer.MAX_VALUE;
+            }
+            if(result < Integer.MIN_VALUE) {
+                return Integer.MIN_VALUE;
+            }
+            return (int) result;  
+        }
+        return 0;
+    }
+}
+
+
+
 第二题：实现一个 float parse(String s)。
 follow-up：对于第二个题，如果需要写 test case 做测试的话，都有哪些 case。
+
+test case for parse float method
+https://searchcode.com/codesearch/view/17998050/
+package test9;
+
+/*
+ * Copyright (c) 1998, 2003, Oracle and/or its affiliates. All rights reserved.
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ *
+ * This code is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License version 2 only, as
+ * published by the Free Software Foundation.
+ *
+ * This code is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+ * version 2 for more details (a copy is included in the LICENSE file that
+ * accompanied this code).
+ *
+ * You should have received a copy of the GNU General Public License version
+ * 2 along with this work; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+ *
+ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
+ * or visit www.oracle.com if you need additional information or have any
+ * questions.
+ */
+
+/*
+ * Refer to
+ * https://searchcode.com/codesearch/raw/17998050/
+ * @test
+ * @bug 4160406 4705734 4707389
+ * @summary Tests for Float.parseFloat method
+ */
+
+public class ParseFloat {
+
+    private static void check(String val, float expected) {
+        float n = Float.parseFloat(val);
+        if (n != expected)
+            throw new RuntimeException("Float.parseFloat failed. String:" +
+                                                val + " Result:" + n);
+    }
+
+    private static void rudimentaryTest() {
+        check(new String(""+Float.MIN_VALUE), Float.MIN_VALUE);
+        check(new String(""+Float.MAX_VALUE), Float.MAX_VALUE);
+
+        check("10",     (float)  10.0);
+        check("10.0",   (float)  10.0);
+        check("10.01",  (float)  10.01);
+
+        check("-10",    (float) -10.0);
+        check("-10.00", (float) -10.0);
+        check("-10.01", (float) -10.01);
+    }
+
+    static  String badStrings[] = {
+        "",
+        "+",
+        "-",
+        "+e",
+        "-e",
+        "+e170",
+        "-e170",
+
+        // Make sure intermediate white space is not deleted.
+        "1234   e10",
+        "-1234   e10",
+
+        // Control characters in the interior of a string are not legal
+        "1\u0007e1",
+        "1e\u00071",
+
+        // NaN and infinity can't have trailing type suffices or exponents
+        "NaNf",
+        "NaNF",
+        "NaNd",
+        "NaND",
+        "-NaNf",
+        "-NaNF",
+        "-NaNd",
+        "-NaND",
+        "+NaNf",
+        "+NaNF",
+        "+NaNd",
+        "+NaND",
+        "Infinityf",
+        "InfinityF",
+        "Infinityd",
+        "InfinityD",
+        "-Infinityf",
+        "-InfinityF",
+        "-Infinityd",
+        "-InfinityD",
+        "+Infinityf",
+        "+InfinityF",
+        "+Infinityd",
+        "+InfinityD",
+
+        "NaNe10",
+        "-NaNe10",
+        "+NaNe10",
+        "Infinitye10",
+        "-Infinitye10",
+        "+Infinitye10",
+
+        // Non-ASCII digits are not recognized
+        "\u0661e\u0661", // 1e1 in Arabic-Indic digits
+        "\u06F1e\u06F1", // 1e1 in Extended Arabic-Indic digits
+        "\u0967e\u0967" // 1e1 in Devanagari digits
+    };
+
+    static String goodStrings[] = {
+        "NaN",
+        "+NaN",
+        "-NaN",
+        "Infinity",
+        "+Infinity",
+        "-Infinity",
+        "1.1e-23f",
+        ".1e-23f",
+        "1e-23",
+        "1f",
+        "1",
+        "2",
+        "1234",
+        "-1234",
+        "+1234",
+        "2147483647",   // Integer.MAX_VALUE
+        "2147483648",
+        "-2147483648",  // Integer.MIN_VALUE
+        "-2147483649",
+
+        "16777215",
+        "16777216",     // 2^24
+        "16777217",
+
+        "-16777215",
+        "-16777216",    // -2^24
+        "-16777217",
+
+        "9007199254740991",
+        "9007199254740992",     // 2^53
+        "9007199254740993",
+
+        "-9007199254740991",
+        "-9007199254740992",    // -2^53
+        "-9007199254740993",
+
+        "9223372036854775807",
+        "9223372036854775808",  // Long.MAX_VALUE
+        "9223372036854775809",
+
+        "-9223372036854775808",
+        "-9223372036854775809", // Long.MIN_VALUE
+        "-9223372036854775810"
+    };
+
+    static String paddedBadStrings[];
+    static String paddedGoodStrings[];
+    static {
+        String pad = " \t\n\r\f\u0001\u000b\u001f";
+        paddedBadStrings = new String[badStrings.length];
+        for(int i = 0 ; i <  badStrings.length; i++)
+            paddedBadStrings[i] = pad + badStrings[i] + pad;
+
+        paddedGoodStrings = new String[goodStrings.length];
+        for(int i = 0 ; i <  goodStrings.length; i++)
+            paddedGoodStrings[i] = pad + goodStrings[i] + pad;
+
+    }
+
+    /*
+     * Throws an exception if <code>Input</code> is
+     * <code>exceptionalInput</code> and {@link Float.parseFloat
+     * parseFloat} does <em>not</em> throw an exception or if
+     * <code>Input</code> is not <code>exceptionalInput</code> and
+     * <code>parseFloat</code> throws an exception.  This method does
+     * not attempt to test whether the string is converted to the
+     * proper value; just whether the input is accepted appropriately
+     * or not.
+     */
+    private static void testParsing(String [] input,
+                                    boolean exceptionalInput) {
+        for(int i = 0; i < input.length; i++) {
+            double d;
+
+            try {
+                d = Float.parseFloat(input[i]);
+            }
+            catch (NumberFormatException e) {
+                if (! exceptionalInput) {
+                    throw new RuntimeException("Float.parseFloat rejected " +
+                                               "good string `" + input[i] +
+                                               "'.");
+                }
+                break;
+            }
+            if (exceptionalInput) {
+                throw new RuntimeException("Float.parseFloat accepted " +
+                                           "bad string `" + input[i] +
+                                           "'.");
+            }
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        rudimentaryTest();
+
+        testParsing(goodStrings, false);
+        testParsing(paddedGoodStrings, false);
+        testParsing(badStrings, true);
+        testParsing(paddedBadStrings, true);
+    }
+}
+
+
