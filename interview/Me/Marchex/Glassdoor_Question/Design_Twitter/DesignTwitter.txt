@@ -1,0 +1,150 @@
+public class Twitter {
+    // Map store specific user and its posted tweet
+    Map<Integer, List<Tweet>> userPostTweetMap;
+    // Map store specific user as follower and its all followee
+    Map<Integer, List<Integer>> userRelationMap;
+    // Use counter to simulate real timestamp
+    int timestamp;
+    
+    // The Tweet class associate timestamp and tweetid together
+    // used for MaxPQ heap sort
+    private class Tweet {
+        int timestamp;
+        int tweetId;
+        public Tweet(int timestamp, int tweetId) {
+            this.timestamp = timestamp;
+            this.tweetId = tweetId;
+        }
+    }
+    
+    /** Initialize your data structure here. */
+    public Twitter() {
+        userPostTweetMap = new HashMap<Integer, List<Tweet>>();
+        userRelationMap = new HashMap<Integer, List<Integer>>();
+        timestamp = 0;
+    }
+    
+    /** Compose a new tweet. */
+    public void postTweet(int userId, int tweetId) {
+    	// Every post will increase counter by 1
+        timestamp++;
+        Tweet tweet = new Tweet(timestamp, tweetId);
+        if(!userPostTweetMap.containsKey(userId)) {
+            List<Tweet> tweetIdList = new ArrayList<Tweet>();
+            tweetIdList.add(tweet);
+            userPostTweetMap.put(userId, tweetIdList);
+        } else {
+            userPostTweetMap.get(userId).add(tweet);
+        }
+    }
+    
+    /** Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users 
+     * who the user followed or by the user herself. Tweets must be ordered from most recent to least recent. */
+    public List<Integer> getNewsFeed(int userId) {
+        List<Integer> result = new ArrayList<Integer>();
+        List<Tweet> temp = new ArrayList<Tweet>();
+        // Add user's self post(if already have post) before adding followee's post
+        if(userPostTweetMap.get(userId) != null && userPostTweetMap.get(userId).size() > 0) {
+        	temp.addAll(userPostTweetMap.get(userId));
+        }
+        // Add followee's post for specific follower(given by userId)
+        if(userRelationMap.get(userId) != null && userRelationMap.get(userId).size() > 0) {
+            for(Integer followeeId : userRelationMap.get(userId)) {
+            	// If follower follow himself/herself, not add again
+            	if(followeeId != userId && userPostTweetMap.get(followeeId) != null && userPostTweetMap.get(followeeId).size() > 0) {
+            		temp.addAll(userPostTweetMap.get(followeeId));
+            	}
+            }
+        }
+        // Put all related user's(user and its followee) tweet onto max priority queue
+        MaxPQ maxPQ = new MaxPQ(temp.size());
+        for(int i = 0; i < temp.size(); i++) {
+            maxPQ.insert(temp.get(i));
+        }
+        // If posted tweet less than 10, return all of them, if over 10, return top 10
+        if(temp.size() < 10) {
+            for(int i = 0; i < temp.size(); i++) {
+                result.add(maxPQ.delMax().tweetId);
+            }
+        } else {
+            for(int i = 0; i < 10; i++) {
+                result.add(maxPQ.delMax().tweetId);
+            }
+        }
+        return result;
+    }
+    
+    /** Follower follows a followee. If the operation is invalid, it should be a no-op. */
+    public void follow(int followerId, int followeeId) {
+        if(!userRelationMap.containsKey(followerId)) {
+            List<Integer> followeeIds = new ArrayList<Integer>();
+            followeeIds.add(followeeId);
+            userRelationMap.put(followerId, followeeIds);
+        } else {
+        	// If follower already follow the followee should not follow again(not add into list)
+        	if(!userRelationMap.get(followerId).contains(followeeId)) {
+                userRelationMap.get(followerId).add(followeeId);
+        	}
+        }
+    }
+    
+    /** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */
+    public void unfollow(int followerId, int followeeId) {
+         if(userRelationMap.containsKey(followerId) && userRelationMap.get(followerId).contains(followeeId)) {
+        	 // Directly remove(followeeId) will point to another remove API of ArrayList
+             userRelationMap.get(followerId).remove(Integer.valueOf(followeeId));
+         }
+    }
+    
+    // Create Max Pirority Queue based on heap
+    private class MaxPQ {
+        Tweet[] pq;
+        int n;
+        public MaxPQ(int initialCapacity) {
+            pq = new Tweet[initialCapacity + 1];
+            n = 0;
+        }
+        
+        public void insert(Tweet tweet) {
+            pq[++n] = tweet;
+            swim(n);
+        }
+        
+        public Tweet delMax() {
+            Tweet max = pq[1];
+            exch(1, n--);
+            sink(1);
+            return max;
+        }
+        
+        public void sink(int k) {
+            while(k <= n/2) {
+                int j = 2 * k;
+                if(j < n && less(j, j + 1)) {
+                    j++;
+                }
+                if(!less(k, j)) {
+                    break;
+                }
+                exch(k, j);
+                k = j;
+            }
+        }
+        
+        public void swim(int k) {
+            while(k > 1 && less(k/2, k)) {
+                exch(k/2, k);
+                k = k/2;
+            } 
+        }
+        
+        public boolean less(int v, int w) {
+            return pq[v].timestamp - pq[w].timestamp < 0;
+        }
+        
+        public void exch(int v, int w) {
+            Tweet swap = pq[v];
+            pq[v] = pq[w];
+            pq[w] = swap;
+        }
+    }
