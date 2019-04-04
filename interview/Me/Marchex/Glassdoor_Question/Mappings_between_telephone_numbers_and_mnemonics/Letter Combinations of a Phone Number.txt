@@ -1,0 +1,46 @@
+http://www.lifeincode.net/programming/leetcode-letter-combinations-of-a-phone-number-java/
+
+Given a digit string, return all possible letter combinations that the number could represent.
+
+A mapping of digit to letters (just like on the telephone buttons) is given below.
+
+Input:Digit string "23"
+Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+Note:
+Although the above answer is in lexicographical order, your answer could be in any order you want.
+
+Analysis
+It’s a easy question. But we can do it both in recursive way and iterative way.
+
+In the iterative way, we use the result from the previous digits, and then add new letters to them.
+
+Recursive version
+where k = average length of string in KEYS 
+  and n = the length of digits.
+Time Complexity = O(k^n)
+
+public class Solution {
+    public List<String> letterCombinations(String digits) {
+        List<String> result = new ArrayList<String>();
+        String[] table = new String[]{"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        StringBuilder sb = new StringBuilder();
+        dfs(result, table, sb, digits, 0);
+        return result;
+    }
+    
+    private void dfs(List<String> result, String[] table, StringBuilder sb, String digits, int index) {
+        if(index == digits.length()) {
+            if(sb.length() != 0) {
+                result.add(sb.toString());
+            }
+        } else {
+            int tableIndex = digits.charAt(index) - '0';
+            String str = table[tableIndex];
+            for(int i = 0; i < str.length(); i++) {
+                sb.append(str.charAt(i));
+                dfs(result, table, sb, digits, index + 1);
+                sb.deleteCharAt(sb.length() - 1);
+            }    
+        } 
+    }
+}
