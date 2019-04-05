@@ -52,12 +52,14 @@
 4. Follow-up
     (1). 如果这是一个企业级的 API，如何改进？
         我答得基本都围绕 error handling
-		-- null, empty string handle, what else ?
+		-- null, empty string handle, what else ? 
+		=> 特殊符号，NaN...
     (2). 如果这是一个企业级的 API，如何改进以支持其他字符集？
         面试官提示后是把所有需要 reverse 的字符初始化到一个 HashSet 里
     (3). 需要处理的 String input 很大怎么办？
         我答的是两个 buffer，一个从前读，一个从后读，把需要 reverse 的字符 swap 一下，不需要 swap 的字符留在原地
         -- StringBuffer ?
+		=> 2bit buffer from front / 2bit buffer from end
 
 
 第一场
@@ -728,5 +730,3 @@ public class ParseFloat {
         testParsing(paddedBadStrings, true);
     }
 }
-
-
