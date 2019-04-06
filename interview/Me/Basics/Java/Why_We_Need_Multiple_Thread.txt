@@ -1,0 +1,40 @@
+1.Q:When should you use multithreading? 
+    And would multi threading be beneficial if the different threads execute mutually independent tasks?
+     
+    Refer to
+    https://stackoverflow.com/questions/7419619/when-should-you-use-multithreading-and-would-multi-threading-be-beneficial-if-t
+    A1:
+    Q: When should you use multithreading?
+    A: "Your question is very broad. There are few non-trivial systems where the functionality can be met simply, quickly and reliably
+    with only one thread. For example: [pick out a typical system that the target company sells and pick out a couple aspects of its
+    function that would be better threaded off - heavy CPU, comms, multi-user - just pick out something likely & explain].
+
+    Q: Would multithreading be beneficial if the different threads execute mutually independent tasks?
+    A: "Depends on what you mean by 'executing tasks'. Multithreading would surely be beneficial if the threads process mutually
+    independent data in a concurrent fashion - it reduces requirements for locks and probabilty of deadlocks increases in a super-linear
+    fashion with the number of locks. OTOH, there is no issue with threads executing the same code, this is safe and very common."
+
+    A2:
+    You should use multithreading when you want to perform heavy operations without "blocking" the flow.
+    Example in UIs where you do a heavy processing in a background thread but the UI is still active.
+    If the threads execute mutually exclusive tasks it is the best since there is no overhead for synchronization among threads needed 
+    
+    A3:
+    Multithreading is a way to introduce parallelness in your program. In any case if there can be parallel 
+    paths (parts which do not depend on result from a other part) in your program, use can make use of it.
+    
+    Specially with all these multiple core machines now days, this is a feature which one should exploit.
+    
+    Some examples would be processing of large data where you can divide it in chunks and get it done in multiple threads, file
+    processing, long running I/O works like network data transfers etc. (MicroPOSPDM async method for generate PDM files is good
+    example for multiple thread use which will not block other request when current request still need time to generate PDM file)
+    
+    To your second question, it would be best if the tasks are mutually independent - reasons
+    no shared data means no contentions
+    no need for any ordered processing (dependency), so each thread can work when have resources more easy to implement
+
+    A4:
+    You should definitely use multithreading in GUI applications when you invoke time consuming tasks from the main event loop. 
+    Same applies for server application that might block while doing the I/O.
+    For the second question, it is usually yes when you have machine with multiple CPU cores. In this case these independent 
+    tasks can be executed in parallel.
