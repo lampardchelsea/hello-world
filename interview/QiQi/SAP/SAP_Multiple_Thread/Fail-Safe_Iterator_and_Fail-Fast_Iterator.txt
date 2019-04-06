@@ -58,7 +58,8 @@ However, it’s important to remember that there’s no such thing as a truly Fa
 
 That means, if a Collection is modified while being iterated over, what the Iterator sees is weakly guaranteed. This behavior may be different for different Collections and is documented in Javadocs of each such Collection.
 
-The Fail-Safe Iterators have a few disadvantages, though. One disadvantage is that the Iterator isn’t guaranteed to return updated data from the Collection, as it’s working on the clone instead of the actual Collection.
+The Fail-Safe Iterators have a few disadvantages, though. One disadvantage is that the Iterator isn’t guaranteed to return updated 
+data from the Collection, as it’s working on the clone instead of the actual Collection.
 
 Another disadvantage is the overhead of creating a copy of the Collection, both regarding time and memory.
 
@@ -77,6 +78,8 @@ while (iterator.hasNext()) {
 
 In the code snippet above, we’re using Fail-Safe Iterator. Hence, even though a new element is added to the Collection during the iteration, it doesn’t throw an exception.
 
-The default iterator for the ConcurrentHashMap is weakly consistent. This means that this Iterator can tolerate concurrent modification, traverses elements as they existed when Iterator was constructed and may (but isn’t guaranteed to) reflect modifications to the Collection after the construction of the Iterator.
+The default iterator for the ConcurrentHashMap is weakly consistent. This means that this Iterator can tolerate 
+concurrent modification, traverses elements as they existed when Iterator was constructed and may (but isn’t guaranteed to) reflect modifications to the Collection after the construction of the Iterator.
 
-Hence, in the code snippet above, the iteration loops five times, which means it does detect the newly added element to the Collection.
+Hence, in the code snippet above, the iteration loops five times, which means it does detect the newly added element 
+to the Collection.
