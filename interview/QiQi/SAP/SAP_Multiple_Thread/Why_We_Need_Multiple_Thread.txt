@@ -32,3 +32,9 @@
     To your second question, it would be best if the tasks are mutually independent - reasons
     no shared data means no contentions
     no need for any ordered processing (dependency), so each thread can work when have resources more easy to implement
+
+    A4:
+    You should definitely use multithreading in GUI applications when you invoke time consuming tasks from the main event loop. 
+    Same applies for server application that might block while doing the I/O.
+    For the second question, it is usually yes when you have machine with multiple CPU cores. In this case these independent 
+    tasks can be executed in parallel.
