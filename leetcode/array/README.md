@@ -289,3 +289,5 @@ binary-search-java-code/29)
 <p>Majority Element K
 <p>1. [If change threshold to > nums.length / k, how to handle] (leetcode.com/problems/majority-element-ii/discuss/63500/JAVA-Easy-Version-To-Understand!!!!!!!!!!!!/64925)
 
+<p>Sort Array By Parity
+<p>1. [Swap when necessary] ( https://leetcode.com/problems/sort-array-by-parity/discuss/170734/C++Java-In-Place-Swap/229675)
