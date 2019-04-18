@@ -36,3 +36,36 @@ class Solution {
 }
 
 // Solution 2: Efficient swap
+/**
+ Refer to
+ https://leetcode.com/problems/sort-array-by-parity/discuss/170734/C++Java-In-Place-Swap/229675
+ Swap just when we need to
+ Target, even as header, odd as tail, i = 0, j = A.length - 1
+ 1. if A[i] is odd, A[j] is even, then swap, incease i and decrease j
+ 2. if A[i] is odd, A[j] is also odd, no need swap, keep A[i] there, 
+    just decrease j try to find if next A[j] is even, then can swap
+ 3. if A[i] is even, no need to check A[j], increase i to check if next
+    A[i] is odd, then can follow same logic as case 1 and 2
+*/
+class Solution {
+    public int[] sortArrayByParity(int[] A) {
+        int i = 0;
+        int j = A.length - 1;
+        while(i < j) {
+            if(A[i] % 2 == 1) {
+                if(A[j] % 2 == 0) {
+                    int temp = A[i];
+                    A[i] = A[j];
+                    A[j] = temp;
+                    i++;
+                    j--;
+                } else {
+                    j--;
+                }
+            } else {
+                i++;
+            }
+        }
+        return A;
+    }
+}
