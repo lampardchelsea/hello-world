@@ -36,6 +36,11 @@ class Solution {
 }
 
 // Solution 2: Efficient swap
+// Complexity Analysis
+// Time Complexity: O(N), where NN is the length of A. Each step of the while loop makes 
+// j-i decrease by at least one. (Note that while quicksort is O(NlogN) normally, 
+// this is O(N) because we only need one pass to sort the elements.)
+// Space Complexity: O(1) in additional space complexity. 
 /**
  Refer to
  https://leetcode.com/problems/sort-array-by-parity/discuss/170734/C++Java-In-Place-Swap/229675
