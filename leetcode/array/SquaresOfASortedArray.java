@@ -16,6 +16,9 @@ Note:
 A is sorted in non-decreasing order.
 */
 // Solution 1: Arrays.sort()
+// Complexity Analysis
+// Time Complexity: O(NlogN), where N is the length of A.
+// Space Complexity: O(N). 
 class Solution {
     public int[] sortedSquares(int[] A) {
         int[] result = new int[A.length];
