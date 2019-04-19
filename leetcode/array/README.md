@@ -294,3 +294,6 @@ binary-search-java-code/29)
   
 <p>Squares of a Sorted Array
 <p>1. [Two pointers for one time scan and assign] (https://leetcode.com/problems/squares-of-a-sorted-array/discuss/221922/Java-two-pointers-O(N))
+  
+<p>Flipping an Image
+<p>1. [Direct way] (https://leetcode.com/problems/flipping-an-image/solution/)
