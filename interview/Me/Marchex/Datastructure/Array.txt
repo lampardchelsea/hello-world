@@ -51,4 +51,4 @@ return true;
                       column need to set to 0, firstRowZero = true; firstColZero = true;)
 
 905. Sort Array By Parity (Swap when necessary with two pointers)
-
+977. Squares of a Sorted Array (Two pointers for one time scan and assign)
