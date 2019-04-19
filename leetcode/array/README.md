@@ -291,3 +291,6 @@ binary-search-java-code/29)
 
 <p>Sort Array By Parity
 <p>1. [Swap when necessary] ( https://leetcode.com/problems/sort-array-by-parity/discuss/170734/C++Java-In-Place-Swap/229675)
+  
+<p>Squares of a Sorted Array
+<p>1. [Two pointers for one time scan and assign] (https://leetcode.com/problems/squares-of-a-sorted-array/discuss/221922/Java-two-pointers-O(N))
