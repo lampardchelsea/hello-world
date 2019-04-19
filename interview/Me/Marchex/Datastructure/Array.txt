@@ -52,3 +52,4 @@ return true;
 
 905. Sort Array By Parity (Swap when necessary with two pointers)
 977. Squares of a Sorted Array (Two pointers for one time scan and assign)
+832. Flipping an Image (Direct follow reverse and inverse explain)
