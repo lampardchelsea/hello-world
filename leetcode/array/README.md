@@ -300,3 +300,6 @@ binary-search-java-code/29)
   
 <p>Array Partition I
 <p>1. [Java Solution, Sorting. And rough proof of algorithm] (https://leetcode.com/problems/array-partition-i/discuss/102170/Java-Solution-Sorting.-And-rough-proof-of-algorithm.)
+  
+<p>Sort Array By Parity II
+<p>1. [Two pointers with in place swap] (https://leetcode.com/problems/sort-array-by-parity-ii/discuss/181160/Java-two-pointer-one-pass-inplace)
