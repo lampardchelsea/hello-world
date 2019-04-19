@@ -297,3 +297,6 @@ binary-search-java-code/29)
   
 <p>Flipping an Image
 <p>1. [Direct way] (https://leetcode.com/problems/flipping-an-image/solution/)
+  
+<p>Array Partition I
+<p>1. [Java Solution, Sorting. And rough proof of algorithm] (https://leetcode.com/problems/array-partition-i/discuss/102170/Java-Solution-Sorting.-And-rough-proof-of-algorithm.)
