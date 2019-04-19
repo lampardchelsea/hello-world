@@ -53,3 +53,31 @@ class Solution {
         return A;
     }
 }
+
+// Solution 2: Prompted
+// Refer to
+// https://leetcode.com/problems/flipping-an-image/solution/
+/**
+ Approach #1: Direct [Accepted]
+ Intuition and Algorithm
+ We can do this in place. In each row, the ith value from the left is equal to the 
+ inverse of the ith value from the right.
+ We use (C + 1) / 2 (with floor division) to iterate over all indexes i in the first 
+ half of the row, including the center.
+*/
+class Solution {
+    // [1,1,0]                      [0,1,1]            [1,0,0]
+    // [1,0,1]-> reverse each row ->[1,0,1]-> invert ->[0,1,0]
+    // [0,0,0]                      [0,0,0]            [1,1,1]
+    public int[][] flipAndInvertImage(int[][] A) {
+        int C = A[0].length;
+        for(int[] row : A) {
+            for(int i = 0; i < (C + 1) / 2; i++) {
+                int tmp = row[i] ^ 1;
+                row[i] = row[C - 1 - i] ^ 1;
+                row[C - 1 - i] = tmp;
+            }
+        }            
+        return A;
+    }
+}
