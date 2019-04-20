@@ -309,3 +309,6 @@ binary-search-java-code/29)
 
 <p>Find Common Characters
 <p>1. [2D matrix as count and look for minimum]
+  
+<p>Reshape the Matrix
+<p>1. [Using Queue OR Without using extra Space] (https://leetcode.com/problems/reshape-the-matrix/solution/)
