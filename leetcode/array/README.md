@@ -306,3 +306,6 @@ binary-search-java-code/29)
 
 <p>Fibonacci Number
 <p>1. [Optimized recursive to limit running time]
+
+<p>Find Common Characters
+<p>1. [2D matrix as count and look for minimum]
