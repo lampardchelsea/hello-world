@@ -312,3 +312,6 @@ binary-search-java-code/29)
   
 <p>Reshape the Matrix
 <p>1. [Using Queue OR Without using extra Space] (https://leetcode.com/problems/reshape-the-matrix/solution/)
+  
+<p>Monotonic Array
+<p>1. [One pass] (https://leetcode.com/problems/monotonic-array/solution/)
