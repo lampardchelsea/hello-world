@@ -315,3 +315,6 @@ binary-search-java-code/29)
   
 <p>Monotonic Array
 <p>1. [One pass] (https://leetcode.com/problems/monotonic-array/solution/)
+  
+<p>Partition Array Into Three Parts With Equal Sum
+<p>1. [Java, O(n) time, O(1) space, explained] (https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/discuss/261012/Java-O(n)-time-O(1)-space-explained)
