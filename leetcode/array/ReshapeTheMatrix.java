@@ -55,8 +55,7 @@ matrix isn't equal to the number of elements in the resultant matrix.
 Complexity Analysis
 Time complexity : O(m*n). We traverse over m*nm∗n elements twice. Here, m and n refer to the number of rows 
                   and columns of the given matrix respectively.
-Space complexity : O(m*n). The queue formed will be of size m*nm∗n.
-
+Space complexity : O(m*n). The queue formed will be of size m*n.
 */
 class Solution {
     public int[][] matrixReshape(int[][] nums, int r, int c) {
@@ -78,3 +77,16 @@ class Solution {
         return result;
     }
 }
+
+// Solution 2:
+/**
+  Approach #2 Without using extra Space [Accepted]
+  Algorithm
+  Instead of unnecessarily using the queue as in the brute force approach, we can keep putting 
+  the numbers in the resultant matrix directly while iterating over the given matrix in a row-by-row 
+  order. While putting the numbers in the resultant array, we fix a particular row and keep on 
+  incrementing the column numbers only till we reach the end of the required columns indicated by c. 
+  At this moment, we update the row index by incrementing it and reset the column index to start from 
+  0 again. Thus, we can save the space consumed by the queue for storing the data that just needs to 
+  be copied into a new array.
+*/
