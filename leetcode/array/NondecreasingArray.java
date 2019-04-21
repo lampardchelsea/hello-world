@@ -19,6 +19,7 @@ Explanation: You can't get a non-decreasing array by modify at most one element.
 Note: The n belongs to [1, 10,000].
 */
 // Wrong solution, still wrong with [2,3,3,2,4]
+// Expected true, but return false, if we swap 3 at index 1 and 2 at index 3 will make it as non-decreasing array
 class Solution {
     public boolean checkPossibility(int[] nums) {
         int count = 0;
