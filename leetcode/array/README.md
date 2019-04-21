@@ -321,3 +321,6 @@ binary-search-java-code/29)
 
 <p>Non-decreasing Array
 <p>1. [顺序检查凹变段和逆序检查凸变段] (https://leetcode.com/problems/non-decreasing-array/discuss/106826/JavaC++-Simple-greedy-like-solution-with-explanation/205227)
+  
+<p>Task Schedule
+<p>1. [Java O(n) time O(1) space 1 pass, no sorting solution with detailed explanation] (https://leetcode.com/problems/task-scheduler/discuss/104500/Java-O(n)-time-O(1)-space-1-pass-no-sorting-solution-with-detailed-explanation)
