@@ -42,3 +42,36 @@ class Solution {
     }
 }
 
+// Solution 1:
+// Refer to
+// https://leetcode.com/problems/non-decreasing-array/discuss/106826/JavaC++-Simple-greedy-like-solution-with-explanation/205227
+/**
+提供一种略有不同的方法。
+顺序检查凹变段和逆序检查凸变段。
+如果满足，则asc和desc中的较小值必然不大于1。
+时间开销O(n)，空间开销O(1)，缺点是双向检查，优点是便于理解
+*/
+class Solution {
+    public boolean checkPossibility(int[] nums) {
+        int m = 0;
+        int n = nums.length - 1;
+        int asc = 0;
+        int desc = 0;
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[m] <= nums[i]) {
+                m = i;
+            } else {
+                asc++;
+            }
+            if(nums[n] >= nums[nums.length - 1 - i]) {
+                n = nums.length - 1 - i;
+            } else {
+                desc++;
+            }
+            if(asc > 1 && desc > 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
