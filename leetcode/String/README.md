@@ -276,4 +276,7 @@
 <p>1. [Two Points] (https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/discuss/99588/Short-Java-Solutions-Sorting-Dictionary-and-Without-Sorting/103703)  
   
 <p>To Lower Case  
-<p>1. [To char and handle each char]  
+<p>1. [To char and handle each char]
+  
+<p>Unique Email Addresses
+<p>1. [Native set to filter unique email address and split string to format final string]
