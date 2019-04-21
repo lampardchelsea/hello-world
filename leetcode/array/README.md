@@ -318,3 +318,6 @@ binary-search-java-code/29)
   
 <p>Partition Array Into Three Parts With Equal Sum
 <p>1. [Java, O(n) time, O(1) space, explained] (https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/discuss/261012/Java-O(n)-time-O(1)-space-explained)
+
+<p>Non-decreasing Array
+<p>1. [顺序检查凹变段和逆序检查凸变段] (https://leetcode.com/problems/non-decreasing-array/discuss/106826/JavaC++-Simple-greedy-like-solution-with-explanation/205227)
