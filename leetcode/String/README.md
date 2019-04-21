@@ -275,5 +275,5 @@
 <p>Longest Word in Dictionary through Deleting  
 <p>1. [Two Points] (https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/discuss/99588/Short-Java-Solutions-Sorting-Dictionary-and-Without-Sorting/103703)  
   
-  
-  
+<p>To Lower Case  
+<p>1. [To char and handle each char]  
