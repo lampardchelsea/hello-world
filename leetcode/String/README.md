@@ -281,5 +281,8 @@
 <p>Unique Email Addresses
 <p>1. [Native set to filter unique email address and split string to format final string]
   
+<p>Count Binary Substrings
+<p>1. [Ingenious previous substring length and current substring iterator compare] (https://leetcode.com/problems/count-binary-substrings/discuss/108600/Java-O(n)-Time-O(1)-Space)
+  
 <p>Reverse Only Letters
 <p>1. [Two pointers]
