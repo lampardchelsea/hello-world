@@ -1,3 +1,4 @@
 709. To Lower Case
 929. Unique Email Addresses (Native set to filter unique email address and split string to format final string)
 917. Reverse Only Letters (Two pointers)
+696. Count Binary Substrings (Ingenious previous substring length and current substring iterator compare)
