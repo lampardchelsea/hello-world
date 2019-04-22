@@ -286,3 +286,6 @@
   
 <p>Reverse Only Letters
 <p>1. [Two pointers]
+  
+<p>Long Pressed Name
+<p>1. [Two pointers] (https://leetcode.com/problems/long-pressed-name/solution/) 
