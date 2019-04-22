@@ -289,3 +289,6 @@
   
 <p>Long Pressed Name
 <p>1. [Two pointers] (https://leetcode.com/problems/long-pressed-name/solution/) 
+  
+<p>Shifting Letters
+<p>1. [long type variable of 'times' in case of large input]
