@@ -110,3 +110,49 @@ class Solution {
         return true;
     }
 }
+
+// Solution 3: Sliding Window
+// Refer to
+// https://leetcode.com/problems/permutation-in-string/discuss/102588/Java-Solution-Sliding-Window
+/**
+ How do we know string p is a permutation of string s? Easy, each character in p is in s too. 
+ So we can abstract all permutation strings of s to a map (Character -> Count). i.e. abba -> {a:2, b:2}. 
+ Since there are only 26 lower case letters in this problem, we can just use an array to represent the map.
+How do we know string s2 contains a permutation of s1? We just need to create a sliding window with length 
+of s1, move from beginning to the end of s2. When a character moves in from right of the window, we 
+subtract 1 to that character count from the map. When a character moves out from left of the window, 
+we add 1 to that character count. So once we see all zeros in the map, meaning equal numbers of every 
+characters between s1 and the substring in the sliding window, we know the answer is true.
+*/
+class Solution {
+    public boolean checkInclusion(String s1, String s2) {
+        if(s1.length() > s2.length()) {
+            return false;
+        }
+        int[] count = new int[26];
+        for(int i = 0; i < s1.length(); i++) {
+            count[s1.charAt(i) - 'a']++;
+            count[s2.charAt(i) - 'a']--;
+        }
+        if(allZero(count)) {
+            return true;
+        }
+        for(int i = s1.length(); i < s2.length(); i++) {
+            count[s2.charAt(i) - 'a']--;
+            count[s2.charAt(i - s1.length()) - 'a']++;
+            if(allZero(count)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean allZero(int[] count) {
+        for(int i = 0; i < 26; i++) {
+            if(count[i] != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
