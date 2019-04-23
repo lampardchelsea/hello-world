@@ -61,3 +61,47 @@ class Solution {
 }
 
 // Solution 2:
+// Refer to
+// https://leetcode.com/problems/permutation-in-string/solution/
+/**
+Approach #4 Using Array [Accepted]
+Algorithm
+Instead of making use of a special HashMap datastructure just to store the frequency of occurence 
+of characters, we can use a simpler array data structure to store the frequencies. Given strings 
+contains only lowercase alphabets ('a' to 'z'). So we need to take an array of size 26.The rest 
+of the process remains the same as the last approach.
+Complexity Analysis:
+Time Complexity: O(l1 + 26 * l1 * (l2 - l1)), where l1 is the length of string l1 and l2 is the
+                 length of string l2
+Space Complexity: O(1)
+*/
+class Solution {
+    public boolean checkInclusion(String s1, String s2) {
+        int[] counter1 = new int[26];
+        char[] chars1 = s1.toCharArray();
+        for(int i = 0; i < chars1.length; i++) {
+            counter1[chars1[i] - 'a']++;
+        }
+        for(int i = 0; i <= s2.length() - s1.length(); i++) {
+            int[] counter2 = new int[26];
+            String subStr = s2.substring(i, i + s1.length());
+            char[] chars2 = subStr.toCharArray();
+            for(int j = 0; j < chars2.length; j++) {
+                counter2[chars2[j] - 'a']++;
+            }
+            if(matches(counter1, counter2)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean matches(int[] counter1, int[] counter2) {
+        for(int i = 0; i < 26; i++) {
+            if(counter1[i] != counter2[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
