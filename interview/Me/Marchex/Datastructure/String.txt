@@ -4,3 +4,4 @@
 696. Count Binary Substrings (Ingenious previous substring length and current substring iterator compare)
 925. Long Pressed Name (Two pointers)
 848. Shifting Letters (long type variable of 'times' in case of large input)
+567. Permutation in String (Sliding window)
