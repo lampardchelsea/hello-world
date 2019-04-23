@@ -196,5 +196,6 @@
 <p>Jewels and Stones
 <p>1. [Use set to filter] (https://leetcode.com/problems/jewels-and-stones/discuss/113553/C%2B%2BJavaPython-Set-Solution-O(M%2BN)) 
   
-  
+<p>N-Repeated Element in Size 2N Array
+<p>1. [Compare with no hashmap will reach to O(1) space solution] (https://leetcode.com/problems/n-repeated-element-in-size-2n-array/solution/)
   
