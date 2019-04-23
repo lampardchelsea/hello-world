@@ -292,3 +292,6 @@
   
 <p>Shifting Letters
 <p>1. [long type variable of 'times' in case of large input]
+  
+<p>Permutation in String
+<p>1. [Sliding window] (https://leetcode.com/problems/permutation-in-string/discuss/102588/Java-Solution-Sliding-Window) 
