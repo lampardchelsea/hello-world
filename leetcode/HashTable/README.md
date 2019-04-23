@@ -201,3 +201,6 @@
   
 <p>Uncommon Words from Two Sentences
 <p>1. [Count with Hashmap] (https://leetcode.com/problems/uncommon-words-from-two-sentences/solution/)
+  
+<p>Powerful Integers
+<p>1. [Elegant handle corner cases] (https://leetcode.com/problems/powerful-integers/discuss/214197/Java-straightforward-try-all-combinations)
