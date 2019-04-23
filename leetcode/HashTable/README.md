@@ -193,7 +193,8 @@
 <p>2. [Swap Solution] (https://leetcode.com/problems/set-mismatch/discuss/105578/Java-Two-methods-using-sign-and-swap)
 <p>3. [Math and HashSet Solution] (https://leetcode.com/problems/set-mismatch/discuss/105528/Simple-Java-O(n)-solution-HashSet)
   
-  
+<p>Jewels and Stones
+<p>1. [Use set to filter] (https://leetcode.com/problems/jewels-and-stones/discuss/113553/C%2B%2BJavaPython-Set-Solution-O(M%2BN)) 
   
   
   
