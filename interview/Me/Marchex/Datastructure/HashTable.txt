@@ -1,1 +1,2 @@
 961. N-Repeated Element in Size 2N Array (Compare with no hashmap will reach to O(1) space solution)
+970. Powerful Integers (Elegant handle corner cases)
