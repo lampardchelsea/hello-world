@@ -20,6 +20,11 @@ The length of both given strings is in range [1, 10,000].
 // Solution 1: Time Limit Exceeded
 // Refer to Permutations II
 // https://github.com/lampardchelsea/hello-world/blob/b1b6c794809ddbde034d049f01ca63b17e6928be/lintcode/DFS/VideoExamples/PermutationsII.java
+// https://leetcode.com/problems/permutation-in-string/solution/
+// Time Complexity: O(n!) We match all the permutations of the short string s1, of length s1, with s2. 
+//                  Here, n refers to the length of s1.
+// Space Complexity: O(n^2) The depth of the recursion tree is n(n refers to the length of the short string s1). 
+//                   Every node of the recursion tree contains a string of max. length n.
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
         List<String> allPermutations = findAllPermutations(s1);
