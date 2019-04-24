@@ -324,3 +324,7 @@ binary-search-java-code/29)
   
 <p>Task Schedule
 <p>1. [Java O(n) time O(1) space 1 pass, no sorting solution with detailed explanation] (https://leetcode.com/problems/task-scheduler/discuss/104500/Java-O(n)-time-O(1)-space-1-pass-no-sorting-solution-with-detailed-explanation)
+  
+<p>Daily Temperatures
+<p>1. [Stack with O(n) scan only once] (https://leetcode.com/problems/daily-temperatures/discuss/109832/Java-Easy-AC-Solution-with-Stack)
+<p>2. [Native O(n^2) while loop check] (https://leetcode.com/problems/daily-temperatures/discuss/175128/Java-Solution-without-stack)
