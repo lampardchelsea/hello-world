@@ -41,3 +41,21 @@ class Solution {
         return result;
     }
 }
+
+// Solution 2: Elegant using stack to scan array with O(n) time
+// Refer to
+// https://leetcode.com/problems/daily-temperatures/discuss/109832/Java-Easy-AC-Solution-with-Stack
+class Solution {
+    public int[] dailyTemperatures(int[] T) {
+        Stack<Integer> stack = new Stack<Integer>();
+        int[] result = new int[T.length];
+        for(int i = 0; i < T.length; i++) {
+            while(!stack.isEmpty() && T[i] > T[stack.peek()]) {
+                int index = stack.pop();
+                result[index] = i - index;
+            }
+            stack.push(i);
+        }
+        return result;
+    }
+}
