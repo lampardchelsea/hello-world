@@ -328,3 +328,6 @@ binary-search-java-code/29)
 <p>Daily Temperatures
 <p>1. [Stack with O(n) scan only once] (https://leetcode.com/problems/daily-temperatures/discuss/109832/Java-Easy-AC-Solution-with-Stack)
 <p>2. [Native O(n^2) while loop check] (https://leetcode.com/problems/daily-temperatures/discuss/175128/Java-Solution-without-stack)
+  
+<p>Next Greater Element I
+<p>1. [Stack with O(n) scan only once] (https://leetcode.com/problems/next-greater-element-i/discuss/97595/Java-10-lines-linear-time-complexity-O(n)-with-explanation)
