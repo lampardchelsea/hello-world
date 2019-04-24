@@ -78,7 +78,9 @@
 <p>1. [Simple Java solution using a stack with explanation] (https://discuss.leetcode.com/topic/42042/simple-java-solution-using-a-stack-with-explanation)
 <p>2. [Youtube Solution] (https://www.youtube.com/watch?v=LkyK5mwT3KQ)
 
-
+<p>Daily Temperatures
+<p>1. [Stack with O(n) scan only once] (https://leetcode.com/problems/daily-temperatures/discuss/109832/Java-Easy-AC-Solution-with-Stack)
+<p>2. [Native O(n^2) while loop check] (https://leetcode.com/problems/daily-temperatures/discuss/175128/Java-Solution-without-stack)
 
 
 
