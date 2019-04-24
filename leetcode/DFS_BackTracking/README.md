@@ -135,4 +135,5 @@
 <p>1. [DFS / Union Found] (http://zxi.mytechroad.com/blog/hashtable/leetcode-737-sentence-similarity-ii/)
 <p>2. [LeetCode — 737. Sentence Similarity II] (https://medium.com/@rebeccahezhang/leetcode-737-sentence-similarity-ii-2ca213f10115)
 
-
+<p>Replace Words
+<p>1. [Trie] (https://leetcode.com/problems/replace-words/discuss/105767/Java-SimpleClassical-Trie-questionsolution-(Beat-96))
