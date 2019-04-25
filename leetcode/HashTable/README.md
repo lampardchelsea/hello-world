@@ -204,3 +204,6 @@
   
 <p>Powerful Integers
 <p>1. [Elegant handle corner cases] (https://leetcode.com/problems/powerful-integers/discuss/214197/Java-straightforward-try-all-combinations)
+
+<p>Minimum Area Rectangle
+<p>1. [Find diagonal points first then use Hashmap to find other two points] (https://leetcode.com/problems/minimum-area-rectangle/discuss/192025/Java-N2-Hashmap)
