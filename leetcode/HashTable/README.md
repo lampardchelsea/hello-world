@@ -207,3 +207,6 @@
 
 <p>Minimum Area Rectangle
 <p>1. [Find diagonal points first then use Hashmap to find other two points] (https://leetcode.com/problems/minimum-area-rectangle/discuss/192025/Java-N2-Hashmap)
+
+<p>Time Based Key-Value Store
+<p>1. [In Java, we can use TreeMap.floorKey(timestamp) to find the largest timestamp smaller than the given timestamp] (https://leetcode.com/problems/time-based-key-value-store/solution/)  
