@@ -216,3 +216,7 @@
   
 <p>Cousins in Binary Tree
 <p>1. [BFS level order traversal with additional check] (https://leetcode.com/problems/cousins-in-binary-tree/discuss/239376/Java-BFS-time-and-space-beat-100)
+  
+<p>Convert BST to Greater Tree
+<p>1. [Solution] (https://leetcode.com/problems/convert-bst-to-greater-tree/solution/)
+<p>2. [Reverse in-order traversal] (https://leetcode.com/problems/convert-bst-to-greater-tree/discuss/100506/Java-Recursive-O(n)-time/152561)
