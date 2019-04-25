@@ -69,18 +69,18 @@ return;
 	 *  
 	 *  Let us see the process of constructing tree from in[] = {4, 8, 2, 5, 1, 6, 3, 7} 
 	 *  and post[] = {8, 4, 5, 2, 6, 7, 3, 1}
-	 *  1) We first find the last node in post[]. The last node is ì1î, we know this value 
+	 *  1) We first find the last node in post[]. The last node is ‚Äú1‚Äù, we know this value 
 	 *  is root as root always appear in the end of postorder traversal.
-	 *  2) We search ì1î in in[] to find left and right subtrees of root. Everything on left 
-	 *  of ì1î in in[] is in left subtree and everything on right is in right subtree.
+	 *  2) We search ‚Äú1‚Äù in in[] to find left and right subtrees of root. Everything on left 
+	 *  of ‚Äú1‚Äù in in[] is in left subtree and everything on right is in right subtree.
 		         1
 		       /    \
 		[4,8,2,5]   [6,3,7] 
 		3) We recur the above process for following two.
-		Ö.b) Recur for in[] = {6,3,7} and post[] = {6,7,3}
-		ÖÖ.Make the created tree as right child of root.
-		Ö.a) Recur for in[] = {4,8,2,5} and post[] = {8,4,5,2}.
-		ÖÖ.Make the created tree as left child of root.
+		‚Ä¶.b) Recur for in[] = {6,3,7} and post[] = {6,7,3}
+		‚Ä¶‚Ä¶.Make the created tree as right child of root.
+		‚Ä¶.a) Recur for in[] = {4,8,2,5} and post[] = {8,4,5,2}.
+		‚Ä¶‚Ä¶.Make the created tree as left child of root.
 	 *  One important observation is, we recursively call for right subtree before left subtree 
 	 *  as we decrease index of postorder index whenever we create a new node.
 
@@ -352,3 +352,25 @@ return;
         // Same meaning as update 'singlePath'
         return Math.max(left, right) + root.val;
     })
+    
+617.Merge Two Binary Trees
+700.Search in a Binary Search Tree (Easy to understand Recursive traversal (JAVA))
+589.N-ary Tree Preorder Traversal
+    	// In a N-ary tree, preorder means visit the root node first and 
+	// then traverse the subtree rooted at its children one by one.
+	class Solution {
+	    List<Integer> result = new ArrayList<Integer>();
+	    public List<Integer> preorder(Node root) {
+		if(root == null) {
+		    return result;
+		}
+		result.add(root.val);
+		List<Node> children = root.children;
+		for(Node node : children) {
+		    preorder(node);
+		}
+		return result;
+	    }
+	}
+590.N-ary Tree Postorder Traversal
+669. Trim a Binary Search Tree (Recursive rebuild the tree by re-assign root)
