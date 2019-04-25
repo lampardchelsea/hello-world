@@ -1,3 +1,4 @@
 961. N-Repeated Element in Size 2N Array (Compare with no hashmap will reach to O(1) space solution)
 970. Powerful Integers (Elegant handle corner cases)
 939. Minimum Area Rectangle (Find diagonal points first then use Hashmap to find other two points)
+981. Time Based Key-Value Store (In Java, we can use TreeMap.floorKey(timestamp) to find the largest timestamp smaller than the given timestamp)
