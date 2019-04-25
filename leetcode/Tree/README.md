@@ -210,3 +210,6 @@
   
 <p>Maximum Depth of N-ary Tree
 <p>1. [Java solution with explain, same logic with Maximum Depth of binary tree] (https://leetcode.com/problems/maximum-depth-of-n-ary-tree/discuss/152659/Java-solution-with-explain-same-logic-with-Maximum-Depth-of-binary-tree)
+
+<p>N-ary Tree Level Order Traversal
+<p>1. [BFS level order traversal] 
