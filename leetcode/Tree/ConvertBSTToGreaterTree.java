@@ -42,3 +42,32 @@ class Solution {
         return root;
     }
 }
+
+// Solution 2: With helper method and not use global variable
+// Refer to
+// https://leetcode.com/problems/convert-bst-to-greater-tree/discuss/100506/Java-Recursive-O(n)-time/104632
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public TreeNode convertBST(TreeNode root) {
+        helper(root, 0);
+        return root;
+    }
+    
+    private int helper(TreeNode root, int sum) {
+        if(root == null) {
+            return sum;
+        }
+        int right = helper(root.right, sum);
+        int left = helper(root.left, root.val + right);
+        root.val += right;
+        return left; // Tricky point, not return root.val
+    }
+}
