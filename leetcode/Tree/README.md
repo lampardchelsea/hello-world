@@ -220,3 +220,4 @@
 <p>Convert BST to Greater Tree
 <p>1. [Solution] (https://leetcode.com/problems/convert-bst-to-greater-tree/solution/)
 <p>2. [Reverse in-order traversal] (https://leetcode.com/problems/convert-bst-to-greater-tree/discuss/100506/Java-Recursive-O(n)-time/152561)
+<p>3. [Helper method without global variable] (https://leetcode.com/problems/convert-bst-to-greater-tree/discuss/100506/Java-Recursive-O(n)-time/104632)
