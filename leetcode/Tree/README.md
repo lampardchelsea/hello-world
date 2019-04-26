@@ -226,3 +226,8 @@
 <p>[1st link a bit wrong with additional '+1' in calculating diameter = 1 + leftDepth + rightDepth] (https://leetcode.com/problems/diameter-of-binary-tree/discuss/101132/Java-Solution-MaxDepth)
 <o>[2nd link correct it by diameter = leftDepth + rightDepth] (https://leetcode.com/problems/diameter-of-binary-tree/discuss/101120/Java-easy-to-understand-solution)
 <p>[Get maximum depth of current root on binary tree] (https://www.programcreek.com/2014/05/leetcode-maximum-depth-of-binary-tree-java/)
+
+<p>Subtree of Another Tree
+<p>1. [Java Solution, tree traversal] (https://leetcode.com/problems/subtree-of-another-tree/discuss/102724/Java-Solution-tree-traversal)
+<p>2. [100. Same Tree] (https://leetcode.com/problems/same-tree/)
+<p>3. [700. Search in a Binary Search Tree] (https://leetcode.com/problems/search-in-a-binary-search-tree/)
