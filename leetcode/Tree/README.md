@@ -231,3 +231,6 @@
 <p>1. [Java Solution, tree traversal] (https://leetcode.com/problems/subtree-of-another-tree/discuss/102724/Java-Solution-tree-traversal)
 <p>2. [100. Same Tree] (https://leetcode.com/problems/same-tree/)
 <p>3. [700. Search in a Binary Search Tree] (https://leetcode.com/problems/search-in-a-binary-search-tree/)
+
+<p>450. Delete Node in a BST
+<p>1. [Recursive Easy to Understand Java Solution] (https://leetcode.com/problems/delete-node-in-a-bst/discuss/93296/Recursive-Easy-to-Understand-Java-Solution)
