@@ -96,6 +96,8 @@ class Solution {
  *     TreeNode(int x) { val = x; }
  * }
  */
+// Refer to
+// 700.Search in a Binary Search Tree and 100. Same Tree two problems
 class Solution {
     public boolean isSubtree(TreeNode s, TreeNode t) {
         if(s == null && t == null) {
