@@ -355,6 +355,22 @@ return;
     
 617.Merge Two Binary Trees
 700.Search in a Binary Search Tree (Easy to understand Recursive traversal (JAVA))
+    public TreeNode searchBST(TreeNode root, int val) {
+        if(root == null) {
+            return null;
+        }
+        if(root.val == val) {
+            return root;
+        } else {
+            if(root.val > val) {
+                root = searchBST(root.left, val);
+            } else {
+                root = searchBST(root.right, val);
+            }
+        }
+        return root;
+    }
+
 589.N-ary Tree Preorder Traversal
     	// In a N-ary tree, preorder means visit the root node first and 
 	// then traverse the subtree rooted at its children one by one.
