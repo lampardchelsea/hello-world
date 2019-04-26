@@ -376,3 +376,4 @@ return;
 669. Trim a Binary Search Tree (Recursive rebuild the tree by re-assign root)
 993. Cousins in Binary Tree (BFS level order traversal with additional check)
 538. Convert BST to Greater Tree (Reverse in-order traversal)
+543. Diameter of Binary Tree (Recursive scan all nodes and get its diameter by leftMaxDepth + rightMaxDepth)
