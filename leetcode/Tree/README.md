@@ -221,3 +221,8 @@
 <p>1. [Solution] (https://leetcode.com/problems/convert-bst-to-greater-tree/solution/)
 <p>2. [Reverse in-order traversal] (https://leetcode.com/problems/convert-bst-to-greater-tree/discuss/100506/Java-Recursive-O(n)-time/152561)
 <p>3. [Helper method without global variable] (https://leetcode.com/problems/convert-bst-to-greater-tree/discuss/100506/Java-Recursive-O(n)-time/104632)
+  
+<p>Diameter of Binary Tree
+<p>[1st link a bit wrong with additional '+1' in calculating diameter = 1 + leftDepth + rightDepth] (https://leetcode.com/problems/diameter-of-binary-tree/discuss/101132/Java-Solution-MaxDepth)
+<o>[2nd link correct it by diameter = leftDepth + rightDepth] (https://leetcode.com/problems/diameter-of-binary-tree/discuss/101120/Java-easy-to-understand-solution)
+<p>[Get maximum depth of current root on binary tree] (https://www.programcreek.com/2014/05/leetcode-maximum-depth-of-binary-tree-java/)
