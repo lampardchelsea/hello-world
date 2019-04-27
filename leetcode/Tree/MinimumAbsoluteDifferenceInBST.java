@@ -54,4 +54,75 @@ class Solution {
     }
 }
 
-// Solution 2: 
+// Solution 2: Pre-Order traverse with TreeSet ceiling and floor method to get interval between adjacent values
+// What if it is not a BST? (Follow up of the problem) The idea is to put values in a TreeSet and then every 
+// time we can use O(lgN) time to lookup for the nearest values.
+// TreeSet API
+// ceiling -> Returns the least element in this set greater than or equal to the given element, or null if there is no such element.
+// floor -> Returns the greatest element in this set less than or equal to the given element, or null if there is no such element.
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    int min = Integer.MAX_VALUE;
+    TreeSet<Integer> set = new TreeSet<Integer>();
+    public int getMinimumDifference(TreeNode root) {
+        if(root == null) {
+            return min;
+        }
+        if(!set.isEmpty()) {
+            if(set.ceiling(root.val) != null) {
+                min = Math.min(min, set.ceiling(root.val) - root.val);
+            }
+            if(set.floor(root.val) != null) {
+                min = Math.min(min, root.val - set.floor(root.val));
+            }    
+        }
+        set.add(root.val); // Pre-order traversal
+        getMinimumDifference(root.left);
+        getMinimumDifference(root.right);
+        return min;
+    }
+}
+
+// Solution 3: Native list with sorting solutoin and find all interval between two numbers to find minimum, no need TreeSet
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    int min = Integer.MAX_VALUE;
+    List<Integer> list = new ArrayList<Integer>();
+    public int getMinimumDifference(TreeNode root) {
+        if(root == null) {
+            return min;
+        }
+        addToList(list, root);
+        Collections.sort(list);
+        for(int i = 0; i < list.size() - 1; i++) {
+            int j = i + 1;
+            min = Math.min(min, list.get(j) - list.get(i));
+        }
+        return min;
+    }
+    
+    private void addToList(List<Integer> list, TreeNode root) {
+        if(root == null) {
+            return;
+        }
+        addToList(list, root.left);
+        list.add(root.val);
+        addToList(list, root.right);
+    }
+}
