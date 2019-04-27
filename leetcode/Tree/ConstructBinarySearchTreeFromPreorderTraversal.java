@@ -28,3 +28,31 @@ The values of preorder are distinct.
 The left recursion will take the elements smaller than node.val
 The right recursion will take the remaining elements smaller than bound
 */
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    int nodeIdx = 0;
+    public TreeNode bstFromPreorder(int[] preorder) {
+        int min = Integer.MIN_VALUE;
+        int max = Integer.MAX_VALUE;
+        return helper(preorder, min, max);
+    }
+    
+    private TreeNode helper(int[] preorder, int min, int max) {
+        if(nodeIdx == preorder.length || preorder[nodeIdx] < min || preorder[nodeIdx] > max) {
+            return null;
+        }
+        int val = preorder[nodeIdx++];
+        TreeNode root = new TreeNode(val);
+        root.left = helper(preorder, min, val);
+        root.right = helper(preorder, val, max);
+        return root;
+    }
+}
