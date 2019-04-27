@@ -245,3 +245,6 @@
 
 <p>Insert into a Binary Search Tree
 <p>1. [Return the new created node in base condition] (https://leetcode.com/problems/insert-into-a-binary-search-tree/solution/)
+
+<p>Construct Binary Search Tree from Preorder Traversal
+<p>1. [O(n) solution with setup min and max bound to traverse with preorder BST, half and half build recursively] (https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/discuss/252232/JavaC++Python-O(N)-Solution/248260)
