@@ -396,3 +396,4 @@ return;
 572. Subtree of Another Tree (Contains content of 700. earch in a Binary Search Tree and 100. Same Tree)
 450. Delete Node in a BST
 530. Minimum Absolute Difference in BST (In-order traverse with store previous node / TreeSet floor, ceiling with pre-order traverse)
+654. Maximum Binary Tree (Recursive build tree with array index)
