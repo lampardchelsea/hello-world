@@ -239,3 +239,6 @@
 <p>1. [Store previous node and in-order traverse on BST since it gurantee the ascending sorted order already] (https://leetcode.com/problems/minimum-absolute-difference-in-bst/discuss/99905/Two-Solutions-in-order-traversal-and-a-more-general-way-using-TreeSet)
 <p>2. [Pre-Order traverse with TreeSet ceiling and floor method to get interval between adjacent values] (https://leetcode.com/problems/minimum-absolute-difference-in-bst/discuss/99905/Two-Solutions-in-order-traversal-and-a-more-general-way-using-TreeSet)
 <p>3. [Native list with sorting solutoin and find all interval between two numbers to find minimum, no need TreeSet]
+
+<p>Maximum Binary Tree
+<p>1. [Recursive build tree with array index] (https://leetcode.com/problems/maximum-binary-tree/solution/)
