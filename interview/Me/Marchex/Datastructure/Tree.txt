@@ -398,3 +398,23 @@ return;
 530. Minimum Absolute Difference in BST (In-order traverse with store previous node / TreeSet floor, ceiling with pre-order traverse)
 654. Maximum Binary Tree (Recursive build tree with array index)
 701. Insert into a Binary Search Tree (Return the new created node in base condition)
+1008. Construct Binary Search Tree from Preorder Traversal (setup min and max bound to traverse with preorder BST, half and half build recursively)
+        class Solution {
+	    int nodeIdx = 0;
+	    public TreeNode bstFromPreorder(int[] preorder) {
+		int min = Integer.MIN_VALUE;
+		int max = Integer.MAX_VALUE;
+		return helper(preorder, min, max);
+	    }
+
+	    private TreeNode helper(int[] preorder, int min, int max) {
+		if(nodeIdx == preorder.length || preorder[nodeIdx] < min || preorder[nodeIdx] > max) {
+		    return null;
+		}
+		int val = preorder[nodeIdx++];
+		TreeNode root = new TreeNode(val);
+		root.left = helper(preorder, min, val);
+		root.right = helper(preorder, val, max);
+		return root;
+	    }
+	}
