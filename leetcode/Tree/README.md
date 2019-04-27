@@ -242,3 +242,6 @@
 
 <p>Maximum Binary Tree
 <p>1. [Recursive build tree with array index] (https://leetcode.com/problems/maximum-binary-tree/solution/)
+
+<p>Insert into a Binary Search Tree
+<p>1. [Return the new created node in base condition] (https://leetcode.com/problems/insert-into-a-binary-search-tree/solution/)
