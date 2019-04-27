@@ -397,3 +397,4 @@ return;
 450. Delete Node in a BST
 530. Minimum Absolute Difference in BST (In-order traverse with store previous node / TreeSet floor, ceiling with pre-order traverse)
 654. Maximum Binary Tree (Recursive build tree with array index)
+701. Insert into a Binary Search Tree (Return the new created node in base condition)
