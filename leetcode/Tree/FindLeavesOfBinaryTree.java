@@ -98,3 +98,52 @@ class Solution {
 	    return root;
 	}
 }
+
+// Solution 2:
+// Refer to
+// https://www.cnblogs.com/grandyang/p/5616158.html
+// http://buttercola.blogspot.com/2018/09/leetcode-366-find-leaves-of-binary-tree.html
+/**
+ 这道题给了我们一个二叉树，让我们返回其每层的叶节点，就像剥洋葱一样，将这个二叉树一层一层剥掉，
+ 最后一个剥掉根节点。那么题目中提示说要用DFS来做，思路是这样的，每一个节点从左子节点和右子节点
+ 分开走可以得到两个深度，由于成为叶节点的条件是左右子节点都为空，所以我们取左右子节点中较大值
+ 加1为当前节点的深度值，知道了深度值就可以将节点值加入到结果res中的正确位置了，求深度的方法我们
+ 可以参见 Maximum Depth of Binary Tree 中求最大深度的方法，参见代码如下
+*/
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> findLeaves(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+	}
+        findLeavesHelper(root, result);
+        return result;
+    }
+     
+    private int findLeavesHelper(TreeNode root, List<List<Integer>> result) {
+        if (root == null) {
+            return -1;
+        }
+        int left = findLeavesHelper(root.left, result);
+        int right = findLeavesHelper(root.right, result);
+        int depth = Math.max(left, right) + 1;
+        if (depth == result.size()) {
+            List<Integer> list = new ArrayList<>();
+            list.add(root.val);
+            result.add(list);
+        } else {
+            List<Integer> list = result.get(depth);
+            list.add(root.val);
+	}         
+        return depth;
+    }
+}
