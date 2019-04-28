@@ -74,27 +74,27 @@ Special thanks to @elmirap for adding this problem and creating all test cases.
 // Clean solution. In worst cases, it can be O(N^2) right?
 class Solution {
     public List<List<Integer>> findLeaves(TreeNode root) {
-    List<List<Integer>> result = new ArrayList<List<Integer>>();
-    if(root == null) {
-        return result;
+	    List<List<Integer>> result = new ArrayList<List<Integer>>();
+	    if(root == null) {
+	        return result;
+	    }
+	    while(root != null) {
+			List<Integer> list = new ArrayList<Integer>();
+			root = removeLeavesHelper(list, root);
+			result.add(list);
+	    }
+    	return result;
     }
-    while(root != null) {
-        List<Integer> list = new ArrayList<Integer>();
-        root = removeLeavesHelper(list, root);
-        result.add(list);
-    }
-    return result;
-	}
 	
 	private TreeNode removeLeavesHelper(List<Integer> list, TreeNode root) {
-    if(root == null) {
-        return null;
-    } else if(root.left == null && root.right == null) {
-        list.add(root.val);
-        return null;
-    }
-    root.left = removeLeavesHelper(list, root.left);
-    root.right = removeLeavesHelper(list, root.right);
-    return root;
+	    if(root == null) {
+	    	return null;
+	    } else if(root.left == null && root.right == null) {
+	    	list.add(root.val);
+	    	return null;
+	    }
+	    root.left = removeLeavesHelper(list, root.left);
+	    root.right = removeLeavesHelper(list, root.right);
+	    return root;
 	}
 }
