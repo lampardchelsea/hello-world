@@ -401,7 +401,7 @@ return;
 		return result;
 	    }
 	}
-590.N-ary Tree Postorder Traversal
+590. N-ary Tree Postorder Traversal
 669. Trim a Binary Search Tree (Recursive rebuild the tree by re-assign root)
 993. Cousins in Binary Tree (BFS level order traversal with additional check)
 538. Convert BST to Greater Tree (Reverse in-order traversal)
@@ -431,3 +431,4 @@ return;
 		return root;
 	    }
 	}
+366.Find Leaves of Binary Tree (See remove leaves template)
