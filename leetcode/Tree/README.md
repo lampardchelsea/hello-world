@@ -252,3 +252,7 @@
 <p>Flip Equivalent Binary Trees
 <p>1. [Similar to Same Tree] (https://leetcode.com/problems/same-tree/)
 <p>2. [Similar way as same tree check, just modify condition when root1.val == root2.val] (https://leetcode.com/problems/flip-equivalent-binary-trees/discuss/200514/Java-3-liner-with-explanation-time-and-space%3A-O(n))
+
+<p>Find Leaves Of Binary Tree
+<p>1. [Remove leaves template]
+<p>2. [2 Solutions] (https://www.cnblogs.com/grandyang/p/5616158.html)
