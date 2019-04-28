@@ -248,3 +248,7 @@
 
 <p>Construct Binary Search Tree from Preorder Traversal
 <p>1. [O(n) solution with setup min and max bound to traverse with preorder BST, half and half build recursively] (https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/discuss/252232/JavaC++Python-O(N)-Solution/248260)
+
+<p>Flip Equivalent Binary Trees
+<p>1. [Similar to Same Tree] (https://leetcode.com/problems/same-tree/)
+<p>2. [Similar way as same tree check, just modify condition when root1.val == root2.val] (https://leetcode.com/problems/flip-equivalent-binary-trees/discuss/200514/Java-3-liner-with-explanation-time-and-space%3A-O(n))
