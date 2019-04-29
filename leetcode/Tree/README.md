@@ -262,3 +262,7 @@
 
 <p>Find Largest Value in Each Tree Row
 <p>1. [DFS] (https://leetcode.com/problems/find-largest-value-in-each-tree-row/discuss/98971/9ms-JAVA-DFS-solution)
+
+<p>Check Completeness of a Binary Tree
+<p>1. [When level-order traversal in a complete tree, after the last node, all nodes in the queue should be null.
+Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-completeness-of-a-binary-tree/discuss/205768/Java-easy-Level-Order-Traversal-one-while-loop)
