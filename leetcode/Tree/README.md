@@ -256,3 +256,6 @@
 <p>Find Leaves Of Binary Tree
 <p>1. [Remove leaves template]
 <p>2. [2 Solutions] (https://www.cnblogs.com/grandyang/p/5616158.html)
+
+<p>Construct Binary Tree from Preorder and Postorder Traversal
+<p>1. [Same way as dfs] (https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/discuss/161268/C++JavaPython-One-Pass-Real-O(N)/174387)
