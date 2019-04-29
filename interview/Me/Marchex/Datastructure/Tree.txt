@@ -432,3 +432,4 @@ return;
 	    }
 	}
 366.Find Leaves of Binary Tree (See remove leaves template)
+889. Construct Binary Tree from Preorder and Postorder Traversal (similar as other construct tree by orders but adding 1 more if condition)
