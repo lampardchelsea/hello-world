@@ -97,7 +97,7 @@ class Solution {
         for(int i = 0; i < len; i++) {
             result[i] = -1;
         }
-        Stack<Integer> stack = new Stack<Integer>();
+        Stack<Integer> stack = new Stack<Integer>(); // Store index instead of value
         for(int i = 0; i < len * 2; i++) {
             while(!stack.isEmpty() && nums[stack.peek()] < nums[i % len]) {
                 result[stack.pop()] = nums[i % len];
