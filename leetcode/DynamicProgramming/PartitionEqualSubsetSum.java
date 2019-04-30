@@ -81,7 +81,7 @@ class Solution {
     }
 }
 
-// Solution 2:
+// Solution 2: Change 2D array DP to 1D array DP
 // Refer to
 // https://leetcode.com/problems/partition-equal-subset-sum/discuss/90627/Java-Solution-similar-to-backpack-problem-Easy-to-understand
 class Solution {
