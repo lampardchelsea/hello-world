@@ -115,7 +115,7 @@ class Solution {
          Because dp[j] = dp[j] || dp[j - nums[i - 1]] uses smaller index value dp[j - nums[i]].
          When the current iteration begins, the values in dp[] are the result of previous iteration.
          Current iteration's result should only depend on the values of previous iteration.
-         If you iterate from j = 1, then dp[j - nums[i]] will be overwritten before you use it, 
+         If you iterate from j = 1, then dp[j - nums[i - 1]] will be overwritten before you use it, 
          which is wrong. You can avoid this problem by iterating from j = target
         */
         for(int i = 1; i <= nums.length; i++) {
