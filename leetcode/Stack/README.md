@@ -82,5 +82,6 @@
 <p>1. [Stack with O(n) scan only once] (https://leetcode.com/problems/daily-temperatures/discuss/109832/Java-Easy-AC-Solution-with-Stack)
 <p>2. [Native O(n^2) while loop check] (https://leetcode.com/problems/daily-temperatures/discuss/175128/Java-Solution-without-stack)
 
-
-
+<p>Next Greater Element II
+<p>1. [Brute Solution] (https://leetcode.com/problems/next-greater-element-ii/solution/)
+<p>2. [Stack Solution] (https://leetcode.com/problems/next-greater-element-ii/discuss/98270/JavaC%2B%2BPython-Loop-Twice)
