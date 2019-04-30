@@ -136,3 +136,6 @@
   
 <p>Maximum Length of Repeated Subarray
 <p>1. [2D int matrix to simulate DP] (https://leetcode.com/problems/maximum-length-of-repeated-subarray/discuss/109039/Concise-Java-DP%3A-Same-idea-of-Longest-Common-Substring)
+
+<p>Partition Equal Subset Sum
+<p>1. [0/1 knapsack detailed explanation] (https://leetcode.com/problems/partition-equal-subset-sum/discuss/90592/01-knapsack-detailed-explanation)
