@@ -110,3 +110,5 @@
 <p>Middle of the Linked List
 <p>1. [Runner and walker]
 
+<p>Next Greater Node In Linked List
+<p>1. [Very similar to this problem 503. Next Greater Element II] (https://leetcode.com/problems/next-greater-node-in-linked-list/discuss/265508/JavaC%2B%2BPython-Next-Greater-Element)
