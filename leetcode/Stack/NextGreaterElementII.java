@@ -84,7 +84,26 @@ class Solution {
 
 // Solution 3:
 // Refer to
-// https://leetcode.com/problems/next-greater-element-ii/solution/
+// https://leetcode.com/problems/next-greater-element-ii/discuss/98270/JavaC%2B%2BPython-Loop-Twice
 /**
- 
+  Similar to 496.Next Greater Element I, but not need to use HashMap like Next Greater Element I,
+  because this happen in the same array itself, just need to handle circular as nums[i % len],
+  in Next Greater Element I we use HashMap to locate nums2's index associate to nums1's value
 */
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int len = nums.length;
+        int[] result = new int[len];
+        for(int i = 0; i < len; i++) {
+            result[i] = -1;
+        }
+        Stack<Integer> stack = new Stack<Integer>();
+        for(int i = 0; i < len * 2; i++) {
+            while(!stack.isEmpty() && nums[stack.peek()] < nums[i % len]) {
+                result[stack.pop()] = nums[i % len];
+            }
+            stack.push(i % len);
+        }
+        return result;
+    }
+}
