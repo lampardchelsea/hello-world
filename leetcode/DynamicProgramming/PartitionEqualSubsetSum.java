@@ -99,6 +99,7 @@ class Solution {
         boolean[] dp = new boolean[target + 1];
         dp[0] = true;
         /**
+         Note 1: Why we can downgrade 2D array DP to 1D array DP ?
          Refer to
          https://leetcode.com/problems/partition-equal-subset-sum/discuss/90592/01-knapsack-detailed-explanation/188673
          In my understanding the transition to 1d solution can 
@@ -107,6 +108,15 @@ class Solution {
          As a result, we can only fill up one array on every 
          iteration over 'nums' and then reuse it on the next 
          iteration (as if we would be moving to next row in 2d table).
+         
+         Note 2: Why the inner loop can not start from j = 1 ?
+         Refer to
+         https://leetcode.com/problems/partition-equal-subset-sum/discuss/90592/01-knapsack-detailed-explanation/140416
+         Because dp[j] = dp[j] || dp[j - nums[i - 1]] uses smaller index value dp[j - nums[i]].
+         When the current iteration begins, the values in dp[] are the result of previous iteration.
+         Current iteration's result should only depend on the values of previous iteration.
+         If you iterate from j = 1, then dp[j - nums[i]] will be overwritten before you use it, 
+         which is wrong. You can avoid this problem by iterating from j = target
         */
         for(int i = 1; i <= nums.length; i++) {
             for(int j = target; j > 0; j--) {
