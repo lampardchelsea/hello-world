@@ -80,3 +80,41 @@ class Solution {
         return dp[len][target];
     }
 }
+
+// Solution 2:
+// Refer to
+// https://leetcode.com/problems/partition-equal-subset-sum/discuss/90627/Java-Solution-similar-to-backpack-problem-Easy-to-understand
+class Solution {
+    public boolean canPartition(int[] nums) {
+        int sum = 0;
+        for(int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+        }
+        // Caution: Do not forget check sum must be even
+        if(sum % 2 == 1) {
+            return false;
+        }
+        int target = sum / 2;
+        int len = nums.length;
+        boolean[] dp = new boolean[target + 1];
+        dp[0] = true;
+        /**
+         Refer to
+         https://leetcode.com/problems/partition-equal-subset-sum/discuss/90592/01-knapsack-detailed-explanation/188673
+         In my understanding the transition to 1d solution can 
+         happen here because 2d solution always depends on values 
+         from row above and it doesn't depend on other rows.
+         As a result, we can only fill up one array on every 
+         iteration over 'nums' and then reuse it on the next 
+         iteration (as if we would be moving to next row in 2d table).
+        */
+        for(int i = 1; i <= nums.length; i++) {
+            for(int j = target; j > 0; j--) {
+                if(j >= nums[i - 1]) {
+                    dp[j] = dp[j] || dp[j - nums[i - 1]];
+                }
+            }
+        }
+        return dp[target];
+    }
+}
