@@ -17,6 +17,19 @@ Note: The length of given array won't exceed 10000.
 // Solution 1: Brutal force
 // Refer to
 // https://leetcode.com/problems/next-greater-element-ii/solution/
+/**
+ Approach #1 Brute Force (using Double Length Array) [Time Limit Exceeded]
+In this method, we make use of an array doublenumsdoublenums which is formed by concatenating 
+two copies of the given numsnums array one after the other. Now, when we need to find out the 
+next greater element for nums[i], we can simply scan all the elements doublenums[j], such that 
+i < j < length(doublenums). The first element found satisfying the given condition is the required 
+result for nums[i]. If no such element is found, we put a -1 at the appropriate position in the 
+resres array.
+Complexity Analysis
+Time complexity : O(n^2). 
+The complete doublenumsdoublenums array(of size 2n) is scanned for all the elements of nums in the worst case.
+Space complexity : O(n). doublenumsdoublenums array of size 2n is used. resres array of size n is used.
+*/
 class Solution {
     public int[] nextGreaterElements(int[] nums) {
         int[] result = new int[nums.length];
@@ -39,4 +52,39 @@ class Solution {
 }
 
 // Solution 2:
+// https://leetcode.com/problems/next-greater-element-ii/solution/
+/**
+ Approach #2 Better Brute Force [Accepted]
+ Instead of making a double length copy of numsnums array , we can traverse circularly 
+ in the numsnums array by making use of the modulus % operator. For every element 
+ nums[i], we start searching in the nums array(of length n) from the index (i+1) and 
+ look at the next(cicularly) n−1 elements. For nums[i] we do so by scanning over nums[j], 
+ such that (i+1), and we look for the first greater element found. 
+ If no such element is found, we put a -1 at the appropriate position in the 
+ resres array.
+ Complexity Analysis
+ Time complexity : O(n^2). The complete numsnums array of size nn is scanned for all the elements of numsnums in the worst case.
+ Space complexity : O(n). resres array of size n is used.
+*/
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int[] result = new int[nums.length];
+        for(int i = 0; i < nums.length; i++) {
+            result[i] = -1;
+            for(int j = 1; j < nums.length; j++) {
+                if(nums[(i + j) % nums.length] > nums[i]) {
+                    result[i] = nums[(i + j) % nums.length];
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+}
 
+// Solution 3:
+// Refer to
+// https://leetcode.com/problems/next-greater-element-ii/solution/
+/**
+ 
+*/
