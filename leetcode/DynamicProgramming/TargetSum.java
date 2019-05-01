@@ -115,3 +115,28 @@ class Solution {
         return dp[s];
     } 
 }
+
+// Solution 3: DFS
+// Refer to
+// https://leetcode.com/problems/target-sum/discuss/97371/Java-Short-DFS-Solution
+class Solution {
+    int result = 0;
+    public int findTargetSumWays(int[] nums, int S) {
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        helper(nums, 0, S, 0);
+        return result;
+    }
+    
+    private void helper(int[] nums, long currVal, int S, int index) {
+        if(index == nums.length) {
+            if(currVal == S) {
+                result++;
+            }
+            return;
+        }
+        helper(nums, currVal + nums[index], S, index + 1);
+        helper(nums, currVal - nums[index], S, index + 1);
+    }
+}
