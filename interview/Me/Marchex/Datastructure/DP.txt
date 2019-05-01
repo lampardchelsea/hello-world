@@ -1,1 +1,2 @@
 416. Partition Equal Subset Sum (0/1 knapsack choose the number or not)
+494. Target Sum (DFS or 2D array DP or 1D array DP with Math analysis)
