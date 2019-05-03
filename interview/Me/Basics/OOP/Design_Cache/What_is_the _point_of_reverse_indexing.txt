@@ -1,0 +1,26 @@
+https://stackoverflow.com/questions/19882785/what-is-the-point-of-reverse-indexing
+Q:I just learned about reverse indexing. The wikipedia page says that
+In database management systems, a reverse key index strategy reverses the key value before entering 
+it in the index.1 E.g., the value 24538 becomes 83542 in the index. Reversing the key value is 
+particularly useful for indexing data such as sequence numbers, where each new key value is greater 
+than the prior value, i.e., values monotonically increase. Reverse key indexes have become particularly 
+important in high volume transaction processing systems because they reduce contention for index blocks.
+
+Why is reversing the key value useful for indexing sequence numbers? Also, why do reverse indexes help 
+reduce contention for index blocks in high volume systems? In short: what is the point of reverse indexing?
+
+A:In your example it refers to sequential numbers being a good application for reverse indexing. 
+Taking the quoted number 24538, it will be inserted in the index at a certain point. The next number 
+in the sequence will be 24539, which will be inserted in the index very close to the first number 
+since the most significant digits are identical. Extending this, many sequential numbers will all 
+require insertion at much the same point, involving a significant overhead in extending index blocks 
+and rebalancing the index along the way.
+
+The least significant digit of these numbers changes more rapidly than the most significant. Thus, 
+reversing the order of the digits gives 83542 and 93542 respectively. These two numbers will be 
+inserted into the index much further apart, and extending this to many numbers, the index will be 
+built in a more balanced way, reducing the overhead in index management.
+
+The operation of reversing the digits is trivial in computing terms, while managing the index can 
+potentially involve many disk accesses, so inserting items in an index in a way that reduces the 
+management overhead can deliver significant performance improvements.
