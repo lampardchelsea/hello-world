@@ -11,6 +11,9 @@
  * http://www.jiuzhang.com/solutions/lru-cache/
 */
 // Solution 1: HashMap + DoublyLinkedList
+// On DoublyLinkedList, the head.next should be least recently used node, the tail.prev should be most recently used node,
+// so if reach to the capacity, always remove the head.next node out of DoublyLinkedList and map, and if insert the new
+// node, have to add as tail.prev on both DoublyLinkedList and map.
 public class LRUCache {
     private class Node {
         int key;
