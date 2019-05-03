@@ -1,0 +1,36 @@
+如果有哪轮比较少，是我真的不记得了，应该就是经典问题，没有问特别的。
+
+- phone interview
+实际：
+1.what are you using for mobile? Native or hybrid
+2.what is AWS, docker
+3.any experience with data/video streaming
+4.how to realize multi players sing a single song
+
+- onsite interview
+实际：
+Round 1: Engineer manager 30min 
+Describe your current product
+
+Round 2: Web engineer 45min
+Realize table grid
+Realize getElementsByClassName
+React state vs props
+React lifecycle
+Promise vs callback
+
+Round 3: Server engineer 45min
+Two sum
+Describe what happened from a url ink to a website (top fullstack interview question)
+LRU realize read() and write() in o(1): heap -> hashmap and stack -> hashmap and doubly linked list
+
+Round 4: Product manager 30min
+Describe any experience with designer, product manager, engineer
+Any suggestions about the app/web
+
+Round 5: VP 30min 
+Describe the project you are proud of (high frequently asked)
+Any hard technical questions you met 
+
+Best,
+-Yilin
