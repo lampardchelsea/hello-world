@@ -39,6 +39,132 @@ twitter.unfollow(1, 2);
 twitter.getNewsFeed(1);
 */
 
+// Solution 1:
+// Refer to
+// https://leetcode.com/problems/design-twitter/discuss/82825/Java-OO-Design-with-most-efficient-function-getNewsFeed
+class Twitter {
+    private static int timeStamp = 0;
+    Map<Integer, User> userMap;
+    
+    // OO design so User can follow, unfollow and post itself
+    public class User {
+        public int id;
+        public Set<Integer> followed;
+        public Tweet tweet_head;
+        public User(int id) {
+            this.id = id;
+            this.followed = new HashSet<Integer>();
+            follow(id); // first follow itself
+            this.tweet_head = null;
+        }
+        
+        public void follow(int id) {
+            followed.add(id);
+        }
+        
+        public void unfollow(int id) {
+            followed.remove(id);
+        }
+        
+        // everytime user post a new tweet, add it to the head of tweet list.
+        public void post(int id) {
+            Tweet t = new Tweet(id);
+            t.next = tweet_head;
+            tweet_head = t;
+        }
+    }
+        
+    private class Tweet {
+        public int id;
+        public int time;
+        public Tweet next;
+        public Tweet(int id) {
+            this.id = id;
+            this.time = timeStamp++;
+            this.next = null;
+        }
+    }
+    
+    /** Initialize your data structure here. */
+    public Twitter() {
+        userMap = new HashMap<Integer, User>();
+    }
+    
+    /** Compose a new tweet. */
+    public void postTweet(int userId, int tweetId) {
+        if(!userMap.containsKey(userId)) {
+            User u = new User(userId);
+            userMap.put(userId, u);
+        }
+        userMap.get(userId).post(tweetId);
+    } 
+    
+    /** Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent. */
+    // Best part of this.
+	// First get all tweets lists from one user including itself and all people it followed.
+	// Second add all heads into a max heap. Every time we poll a tweet with 
+	// largest time stamp from the heap, then we add its next tweet into the heap.
+	// So after adding all heads we only need to add 9 tweets at most into this 
+	// heap before we get the 10 most recent tweet.
+    public List<Integer> getNewsFeed(int userId) {
+        List<Integer> result = new LinkedList<Integer>();
+        if(!userMap.containsKey(userId)) {
+            return result;
+        }
+        Set<Integer> users = userMap.get(userId).followed;
+        PriorityQueue<Tweet> pq = new PriorityQueue<Tweet>(users.size(), (a, b) -> (b.time - a.time));
+        for(int user : users) {
+            Tweet t = userMap.get(user).tweet_head;
+            // very imporant! If we add null to the head we are screwed.
+            if(t != null) {
+                pq.offer(t);
+            }
+        }
+        int count = 0;
+        while(!pq.isEmpty() && count < 10) {
+            Tweet t = pq.poll();
+            result.add(t.id);
+            count++;
+            if(t.next != null) {
+                pq.offer(t.next);
+            }
+        }
+        return result;
+    }
+    
+    /** Follower follows a followee. If the operation is invalid, it should be a no-op. */
+    public void follow(int followerId, int followeeId) {
+        if(!userMap.containsKey(followerId)) {
+            User u = new User(followerId);
+            userMap.put(followerId, u);
+        }
+        if(!userMap.containsKey(followeeId)) {
+            User u = new User(followeeId);
+            userMap.put(followeeId, u);
+        }
+        userMap.get(followerId).follow(followeeId);
+    }
+    
+    /** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */
+    public void unfollow(int followerId, int followeeId) {
+        if(!userMap.containsKey(followerId) || followerId == followeeId) {
+            return;
+        }
+        userMap.get(followerId).unfollow(followeeId);
+    }
+}
+
+/**
+ * Your Twitter object will be instantiated and called as such:
+ * Twitter obj = new Twitter();
+ * obj.postTweet(userId,tweetId);
+ * List<Integer> param_2 = obj.getNewsFeed(userId);
+ * obj.follow(followerId,followeeId);
+ * obj.unfollow(followerId,followeeId);
+ */
+
+
+// Solution 2:
 public class Twitter {
     Map<Integer, List<Tweet>> userPostTweetMap;
     Map<Integer, List<Integer>> userRelationMap;
