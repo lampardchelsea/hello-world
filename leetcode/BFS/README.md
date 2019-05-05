@@ -17,3 +17,6 @@
 
 <p>Shortest Distance From All Buildings
 <p>1. [Java BFS solution with explanation and time complexity analysis] (https://discuss.leetcode.com/topic/31925/java-solution-with-explanation-and-time-complexity-analysis)
+
+<p>Find Bottom Left Tree Value
+<p>1. [Verbose Java Solution, Binary tree level order traversal] (https://leetcode.com/problems/find-bottom-left-tree-value/discuss/98786/Verbose-Java-Solution-Binary-tree-level-order-traversal)
