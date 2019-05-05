@@ -75,6 +75,9 @@ class Solution {
  We use an unordered_set to record the rooms visited, and a queue for BFS. Push room 0 to queue first.
  While the queue is not empty, meaning we have more rooms to visit, we check all keys in the current 
  room, if we haven't visit all of these rooms, push it to the queue.
+ 
+ Runtime: 3 ms, faster than 71.15% of Java online submissions for Keys and Rooms.
+ Memory Usage: 44.4 MB, less than 7.20% of Java online submissions for Keys and Rooms.
 */
 class Solution {
     public boolean canVisitAllRooms(List<List<Integer>> rooms) {
