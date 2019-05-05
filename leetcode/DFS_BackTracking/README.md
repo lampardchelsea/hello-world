@@ -142,3 +142,6 @@
   
 <p>Employee Importance
 <p>1. [HashMap + DFS] (https://leetcode.com/problems/employee-importance/discuss/112587/Java-HashMap-bfs-dfs)
+  
+<p>Keys And Rooms
+<p>1. [DFS + BFS] (https://leetcode.com/problems/keys-and-rooms/discuss/135306/BFS-(9-lines-10ms)-and-DFS-(7-lines-18ms)-in-C%2B%2B-w-beginner-friendly-explanation)
