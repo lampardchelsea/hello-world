@@ -44,6 +44,9 @@ If we have visited all rooms, number of visited rooms should be the same as numb
 
 Possible followup: Why would you use BFS over DFS in this solution (except that DFS takes longer here)?
 Ans: If input is too large, DFS might cause stack overflow.
+
+Runtime: 2 ms, faster than 84.10% of Java online submissions for Keys and Rooms.
+Memory Usage: 44.5 MB, less than 6.00% of Java online submissions for Keys and Rooms.
 */
 class Solution {
     Set<Integer> set = new HashSet<Integer>();
