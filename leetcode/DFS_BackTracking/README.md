@@ -139,3 +139,6 @@
 <p>1. [Trie] (https://leetcode.com/problems/replace-words/discuss/105767/Java-SimpleClassical-Trie-questionsolution-(Beat-96))
 
 <p>Leaf-Similar Trees
+  
+<p>Employee Importance
+<p>1. [HashMap + DFS] (https://leetcode.com/problems/employee-importance/discuss/112587/Java-HashMap-bfs-dfs)
