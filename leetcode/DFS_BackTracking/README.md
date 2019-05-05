@@ -137,3 +137,5 @@
 
 <p>Replace Words
 <p>1. [Trie] (https://leetcode.com/problems/replace-words/discuss/105767/Java-SimpleClassical-Trie-questionsolution-(Beat-96))
+
+<p>Leaf-Similar Trees
