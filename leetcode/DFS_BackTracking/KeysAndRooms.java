@@ -67,3 +67,31 @@ class Solution {
         }
     }
 }
+
+// Solution 2: BFS
+// Refer to
+// https://leetcode.com/problems/keys-and-rooms/discuss/135306/BFS-(9-lines-10ms)-and-DFS-(7-lines-18ms)-in-C%2B%2B-w-beginner-friendly-explanation
+/**
+ We use an unordered_set to record the rooms visited, and a queue for BFS. Push room 0 to queue first.
+ While the queue is not empty, meaning we have more rooms to visit, we check all keys in the current 
+ room, if we haven't visit all of these rooms, push it to the queue.
+*/
+class Solution {
+    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+        Set<Integer> visited = new HashSet<Integer>();
+        Queue<Integer> toVisit = new LinkedList<Integer>();
+        toVisit.offer(0);
+        while(!toVisit.isEmpty()) {
+            int roomId = toVisit.poll();
+            visited.add(roomId);
+            List<Integer> keysInRoom = rooms.get(roomId);
+            for(int key : keysInRoom) {
+                if(!visited.contains(key)) {
+                    visited.add(key);
+                    toVisit.add(key);
+                }
+            }
+        }
+        return visited.size() == rooms.size();
+    }
+}
