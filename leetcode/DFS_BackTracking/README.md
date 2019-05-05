@@ -145,3 +145,6 @@
   
 <p>Keys And Rooms
 <p>1. [DFS + BFS] (https://leetcode.com/problems/keys-and-rooms/discuss/135306/BFS-(9-lines-10ms)-and-DFS-(7-lines-18ms)-in-C%2B%2B-w-beginner-friendly-explanation)
+
+<p>Distribute Coins in Binary Tree
+<p>1. [we have an excess of node.val + dfs(node.left) + dfs(node.right) - 1 coins at this node] (https://leetcode.com/problems/distribute-coins-in-binary-tree/solution/)
