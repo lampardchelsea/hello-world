@@ -64,7 +64,7 @@ public class Solution {
             }
         }
         return String.valueOf(stack.pop());
-	   }
+    }
 }
 
 
