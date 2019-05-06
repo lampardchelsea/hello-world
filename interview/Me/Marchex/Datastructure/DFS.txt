@@ -54,3 +54,5 @@ public boolean dfs(char[][] board, String word, int index, int rowIndex, int col
 979. Distribute Coins in Binary Tree (we have an excess of node.val + dfs(node.left) + dfs(node.right) - 1 coins at this node)
 841. Keys and Rooms (When we enter a room, mark it as visited)
 1026. Maximum Difference Between Node and Ancestor (Maintain min and max value at one time)
+1020. Number of Enclaves (We flood-fill the land (change 1 to 0) from the boundary of the grid. Then, we count the remaining land.)
+
