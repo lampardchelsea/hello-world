@@ -85,3 +85,6 @@
 <p>Next Greater Element II
 <p>1. [Brute Solution] (https://leetcode.com/problems/next-greater-element-ii/solution/)
 <p>2. [Stack Solution] (https://leetcode.com/problems/next-greater-element-ii/discuss/98270/JavaC%2B%2BPython-Loop-Twice)
+
+<p>Ternary Expression Parser
+<p>1. [We push each character of the expression into a stack reversely] (https://yeqiuquan.blogspot.com/2017/07/439-ternary-expression-parser.html)
