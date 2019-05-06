@@ -24,6 +24,10 @@ import java.util.Queue;
  * Solution
  * http://www.jiuzhang.com/solutions/number-of-islands/
  * https://aaronice.gitbooks.io/lintcode/content/graph_search/number_of_islands.html
+ 此题可以考虑用Union Find，不过更简单的是用BFS或者DFS。
+其中DFS结合mark的方法最巧妙简单，n^2循环，扫描grid[i][j], 如果是island的，即grid[i][j] == true，
+则计数加一（ans++），并对四个方向进行DFS查找，并将所有属于那坐岛屿的点mark为非岛屿。这样扫描过的
+地方全部会变成非岛屿，而岛屿的数量已被记录
  */
 public class NumberOfIslands {
 	// Solution 1: BFS
