@@ -183,5 +183,60 @@ class Solution {
 
 // Solution 2: Union-Found
 // Refer to
-// https://blog.csdn.net/sc19951007/article/details/85362404
-// https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/discuss/197668/Count-the-Number-of-Islands-O(N)
+// https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/discuss/197693/Java-Union-Find
+class Solution {
+    int count = 0;
+    public int removeStones(int[][] stones) {
+        Map<String, String> parent = new HashMap<>();
+        count = stones.length;
+        // init Union Find
+        for (int[] stone : stones) {
+            String s = stone[0] + " " + stone[1];
+            parent.put(s, s);
+        }
+        for (int[] s1 : stones) {
+            String ss1 = s1[0] + " " + s1[1];
+            for (int[] s2 : stones) {
+                if (s1[0] == s2[0] || s1[1] == s2[1]) { // in the same column or row
+                    String ss2 = s2[0] + " " + s2[1];
+                    union(parent, ss1, ss2);
+                }
+            }
+        }
+        return stones.length - count;
+    }
+    
+    public void union(Map<String, String> parent, String s1, String s2) {
+        String src = find(parent, s1);
+        String dst = find(parent, s2);
+        if(!src.equals(dst)) {
+            parent.put(src, dst);
+            count--;
+        }
+    }
+    
+    // find method style 1
+    // Runtime: 115 ms, faster than 14.42% of Java online submissions for Most Stones Removed with Same Row or Column.
+    // Memory Usage: 42.9 MB, less than 66.39% of Java online submissions for Most Stones Removed with Same Row or Column
+    public String find(Map<String, String> parent, String s) {
+        if(!parent.get(s).equals(s)) {
+            parent.put(s, find(parent, parent.get(s)));
+        }
+        //return s;
+        return parent.get(s);
+    }
+       // find method style 2
+       // without path compression will be
+       // Runtime: 175 ms, faster than 7.15% of Java online submissions for Most Stones Removed with Same Row or Column.
+       // Memory Usage: 48 MB, less than 21.45% of Java online submissions for Most Stones Removed with Same Row or Column.
+       // with path compression will be
+       // Runtime: 136 ms, faster than 9.75% of Java online submissions for Most Stones Removed with Same Row or Column.
+       // Memory Usage: 42.5 MB, less than 68.82% of Java online submissions for Most Stones Removed with Same Row or Column.
+//     public String find(Map<String, String> parent, String s) {
+//         if(parent.get(s).equals(s)) {
+//             return s;
+//         }
+//         // return find(parent, parent.get(s)); -> without path compression like s = find(...) will cost more memory and time
+//         return s = find(parent, parent.get(s));
+//     }
+}
