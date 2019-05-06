@@ -155,3 +155,8 @@
 
 <p>Number of Enclaves
 <p>1. [We flood-fill the land (change 1 to 0) from the boundary of the grid. Then, we count the remaining land] (https://leetcode.com/problems/number-of-enclaves/discuss/265555/C%2B%2B-with-picture-DFS-and-BFS)
+
+<p>Most Stones Removed with Same Row or Column
+<p>1. [UnionFind] (https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/discuss/197693/Java-Union-Find)
+<p>2. [DFS + similar to Number of Islands] (https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/discuss/197668/Count-the-Number-of-Islands-O(N))
+<p>3. [DFS] (https://blog.csdn.net/sc19951007/article/details/85362404)
