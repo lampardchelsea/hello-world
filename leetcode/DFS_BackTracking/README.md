@@ -148,3 +148,7 @@
 
 <p>Distribute Coins in Binary Tree
 <p>1. [we have an excess of node.val + dfs(node.left) + dfs(node.right) - 1 coins at this node] (https://leetcode.com/problems/distribute-coins-in-binary-tree/solution/)
+
+<p>Maximum Difference Between Node and Ancestor
+<p>1. [DFS style 1] (https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/discuss/278183/Java-DFS)
+<p>2. [DFS style 2] (https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/discuss/274610/JavaC%2B%2BPython-Top-Down)
