@@ -152,3 +152,6 @@
 <p>Maximum Difference Between Node and Ancestor
 <p>1. [DFS style 1] (https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/discuss/278183/Java-DFS)
 <p>2. [DFS style 2] (https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/discuss/274610/JavaC%2B%2BPython-Top-Down)
+
+<p>Number of Enclaves
+<p>1. [We flood-fill the land (change 1 to 0) from the boundary of the grid. Then, we count the remaining land] (https://leetcode.com/problems/number-of-enclaves/discuss/265555/C%2B%2B-with-picture-DFS-and-BFS)
