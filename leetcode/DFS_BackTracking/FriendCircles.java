@@ -69,3 +69,52 @@ class Solution {
         }
     }
 }
+
+// Solution 2: Union find
+// Refer to
+// https://leetcode.com/problems/friend-circles/discuss/101336/Java-solution-Union-Find
+class Solution {
+    int count = 0;
+    public int findCircleNum(int[][] M) {
+        if(M == null || M.length == 0) {
+            return 0;
+        }
+        count = M.length;
+        // initialize union find
+        int[] parent = new int[M.length];
+        for(int i = 0; i < M.length; i++) {
+            parent[i] = i;
+        }
+        for(int i = 0; i < M.length; i++) {
+            for(int j = i + 1; j < M.length; j++) {
+                if(M[i][j] == 1) {
+                    union(parent, i, j);
+                }
+            }
+        }
+        return count;
+    }
+    
+    private void union(int[] parent, int i, int j) {
+        int src = find(parent, i);
+        int dst = find(parent, j);
+        if(src != dst) {
+            parent[src] = dst;
+            count--;
+        }
+    }
+    
+    private int find(int[] parent, int x) {
+        // Style 1: Use while -> Same as solution and Number of Connected Components in an Undirected Graph solution
+        // https://leetcode.com/problems/friend-circles/discuss/101336/Java-solution-Union-Find
+        // while(parent[x] != x) {
+        //     parent[x] = parent[parent[x]]; // path compression by halving
+        //     x = parent[x];
+        // }
+        // Style 2: Use if -> Same as what used for Most Stones Removed With Same Row Or Column solution
+        if(parent[x] != x) {
+            parent[x] = find(parent, find(parent, parent[x]));
+        }
+        return parent[x];
+    }
+}
