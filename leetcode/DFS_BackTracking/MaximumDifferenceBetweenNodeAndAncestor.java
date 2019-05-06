@@ -31,6 +31,9 @@ Each node will have value between 0 and 100000.
 // https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/discuss/274610/JavaC%2B%2BPython-Top-Down
 // We pass the minimum and maximum values to the children,
 // At the leaf node, we return max - min through the path from the root to the leaf.
+// And no need to worry about order required by (ancestor - current) because in the final calculation format
+// every difference is calculated by |ancestor - current|, which means if 3 is ancestor and 8 is current,
+// the difference can by found by |3 - 8| as |current - ancestor|, no order required since absolute
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
