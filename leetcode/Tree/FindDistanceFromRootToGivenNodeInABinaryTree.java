@@ -22,6 +22,9 @@ in above tree distance of 35 is two
 and distance of 10 is 1
 */
 class Solution {
+    // Style 1:
+    // Refer to
+    // https://www.geeksforgeeks.org/find-distance-root-given-node-binary-tree/
     public int findDistance(TreeNode root, int x) {
         // Returns -1 if x doesn't exist in tree. Else
         // returns distance of x from root
@@ -37,24 +40,25 @@ class Solution {
         }
         return distance;
     }
-    
-    // Follow up: If BST, then if condition can be implement
+ 
+    // Style 2:
+    // Refer to
+    // https://stackoverflow.com/questions/22585740/get-the-distance-from-a-root-to-a-node-with-given-value-in-a-binary-tree-algori
     public int findDistance(TreeNode root, int x) {
-        // Returns -1 if x doesn't exist in tree. Else
-        // returns distance of x from root
+        // Base case: Value is never in an empty subtree
         if(root == null) {
-            return -1;    
+            return -1;
         }
-        int distance = -1;
-        // Check if x is present at root or in left
-        // subtree or right subtree.
         if(root.val == x) {
-            return distance + 1;
-        } else if(root.val > x) {
-            return findDistance(root..left, x) + 1;
-        } else if(root.val < x) {
-            return findDistance(root.right, x) + 1;
+            return 0;
         }
+        int left = findDistance(root.left, x);
+        int right = findDistance(root.right, x);
+        // If both left subtree and right subtree not contain value x
+        if(left == -1 && right == -1) {
+            return -1;
+        }
+        // If the value was found, return the distance from the root of the subtree + 1
+        return Math.max(left, right) + 1;
     }
-    
 }
