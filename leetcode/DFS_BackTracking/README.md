@@ -160,3 +160,7 @@
 <p>1. [UnionFind] (https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/discuss/197693/Java-Union-Find)
 <p>2. [DFS + similar to Number of Islands] (https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/discuss/197668/Count-the-Number-of-Islands-O(N))
 <p>3. [DFS] (https://blog.csdn.net/sc19951007/article/details/85362404)
+  
+<p>Friend Circles
+<p>1. [DFS] (https://www.cnblogs.com/grandyang/p/6686983.html)
+<p>2. [UnionFind] (https://leetcode.com/problems/friend-circles/discuss/101336/Java-solution-Union-Find)
