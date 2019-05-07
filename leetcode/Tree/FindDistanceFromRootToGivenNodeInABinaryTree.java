@@ -31,8 +31,8 @@ class Solution {
         int distance = -1;
         // Check if x is present at root or in left
         // subtree or right subtree.
-        if(root.val == x || (distance = findDistance(root.left, x)) 
-            || (distance = findDistance(root.right, x))) {
+        if(root.val == x || (distance = findDistance(root.left, x) >= 0) 
+            || (distance = findDistance(root.right, x)) >= 0) {
             return distance + 1;
         }
         return distance;
