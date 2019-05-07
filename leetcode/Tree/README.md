@@ -266,3 +266,7 @@
 <p>Check Completeness of a Binary Tree
 <p>1. [When level-order traversal in a complete tree, after the last node, all nodes in the queue should be null.
 Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-completeness-of-a-binary-tree/discuss/205768/Java-easy-Level-Order-Traversal-one-while-loop)
+
+<p>Find distance from root to given node in a binary tree
+<p>1. [DFS style 1] (https://www.geeksforgeeks.org/find-distance-root-given-node-binary-tree/)
+<p>2. [DFS style 2] (https://stackoverflow.com/questions/22585740/get-the-distance-from-a-root-to-a-node-with-given-value-in-a-binary-tree-algori) 
