@@ -270,3 +270,6 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>Find distance from root to given node in a binary tree
 <p>1. [DFS style 1] (https://www.geeksforgeeks.org/find-distance-root-given-node-binary-tree/)
 <p>2. [DFS style 2] (https://stackoverflow.com/questions/22585740/get-the-distance-from-a-root-to-a-node-with-given-value-in-a-binary-tree-algori) 
+
+<p>Print nodes at k distance from root
+<p>1. [DFS] (https://www.geeksforgeeks.org/print-nodes-at-k-distance-from-root/)
