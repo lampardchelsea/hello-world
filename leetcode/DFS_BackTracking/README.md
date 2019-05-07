@@ -164,3 +164,7 @@
 <p>Friend Circles
 <p>1. [DFS] (https://www.cnblogs.com/grandyang/p/6686983.html)
 <p>2. [UnionFind] (https://leetcode.com/problems/friend-circles/discuss/101336/Java-solution-Union-Find)
+  
+<p>The Maze
+<p>1. [DFS + DP hashmap] (https://www.cnblogs.com/grandyang/p/6381458.html)
+<p>2. [DFS with re-assign value to new variable] (https://segmentfault.com/a/1190000017163338)
