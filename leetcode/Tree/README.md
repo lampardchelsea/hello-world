@@ -273,3 +273,6 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 
 <p>Print nodes at k distance from root
 <p>1. [DFS] (https://www.geeksforgeeks.org/print-nodes-at-k-distance-from-root/)
+
+<p>Print all nodes that are at distance k from a leaf node
+<p>1. [DFS with visited boolean array reset for each node added when encounter] (https://www.geeksforgeeks.org/print-nodes-distance-k-leaf-node/)
