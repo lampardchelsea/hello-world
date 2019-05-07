@@ -436,3 +436,4 @@ return;
 958. Check Completeness of a Binary Tree (When level-order traversal in a complete tree, after the last node, all nodes in the queue should be null.Otherwise, the tree is not complete.)
 Find distance from root to given node in a binary tree (DFS with left == 1 && right == -1 check)
 Print nodes at k distance from root (DFS)
+Print all nodes that are at distance k from a leaf node (DFS with visited boolean array reset for each node added when encounter)
