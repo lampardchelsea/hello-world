@@ -96,6 +96,10 @@ class Solution {
 }
 
 // Correct Solution with reassign start_i, start_j to x, y
+// Caution: The difference here is very imporatnt, after each time rolling until hit the wall, we must return back
+// to original start position to prepare another direction DFS, same as normal DFS one direction one step, but since
+// we have to rolling until hit the wall in this problem, recording the original position by int x = start_i, 
+// int y = start_j is very critical
 class Solution {
     int[] dx = new int[]{0,0,1,-1};
 	int[] dy = new int[]{1,-1,0,0};
@@ -116,7 +120,17 @@ class Solution {
 		}
 		visited[start_i][start_j] = true;
 		for(int k = 0; k < 4; k++) {
-		    // Don't understand why assign start_i, start_j to new variable x, y?
+		        // Don't understand why assign start_i, start_j to new variable x, y?
+			// Recording start position before start rolling in the maze, for next time start another
+			// direction's DFS, since we are rolling until hit the wall, so start position if not
+			// record will change to the stop position, which change the start condition of DFS in this
+			// time recursion, actually we do this in an implicit way in normal DFS as directly start
+			// four directions DFS in for loop, which not modify the start position
+			// Refer to
+			// https://leetcode.com/problems/flood-fill/
+			// for(int k = 0; k < 4; k++) {
+			//     dfs(i + dx[k], j + dy[k], image, visited, iniColor, newColor);
+			// }
 			int x = start_i;
 			int y = start_j;
 			// rolling until out or hit the wall
