@@ -168,3 +168,6 @@
 <p>The Maze
 <p>1. [DFS + DP hashmap] (https://www.cnblogs.com/grandyang/p/6381458.html)
 <p>2. [DFS with re-assign value to new variable] (https://segmentfault.com/a/1190000017163338)
+
+<p>Number Of Distinct Islands
+<p>1. [DFS and choose base point and use set to check islands identical] (https://www.cnblogs.com/grandyang/p/7698778.html)
