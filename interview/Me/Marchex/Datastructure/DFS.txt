@@ -58,3 +58,4 @@ public boolean dfs(char[][] board, String word, int index, int rowIndex, int col
 947. Most Stones Removed with Same Row or Column (Change based on Number of Islands, dfs + unionfind)
 547. Friend Circles (Same as Number of Connected Components in an Undirected Graph)
 490. The Maze (DFS with re-assign value to new variable recording start position in DFS recursion)
+694. Number of Distinct Islands (DFS and choose base point and use set to check islands identical)
