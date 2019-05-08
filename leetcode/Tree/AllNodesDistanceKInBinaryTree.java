@@ -65,6 +65,11 @@ we find its distance from target node, let the distance be d, now we go to other
 subtree (if target was found in left subtree, then we go to right subtree and vice 
 versa) of the ancestor and find all nodes at k-d distance from the ancestor.
 */
+
+// Also refer to
+// https://www.cnblogs.com/grandyang/p/10686922.html
+// https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/discuss/143798/1ms-beat-100-simple-Java-dfs-using-hashmap-with-explanation
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -84,8 +89,8 @@ class Solution {
         return result;
     }
     
-    // Prints all nodes at distance K from a given target node. 
-	  // The K distance nodes may be upward or downward. 
+    // Prints all nodes at distance K from a given target node.
+    // The K distance nodes may be upward or downward. 
     // This function returns distance of root from target node, 
     // it returns -1 if target node is not present in tree rooted 
     // with root. 
@@ -95,8 +100,8 @@ class Solution {
             return -1;
         }
         // If target is same as root. Use the downward function 
-		    // to add all nodes at distance K in subtree rooted with 
-		    // target or root 
+	// to add all nodes at distance K in subtree rooted with 
+	// target or root 
         if(root.val == target.val) {
             printKDistanceNodeDown(root, K);
             return 0;
@@ -106,10 +111,10 @@ class Solution {
         // Check if target node was found in left subtree
         if(dl != -1) {
             // If root is at distance k from target, add root to result
-			      // Note that dl is distance of root's left child from target,
+            // Note that dl is distance of root's left child from target,
             // for root need plus 1 more edge to match distance K
             // Else go to right subtree and add all (K - dl -2) distance nodes 
-			      // Note that the right child is 2 edges away from left child 
+            // Note that the right child is 2 edges away from left child 
             if(dl + 1 == K) {
                 result.add(root.val);
             } else {
@@ -118,7 +123,7 @@ class Solution {
             return dl + 1;
         }
         // MIRROR OF ABOVE CODE FOR RIGHT SUBTREE 
-		    // Note that we reach here only when node was not found in left subtree 
+	// Note that we reach here only when node was not found in left subtree 
         int dr = distanceBetweenCurrentRootAndTargetNode(root.right, target, K);
         if(dr != -1) {
             if(dr + 1 == K) {
@@ -133,7 +138,7 @@ class Solution {
     }
     
     // Recursive function to print all the nodes at distance k in 
-	  // tree (or subtree) rooted with given root.
+    // tree (or subtree) rooted with given root.
     private void printKDistanceNodeDown(TreeNode root, int K) {
         // Base case
         if(root == null || K < 0) {
@@ -149,3 +154,5 @@ class Solution {
         printKDistanceNodeDown(root.right, K - 1);
     }
 }
+
+// Solution 2: DFS with 
