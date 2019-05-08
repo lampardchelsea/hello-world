@@ -276,3 +276,6 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 
 <p>Print all nodes that are at distance k from a leaf node
 <p>1. [DFS with visited boolean array reset for each node added when encounter] (https://www.geeksforgeeks.org/print-nodes-distance-k-leaf-node/)
+
+<p>All Nodes Distance K in Binary Tree
+<p>1. [DFS with back travel to ancestor] (https://www.geeksforgeeks.org/print-nodes-distance-k-given-node-binary-tree/)
