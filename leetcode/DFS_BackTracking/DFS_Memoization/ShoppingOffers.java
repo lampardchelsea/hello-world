@@ -42,6 +42,8 @@ You are not allowed to buy more items than you want, even if that would lower th
 // Solution 1: Using Recursion [Accepted]
 // https://leetcode.com/problems/shopping-offers/solution/
 // https://leetcode.com/problems/shopping-offers/discuss/105212/Very-Easy-to-understand-JAVA-Solution-beats-95-with-explanation
+// Runtime: 8 ms, faster than 71.06% of Java online submissions for Shopping Offers.
+// Memory Usage: 40.6 MB, less than 57.69% of Java online submissions for Shopping Offers.
 /**
  Before discussing the steps involved in the process, we need to note a few points. 
  Firstly, whenever an offer is used from amongst the ones available in the specialspecial list, 
