@@ -114,6 +114,59 @@ class Solution {
     }
 }
 
-// Solution 2:
+// Solution 2: Using Recursion with memoization
 // Refer to
-// 
+// https://leetcode.com/problems/shopping-offers/discuss/105212/Very-Easy-to-understand-JAVA-Solution-beats-95-with-explanation
+// https://leetcode.com/problems/shopping-offers/discuss/105212/Very-Easy-to-understand-JAVA-Solution-beats-95-with-explanation/142244
+// https://leetcode.com/problems/shopping-offers/discuss/105212/Very-Easy-to-understand-JAVA-Solution-beats-95-with-explanation/137618
+// Runtime: 4 ms, faster than 91.09% of Java online submissions for Shopping Offers.
+// Memory Usage: 38.5 MB, less than 73.08% of Java online submissions for Shopping Offers.
+/**
+In the last approach, we can observe that the same needsneeds can be reached by applying the offers in 
+various orders. e.g. We can choose the first offer followed by the second offer or vice-versa. 
+But, both lead to the same requirement of updated needsneeds and the cost as well. Thus, instead of 
+repeating the whole process for the same needsneeds state through various recursive paths, we can 
+create an entry corresponding to the current set of needsneeds in a HashMap, mapmap, which stores 
+the minimum cost corresponding to this set of needsneeds. Thus, whenever the same call is made again 
+in the future through a different path, we need not repeat the whole process over, and we can directly 
+return the result stored in the mapmap.
+*/
+class Solution {
+    public int shoppingOffers(List<Integer> price, List<List<Integer>> special, List<Integer> needs) {
+        Map<List<Integer>, Integer> map = new HashMap<List<Integer>, Integer>();
+        return helper(price, special, needs, map, 0);  
+    }
+    
+    private int helper(List<Integer> price, List<List<Integer>> special, List<Integer> needs, Map<List<Integer>, Integer> map, int cur) {
+        if(map.containsKey(needs)) {
+            return map.get(needs);
+        }
+        int min = directPurchase(price, needs);
+        for(int i = cur; i < special.size(); i++) {
+            List<Integer> offer = special.get(i);
+            List<Integer> temp = new ArrayList<Integer>();
+            for(int j = 0; j < needs.size(); j++) {
+                // check if the current offer is valid
+                if(needs.get(j) < offer.get(j)) {
+                    temp = null;
+                    break;
+                }
+                temp.add(needs.get(j) - offer.get(j));
+            }
+            // use the current offer and try next
+            if(temp != null) {
+                min = Math.min(min, offer.get(offer.size() - 1) + helper(price, special, temp, map, i));
+                map.put(needs, min);
+            }
+        }
+        return min;
+    }
+    
+    private int directPurchase(List<Integer> price, List<Integer> needs) {
+        int min = 0;
+        for(int i = 0; i < price.size(); i++) {
+            min += price.get(i) * needs.get(i);
+        }
+        return min;
+    }
+}
