@@ -9,3 +9,5 @@
 <p>Minimum Path Sum
 <p>1. [Backtracking, Memoization & Dynamic Programming!] (https://loveforprogramming.quora.com/Backtracking-Memoization-Dynamic-Programming)
   
+<p>Shopping Offers
+<p>1. [DFS + Memoization] (https://leetcode.com/problems/shopping-offers/solution/)
