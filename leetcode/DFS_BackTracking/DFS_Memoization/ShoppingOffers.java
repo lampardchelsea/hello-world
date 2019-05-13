@@ -130,6 +130,11 @@ create an entry corresponding to the current set of needsneeds in a HashMap, map
 the minimum cost corresponding to this set of needsneeds. Thus, whenever the same call is made again 
 in the future through a different path, we need not repeat the whole process over, and we can directly 
 return the result stored in the mapmap.
+
+Backtracking with two optimizations
+(1)防止backtracking中重复计算，记忆化搜索, Map<needs, minimum value for this needs>
+Solution里面的第二个
+(2)index(cur), special offer 1, specifal offer 2，防止special offer 2, specifal offer 1的情况再次计算
 */
 class Solution {
     public int shoppingOffers(List<Integer> price, List<List<Integer>> special, List<Integer> needs) {
@@ -155,6 +160,8 @@ class Solution {
             }
             // use the current offer and try next
             if(temp != null) {
+                // the next level recursion use i instead of 0 to avoid duplicate calculating as
+                // index(cur), special offer 1, specifal offer 2，防止special offer 2, specifal offer 1的情况再次计算
                 min = Math.min(min, offer.get(offer.size() - 1) + helper(price, special, temp, map, i));
                 map.put(needs, min);
             }
