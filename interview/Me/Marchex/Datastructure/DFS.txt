@@ -63,3 +63,4 @@ public boolean dfs(char[][] board, String word, int index, int rowIndex, int col
 547. Friend Circles (Same as Number of Connected Components in an Undirected Graph)
 490. The Maze (DFS with re-assign value to new variable recording start position in DFS recursion)
 694. Number of Distinct Islands (DFS and choose base point and use set to check islands identical)
+988. Smallest String Starting From Leaf (DFS should go from top-down only)
