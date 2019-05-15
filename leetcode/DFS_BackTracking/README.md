@@ -173,4 +173,4 @@
 <p>1. [DFS and choose base point and use set to check islands identical] (https://www.cnblogs.com/grandyang/p/7698778.html)
 
 <p>Smallest String Starting From Leaf
-<p>1. [DFS] (http://www.noteanddata.com/leetcode-988-Smallest-String-Starting-From-Leaf-java-solution-update.html)
+<p>1. [DFS should go from top-down only] (http://www.noteanddata.com/leetcode-988-Smallest-String-Starting-From-Leaf-java-solution-update.html)
