@@ -8,6 +8,27 @@
  * Here is an example of version numbers ordering:
  * 0.1 < 1.1 < 1.2 < 13.37
 */
+// Best Solution:
+// Refer to
+// https://leetcode.com/problems/compare-version-numbers/discuss/50774/Accepted-small-Java-solution.
+class Solution {
+    public int compareVersion(String version1, String version2) {
+        String[] str1 = version1.split("\\.");
+        String[] str2 = version2.split("\\.");
+        int len = Math.max(str1.length, str2.length);
+        for(int i = 0; i < len; i++) {
+            Integer a = i < str1.length ? Integer.parseInt(str1[i]) : 0;
+            Integer b = i < str2.length ? Integer.parseInt(str2[i]) : 0;
+            int temp = a.compareTo(b);
+            if(temp != 0) {
+                return temp;
+            }
+        }
+        return 0;
+    }
+}
+
+
 // Wrong Solution:
 public class CompareVersionNumbers {
 	public int compareVersion(String version1, String version2) {
