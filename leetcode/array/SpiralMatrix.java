@@ -1,3 +1,113 @@
+/**
+ Refer to
+ https://leetcode.com/problems/spiral-matrix/submissions/
+ Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
+
+Example 1:
+
+Input:
+[
+ [ 1, 2, 3 ],
+ [ 4, 5, 6 ],
+ [ 7, 8, 9 ]
+]
+Output: [1,2,3,6,9,8,7,4,5]
+Example 2:
+
+Input:
+[
+  [1, 2, 3, 4],
+  [5, 6, 7, 8],
+  [9,10,11,12]
+]
+Output: [1,2,3,4,8,12,11,10,9,5,6,7]
+*/
+// Solution 1:
+// Refer to
+// https://leetcode.com/problems/spiral-matrix/discuss/20599/Super-Simple-and-Easy-to-Understand-Solution
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> result = new ArrayList<Integer>();
+        if(matrix == null || matrix.length == 0) {
+            return result;
+        }
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int rowBegin = 0;
+        int rowEnd = rows - 1;
+        int colBegin = 0;
+        int colEnd = cols - 1;
+        while(rowBegin <= rowEnd && colBegin <= colEnd) {
+            // Traverse right
+            for(int j = colBegin; j <= colEnd; j++) {
+                result.add(matrix[rowBegin][j]);
+            }
+            rowBegin++;
+            // Traverse down
+            for(int j = rowBegin; j <= rowEnd; j++) {
+                result.add(matrix[j][colEnd]);
+            }
+            colEnd--;
+            // The only tricky part is that when traverse left or up check 
+            // whether the row or col still exists to prevent duplicates.
+            // e.g
+            // input: [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+            // output: [1,2,3,4,8,12,11,10,9,5,6,7,6]
+            // expected: [1,2,3,4,8,12,11,10,9,5,6,7]
+            if(rowBegin <= rowEnd) {
+                // Traverse Left
+                for(int j = colEnd; j >= colBegin; j--) {
+                    result.add(matrix[rowEnd][j]);
+                }
+            }
+            rowEnd--;            
+            if(colBegin <= colEnd) {
+                // Traver Up
+                for(int j = rowEnd; j >= rowBegin; j--) {
+                    result.add(matrix[j][colBegin]);
+                }
+            }
+            colBegin++;
+        }
+        return result;
+    }
+}
+
+// Solution 2:
+// Refer to
+// https://leetcode.com/problems/spiral-matrix/discuss/20599/Super-Simple-and-Easy-to-Understand-Solution/185257
+// AN INTERVIEW FRIENDLY SOLUTION
+// the conditions to check borders are all the same.
+// res.size() < n * m
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> res = new LinkedList<>(); 
+        if (matrix == null || matrix.length == 0) return res;
+        int n = matrix.length, m = matrix[0].length;
+        int up = 0,  down = n - 1;
+        int left = 0, right = m - 1;
+        while (res.size() < n * m) {
+            for (int j = left; j <= right && res.size() < n * m; j++)
+                res.add(matrix[up][j]);
+            
+            for (int i = up + 1; i <= down - 1 && res.size() < n * m; i++)
+                res.add(matrix[i][right]);
+                     
+            for (int j = right; j >= left && res.size() < n * m; j--)
+                res.add(matrix[down][j]);
+                        
+            for (int i = down - 1; i >= up + 1 && res.size() < n * m; i--) 
+                res.add(matrix[i][left]);
+                
+            left++; right--; up++; down--; 
+        }
+        return res;
+    }
+}
+
+
+
+
 import java.util.ArrayList;
 import java.util.List;
 
