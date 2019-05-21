@@ -54,7 +54,7 @@ public TreeNode inorderSuccessor2(TreeNode root, TreeNode p) {
 	
 	/**
 	 *        4
-     *      /   \
+         *      /   \
 	 *     2     6
 	 *    / \   /
 	 *   1   3 5
