@@ -268,7 +268,7 @@
 
 <p>Valid Palindrome II
 <p>1. [Java solution, isPalindrome] (https://leetcode.com/problems/valid-palindrome-ii/discuss/107714/Java-solution-isPalindrome)
-  
+
 <p>Longest Substring with At Least K Repeating Characters
 <p>1. [Sliding Window Solution] (https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/discuss/87739/Java-Strict-O(N)-Two-Pointer-Solution)  
   
@@ -295,3 +295,6 @@
   
 <p>Permutation in String
 <p>1. [Sliding window] (https://leetcode.com/problems/permutation-in-string/discuss/102588/Java-Solution-Sliding-Window) 
+
+<p>String Compression
+<p>1. [Two points, one handle global tracking, one handle internal count] (https://leetcode.com/problems/string-compression/discuss/92559/Simple-Easy-to-Understand-Java-solution)
