@@ -16,3 +16,6 @@
 <p>1. [Native DFS] (https://github.com/lampardchelsea/hello-world/blob/b1b6c794809ddbde034d049f01ca63b17e6928be/leetcode/DynamicProgramming/CombinationSumIV.java)
 <p>2. [DFS + Memoization] (https://leetcode.com/problems/combination-sum-iv/discuss/85060/JAVA-recursion-solution-using-HashMap-as-memory./89708)
 <p>3. [Follow up with negative number allowed] (https://leetcode.com/problems/combination-sum-iv/discuss/85038/JAVA%3A-follow-up-using-recursion-and-memorization.)
+
+<p>Knight Dialer
+<p>1. [How to solve this problem explained for noobs!!!] (https://leetcode.com/problems/knight-dialer/discuss/190787/How-to-solve-this-problem-explained-for-noobs!!!)
