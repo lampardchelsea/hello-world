@@ -61,7 +61,8 @@ class Solution {
                     return true;
                 }
             }
-            visited[i][j] = false;
+            visited[i][j] = false; // umark current point; it might be used in other routes
+		                   // https://leetcode.com/problems/word-search/discuss/27796/Share-my-Java-code-straightforward-DFS
         }
         return false;
     }
