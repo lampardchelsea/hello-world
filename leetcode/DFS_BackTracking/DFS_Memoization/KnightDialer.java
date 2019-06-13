@@ -132,13 +132,13 @@ Below is the recursion tree for paths(0, 0, 3).
 Note: The following tree diagram is not visually appealing with the old UI. I recommend to view this in 
 the new UI for a proper visual representation.
 
-                              1 (0,0,3)
-			               /		     \
-				          /               \
-			  	  6 (1,2,2)             8 (2,1,2)	
-			   	/   |    \                |   	\
-			   /	|	  \		          |  	 \
-	1 (0,0,1)  0 (3,1,1)  7 (2,0,1)   1 (0,0,1)  3 (0,2,1)
+                                                 1 (0,0,3)
+			                   /		     \
+				          /                    \
+			  	  6 (1,2,2)                   8 (2,1,2)	
+			   	/    |    \                   |        \
+			      /	     |	   \		      |  	\
+	              1 (0,0,1)  0 (3,1,1)  7 (2,0,1)      1 (0,0,1)  3 (0,2,1)
 Since, 6 jumps are invalid, that leaves us with only two valid jumps e (i + 1, j + 2) and f (i + 2, j + 1) 
 from 1 (0, 0). In other words, from 1 the knight can jump only to 8 and 6.
 
