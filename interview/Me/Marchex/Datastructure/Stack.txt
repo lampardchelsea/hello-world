@@ -2,3 +2,4 @@
 503. Next Greater Element II
 1019. Next Greater Node In Linked List
 439. Ternary Expression Parser (We push each character of the expression into a stack reversely)
+224. Baisc Calculator (stack used to store sign and most inside sign (brace pair to identify the level) will store on stack.peek(), that's why when encounter ')' need to remove the peek one, and also need to initial a '+' as default no matter any brace pair exist or not)
