@@ -169,7 +169,9 @@ public class BasicCalculator {
         // Remove all redundant spaces
         s = s.replace(" ", "");
 	// Stack used to store sign symbol, the most inside (brace pair to identify the level) 
-	// sign symbol will store on stack.peek()
+	// sign symbol will store on stack.peek(), that's why when encounter ')' need to 
+	// remove the peek one, and also need to initial a '+' (sign = 1) as default no matter 
+	// any brace pair exist or not
         Stack<Integer> stack = new Stack<Integer>();
         int i = 0;
         int current_context_sign = 1;
