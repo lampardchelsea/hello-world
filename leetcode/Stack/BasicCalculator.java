@@ -92,15 +92,15 @@ public class BasicCalculator {
 	/**
 	 * E.g given string = "1+(2-(34-5))"
 		(0) push initial sign = 1 onto stack
-		    ------
+		        ------
 			   1
 			------
 			  
-		(1)	encounter '1'
+		(1) encounter '1'
 		    num = 1
-			current_context_sign = 1
-			stack.peek() = 1
-			result += 1 * 1 * 1 -> 1
+		    current_context_sign = 1
+		    stack.peek() = 1
+		    result += 1 * 1 * 1 -> 1
 		
 		(2) encounter '+'
 		    current_context_sign = 1
@@ -125,7 +125,7 @@ public class BasicCalculator {
 			
 		(6) encounter '('
 		    push -> current_context_sign * stack.peek() = -1 * 1 = -1
-		    ------
+		        ------
 			  -1
 			------
 			   1
@@ -150,24 +150,26 @@ public class BasicCalculator {
 			result += 5 * -1 * -1 -> -31 + 5 = -26
 			
 		(10) encounter ')'
-		    pop -1
-		    ------	 
+		     pop -1
+		        ------	 
 			   1
 			------
 			   1
 			------
 			
 		(11) encounter ')'
-		    pop 1
+		     pop 1
 			------
-		       1
-		    ------
+		           1
+		        ------
 	    stack back to initial status
 	 */
 	
     public int calculate(String s) {
         // Remove all redundant spaces
         s = s.replace(" ", "");
+	// Stack used to store sign symbol, the most inside (brace pair to identify the level) 
+	// sign symbol will store on stack.peek()
         Stack<Integer> stack = new Stack<Integer>();
         int i = 0;
         int current_context_sign = 1;
