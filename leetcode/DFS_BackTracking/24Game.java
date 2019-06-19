@@ -40,26 +40,25 @@ we cannot write this as 12 + 12.
 // Why we don't need to care about braces ?
 // Refer to
 // https://leetcode.com/problems/24-game/discuss/112544/Backtracking-beats-95.29-Java
-/**
- Apparently, there are limited number of combinations for cards and operators (+-*/()). 
- One idea is to search among all the possible combinations. This is what backtracking does.
+// Apparently, there are limited number of combinations for cards and operators (+-*/()). 
+// One idea is to search among all the possible combinations. This is what backtracking does.
 
-Note that () play no role in this question. Say, parentheses give some operators a 
-higher priority to be computed. However, the following algorithm has already considered 
-priorities, thus it's of no use to take parentheses into account anymore.
+// Note that () play no role in this question. Say, parentheses give some operators a 
+// higher priority to be computed. However, the following algorithm has already considered 
+// priorities, thus it's of no use to take parentheses into account anymore.
 
-arr contains value for cards and vis[i] indicates whether arr[i] has been used or not. 
-Every time select 2 un-used cards arr[i] and arr[j]. Calculate the answer for arr[i] 
-and arr[j] with some operator, update arr[i] with this new value and mark arr[j] as visited. 
-Now we have 1 less card available. Note that we should use that new value (new arr[i]) 
-in the future, thus we should NOT mark arr[i] as visited. When there is no card available, 
-check whether the answer is 24 or not.
+// arr contains value for cards and vis[i] indicates whether arr[i] has been used or not. 
+// Every time select 2 un-used cards arr[i] and arr[j]. Calculate the answer for arr[i] 
+// and arr[j] with some operator, update arr[i] with this new value and mark arr[j] as visited. 
+// Now we have 1 less card available. Note that we should use that new value (new arr[i]) 
+// in the future, thus we should NOT mark arr[i] as visited. When there is no card available, 
+// check whether the answer is 24 or not.
 
-Since each time after we select 2 cards arr[i] and arr[j], we just do the calculation 
-without considering the priorities for operators we use, we could think that we have 
-already added a pair of () for arr[i] OPERATOR arr[j]. This contains all the possible 
-considerations, thus we do not need to consider parentheses anymore.
-*/
+// Since each time after we select 2 cards arr[i] and arr[j], we just do the calculation 
+// without considering the priorities for operators we use, we could think that we have 
+// already added a pair of () for arr[i] OPERATOR arr[j]. This contains all the possible 
+// considerations, thus we do not need to consider parentheses anymore.
+
 class Solution {
     double elipson = 0.001;
     char[] ops = new char[]{'+','-','*','/'};
