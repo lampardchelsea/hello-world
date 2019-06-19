@@ -24,6 +24,15 @@ Output: "0"
 Explanation: Remove all the digits from the number and it is left with nothing which is 0.
 */
 
+/**
+ Refer to
+ http://blog.csdn.net/qq508618087/article/details/52584133
+ 思路：其基本思想是利用栈尽量维持一个递增的序列，也就是说将字符串中字符依次入栈，如果当前字符串比栈顶元素小，
+ 并且还可以继续删除元素，那么就将栈顶元素删掉，这样可以保证将当前元素加进去一定可以得到一个较小的序列．
+ 也可以算是一个贪心思想．最后我们只取前len-k个元素构成一个序列即可，如果这样得到的是一个空串那就手动返回０．
+ 还有一个需要注意的是字符串首字符不为０
+*/
+
 // Solution 1: Remove leading 0 after all operations
 // Refer to
 // https://leetcode.com/problems/remove-k-digits/discuss/88708/Straightforward-Java-Solution-Using-Stack
