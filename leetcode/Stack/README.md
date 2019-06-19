@@ -88,3 +88,7 @@
 
 <p>Ternary Expression Parser
 <p>1. [We push each character of the expression into a stack reversely] (https://yeqiuquan.blogspot.com/2017/07/439-ternary-expression-parser.html)
+  
+<p>Remove K Digits
+<p>1. [Remove leading 0 after all operations] (https://leetcode.com/problems/remove-k-digits/discuss/88708/Straightforward-Java-Solution-Using-Stack)
+<p>2. [Java with stack, get rid of prefix "0"s inside the loop.] (https://leetcode.com/problems/remove-k-digits/discuss/88737/Java-with-stack-get-rid-of-prefix-%220%22s-inside-the-loop.https://leetcode.com/problems/remove-k-digits/discuss/88708/Straightforward-Java-Solution-Using-Stack)
