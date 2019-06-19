@@ -24,9 +24,67 @@ Output: "0"
 Explanation: Remove all the digits from the number and it is left with nothing which is 0.
 */
 
-// Solution 1:
+// Solution 1: Remove leading 0 after all operations
 // Refer to
 // https://leetcode.com/problems/remove-k-digits/discuss/88708/Straightforward-Java-Solution-Using-Stack
+class Solution {
+    public String removeKdigits(String num, int k) {
+        if(num == null || num.length() == 0) {
+            return "";
+        }
+        if(num.length() == k) {
+            return "0";
+        }
+        // Better than Stack<Integer> since no need calculate
+        // num.charAt(i) - '0'
+        Stack<Character> stack = new Stack<Character>();
+        // The given num does not contain any leading zero
+        // so we can directly put the 1st char on stack
+        stack.push(num.charAt(0));
+        int count = 0;
+        for(int i = 1; i < num.length(); i++) {
+            char curr = num.charAt(i);
+            while(!stack.isEmpty() && curr < stack.peek() && count < k) {
+                stack.pop();
+                count++;
+            }
+            // ??? This way not work ??? Instead remove the initial 0 after all
+            // Because second condition as '(stack.size() == 1 && stack.peek() == '0')'
+            // should not count into remove operation since 0200 need auto remove
+            // leading 0
+            // while((!stack.isEmpty() && curr < stack.peek() && count < k)
+            //     || (stack.size() == 1 && stack.peek() == '0')) {
+            //     stack.pop();
+            //     count++;
+            // }
+            // Whenever meet a digit which is less than the previous digit, 
+            // discard the previous one
+            while(!stack.isEmpty() && curr < stack.peek() && count < k) {
+                stack.pop();
+                count++;
+            }
+            stack.push(curr);
+        }
+        // Handle corner case as num = 112 and k = 1
+        while(count < k) {
+            stack.pop();
+            count++;
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!stack.isEmpty()) {
+            sb.insert(0, stack.pop());
+        }
+        // Remove all the 0 at the head
+        while(sb.length() > 1 && sb.charAt(0) == '0') {
+            sb.deleteCharAt(0);
+        }            
+        return sb.toString();
+    }
+}
+
+// Solution 2: Java with stack, get rid of prefix "0"s inside the loop
+// Refer to
+// https://leetcode.com/problems/remove-k-digits/discuss/88737/Java-with-stack-get-rid-of-prefix-%220%22s-inside-the-loop.
 class Solution {
     public String removeKdigits(String num, int k) {
         if(num == null || num.length() == 0) {
@@ -69,8 +127,3 @@ class Solution {
         return sb.toString();
     }
 }
-
-
-// Solution 2:
-// Refer to
-// https://leetcode.com/problems/remove-k-digits/discuss/88737/Java-with-stack-get-rid-of-prefix-%220%22s-inside-the-loop.
