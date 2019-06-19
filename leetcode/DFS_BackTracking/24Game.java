@@ -77,6 +77,7 @@ class Solution {
         if(list.size() == 1) {
             return Math.abs(list.get(0) - 24) <= elipson;
         }
+        // Each time we pick up two number for computation
         for(int i = 0; i < list.size(); i++) {
             for(int j = 0; j < list.size(); j++) {
                 if(i == j) {
@@ -92,7 +93,7 @@ class Solution {
                 double b = list.get(j);
                 for(char c : ops) {
                     if((c == '+' || c == '*') && i > j) {
-                        continue;
+                        continue; // No need to re-calculate
                     }
                     if(c == '/' && b == 0.0) {
                         continue;
