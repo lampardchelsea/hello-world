@@ -65,3 +65,4 @@ public boolean dfs(char[][] board, String word, int index, int rowIndex, int col
 490. The Maze (DFS with re-assign value to new variable recording start position in DFS recursion)
 694. Number of Distinct Islands (DFS and choose base point and use set to check islands identical)
 988. Smallest String Starting From Leaf (DFS should go from top-down only)
+679. 24Game (ignore braces and implement back tracking by removing used elemnts)
