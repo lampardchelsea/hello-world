@@ -91,12 +91,13 @@ class Solution {
                 }
                 double a = list.get(i);
                 double b = list.get(j);
+                // No braces need to consider
                 for(char c : ops) {
                     if((c == '+' || c == '*') && i > j) {
                         continue; // No need to re-calculate
                     }
                     if(c == '/' && b == 0.0) {
-                        continue;
+                        continue; // Divisor should not be 0.0
                     }
                     if(c == '+') {
                         newList.add(a + b);
@@ -110,7 +111,7 @@ class Solution {
                     if(helper(newList)) {
                         return true;
                     }
-                    newList.remove(newList.size() - 1);
+                    newList.remove(newList.size() - 1); // Important !!! -> remove the last inserted element for backtracking
                 }
             }
         }
