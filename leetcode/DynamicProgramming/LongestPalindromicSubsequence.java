@@ -48,3 +48,26 @@ class Solution {
         return dp[0][len - 1];
     }
 }
+
+// Refer to
+// Good explaination
+// https://leetcode.com/problems/longest-palindromic-subsequence/discuss/99101/Straight-forward-Java-DP-solution/103147
+/**
+ Great solution, very concise. At first I see the 2-D array and think matrix (rows and columns) this confused me. 
+ But then I realized the 2-D array is actually left and right indexes in the string and that led me to see the 
+ solution clearly. If anyone else had trouble understanding this here is some more explanation and code.
+
+You will be considering substrings starting at left and ending at right (inclusive). To do this you will iterate 
+over all lengths from 1 to n and within each length iterate over staring (or left) position. The key is that you 
+get the answers for a single length at all start positions before going to the next length because the dp depends 
+on the answers from shorter lengths. If you do it this way you will have 3 cases to consider on every iteration, 
+pick the one with the highest value.
+
+the answer from removing the left edge char
+the answer from removing the right edge char
+and if the left and right chars are equal, 2 plus the answer from removing both left and right
+the 3rd case is how the answer grows. After iterating through all you will have performed O(n^2) checks and used 
+O(n^2) memory, the answer is where left is 0 and right is n-1 which will be your very last calculation.
+
+To show the 3 cases more clearly I break out lengths 1 and 2 because their logic is simplified.
+*/
