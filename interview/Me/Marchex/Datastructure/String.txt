@@ -6,3 +6,4 @@
 848. Shifting Letters (long type variable of 'times' in case of large input)
 567. Permutation in String (Sliding window)
 443. String Compression (Two pointers, one for global track, one for internal count)
+5. Longest Palindromic Substring (Two pointers, extend from middle and consider even/odd cases)
