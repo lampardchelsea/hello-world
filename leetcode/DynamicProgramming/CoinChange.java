@@ -57,7 +57,7 @@ class Solution {
 // Solution 2:
 /**
  Algorithm
- Approach #2 (Dynamic programming - Top down) [Accepted]
+ Approach #2 (Dynamic programming - Top down = DFS memoization) [Accepted]
  The idea of the algorithm is to build the solution of the problem from top to bottom. 
  It applies the idea described above. It use backtracking and cut the partial solutions 
  in the recursive tree, which doesn't lead to a viable solution. Тhis happens when we 
@@ -107,7 +107,7 @@ class Solution {
 
 // Solution 3:
 /**
- Approach #3 (Dynamic programming - Bottom up) [Accepted]
+ Approach #3 (Dynamic programming - Bottom up = Classic DP) [Accepted]
  Complexity Analysis
  Time complexity : O(S*n). On each step the algorithm finds the next F(i) in nn iterations, where 1 <= i <= S. 
                      Therefore in total the iterations are S∗n.
