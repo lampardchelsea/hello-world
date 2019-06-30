@@ -82,14 +82,15 @@ class Solution {
     }
     
     private int helper(int[] coins, int remained, int[] dp) {
+        // Not valid
         if(remained < 0) {
             return -1;
         }
+        // Completed
         if(remained == 0) {
             return 0;
         }
-        // This return condition is hard to get
-        // Already computed, so reuse
+        // Already computed, so reuse, this return condition is hard to get
         if(dp[remained - 1] != 0) {
             return dp[remained - 1];
         }
