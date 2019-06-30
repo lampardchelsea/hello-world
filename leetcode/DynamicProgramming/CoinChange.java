@@ -81,6 +81,7 @@ class Solution {
         return helper(coins, amount, dp);
     }
     
+    // remained: remaining coins after the last step; dp[remained]: minimum number of coins to sum up to remained
     private int helper(int[] coins, int remained, int[] dp) {
         // Not valid
         if(remained < 0) {
