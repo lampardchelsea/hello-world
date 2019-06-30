@@ -89,6 +89,7 @@ class Solution {
             return 0;
         }
         // This return condition is hard to get
+        // Already computed, so reuse
         if(dp[remained - 1] != 0) {
             return dp[remained - 1];
         }
