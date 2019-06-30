@@ -2,3 +2,4 @@
 494. Target Sum (DFS or 2D array DP or 1D array DP with Math analysis)
 53. Maximum Subarray ((dp[i - 1] > 0 ? dp[i - 1] : 0) + nums[i])
 516. Longest Palindromic Subsequence (2D array DP, index i and j move respectively to left and right)
+322. Coin Change (DFS memoization + Classic DP)
