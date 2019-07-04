@@ -147,7 +147,41 @@ public class CoinChange {
         // answer
         return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];
     }
-    
+   
+   // For Solution 3 we can promote as below:
+   // Runtime: 8 ms, faster than 92.36% of Java online submissions for Coin Change.
+   // Memory Usage: 35.9 MB, less than 98.30% of Java online submissions for Coin Change.
+   // Few changes:
+   // (1) dp[i] initailize as 'amount + 1' instead of Integer.MAX_VALUE, then no need to add condition
+   //     if(i - coin >= 0 && dp[i - coin] != Integer.MAX_VALUE) {...} for overflow check
+   // (2) we can assign max value as 'amount + 1' since at most for 'amount' we only need 'amount'
+   //     number of 1 cent, and it will not exceed 'amount + 1', so if after all we see dp[amount]
+   //     keep as 'amount + 1', that means value as 'amount' not reachable, that's why we return -1.
+   // (3) For 'return dp[amount] == amount + 1 ? -1 : dp[amount];' we use condition as == instead of >
+   //     dp[amount] == amount + 1 -> instead of dp[amount] > amount, since the largest possible value
+   //     for dp[amount] is always amount + 1, and this improve the runtime a lot.
+   class Solution {
+    public int coinChange(int[] coins, int amount) {
+        if(amount < 1) {
+            return 0;
+        }
+        int[] dp = new int[amount + 1];
+        dp[0] = 0;
+        for(int i = 1; i < dp.length; i++) {
+            dp[i] = amount + 1;
+        }
+        for(int i = 1; i <= amount; i++) {
+            for(int coin : coins) {
+                if(i - coin >= 0) {
+                    dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+                }
+            }
+        }
+        return dp[amount] == amount + 1 ? -1 : dp[amount];
+    }
+}
+   
+   
     public static void main(String[] args) {
     	CoinChange c = new CoinChange();
     	int[] coins = {2};
