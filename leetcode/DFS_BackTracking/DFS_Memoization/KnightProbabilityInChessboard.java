@@ -53,3 +53,34 @@ class Solution {
         return result;
     }
 }
+
+// Solution 2: DPS with memoization
+// Refer to
+// https://leetcode.com/problems/knight-probability-in-chessboard/discuss/113954/Evolve-from-recursive-to-dpbeats-94
+class Solution {
+    int[] dx = new int[]{1,2,2,1,-1,-2,-2,-1};
+    int[] dy = new int[]{2,1,-1,-2,-2,-1,1,2};
+    double[][][] dp;
+    public double knightProbability(int N, int K, int r, int c) {
+        dp = new double[N][N][K + 1];
+        return helper(N, K, r, c, dp);
+    }
+    
+    private double helper(int N, int K, int r, int c, double[][][] dp) {
+        if(r < 0 || r > N - 1 || c < 0 || c > N - 1) {
+            return 0;
+        }
+        if(K == 0) {
+            return 1;
+        }
+        if(dp[r][c][K] != 0) {
+            return dp[r][c][K];
+        }
+        double result = 0;
+        for(int i = 0; i < 8; i++) {
+            result += 0.125 * helper(N, K - 1, r + dx[i], c + dy[i], dp);
+        }
+        dp[r][c][K] = result;
+        return result;
+    }
+}
