@@ -179,3 +179,6 @@
 <p>1.[Backtracking] (https://leetcode.com/problems/24-game/discuss/107685/679.-24-Game-C%2B%2B-Recursive)
 <p>2.[解释] (https://www.cnblogs.com/grandyang/p/8395062.html)
 <p>3.[Why we don't need to care braces ?] (https://leetcode.com/problems/24-game/discuss/112544/Backtracking-beats-95.29-Java)
+
+<p>Knight Probability in Chessboard
+<p>1. [DPS Memoization] (https://leetcode.com/problems/knight-probability-in-chessboard/discuss/113954/Evolve-from-recursive-to-dpbeats-94)
