@@ -18,10 +18,13 @@ as [1 [3[5 6] 2 4]]. You do not necessarily need to follow this format, so pleas
 with different approaches yourself.
 
 Note:
-
 N is in the range of [1, 1000]
 Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.
 */
+
+// Solution 1: Level order traversal
+// Refer to
+// http://shibaili.blogspot.com/2018/11/428-serialize-and-deserialize-n-ary-tree.html
 class Solution {
     public String serialize(Node root) {
         if(root == null) {
