@@ -43,6 +43,24 @@ class Solution {
     }
   
     public Node deserialize(String data) {
-        
+        if(data == null || data.length() == 0) {
+           return "";
+        }
+        Queue<Node> q = new LinkedList<Node>();
+        String[] s = data.split(",");
+        Node root = new Node(s[0], new ArrayList<Node>());
+        q.add(root);
+        int i = 1;
+        while(!q.isEmpty()) {
+            Node node = q.poll();
+            i++;
+            while(s[i] != "#") {
+                Node c = new Node(Integer.parseInt(s[i]), new ArrayList<Node>());
+                node.children.add(c);
+                q.add(c);
+                i++;
+            }
+        }
+        return root;
     }
 }
