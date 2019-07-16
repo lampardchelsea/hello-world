@@ -279,3 +279,6 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 
 <p>All Nodes Distance K in Binary Tree
 <p>1. [DFS with back travel to ancestor] (https://www.geeksforgeeks.org/print-nodes-distance-k-given-node-binary-tree/)
+  
+<p>Serialize and Deserialize N-ary Tree
+<p>1. [Level order traversal] (http://shibaili.blogspot.com/2018/11/428-serialize-and-deserialize-n-ary-tree.html)
