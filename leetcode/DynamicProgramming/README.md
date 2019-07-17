@@ -133,6 +133,7 @@
 
 <p>Best Time to Buy and Sell Stock
 <p>1. [Solution] (https://leetcode.com/problems/best-time-to-buy-and-sell-stock/solution/)
+<p>2. [Kadane's Algorithm - Since no one has mentioned about this so far :) (In case if interviewer twists the input)] (https://leetcode.com/problems/best-time-to-buy-and-sell-stock/discuss/39038/Kadane's-Algorithm-Since-no-one-has-mentioned-about-this-so-far-%3A)-(In-case-if-interviewer-twists-the-input))
   
 <p>Maximum Length of Repeated Subarray
 <p>1. [2D int matrix to simulate DP] (https://leetcode.com/problems/maximum-length-of-repeated-subarray/discuss/109039/Concise-Java-DP%3A-Same-idea-of-Longest-Common-Substring)
