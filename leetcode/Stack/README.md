@@ -92,3 +92,6 @@
 <p>Remove K Digits
 <p>1. [Remove leading 0 after all operations] (https://leetcode.com/problems/remove-k-digits/discuss/88708/Straightforward-Java-Solution-Using-Stack)
 <p>2. [Java with stack, get rid of prefix "0"s inside the loop.] (https://leetcode.com/problems/remove-k-digits/discuss/88737/Java-with-stack-get-rid-of-prefix-%220%22s-inside-the-loop.https://leetcode.com/problems/remove-k-digits/discuss/88708/Straightforward-Java-Solution-Using-Stack)
+
+<p>Exclusive Time of Functions
+<p>1. [Stack] (https://leetcode.com/problems/exclusive-time-of-functions/solution/)
