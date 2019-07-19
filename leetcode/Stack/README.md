@@ -95,3 +95,7 @@
 
 <p>Exclusive Time of Functions
 <p>1. [Stack] (https://leetcode.com/problems/exclusive-time-of-functions/solution/)
+
+<p>Valid Parentheses
+<p>1. [easy to understand Java Solution with one stack] (https://leetcode.com/problems/valid-parentheses/discuss/9248/My-easy-to-understand-Java-Solution-with-one-stack)
+<p>2. [In case of more symbol use HashMap] (https://leetcode.com/problems/valid-parentheses/solution/)
