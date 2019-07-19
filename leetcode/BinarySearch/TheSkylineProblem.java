@@ -16,12 +16,14 @@ import java.util.PriorityQueue;
  *
  *
  * https://briangordon.github.io/2014/08/the-skyline-problem.html
- * Our final solution, then, in O(nlogn)O(nlog⁡n) time, is as follows. First, 
+ * Our final solution, then, in O(nlogn) time, is as follows. First, 
  * sort the critical points. Then scan across the critical points from left 
  * to right. When we encounter the left edge of a rectangle, we add that 
  * rectangle to the heap with its height as the key. When we encounter the 
  * right edge of a rectangle, we remove that rectangle from the heap. 
- * (This requires keeping external pointers into the heap.) Finally, any time we encounter a critical point, after updating the heap we set the height of that critical point to the value peeked from the top of the heap.
+ * (This requires keeping external pointers into the heap.) 
+ * Finally, any time we encounter a critical point, after updating the heap 
+ * we set the height of that critical point to the value peeked from the top of the heap.
  * 把所有的turning points 放在一起，根据coordination从小到大sort 。再用max-heap, 把所有的turning 
  * points扫一遍，遇到start turning point, 把 volume放入max-heap. 遇到end turning point，
  * 把对应的volume从max-heap中取出。max-heap的max 值就是对应区间的最大volume
@@ -89,4 +91,3 @@ public class TheSkylineProblem {
         return result;
     }
 }
-
