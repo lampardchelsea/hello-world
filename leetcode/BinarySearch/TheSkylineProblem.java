@@ -40,7 +40,7 @@ import java.util.PriorityQueue;
  * 堆中先加入一个零点高度，帮助我们在只有最矮的建筑物时选择最低值
  */
 public class TheSkylineProblem {
-	public List<int[]> getSkyline(int[][] buildings) {
+    public List<int[]> getSkyline(int[][] buildings) {
         List<int[]> result = new ArrayList<int[]>();
         if(buildings == null || buildings.length == 0 || buildings[0].length == 0) {
             return result;
