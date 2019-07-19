@@ -4,3 +4,4 @@
 439. Ternary Expression Parser (We push each character of the expression into a stack reversely)
 224. Baisc Calculator (stack used to store sign and most inside sign (brace pair to identify the level) will store on stack.peek(), that's why when encounter ')' need to remove the peek one, and also need to initial a '+' as default no matter any brace pair exist or not)
 402. Remove K Digits (stack to create increasing number from bottom to top, also few corner cases as leading zero, 112 as input need to handle)
+636. Exclusive Time of Functions
