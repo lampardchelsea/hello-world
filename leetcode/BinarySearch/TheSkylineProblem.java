@@ -46,7 +46,7 @@ public class TheSkylineProblem {
         List<int[]> height = new ArrayList<int[]>();
         // 拆解矩形，构建顶点的列表
         for(int[] b : buildings) {
-        	// 左顶点存为负数
+            // 左顶点存为负数
             height.add(new int[]{b[0], -b[2]});
             // 右顶点存为正数
             height.add(new int[]{b[1], b[2]});
@@ -72,7 +72,7 @@ public class TheSkylineProblem {
         // prev用于记录上次keypoint的高度
         int prev = 0;
         for(int[] h : height) {
-        	// 将左顶点加入堆中
+            // 将左顶点加入堆中
             if(h[1] < 0) {
                 pq.offer(-h[1]);
             // 将右顶点对应的左顶点移去
