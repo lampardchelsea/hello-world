@@ -6,3 +6,4 @@
 402. Remove K Digits (stack to create increasing number from bottom to top, also few corner cases as leading zero, 112 as input need to handle)
 636. Exclusive Time of Functions
 94. Binary Tree Inorder Traversal (Use stack to traverse iteratively instead of trivial recursive way)
+20. Valid Parentheses (In case of more symbol use HashMap instead of if-else)
