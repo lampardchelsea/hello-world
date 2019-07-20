@@ -63,3 +63,4 @@ return true;
 739. Daily Temperatures (Stack with O(n) scan)
 496. Next Greater Element I (Same way as 739)
 240. Search a 2D Matrix II (divide and conquere with 2d matrix attribute)
+75. Sort Colors (3 points swap 0 to the head, 2 to the end, 1 left in mid)
