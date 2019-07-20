@@ -1,3 +1,23 @@
+// Re-document
+// Refer to
+// https://leetcode.com/problems/sort-colors/discuss/26472/Share-my-at-most-two-pass-constant-space-10-line-solution
+// The idea is to sweep all 0s to the left and all 2s to the right, then all 1s are left in the middle.
+// It is hard to define what is a "one-pass" solution but this algorithm is bounded by O(2n), meaning 
+// that at most each element will be seen and operated twice (in the case of all 0s). You may be able 
+// to write an algorithm which goes through the list only once, but each step requires multiple operations, 
+// leading the total operations larger than O(2n).
+    class Solution {
+    public:
+        void sortColors(int A[], int n) {
+            int second=n-1, zero=0;
+            for (int i=0; i<=second; i++) {
+                while (A[i]==2 && i<second) swap(A[i], A[second--]);
+                while (A[i]==0 && i>zero) swap(A[i], A[zero++]);
+            }
+        }
+    };
+
+
 /**
  * Refer to
  * https://leetcode.com/problems/sort-colors/#/description
@@ -245,4 +265,3 @@ public class SortColors {
     	}
     }
 }
-
