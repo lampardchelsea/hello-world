@@ -331,3 +331,6 @@ binary-search-java-code/29)
   
 <p>Next Greater Element I
 <p>1. [Stack with O(n) scan only once] (https://leetcode.com/problems/next-greater-element-i/discuss/97595/Java-10-lines-linear-time-complexity-O(n)-with-explanation)
+
+<p>Alphabet Board Path
+<p>1. [Java Runtime faster than 100%, memory usage less than 100% with detail explanation] (https://leetcode.com/problems/alphabet-board-path/discuss/345541/Java-Runtime-faster-than-100-memory-usage-less-than-100-with-detail-explanation)
