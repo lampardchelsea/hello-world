@@ -1,3 +1,40 @@
+// New try with similar way as Combination I and II
+class Solution {
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        // Create a combination to present 1 to 9 similar to combination
+        // definition on Combination I and II
+        int[] combination = new int[] {1,2,3,4,5,6,7,8,9};
+        helper(n, result, combination, new ArrayList<Integer>(), k, 0);
+        return result;
+    }
+    
+    private void helper(int remain, List<List<Integer>> result, int[] combination, List<Integer> list, int k, int startIndex) {
+        if(remain < 0 || k < 0) {
+            return;
+        }
+        if(k == 0 && remain == 0) {
+            result.add(new ArrayList<Integer>(list));
+        }
+        for(int i = startIndex; i < combination.length; i++) {
+            if(remain >= combination[i]) {
+                list.add(combination[i]);
+                // i + 1 to make sure each element only use once
+                helper(remain - combination[i], result, combination, list, k - 1, i + 1);
+                list.remove(list.size() - 1);
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
 import java.util.ArrayList;
 import java.util.List;
 
