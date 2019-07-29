@@ -56,3 +56,49 @@ class Solution {
         }
     }
 }
+
+// New try with comprehensive detail explaination:
+// Refer to
+// https://www.youtube.com/watch?v=RSatA4uVBDQ
+// 花花酱 LeetCode 40. Combination Sum II - 刷题找工作 EP88
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if(candidates == null || candidates.length == 0) {
+            return result;
+        }
+        Arrays.sort(candidates);
+        // Why we need to sort ? Because we need to skip the duplicate
+        // e.g [10,1,2,7,6,1,5] -> [1,1,2,5,6,7,10]
+        // if the target is 8, you will able to use 1 at index = 0
+        // or 1 at index = 1 to add with 7 to create 8
+        // but in result it will generate duplicate combination as two 
+        // [1 (index = 0), 7] and [1 (index = 1), 7]
+        // So to make sure we don't use the 1 at index = 1, introduce
+        // judgement if(i > startIndex && candidates[i] == candidates[i - 1]) -> skip
+        helper(target, candidates, result, new ArrayList<Integer>(), 0);
+        return result;
+    }
+    
+    private void helper(int remain, int[] candidates, List<List<Integer>> result, List<Integer> list, int startIndex) {
+        if(remain < 0) {
+            return;
+        }
+        if(remain == 0) {
+            result.add(new ArrayList<Integer>(list));
+        }
+        for(int i = startIndex; i < candidates.length; i++) {
+            if(i > startIndex && candidates[i] == candidates[i - 1]) {
+                continue;
+            }
+            if(remain >= candidates[i]) {
+                list.add(candidates[i]);
+                // i + 1 to make sure each element only use once
+                helper(remain - candidates[i], candidates, result, list, i + 1);
+                list.remove(list.size() - 1);
+            }
+        }
+    }
+}
+
+
