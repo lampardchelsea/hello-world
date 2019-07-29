@@ -337,3 +337,6 @@ binary-search-java-code/29)
 
 <p>Car Pooling
 <p>1. [Java clean code with no additional array required] (https://leetcode.com/problems/car-pooling/discuss/345993/Java-clean-code-with-no-additional-array-required)
+
+<p>Number of Equivalent Domino Pairs
+<p>1. [Java solution beat 100% without using HashMap] (https://leetcode.com/problems/number-of-equivalent-domino-pairs/discuss/346231/Java-solution-beat-100-without-using-HashMap)
