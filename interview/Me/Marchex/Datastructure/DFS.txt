@@ -1,3 +1,4 @@
+39. Combination Sum (DFS + backtracking and to handle duplicate require add start index to tracking but no need to +1 in recursive since it allows repeat using same element)
 377.Combination Sum IV (DFS with memoization + Follow up with negative number handle)
 64.Minimum Path Sum (DP(backtracking) with memoization)
 638.Shopping Offers (DFS with memoization)
