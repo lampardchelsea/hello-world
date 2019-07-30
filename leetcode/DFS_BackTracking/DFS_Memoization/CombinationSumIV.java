@@ -122,3 +122,74 @@ class Solution {
         return result;
     }
 }
+
+
+
+
+
+
+
+// New try
+// Native Solution time out
+class Solution {
+    int result = 0;
+    public int combinationSum4(int[] nums, int target) {
+        helper(nums, target, 0);
+        return result;
+    }
+    
+    private void helper(int[] nums, int remain, int startIndex) {
+        if(remain < 0) {
+            return;
+        }
+        if(remain == 0) {
+            result++;
+        }
+        for(int i = startIndex; i < nums.length; i++) {
+            if(remain >= nums[i]) {
+                // Set as startIndex (not i or startIndex + 1) since we
+                // can go back to pick up number from the initial
+                // e.g nums = [1,2,3] for target = 4
+                // when startIndex = 0, pick up [1,1,1,1], [1,1,2], etc
+                // when startIndex = 1, pick up [2,1,1], 1 are go back
+                // to the initial position startIndex = 0 to pick up.
+                helper(nums, remain - nums[i], startIndex);
+            }
+        }
+    }
+}
+
+class Solution {
+    public int combinationSum4(int[] nums, int target) {
+        // Setup as object in case of memo[remain] != 0 not able
+        // to use, since some memo[remain] keep as default as 0
+        Integer[] memo = new Integer[target + 1];
+        return helper(nums, target, 0, memo);
+    }
+    
+    private int helper(int[] nums, int remain, int startIndex, Integer[] memo) {
+        if(remain < 0) {
+            return 0;
+        }
+        if(memo[remain] != null) {
+            return memo[remain];
+        }
+        if(remain == 0) {
+            return 1;
+        }
+        int result = 0;
+        for(int i = startIndex; i < nums.length; i++) {
+            if(remain >= nums[i]) {
+                // Set as startIndex (not i or startIndex + 1) since we
+                // can go back to pick up number from the initial
+                // e.g nums = [1,2,3] for target = 4
+                // when startIndex = 0, pick up [1,1,1,1], [1,1,2], etc
+                // when startIndex = 1, pick up [2,1,1], 1 are go back
+                // to the initial position startIndex = 0 to pick up.
+                result += helper(nums, remain - nums[i], startIndex, memo);
+            }
+        }
+        memo[remain] = result;
+        return result;
+    }
+}
