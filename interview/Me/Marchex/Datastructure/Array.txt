@@ -67,3 +67,4 @@ return true;
 1094. Car Pooling (Array indexed scan and tracking with one variable)
 1138. Alphabet Board Path (No DFS or BFS able to find the minimum path, use direct line to connect coordinate and handle 'z' specially)
 1128. Number of Equivalent Domino Pairs (Encoding domino card into two digits number and be careful about pair definition)
+1122. Relative Sort Array (Java in-place solution using counting sort)
