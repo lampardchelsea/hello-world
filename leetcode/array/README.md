@@ -340,3 +340,6 @@ binary-search-java-code/29)
 
 <p>Number of Equivalent Domino Pairs
 <p>1. [Java solution beat 100% without using HashMap] (https://leetcode.com/problems/number-of-equivalent-domino-pairs/discuss/346231/Java-solution-beat-100-without-using-HashMap)
+
+<p>Relative Sort Array
+<p>1. [Java in-place solution using counting sort] (https://leetcode.com/problems/relative-sort-array/discuss/335056/Java-in-place-solution-using-counting-sort)
