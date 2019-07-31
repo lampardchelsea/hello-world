@@ -343,3 +343,6 @@ binary-search-java-code/29)
 
 <p>Relative Sort Array
 <p>1. [Java in-place solution using counting sort] (https://leetcode.com/problems/relative-sort-array/discuss/335056/Java-in-place-solution-using-counting-sort)
+  
+<p>Distribute Candies to People
+<p>1. [Java straightforward solution based on build formula to calculate rolling row] (https://leetcode.com/problems/distribute-candies-to-people/discuss/347852/Java-straightforward-solution-based-on-build-formula-to-calculate-rolling-row)
