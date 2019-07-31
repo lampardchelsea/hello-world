@@ -17,7 +17,7 @@ arr1.length, arr2.length <= 1000
 Each arr2[i] is distinct.
 Each arr2[i] is in arr1.
 */
-// Solution:
+// Solution: Counting Sort
 // Refer to
 // https://leetcode.com/problems/relative-sort-array/discuss/335056/Java-in-place-solution-using-counting-sort
 class Solution {
