@@ -53,7 +53,9 @@ class Solution {
     private void helper(int[] nums, List<List<Integer>> result, List<Integer> list) {
         if(list.size() == nums.length) {
             result.add(new ArrayList<Integer>(list));
-        }        
+        }
+        // Every time it should start from index 0 but need to check
+        // if current value already in list
         for(int i = 0; i < nums.length; i++) {
             if(list.contains(nums[i])) {
                 continue;
