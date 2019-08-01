@@ -120,7 +120,7 @@ class Solution {
 }
 
 // Adding memoization and optimize with use index only (Style 2)
-// Since substring only relate to index (an inteeger), no need to store the string
+// Since substring only relate to index (an integer), no need to store the string
 // in set, just need to store the index
 class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
@@ -132,6 +132,10 @@ class Solution {
         if(s.length() == 0) {
             return true;
         }
+        // Why return false here ? Since if able to build, 
+        // will return true in the for loop, if not will
+        // go to the following statement as memo.add(s)
+        // and return as false.
         if(cache.contains(index)) {
             return false;
         }
