@@ -40,8 +40,27 @@ class Solution {
 }
 
 
-
-// Solution 2:
+// Solution 2: No need for startIndex
 // Refer to
 // https://leetcode.com/problems/subsets/discuss/27281/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning)
-
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        helper(nums, result, new ArrayList<Integer>());
+        return result;
+    }
+    
+    private void helper(int[] nums, List<List<Integer>> result, List<Integer> list) {
+        if(list.size() == nums.length) {
+            result.add(new ArrayList<Integer>(list));
+        }        
+        for(int i = 0; i < nums.length; i++) {
+            if(list.contains(nums[i])) {
+                continue;
+            }
+            list.add(nums[i]);
+            helper(nums, result, list);
+            list.remove(list.size() - 1);
+        }
+    }
+}
