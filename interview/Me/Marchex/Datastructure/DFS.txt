@@ -20,7 +20,8 @@
             // Logic branch-2: Add nums[index] into current subset and its inheritance chain sets
             helper(result, oneSubset, nums, index + 1);)
 90. Subsets II (backtrack but sort first + skip duplicate numbers)
-46. Permutations (DFS + backtrack checking already existing value and always start from index = 0 to build)
+46. Permutations (DFS + backtracking checking already existing value and always start from index = 0 to build)
+47. Permutations II (DFS + backtracking with boolean array to assure same value after permutation keep the same order)
 79. Word Search (
 public boolean dfs(char[][] board, String word, int index, int rowIndex, int columnIndex, boolean[][] visited) {
         // Base case, when index reach the end, and not return as false means we found the word in board
