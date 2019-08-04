@@ -551,3 +551,41 @@ class Trie {
 //		}
 //	}
 }
+
+
+// Native DFS + backtracking solution
+class Solution {
+    int[] dx = new int[]{0,0,1,-1};
+    int[] dy = new int[]{1,-1,0,0};
+    public List<String> findWords(char[][] board, String[] words) {
+        Set<String> result = new HashSet<String>();
+        for(String word : words) {
+            boolean[][] visited = new boolean[board.length][board[0].length];
+            for(int i = 0; i < board.length; i++) {
+                for(int j = 0; j < board[0].length; j++) {
+                    if(helper(word, board, i, j, 0, visited)) {
+                        result.add(word);
+                    }
+                }
+            }            
+        }
+        return new ArrayList<String>(result);
+    }
+    
+    private boolean helper(String word, char[][] board, int i, int j, int index, boolean[][] visited) {
+        if(index == word.length()) {
+            return true;
+        }
+        if(i < 0 || i >= board.length || j < 0 || j >= board[0].length || index > word.length() || visited[i][j] || word.charAt(index) != board[i][j]) {
+            return false;
+        }
+        visited[i][j] = true;
+        for(int k = 0; k < 4; k++) {
+            if(helper(word, board, i + dx[k], j + dy[k], index + 1, visited)) {
+                return true;
+            }
+        }
+        visited[i][j] = false;
+        return false;
+    }
+}
