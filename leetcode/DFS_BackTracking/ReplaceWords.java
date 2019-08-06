@@ -97,3 +97,81 @@ class TrieNode {
         this.isEnd = false;
     }
 }
+
+
+
+// New try
+class Solution {
+    public String replaceWords(List<String> dict, String sentence) {
+        String[] tokens = sentence.split("\\s+");
+        Trie trie = new Trie();
+        for(String word : dict) {
+            trie.insert(word);
+        }
+        String result = "";
+        for(String token : tokens) {
+            int len = trie.searchWord(token);
+            if(len != 0) {
+                result += token.substring(0, len) + " ";
+            } else {
+                result += token + " ";
+            }
+        }
+        return result.substring(0, result.length() - 1);
+    }
+    
+    class TrieNode {
+        boolean isEnd;
+        TrieNode[] array;
+        public TrieNode() {
+            this.isEnd = false;
+            this.array = new TrieNode[26];
+        }
+    }
+    
+    class Trie {
+        TrieNode root;
+        public Trie() {
+            root = new TrieNode();
+        }
+        
+        public void insert(String s) {
+            TrieNode p = root;
+            for(int i = 0; i < s.length(); i++) {
+                int index = s.charAt(i) - 'a';
+                if(p.array[index] == null) {
+                    TrieNode node = new TrieNode();
+                    p.array[index] = node;
+                    p = node;
+                } else {
+                    p = p.array[index];
+                }
+            }
+            p.isEnd = true;
+        }
+        
+        public int searchWord(String s) {
+            int count = 0;
+            TrieNode p = root;
+            for(int i = 0; i < s.length(); i++) {
+                int index = s.charAt(i) - 'a';
+                if(p.array[index] != null) {
+                    if(p.array[index].isEnd) {
+                        return count + 1;
+                    } else {
+                        p = p.array[index];
+                        count++;
+                    }
+                } else {
+                    // Else means not able to find any string in dict
+                    // as prefix for current token, return 0 as not found
+                    // e.g search 'by' in 'bat'
+                    return 0;
+                }
+            }
+            return count;
+        }
+    }
+}
+
+
