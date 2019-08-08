@@ -38,6 +38,7 @@ Explanation: The endWord "cog" is not in wordList, therefore no possible transfo
 // http://www.noteanddata.com/leetcode-127-Word-Ladder-java-bidirectional-bfs-solution-note.html
 class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        // Check if the endWord in wordList or not, if not then no way to reach from beginWord
         if(!wordList.contains(endWord)) {
             return 0;
         }
@@ -61,7 +62,7 @@ class Solution {
                     if(!set.contains(nextWord)) {
                         set.add(nextWord);
                         nextQueue.offer(nextWord);    
-                    }
+                    }        
                     if(endQueue.contains(nextWord)) {
                         return len + 1;
                     }
@@ -95,3 +96,51 @@ class Solution {
         return new String(chars);
     }
 }
+
+// Wrong solution here
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        // Check if the endWord in wordList or not, if not then no way to reach from beginWord
+        if(!wordList.contains(endWord)) {
+            return 0;
+        }
+        int len = 1;
+        Set<String> set = new HashSet<String>();
+        Queue<String> beginQueue = new LinkedList<String>();
+        Queue<String> endQueue = new LinkedList<String>();
+        beginQueue.offer(beginWord);
+        endQueue.offer(endWord);
+        while(!beginQueue.isEmpty() && !endQueue.isEmpty()) {
+            if(beginQueue.size() > endQueue.size()) {
+                Queue<String> temp = beginQueue;
+                beginQueue = endQueue;
+                endQueue = temp;
+            }
+            Queue<String> nextQueue = new LinkedList<String>();
+            int size = beginQueue.size();
+            for(int i = 0; i < size; i++) {
+                String word = beginQueue.poll();
+                for(String nextWord : getNextWord(word, wordList)) {
+                    // Below section not equal to correct solution, since 'continue'
+                    // will also skip the check for next statement as
+                    // 'endQueue.contains(nextWord)' if set already has the nextWord
+                    // and nextWord is exactly in endQueue.
+                    // e.g
+                    // "hit"
+                    // "cog"
+                    // ["hot","dot","dog","lot","log","cog"]
+                    if(set.contains(nextWord)) {
+                        continue; 
+                    }        
+                    if(endQueue.contains(nextWord)) {
+                        return len + 1;
+                    }
+                    set.add(nextWord);
+                    nextQueue.offer(nextWord);   
+                }
+            }
+            beginQueue = nextQueue;
+            len++;
+        }
+        return 0;
+    }
+
