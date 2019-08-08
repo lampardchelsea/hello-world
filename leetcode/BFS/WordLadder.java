@@ -35,7 +35,31 @@ Explanation: The endWord "cog" is not in wordList, therefore no possible transfo
 // Solution: Bi-directional BFS
 // https://leetcode.com/problems/word-ladder/discuss/40711/Two-end-BFS-in-Java-31ms.
 // http://theoryofprogramming.com/2018/01/21/bidirectional-search/
-// http://www.noteanddata.com/leetcode-127-Word-Ladder-java-bidirectional-bfs-solution-note.html
+/**
+http://www.noteanddata.com/leetcode-127-Word-Ladder-java-bidirectional-bfs-solution-note.html
+ 题目 leetcode 127 Word Ladder
+输入一个开始单词和结束单词， 然后在输入一个单词数组，
+定义一个transform操作是从一个单词变换到另外一个单词， 然后这个变换是每次只能替换单词里面的一个字符到另外一个字符
+问，最少需要经过多少个变换才可以从开始的单词到结束的单词， 返回的长度是变换列表的长度
+解题思路分析
+这个题目前面写了一个单方向的BFS, http://www.noteanddata.com/leetcode-127-Word-Ladder-java-bfs-solution-note.html， 
+但是运行时间比较慢， 更好的做法是双向BFS， 这次是第一次学写双向BFS
+双向BFS的思路是
+a. 从开始的节点走一层
+b. 从结束的节点走一层
+c. 交替上面两个步骤， 所以就是每次都走一层，看看走到这一层的时候是否会遇到对方的节点
+双向BFS的步骤具体如下:
+a. 把开始和结束的节点都加入到两个queue里面
+b. 每次选择一个queue， 然后遍历一层, 如果遍历的下一层有对方节点，就退出
+c. 选择另外一个queue， 然后遍历一层， 如果遍历的下一层有对方节点，就退出
+d. 如果任何一个queue都空了，也就是没有办法继续向下一层，这时候如果还没有遇到可以结束的，就结束
+
+java题解代码
+这里用一个set来表示已经访问过的节点来去重
+每次遍历的时候，用来一个小优化，就是每次从queue.size比较小的queue开始遍历，没有严格按照一个方向一层的方法来遍历，这样效果会更好一点
+小细节要注意的是，双向BFS，每次还是要完整的做一层遍历，不能只做一个元素的遍历，否则就不对了
+具体例子可以参考http://www.cppblog.com/Yuan/archive/2011/02/23/140553.html
+*/
 class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         // Check if the endWord in wordList or not, if not then no way to reach from beginWord
