@@ -42,6 +42,13 @@ Constraints:
 1 <= target <= 1000
 */
 
+// Note: Why we need to use MOD ?
+// Refer to
+// https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/discuss/356057/Java-O(d-*-f-*-target)-dp-straightforward-and-fast/322685
+// 1000000007 is commonly used in programming competitions to prevent integer overflow for answers. 
+// 1000000007 is the first prime number over a billion. It has some other cool characteristics 
+// as well: https://primes.utm.edu/curios/page.php/1000000007.html
+
 // Solution 1 and 2: Two styles of TLE native DFS
 // Complexity Analysis
 // Runtime: O(f ^ d).
