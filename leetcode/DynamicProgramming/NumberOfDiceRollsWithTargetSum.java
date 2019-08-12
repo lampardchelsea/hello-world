@@ -196,6 +196,7 @@ class Solution {
             // Create rolling array
             int[] dp1 = new int[target + 1];
             for(int j = 1; j <= f; j++) {
+                // Based only on previous row
                 for(int k = j; k <= target; k++) {
                     dp1[k] = (dp1[k] + dp[k - j]) % MOD;
                 }
