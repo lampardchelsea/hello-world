@@ -178,3 +178,31 @@ class Solution {
         return dp[d][target];
     }
 }
+
+// DP bottom up (Optimize 2d dp to 1d with rolling array)
+// Refer to
+// https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/discuss/355940/C%2B%2B-Coin-Change-2
+// https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/discuss/356749/Java-DP.-Optimized-Space-Solution
+// We can define our dp[i][k] as number of ways we can get k using i dices. 
+// As an initial point, there is one way to get to 0 using zero dices.
+// Then, for each dice i and face j, accumulate the number of ways we can get to k.
+// Note that for the bottom-up solution, we can reduce our memory complexity as we only need to store counts for the previous dice.
+class Solution {
+    public int numRollsToTarget(int d, int f, int target) {
+        int MOD = 1000000007;
+        int[] dp = new int[target + 1];
+        dp[0] = 1;
+        for(int i = 1; i <= d; i++) {
+            // Create rolling array
+            int[] dp1 = new int[target + 1];
+            for(int j = 1; j <= f; j++) {
+                for(int k = j; k <= target; k++) {
+                    dp1[k] = (dp1[k] + dp[k - j]) % MOD;
+                }
+            }
+            dp = dp1;
+        }
+        return dp[target];
+    }
+}
+
