@@ -105,36 +105,41 @@ class Solution {
     }
 }
 
-// DFS Memoization (downgrade from 2D DP to 1D DP)
+// DFS Memoization (Top down DP)
 // Refer to
 // https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/discuss/355841/Java-Memo-DFS
-class Solution {    
+class Solution {
     int MOD = 1000000007;
-    Map<String, Integer> memo = new HashMap<>();
     public int numRollsToTarget(int d, int f, int target) {
-        if (d == 0 && target == 0) {
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        return helper(d, f, target, map);
+    }
+    
+    private int helper(int d, int f, int target, Map<String, Integer> map) {
+        if(d == 0 && target == 0) {
             return 1;
         }
-        if (d == 0) {
+        if(d == 0 || target == 0) {
             return 0;
         }
-        if (target == 0) {
-            return 0;
+        String str = "" + d + "_" + target;
+        if(map.containsKey(str)) {
+            return map.get(str);
         }
-        String str = "" + d + " " + target;
-        if (memo.containsKey(str)) {
-           return memo.get(str);
-        }
-        int res = 0;
-        for (int i = 1; i <= f; i++) {
-            if (target >= i) {
-                res = (res + (numRollsToTarget(d - 1, f, target - i) % MOD)) % MOD;
+        int result = 0;
+        for(int i = 1; i <= f; i++) {
+            if(target >= i) {
+                result = (result + helper(d - 1, f, target - i, map) % MOD) % MOD;
             } else {
                 break;
             }
         }
-        memo.put(str, res);
-        return res;
+        map.put(str, result);
+        return result;
     }
 }
+
+// DP bottom up
+// Refer to
+// https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/discuss/355940/C%2B%2B-Coin-Change-2
 
