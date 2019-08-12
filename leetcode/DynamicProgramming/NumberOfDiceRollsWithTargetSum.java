@@ -142,4 +142,32 @@ class Solution {
 // DP bottom up
 // Refer to
 // https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/discuss/355940/C%2B%2B-Coin-Change-2
-
+// https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/discuss/356057/Java-O(d-*-f-*-target)-dp-straightforward-and-fast
+/**
+ Bottom-Up DP
+We can define our dp[i][k] as number of ways we can get k using i dices. 
+As an initial point, there is one way to get to 0 using zero dices.
+Then, for each dice i and face j, accumulate the number of ways we can get to k.
+*/
+class Solution {
+    int MOD = 1000000007;
+    public int numRollsToTarget(int d, int f, int target) {
+        // dp[i][k] means number of ways we can get k using i dices
+        int[][] dp = new int[1 + d][1 + target];
+        // As an initial point, there is one way to get to 0 using zero dices
+        dp[0][0] = 1;
+        for(int i = 1; i <= d; i++) {
+            for(int j = 1; j <= target; j++) {
+                //If j(target) could not larger than largest possible sum of i dices (i * f)
+                if(j <= i * f) {
+                    // k must be smaller than either f and j, since it picked
+                    // out from dice faces numbers
+                    for(int k = 1; k <= f && k <= j; k++) {
+                        dp[i][j] = (dp[i][j] + dp[i - 1][j - k]) % MOD;
+                    }
+                }
+            }
+        }
+        return dp[d][target];
+    }
+}
