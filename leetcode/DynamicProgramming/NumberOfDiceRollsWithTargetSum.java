@@ -43,6 +43,9 @@ Constraints:
 */
 
 // Solution 1 and 2: Two styles of TLE native DFS
+// Complexity Analysis
+// Runtime: O(f ^ d).
+// Memory: O(d) for the stack.
 // Refer to
 // https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/discuss/355841/Java-Memo-DFS
 // Style 1: 'result' as member variable with void return helper
