@@ -143,3 +143,9 @@
 <p>2. [Why we can downgrade 2D array DP to 1D array DP ?] (https://leetcode.com/problems/partition-equal-subset-sum/discuss/90592/01-knapsack-detailed-explanation/188673)
 <p>3. [Why the inner loop can not start from j = 1 ?] (https://leetcode.com/problems/partition-equal-subset-sum/discuss/90592/01-knapsack-detailed-explanation/140416Why the inner loop can not start from j = 1 ?)
 <p>4. [Java Solution similar to backpack problem - Easy to understand] (https://leetcode.com/problems/partition-equal-subset-sum/discuss/90627/Java-Solution-similar-to-backpack-problem-Easy-to-understand)
+  
+<p>Number of Dice Rolls With Target Sum
+<p>1. [Multiple Solution] (https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/discuss/355940/C%2B%2B-Coin-Change-2)
+<p>2. [Java DFS + Memo] (https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/discuss/355841/Java-Memo-DFS)
+<p>3. [1D array DP] (https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/discuss/356057/Java-O(d-*-f-*-target)-dp-straightforward-and-fast)
+<p>4. [2D array to 1D array] (https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/discuss/356749/Java-DP.-Optimized-Space-Solution)  
