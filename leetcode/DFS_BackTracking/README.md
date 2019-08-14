@@ -184,5 +184,6 @@
 <p>1. [DPS Memoization] (https://leetcode.com/problems/knight-probability-in-chessboard/discuss/113954/Evolve-from-recursive-to-dpbeats-94)
 
 <p>Letter Tile Possibilities
-<p>1. [Java consider all permutations] (https://leetcode.com/problems/letter-tile-possibilities/discuss/308212/Java-consider-all-permutations)
-<p>2. [DFS backtracking] (https://leetcode.com/problems/letter-tile-possibilities/discuss/308280/simple-java-version-with-backtracking)
+<p>1. [DFS backtracking + frequence table] (https://leetcode.com/problems/letter-tile-possibilities/discuss/308284/Concise-java-solution)
+<p>2. [Java consider all permutations] (https://leetcode.com/problems/letter-tile-possibilities/discuss/308212/Java-consider-all-permutations)
+<p>3. [DFS backtracking] (https://leetcode.com/problems/letter-tile-possibilities/discuss/308280/simple-java-version-with-backtracking)
