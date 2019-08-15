@@ -40,9 +40,18 @@ class Solution {
         } else {
             for(int i = startIndex; i < candidates.length; i++) {
                 combination.add(candidates[i]);
-                // Not i + 1 because we can reuse same elements
+                // (1)Not i + 1 because we can reuse same elements
                 // If use i + 1, then given [2, 3, 6, 7] and target = 7, will only
                 // have combination as [7], and miss the combination [2, 2, 3]
+		// (2)Not index because we don't want to go back from the initial
+		// position to pick up elements, which will create duplicate,
+		// if using helper(candidates, remain - candidates[i], result, combination, index);
+		// the wrong result will be below:
+	        // Input: [2,3,6,7], 7
+		// Output: [[2,2,3],[2,3,2],[3,2,2],[7]]
+		// Expected: [[2,2,3],[7]]
+		// Refer to the counter part is Combination Sum IV, which should put startIndex
+		// instead of i, since we need to go back to initial position to pick up elements.
                 helper(candidates, remain - candidates[i], result, combination, i);
                 combination.remove(combination.size() - 1);
             }
