@@ -22,6 +22,315 @@
  * http://www.cnblogs.com/grandyang/p/5138186.html
  * http://romanenco.com/coin-change-problem
 */
+
+
+// New Tries
+https://leetcode.com/problems/coin-change/discuss/77368/*Java*-Both-iterative-and-recursive-solutions-with-explanations
+https://blog.csdn.net/wzy_1988/article/details/12260343
+
+todo
+-> https://leetcode.com/problems/permutation-sequence/
+-> https://leetcode.com/problems/subsets-ii/
+-> https://leetcode.com/problems/coin-change/
+-> https://leetcode.com/problems/coin-change-ii/
+
+// Refer to
+// https://leetcode.com/problems/coin-change/
+// https://leetcode.com/problems/coin-change/discuss/77368/*Java*-Both-iterative-and-recursive-solutions-with-explanations
+// Solution 1: Native DFS
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int result = helper(coins, amount, 0);
+        return result == Integer.MAX_VALUE ? -1 : result;
+    }
+    
+    private int helper(int[] coins, int amount, int index) {
+        // Complete, be careful, its return 0 not 1
+        if(amount == 0) {
+            return 0;
+        }
+        // Invalid
+        if(amount < 0) {
+           return -1; 
+        }
+        int min = Integer.MAX_VALUE;
+        for(int i = index; i < coins.length; i++) {
+            // Recursive strategy same as Combination Sum I
+            // as we can duplicately use the same number
+            // so not i + 1
+            int temp = helper(coins, amount - coins[i], index);
+            if(temp >= 0 && temp < min) {
+                min = temp + 1;
+            }
+        }
+        return min;
+    }
+}
+
+// Solution 2: DFS + Memoization
+// Wrong solution with 'i' on recursive
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        // key = amount, value = number of coins
+        //Map<Integer, Integer> map = new HashMap<Integer, Integer>(); 
+        int[] memo = new int[amount];
+        int result = helper(coins, amount, 0, memo);
+        return result == Integer.MAX_VALUE ? -1 : result;
+    }
+    
+    private int helper(int[] coins, int amount, int index, int[] memo) {
+        // Complete, be careful, its return 0 not 1
+        if(amount == 0) {
+            return 0;
+        }
+        // Invalid
+        if(amount < 0) {
+           return -1; 
+        }
+        if(memo[amount - 1] != 0) {
+            return memo[amount - 1];
+        }
+        int min = Integer.MAX_VALUE;
+        for(int i = index; i < coins.length; i++) {
+            int temp = helper(coins, amount - coins[i], i, memo);
+            if(temp >= 0 && temp < min) {
+                min = temp + 1;
+            }
+        }
+        memo[amount - 1] = (min == Integer.MAX_VALUE) ? -1 : min;
+        return min;
+    }
+}
+
+// Right Solutoin
+// It should be 'index' on the recursive to make it right
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int[] memo = new int[amount];
+        int result = helper(coins, amount, 0, memo);
+        return result == Integer.MAX_VALUE ? -1 : result;
+    }
+    
+    private int helper(int[] coins, int amount, int index, int[] memo) {
+        // Complete, be careful, its return 0 not 1
+        if(amount == 0) {
+            return 0;
+        }
+        // Invalid
+        if(amount < 0) {
+           return -1; 
+        }
+        if(memo[amount - 1] != 0) {
+            return memo[amount - 1];
+        }
+        int min = Integer.MAX_VALUE;
+        for(int i = index; i < coins.length; i++) {
+            // Recursive strategy same as Combination Sum IV
+            // as we can duplicately use the same number
+            // so not i + 1 and also not i as we need to revert
+            // back to use previous used denominations
+            // int temp = helper(coins, amount - coins[i], i, map);
+            int temp = helper(coins, amount - coins[i], index, memo);
+            if(temp >= 0 && temp < min) {
+                min = temp + 1;
+            }
+        }
+        memo[amount - 1] = (min == Integer.MAX_VALUE) ? -1 : min;
+        return min;
+    }
+}
+
+
+// And if you want to print all combinations (including the minimum length one), need to remove the 'memo'
+// since it will quickly return and not print all matching condition result, and use the same strategy
+// from Permutations https://leetcode.com/problems/permutations/
+// e.g
+// given {1,2,5}, 5 will have 8 combinations
+// [[1, 1, 1, 1, 1], [1, 1, 1, 2], [1, 1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [2, 1, 1, 1], [2, 1, 2], [2, 2, 1], [5]]
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        List<List<Integer>> list = new ArrayList<List<Integer>>();
+        int result = helper(coins, amount, 0, new ArrayList<Integer>(), list);
+        return result == Integer.MAX_VALUE ? -1 : result;
+    }
+    
+    private int helper(int[] coins, int amount, int index, List<Integer> list, List<List<Integer>> combinations) {
+        // Complete, be careful, its return 0 not 1
+        if(amount == 0) {
+        	combinations.add(new ArrayList<Integer>(list));
+            return 0;
+        }
+        // Invalid
+        if(amount < 0) {
+           return -1; 
+        }
+        int min = Integer.MAX_VALUE;
+        for(int i = index; i < coins.length; i++) {
+        	list.add(coins[i]);
+            int temp = helper(coins, amount - coins[i], index, list, combinations);
+            if(temp >= 0 && temp < min) {
+                min = temp + 1;
+            }
+            list.remove(list.size() - 1);
+        }
+        return min;
+    }
+}
+
+
+// And even we shift the storage from array to HashMap (also no need amount - 1 since that's only required when initialize
+// an array with length as 'amount' (new int[amount]) rather than array length as amount + 1 (new int[amount + 1]))
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        // key = amount, value = number of coins
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>(); 
+        //int[] memo = new int[amount];
+        int result = helper(coins, amount, 0, map);
+        return result == Integer.MAX_VALUE ? -1 : result;
+    }
+    
+    private int helper(int[] coins, int amount, int index, Map<Integer, Integer> map) {
+        // Complete, be careful, its return 0 not 1
+        if(amount == 0) {
+            return 0;
+        }
+        // Invalid
+        if(amount < 0) {
+           return -1; 
+        }
+        if(map.containsKey(amount)) {
+            return map.get(amount);
+        }
+        // if(memo[amount - 1] != 0) {
+        //     return memo[amount - 1];
+        // }
+        int min = Integer.MAX_VALUE;
+        for(int i = index; i < coins.length; i++) {
+            int temp = helper(coins, amount - coins[i], index, map);
+            if(temp >= 0 && temp < min) {
+                min = temp + 1;
+            }
+        }
+        int temp = (min == Integer.MAX_VALUE ? -1 : min);
+        map.put(amount, temp);
+        //memo[amount - 1] = (min == Integer.MAX_VALUE) ? -1 : min;
+        return min;
+    }
+}
+
+
+// Solution 3: 2D-DP
+// Correct Solution with Double.POSITIVE_INFINITY to present infinite number in Java, 
+// otherwise if using Integer.MAX_VALUE will encounter crossing Integer.MAX_VALUE issue.
+// Refer to
+// https://www.kodefork.com/learn/algorithms/dynamic-programming/
+// https://leetcode.com/problems/coin-change/discuss/139725/3-different-solutions%3A-(1)-Backtracking-with-memo-(2)-2d-DP-(3)-1d-DP
+class Solution {
+    /**
+        dp[i][j] means fewest number of coins based on i type of coins for j amount
+        e.g We have 4 denomination of coins as [1, 5, 6, 8], and target 11.
+        Build a 2D array as x-axis -> amount = 1 to 11, y-axis -> coins type = 1, 5, 6, 8. 
+        Take a random cell as example, dp[2][6] have i = 2 means we have 2 coins 
+        type as denomination = 1 and 5, j = 6 means our target amount = 6,
+        dp[2][6] = 2 means at least it requires 2 coins to get target amount as 1 coin
+        of denomination of 1 and 1 coin of denomination of 5.
+        If target = 0(i = 0), for all denomiation of coins we need 0 coins to reach target,
+        fill first column as 0 by dp[0][j] = 0.
+        If denomination = 0(j = 0), for all target amount we have no way to reach target,
+        it can be omitted, just for understanding as we have initialized with infinity,
+        and in Java, Integer.MAX_VALUE not infinity, use Double.POSITIVE_INFINITY implement.
+        -------------------------------------------------------------------------------
+        |     |  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  10 |  11 |
+        -------------------------------------------------------------------------------
+        |  0  |  0  | INF | INF | INF | INF | INF | INF | INF | INF | INF | INF | INF |
+        -------------------------------------------------------------------------------
+        |  1  |  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  10 |  11 |
+        -------------------------------------------------------------------------------
+        |  5  |  0  |  1  |  2  |  3  |  4  |  1  |  2  |  3  |  4  |  5  |  2  |  3  |
+        -------------------------------------------------------------------------------
+        |  6  |  0  |  1  |  2  |  3  |  4  |  1  |  1  |  2  |  3  |  4  |  2  |  2  |
+        -------------------------------------------------------------------------------
+        |  8  |  0  |  1  |  2  |  3  |  4  |  1  |  1  |  2  |  1  |  2  |  2  |  2  |
+        -------------------------------------------------------------------------------
+    */
+    public int coinChange(int[] coins, int amount) {
+        double[][] dp = new double[1 + coins.length][1 + amount];
+        dp[0][0] = 0;
+        for(int i = 1; i <= coins.length; i++) {
+            dp[i][0] = 0;
+        }
+        for(int i = 1; i <= amount; i++) {
+            dp[0][i] = Double.POSITIVE_INFINITY;
+        }
+        for(int i = 1; i <= coins.length; i++) {
+            for(int j = 1; j <= amount; j++) {
+                // Not pick up current denomination coin
+                dp[i][j] = dp[i - 1][j];
+                if(j >= coins[i - 1]) {
+                    // Pick up current denomination coin, hence number of coins
+                    // used will increase 1, then compare with not pick up case
+                    // to find minimum number of coins required
+                    dp[i][j] = Math.min(dp[i][j], 1 + dp[i][j - coins[i - 1]]);
+                }
+            }
+        }
+        return (int)(dp[coins.length][amount] == Double.POSITIVE_INFINITY ? -1 : dp[coins.length][amount]);
+    }
+}
+
+// Wrong 2D-DP solution with only use Integer.MAX_VALUE to present infinity 
+// e.g Input [2],3 -> expected -1, result -2147483648
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int[][] dp = new int[1 + coins.length][1 + amount];
+        dp[0][0] = 0;
+        for(int i = 1; i <= coins.length; i++) {
+            dp[i][0] = 0;
+        }
+        for(int i = 1; i <= amount; i++) {
+            dp[0][i] = Integer.MAX_VALUE;
+        }
+        for(int i = 1; i <= coins.length; i++) {
+            for(int j = 1; j <= amount; j++) {
+                dp[i][j] = dp[i - 1][j];
+                if(j >= coins[i - 1]) {
+                    dp[i][j] = Math.min(dp[i][j], 1 + dp[i][j - coins[i - 1]]);
+                }
+            }
+        }
+        return dp[coins.length][amount] == Integer.MAX_VALUE ? -1 : dp[coins.length][amount];
+    }
+}
+
+
+// Solution 4: 1D-DP
+// Refer to
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Solution 1: Brute Force (DFS Traverse)
 // Time complexity : O(S^n) In the worst case, complexity is exponential in the number of the coins n. 
 //                   The reason is that every coin denomination Ci could have at most S/Ci values.
