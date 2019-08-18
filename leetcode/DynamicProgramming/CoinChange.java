@@ -294,28 +294,29 @@ class Solution {
 
 // Solution 4: 1D-DP
 // Refer to
+// https://leetcode.com/problems/coin-change/discuss/139725/3-different-solutions%3A-(1)-Backtracking-with-memo-(2)-2d-DP-(3)-1d-DP
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int[] dp = new int[amount + 1];
+        for(int i = 0; i < dp.length; i++) {
+            dp[i] = Integer.MAX_VALUE;
+        }
+        dp[0] = 0;
+        for(int j = 1; j <= amount; j++) {
+            for(int i = 0; i < coins.length; i++) {
+                if(j >= coins[i] && dp[j - coins[i]] != Integer.MAX_VALUE) {
+                    dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1);
+                }
+            }
+        }
+        return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];
+    }
+}
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+====================================================================================================================================
 
 
 
