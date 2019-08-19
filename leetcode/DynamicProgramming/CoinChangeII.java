@@ -70,6 +70,143 @@
             return dp[amount];
         }
 */
+// New tries
+// Solution 1: Native DFS
+// Refer to Combination Sum
+class Solution {
+    public int change(int amount, int[] coins) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        helper(amount, coins, 0, new ArrayList<Integer>(), result);
+        return result.size();
+    }
+    
+    private void helper(int amount, int[] coins, int index, List<Integer> list, List<List<Integer>> result) {
+        if(amount < 0) {
+            return;
+        }
+        if(amount == 0) {
+            result.add(new ArrayList<Integer>(list));
+        }
+        for(int i = index; i < coins.length; i++) {
+            if(amount >= coins[i]) {
+                list.add(coins[i]);
+                helper(amount - coins[i], coins, i, list, result);
+                list.remove(list.size() - 1);
+            }
+        }
+    }
+}
+
+// Solution 2: DFS + Memoization
+// We have 3 styles of DFS + Memoization
+// https://leetcode.com/problems/coin-change-2/discuss/99239/C-DFS-with-memorization-of-course-DP-is-better
+// https://leetcode.com/problems/coin-change-2/discuss/260768/Recursion-with-memoization-O(n*amount)
+// https://leetcode.com/problems/coin-change-2/discuss/349651/Java-Solution-top-down-bottom-up-and-optimized-bottom-up
+// Choice same style as Coin Change, no prune, just introduce memo to store
+// key = amount, index together to build string, index represent how many denominations we can use
+// value = how many ways we have under given amount and index
+class Solution {
+    public int change(int amount, int[] coins) {
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        return helper(amount, coins, 0, map);
+    }
+
+    private int helper(int amount, int[] coins, int index, Map<String, Integer> map) {
+        // 'return 1' condition should before 'return 0', e.g amount = 0, coins = []
+        if(amount == 0) {
+            return 1;
+        }
+        if(amount < 0 || index == coins.length) {
+            return 0;
+        }
+        String str = amount + "_" + index;
+        if(map.containsKey(str)) {
+            return map.get(str);
+        }
+        int result = 0;
+        for(int i = index; i < coins.length; i++) {
+            if(amount >= coins[i]) {
+                result += helper(amount - coins[i], coins, i, map);
+            }
+        }
+        map.put(str, result);
+        return result;
+    }
+}
+
+
+// Solution 3: 2D-DP
+// Refer to
+// https://www.kodefork.com/learn/algorithms/dynamic-programming/
+class Solution {
+    public int change(int amount, int[] coins) {
+        int[][] dp = new int[coins.length + 1][amount + 1];
+		// amount = 0 and no coins, 1 solution since no need any coin
+        dp[0][0] = 1;
+		// When no coins, no solution
+        for(int i = 1; i <= amount; i++) {
+            dp[0][i] = 0;
+        }
+		// When amount = 0 and have coins, always 1 solution since no need any coin
+        for(int i = 1; i <= coins.length; i++) {
+            dp[i][0] = 1;
+        }
+        for(int i = 1; i <= coins.length; i++) {
+            for(int j = 1; j <= amount; j++) {
+				// Knapsnak issue, we can either choose not use ith coin or use ith coin
+				// the result should plus both case together
+				// Don't use ith coin case
+                dp[i][j] = dp[i - 1][j];
+				// Plus use ith coin case
+                if(j >= coins[i - 1]) {
+                    dp[i][j] += dp[i][j - coins[i - 1]];
+                }
+            }
+        }
+        return dp[coins.length][amount];
+    }
+}
+
+
+// Solution 4: 1D-DP
+// Refer to
+// https://leetcode.com/problems/coin-change-2/discuss/99212/Knapsack-problem-Java-solution-with-thinking-process-O(nm)-Time-and-O(m)-Space
+// Now we can see that dp[i][j] only rely on dp[i-1][j] and dp[i][j-coins[i]], 
+// then we can optimize the space by only using one-dimension array.
+class Solution {
+    public int change(int amount, int[] coins) {
+        int[] dp = new int[amount + 1];
+        dp[0] = 1;
+        for(int coin : coins) {
+            for(int i = coin; i <= amount; i++) {
+                dp[i] += dp[i - coin];
+            }
+        }
+        return dp[amount];
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Solution {
     public int change(int amount, int[] coins) {
         // state: dp[i][j] : the number of combinations to make up amount j by using the first i types of coins
