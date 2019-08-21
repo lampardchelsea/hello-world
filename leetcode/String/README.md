@@ -298,3 +298,6 @@
 
 <p>String Compression
 <p>1. [Two points, one handle global tracking, one handle internal count] (https://leetcode.com/problems/string-compression/discuss/92559/Simple-Easy-to-Understand-Java-solution)
+
+<p>Greatest Common Divisor of Strings
+  
