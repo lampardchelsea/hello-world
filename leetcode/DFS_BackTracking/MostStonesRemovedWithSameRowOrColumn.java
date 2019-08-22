@@ -154,6 +154,16 @@ please refer to wikipedia first.
 */
 
 /**
+ Standard DFS solution
+ Refer to
+ https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/discuss/201308/Simple-DFS-O(N2)-solutio
+*/
+
+
+
+
+/**
+ Improved DFS solution:
  Below DFS solution style is the same way as 841. keys and rooms
  class Solution {
     Set<Integer> set = new HashSet<Integer>();
