@@ -152,6 +152,27 @@ has O(N) Time, O(N) Space
 If you have any doubts on time complexity,
 please refer to wikipedia first.
 */
+
+/**
+ Below DFS solution style is the same way as 841. keys and rooms
+ class Solution {
+    Set<Integer> set = new HashSet<Integer>();
+    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+        helper(0, rooms);
+        return set.size() == rooms.size();
+    }
+    
+    private void helper(int roomId, List<List<Integer>> rooms) {
+        set.add(roomId);
+        List<Integer> keys = rooms.get(roomId);
+        for(int key : keys) {
+            if(!set.contains(key)) {
+                helper(key, rooms);
+            }
+        }
+    }
+}
+*/
 class Solution {
     public int removeStones(int[][] stones) {
         if(stones == null || stones.length == 0 
