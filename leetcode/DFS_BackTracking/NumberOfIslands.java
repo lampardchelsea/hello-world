@@ -54,3 +54,86 @@ class Solution {
         }
     }
 }
+
+// Solution 2: Union-Find
+class Solution {
+    public int numIslands(char[][] grid) {
+        if(grid == null || grid.length == 0) {
+            return 0;
+        }
+        int rows = grid.length;
+        int cols = grid[0].length;
+        UnionFind uf = new UnionFind(rows * cols);
+        int count = 0;
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < cols; j++) {
+                if(grid[i][j] == '1') {
+                    count++;
+                }
+            }
+        }
+        uf.set_count(count);
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < cols; j++) {
+                if(grid[i][j] == '1') {
+                    if(i > 0 && grid[i - 1][j] == '1') {
+                        uf.union(i * cols + j, (i - 1) * cols + j);
+                    }
+                    if(i < rows - 1 && grid[i + 1][j] == '1') {
+                        uf.union(i * cols + j, (i + 1) * cols + j);
+                    }
+                    if(j > 0 && grid[i][j - 1] == '1') {
+                        uf.union(i * cols + j, i * cols + (j - 1));
+                    }
+                    if(j < cols - 1 && grid[i][j + 1] == '1') {
+                        uf.union(i * cols + j, i * cols + (j + 1));
+                    }
+                }
+            }
+        }
+        return uf.get_count();
+    }
+    
+    class UnionFind {
+        int[] parent;
+        int count = 0;
+        public UnionFind(int n) {
+            parent = new int[n];
+            for(int i = 0; i < n; i++) {
+                parent[i] = i;
+            }
+        }
+        
+        public int find(int x) {
+            if(parent[x] == x) {
+                return x;
+            }
+            return parent[x] = find(parent[x]);
+        }
+        
+        // public int find(int x) {
+        //     while(x != parent[x]) {
+        //         parent[x] = find(parent[x]);
+        //         x = parent[x];
+        //     }
+        //     return x;
+        // }
+        
+        public void union(int p, int q) {
+            int src = find(p);
+            int dst = find(q);
+            if(src != dst) {
+                parent[src] = dst;
+                count--;
+            }
+        }
+        
+        public void set_count(int x) {
+            count = x;
+        }
+        
+        public int get_count() {
+            return count;
+        }
+    }
+}
