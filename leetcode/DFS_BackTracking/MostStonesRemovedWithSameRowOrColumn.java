@@ -158,7 +158,36 @@ please refer to wikipedia first.
  Refer to
  https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/discuss/201308/Simple-DFS-O(N2)-solutio
 */
+class Solution {
+    public int removeStones(int[][] stones) {
+        boolean[] visited = new boolean[stones.length];
+        int count = 0;
+        // During each visit, iterate over all elements and visit each 
+        // if not visited already and either the column or row is the 
+        // same as the element we are currently visiting.
+        for(int i = 0; i < stones.length; i++) {
+            if(!visited[i]) {
+                // minus 1 since we still keep 1 place present
+                // whole connected islands
+                count += helper(i, visited, stones) - 1;
+            }
+        }
+        return count;
+    }
 
+    private int helper(int index, boolean[] visited, int[][] stones) {
+        visited[index] = true;
+        // Calculate the size of island start from current stone
+        int size = 1;
+        for(int i = 0; i < stones.length; i++) {
+            if(!visited[i] && (stones[i][0] == stones[index][0] 
+                               || stones[i][1] == stones[index][1])) {
+                size += helper(i, visited, stones);
+            }
+        }
+        return size;
+    }
+}
 
 
 
