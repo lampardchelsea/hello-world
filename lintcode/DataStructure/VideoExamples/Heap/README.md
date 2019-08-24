@@ -51,6 +51,6 @@
 <p>4. [Deque Explain 1] (https://discuss.leetcode.com/topic/19055/java-o-n-solution-using-deque-with-explanation)
 <p>5. [Deque Explain 2] (https://segmentfault.com/a/1190000003903509)
 
-
-
+<p>Last Stone Weight
+<p>1. [Priority Queue] (https://leetcode.com/problems/last-stone-weight/discuss/294993/Java-easy-code-using-PriorityQueue-w-brief-explanation-and-analysis.)
 
