@@ -41,3 +41,23 @@ class Solution {
         return result;
     }
 }
+
+// Solutoin 2: Two points
+// Refer to
+// https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/discuss/294964/Java-three-easy-iterative-codes-w-brief-explanation-and-analysis.
+class Solution {
+    public String removeDuplicates(String S) {
+        int j = -1;
+        char[] chars = S.toCharArray();
+        for(int i = 0; i < chars.length; i++) {
+            char c = chars[i];
+            if(j < 0 || chars[j] != c) {
+                j++;
+                chars[j] = c;
+            } else {
+                j--;
+            }
+        }
+        return String.valueOf(chars, 0, j + 1);
+    }
+}
