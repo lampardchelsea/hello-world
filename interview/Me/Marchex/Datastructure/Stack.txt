@@ -7,3 +7,4 @@
 636. Exclusive Time of Functions
 94. Binary Tree Inorder Traversal (Use stack to traverse iteratively instead of trivial recursive way)
 20. Valid Parentheses (In case of more symbol use HashMap instead of if-else)
+1047. Remove All Adjacent Duplicates In String
