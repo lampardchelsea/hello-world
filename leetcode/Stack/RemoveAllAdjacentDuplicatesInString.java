@@ -47,15 +47,15 @@ class Solution {
 // https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/discuss/294964/Java-three-easy-iterative-codes-w-brief-explanation-and-analysis.
 class Solution {
     public String removeDuplicates(String S) {
-        int j = -1;
+        int j = -1; // use j to filter original string
         char[] chars = S.toCharArray();
         for(int i = 0; i < chars.length; i++) {
             char c = chars[i];
             if(j < 0 || chars[j] != c) {
-                j++;
-                chars[j] = c;
+                j++; // move forward one step similar as push one more char on stack
+                chars[j] = c; // record non-duplicate character on position j
             } else {
-                j--;
+                j--; // move back one step similar as pop out current char on stack
             }
         }
         return String.valueOf(chars, 0, j + 1);
