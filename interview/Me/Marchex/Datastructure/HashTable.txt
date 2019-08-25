@@ -2,3 +2,4 @@
 970. Powerful Integers (Elegant handle corner cases)
 939. Minimum Area Rectangle (Find diagonal points first then use Hashmap to find other two points)
 981. Time Based Key-Value Store (In Java, we can use TreeMap.floorKey(timestamp) to find the largest timestamp smaller than the given timestamp)
+1169. Invalid Transactions (HashMap + Heap to sort)
