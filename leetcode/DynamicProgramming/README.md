@@ -149,3 +149,7 @@
 <p>2. [Java DFS + Memo] (https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/discuss/355841/Java-Memo-DFS)
 <p>3. [1D array DP] (https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/discuss/356057/Java-O(d-*-f-*-target)-dp-straightforward-and-fast)
 <p>4. [2D array to 1D array] (https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/discuss/356749/Java-DP.-Optimized-Space-Solution)  
+
+<p>Longest String Chain
+<p>1. [Longest Increasing Subsequence] (https://leetcode.com/problems/longest-increasing-subsequence/)
+<p>2. [Same way] (https://leetcode.com/problems/longest-string-chain/discuss/294890/C++JavaPython-DP-Solution/277492)
