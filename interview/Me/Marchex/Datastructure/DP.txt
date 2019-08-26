@@ -7,4 +7,4 @@
 72. Edit Distance (2D dp array)
 1155. Number of Dice Rolls With Target Sum (Native DFS TLE -> DFS + Memo -> 2D DP -> 1D DP)
 300. Longest Increasing Subsequence
-1048. Longest String Chain
+1048. Longest String Chain (based on 300 LIS style DP)
