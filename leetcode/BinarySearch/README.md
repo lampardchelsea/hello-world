@@ -32,3 +32,6 @@
 
 <p>Peak Index in a Mountain Array
 <p>1. [Java O(n) and O(log(n)) code] (https://leetcode.com/problems/peak-index-in-a-mountain-array/discuss/139840/Java-O(n)-and-O(log(n))-code)
+  
+<p>Compare Strings by Frequency of the Smallest Character
+<p>1. [java binary search] (https://leetcode.com/problems/compare-strings-by-frequency-of-the-smallest-character/)
