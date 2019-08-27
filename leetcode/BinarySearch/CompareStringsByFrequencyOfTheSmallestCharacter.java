@@ -61,3 +61,47 @@ class Solution {
 // Solution 2: Binary Search, time complexity (O(nlogn))
 // Refer to
 // https://leetcode.com/problems/compare-strings-by-frequency-of-the-smallest-character/discuss/366353/java-binary-search
+// Runtime: 5 ms, faster than 78.98% of Java online submissions for Compare Strings by Frequency of the Smallest Character.
+// Memory Usage: 38 MB, less than 100.00% of Java online submissions for Compare Strings by Frequency of the Smallest Character.
+class Solution {
+    public int[] numSmallerByFrequency(String[] queries, String[] words) {
+        int[] result = new int[queries.length];
+        int[] wordsMaxFreq = new int[words.length];
+        int[] queriesMaxFreq = new int[queries.length];
+        for(int i = 0; i < words.length; i++) {
+            wordsMaxFreq[i] = smallestCharFreq(words[i]);
+        }
+        Arrays.sort(wordsMaxFreq);
+        for(int i = 0; i < queries.length; i++) {
+            queriesMaxFreq[i] = smallestCharFreq(queries[i]);
+        }
+        for(int i = 0; i < queriesMaxFreq.length; i++) {
+            int count = queriesMaxFreq[i];
+            int l = 0;
+            int r = wordsMaxFreq.length - 1;
+            while(l <= r) {
+                int mid = l + (r - l) / 2;
+                if(wordsMaxFreq[mid] <= count) {
+                    l = mid + 1;
+                } else {
+                    r = mid - 1;
+                }
+            }
+            result[i] = wordsMaxFreq.length - l;
+        }
+        return result;
+    }
+    
+    private int smallestCharFreq(String str) {
+        int[] freq = new int[26];
+        for(int i = 0; i < str.length(); i++) {
+            freq[str.charAt(i) - 'a']++;
+        }
+        for(int i = 0; i < 26; i++) {
+            if(freq[i] != 0) {
+                return freq[i];
+            }
+        }
+        return 0;
+    }
+}
