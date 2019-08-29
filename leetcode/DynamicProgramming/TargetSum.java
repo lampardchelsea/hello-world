@@ -140,3 +140,34 @@ class Solution {
         helper(nums, currVal - nums[index], S, index + 1);
     }
 }
+
+// Solution 4: DFS + Memoization
+// Refer to
+// https://leetcode.com/problems/target-sum/discuss/97333/Java-simple-DFS-with-memorization
+class Solution {
+    public int findTargetSumWays(int[] nums, int S) {
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        return helper(nums, 0, S, 0, map);
+    }
+    
+    private int helper(int[] nums, int currVal, int S, int index, Map<String, Integer> map) {
+        String str = index + "_" + currVal;
+        if(map.containsKey(str)) {
+            return map.get(str);
+        }
+        if(index == nums.length) {
+            if(currVal == S) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+        int add = helper(nums, currVal + nums[index], S, index + 1, map);
+        int minus = helper(nums, currVal - nums[index], S, index + 1, map);
+        map.put(str, add + minus);
+        return add + minus;
+    }
+}
