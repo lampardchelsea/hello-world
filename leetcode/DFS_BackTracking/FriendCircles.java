@@ -73,6 +73,56 @@ class Solution {
 // Solution 2: Union find
 // Refer to
 // https://leetcode.com/problems/friend-circles/discuss/101336/Java-solution-Union-Find
+// Style 1:
+class Solution {
+    public int findCircleNum(int[][] M) {
+        UnionFind uf = new UnionFind(M.length);
+        int count = M.length;
+        for(int i = 0; i < M.length; i++) {
+            for(int j = i + 1; j < M.length; j++) {
+                if(M[i][j] == 1) {
+                    uf.union(i, j);
+                }
+            }
+        }
+        return uf.getCount();
+    }
+    
+    class UnionFind {
+        int[] parent;
+        int count;
+        public UnionFind(int n) {
+            count = n;
+            parent = new int[n];
+            for(int i = 0; i < n; i++) {
+                parent[i] = i;
+            }
+        }
+        
+        public void union(int a, int b) {
+            int src = find(a);
+            int dst = find(b);
+            if(src != dst) {
+                parent[src] = dst;
+                count--;
+            }
+        }
+        
+        public int find(int x) {
+            if(parent[x] == x) {
+                return x;
+            }
+            return parent[x] = find(parent[x]);
+        }
+        
+        public int getCount() {
+            return count;
+        }
+    }    
+}
+
+
+// Style 2:
 class Solution {
     int count = 0;
     public int findCircleNum(int[][] M) {
