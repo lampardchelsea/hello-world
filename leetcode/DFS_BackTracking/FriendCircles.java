@@ -43,6 +43,7 @@ If M[i][j] = 1, then M[j][i] = 1.
  那么我们就能把属于同一个朋友圈的人都遍历一遍，我们同时标记出已经遍历过的人，然后累积朋友圈的个数，再去对于没有
  遍历到的人在找其朋友圈的人，这样就能求出个数。其实这道题的本质是之前那道题
  Number of Connected Components in an Undirected Graph，其实许多题目的本质都是一样的
+ Also same solution style as 841. Keys And Rooms
 */
 class Solution {
     public int findCircleNum(int[][] M) {
