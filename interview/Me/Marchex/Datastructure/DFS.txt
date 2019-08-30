@@ -68,7 +68,7 @@ public boolean dfs(char[][] board, String word, int index, int rowIndex, int col
 1020. Number of Enclaves (We flood-fill the land (change 1 to 0) from the boundary of the grid. Then, we count the remaining land.)
 947. Most Stones Removed with Same Row or Column (Same style as 841, change based on Number of Islands, dfs + unionfind)
 200. Number Of Islands (Similar to 1020, 947, DFS + Unionfind)
-547. Friend Circles (Same as Number of Connected Components in an Undirected Graph)
+547. Friend Circles (Same as Number of Connected Components in an Undirected Graph, style like 841)
 323. Number of Connected Components in an Undirected Graph
 490. The Maze (DFS with re-assign value to new variable recording start position in DFS recursion)
 694. Number of Distinct Islands (DFS and choose base point and use set to check islands identical)
