@@ -9,3 +9,5 @@
 1155. Number of Dice Rolls With Target Sum (Native DFS TLE -> DFS + Memo -> 2D DP -> 1D DP)
 300. Longest Increasing Subsequence
 1048. Longest String Chain (based on 300 LIS style DP)
+1143. Longest Common Subsequence (2D-DP)
+1092. Shortest Common Supersequence (Longest Common Subsequence + scan two string at same time to append)
