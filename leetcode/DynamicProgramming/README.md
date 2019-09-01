@@ -160,5 +160,8 @@
 <p>3. [Wrong answer exchange the inner / outer for loop] (https://leetcode.com/problems/last-stone-weight-ii/discuss/295759/Java-DP-solution-with-explanation/332902)
 <p>4. [Same as 494. Target Sum and 2D-DP] (https://leetcode.com/problems/last-stone-weight-ii/discuss/295167/Java-beat-100-with-nice-explanation)
   
+<p>Longest Common Subsequence
+<p>1. [2D-DP] (https://leetcode.com/problems/longest-common-subsequence/discuss/351689/Java-Two-DP-codes-of-O(mn)-and-O(min(m-n))-spaces-w-picture-and-analysis)
+  
 <p>Shortest Common Supersequence
 <p>1. [Longest Common Subsequence required to find first and scan two strings at same time] (https://leetcode.com/problems/shortest-common-supersequence/discuss/312710/C++Python-Find-the-LCS/290904)
