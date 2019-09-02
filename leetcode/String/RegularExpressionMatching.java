@@ -42,7 +42,7 @@
  * ---------------------------------------------------------
  * |   3  |  2:b |   F   |      |      |      |      |      |
  * ---------------------------------------------------------
- *      s_index:char_val  
+ *   s_index:char_val  
  *   i = s_index + 1
  */
 public class RegularExpressionMatching {
@@ -94,55 +94,55 @@ public class RegularExpressionMatching {
             			//    ... j-3  j-2  j-1  j
             			// p:    ???    a    *   
             			//    ...      i-2  i-1  i
-            		    // s:                c
+            		        // s:                c
             			// 'a' != 'c', treat (a*) in p as empty string, so dp[i][j]
-        				// which checking on whether p.substring(0, j) (or express as
-        				// p[0] to p[j - 1]) matches s.substring(0, i) (or express as
-        				// s[0] to s[i - 1]) depends on whether p.substring(0, j - 2) 
-        				// (or express as p[0] to p[j - 3]) matches s.substring(0, i)
-        				// (or express as s[0] to s[i - 1]), as '???' describe suspend
-        				// status for previous digits need to check
-        				dp[i][j] = dp[i][j - 2];
-        			} else {
-        				// Case 1: p.charAt(j - 2) == s.charAt(i - 1) && p.charAt(j - 1) == '*'
+        			// which checking on whether p.substring(0, j) (or express as
+        			// p[0] to p[j - 1]) matches s.substring(0, i) (or express as
+        			// s[0] to s[i - 1]) depends on whether p.substring(0, j - 2) 
+        			// (or express as p[0] to p[j - 3]) matches s.substring(0, i)
+        			// (or express as s[0] to s[i - 1]), as '???' describe suspend
+        			// status for previous digits need to check
+        			dp[i][j] = dp[i][j - 2];
+        		} else {
+        			// Case 1: p.charAt(j - 2) == s.charAt(i - 1) && p.charAt(j - 1) == '*'
             			//    ... j-3  j-2  j-1  j
             			// p:    ???    a    *   ------> 'a*' treat as single 'a'
             			//    ...      i-2  i-1  i
-            		    // s:                a
-        				// Because of 'a' = 'a', treat (a*) in p as single a, so dp[i][j]
-        				// which checking on whether p.substring(0, j) (or express as
-        				// p[0] to p[j - 1]) matches s.substring(0, i) (or express as
-        				// s[0] to s[i - 1]) depends on whether p.substring(0, j - 2) 
-        				// (or express as p[0] to p[j - 3]) matches s.substring(0, i - 1)
-        				// (or express as s[0] to s[i - 2]), as '???' describe suspend
-        				// status for previous digits need to check
-                        // dp[i][j] = dp[i - 1][j - 2]
-                        // 
-                        //
-                        // Case 2: p.charAt(j - 2) == s.charAt(i - 1) && p.charAt(j - 1) == '*'
-                        //    ... j-3  j-2  j-1  j
+            		    	// s:                a
+        			// Because of 'a' = 'a', treat (a*) in p as single a, so dp[i][j]
+        			// which checking on whether p.substring(0, j) (or express as
+        			// p[0] to p[j - 1]) matches s.substring(0, i) (or express as
+        			// s[0] to s[i - 1]) depends on whether p.substring(0, j - 2) 
+        			// (or express as p[0] to p[j - 3]) matches s.substring(0, i - 1)
+        			// (or express as s[0] to s[i - 2]), as '???' describe suspend
+        			// status for previous digits need to check
+                        	// dp[i][j] = dp[i - 1][j - 2]
+                        	// 
+                        	//
+                        	// Case 2: p.charAt(j - 2) == s.charAt(i - 1) && p.charAt(j - 1) == '*'
+                        	//    ... j-3  j-2  j-1  j
             			// p:    ???    a    *  ------> 'a*' treat as empty 
             			//    ...      i-2  i-1  i
-            		    // s:                a
-                        // A little tricky as this case, even 'a' = 'a', treat (a*) in p
-                        // as empty string, dp[i][j] which checking p.substring(0, j) 
-                        // (or express as p[0] to p[j - 1]) matches s.substring(0, i) 
-                        // (or express as s[0] to s[i - 1]) depends on whether 
-                        // p.substring(0, j - 2) (or express as p[0] to p[j - 3]) 
-                        // matches s.substring(0, i) (or express as s[0] to s[i - 1]), 
-                        // as p[j - 2] and p[j - 1] treat as empty, '???' describe suspend 
-                        // status for previous digits need to check
-                        // dp[i][j] = dp[i][j - 2]
-                        // 
-                        // 
-        				// Case 3: p.charAt(j - 2) == '.' && p.charAt(j - 1) == '*'
+            		    	// s:                a
+                        	// A little tricky as this case, even 'a' = 'a', treat (a*) in p
+                        	// as empty string, dp[i][j] which checking p.substring(0, j) 
+                        	// (or express as p[0] to p[j - 1]) matches s.substring(0, i) 
+                        	// (or express as s[0] to s[i - 1]) depends on whether 
+                        	// p.substring(0, j - 2) (or express as p[0] to p[j - 3]) 
+                        	// matches s.substring(0, i) (or express as s[0] to s[i - 1]), 
+                        	// as p[j - 2] and p[j - 1] treat as empty, '???' describe suspend 
+                        	// status for previous digits need to check
+                        	// dp[i][j] = dp[i][j - 2]
+                        	// 
+                        	// 
+        			// Case 3: p.charAt(j - 2) == '.' && p.charAt(j - 1) == '*'
             			//    ... j-3  j-2  j-1  j
             			// p:    ???    .    *   
             			//    ...      i-2  i-1  i
-            		    // s:                a
-        				// means status of previous char in word, there are multiple same chars
-                        // dp[i][j] = dp[i - 1][j]
-        			    dp[i][j] = dp[i - 1][j - 2] || dp[i][j - 2] || dp[i - 1][j];
+            		    	// s:                a
+        			// means status of previous char in word, there are multiple same chars
+                        	// dp[i][j] = dp[i - 1][j]
+        			dp[i][j] = dp[i - 1][j - 2] || dp[i][j - 2] || dp[i - 1][j];
         			}
         		}
         	}
