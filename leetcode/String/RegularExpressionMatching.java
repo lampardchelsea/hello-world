@@ -102,8 +102,8 @@ public class RegularExpressionMatching {
         			// (or express as p[0] to p[j - 3]) matches s.substring(0, i)
         			// (or express as s[0] to s[i - 1]), as '???' describe suspend
         			// status for previous digits need to check
-        			dp[i][j] = dp[i][j - 2];
-        		} else {
+        				dp[i][j] = dp[i][j - 2];
+        			} else {
         			// Case 1: p.charAt(j - 2) == s.charAt(i - 1) && p.charAt(j - 1) == '*'
             			//    ... j-3  j-2  j-1  j
             			// p:    ???    a    *   ------> 'a*' treat as single 'a'
@@ -142,7 +142,7 @@ public class RegularExpressionMatching {
             		    	// s:                a
         			// means status of previous char in word, there are multiple same chars
                         	// dp[i][j] = dp[i - 1][j]
-        			dp[i][j] = dp[i - 1][j - 2] || dp[i][j - 2] || dp[i - 1][j];
+        				dp[i][j] = dp[i - 1][j - 2] || dp[i][j - 2] || dp[i - 1][j];
         			}
         		}
         	}
