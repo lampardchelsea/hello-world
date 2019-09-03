@@ -155,6 +155,7 @@ public class RegularExpressionMatching {
 
 
 // Different style
+// https://leetcode.com/problems/regular-expression-matching/discuss/5651/Easy-DP-Java-Solution-with-detailed-Explanation/6626
 public boolean isMatch(String s, String p) {
     int m = s.length(), n = p.length();
     char[] sc = s.toCharArray(), pc = p.toCharArray();
