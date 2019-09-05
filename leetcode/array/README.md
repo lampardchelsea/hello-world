@@ -349,3 +349,4 @@ binary-search-java-code/29)
 
 <p>Can Make Palindrome from Substring
 <p>1. [Prefix sum of counting characters first then compare] (https://leetcode.com/problems/can-make-palindrome-from-substring/discuss/371849/JavaPython-3-3-codes-each:-prefix-sum-of-counting-characters-first-then-compare/334622)
+<p>2. [Make copy of an array] (https://stackoverflow.com/questions/5785745/make-copy-of-an-array)
