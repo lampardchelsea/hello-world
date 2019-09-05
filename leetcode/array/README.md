@@ -346,3 +346,6 @@ binary-search-java-code/29)
   
 <p>Distribute Candies to People
 <p>1. [Java straightforward solution based on build formula to calculate rolling row] (https://leetcode.com/problems/distribute-candies-to-people/discuss/347852/Java-straightforward-solution-based-on-build-formula-to-calculate-rolling-row)
+
+<p>Can Make Palindrome from Substring
+<p>1. [Prefix sum of counting characters first then compare] (https://leetcode.com/problems/can-make-palindrome-from-substring/discuss/371849/JavaPython-3-3-codes-each:-prefix-sum-of-counting-characters-first-then-compare/334622)
