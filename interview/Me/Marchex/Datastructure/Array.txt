@@ -69,3 +69,4 @@ return true;
 1128. Number of Equivalent Domino Pairs (Encoding domino card into two digits number and be careful about pair definition)
 1122. Relative Sort Array (Java in-place solution using counting sort)
 1103. Distribute Candies to People (Build formula to calculate rolling row indexed value + must reset i + must break out)
+1177. Can Make Palindrome from Substring (Presum + Freq table)
