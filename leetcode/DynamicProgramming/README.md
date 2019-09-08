@@ -165,3 +165,6 @@
   
 <p>Shortest Common Supersequence
 <p>1. [Longest Common Subsequence required to find first and scan two strings at same time] (https://leetcode.com/problems/shortest-common-supersequence/discuss/312710/C++Python-Find-the-LCS/290904)
+
+<p>Maximum Subarray Sum with One Deletion
+<p>1. [Kadane’s algorithm + foward + backward array] (https://www.geeksforgeeks.org/maximum-sum-subarray-removing-one-element/)
