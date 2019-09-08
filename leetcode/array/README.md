@@ -350,3 +350,8 @@ binary-search-java-code/29)
 <p>Can Make Palindrome from Substring
 <p>1. [Prefix sum of counting characters first then compare] (https://leetcode.com/problems/can-make-palindrome-from-substring/discuss/371849/JavaPython-3-3-codes-each:-prefix-sum-of-counting-characters-first-then-compare/334622)
 <p>2. [Make copy of an array] (https://stackoverflow.com/questions/5785745/make-copy-of-an-array)
+  
+<p>Day of the Week
+<p>1. [Zeller Formula] (https://leetcode.com/problems/day-of-the-week/discuss/377384/JavaC%2B%2BPython-Zeller-Formula)
+<p>2. [Zeller Formula 2] (https://www.hackerearth.com/blog/developers/how-to-find-the-day-of-a-week/)
+<p>3. [Common way + 1970-1-1 is Friday] (https://leetcode.com/problems/day-of-the-week/discuss/377384/JavaC++Python-Zeller-Formula/339135)
