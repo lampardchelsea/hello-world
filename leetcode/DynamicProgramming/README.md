@@ -168,3 +168,7 @@
 
 <p>Maximum Subarray Sum with One Deletion
 <p>1. [Kadane’s algorithm + foward + backward array] (https://www.geeksforgeeks.org/maximum-sum-subarray-removing-one-element/)
+  
+<p>Make Array Strictly Increasing
+<p>1. [DP + LIS 300] (https://leetcode.com/problems/make-array-strictly-increasing/discuss/377495/Java-dp-solution-%3A-A-simple-change-from-Longest-Increasing-Subsequence)
+<p>2. [Explain about the helper method] (https://leetcode.com/problems/make-array-strictly-increasing/discuss/377495/Java-dp-solution-:-A-simple-change-from-Longest-Increasing-Subsequence/339264)
