@@ -60,7 +60,7 @@ class Solution {
 class Solution {
     int[] dx = new int[]{1,2,2,1,-1,-2,-2,-1};
     int[] dy = new int[]{2,1,-1,-2,-2,-1,1,2};
-    double[][][] dp;
+    double[][][] dp; // dp[i][j][k + 1] number of ways to move to (i, j) after k moves (k range from 0 to K)
     public double knightProbability(int N, int K, int r, int c) {
         dp = new double[N][N][K + 1];
         return helper(N, K, r, c, dp);
