@@ -91,10 +91,12 @@ class Solution {
             for(int k = 0; k < 4; k++) {
                 int x = cur.x;
                 int y = cur.y;
+                // Keep rolling till hit the wall
                 while(x >= 0 && x < maze.length && y >= 0 && y < maze[0].length && maze[x][y] != 1) {
                     x += dx[k];
                     y += dy[k];
                 }
+                // Get current rolling result(after it stopped) distance and update to PQ and visited 2D array
                 int distance = cur.distance + Math.abs(x - cur.x) + Math.abs(y - cur.y);
                 if(visited[x][y] > distance) {
                     minPQ.offer(new Node(cur.x, cur.y, distance));
