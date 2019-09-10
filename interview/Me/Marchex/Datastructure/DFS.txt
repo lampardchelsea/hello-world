@@ -76,3 +76,4 @@ public boolean dfs(char[][] board, String word, int index, int rowIndex, int col
 679. 24Game (ignore braces and implement back tracking by removing used elemnts)
 688. Knight Probability in Chessboard (DFS memoization with 3-dimension array)
 1079. Letter Tile Possibilities (DFS + backtracking + frequence table)
+505. The Maze II (Dijkstra + PQ)
