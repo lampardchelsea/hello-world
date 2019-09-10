@@ -91,3 +91,41 @@ class Solution {
         return left.compareTo(right) <= 0 ? left : right; 
     }
 }
+
+// Solution 2: Another style of DFS
+// Refer to
+// https://leetcode.com/problems/smallest-string-starting-from-leaf/discuss/231251/Java-2-Concise-DFS-codes-with-comment.
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    // Dummy value '~' > 'z'
+    String result = "~";
+    public String smallestFromLeaf(TreeNode root) {
+        return helper(root, "");
+    }
+    
+    private String helper(TreeNode root, String temp) {
+        // Base case, and in case root is null
+        if(root == null) {
+            return result;
+        }
+        // Prepend current char to the path string from root
+        temp = (char)(root.val + 'a') + temp;
+        // Update result if n is a leaf
+        if(root.left == null && root.right == null) {
+            if(result.compareTo(temp) > 0) {
+                result = temp;
+            }
+        }
+        helper(root.left, temp);
+        helper(root.right, temp);
+        return result;
+    }
+}
