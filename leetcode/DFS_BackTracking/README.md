@@ -187,3 +187,7 @@
 <p>1. [DFS backtracking + frequence table] (https://leetcode.com/problems/letter-tile-possibilities/discuss/308284/Concise-java-solution)
 <p>2. [Java consider all permutations] (https://leetcode.com/problems/letter-tile-possibilities/discuss/308212/Java-consider-all-permutations)
 <p>3. [DFS backtracking] (https://leetcode.com/problems/letter-tile-possibilities/discuss/308280/simple-java-version-with-backtracking)
+
+<p>The Maze II
+<p>1. [Dijkstra + PQ] (https://segmentfault.com/a/1190000008323436)
+<p>2. [What is Dijkstra] (https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/)
