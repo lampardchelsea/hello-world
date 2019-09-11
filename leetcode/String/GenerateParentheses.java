@@ -44,6 +44,33 @@
   }
  * 
 */
+
+// Solution 1: Style 1
+// https://leetcode.com/problems/generate-parentheses/discuss/10098/Java-DFS-way-solution/10940
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> result = new ArrayList<String>();
+        helper(result, n, n, "");
+        return result;
+    }
+    
+    private void helper(List<String> result, int open, int close, String temp) {
+        if(open == 0 && close == 0) {
+            result.add(temp);
+        }
+        // Has left Parenthesis
+        if(open > 0) {
+            helper(result, open - 1, close, temp + "(");
+        }
+        // Has more right Parenthesis
+        if(close > open) {
+            helper(result, open, close - 1, temp + ")");
+        }
+    }
+}
+
+
+// Solution 2: Style 2
 public class Solution {
     public List<String> generateParenthesis(int n) {
         List<String> result = new ArrayList<String>();
