@@ -3,6 +3,7 @@
 37. Sudoku Solver (DFS + backtracking if not suitable to put char in + board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] == c)
 39. Combination Sum (DFS + backtracking and to handle duplicate require add start index to tracking but no need to +1 in recursive since it allows repeat using same element)
 40. Combination Sum II (DFS + backtracking and sort with addtional condition to skip duplicated combinations required)
+51. N-Queens (DFS + backtracking)
 216. Combination Sum III (DFS + backtracking and manually create the combination set)
 377.Combination Sum IV (DFS with memoization + Follow up with negative number handle)
 64.Minimum Path Sum (DP(backtracking) with memoization)
