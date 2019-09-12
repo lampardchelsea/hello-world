@@ -408,3 +408,57 @@ public class NQueens2 {
     	System.out.println(result.toString());
 	}
 }
+
+
+// New try
+// Refer to
+// https://leetcode.com/problems/n-queens/discuss/19805/My-easy-understanding-Java-Solution/150112
+class Solution {
+    public List<List<String>> solveNQueens(int n) {
+        List<List<String>> result = new ArrayList<List<String>>();
+        char[][] board = new char[n][n];
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < n; j++) {
+                board[i][j] = '.';
+            }
+        }
+        helper(board, result, 0);
+        return result;
+    }
+    
+    private void helper(char[][] board, List<List<String>> result, int rowIndex) {
+        if(rowIndex == board.length) {
+            List<String> list = new ArrayList<String>();
+            for(int i = 0; i < board.length; i++) {
+		// New String based on char array
+                list.add(new String(board[i]));
+            }
+            result.add(list);
+            return;
+        }
+        for(int i = 0; i < board[0].length; i++) {
+            // Try
+            board[rowIndex][i] = 'Q';
+            // If possible
+            if(isValid(board, rowIndex, i)) {
+                helper(board, result, rowIndex + 1);
+            }
+            // Not try
+            board[rowIndex][i] = '.';
+        }
+    }
+    
+    private boolean isValid(char[][] board, int rowIndex, int colIndex) {
+	// only check rows above current one    
+        for(int i = 0; i < rowIndex; i++) {
+            for(int j = 0; j < board[0].length; j++) {
+		// if 'Q' in the same col or the diagonal line, return false
+                if((j == colIndex || Math.abs(i - rowIndex) == Math.abs(j - colIndex)) && board[i][j] == 'Q') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
+
