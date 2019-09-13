@@ -6,13 +6,7 @@
 51. N-Queens (DFS + backtracking)
 52. N-Queens II (DFS + backtracking + just use boolean for cols / diagonal / paradiagonal)
 77. Combinations (DFS + backtracking)
-216. Combination Sum III (DFS + backtracking and manually create the combination set)
-377.Combination Sum IV (DFS with memoization + Follow up with negative number handle)
-64.Minimum Path Sum (DP(backtracking) with memoization)
-638.Shopping Offers (DFS with memoization)
-935.Knight Dialer (DFS with memoization)
-139.Word Break (DFS with memoization)
-78.Subsets (backtrack
+78. Subsets (backtrack
             // base condition
             if(index >= nums.length) {
                 return;
@@ -25,6 +19,12 @@
             result.add(oneSubset);
             // Logic branch-2: Add nums[index] into current subset and its inheritance chain sets
             helper(result, oneSubset, nums, index + 1);)
+216. Combination Sum III (DFS + backtracking and manually create the combination set)
+377.Combination Sum IV (DFS with memoization + Follow up with negative number handle)
+64.Minimum Path Sum (DP(backtracking) with memoization)
+638.Shopping Offers (DFS with memoization)
+935.Knight Dialer (DFS with memoization)
+139.Word Break (DFS with memoization)
 90. Subsets II (backtrack but sort first + skip duplicate numbers)
 46. Permutations (DFS + backtracking checking already existing value and always start from index = 0 to build)
 47. Permutations II (DFS + backtracking with boolean array to assure same value after permutation keep the same order)
