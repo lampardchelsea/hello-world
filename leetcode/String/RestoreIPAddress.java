@@ -136,3 +136,51 @@ class Solution {
 // Style 2:
 // Refer to
 // https://massivealgorithms.blogspot.com/2014/06/leetcode-restore-ip-addresses-darrens.html
+// https://leetcode.com/problems/restore-ip-addresses/discuss/381545/Compare-two-ways-(append-1-char-or-dot-each-time-vs.-build-1-token-each-time)-of-backtracking
+class Solution {
+    public List<String> restoreIpAddresses(String s) {
+        List<String> result = new ArrayList<String>();
+        String[] tokens = new String[4];
+        helper(result, s, tokens, 0, 0);
+        return result;
+    }
+    
+    private void helper(List<String> result, String s, String[] tokens, int index, int tokenCount) {
+        // Tricky point, the token count should be exactly 4,
+        // since we construct the first token when token index = 0
+        // the relation between token index and token count is
+        // token count = token index + 1
+        // e.g when we finish the construct of first token and move
+        // to next recurisve level, the token count will increase
+        // from 0 to 1, and after construct all 4 tokens and move
+        // to next recursive level, the expected terminate condition
+        // is token count = 4
+        if(index == s.length() && tokenCount == 4) {
+            result.add(tokens[0] + "." + tokens[1] + "." + tokens[2] + "." + tokens[3]);
+            return;
+        }
+        if(index >= s.length() || tokenCount >= 4) {
+            return;
+        }
+        // Build one token each recursive level, and token length range
+        // is 1 to 3
+        // Don't miss '=' in 'index + i <= s.length()' since substring
+        // method exclude the last character, to include it have to '='
+        for(int i = 1; i <= 3 && index + i <= s.length(); i++) {
+            String token = s.substring(index, index + i);
+            if(isValid(token)) {
+                tokens[tokenCount] = token;
+                helper(result, s, tokens, index + i, tokenCount + 1);
+                // Roll back to empty string on current token
+                tokens[tokenCount] = "";
+            }
+        }
+    }
+    
+    private boolean isValid(String token) {
+        if(Integer.valueOf(token) > 255 || (token.length() >= 2 && token.charAt(0) == '0')) {
+            return false;
+        }
+        return true;
+    }
+}
