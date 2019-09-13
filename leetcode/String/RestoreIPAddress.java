@@ -90,11 +90,21 @@ class Solution {
             result.add(sb.toString());
             return;
         }
+        // Intelligent part as using two points 'index' and 'i' to control the generation
+        // of token, each recursive level only generate one token, e.g '255' is a token,
+        // by the control as below:
+        // start position         end position
+        //      index       -->     i + 1 (range from (index + 1) to s.length())
+        // only after this token is valid then go ahead to next recurisve level for next
+        // token generation, and start position update from index to i + 1
         for(int i = index; i < s.length(); i++) {
             String token = s.substring(index, i + 1);
             if(isValid(token)) {
                 int len = sb.length();
                 sb.append(token);
+                // Tricky point:
+                // The last position to append dot should before last character
+                // if reach the last character, we only append last token and no dot
                 if(i + 1 != s.length()) {
                     sb.append(".");
                     helper(result, sb, s, i + 1, dotCount + 1);                   
