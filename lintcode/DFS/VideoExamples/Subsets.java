@@ -53,7 +53,7 @@ public class Solution {
     }
 }
 
-// Style 2:
+// Style 2: Same as normal style add if(index <= nums.length) {...} as condition, and don't miss '='
 // Refer to
 // https://leetcode.com/problems/subsets/discuss/27550/Very-simple-and-fast-java-solution-with-explanation
 class Solution {
