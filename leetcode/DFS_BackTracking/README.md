@@ -195,3 +195,6 @@
 <p>N Queens II
 <p>1. [Just use boolean and backtracking] (https://leetcode.com/problems/n-queens-ii/discuss/20048/Easiest-Java-Solution-(1ms-98.22))
 <p>2. [Detail explain] (https://leetcode.wang/leetCode-52-N-QueensII.html)
+
+<p>Combinations
+<p>1. [No need to create numbers array to do backtracking] (https://leetcode.com/problems/combinations/discuss/27002/Backtracking-Solution-Java)
