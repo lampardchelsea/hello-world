@@ -52,3 +52,30 @@ public class Solution {
         }
     }
 }
+
+// Style 2:
+// Refer to
+// https://leetcode.com/problems/subsets/discuss/27550/Very-simple-and-fast-java-solution-with-explanation
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        helper(result, new ArrayList<Integer>(), nums, 0);
+        return result;
+    }
+    
+    private void helper(List<List<Integer>> result, List<Integer> list, int[] nums, int index) {
+        // The idea is use pos to keep track of the index of the array. 
+        // Compare to other backracking problem like combinations, the 
+        // condition that each single List adds to the List<List> is when 
+        // the index of the array is valid. Meanwhile, after adding to 
+        // the List<List> , keeping going for the for loop.
+        if(index <= nums.length) {
+            result.add(new ArrayList<Integer>(list));
+        }
+        for(int i = index; i < nums.length; i++) {
+            list.add(nums[i]);
+            helper(result, list, nums, i + 1);
+            list.remove(list.size() - 1);
+        }
+    }
+}
