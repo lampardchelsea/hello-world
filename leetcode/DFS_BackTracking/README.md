@@ -198,3 +198,7 @@
 
 <p>Combinations
 <p>1. [No need to create numbers array to do backtracking] (https://leetcode.com/problems/combinations/discuss/27002/Backtracking-Solution-Java)
+
+<p>Unique Binary Search Trees II
+<p>1. [A simple recursive solution] (https://leetcode.com/problems/unique-binary-search-trees-ii/discuss/31494/A-simple-recursive-solution)
+<p>2. [Detail explaination] (https://www.youtube.com/watch?v=GZ0qvkTAjmw)
