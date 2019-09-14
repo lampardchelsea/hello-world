@@ -202,3 +202,7 @@
 <p>Unique Binary Search Trees II
 <p>1. [A simple recursive solution] (https://leetcode.com/problems/unique-binary-search-trees-ii/discuss/31494/A-simple-recursive-solution)
 <p>2. [Detail explaination] (https://www.youtube.com/watch?v=GZ0qvkTAjmw)
+
+<p>Different Ways To Add Parentheses
+<p>1. [Java recursive (9ms) and dp (4ms) solution] (https://leetcode.com/problems/different-ways-to-add-parentheses/discuss/66333/Java-recursive-(9ms)-and-dp-(4ms)-solution)
+<p>2. [Unique Binary Search Tree II] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/UniqueBinarySearchTreesII.java)
