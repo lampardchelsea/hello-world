@@ -110,3 +110,31 @@ public class CombinationSumIII {
 
     }
 }
+
+// Another way of no need to build nums array
+// Refer to
+// https://leetcode.com/problems/combination-sum-iii/discuss/60614/Simple-and-clean-Java-code-backtracking.
+class Solution {
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        helper(result, new ArrayList<Integer>(), 1, k, n);
+        return result;
+    }
+    
+    private void helper(List<List<Integer>> result, List<Integer> list,
+                        int index, int k, int remain) {
+        if(k == 0 && remain == 0) {
+            result.add(new ArrayList<Integer>(list));
+            return;
+        }
+        if(k == 0 || remain == 0) {
+            return;
+        }
+        for(int i = index; i <= 9; i++) {
+            list.add(i);
+            helper(result, list, i + 1, k - 1, remain - i);
+            list.remove(list.size() - 1);
+        }
+    }
+}
+
