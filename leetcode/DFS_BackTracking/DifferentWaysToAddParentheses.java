@@ -147,3 +147,75 @@ class Solution {
         return result;
     }
 }
+
+// Add memoization
+// Refer to
+// https://leetcode.com/problems/different-ways-to-add-parentheses/discuss/66395/Java-recursive-solution-with-memorization
+class Solution {
+    public List<Integer> diffWaysToCompute(String input) {
+        List<Integer> result = new ArrayList<Integer>();
+        if(input == null || input.length() == 0) {
+            return result;    
+        }
+        // Split string into numbers and operations
+        // be careful the numbers could be continuous digits
+        List<String> tokens = new ArrayList<String>();
+        for(int i = 0; i < input.length(); i++) {
+            String token = "";
+            while(i < input.length() && Character.isDigit(input.charAt(i))) {
+                token += input.charAt(i);
+                i++;
+            }
+            // Add number section
+            tokens.add(token);
+            // Add operate (and it could not be the last character in string)
+            if(i < input.length()) {
+            	tokens.add(String.valueOf(input.charAt(i)));
+            }         
+        }
+        // memo stores all possible results from the i-th 
+        // integer to the j-th integer (inclusive) in the list.
+        Map<String, List<Integer>> memo = new HashMap<String, List<Integer>>();
+        result = helper(tokens, 0, tokens.size() - 1, memo);
+        return result;
+    }
+    
+    private List<Integer> helper(List<String> tokens, int lo, int hi, Map<String, List<Integer>> memo) {
+        List<Integer> result = new ArrayList<Integer>();
+        // If already stored result, return quickly
+        String str = lo + "_" + hi;
+        if(memo.containsKey(str)) {
+            return memo.get(str);
+        }
+        // Base case: only one number left when lo = hi
+        if(lo == hi) {
+            result.add(Integer.valueOf(tokens.get(lo)));
+            return result;
+        }
+        // Same process as 95.Unique Binary Search Tree II
+        // Scan all combinations between left and right sub-list divide by operate
+        for(int i = lo; i <= hi; i++) {
+            if(i % 2 == 1) {
+                String ops = tokens.get(i);
+                List<Integer> left = helper(tokens, lo, i - 1, memo);
+                List<Integer> right = helper(tokens, i + 1, hi, memo);
+                for(int l : left) {
+                    for(int r : right) {
+                        if(ops.equals("+")) {
+                            result.add(l + r);
+                        }
+                        if(ops.equals("*")) {
+                            result.add(l * r);
+                        }
+                        if(ops.equals("-")) {
+                            result.add(l - r);
+                        }
+                    }
+                }
+            }
+        }
+        // map.put() automatically contains update operation
+        memo.put(str, result);
+        return result;
+    }
+}
