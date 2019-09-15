@@ -146,48 +146,49 @@ public class Solution {
 // Refer to
 // https://massivealgorithms.blogspot.com/2015/08/leetcode-247-strobogrammatic-number-ii.html
 class Solution {
-	public List<String> findStrobogrammatic(int n) {
-		List<String> result = new ArrayList<String>();
-		if(n == 0) {
-			return result;
-		}
-		Map<Character, Character> map = new HashMap<Character, Character>();
-		map.put('0', '0');
-		map.put('1', '1');
-		map.put('8', '8');
-		map.put('6', '9');
-		map.put('9', '6');
-		char[] chars = new char[n];
-		helper(result, map, chars, 0, n);
-		return result;
-	}
-	
-	private void helper(List<String> result, Map<Character, Character> map, 
-			char[] chars, int index, int n) {
-		// Base case, when index move to the mid position
+    public List<String> findStrobogrammatic(int n) {
+        List<String> result = new ArrayList<String>();
+        if (n == 0) {
+            return result;
+        }
+        Map<Character, Character> map = new HashMap<Character, Character>();
+        map.put('0', '0');
+        map.put('1', '1');
+        map.put('8', '8');
+        map.put('6', '9');
+        map.put('9', '6');
+        char[] chars = new char[n];
+        helper(result, map, chars, 0, n);
+        return result;
+    }
+
+    private void helper(List<String> result, Map<Character, Character> map,
+        char[] chars, int index, int n) {
+        // Base case, when index move to the mid position
         // Caution: (n + 1) requires '+1' otherwise when n is odd
         // will miss construction of middle digital
         // e.g n = 3, if set as 'index == n / 2', it will be
         // [1 1, 1 8, ...]
-		if(index == (n + 1) / 2) {
-			result.add(new String(chars));
-			return;
-		}
-		for(Character c : map.keySet()) {
-			// first digit cannot be '0' when n > 1
-			if(index == 0 && n > 1 && c == '0') {
-				continue;
-			}
-			// mid digit cannot be '6' or '9' when n is odd
+        if (index == (n + 1) / 2) {
+            result.add(new String(chars));
+            return;
+        }
+        for(Character c: map.keySet()) {
+            // first digit cannot be '0' when n > 1
+            if (index == 0 && n > 1 && c == '0') {
+                continue;
+            }
+            // mid digit cannot be '6' or '9' when n is odd
             // Caution: the middle digit exactly get by 'index == n / 2'
             // not 'index == (n + 1) / 2'
-			if(index == n / 2 && (c == '6' || c == '9')) {
-				continue;
-			}
-			// Each time update as pair for position at 'index' and 'n - index - 1'
-			chars[index] = c;
-			chars[n - index - 1] = map.get(c);
-			helper(result, map, chars, index + 1, n);
-		}
-	}
+            if (index == n / 2 && (c == '6' || c == '9')) {
+                continue;
+            }
+            // Each time update as pair for position at 'index' and 'n - index - 1'
+            chars[index] = c;
+            chars[n - index - 1] = map.get(c);
+            helper(result, map, chars, index + 1, n);
+        }
+    }
 }
+
