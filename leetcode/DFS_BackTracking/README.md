@@ -207,3 +207,7 @@
 <p>1. [Java recursive (9ms) and dp (4ms) solution] (https://leetcode.com/problems/different-ways-to-add-parentheses/discuss/66333/Java-recursive-(9ms)-and-dp-(4ms)-solution)
 <p>2. [Unique Binary Search Tree II] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/UniqueBinarySearchTreesII.java)
 <p>3. [Add memoization] (https://leetcode.com/problems/different-ways-to-add-parentheses/discuss/66395/Java-recursive-solution-with-memorization)
+
+<p>Reverse Substrings Between Each Pair of Parentheses
+<p>1. [Bad test cases] (https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/discuss/382372/Bad-test-cases-again!)
+<p>2. [Simple Java Sol(Recursion)] (https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/discuss/382358/Simple-Java-Sol(Recursion))
