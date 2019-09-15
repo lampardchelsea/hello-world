@@ -108,3 +108,33 @@ class Solution {
 }
 
 // Solution 2: Stack + Queue
+// Refer to
+// https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/discuss/382367/Simple-Stack-and-Queue-Solution
+class Solution {
+    public String reverseParentheses(String s) {
+        Stack<Character> stack = new Stack<Character>();
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(c != ')') {
+                stack.push(c);
+            } else {
+                Queue<Character> q = new LinkedList<Character>();
+                while(!stack.isEmpty() && stack.peek() != '(') {
+                    q.add(stack.pop());
+                }
+                // If '(' left, remove it from stack
+                if(!stack.isEmpty()) {
+                    stack.pop();
+                }
+                while(!q.isEmpty()) {
+                    stack.push(q.remove());
+                }
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!stack.isEmpty()) {
+            sb.append(stack.pop());
+        }
+        return sb.reverse().toString();
+    }
+}
