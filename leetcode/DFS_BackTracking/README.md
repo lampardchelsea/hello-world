@@ -211,3 +211,4 @@
 <p>Reverse Substrings Between Each Pair of Parentheses
 <p>1. [Bad test cases] (https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/discuss/382372/Bad-test-cases-again!)
 <p>2. [Simple Java Sol(Recursion)] (https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/discuss/382358/Simple-Java-Sol(Recursion))
+<p>3. [Stack + Queue] (https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/discuss/382367/Simple-Stack-and-Queue-Solution)
