@@ -235,3 +235,73 @@ public List<List<Integer>> getFactors(int n) {
     
 
 }
+
+
+
+// New try
+// Original Solution 1: DFS backtracking
+// Refer to
+// http://www.cnblogs.com/airwindow/p/4822572.html
+public class Solution {
+    /**
+     * @param n: a integer
+     * @return: return a 2D array
+     */
+    public List<List<Integer>> getFactors(int n) {
+        List<List<Integer>> ret = new ArrayList<List<Integer>> ();
+        helper(ret, new ArrayList<Integer> (), n, 2);
+        return ret;
+    }
+    
+    private void helper(List<List<Integer>> ret, List<Integer> item, int n, int start) {
+        if (n == 1) {
+            if (item.size() > 1) {
+                ret.add(new ArrayList<Integer> (item));
+            }
+            return;
+        }
+        for (int i = start; i <= n; i++) {
+            if (n % i == 0) {
+                item.add(i);
+                helper(ret, item, n/i, i);
+                item.remove(item.size()-1);
+            }
+        }
+    }
+}
+
+// Solution 2: It can be promote to below style, beats 84% on lintcode
+// Refer to
+// https://segmentfault.com/a/1190000005801106
+public class Solution {
+    /**
+     * @param n: a integer
+     * @return: return a 2D array
+     */
+    public List<List<Integer>> getFactors(int n) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
+        helper(n, 2, list, result);
+        return result;
+    }
+    
+    public void helper(int n, int start, List<Integer> list, List<List<Integer>> result) {
+        if (n == 1) {
+            if (list.size() > 1) {  //the original input is not counted in
+                result.add(new ArrayList<Integer>(list));
+            }
+            return;
+        }
+        for (int i = start; i <= Math.sqrt(n); i++) { //这里只要到根号n就好了
+            if (n % i == 0) {
+                list.add(i);
+                helper(n / i, i, list, result);
+                list.remove(list.size() - 1);
+            }
+        }
+        list.add(n); //把n加进去
+        helper(1, n, list, result);
+        list.remove(list.size() - 1);
+    }
+}
+
