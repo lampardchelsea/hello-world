@@ -255,7 +255,7 @@ public class Solution {
     
     private void helper(List<List<Integer>> ret, List<Integer> item, int n, int start) {
         if (n == 1) {
-            if (item.size() > 1) {
+            if (item.size() > 1) { //the original input is not counted in
                 ret.add(new ArrayList<Integer> (item));
             }
             return;
@@ -292,14 +292,14 @@ public class Solution {
             }
             return;
         }
-        for (int i = start; i <= Math.sqrt(n); i++) { //这里只要到根号n就好了
+        for (int i = start; i <= Math.sqrt(n); i++) { //这里只要到根号n就好了 -> promotion against solution 1
             if (n % i == 0) {
                 list.add(i);
                 helper(n / i, i, list, result);
                 list.remove(list.size() - 1);
             }
         }
-        list.add(n); //把n加进去
+        list.add(n); //把n加进去 -> since changed the range in previous for loop, not include n naturally, need to add manually
         helper(1, n, list, result);
         list.remove(list.size() - 1);
     }
