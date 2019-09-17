@@ -61,14 +61,15 @@ class Solution {
 
                 "105", 5 -> ["1*0+5","10-5", "1*05"]
                 "00", 0 -> ["0+0", "0-0", "0*0", "00"]
-                // Refer to
-                // https://leetcode.com/problems/expression-add-operators/discuss/71895/Java-Standard-Backtrace-AC-Solutoin-short-and-clear/239225
-                // corner case: if current position is 0, we can only use it as a single digit number, should be 0
-                // if it is not a single digit number with leading 0, it should be considered as an invalid number 
             */
+            // Refer to
+            // https://leetcode.com/problems/expression-add-operators/discuss/71895/Java-Standard-Backtrace-AC-Solutoin-short-and-clear/239225
+            // corner case: if current position is 0, we can only use it as a single digit number, should be 0
+            // if it is not a single digit number with leading 0, it should be considered as an invalid number 
             if(num.charAt(pos) == '0' && i != pos) {
                 break;
             }
+            // This process is quite similar to 93. Restore IP Address
             long curr = Long.parseLong(num.substring(pos, i + 1));
             /**
              * Refer to
