@@ -101,4 +101,37 @@ class Solution {
     }
 }
 
-
+// Wrong way to compuate a combination but using permutation style
+// Because that's the way for computing Permutation, since change the order will be recognize as different solution
+// e.g if target is 8, [2,6] and [6,2] is one combination but two permutation 
+// Refer to 
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/PermutationsII.java
+// https://leetcode.com/problems/permutations-ii/
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        Arrays.sort(candidates);
+        boolean[] visited = new boolean[candidates.length];
+        helper(result, candidates, target, new ArrayList<Integer>(), visited);
+        return result;
+    }
+    
+    private void helper(List<List<Integer>> result, int[] candidates, int remain, List<Integer> list, boolean[] visited) {
+        if(remain < 0) {
+            return;
+        }
+        if(remain == 0) {
+            result.add(new ArrayList<Integer>(list));
+        }
+        for(int i = 0; i < candidates.length; i++) {
+            if(visited[i] || (i > 0 && !visited[i - 1] && candidates[i] == candidates[i - 1])) {
+                continue;
+            }
+            list.add(candidates[i]);
+            visited[i] = true;
+            helper(result, candidates, remain - candidates[i], list, visited);
+            list.remove(list.size() - 1);
+            visited[i] = false;
+        }
+    }
+}
