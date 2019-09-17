@@ -148,65 +148,155 @@ public class PalindromePermutationII {
 		}
 	}
 	
+// Below is the wrong way since it fixed the "mid" string as original retrieved ones
+// e.g it could be test out by "aabbccc" -> below wrong answer will only result out as "abcccba" and "bacccab",
+// but problem is "ccc" could be devide into "c" and "cc", and merge "cc" with "abba" will provide more result
+// So only pick out the possible unique odd count character, the left part should also calculate as half string
+// used for calculating permutation (not combination), style refer to 47.Permutations II
+// Solution 2: HashMap + Backtrack
+// Refer to
+// https://www.youtube.com/watch?v=tV-n9qZNiW0
+public class Solution {
+    /**
+     * @param s: the given string
+     * @return: all the palindromic permutations (without duplicates) of it
+     */
+    List<String> result = new ArrayList<String>();
+    public List<String> generatePalindromes(String s) {
+        Map<Character, Integer> map = new HashMap<Character, Integer>();
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(!map.containsKey(c)) {
+                map.put(c, 1);
+            } else {
+                map.put(c, map.get(c) + 1);
+            }
+        }
+        int oddCount = 0;
+        String mid = "";
+        String half = "";
+        for(Character c : map.keySet()) {
+            int num = map.get(c);
+            if(num % 2 == 1) {
+                oddCount++;
+                while(num > 0) {
+                    mid += c;
+                    num--;
+                }
+            } else {
+                num /= 2;
+                while(num > 0) {
+                    half += c;
+                    num--;
+                }
+            }
+            if(oddCount > 1) {
+                return result;
+            }
+        }
+        char[] chars = half.toCharArray();
+        Arrays.sort(chars);
+        boolean[] visited = new boolean[chars.length];
+        helper(chars, new StringBuilder(), mid, visited);
+        return result;
+    }
+    
+    // Refer to 47.Permutations II
+    private void helper(char[] chars, StringBuilder sb, String mid, boolean[] visited) {
+        if(sb.length() == chars.length) {
+            result.add(sb.toString() + mid + sb.reverse().toString());
+            sb.reverse();
+            return;
+        }
+        for(int i = 0; i < chars.length; i++) {
+            if(visited[i] || (i > 0 && !visited[i - 1] && chars[i] == chars[i - 1])) {
+                continue;
+            }
+            int len = sb.length();
+            sb.append(chars[i]);
+            visited[i] = true;
+            helper(chars, sb, mid, visited);
+            sb.setLength(len);
+            visited[i] = false;
+        }
+    }
+}
 	
-	// Solution 2: HashMap + Backtrack
-	// Refer to
-	// https://www.youtube.com/watch?v=tV-n9qZNiW0
-	public List<String> generatePalindromes2(String s) {
-		Map<Character, Integer> map = new HashMap<Character, Integer>();
-		int count = 0;
-		for(int i = 0; i < s.length() && count <= 1; i++) {
-			char c = s.charAt(i);
-			if(!map.containsKey(c)) {
-				map.put(c, 1);
-			} else {
-				map.put(c, map.get(c) + 1);
-			}
-			count += map.get(c) % 2 != 0 ? 1 : -1; 
-		}
-		if(count > 1) {
-			return result;
-		}
-		String mid = "";
-		List<Character> half = new ArrayList<Character>();
-		for(Map.Entry<Character, Integer> entry : map.entrySet()) {
-			if(entry.getValue() % 2 == 1) {
-				mid = "" + entry.getKey();
-			}
-			for(int i = 0; i < entry.getValue() / 2; i++) {
-				half.add(entry.getKey());
-			}
-		}
-		boolean[] used = new boolean[half.size()];
-		helper2(half, new StringBuilder(), used, mid);
-		return result;
-	}
 	
-	private void helper2(List<Character> half, StringBuilder sb, boolean[] used, String mid) {
-	    if(sb.length() == half.size()) {
-	    	result.add(sb.toString() + mid + sb.reverse().toString());
-	    	sb.reverse();
-	    	return;
-	    }
-	    for(int i = 0; i < half.size(); i++) {
-	    	// Remove duplicate
-	    	if(used[i] || i > 0 && (half.get(i) == half.get(i - 1) && !used[i - 1])) {
-	    		continue;
-	    	}
-	    	used[i] = true;
-	    	sb.append(half.get(i));
-	    	helper2(half, sb, used, mid);
-	    	used[i] = false;
-	    	sb.deleteCharAt(sb.length() - 1);
-	    }
-	}
+// Correct way
+public class Solution {
+    /**
+     * @param s: the given string
+     * @return: all the palindromic permutations (without duplicates) of it
+     */
+    List<String> result = new ArrayList<String>();
+    public List<String> generatePalindromes(String s) {
+        Map<Character, Integer> map = new HashMap<Character, Integer>();
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(!map.containsKey(c)) {
+                map.put(c, 1);
+            } else {
+                map.put(c, map.get(c) + 1);
+            }
+        }
+        int oddCount = 0;
+        String mid = "";
+        // e.g "ccc" after pick out 1 'c' to form 'mid' will left 2 'c'
+        String mid_remain = ""; 
+        String half = "";
+        for(Character c : map.keySet()) {
+            int num = map.get(c);
+            if(num % 2 == 1) {
+                oddCount++;
+                mid += c;
+                int mid_remain_count = (num - 1) / 2;
+                while(mid_remain_count > 0) {
+                    mid_remain += c;
+                    mid_remain_count--;
+                }
+            } else {
+                num /= 2;
+                while(num > 0) {
+                    half += c;
+                    num--;
+                }
+            }
+            if(oddCount > 1) {
+                return result;
+            }
+        }
+        String final_half = half + mid_remain;
+        char[] chars = final_half.toCharArray();
+        Arrays.sort(chars);
+        boolean[] visited = new boolean[chars.length];
+        helper(chars, new StringBuilder(), mid, visited);
+        return result;
+    }
+    
+    // Refer to 47.Permutations II
+    private void helper(char[] chars, StringBuilder sb, String mid, boolean[] visited) {
+        if(sb.length() == chars.length) {
+            result.add(sb.toString() + mid + sb.reverse().toString());
+            sb.reverse();
+            return;
+        }
+        for(int i = 0; i < chars.length; i++) {
+            if(visited[i] || (i > 0 && !visited[i - 1] && chars[i] == chars[i - 1])) {
+                continue;
+            }
+            int len = sb.length();
+            sb.append(chars[i]);
+            visited[i] = true;
+            helper(chars, sb, mid, visited);
+            sb.setLength(len);
+            visited[i] = false;
+        }
+    }
+}
 	
-	public static void main(String[] args) {
-		PalindromePermutationII p = new PalindromePermutationII();
-		String s = "aaccb";
-		List<String> result = p.generatePalindromes2(s);
-		for(String a : result) {
-			System.out.println(a);
-		}
-  }
+	
+	
+	
+	
 }
