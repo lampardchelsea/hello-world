@@ -56,6 +56,7 @@ public class Solution {
 // Because that's the way for computing Permutation, since change the order will be recognize as different solution
 // e.g if target is 8, [2,6] and [6,2] is one combination but two permutation 
 // Refer to
+// https://github.com/lampardchelsea/hello-world/edit/master/lintcode/DFS/VideoExamples/CombinationSumII.java
 // https://leetcode.com/problems/combination-sum-ii/
 /**
  Input
