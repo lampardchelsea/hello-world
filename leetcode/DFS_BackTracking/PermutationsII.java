@@ -51,3 +51,39 @@ public class Solution {
         }        
     }
 }
+
+// The solution for 40. Combination Sum II is the wrong way to solve this issue
+// Refer to
+// https://leetcode.com/problems/combination-sum-ii/
+/**
+ Input
+[1,1,2]
+
+Output
+[[1,1,2]]
+
+Expected
+[[1,1,2],[1,2,1],[2,1,1]]
+*/
+class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        Arrays.sort(nums);
+        helper(result, new ArrayList<Integer>(), nums, 0);
+        return result;
+    }
+    
+    private void helper(List<List<Integer>> result, List<Integer> list, int[] nums, int index) {
+        if(list.size() == nums.length) {
+            result.add(new ArrayList<Integer>(list));
+        }
+        for(int i = index; i < nums.length; i++) {
+            if(i > index && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            list.add(nums[i]);
+            helper(result, list, nums, i + 1);
+            list.remove(list.size() - 1);
+        }
+    }
+}
