@@ -66,6 +66,7 @@ public boolean dfs(char[][] board, String word, int index, int rowIndex, int col
 247. Strobogrammatic Number II (Special DFS with construct the number with two digits each time)
 267. Palindrome Permutation II (Same as Permutations II, but calculating middle section by odd count character first)
 282. Expression Add Operators (Similar as 93. Restore IP Address, special on handle leading zero and multiple case)
+291. Word Pattern II (Similar as 93. Restore IP Address, same way to construct the substring)
 377.Combination Sum IV (DFS with memoization + Follow up with negative number handle)
 64.Minimum Path Sum (DP(backtracking) with memoization)
 638.Shopping Offers (DFS with memoization)
