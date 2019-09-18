@@ -405,6 +405,7 @@ public class Solution {
 // test with
 // "bdpbibletwuwbvh"
 // "aaaaaaaaaaaaaaa"
+// map -> {{b - a}, {d - a}, {p - a}.....}
 // the code as below:
 public boolean wordPatternMatch(String pattern, String str) {
         Map<Character, String> map = new HashMap<Character, String>();
