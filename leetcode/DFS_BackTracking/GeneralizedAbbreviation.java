@@ -71,12 +71,12 @@ public class Solution {
             return;     
         }
 
-        // use number
+        // use number instead of character at position 'pos'
         int len = tmpRes.length();
         dfs(res, tmpRes, wordArray, pos + 1, numCOunt + 1);
         tmpRes.setLength(len);  // backtracking
 
-        // use characater
+        // still use characater at position 'pos'
         len = tmpRes.length();
         if(numCount > 0) {
             tmpRes.append(numCount).append(wordArray[pos]);
