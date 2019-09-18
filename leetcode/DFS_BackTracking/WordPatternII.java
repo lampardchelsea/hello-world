@@ -346,6 +346,11 @@ public class WordPattern {
 // New try
 // Refer to
 // https://segmentfault.com/a/1190000003827151
+/**
+ 因为目标字符串可以任意划分，所以我们不得不尝试所有可能性。这里通过深度优先搜索的回溯法，对于pattern中每个字母，
+ 在str中尝试所有的划分方式，如果划分出来的子串可以用这个字母映射，或者可以建立一个新的字母和字符串的映射关系，
+ 我们就继续递归判断下一个pattern中的字母。
+*/
 public class Solution {
     
     Map<Character, String> map;
