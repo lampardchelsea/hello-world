@@ -400,3 +400,40 @@ public class Solution {
     }
 }
 
+// Wrong solution without Set
+// If not adding the set to avoid duplicates, the problem is duplicate mapping, multiple keys for one value
+// test with
+// "bdpbibletwuwbvh"
+// "aaaaaaaaaaaaaaa"
+// the code as below:
+public boolean wordPatternMatch(String pattern, String str) {
+        Map<Character, String> map = new HashMap<Character, String>();
+        return helper(map, pattern, str, 0, 0);
+    }
+    
+    private boolean helper(Map<Character, String> map, String pattern, String str, int i, int j) {
+        if(i == pattern.length() && j == str.length()) {
+            return true;
+        }
+        if(i >= pattern.length() || j >= str.length()) {
+            return false;
+        }
+        char c = pattern.charAt(i);
+        for(int k = j; k < str.length(); k++) {
+            String token = str.substring(j, k + 1);
+            if(!map.containsKey(c)) {
+                map.put(c, token);
+                if(helper(map, pattern, str, i + 1, k + 1)) {
+                    return true;
+                }
+                map.remove(c);
+            } else if(map.containsKey(c) && map.get(c).equals(token)) {
+                 if(helper(map, pattern, str, i + 1, k + 1)) {
+                    return true;
+                }               
+            }
+        }
+        return false;
+    }
+
+
