@@ -72,3 +72,49 @@ class Solution {
         return curr_max;
     }
 }
+
+// New try with new style
+// Refer to
+// https://massivealgorithms.blogspot.com/2016/01/leetcode-329-longest-increasing-path-in.html
+// http://www.voidcn.com/article/p-gmfwspuq-bqa.html
+class Solution {
+    public int longestIncreasingPath(int[][] matrix) {
+        if(matrix == null || matrix.length == 0) {
+            return 0;
+        }
+        int[][] memo = new int[matrix.length][matrix[0].length];
+        int max = 0;
+        for(int i = 0; i < matrix.length; i++) {
+            for(int j = 0; j < matrix[0].length; j++) {
+                // To include the start point itself must set intial 'prev'
+                // as Integer.MIN_VALUE for comparison, otherwise not able
+                // to start any path since it will block on 'prev >= matrix[i][j]'
+                // condition
+                int curMax = helper(matrix, Integer.MIN_VALUE, i, j, memo);
+                max = Math.max(max, curMax);
+            }
+        }
+        return max;
+    }
+    
+    int[] dx = new int[]{0,0,1,-1};
+    int[] dy = new int[]{1,-1,0,0};
+    private int helper(int[][] matrix, int prev, int i, int j, int[][] memo) {
+        if(i < 0 || i >= matrix.length || j < 0 || j >= matrix[0].length
+          || prev >= matrix[i][j]) {
+            return 0;
+        }
+        if(memo[i][j] != 0) {
+            return memo[i][j];
+        }
+        int curMax = 0;
+        for(int k = 0; k < 4; k++) {
+            int new_i = i + dx[k];
+            int new_j = j + dy[k];
+            int curLen = helper(matrix, matrix[i][j], new_i, new_j, memo) + 1;
+            curMax = Math.max(curLen, curMax);
+        }
+        memo[i][j] = curMax;
+        return curMax;
+    }
+}
