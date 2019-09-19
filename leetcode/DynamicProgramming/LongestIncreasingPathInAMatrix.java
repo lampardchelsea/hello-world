@@ -77,6 +77,13 @@ class Solution {
 // Refer to
 // https://massivealgorithms.blogspot.com/2016/01/leetcode-329-longest-increasing-path-in.html
 // http://www.voidcn.com/article/p-gmfwspuq-bqa.html
+// Refer to
+// https://leetcode.com/problems/longest-increasing-path-in-a-matrix/discuss/78313/Java-14ms-relative-short-and-easy-to-code-solution-with-explanation.-O(mn)-time-O(mn)-space.-DFS-+-DP/82988
+// Time complexity
+// Q: I don't see how its time complexity is O(mm). I think the time complexity is O(mn * 4^mn),
+// the first mn for the outer for loops, and the power of 4 for the dfs.
+// A: The complexity is O(mn). It only does DFS once for each element and it will then use cache[][] 
+// to avoid doing DFS to the same matrix element again.
 class Solution {
     public int longestIncreasingPath(int[][] matrix) {
         if(matrix == null || matrix.length == 0) {
