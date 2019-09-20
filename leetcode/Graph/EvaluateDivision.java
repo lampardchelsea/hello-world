@@ -65,6 +65,10 @@ class Solution {
             helper(start, end, adjs, visited, result, i, 1.0);
             // If keep as initial value 0.0 means no path between
             // start and end point, as required change to -1.0
+            // This check is mandatory, below input able to test out
+            // equations = [["a","b"],["c","d"]]
+            // values = [1.0,1.0]
+            // queries = [["a","c"],["b","d"],["b","a"],["d","c"]]
             if(result[i] == 0) {
                 result[i] = -1.0;
             }
