@@ -34,7 +34,7 @@ zero and there is no contradiction.
  query a,c is a path from a to c, distance (a,c) = weight(a,b) * weight(b,c)
 */
 
-// Style 1:
+// Style 1: DFS helper method return as void
 class Solution {
     public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
         double[] result = new double[queries.size()];
@@ -101,4 +101,65 @@ class Solution {
     }
 }
 
-// Style 2:
+// Style 2: DFS method return distance
+class Solution {
+    public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
+        double[] result = new double[queries.size()];
+        // Build graph
+        Map<String, List<Edge>> adjs = new HashMap<String, List<Edge>>();
+        for(int i = 0; i < equations.size(); i++) {
+            List<String> equation = equations.get(i);
+            String u = equation.get(0);
+            String v = equation.get(1);
+            double weight = values[i];
+            Edge ef = new Edge(v, weight);
+            Edge eb = new Edge(u, 1.0 / weight);
+            if(!adjs.containsKey(u)) {
+                adjs.put(u, new ArrayList<Edge>());
+            }
+            adjs.get(u).add(ef);
+            if(!adjs.containsKey(v)) {
+                adjs.put(v, new ArrayList<Edge>());
+            }
+            adjs.get(v).add(eb);
+        }
+        // Find path on graph between start and end point
+        for(int i = 0; i < queries.size(); i++) {
+            List<String> query = queries.get(i);
+            String start = query.get(0);
+            String end = query.get(1);
+            Set<String> visited = new HashSet<String>();
+            result[i] = helper(start, end, adjs, visited, 1.0);
+        }
+        return result;
+    }
+    
+    private double helper(String start, String end, Map<String, List<Edge>> adjs, Set<String> visited, double distance) {
+        if(!adjs.containsKey(start) || !adjs.containsKey(end)) {
+            return -1.0;
+        }
+        if(start.equals(end)) {
+            return distance;
+        }
+        if(!visited.contains(start)) {
+            visited.add(start);
+            List<Edge> list = adjs.get(start);
+            for(Edge e : list) {
+                double result = helper(e.to, end, adjs, visited, distance * e.weight);
+                if(result != -1.0) {
+                    return result;
+                }
+            }
+        }
+        return -1.0;
+    }
+    
+    class Edge {        
+        String to;
+        double weight;
+        public Edge(String s, double w) {
+            this.to = s;
+            this.weight = w;
+        }
+    }
+}
