@@ -23,3 +23,7 @@
 <p>2. [Reconstruct Itinerary 重建行程单] (http://www.cnblogs.com/grandyang/p/5183210.html)
 <p>3. [Youtube Solution] (https://www.youtube.com/watch?v=n4nF2rb3LpY)
 <p>4. [How do I use the new computeIfAbsent function?] (https://stackoverflow.com/questions/19278443/how-do-i-use-the-new-computeifabsent-function)
+
+<p>Evaluate Division
+<p>1. [Java AC Solution using graph] (https://leetcode.com/problems/evaluate-division/discuss/88169/Java-AC-Solution-using-graph)
+<p>2. [Java AC Solution using graph 2] (https://leetcode.com/problems/evaluate-division/discuss/88169/Java-AC-Solution-using-graph/93115)
