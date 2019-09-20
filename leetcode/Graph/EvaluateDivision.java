@@ -69,6 +69,8 @@ class Solution {
             // equations = [["a","b"],["c","d"]]
             // values = [1.0,1.0]
             // queries = [["a","c"],["b","d"],["b","a"],["d","c"]]
+            // Output: [0.0,0.0,1.0,1.0]
+            // Expected: [-1.0,-1.0,1.0,1.0]
             if(result[i] == 0) {
                 result[i] = -1.0;
             }
