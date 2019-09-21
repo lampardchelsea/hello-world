@@ -4,7 +4,7 @@
 39. Combination Sum (DFS + backtracking and to handle duplicate require add start index to tracking but no need to +1 in recursive since it allows repeat using same element)
 40. Combination Sum II (DFS + backtracking and sort with addtional condition to skip duplicated combinations required)
 46. Permutations (DFS + backtracking checking already existing value and always start from index = 0 to build)
-47. Permutations II (DFS + backtracking with boolean array to assure same value after permutation keep the same order, do not confuse with 40. Combination Sum II, the problem is computing permutation is calculating all possibilities with introducing boolean visited, computing combination will only keep the single case and it need Arrays.sort() first)
+47. Permutations II (DFS + backtracking with boolean array to assure same value after permutation keep the same order, do not confuse with 40. Combination Sum II, the problem of computing permutation is calculating all possibilities with introducing boolean visited, computing combination will only keep the single case and it need Arrays.sort() first)
 51. N-Queens (DFS + backtracking)
 52. N-Queens II (DFS + backtracking + just use boolean for cols / diagonal / paradiagonal)
 77. Combinations (DFS + backtracking)
