@@ -33,11 +33,13 @@ class Solution {
             helper(list2, nums2, num - i, 0, 0);
             for(int j = 0; j < list1.size(); j++) {
                 int num1 = list1.get(j);
+                // Limitation of hour < 12
                 if(num1 >= 12) {
                     continue;
                 }
                 for(int k = 0; k < list2.size(); k++) {
                     int num2 = list2.get(k);
+                    // Limitation of minute < 60
                     if(num2 >= 60) {
                         continue;
                     }
@@ -48,6 +50,8 @@ class Solution {
         return result;
     }
     
+    // Use combination (not permutation (no visited boolean array)) to find sum, since any
+    // order of same number combination will generate same result
     private void helper(List<Integer> list, int[] nums, int count, int index, int sum) {
         if(count == 0) {
             list.add(sum);
