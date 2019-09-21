@@ -73,6 +73,7 @@ public boolean dfs(char[][] board, String word, int index, int rowIndex, int col
 329. Longest Increasing Path in a Matrix (DFS + Memoization + to handle initial position set 'prev' as Integer.MIN_VALUE)
 351. Android Unlock Patterns (DFS + backtracking + Special handle skip issue by initial 2D array to store middle value on path)
 377.Combination Sum IV (DFS with memoization + Follow up with negative number handle)
+401. Binary Watch (DFS + backtracking + careful about hour < 12 and minute < 60 condition)
 64.Minimum Path Sum (DP(backtracking) with memoization)
 638.Shopping Offers (DFS with memoization)
 935.Knight Dialer (DFS with memoization)
