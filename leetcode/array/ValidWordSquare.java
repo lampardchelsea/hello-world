@@ -121,7 +121,7 @@ public class ValidWordSquare {
 				 * However, the words.get(j).charAt(i) statement will throw a 
 				 * java.lang.StringIndexOutOfBoundsException exception.
 				 */
-				if(words.get(j).length() <= i || words.get(j).charAt(i) != word.charAt(j)) {
+				if(j >= n || words.get(j).length() <= i || words.get(j).charAt(i) != word.charAt(j)) {
 					return false;
 				}
 			}
