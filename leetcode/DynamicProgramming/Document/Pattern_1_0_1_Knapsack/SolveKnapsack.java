@@ -141,6 +141,11 @@ class Solution {
 }
 
 // Solution 4: O(C) space complexity Bottom-up Dynamic Programming
+/**
+ The above solution is similar to the previous solution, the only difference is that we use i%2 
+ instead if i and (i-1)%2 instead if i-1. This solution has a space complexity of O(2*C) = O(C), 
+ where ‘C’ is the maximum capacity of the knapsack.
+*/
 class Solution {
     public int solveKnapsack(int[] profits, int[] weights, int capacity) {
         // basic checks
