@@ -43,27 +43,6 @@ class Solution {
     }
 }
 
-
-class Solution {
-    public boolean canPartition(int[] nums) {
-        
-    }
-}
-
-
-/**
- Given two integer arrays to represent weights and profits of ‘N’ items, 
- we need to find a subset of these items which will give us maximum profit 
- such that their cumulative weight is not more than a given number ‘C’. 
- Each item can only be selected once, which means either we put an item 
- in the knapsack or we skip it.
- 
- Items:  A   B   C   D
- profit: 1   6   10  16
- weight: 1   2   3   5
- capacity: 7
-*/
-
 // Solution 2: Top-down Dynamic Programming with Memoization
 /**
  What is the time and space complexity of the above solution? 
