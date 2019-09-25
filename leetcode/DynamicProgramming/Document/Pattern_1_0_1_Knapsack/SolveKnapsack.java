@@ -160,3 +160,42 @@ class Solution {
         return dp[weights.length - 1][capacity];
     }
 }
+
+// Solution 4: O(C) space complexity Bottom-up Dynamic Programming
+class Solution {
+    public int solveKnapsack(int[] profits, int[] weights, int capacity) {
+        // basic checks
+        if(capacity <= 0 || profits.length == 0 || weights.length != profits.length) {
+            return 0;   
+        }
+        // we only need one previous row to find the optimal solution, 
+        // overall we need '2' rows, solution 4 is similar to the 
+        // previous solution, the only difference is that we use 'i%2' 
+        // instead if 'i' and '(i-1)%2' instead if 'i-1'
+        int[][] dp = new int[2][1 + capacity];
+        // if we have only one weight, we will take it if it is not more than the capacity
+        for(int i = 0; i <= capacity; i++) {
+            if(weights[0] <= i) {
+                dp[0][i] = profits[0];
+                dp[1][i] = profits[0];
+            }
+        }
+        // process all sub-arrays for all the capacities
+        for(int i = 1; i < weights.length; i++) {
+            for(int j = 1; j <= capacity; j++) {
+                int profits1 = 0;
+                int profits2 = 0;
+                // include the item, if it is not more than the capacity
+                if(weights[i] <= j) {
+                    profits1 = dp[(i - 1) % 2][j - weights[i]] + profits[i];
+                }
+                // exclude the item
+                profits2 = dp[(i - 1) % 2][j];
+                // take maximum
+                dp[i % 2][j] = Math.max(profits1, profits2);
+            }
+        }
+        // maximum profit will be at the bottom-right corner.
+        return dp[(weights.length - 1) % 2][capacity];
+    }
+}
