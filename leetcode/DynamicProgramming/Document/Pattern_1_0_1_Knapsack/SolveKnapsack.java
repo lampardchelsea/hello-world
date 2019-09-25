@@ -183,3 +183,57 @@ class Solution {
         return dp[(weights.length - 1) % 2][capacity];
     }
 }
+
+// Solution 5: Single array Bottom-up Dynamic Programming
+/**
+ This space optimization solution can also be implemented using a single array. 
+ It is a bit tricky though, but the intuition is to use the same array for the 
+ previous and the next iteration!
+ If you see closely, we need two values from the previous iteration: dp[c] and 
+ dp[c-weight[i]]
+ Since our inner loop is iterating over c:0-->capacity, let’s see how this might 
+ affect our two required values:
+ 1.	When we access dp[c], it has not been overridden yet for the current iteration, 
+    so it should be fine.
+ 2.	dp[c-weight[i]] might be overridden if "weight[i] > 0". Therefore we can't use 
+    this value for the current iteration.
+ To solve the second case, we can change our inner loop to process in the reverse 
+ direction: c:capacity-->0. This will ensure that whenever we change a value in dp[], 
+ we will not need it anymore in the current iteration.
+*/
+class Solution {
+    public int solveKnapsack(int[] profits, int[] weights, int capacity) {
+        // basic checks
+        if(capacity <= 0 || profits.length == 0 || weights.length != profits.length) {
+            return 0;   
+        }
+        int[] dp = new int[1 + capacity];
+        // if we have only one weight, we will take it if it is not more than the capacity
+        for(int i = 0; i <= capacity; i++) {
+            if(weights[0] <= i) {
+                dp[i] = profits[0];
+            }
+        }
+        // process all sub-arrays for all the capacities
+        for(int i = 1; i < weights.length; i++) {
+            for(int j = capacity; j >= 0; j--) {
+                int profits1 = 0;
+                int profits2 = 0;
+                // include the item, if it is not more than the capacity
+                // To solve the second case, we can change our inner loop to process 
+                // in the reverse direction: c:capacity-->0. This will ensure that 
+                // whenever we change a value in dp[], we will not need it anymore 
+                // in the current iteration.
+                if(weights[i] <= j) {
+                    profits1 = dp[j - weights[i]] + profits[i];
+                }
+                // exclude the item
+                profits2 = dp[j];
+                // take maximum
+                dp[j] = Math.max(profits1, profits2);
+            }
+        }
+        // maximum profit will be at the bottom-right corner.
+        return dp[capacity];
+    }
+}
