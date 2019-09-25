@@ -12,6 +12,15 @@
 */
 
 // Solution 1: Native DFS
+/**
+ The time complexity of the above algorithm is exponential O(2^n), where ‘n’ represents the total 
+ number of items. This can also be confirmed from the above recursion tree. As we can see that we 
+ will have a total of ‘31’ recursive calls – calculated through (2^n) + (2^n) - 1, which is 
+ asymptotically equivalent to O(2^n).
+ The space complexity is O(n). This space will be used to store the recursion stack. Since our 
+ recursive algorithm works in a depth-first fashion, which means, we can’t have more than ‘n’ 
+ recursive calls on the call stack at any time.
+*/
 class Solution {
     public int solveKnapsack(int[] profits, int[] weights, int capacity) {
         return helper(profits, weights, capacity, 0);
@@ -56,6 +65,16 @@ class Solution {
 */
 
 // Solution 2: Top-down Dynamic Programming with Memoization
+/**
+ What is the time and space complexity of the above solution? 
+ Since our memoization array dp[profits.length][capacity+1] stores the results for 
+ all the subproblems, we can conclude that we will not have more than N*C subproblems 
+ (where ‘N’ is the number of items and ‘C’ is the knapsack capacity). This means 
+ that our time complexity will be O(N*C).
+ The above algorithm will be using O(N*C) space for the memoization array. Other than 
+ that we will use O(N) space for the recursion call-stack. So the total space 
+ complexity will be O(N*C + N), which is asymptotically equivalent to O(N*C)
+*/
 class Solution {
     public int solveKnapsack(int[] profits, int[] weights, int capacity) {
         // Since we have two changing values (capacity and index) in our 
