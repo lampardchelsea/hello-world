@@ -237,3 +237,111 @@ class Solution {
         return dp[capacity];
     }
 }
+
+/**
+ To explain why we did below on Solution 4, we add 1 print line as below:
+     public int solveKnapsack(int[] profits, int[] weights, int capacity) {
+        // basic checks
+        if(capacity <= 0 || profits.length == 0 || weights.length != profits.length) {
+            return 0;   
+        }
+        int[] dp = new int[1 + capacity];
+        // if we have only one weight, we will take it if it is not more than the capacity
+        for(int i = 0; i <= capacity; i++) {
+            if(weights[0] <= i) {
+                dp[i] = profits[0];
+            }
+        }
+        // process all sub-arrays for all the capacities
+        for(int i = 1; i < weights.length; i++) {
+            //for(int j = capacity; j >= 0; j--) {
+         // test as move forward as wrong solution
+        	for(int j = 0; j <= capacity; j++) {
+                int profits1 = 0;
+                int profits2 = 0;
+                // include the item, if it is not more than the capacity
+                // To solve the second case, we can change our inner loop to process 
+                // in the reverse direction: c:capacity-->0. This will ensure that 
+                // whenever we change a value in dp[], we will not need it anymore 
+                // in the current iteration.
+                if(weights[i] <= j) {
+                    profits1 = dp[j - weights[i]] + profits[i];
+                }
+                // exclude the item
+                profits2 = dp[j];
+                // take maximum
+                dp[j] = Math.max(profits1, profits2);
+                // Add print line to clearify why we loop backwards
+                System.out.println("i=" + i + " j=" + j + " -> dp=" + Arrays.toString(dp));
+            }           
+        }
+        // maximum profit will be at the bottom-right corner.
+        return dp[capacity];
+    }
+    
+    If we setup capacity as 6 and other condition no change, we observe below output
+    Correct as loop backwards
+    i=1 j=6 -> dp=[0, 1, 1, 1, 1, 1, 7]
+    i=1 j=5 -> dp=[0, 1, 1, 1, 1, 7, 7]
+    i=1 j=4 -> dp=[0, 1, 1, 1, 7, 7, 7]
+    i=1 j=3 -> dp=[0, 1, 1, 7, 7, 7, 7]
+    i=1 j=2 -> dp=[0, 1, 6, 7, 7, 7, 7]
+    i=1 j=1 -> dp=[0, 1, 6, 7, 7, 7, 7]
+    i=1 j=0 -> dp=[0, 1, 6, 7, 7, 7, 7]
+    i=2 j=6 -> dp=[0, 1, 6, 7, 7, 7, 17]
+    i=2 j=5 -> dp=[0, 1, 6, 7, 7, 16, 17]
+    i=2 j=4 -> dp=[0, 1, 6, 7, 11, 16, 17]
+    i=2 j=3 -> dp=[0, 1, 6, 10, 11, 16, 17]
+    i=2 j=2 -> dp=[0, 1, 6, 10, 11, 16, 17]
+    i=2 j=1 -> dp=[0, 1, 6, 10, 11, 16, 17]
+    i=2 j=0 -> dp=[0, 1, 6, 10, 11, 16, 17]
+    i=3 j=6 -> dp=[0, 1, 6, 10, 11, 16, 17]
+    i=3 j=5 -> dp=[0, 1, 6, 10, 11, 16, 17]
+    i=3 j=4 -> dp=[0, 1, 6, 10, 11, 16, 17]
+    i=3 j=3 -> dp=[0, 1, 6, 10, 11, 16, 17]
+    i=3 j=2 -> dp=[0, 1, 6, 10, 11, 16, 17]
+    i=3 j=1 -> dp=[0, 1, 6, 10, 11, 16, 17]
+    i=3 j=0 -> dp=[0, 1, 6, 10, 11, 16, 17]
+    17
+
+    Wrong as loop forward
+    i=1 j=0 -> dp=[0, 1, 1, 1, 1, 1, 1]
+    i=1 j=1 -> dp=[0, 1, 1, 1, 1, 1, 1]
+    i=1 j=2 -> dp=[0, 1, 6, 1, 1, 1, 1]
+    i=1 j=3 -> dp=[0, 1, 6, 7, 1, 1, 1]
+    i=1 j=4 -> dp=[0, 1, 6, 7, 12, 1, 1]  => i=1,j=4 state depends on i=1,j=2 state, but i=1,j=2 state changed from 1 to 6
+    i=1 j=5 -> dp=[0, 1, 6, 7, 12, 13, 1]
+    i=1 j=6 -> dp=[0, 1, 6, 7, 12, 13, 18]
+    i=2 j=0 -> dp=[0, 1, 6, 7, 12, 13, 18]
+    i=2 j=1 -> dp=[0, 1, 6, 7, 12, 13, 18]
+    i=2 j=2 -> dp=[0, 1, 6, 7, 12, 13, 18]
+    i=2 j=3 -> dp=[0, 1, 6, 10, 12, 13, 18]
+    i=2 j=4 -> dp=[0, 1, 6, 10, 12, 13, 18]
+    i=2 j=5 -> dp=[0, 1, 6, 10, 12, 16, 18]
+    i=2 j=6 -> dp=[0, 1, 6, 10, 12, 16, 20]
+    i=3 j=0 -> dp=[0, 1, 6, 10, 12, 16, 20]
+    i=3 j=1 -> dp=[0, 1, 6, 10, 12, 16, 20]
+    i=3 j=2 -> dp=[0, 1, 6, 10, 12, 16, 20]
+    i=3 j=3 -> dp=[0, 1, 6, 10, 12, 16, 20]
+    i=3 j=4 -> dp=[0, 1, 6, 10, 12, 16, 20]
+    i=3 j=5 -> dp=[0, 1, 6, 10, 12, 16, 20]
+    i=3 j=6 -> dp=[0, 1, 6, 10, 12, 16, 20]
+    20
+    
+    The wrong solution is error out when i = 1, j = 4, in the code logic,
+    profits1 = 6 + 6 = 12 which not possible, since capacity = 4 only allow
+    combination of profits[1] + profits[3] = 1 + 10 = 11 as highest profit.
+    if(weights[i] <= j) {
+        profits1 = dp[j - weights[i]] + profits[i];
+    }
+    here dp[j - weights[i]] is dp[4 - weights[1]] = dp[2] = 6, however is
+    this dp[2] = 6 correct ? Actually if checking back one more step, dp[2]
+    updated from 1 to 6 when i = 1, j = 2, in simple, its state changed and
+    following state (e.g i = 1, j = 4) will depends on the changed state.
+    Compare to correct solution, when encounter i = 1, j = 4, it will looking
+    for i = 1, j = 2, and its state keep as 1 with no changed when we loop
+    backwards(compare with i = 1, j = 5), since dp[j] dpends on dp[j - weights[i]], 
+    dp[j - weights[i]] no change is important.
+    So if dp[i] depends on dp[i - j], which means previous state, dp[i - j] should
+    keep as no change and loop backwards.
+*/
