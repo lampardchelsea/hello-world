@@ -193,10 +193,10 @@ class Solution {
  dp[c-weight[i]]
  Since our inner loop is iterating over c:0-->capacity, let’s see how this might 
  affect our two required values:
- 1.	When we access dp[c], it has not been overridden yet for the current iteration, 
-    so it should be fine.
- 2.	dp[c-weight[i]] might be overridden if "weight[i] > 0". Therefore we can't use 
-    this value for the current iteration.
+ 1.When we access dp[c], it has not been overridden yet for the current iteration, 
+   so it should be fine.
+ 2.dp[c-weight[i]] might be overridden if "weight[i] > 0". Therefore we can't use 
+   this value for the current iteration.
  To solve the second case, we can change our inner loop to process in the reverse 
  direction: c:capacity-->0. This will ensure that whenever we change a value in dp[], 
  we will not need it anymore in the current iteration.
