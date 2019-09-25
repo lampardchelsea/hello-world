@@ -106,3 +106,57 @@ class Solution {
         return result;
     }
 }
+
+// Solution 3: TBottom-up Dynamic Programming
+/**
+ The above solution has time and space complexity of O(N*C), where ‘N’ 
+ represents total items and ‘C’ is the maximum capacity.
+*/
+class Solution {
+    public int solveKnapsack(int[] profits, int[] weights, int capacity) {
+        // basic checks
+        if(capacity <= 0 || profits.length == 0 || weights.length != profits.length) {
+            return 0;   
+        }
+        // Essentially, we want to find the maximum profit for every 
+        // sub-array and for every possible capacity. 
+        // dp[i][c] will represent the maximum knapsack profit for 
+        // capacity 'c' calculated from the first 'i' items.
+        int[][] dp = new int[weights.length][1 + capacity];
+        // populate the capacity = 0 columns, with '0' capacity we have '0' profit
+        for(int i = 0; i < weights.length; i++) {
+            dp[i][0] = 0;
+        }
+        // if we have only one weight, we will take it if it is not more than the capacity
+        for(int i = 0; i <= capacity; i++) {
+            if(weights[0] <= i) {
+                dp[0][i] = profits[0];
+            }
+        }
+        // process all sub-arrays for all the capacities
+        // So, for each item at index ‘i’ (0 <= i < items.length) and capacity ‘c’ 
+        // (0 <= c <= capacity), we have two options:
+        // (1)Exclude the item at index ‘i’. In this case, we will take whatever 
+        //    profit we get from the sub-array excluding this item => dp[i-1][c]
+        // (2)Include the item at index ‘i’ if its weight is not more than the 
+        //    capacity. In this case, we include its profit plus whatever profit 
+        //    we get from the remaining capacity and from remaining 
+        //    items => profit[i] + dp[i-1][c-weight[i]]
+        for(int i = 1; i < weights.length; i++) {
+            for(int j = 1; j <= capacity; j++) {
+                int profits1 = 0;
+                int profits2 = 0;
+                // include the item, if it is not more than the capacity
+                if(weights[i] <= j) {
+                    profits1 = dp[i - 1][j - weights[i]] + profits[i];
+                }
+                // exclude the item
+                profits2 = dp[i - 1][j];
+                // take maximum
+                dp[i][j] = Math.max(profits1, profits2);
+            }
+        }
+        // maximum profit will be at the bottom-right corner.
+        return dp[weights.length - 1][capacity];
+    }
+}
