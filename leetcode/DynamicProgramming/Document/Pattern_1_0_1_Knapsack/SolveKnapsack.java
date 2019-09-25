@@ -107,7 +107,7 @@ class Solution {
     }
 }
 
-// Solution 3: TBottom-up Dynamic Programming
+// Solution 3: Bottom-up Dynamic Programming
 /**
  The above solution has time and space complexity of O(N*C), where ‘N’ 
  represents total items and ‘C’ is the maximum capacity.
