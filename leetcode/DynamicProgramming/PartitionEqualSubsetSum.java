@@ -128,3 +128,39 @@ class Solution {
         return dp[target];
     }
 }
+
+// Solution 3: Native DFS
+class Solution {
+    public boolean canPartition(int[] nums) {
+        if(nums.length == 0) {
+            return false;
+        }
+        int sum = 0;
+        for(int i = 0; i < nums.length; i++) {
+            sum += nums[i]; 
+        }         
+        // if 'sum' is a an odd number, we can't have two subsets with equal sum
+        if(sum % 2 != 0) {
+            return false;  
+        }
+        return helper(nums, sum/2, 0);
+    }
+    
+    private boolean helper(int[] nums, int target, int index) {
+        if(target == 0) {
+            return true;
+        }
+        if(target != 0 && index >= nums.length) {
+            return false;
+        }
+        if(nums[index] <= target) {
+            if(helper(nums, target - nums[index], index + 1)) {
+                return true;
+            }
+        }
+        if(helper(nums, target, index + 1)) {
+            return true;
+        }
+        return false;
+    }
+}
