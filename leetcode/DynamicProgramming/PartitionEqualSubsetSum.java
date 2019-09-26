@@ -129,7 +129,7 @@ class Solution {
     }
 }
 
-// Solution 3: Native DFS
+// Solution 3: Native DFS (TLE)
 class Solution {
     public boolean canPartition(int[] nums) {
         if(nums.length == 0) {
