@@ -118,5 +118,14 @@ class Solution {
 
 // Solution 3: Bottom-up Dynamic Programming
 /**
- 
+ Let’s try to populate our dp[][] array from the above solution, working in a bottom-up fashion. 
+ Essentially, we want to find if we can make all possible sums with every subset. This means, 
+ dp[i][s] will be ‘true’ if we can make sum ‘s’ from the first ‘i’ numbers.
+ So, for each number at index ‘i’ (0 <= i < num.length) and sum ‘s’ (0 <= s <= S/2), we have two options:
+ Exclude the number. In this case, we will see if we can get ‘s’ from the subset excluding this 
+ number: dp[i-1][s]
+ Include the number if its value is not more than ‘s’. In this case, we will see if we can find 
+ a subset to get the remaining sum: dp[i-1][s-num[i]]
+ If either of the two above scenarios is true, we can find a subset of numbers with a sum equal to ‘s’.
 */
+
