@@ -127,6 +127,8 @@ class Solution {
  Include the number if its value is not more than ‘s’. In this case, we will see if we can find 
  a subset to get the remaining sum: dp[i-1][s-num[i]]
  If either of the two above scenarios is true, we can find a subset of numbers with a sum equal to ‘s’.
+ The above algorithm has time and space complexity of O(N*S)O(N∗S), where ‘N’ represents total 
+ numbers and ‘S’ is the total sum of all the numbers.
 */
 class Solution {
     public boolean canPartition(int[] nums) {
