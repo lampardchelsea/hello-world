@@ -128,4 +128,43 @@ class Solution {
  a subset to get the remaining sum: dp[i-1][s-num[i]]
  If either of the two above scenarios is true, we can find a subset of numbers with a sum equal to ‘s’.
 */
-
+class Solution {
+    public boolean canPartition(int[] nums) {
+        if(nums.length == 0) {
+            return false;
+        }
+        int sum = 0;
+        for(int i = 0; i < nums.length; i++) {
+            sum += nums[i]; 
+        }         
+        // if 'sum' is a an odd number, we can't have two subsets with equal sum
+        if(sum % 2 != 0) {
+            return false;  
+        }
+        int target = sum / 2;
+        boolean[][] dp = new boolean[nums.length][1 + target];
+        // populate the sum=0 columns, as we can always for '0' sum with an empty set
+        for(int i = 0; i < nums.length; i++) {
+            dp[i][0] = true;
+        }
+        // with only one number, we can form a subset only when the required sum 
+        // is equal to its value
+        for(int i = 1; i<= target; i++) {
+            dp[0][i] = (nums[0] == i ? true : false);
+        }
+        // process all subsets for all sums
+        for(int i = 1; i < nums.length; i++) {
+            for(int j = 1; j <= target; j++) {
+                // if we can get the sum 'j' without the number at index 'i'
+                if(dp[i - 1][j]) {
+                    dp[i][j] = dp[i - 1][j];
+                // else if we can find a subset to get the remaining sum
+                } else if(j >= nums[i]) {
+                    dp[i][j] = dp[i - 1][j - nums[i]];
+                }
+            }
+        }
+        // the bottom-right corner will have our answer.
+        return dp[nums.length - 1][target];
+    }
+}
