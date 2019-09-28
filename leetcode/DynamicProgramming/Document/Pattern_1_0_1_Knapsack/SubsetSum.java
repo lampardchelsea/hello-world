@@ -50,3 +50,72 @@ class Solution {
         return false;
     } 
 }
+
+// Solution 2: Top-down Dynamic Programming with Memoization
+class Solution {
+    public boolean isSubsetSum(int[] nums, int target) {
+        if(nums == null || nums.length == 0) {
+            return false;
+        }
+        // We use Boolean because it requries return as true/false
+        // not a integer value 0 can resolve, need Boolean to check
+        // as null or true/false
+        Boolean[][] dp = new Boolean[nums.length][1 + target];
+        return helper(nums, target, 0, dp);
+    }
+    
+    private boolean helper(int[] nums, int target, int index, Boolean[][] dp) {
+        if(target == 0) {
+            return true;
+        }
+        if(target != 0 && index >= nums.length) {
+            return false;
+        }
+        if(dp[index][target] != null) {
+            return dp[index][target];
+        }
+        if(nums[index] <= target) {
+            if(helper(nums, target - nums[index], index + 1)) {
+                dp[index][target] = true;
+                return true;
+            }
+        }
+        if(helper(nums, target, index + 1)) {
+            dp[index][target] = true;
+            return true;
+        }
+        dp[index][target] = false;
+        return false;
+    } 
+}
+
+// Solution 3: Bottom-up Dynamic Programming
+class Solution {
+    public boolean isSubsetSum(int[] nums, int target) {
+        if(nums == null || nums.length == 0) {
+            return false;
+        }
+        boolean[][] dp = new boolean[nums.length][1 + target];
+        // populate the sum=0 columns, as we can always for '0' sum with an empty set
+        for(int i = 0; i < nums.length; i++) {
+            dp[i][0] = true;
+        }
+        // with only one number, we can form a subset only when the required sum 
+        // is equal to its value
+        for(int i = 1; i <= target; i++) {
+            dp[0][i] = (nums[0] == i ? true : false);
+        }
+        // process all subsets for all sums
+        for(int i = 1; i < nums.length; i++) {
+            for(int j = 1; j <= target; j++) {
+                // if we can get the sum 'j' without the number at index 'i'
+                if(dp[i - 1][j]) {
+                    dp[i][j] = dp[i - 1][j];
+                } else if(j >= nums[i]) {
+                    dp[i][j] = dp[i - 1][j - nums[i]];
+                }
+            }
+        }
+        return dp[nums.length - 1][target];
+    }
+}
