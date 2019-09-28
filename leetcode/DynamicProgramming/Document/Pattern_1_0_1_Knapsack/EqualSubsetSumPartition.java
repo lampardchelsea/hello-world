@@ -247,7 +247,7 @@ class Solution {
         boolean[] dp = new boolean[1 + target];
         dp[0] = true;
         // process all subsets for all sums
-        for(int i = 1; i < nums.length; i++) {
+        for(int i = 0; i < nums.length; i++) {
              // Must loop backwards
              for(int j = target; j >= 0; j--) {
                 if(j >= nums[i]) {
