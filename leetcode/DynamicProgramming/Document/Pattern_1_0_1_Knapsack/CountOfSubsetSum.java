@@ -130,3 +130,5 @@ class Solution {
         return result;
     }
 }
+
+// Solution 4: 1D array Bottom-up Dynamic Programming
