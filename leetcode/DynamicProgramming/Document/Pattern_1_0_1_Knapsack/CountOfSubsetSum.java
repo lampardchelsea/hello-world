@@ -102,6 +102,8 @@ class Solution {
             return 0;
         }
         Integer[] dp = new Integer[1 + target];
+        // Refer to
+        // https://leetcode.com/problems/combination-sum-iv/discuss/85036/1ms-Java-DP-Solution-with-Detailed-Explanation/89680
         // Why dp[0] = 1 ? for{1,2,3},if target = 0,I think the answer is 0.
         // dp[0] is actually target = 1. Note that dp is initialized as
         // new Integer[target + 1].
