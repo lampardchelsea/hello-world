@@ -96,3 +96,35 @@ class Solution {
 }
 
 // Solution 3: 1D array top down DP (DFS + Memoization) without index as dimension
+class Solution {
+    public int combinationSum4(int[] nums, int target) {
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        Integer[] dp = new Integer[1 + target];
+        // Why dp[0] = 1 ? for{1,2,3},if target = 0,I think the answer is 0.
+        // dp[0] is actually target = 1. Note that dp is initialized as
+        // new Integer[target + 1].
+        // Also: given an integer array with all positive numbers
+        // add up to a positive integer target, so target won't be 0.
+        dp[0] = 1;
+        return helper(nums, target, dp);
+    }
+    
+    private int helper(int[] nums, int target, Integer[] dp) {
+        if(dp[target] != null) {
+            return dp[target];
+        }
+        if(target == 0) {
+            return 1;
+        }
+        int result = 0;
+        for(int i = 0; i < nums.length; i++) {
+            if(target >= nums[i]) {
+                result += helper(nums, target - nums[i], dp);                
+            }
+        }
+        dp[target] = result;
+        return result;
+    }
+}
