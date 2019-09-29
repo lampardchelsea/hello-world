@@ -26,3 +26,27 @@ Note that different sequences are counted as different combinations.
 Therefore the output is 7.
 */
 
+// Solution 1: Native DFS (TLE)
+class Solution {
+    public int combinationSum4(int[] nums, int target) {
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        return helper(nums, target);
+    }
+    
+    private int helper(int[] nums, int target) {
+        if(target == 0) {
+            return 1;
+        }
+        int result = 0;
+        for(int i = 0; i < nums.length; i++) {
+            if(target >= nums[i]) {
+                result += helper(nums, target - nums[i]);                
+            }
+        }
+        return result;
+    }
+}
+
+// Solution 2: Top down DP (DFS + Memoization)
