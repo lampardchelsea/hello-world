@@ -49,4 +49,50 @@ class Solution {
     }
 }
 
-// Solution 2: Top down DP (DFS + Memoization)
+// Solution 2: 2D array top down DP (DFS + Memoization)
+/**
+ Since from given example we found sequence a and b are consider as different combination (but not permutation),
+ we always able to go back to consider previous choice, e.g when you already loop to 2, you can still consider
+ 1 as choice, that's how we build [2,1,1], so each recursive time need to loop start at index = 0 to make sure
+ this happen, here we add additional parameter as 'index' to declare this part, but since always need to start
+ from index = 0, this parameter is not necessary, hence no need 2D array as memo as remove index dimemsion. 
+ => Check Solution 3
+ nums = [1, 2, 3]
+ target = 4
+ The possible combination ways are:
+ (1, 1, 1, 1)
+ (1, 1, 2) -> sequence a
+ (1, 2, 1)
+ (1, 3) 
+ (2, 1, 1) -> sequence b
+ (2, 2)
+ (3, 1)
+*/
+class Solution {
+    public int combinationSum4(int[] nums, int target) {
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        Integer[][] dp = new Integer[nums.length][1 + target];
+        return helper(nums, target, 0, dp);
+    }
+    
+    private int helper(int[] nums, int target, int index, Integer[][] dp) {
+        if(dp[index][target] != null) {
+            return dp[index][target];
+        }
+        if(target == 0) {
+            return 1;
+        }
+        int result = 0;
+        for(int i = 0; i < nums.length; i++) {
+            if(target >= nums[i]) {
+                result += helper(nums, target - nums[i], 0, dp);                
+            }
+        }
+        dp[index][target] = result;
+        return result;
+    }
+}
+
+// Solution 3: 1D array top down DP (DFS + Memoization) without index as dimension
