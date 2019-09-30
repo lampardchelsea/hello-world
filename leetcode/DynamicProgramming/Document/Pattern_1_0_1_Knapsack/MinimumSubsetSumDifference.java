@@ -152,3 +152,33 @@ class Solution {
         return diff; 
     }
 }
+
+// Solution 4: 1D array Bottom Up dynamic programming
+class Solution {
+    public boolean isSubsetSum(int[] nums, int target) {
+        if(nums == null || nums.length == 0) {
+            return false;
+        }
+        boolean[] dp = new boolean[1 + target];
+	dp[0] = true;
+        // process all subsets for all sums
+        for(int i = 1; i < nums.length; i++) {
+            for(int j = target; j >= 0; j++) {
+                // if we can get the sum 'j' without the number at index 'i'
+		if(j >= nums[i]) {
+                    dp[j] = dp[j] || dp[j - nums[i]];
+		}
+            }
+        }
+	// Initialize difference of two sums.  
+        int result = Integer.MAX_VALUE; 
+        // Find the largest j such that dp[j] is true where j loops from sum/2 to 0 
+        for(int j = sum / 2; j >= 0; j--) {
+            if(dp[j]) {
+                diff = sum - 2 * j; 
+                break;
+            } 
+        }
+        return diff; 
+    }
+}
