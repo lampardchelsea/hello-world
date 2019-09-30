@@ -22,4 +22,44 @@
   Your output answer is guaranteed to be fitted in a 32-bit integer.
 */
 
-// Solution 1: Native DFS
+// Solution 1: Native DFS style 1 with global variable
+class Solution {
+    int result = 0;
+    public int findTargetSumWays(int[] nums, int S) {
+        helper(nums, S, 0, 0);
+        return result;
+    }
+    
+    private void helper(int[] nums, int S, int index, int temp) {
+        if(index == nums.length) {
+            if(temp == S) {
+                result++;               
+            }
+            return;
+        }
+        helper(nums, S, index + 1, temp + nums[index]);
+        helper(nums, S, index + 1, temp - nums[index]);
+    }
+}
+
+// Solution 2: Native DFS style 2 with no global variable and able to promote memoization
+class Solution {
+    public int findTargetSumWays(int[] nums, int S) {
+        return helper(nums, S, 0, 0);
+    }
+    
+    private int helper(int[] nums, int S, int index, int temp) {
+        if(index == nums.length) {
+            if(temp == S) {
+                return 1;               
+            }
+            return 0;
+        }
+        int result = 0;
+        result += helper(nums, S, index + 1, temp + nums[index]);
+        result += helper(nums, S, index + 1, temp - nums[index]);
+        return result;
+    }
+}
+
+// Solution 3: Top-down DFS memoization
