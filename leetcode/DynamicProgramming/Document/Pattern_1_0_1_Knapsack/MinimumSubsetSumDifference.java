@@ -20,7 +20,7 @@
 // https://www.geeksforgeeks.org/partition-a-set-into-two-subsets-such-that-the-difference-of-subset-sums-is-minimum/
 class Solution {
     // Function to find the minimum sum 
-    public int findMinRec(int arr[], int i, int sumCalculated, int sumTotal) {
+    public int helper(int arr[], int i, int sumCalculated, int sumTotal) {
         // If we have reached last element. 
         // Sum of one subset is sumCalculated, sum of other subset is sumTotal- 
         // sumCalculated. Return absolute difference of two sums. 
@@ -31,7 +31,8 @@ class Solution {
         // (1) We do not include it first set 
         // (2) We include it in first set 
         // We return minimum of two choices 
-        return Math.min(findMinRec(arr, i + 1, sumCalculated + arr[i + 1], sumTotal), findMinRec(arr, i + 1, sumCalculated, sumTotal));
+        return Math.min(helper(arr, i + 1, sumCalculated + arr[i + 1], sumTotal), 
+                        helper(arr, i + 1, sumCalculated, sumTotal));
     }
 
     // Returns minimum possible difference between sums of two subsets 
