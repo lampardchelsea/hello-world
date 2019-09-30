@@ -133,7 +133,10 @@ class Solution {
 
 // Solution 4: 1D array Bottom-up Dynamic Programming
 /**
+ Why we cannot exchange inner / outer loop order for DP ?
+
  Refer to
+ The difference of two java DP solution of Combination Sum IV
  https://leetcode.com/problems/combination-sum-iv/discuss/85063/The-difference-of-two-java-DP-solution-of-Combination-Sum-IV
  solution 1 : (correct one)
 
@@ -183,9 +186,32 @@ solution 2 give the answer 4, Obviously， delete the same combination from the 
 eg (1, 1, 2) (1, 2, 1) (2, 1, 1) (1, 3) (3, 1), the answer is 4.
 so, solution 1 could get the Permutation Sum, and solution 2 could get the Combination Sum. this is because 
 the count order of dp and nums is different.
-
+ 
+ Dynamic programming with Combination sum inner loop and outer loop interchangeable ?
  https://stackoverflow.com/questions/40225304/dynamic-programming-with-combination-sum-inner-loop-and-outer-loop-interchangeab
- The two versions are indeed different, yielding different results.
+ Q:I am a little confuse about the dynamic programming solution for combination sum, that you are given 
+ a list of numbers and a target total, and you want to count how many ways you can sum up to this target sum. 
+ Numbers can be reused multiple times. I am confused about the inner loop and outer loop that whether they are 
+ interchangeable or not. Can some explain the difference between the following two, and in what case we would 
+ use one but not the other, or they are the same.
+
+ int [] counts = new int[total];
+ counts[0] = 1;
+ // Version (1) 
+ for(int i = 0; i <= total; i++) {
+    for(int j = 0; j < nums.length; j++) {
+        if(i >= nums[j])
+           counts[i] += counts[i - nums[j]];
+    }
+ }
+ // Version (2)
+ for(int j = 0; j < nums.length; j++)
+    for(int i = nums[j]; i <= total; i++) {
+        counts[i] += counts[i - nums[j]];
+    }
+ }
+ 
+ A:The two versions are indeed different, yielding different results.
  I'll use nums = {2, 3} for all examples below.
 
  Version 1 finds the number of combinations with ordering of elements from nums whose sum is total. 
@@ -194,6 +220,7 @@ the count order of dp and nums is different.
  of using the first element (with value 2) and finding 1 combination in nums[3] and another combination  
  for the second element (value 3) with the 1 combination in nums[2]. You should pay attention that both 
  combinations use a single 2 and a single 3, but they represent the 2 different ordered lists [2, 3] & [3, 2].
+ In simple, Version 1 is used for computing permutation, order matters.
 
  Version 2 on the other hand find the number of combinations without ordering of elements from nums 
  whose sum is total. It does so by counting how many combinations have the right sum (fur each subtotal), 
@@ -202,10 +229,11 @@ the count order of dp and nums is different.
  all counts will initially be 0 (except the 0 sum sentinel), and any even subtotal will get the new 
  count of 1. When the next element used, it is as if it's coming after all 2's are already in the group, 
  so, contrary to version 1, only [2, 3] is counted, and not [3, 2].
+ In simple, Version 2 is used for computing combination, order doesn't matter
  
  By the way, the order of elements in nums doesn't affect the results, as can be understood by the logic explained.
 */
-// Correct solution:
+// Correct solution for this issue is computing permutation, order matters, so use version 1
 class Solution {
     public int combinationSum4(int[] nums, int target) {
         if(nums == null || nums.length == 0) {
