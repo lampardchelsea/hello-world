@@ -140,11 +140,11 @@ class Solution {
                 }
             }
         }
-		      // Initialize difference of two sums.  
+	// Initialize difference of two sums.  
         int result = Integer.MAX_VALUE; 
         // Find the largest j such that dp[nums.length][j] is true where j loops from sum/2 to 0 
         for(int j = sum / 2; j >= 0; j--) {
-            if(dp[nums.length - 1][j] == true) {
+            if(dp[nums.length - 1][j]) {
                 diff = sum - 2 * j; 
                 break;
             } 
