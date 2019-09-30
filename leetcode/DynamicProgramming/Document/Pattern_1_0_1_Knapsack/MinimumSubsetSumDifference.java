@@ -110,3 +110,45 @@ class MinPartition {
         return memo.get(key);
     }
 }
+
+// Solution 3: 2D array Bottom Up dynamic programming
+// Refer to
+// https://www.geeksforgeeks.org/partition-a-set-into-two-subsets-such-that-the-difference-of-subset-sums-is-minimum/
+class Solution {
+    public boolean isSubsetSum(int[] nums, int target) {
+        if(nums == null || nums.length == 0) {
+            return false;
+        }
+        boolean[][] dp = new boolean[nums.length][1 + target];
+        // populate the sum=0 columns, as we can always for '0' sum with an empty set
+        for(int i = 0; i < nums.length; i++) {
+            dp[i][0] = true;
+        }
+        // with only one number, we can form a subset only when the required sum 
+        // is equal to its value
+        for(int i = 1; i <= target; i++) {
+            dp[0][i] = (nums[0] == i ? true : false);
+        }
+        // process all subsets for all sums
+        for(int i = 1; i < nums.length; i++) {
+            for(int j = 1; j <= target; j++) {
+                // if we can get the sum 'j' without the number at index 'i'
+                if(dp[i - 1][j]) {
+                    dp[i][j] = dp[i - 1][j];
+                } else if(j >= nums[i]) {
+                    dp[i][j] = dp[i - 1][j - nums[i]];
+                }
+            }
+        }
+		      // Initialize difference of two sums.  
+        int result = Integer.MAX_VALUE; 
+        // Find the largest j such that dp[nums.length][j] is true where j loops from sum/2 to 0 
+        for(int j = sum / 2; j >= 0; j--) {
+            if(dp[nums.length - 1][j] == true) {
+                diff = sum - 2 * j; 
+                break;
+            } 
+        }
+        return diff; 
+    }
+}
