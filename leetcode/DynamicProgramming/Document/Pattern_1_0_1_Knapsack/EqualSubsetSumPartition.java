@@ -116,7 +116,8 @@ class Solution {
     }
 }
 
-// Solution 3: Bottom-up Dynamic Programming
+// Solution 3: 2D Bottom-up Dynamic Programming
+// Style 1: initialize dp as boolean[][] dp = new boolean[nums.length][1 + target];
 /**
  Let’s try to populate our dp[][] array from the above solution, working in a bottom-up fashion. 
  Essentially, we want to find if we can make all possible sums with every subset. This means, 
@@ -170,6 +171,52 @@ class Solution {
         return dp[nums.length - 1][target];
     }
 }
+
+// Style 2: initialize boolean[][] dp = new boolean[1 + nums.length][1 + target];
+// The big difference is happen on initialize first row, style 1's first row
+// actually depends on index = 0 element on given array, style 2's first row
+// is dummy row which has no element pick up from given array
+class Solution {
+    public boolean canPartition(int[] nums) {
+        if(nums.length == 0) {
+            return false;
+        }
+        int sum = 0;
+        for(int i = 0; i < nums.length; i++) {
+            sum += nums[i]; 
+        }         
+        // if 'sum' is a an odd number, we can't have two subsets with equal sum
+        if(sum % 2 != 0) {
+            return false;  
+        }
+        int target = sum / 2;
+        boolean[][] dp = new boolean[1 + nums.length][1 + target];
+        // populate the sum=0 columns, as we can always for '0' sum with an empty set
+        for(int i = 0; i <= nums.length; i++) {
+            dp[i][0] = true;
+        }
+        // For len as 0(no number in nums array pick up), 
+        // given any target, we can not make it
+        for(int i = 1; i <= target; i++) {
+            dp[0][i] = false;
+        }
+        // process all subsets for all sums
+        for(int i = 1; i <= nums.length; i++) {
+            for(int j = 1; j <= target; j++) {
+                // if we can get the sum 'j' without the number at index 'i'
+                if(dp[i - 1][j]) {
+                    dp[i][j] = dp[i - 1][j];
+                // else if we can find a subset to get the remaining sum
+                } else if(j >= nums[i - 1]) {
+                    dp[i][j] = dp[i - 1][j - nums[i - 1]];
+                }
+            }
+        }
+        // the bottom-right corner will have our answer.
+        return dp[nums.length][target];
+    }
+}
+
 
 // Solution 4: 1D array Bottom-up Dynamic Programming
 /**
