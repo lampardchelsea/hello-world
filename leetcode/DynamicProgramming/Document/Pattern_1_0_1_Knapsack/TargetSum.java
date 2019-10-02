@@ -195,6 +195,7 @@ class Solution {
 // Only work on dp = [1 + nums.length][1 + target] style ?
 // Refer to
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Pattern_1_0_1_Knapsack/EqualSubsetSumPartition.java
+// https://leetcode.com/problems/target-sum/discuss/278526/Java-1D-and-2D-DP-Solution/355363
 // Wrong solution which not able to pass
 // Input [0,0,0,0,0,0,0,0,1]  1
 // Output 0
