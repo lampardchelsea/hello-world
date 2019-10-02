@@ -175,4 +175,93 @@ class Solution {
     }
 }
 
-// Solution 5: Bottom-up DP
+// Solution 5: 2D array bottom-up DP
+/**
+ The original problem statement is equivalent to:
+ Find a subset of nums that need to be positive, and the rest of them negative, such that the sum is equal to target
+ Let P be the positive subset and N be the negative subset
+ For example:
+ Given nums = [1, 2, 3, 4, 5] and target = 3 then one possible solution is +1-2+3-4+5 = 3
+ Here positive subset is P = [1, 3, 5] and negative subset is N = [2, 4]
+ Then let's see how this can be converted to a subset sum problem:
+                   sum(P) - sum(N) = target
+ sum(P) + sum(N) + sum(P) - sum(N) = target + sum(P) + sum(N)
+                       2 * sum(P) = target + sum(nums)
+ So the original problem has been converted to a subset sum problem as follows:
+ Find a subset P of nums such that sum(P) = (target + sum(nums)) / 2
+ Note that the above formula has proved that target + sum(nums) must be even
+*/
+// The starnge part is if initialize as dp = [nums.length][1 + target] style won't work ???
+// Only work on dp = [1 + nums.length][1 + target] style ?
+// Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Pattern_1_0_1_Knapsack/EqualSubsetSumPartition.java
+// Wrong solution which not able to pass
+// Input [0,0,0,0,0,0,0,0,1]  1
+// Output 0
+// Expected 256
+class Solution {
+    public int findTargetSumWays(int[] nums, int S) {
+        int sum = 0;
+        for(int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+        }
+        if(sum < S || (sum + S) % 2 == 1) {
+            return 0;
+        }
+        int target = (sum + S) / 2;
+        return helper(nums, target);
+    }
+    
+    private int helper(int[] nums, int target) {
+        int[][] dp = new int[nums.length][1 + target];
+        for(int i = 0; i < nums.length; i++) {
+            dp[i][0] = 1;
+        }
+        for(int i = 1; i <= target; i++) {
+            dp[0][i] += (nums[0] == i ? 1 : 0);
+        }
+        for(int i = 1; i < nums.length; i++) {
+            for(int j = 0; j <= target; j++) {
+                dp[i][j] = dp[i - 1][j];
+                if(j >= nums[i - 1]) {
+                    dp[i][j] += dp[i - 1][j - nums[i - 1]];
+                }
+            }
+        }
+        return dp[nums.length - 1][target];
+    }
+}
+
+// Correct solution
+class Solution {
+    public int findTargetSumWays(int[] nums, int S) {
+        int sum = 0;
+        for(int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+        }
+        if(sum < S || (sum + S) % 2 == 1) {
+            return 0;
+        }
+        return subsetSum(nums, (sum + S) / 2);
+    }
+    
+    private int subsetSum(int[] nums, int target) {
+        int len = nums.length;
+        // dp[i][j] means number of ways to get sum j with first i elements from nums.
+        int[][] dp = new int[len + 1][target + 1];
+        for(int i = 0; i < len + 1; i++) {
+            dp[i][0] = 1;
+        }
+        for(int i = 1; i <= len; i++) {
+            for(int j = 0; j <= target; j++) { // Here j range start from 0 not 1
+                dp[i][j] = dp[i - 1][j];
+                if(j >= nums[i - 1]) {
+                    dp[i][j] += dp[i - 1][j - nums[i - 1]];    
+                }
+            }
+        }
+        return dp[len][target];
+    }
+}
+
+
