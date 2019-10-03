@@ -233,6 +233,48 @@ class Solution {
     }
 }
 
+/**
+ Explain why we need 1 more dummy row when creating 2D array ?
+ Refer to
+ https://leetcode.com/problems/target-sum/discuss/278526/Java-1D-and-2D-DP-Solution
+ https://leetcode.com/problems/target-sum/discuss/278526/Java-1D-and-2D-DP-Solution/355606
+ The problem is that our previous solution (for 2D) works for positive numbers. 
+ However the problem (and the test case you mentioned has non-negative numbers, 
+ which includes 0's). That changes the calculation as shown below :
+
+ With old solution, input\sum : [0,0,1]\1, here is the table :
+ 
+ i\s         0 1
+ [0]         1 0
+ [0,0]       1 0
+ [0,0,1]     1 1
+ 
+ Here adding a new 0, doesn't change the number of subsets to achieve 0's. 
+ Also, an empty set can achieve 0. A set with just {0} can achieve sum of 
+ 0 in 2 ways : by choosing empty set and by choosing {0}. Similarly if we 
+ have another 0, it should change the number of subsets.
+
+ With new solution, input\sum : [0,0,0,1]\1, here is the table :
+ 
+ i\s             0 1
+ []              1 0
+ [0]             2 0
+ [0,0]           4 0
+ [0,0,0]         8 0
+ [0,0,0,1]       8 8
+ 
+ =========================================================================
+ great catch for the root cause, so if we adding 1 row as [1 + nums.length] 
+ will good for handling 0 (non-negative) presented in array case
+
+ i\s             0 1
+ []              1 0  -> The dummy row ('1' in [1 + nums.length]) will handle the empty set option
+ [0]             2 0
+ 
+ Like you said, especially compare to 416. Partition Equal Subset Sum, the condition 
+ there is only positive integer in array, but here we have 0 which enable empty set option.
+*/
+
 // Correct solution
 class Solution {
     public int findTargetSumWays(int[] nums, int S) {
@@ -264,5 +306,3 @@ class Solution {
         return dp[len][target];
     }
 }
-
-
