@@ -80,3 +80,30 @@ public class ValidPerfectSquare {
 	
 }
 
+// This can easily change into another description as "Find the largest number perfect squared number under given number n"
+	public int largestSquareNumberLessThanN(int n) {
+	    if (n == 0 || n == 1) {
+	        return n;
+	    }
+	    for (int i = n - 1; i > 1; i--) {
+	        int start = 1;
+	        int end = i / 2;
+	        while (start + 1 < end) {
+	            int mid = start + (end - start) / 2;
+	            if (mid * mid == i) {
+	                return i;
+	            }
+	            if (mid * mid > i) {
+	                end = mid;
+	            } else {
+	                start = mid;
+	            }
+	        }
+	        if (start * start == i || end * end == i) {
+	            return i;
+	        } else {
+	            continue;
+	        }
+	    }
+	    return -1;
+	}
