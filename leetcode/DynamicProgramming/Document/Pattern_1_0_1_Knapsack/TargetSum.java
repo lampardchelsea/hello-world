@@ -307,3 +307,32 @@ class Solution {
         return dp[len][target];
     }
 }
+
+// Solution 6: 1D DP array
+class Solution {
+    public int findTargetSumWays(int[] nums, int S) {
+        int sum = 0;
+        for(int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+        }
+        if(sum < S || (sum + S) % 2 == 1) {
+            return 0;
+        }
+        int target = (sum + S) / 2;
+        return helper(nums, target);
+    }
+    
+    private int helper(int[] nums, int target) {
+        int[] dp = new int[1 + target];
+        dp[0] = 1;
+        for(int i = 0; i < nums.length; i++) {
+            for(int j = target; j >= 0; j--) {
+                if(j >= nums[i]) {
+                    dp[j] += dp[j - nums[i]];                    
+                }
+            }
+        }
+        return dp[target];
+    }
+}
+
