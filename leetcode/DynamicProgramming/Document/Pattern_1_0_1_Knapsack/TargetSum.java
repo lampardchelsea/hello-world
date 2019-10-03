@@ -273,6 +273,7 @@ class Solution {
  
  Like you said, especially compare to 416. Partition Equal Subset Sum, the condition 
  there is only positive integer in array, but here we have 0 which enable empty set option.
+ So just use int[][] dp = new int[1 + nums.length][1 + target] to initialize the dp array
 */
 
 // Correct solution
