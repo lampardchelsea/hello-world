@@ -75,3 +75,36 @@ class Solution {
 }
 
 // Solution 3: Top down DFS + Memoization
+// Refer to
+// https://leetcode.com/problems/coin-change-2/discuss/162839/Another-approach-%3A-memorized-recursion-Java
+class Solution {
+    public int change(int amount, int[] coins) {
+        // Test out by amount = 0, coins = []
+        if(amount == 0) {
+            return 1;
+        }
+        // Test out by amount = 7, coins = []
+        if(coins.length == 0) {
+            return 0;
+        }
+        Integer[][] memo = new Integer[coins.length][1 + amount];
+        return helper(amount, coins, 0, memo);
+    }
+    
+    private int helper(int amount, int[] coins, int index, Integer[][] memo) {
+        if(amount == 0) {
+            return 1;
+        }
+        if(memo[index][amount] != null) {
+            return memo[index][amount];
+        }
+        int result = 0;
+        for(int i = index; i < coins.length; i++) {
+            if(amount >= coins[i]) {
+                result += helper(amount - coins[i], coins, i, memo);
+            }    
+        }
+        memo[index][amount] = result;
+        return result;
+    }
+}
