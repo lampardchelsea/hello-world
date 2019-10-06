@@ -32,4 +32,26 @@ the number of coins is less than 500
 the answer is guaranteed to fit into signed 32-bit integer
 */
 
-// Solution 1:
+// Solution 1: Native DFS (TLE)
+class Solution {
+    public int change(int amount, int[] coins) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        helper(result, new ArrayList<Integer>(), amount, coins, 0);
+        return result.size();
+    }
+    
+    private void helper(List<List<Integer>> result, List<Integer> list, int amount, int[] coins, int index) {
+        if(amount == 0) {
+            result.add(new ArrayList<Integer>(list));
+        }
+        for(int i = index; i < coins.length; i++) {
+            if(amount >= coins[i]) {
+                list.add(coins[i]);
+                helper(result, list, amount - coins[i], coins, i);
+                list.remove(list.size() - 1);
+            }    
+        }
+    }
+}
+
+// Solution 2: Top down DFS + Memoization
