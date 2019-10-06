@@ -54,4 +54,24 @@ class Solution {
     }
 }
 
-// Solution 2: Top down DFS + Memoization
+// Solution 2: Native DFS without result.size()
+class Solution {
+    public int change(int amount, int[] coins) {
+        return helper(amount, coins, 0);
+    }
+    
+    private int helper(int amount, int[] coins, int index) {
+        if(amount == 0) {
+            return 1;
+        }
+        int result = 0;
+        for(int i = index; i < coins.length; i++) {
+            if(amount >= coins[i]) {
+                result += helper(amount - coins[i], coins, i);
+            }    
+        }
+        return result;
+    }
+}
+
+// Solution 3: Top down DFS + Memoization
