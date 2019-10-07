@@ -267,19 +267,17 @@ public class Solution {
     }
 }
 
-// A more detail description of this problem
-// Refer to
+// A more detail description of this problem: based on 518. Coin Changes 2
+// Refer to 
 // https://leetcode.com/problems/coin-change-2/discuss/176706/Beginner-Mistake%3A-Why-an-inner-loop-for-coins-doensn't-work-Java-Soln
 // https://leetcode.com/problems/coin-change-2/discuss/176706/Beginner-Mistake:-Why-an-inner-loop-for-coins-doensn't-work-Java-Soln/306232
 /**
  Example of code giving wrong answer for outer loop iterating over amount and inner loop iterating over coins:
-
 class Solution {
     public int change(int amount, int[] coins) {
         if(amount<=0)
             return 0;
         int ways[] = new int[amount+1];
-        
         for(int i =0; i<amount+1; i++){
             for(int coin: coins){
                 if(coin+i < amount+1 ){
@@ -291,14 +289,12 @@ class Solution {
             }
         }
         for(int i=0; i< ways.length; i++){
-            
             System.out.print(i+":"+ways[i]+" ");
         }
         return ways[amount];
     }
 }
 Correct Solution:
-
 class Solution {
     public int change(int amount, int[] coins) {
         int [] combi = new int[amount+1];
@@ -314,6 +310,7 @@ class Solution {
         return combi[amount];
     }
 }
+
 The two codes on superificial comparison look equal, but the Code 1 gives a higher number of solutions that the correct answer.
 The reason for this is when we create an amount array from 0...Amount, if we iterate over all the coins a solution
 can be added twice. For example to create 7:
@@ -341,63 +338,48 @@ In the below code you can see that if we are not interested in reducing the spac
 arrangements yield the same answer.
 
 Code:-
-
-   class Solution {
-
-   public int change(int amount, int[] coins) {       
-             if(coins.length==0) 
-                 {
-                     if(amount==0) return 1;
-                      return 0;
+class Solution {
+    public int change(int amount, int[] coins) {
+        if (coins.length == 0) {
+            if (amount == 0) return 1;
+            return 0;
+        }
+        int dp[][] = new int[coins.length][amount + 1];
+        //Initializing first column
+        for (int i = 0; i < coins.length; i++) {
+            dp[i][0] = 1;
+        }
+        //Initializing first row.
+        for (int i = 1; i <= amount; i++) {
+            if (i % coins[0] == 0) {
+                dp[0][i] = 1;
+            } else {
+                dp[0][i] = 0;
+            }
+        }
+        //Check the difference between interchanging the for loops.
+        //Both of them work. You can comment it out and check.
+        //1st one
+        for (int i = 1; i < coins.length; i++) {
+            for (int j = 1; j <= amount; j++) {
+                if (j >= coins[i]) {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - coins[i]];
+                } else {
+                    dp[i][j] = dp[i - 1][j];
                 }
-    
-    int dp[][]=new int[coins.length][amount+1];
-    
-    //Initializing first column
-    for(int i=0;i<coins.length;i++)
-        dp[i][0]=1;
-    
-    //Initializing first row.
-    for(int i=1;i<=amount;i++)
-    {
-        if(i%coins[0]==0)
-            dp[0][i]=1;
-        else
-            dp[0][i]=0;
+            }
+        }
+        //2nd one
+        for (int j = 1; j <= amount; j++) {
+            for (int i = 1; i < coins.length; i++) {
+                if (j >= coins[i]) {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - coins[i]];
+                } else {
+                    dp[i][j] = dp[i - 1][j];
+                }
+            }
+        }
+        return dp[coins.length - 1][amount];
     }
-   
-  //Check the difference between interchanging the for loops.
-  //Both of them work. You can comment it out and check.  
-    
-    
-  ////////1st one
-  for(int i=1;i<coins.length;i++)
-  {
-    for(int j=1;j<=amount;j++)
-    {
-      if(j>=coins[i])
-        dp[i][j]=dp[i-1][j]+dp[i][j-coins[i]];
-      else
-         dp[i][j]=dp[i-1][j];
-    }
-  }
-    
-    
-  ///////2nd one
-  for(int j=1;j<=amount;j++)
-  {
-    for(int i=1;i<coins.length;i++)
-    {
-      if(j>=coins[i])
-        dp[i][j]=dp[i-1][j]+dp[i][j-coins[i]];
-      else
-        dp[i][j]=dp[i-1][j];
-    }
-  }
-    
-    return dp[coins.length-1][amount];
-   }
-  }
- }
-
+}
 */
