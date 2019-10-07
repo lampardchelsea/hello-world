@@ -108,3 +108,38 @@ class Solution {
         return result;
     }
 }
+
+// Solution 4: Bottom up DP
+// Refer to
+// https://leetcode.com/problems/coin-change-2/discuss/176706/Beginner-Mistake%3A-Why-an-inner-loop-for-coins-doensn't-work-Java-Soln
+// Be careful how we initialize the 1st row
+class Solution {
+    public int change(int amount, int[] coins) {
+        // Test out by amount = 0, coins = []
+        if(amount == 0) {
+            return 1;
+        }
+        // Test out by amount = 7, coins = []
+        if(coins.length == 0) {
+            return 0;
+        }
+        int[][] dp = new int[coins.length][1 + amount];
+        for(int i = 0; i < coins.length; i++) {
+            dp[i][0] = 1;
+        }
+        // Initialize the 1st row with tricky, since infinite coins supplied, 
+        // not require 'i == coins[0]', just 'i % coins[0] == 0' is fine
+        for(int i = 0; i <= amount; i++) {
+            dp[0][i] = (i % coins[0] == 0 ? 1 : 0);
+        }
+        for(int i = 1; i < coins.length; i++) {
+            for(int j = 1; j <= amount; j++) {
+                dp[i][j] = dp[i - 1][j];
+                if(j >= coins[i]) {
+                    dp[i][j] += dp[i][j - coins[i]];
+                }
+            }
+        }
+        return dp[coins.length - 1][amount];
+    }
+}
