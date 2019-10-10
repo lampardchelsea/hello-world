@@ -55,5 +55,5 @@ class Solution {
     
     // test with below:
     // int prices[] = {1, 5, 8, 9, 10, 17, 17, 20}; 
-    // int  length[] = {1, 2, 3, 4, 5, 6, 7, 8};
+    // int length[] = {1, 2, 3, 4, 5, 6, 7, 8};
 }
