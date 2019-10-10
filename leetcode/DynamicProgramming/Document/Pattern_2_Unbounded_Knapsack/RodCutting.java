@@ -42,14 +42,18 @@ Following is simple recursive implementation of the Rod Cutting problem. The imp
 simply follows the recursive structure mentioned above.
 */
 class Solution {
-    public int cutRod(int[] prices, int n) {
+    public int cutRod(int[] prices, int[] length, int n) {
         if (n <= 0) {
             return 0;
         }
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < n; i++) {
-            max = Math.max(max, prices[i] + cutRod(prices, n - 1 - i));
+            max = Math.max(max, prices[i] + cutRod(prices, length, n - length[i]));
         }
         return max;
     }
+    
+    // test with below:
+    // int prices[] = {1, 5, 8, 9, 10, 17, 17, 20}; 
+		  // int  length[] = {1, 2, 3, 4, 5, 6, 7, 8};
 }
