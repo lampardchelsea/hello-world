@@ -93,7 +93,63 @@ class Solution {
 // https://web.stanford.edu/class/archive/cs/cs161/cs161.1168/lecture12.pdf
 // https://www.geeksforgeeks.org/cutting-a-rod-dp-13/
 // https://www.codesdope.com/course/algorithms-rod-cutting/
-/**
- 
-*/
+// Style 1:
+class Solution {
+    public int topDownCutRod(int[] prices, int[] length, int n) {
+        if (n <= 0) {
+            return 0;
+        }
+        // memo store the maximum profit when current rod length as n
+        Integer[] memo = new Integer[n + 1];
+        return helper(prices, length, n, memo, n);
+    }
 
+    private int helper(int[] prices, int[] length, int n, Integer[] memo, int leftLen) {
+        int result = 0;
+        if (memo[n] != null) {
+            return memo[n];
+        }
+        if (leftLen == 0) {
+            return result;
+        }
+        for (int i = 0; i < n; i++) {
+            result = Math.max(result, prices[i] + helper(prices, length, n - length[i], memo, n - length[i]));
+        }
+        memo[n] = result;
+        return result;
+    }
+}
+
+// Style 2: Compare to Style 1 remove one duplicate parameter, add limitation
+// as 'if(leftLen >= length[i])' to make sure ArrayIndexOutOfBound issue not happen
+class Solution {
+    public int topDownCutRod(int[] prices, int[] length, int n) {
+        if (n <= 0) {
+            return 0;
+        }
+        // memo store the maximum profit when current rod length as n
+        Integer[] memo = new Integer[n + 1];
+        return helper(prices, length, n, memo);
+    }
+
+    private int helper(int[] prices, int[] length, int leftLen, Integer[] memo) {
+        int result = 0;
+        if (leftLen == 0) {
+            return result;
+        }
+        if (memo[leftLen] != null) {
+            return memo[leftLen];
+        }
+        for (int i = 0; i < prices.length; i++) {
+            if (leftLen >= length[i]) {
+                result = Math.max(result, prices[i] + helper(prices, length, leftLen - length[i], memo));
+            }
+        }
+        memo[leftLen] = result;
+        return result;
+    }
+}
+
+// Solution 3: Bottom-up Solution
+// Refer to
+// 
