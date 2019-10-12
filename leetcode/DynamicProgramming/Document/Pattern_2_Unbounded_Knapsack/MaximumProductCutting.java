@@ -58,7 +58,23 @@ class Solution {
     }
 }
 
-// Solution 2:
-
+// Solution 2: Bottom-up DP
+class Solution {
+    public int bottomUpMaxProdutRecursion(int n) {
+        if (n == 0 || n == 1) {
+            return 0;
+        }
+        int[] dp = new int[n + 1];
+        dp[1] = 1;
+        for (int i = 2; i < n + 1; i++) {
+            int max = Integer.MIN_VALUE;
+            for (int j = 1; j <= i; j++) {
+                max = Math.max(max, Math.max(j * (i - j), j * bottomUpMaxProdutRecursion(i - j)));
+            }
+            dp[i] = max;
+        }
+        return dp[n];
+    }
+}
 
 
