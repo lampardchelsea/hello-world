@@ -152,4 +152,23 @@ class Solution {
 
 // Solution 3: Bottom-up Solution
 // Refer to
-// 
+// https://www.codesdope.com/course/algorithms-rod-cutting/
+// https://web.stanford.edu/class/archive/cs/cs161/cs161.1168/lecture12.pdf
+// https://www.geeksforgeeks.org/cutting-a-rod-dp-13/
+class Solution {
+    public int bottomUpCutRod(int[] prices, int[] length, int n) {
+        if (n <= 0) {
+            return 0;
+        }
+        int[] dp = new int[n + 1];
+        dp[0] = 0;
+        for (int i = 0; i < n; i++) {
+            int max = Integer.MIN_VALUE;
+            for (int j = 0; j <= i; j++) {
+                max = Math.max(max, prices[j] + dp[length[i] - length[j]]);
+            }
+            dp[length[i]] = max;
+        }
+        return dp[n];
+    }
+}
