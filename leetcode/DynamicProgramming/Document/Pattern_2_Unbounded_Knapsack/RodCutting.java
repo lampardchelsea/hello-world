@@ -88,9 +88,12 @@ class Solution {
     // int length[] = {1, 2, 3, 4, 5, 6, 7, 8};
 }
 
-// Solution 2: DP
+// Solution 2: Top down DP
 // Refer to
 // https://web.stanford.edu/class/archive/cs/cs161/cs161.1168/lecture12.pdf
 // https://www.geeksforgeeks.org/cutting-a-rod-dp-13/
-
+// https://www.codesdope.com/course/algorithms-rod-cutting/
+/**
+ 
+*/
 
