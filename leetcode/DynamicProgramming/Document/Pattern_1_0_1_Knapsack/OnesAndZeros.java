@@ -55,6 +55,45 @@ class Solution {
     }
 }
 
-// Solution 2: DFS + Memoization
+// Solution 2: DFS + Memoization (Use 3D array or Map<String, Integer> to store index, m, n together as key)
 // Refer to
 // https://leetcode.com/problems/ones-and-zeroes/discuss/297910/Java-Brute-Force-With-Memoization
+// https://leetcode.com/problems/ones-and-zeroes/discuss/376956/Very-Very-Easy-CPP-TOP-DOWN-with-Memoization
+class Solution {
+    public int findMaxForm(String[] strs, int m, int n) {
+        Map<String, Integer> memo = new HashMap<String, Integer>();
+        return helper(strs, m, n, 0, memo);
+    }
+    
+    private int helper(String[] strs, int m, int n, int index, Map<String, Integer> memo) {
+        String key = index + "_" + m + "_" + n;
+        if(memo.containsKey(key)) {
+            return memo.get(key);
+        }
+        if(index == strs.length) {
+            return 0;
+        }        
+        String str = strs[index];
+        int ones = 0;
+        int zeros = 0;
+        for(int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) == '1') {
+                ones++;
+            } else {
+                zeros++;
+            }
+        }
+        int choose = 0;
+        if(m >= zeros && n >= ones) {
+            choose = 1 + helper(strs, m - zeros, n - ones, index + 1, memo);
+        }
+        int notChoose = helper(strs, m, n, index + 1, memo);
+        int result = Math.max(choose, notChoose);
+        memo.put(key, result);
+        return result;
+    }
+}
+
+// Solution 3: 
+
+
