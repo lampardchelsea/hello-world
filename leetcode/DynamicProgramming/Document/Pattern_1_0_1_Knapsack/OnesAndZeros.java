@@ -59,6 +59,42 @@ class Solution {
 // Refer to
 // https://leetcode.com/problems/ones-and-zeroes/discuss/297910/Java-Brute-Force-With-Memoization
 // https://leetcode.com/problems/ones-and-zeroes/discuss/376956/Very-Very-Easy-CPP-TOP-DOWN-with-Memoization
+// Style 1: Use 3D array
+class Solution {
+    public int findMaxForm(String[] strs, int m, int n) {
+        Integer[][][] memo = new Integer[strs.length + 1][m + 1][n + 1];
+        return helper(strs, m, n, 0, memo);
+    }
+    
+    private int helper(String[] strs, int m, int n, int index, Integer[][][] memo) {
+        if(memo[index][m][n] != null) {
+            return memo[index][m][n];
+        }
+        if(index == strs.length) {
+            return 0;
+        }        
+        String str = strs[index];
+        int ones = 0;
+        int zeros = 0;
+        for(int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) == '1') {
+                ones++;
+            } else {
+                zeros++;
+            }
+        }
+        int choose = 0;
+        if(m >= zeros && n >= ones) {
+            choose = 1 + helper(strs, m - zeros, n - ones, index + 1, memo);
+        }
+        int notChoose = helper(strs, m, n, index + 1, memo);
+        int result = Math.max(choose, notChoose);
+        memo[index][m][n] = result;
+        return result;
+    }
+}
+
+// Style 2: Use Map 
 class Solution {
     public int findMaxForm(String[] strs, int m, int n) {
         Map<String, Integer> memo = new HashMap<String, Integer>();
