@@ -27,4 +27,16 @@ Note:
 0 ≤ N ≤ 30.
 */
 
-// Solution 1:
+// Solution 1: Native DFS
+// Refer to
+// https://dev.to/rattanakchea/dynamic-programming-in-plain-english-using-fibonacci-as-an-example-37m1
+class Solution {
+    public int fib(int N) {
+        if(N < 2) {
+            return N;
+        }
+        return fib(N - 1) + fib(N - 2);
+    }
+}
+
+// Solution 2: 
