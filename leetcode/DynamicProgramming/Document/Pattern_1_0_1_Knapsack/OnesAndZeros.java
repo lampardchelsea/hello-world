@@ -94,6 +94,53 @@ class Solution {
     }
 }
 
-// Solution 3: 
-
-
+// Solution 3: 3D Bottom Up DP
+// Refer to
+// https://leetcode.com/problems/ones-and-zeroes/discuss/95807/0-1-knapsack-detailed-explanation.
+// https://leetcode.com/problems/ones-and-zeroes/discuss/95814/c%2B%2B-DP-solution-with-comments
+// https://leetcode.com/problems/ones-and-zeroes/discuss/95814/c++-DP-solution-with-comments/100383
+class Solution {
+    public int findMaxForm(String[] strs, int m, int n) {
+        // dp[i][j][k] means the maximum number of strings we can get from the 
+        // first i argument strs using limited j number of '0's and k number of '1's.
+        int[][][] dp = new int[strs.length + 1][m + 1][n + 1];
+        // If not pick any strings, as i = 0, dp[i][j][k] = 0; no need to initialize
+        // start with i = 1
+        for(int i = 1; i <= strs.length; i++) {
+            int ones = countOnes(strs[i - 1]);
+            int zeros = strs[i - 1].length() - ones;
+            /**
+             Refer to
+             
+             There are two possible ways to form the max number of strings 
+             with j 0's and k 1's regarding s: we either form s or skip it.
+             If we skip s, memo[j][k] shouldn't change. Otherwise, we form 
+             s with numZeroes 0's and numOnes 1's, which leaves us 
+             j - numZeroes 0's and j - numOnes 1's to work with for all previous 
+             strings. How many strings can we form with j - numZeroes 0's 
+             and k - numOnes 1's? It's memo[j - numZeroes][k - numOnes] which 
+             was calculated in previous rounds, so just add 1 to that. We choose 
+             to form s or skip it based on which gives us a larger memo[j][k]
+            */
+            for(int j = 0; j <= m; j++) {
+                for(int k = 0; k <= n; k++) {
+                    dp[i][j][k] = dp[i - 1][j][k];
+                    if(j >= zeros && k >= ones) {
+                        dp[i][j][k] = Math.max(dp[i][j][k], 1 + dp[i - 1][j - zeros][k - ones]); 
+                    }
+                }
+            }
+        }
+        return dp[strs.length][m][n];  
+    }
+    
+    private int countOnes(String str) {
+        int ones = 0;
+        for(int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) == '1') {
+                ones++;
+            }
+        }
+        return ones;
+    }
+}
