@@ -36,7 +36,7 @@ Note:
  This implementation is concise and easy to understand.
  We just need have base case when n <=2 and do recursive calls on n-1 & n-2.
  The drawback is 1 call becomes 2 calls. 2 calls becomes 4. etc. It is exponential.
- Time complexity O(2n) and space complexity is also O(2n) for all stack calls.
+ Time complexity O(2^n) and space complexity is also O(2^n) for all stack calls.
 */
 class Solution {
     public int fib(int N) {
@@ -48,3 +48,43 @@ class Solution {
 }
 
 // Solution 2: 
+// Refer to
+// https://leetcode.com/problems/fibonacci-number/discuss/329680/Here-is-why-this-question-is-kinda-important-and-this-is-what-you-should-take-away
+// Runtime: 0 ms, faster than 100.00% of Java online submissions for Fibonacci Number.
+// Memory Usage: 32.8 MB, less than 5.51% of Java online submissions for Fibonacci Number.
+/**
+ This implementation makes use of mem as an array (or hash) to store value of an already computed num. 
+ This will greatly reduce the number of call stack and duplicated computation in the call stack.
+ Time complexity O(n) and space complexity is also O(n) for all stack calls.
+*/
+class Solution {
+    public int fib(int N) {
+        if(N < 2) {
+            return N;
+        }
+        Integer[] memo = new Integer[N + 1];
+        return helper(N, memo);
+    }
+    
+    private int helper(int N, Integer[] memo) {
+        // Base case
+        if(N == 0) {
+            return 0;
+        }
+        if(N == 1) {
+            return 1;
+        }
+        // Return fast if already stored
+        if(memo[N] != null) {
+            return memo[N];
+        }
+        int result = helper(N - 1, memo) + helper(N - 2, memo);
+        memo[N] = result;
+        return result;
+    }
+}
+
+// Solution 3: Bottom up DP
+// Refer to
+// 
+
