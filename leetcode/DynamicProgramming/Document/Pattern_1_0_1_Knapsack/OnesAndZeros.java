@@ -111,7 +111,7 @@ class Solution {
             int zeros = strs[i - 1].length() - ones;
             /**
              Refer to
-             
+             https://leetcode.com/problems/ones-and-zeroes/discuss/95814/c++-DP-solution-with-comments/100383
              There are two possible ways to form the max number of strings 
              with j 0's and k 1's regarding s: we either form s or skip it.
              If we skip s, memo[j][k] shouldn't change. Otherwise, we form 
