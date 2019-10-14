@@ -30,6 +30,14 @@ Note:
 // Solution 1: Native DFS
 // Refer to
 // https://dev.to/rattanakchea/dynamic-programming-in-plain-english-using-fibonacci-as-an-example-37m1
+// Runtime: 9 ms, faster than 26.20% of Java online submissions for Fibonacci Number.
+// Memory Usage: 32.9 MB, less than 5.51% of Java online submissions for Fibonacci Number.
+/**
+ This implementation is concise and easy to understand.
+ We just need have base case when n <=2 and do recursive calls on n-1 & n-2.
+ The drawback is 1 call becomes 2 calls. 2 calls becomes 4. etc. It is exponential.
+ Time complexity O(2n) and space complexity is also O(2n) for all stack calls.
+*/
 class Solution {
     public int fib(int N) {
         if(N < 2) {
