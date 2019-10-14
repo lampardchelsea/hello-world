@@ -144,3 +144,40 @@ class Solution {
         return ones;
     }
 }
+
+// Solution 4: 1D Bottom up DP
+// Refer to
+// https://leetcode.com/problems/ones-and-zeroes/discuss/95807/0-1-knapsack-detailed-explanation.
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Pattern_1_0_1_Knapsack/EqualSubsetSumPartition.java
+class Solution {
+    public int findMaxForm(String[] strs, int m, int n) {
+        int[][] dp = new int[m + 1][n + 1];
+        for(int i = 1; i <= strs.length; i++) {
+            int ones = countOnes(strs[i - 1]);
+            int zeros = strs[i - 1].length() - ones;
+            // Why we need to loop backwards when down-grade 3D DP to 2D DP
+            // Refer to
+            // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Pattern_1_0_1_Knapsack/EqualSubsetSumPartition.java
+            for(int j = m; j >= 0; j--) {
+                for(int k = n; k >= 0; k--) {
+                    if(j >= zeros && k >= ones) {
+                        dp[j][k] = Math.max(dp[j][k], 1 + dp[j - zeros][k - ones]); 
+                    }
+                }
+            }
+        }
+        return dp[m][n];
+    }
+    
+    private int countOnes(String str) {
+        int ones = 0;
+        for(int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) == '1') {
+                ones++;
+            }
+        }
+        return ones;
+    }
+}
+
+
