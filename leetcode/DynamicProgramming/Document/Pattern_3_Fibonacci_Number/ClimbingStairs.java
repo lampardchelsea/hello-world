@@ -62,4 +62,45 @@ class Solution {
     }
 }
 
-// Solution 3: 
+// Solution 3: Bottom up DP
+// Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Pattern_3_Fibonacci_Number/FibonacciNumber.java
+// Runtime: 0 ms, faster than 100.00% of Java online submissions for Climbing Stairs.
+// Memory Usage: 32.8 MB, less than 5.26% of Java online submissions for Climbing Stairs.
+class Solution {
+    public int climbStairs(int n) {
+        if(n <= 2) {
+            return n;
+        }
+        int[] dp = new int[n + 1];
+        dp[0] = 0;
+        dp[1] = 1;
+        dp[2] = 2;
+        for(int i = 3; i <= n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        return dp[n];
+    }
+}
+
+// Solution 4: Store dp in variable
+// Refer to
+// https://leetcode.com/problems/climbing-stairs/discuss/25299/Basically-it's-a-fibonacci.
+class Solution {
+    public int climbStairs(int n) {
+        if(n <= 2) {
+            return n;
+        }
+        int a = 1;
+        int b = 2;
+        int c = 0;
+        for(int i = 3; i <= n; i++) {
+            c = a + b;
+            a = b;
+            b = c;
+        }
+        return c;
+    }
+}
+
+
