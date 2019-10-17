@@ -4,3 +4,4 @@ Design ticket system
 2. Hashmap internal building
 3. Tree iterative traverse
 4. Linkedlist
+5. Graph
