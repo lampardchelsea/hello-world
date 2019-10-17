@@ -99,6 +99,9 @@ class Solution {
  fib(2), fib(3) were already saved into mem, so will fib(4)
  fib(5) = fib(4) + fib(3)
  The previously saved fib(3) and fib(4) will be used to avoid duplicated calculation and call stacks
+ We can further optimize the runtime by using a bottom up solution with a for or while loop. 
+ We still use memoization but we no longer have recursive calls.
+ Time Complexity O(n), space O(n)
 */
 class Solution {
     public int fib(int N) {
@@ -115,3 +118,30 @@ class Solution {
     }
 }
 
+// Solution 4: DP Bottom Up approach (Optimized space)
+// Refer to
+// https://dev.to/rattanakchea/dynamic-programming-in-plain-english-using-fibonacci-as-an-example-37m1
+// https://leetcode.com/problems/fibonacci-number/discuss/218301/C%2B%2B-3-Solutions-Explained-Recursive-or-Iterative-with-DP-or-Imperative
+// Runtime: 0 ms, faster than 100.00% of Java online submissions for Fibonacci Number.
+// Memory Usage: 32.8 MB, less than 5.51% of Java online submissions for Fibonacci Number.
+/**
+ As you can see, we only need the last two number to calculate the next Fibonacci sequence. 
+ With this logic in mind, we can use two variable to store the last two Fibonacci sequence.
+ Time O(N), Space O(1)
+*/
+class Solution {
+    public int fib(int N) {
+        if(N < 2) {
+            return N;
+        }
+        int a = 0;
+        int b = 1;
+        int c = 0;
+        for(int i = 1; i < N; i++) {
+            c = a + b;
+            a = b;
+            b = c;
+        }
+        return c;
+    }
+}
