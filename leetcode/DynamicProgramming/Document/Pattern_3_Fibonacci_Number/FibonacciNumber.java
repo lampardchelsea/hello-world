@@ -84,9 +84,12 @@ class Solution {
     }
 }
 
-// Solution 3: Bottom up DP
+// Solution 3: DP Bottom Up approach (Optimized runtime)
 // Refer to
 // https://dev.to/rattanakchea/dynamic-programming-in-plain-english-using-fibonacci-as-an-example-37m1
+// https://leetcode.com/problems/fibonacci-number/discuss/218301/C%2B%2B-3-Solutions-Explained-Recursive-or-Iterative-with-DP-or-Imperative
+// Runtime: 0 ms, faster than 100.00% of Java online submissions for Fibonacci Number.
+// Memory Usage: 33.3 MB, less than 5.51% of Java online submissions for Fibonacci Number.
 /**
  This implementation makes use of mem as an array (or hash) to store value of an already 
  computed num. This will greatly reduce the number of call stack and duplicated computation 
@@ -97,5 +100,18 @@ class Solution {
  fib(5) = fib(4) + fib(3)
  The previously saved fib(3) and fib(4) will be used to avoid duplicated calculation and call stacks
 */
-
+class Solution {
+    public int fib(int N) {
+        if(N < 2) {
+            return N;
+        }
+        int[] dp = new int[N + 1];
+        dp[0] = 0;
+        dp[1] = 1;
+        for(int i = 2; i <= N; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        return dp[N];
+    }
+}
 
