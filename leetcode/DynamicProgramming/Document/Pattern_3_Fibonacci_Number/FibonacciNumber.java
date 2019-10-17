@@ -86,5 +86,16 @@ class Solution {
 
 // Solution 3: Bottom up DP
 // Refer to
-// 
+// https://dev.to/rattanakchea/dynamic-programming-in-plain-english-using-fibonacci-as-an-example-37m1
+/**
+ This implementation makes use of mem as an array (or hash) to store value of an already 
+ computed num. This will greatly reduce the number of call stack and duplicated computation 
+ in the call stack.
+ For example
+ fib(4) = fib(3) + fib(2)
+ fib(2), fib(3) were already saved into mem, so will fib(4)
+ fib(5) = fib(4) + fib(3)
+ The previously saved fib(3) and fib(4) will be used to avoid duplicated calculation and call stacks
+*/
+
 
