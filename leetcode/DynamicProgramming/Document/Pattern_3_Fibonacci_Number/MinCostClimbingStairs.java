@@ -27,6 +27,7 @@ Every cost[i] will be an integer in the range [0, 999].
 // https://leetcode.com/problems/min-cost-climbing-stairs/discuss/221821/Recursion-Top-Down-Memoization-Bottom-up-DP-Java-100-AC
 class Solution {
     public int minCostClimbingStairs(int[] cost) {
+        // Either start from the step with index 0, or the step with index 1.
         return Math.min(helper(cost, 0), helper(cost, 1));
     }
     
@@ -48,6 +49,7 @@ class Solution {
 class Solution {
     public int minCostClimbingStairs(int[] cost) {
         Integer[] memo = new Integer[cost.length + 1];
+        // Either start from the step with index 0, or the step with index 1.
         return Math.min(helper(cost, 0, memo), helper(cost, 1, memo));
     }
     
