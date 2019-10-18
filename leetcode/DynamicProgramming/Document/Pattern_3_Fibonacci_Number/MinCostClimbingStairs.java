@@ -43,5 +43,29 @@ class Solution {
 // Solution 2: Top-down DP
 // Refer to
 // https://leetcode.com/problems/min-cost-climbing-stairs/discuss/221821/Recursion-Top-Down-Memoization-Bottom-up-DP-Java-100-AC
+// Runtime: 1 ms, faster than 99.89% of Java online submissions for Min Cost Climbing Stairs.
+// Memory Usage: 38.2 MB, less than 91.07% of Java online submissions for Min Cost Climbing Stairs.
+class Solution {
+    public int minCostClimbingStairs(int[] cost) {
+        Integer[] memo = new Integer[cost.length + 1];
+        return Math.min(helper(cost, 0, memo), helper(cost, 1, memo));
+    }
+    
+    private int helper(int[] cost, int n, Integer[] memo) {
+        if(n == cost.length - 1 || n == cost.length - 2) {
+            return cost[n];
+        }
+        if(memo[n] != null) {
+            return memo[n];
+        }
+        int onestep = helper(cost, n + 1, memo);
+        int twosteps = helper(cost, n + 2, memo);
+        int min = Math.min(onestep, twosteps) + cost[n];
+        memo[n] = min;
+        return min;
+    }
+}
 
-
+// Solution 3: Bottom up DP
+// Refer to
+// https://leetcode.com/problems/min-cost-climbing-stairs/discuss/?currentPage=1&orderBy=most_votes&query=
