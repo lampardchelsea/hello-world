@@ -45,3 +45,31 @@ class Solution {
         return helper(m - 1, n) + helper(m, n - 1);
     }
 }
+
+// Solution 2: Top down DP (DFS + memoization)
+// Refer to
+// https://leetcode.com/problems/unique-paths/discuss/182143/Recursive-memoization-and-dynamic-programming-solutions
+class Solution {
+    public int uniquePaths(int m, int n) {
+        // Minus 1 because the real distance between
+        // top left corner and bottom right corner
+        // is m - 1 and n - 1
+        Integer[][] memo = new Integer[m][n];
+        return helper(m - 1, n - 1, memo);
+    }
+    
+    private int helper(int m, int n, Integer[][] memo) {
+        if(m < 0 || n < 0) {
+            return 0;
+        }
+        if(m == 0 || m == 0) {
+            return 1;
+        }
+        if(memo[m][n] != null) {
+            return memo[m][n];
+        }
+        int result = helper(m - 1, n, memo) + helper(m, n - 1, memo);
+        memo[m][n] = result;
+        return result;
+    }
+}
