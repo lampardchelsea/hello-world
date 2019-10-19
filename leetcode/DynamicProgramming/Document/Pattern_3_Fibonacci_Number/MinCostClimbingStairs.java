@@ -88,3 +88,28 @@ class Solution {
         return Math.min(dp[cost.length - 1], dp[cost.length - 2]);
     }
 }
+
+// Solution 4: Optimizated DP
+// Refer to
+// https://leetcode.com/problems/min-cost-climbing-stairs/discuss/110111/Easy-to-understand-C%2B%2B-using-DP-with-detailed-explanation
+// Runtime: 1 ms, faster than 99.89% of Java online submissions for Min Cost Climbing Stairs.
+// Memory Usage: 37 MB, less than 100.00% of Java online submissions for Min Cost Climbing Stairs.
+class Solution {
+    public int minCostClimbingStairs(int[] cost) {
+        if(cost == null || cost.length == 0) {
+            return 0;
+        }
+        if(cost.length == 1) {
+            return cost[0];
+        }
+        int a = cost[0];
+        int b = cost[1];
+        int c = 0;
+        for(int i = 2; i < cost.length; i++) {
+            c = Math.min(a, b) + cost[i];
+            a = b;
+            b = c;
+        }
+        return Math.min(a, b);
+    }
+}
