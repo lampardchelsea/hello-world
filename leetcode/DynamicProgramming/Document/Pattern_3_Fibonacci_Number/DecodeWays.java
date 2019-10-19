@@ -48,3 +48,40 @@ class Solution {
         return result;
     }
 }
+
+// Solution 2: Top down DP (DFS + Memoization)
+// Runtime: 1 ms, faster than 98.69% of Java online submissions for Decode Ways.
+// Memory Usage: 35.2 MB, less than 100.00% of Java online submissions for Decode Ways.
+class Solution {
+    public int numDecodings(String s) {
+        Integer[] memo = new Integer[s.length() + 1];
+        return helper(s, 0, memo);
+    }
+    
+    private int helper(String s, int index, Integer[] memo) {
+        if(memo[index] != null) {
+            return memo[index];
+        }
+        // Base case
+        if(index >= s.length()) {
+            return 1;
+        }
+        int result = 0;
+        // Decode as 2 digits
+        if(index + 1 < s.length() && 
+           (s.charAt(index) == '1' || s.charAt(index) == '2' 
+            && s.charAt(index + 1) <= '6')) {
+            result += helper(s, index + 2, memo);
+        }
+        // Decode as 1 digit
+        if(s.charAt(index) != '0') {
+            result += helper(s, index + 1, memo);
+        }
+        memo[index] = result;
+        return result;
+    }
+}
+
+// Solution 3: Bottom up DP
+// Refer to
+// 
