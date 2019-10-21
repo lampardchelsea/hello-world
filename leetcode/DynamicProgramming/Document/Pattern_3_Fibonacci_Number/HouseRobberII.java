@@ -22,3 +22,15 @@ Output: 4
 Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
              Total amount you can rob = 1 + 3 = 4.
 */
+// Solution 1: Native DFS
+// Refer to
+// https://massivealgorithms.blogspot.com/2015/05/leetcode-213-house-robber-ii-csdnnet.html
+/**
+ 这道题是之前那道 House Robber 的拓展，现在房子排成了一个圆圈，则如果抢了第一家，就不能抢最后一家，因为首尾相连了，
+ 所以第一家和最后一家只能抢其中的一家，或者都不抢，那我们这里变通一下，如果我们把第一家和最后一家分别去掉，各算一遍
+ 能抢的最大值，然后比较两个值取其中较大的一个即为所求。那我们只需参考之前的 House Robber 中的解题方法，然后调用两边取较大值
+ Suppose there are n houses, since house 0 and n - 1 are now neighbors, we cannot rob them together and thus 
+ the solution is now the maximum of
+ Rob houses 0 to n - 2;
+ Rob houses 1 to n - 1.
+*/
