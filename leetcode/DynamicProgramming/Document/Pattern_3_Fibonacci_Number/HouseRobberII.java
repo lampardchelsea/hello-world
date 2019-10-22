@@ -22,7 +22,7 @@ Output: 4
 Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
              Total amount you can rob = 1 + 3 = 4.
 */
-// Solution 1: Native DFS
+// Solution 1: Native DFS (TLE)
 // Refer to
 // https://massivealgorithms.blogspot.com/2015/05/leetcode-213-house-robber-ii-csdnnet.html
 /**
@@ -34,3 +34,29 @@ Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
  Rob houses 0 to n - 2;
  Rob houses 1 to n - 1.
 */
+class Solution {
+    public int rob(int[] nums) {
+        if(nums.length == 1) {
+            return nums[0];  
+        }
+        // Rob houses 0 to n - 2        
+        int method1 = helper(nums, 0, nums.length - 2, nums.length - 2);
+        // Rob houses 1 to n - 1
+        int method2 = helper(nums, 1, nums.length - 1, nums.length - 1);
+        return Math.max(method1, method2);
+    }
+    
+    // Similar process as House Robber I
+    private int helper(int[] nums, int m, int n, int index) {
+        if(index < m || index > n) {
+            return 0;
+        }
+        int notChooseCurrentRoom = helper(nums, m, n, index - 1);
+        int chooseCurrentRoom = helper(nums, m, n, index - 2) + nums[index];
+        return Math.max(notChooseCurrentRoom, chooseCurrentRoom);
+    }
+}
+
+// Solution 2:
+// Refer to
+// 
