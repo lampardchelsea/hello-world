@@ -6,17 +6,17 @@
  * Could you optimize your algorithm to use only O(k) extra space?
  * 
  * Analyze
- * In-place iterator from right to left, every loop will replace
+ * In-place iterator from left to right, every loop will replace
  * the original row into new value, the array length is initially set
  * to rowIndex
  * e.g rowIndex = 3, use i to iterate
- * [1,0,0,0] --> i = 0 (set most right element at index = 0 as 1)
- * [1,1,0,0] --> i = 1 (set most right element at index = 1 as 1)
- * [1,1,1,0] -->       (set most right element at index = 2 as 1)
- * [1,2,1,0] --> i = 2 
- * [1,2,1,1] -->       (set most right element at index = 3 as 1)
+ * [1,0,0,0] --> i = 0 (set most left element at index = 0 as 1)
+ * [1,1,0,0] --> i = 1 (set most left element at index = 1 as 1)
+ * [1,1,1,0] --> i = 2 (set most left element at index = 2 as 1)
+ * [1,2,1,0] 
+ * [1,2,1,1] --> i = 3 (set most left element at index = 3 as 1)
  * [1,2,3,1]
- * [1,3,3,1] --> i = 3
+ * [1,3,3,1] 
  * This is the process to looply replace original array element to
  * create final array
 */
@@ -35,8 +35,8 @@ public class Solution {
             result.add(0);
         }
         
-        // From right to left set element one by one, first set most
-        // right element as 1 corresponding to current row, e.g
+        // From left to right set element one by one, first set most
+        // left element as 1 corresponding to current row, e.g
         // Input as rowIndex = 3, and now for loop i = 0, the first
         // time, then set the 1st element as 1, [0,0,0,0] -> [1,0,0,0].
         for(int i = 0; i <= rowIndex; i++) {
