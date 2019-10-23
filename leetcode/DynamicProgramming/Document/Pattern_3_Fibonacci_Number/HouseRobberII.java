@@ -104,3 +104,67 @@ class Solution {
         return result;
     }
 }
+
+// Solution 3: Bottom up DP
+// Style 1: Same as House Robber
+// Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Pattern_3_Fibonacci_Number/HouseRobber.java
+class Solution {
+    public int rob(int[] nums) {
+        if(nums.length == 0) {
+            return 0;
+        }
+        if(nums.length == 1) {
+            return nums[0];
+        }
+        int method1 = helper(nums, 0, nums.length - 2);
+        int method2 = helper(nums, 1, nums.length - 1);
+        return Math.max(method1, method2);
+    }
+    
+    // Similar to House Robber bottom up DP
+    private int helper(int[] nums, int start, int end) {
+        int[] dp = new int[end - start + 1 + 1];
+        dp[0] = 0;
+        dp[1] = nums[start];
+        for(int i = 2; i <= end - start + 1; i++) {
+            dp[i] = Math.max(dp[i - 2] + nums[start + i - 1], dp[i - 1]);
+        }
+        return dp[end - start + 1];
+    }
+}
+
+// Style 2:
+class Solution {
+    public int rob(int[] nums) {
+        if(nums.length == 0) {
+            return 0;
+        }
+        if(nums.length == 1) {
+            return nums[0];
+        }
+        // If not adding below case
+        // Runtime Error Message:
+        // Line 23: java.lang.ArrayIndexOutOfBoundsException: 1
+        // Last executed input: [0,0]
+        if(nums.length == 2) {
+            return Math.max(nums[0], nums[1]);
+        }
+        int method1 = helper(nums, 0, nums.length - 2);
+        int method2 = helper(nums, 1, nums.length - 1);
+        return Math.max(method1, method2);
+    }
+    
+    // Similar to House Robber bottom up DP
+    private int helper(int[] nums, int start, int end) {
+        int[] dp = new int[end - start + 1];
+        dp[0] = nums[start];
+        dp[1] = Math.max(nums[start], nums[start + 1]);
+        for(int i = 2; i < end - start + 1; i++) {
+            dp[i] = Math.max(dp[i - 2] + nums[start + i], dp[i - 1]);
+        }
+        return dp[end - start];
+    }
+}
+
+
