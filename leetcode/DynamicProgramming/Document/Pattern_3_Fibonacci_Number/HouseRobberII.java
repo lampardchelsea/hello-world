@@ -57,6 +57,50 @@ class Solution {
     }
 }
 
-// Solution 2:
-// Refer to
-// 
+// Solution 2: Top down DP (DFS + Memoization)
+// Be careful about the memoization storage need 2 arrays.
+// Runtime: 0 ms, faster than 100.00% of Java online submissions for House Robber II.
+// Memory Usage: 34 MB, less than 100.00% of Java online submissions for House Robber II.
+class Solution {
+    public int rob(int[] nums) {
+        if(nums.length == 1) {
+            return nums[0];  
+        }
+        /**
+        Be careful, we need 2 memoization array here, these two case
+        should calculate fully separated, since for method1, it only
+        working against index 0 to n - 2, for method2, it only working
+        aainst index 1 to n - 1, if mix two memo together, we not able
+        to identify two cases are independent, since index = 0 and
+        index = n - 1 as concatenate indexes (in circular case here)
+        are stored in same memoization array as memo[0] and memo[n - 1],
+        but since rule as index = 0 and index = n - 1 should not happen
+        in circular case, we cannot store memo[0] and memo[n - 1] in
+        same memoization array, instead, we create two memoization arrays,
+        one for memo[0] to memo[n - 2], the other for memo[1] to memo[n - 1]
+        e.g it can be test out by [2, 1, 1, 2] expected as max = 3 not 4
+        */
+        Integer[] memo1 = new Integer[nums.length + 1];
+        Integer[] memo2 = new Integer[nums.length + 1];
+        // Rob houses 0 to n - 2        
+        int method1 = helper(nums, 0, nums.length - 2, nums.length - 2, memo1);
+        // Rob houses 1 to n - 1
+        int method2 = helper(nums, 1, nums.length - 1, nums.length - 1, memo2);
+        return Math.max(method1, method2);
+    }
+    
+    // Similar process as House Robber I
+    private int helper(int[] nums, int m, int n, int index, Integer[] memo) {
+        if(index < m || index > n) {
+            return 0;
+        }
+        if(memo[index] != null) {
+            return memo[index];
+        }
+        int notChooseCurrentRoom = helper(nums, m, n, index - 1, memo);
+        int chooseCurrentRoom = helper(nums, m, n, index - 2, memo) + nums[index];
+        int result = Math.max(notChooseCurrentRoom, chooseCurrentRoom);
+        memo[index] = result;
+        return result;
+    }
+}
