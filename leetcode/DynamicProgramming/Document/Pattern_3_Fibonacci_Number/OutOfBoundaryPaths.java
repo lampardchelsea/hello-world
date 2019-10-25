@@ -29,8 +29,8 @@ Further, if we run out of moves at any moment, we return a 0 indicating that the
 doesn't take the ball out of boundary.
 */
 // Complexity Analysis
-Time complexity : O(4^n) Size of recursion tree will be 4^n. Here, nn refers to the number of moves allowed.
-Space complexity : O(n). The depth of the recursion tree can go upto n.
+// Time complexity : O(4^n) Size of recursion tree will be 4^n. Here, n refers to the number of moves allowed.
+// Space complexity : O(n). The depth of the recursion tree can go upto n.
 class Solution {
     public int findPaths(int m, int n, int N, int i, int j) {
         return helper(m, n, N, i, j);
@@ -67,6 +67,10 @@ class Solution {
  Thus, now if a function call with some parameters is repeated, the memo array will already contain valid 
  values corresponding to that function call resulting in pruning of the search space.
 */
+// Complexity Analysis
+// Time complexity : O(m*n*N). We need to fill the memo array once with dimensions m x n x N. Here, m, n refer 
+// to the number of rows and columns of the given grid respectively. N refers to the total number of allowed moves.
+// Space complexity : O(m*n*N). memo array of size m*n*N is used.
 class Solution {
     int M = 1000000007;
     public int findPaths(int m, int n, int N, int i, int j) {
