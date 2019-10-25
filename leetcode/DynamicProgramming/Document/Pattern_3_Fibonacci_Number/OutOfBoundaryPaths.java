@@ -57,4 +57,47 @@ class Solution {
 
 // Solution 2: Top down DP (DFS + Memoization)
 // Refer to
-// 
+// https://leetcode.com/articles/out-of-boundary-paths/
+/**
+ In the brute force approach, while going through the various branches of the recursion tree, we could reach 
+ the same position with the same number of moves left. Thus, a lot of redundant function calls are made with 
+ the same set of parameters leading to a useless increase in runtime. We can remove this redundancy by making 
+ use of a memoization array, memo. memo[i][j][k] is used to store the number of possible moves leading to 
+ a path out of the boundary if the current position is given by the indices (i, j) and number of moves left is k.
+ Thus, now if a function call with some parameters is repeated, the memo array will already contain valid 
+ values corresponding to that function call resulting in pruning of the search space.
+*/
+class Solution {
+    int M = 1000000007;
+    public int findPaths(int m, int n, int N, int i, int j) {
+        Integer[][][] memo = new Integer[m][n][N + 1];
+        return helper(m, n, N, i, j, memo);
+    }
+    
+    int[] dx = new int[]{0,0,1,-1};
+    int[] dy = new int[]{1,-1,0,0};
+    private int helper(int m, int n, int N, int i, int j, Integer[][][] memo) {
+        // Before use up N steps and out of grid will get 1 more solution
+        if(i < 0 || i >= m || j < 0 || j >= n) {
+            return 1;
+        }
+        // Use up N steps and not able get abord get no solution
+        if(N == 0) {
+            return 0;
+        }
+        if(memo[i][j][N] != null) {
+            return memo[i][j][N];
+        }
+        int result = 0;
+        for(int k = 0; k < 4; k++) {
+            result += helper(m, n, N - 1, i + dx[k], j + dy[k], memo) % M;
+            result = result % M;
+        }
+        memo[i][j][N] = result;
+        return result;
+    }
+}
+
+// Solution 3: Bottom up DP
+// Refer to
+// https://leetcode.com/articles/out-of-boundary-paths/
