@@ -105,3 +105,63 @@ class Solution {
 // Solution 3: Bottom up DP
 // Refer to
 // https://leetcode.com/articles/out-of-boundary-paths/
+// https://leetcode.com/problems/out-of-boundary-paths/discuss/346250/C%2B%2B-DP-Solution-with-Proper-Explanation-and-Intuition
+/**
+ Dynamic Programming Approach
+Let's represent initial position by start_x, start_y
+Adjacent Cells of i, j = (i + 1, j) , (i - 1, j) , (i, j + 1), (i, j - 1)
+Let's define the state first
+dp[k][i][j] = Num of Ways in which I can end up at position i, j in k moves from starting position. 
+That also means, Num of Ways I can end up at adjacent cells of i, j in k-1 moves from starting position 
+and then take the kth step to reach cell i, j.
+
+Now, If Previous Position was on Board then 2 cases arise:
+1. If curr Pos is on board then we store the Num of ways to reach i, j.
+2. Else, if curr Pos is not on board but prev pos was on board then we can reach the curr Pos which is 
+out of board in the num of ways in which prev adjacent cells. This will contribute to final answer that 
+is the number of paths which go out of Boundary.
+
+If previous Position was out of board
+Then, we don't do anything as we only count the first time ball moves out of board.
+
+So, basically, If the ball is inside board at prev position which we can arrive at from starting position 
+using k-1 moves and the current position is also inside board then it contributes to a path that takes k moves. 
+If we were inside the board at previous position but at current position we falls off the board, then it contributes 
+to the final answer.
+Count when first time we fall off board.
+
+//Initialization
+dp[0][start_x][start_y] = 1 becoz without making any move we are already in position. Num of Ways in which 
+I can end up at starting position in 0 moves from starting position. There is 1 way which is no Move.
+
+The other values of table in initialization are set to 0 becoz without making any move we can't reach any other 
+place on grid apart from start pos.
+*/
+class Solution {
+    public int findPaths(int m, int n, int N, int i, int j) {
+        int M = 1000000007;
+        int[][][] dp = new int[N + 1][m][n];
+        int[] dx = new int[]{0,0,1,-1};
+        int[] dy = new int[]{1,-1,0,0};
+        for(int k = 1; k <= N; k++) {
+            for(int r = 0; r < m; r++) {
+                for(int c = 0; c < n; c++) {
+                    for(int t = 0; t < 4; t++) {
+                        int x = r + dx[t];
+                        int y = c + dy[t];
+                        if(x < 0 || x >= m || y < 0 || y >= n) {
+                            dp[k][r][c] += 1;
+                        } else {
+                            dp[k][r][c] = (dp[k][r][c] + dp[k - 1][x][y]) % M;
+                        }
+                    }                    
+                }
+            }
+        }
+        return dp[N][i][j];
+    }
+}
+
+// Solution 4: Bottom up DP optimization
+// Refer to
+// https://leetcode.com/articles/out-of-boundary-paths/
