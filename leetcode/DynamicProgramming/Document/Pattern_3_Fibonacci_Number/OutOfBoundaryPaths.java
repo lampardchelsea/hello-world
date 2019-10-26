@@ -106,6 +106,7 @@ class Solution {
 // Refer to
 // https://leetcode.com/articles/out-of-boundary-paths/
 // https://leetcode.com/problems/out-of-boundary-paths/discuss/346250/C%2B%2B-DP-Solution-with-Proper-Explanation-and-Intuition
+// https://leetcode.com/problems/out-of-boundary-paths/discuss/325330/Java-3D-DP-solution(Very-easy-to-understand)/302632
 /**
  Dynamic Programming Approach
 Let's represent initial position by start_x, start_y
@@ -143,15 +144,37 @@ class Solution {
         int[][][] dp = new int[N + 1][m][n];
         int[] dx = new int[]{0,0,1,-1};
         int[] dy = new int[]{1,-1,0,0};
+        // Be careful, the outside for loop must be control for N
+        // which means in each step, we will have full choice on 
+        // each direction of current position in board, and will
+        // repeat this for N times.
         for(int k = 1; k <= N; k++) {
             for(int r = 0; r < m; r++) {
                 for(int c = 0; c < n; c++) {
                     for(int t = 0; t < 4; t++) {
                         int x = r + dx[t];
                         int y = c + dy[t];
+                        // If next position [x, y] out of the board, will have 
+                        // 1 more solution for current position [r, c]
                         if(x < 0 || x >= m || y < 0 || y >= n) {
                             dp[k][r][c] += 1;
                         } else {
+                            // Or if next position [x, y] still in the board, then
+                            // previous step as [k - 1] at previous position at 
+                            // [x, y] should reversely contribute to next step [k] 
+                            // at position [r, c]
+                            /**
+                             Also refer to
+                             https://leetcode.com/problems/out-of-boundary-paths/discuss/325330/Java-3D-DP-solution(Very-easy-to-understand)/302632
+                             We can see the move in the opposite direction, from boundary to [r, c]. This can make the solution 
+                             easier to understand. At move (k-1) in [x, y] we have dp[k-1][x][y] paths, then at move k in [r, c], 
+                             we add the value of dp[k-1][x][y] for all four directions. For example, at move (k-1) we have N paths 
+                             to the point on the left of [r, c] (This point is one out of four possible adjcent positions for [x, y], 
+                             because the relation as if at step (k-1) at [r, c] and step k at [x, y] based on previous code as 
+                             int x = r + dx[t], int y = c + dy[t], reversely, if at step (k-1) at [x, y] certainly will have step k 
+                             at [r, c]), then for each of the N path, we can add 1 more move to reach [r, c]. So we totally add 
+                             N * 1 = N to dp[k][r][c]. Which means dp[k][r][c] reversely can present by using dp[k - 1][x][y].
+                            */
                             dp[k][r][c] = (dp[k][r][c] + dp[k - 1][x][y]) % M;
                         }
                     }                    
@@ -162,6 +185,75 @@ class Solution {
     }
 }
 
+/**
+ One more solution as reference for Solution 3
+ https://leetcode.com/problems/out-of-boundary-paths/discuss/102983/JAVA-DP-solution-O(N*m*n)-Excellent-DP-Question!
+ public int findPaths(int m, int n, int N, int i, int j) {
+        int TAG = 1000000007;
+        if (N == 0) return 0;
+        if (m == 1 && n == 1) {
+            return 4;
+        }
+        if (m ==1) {
+            return solve(n, N, j, TAG);
+        }
+        if (n == 1) {
+            return solve(m, N, i, TAG);
+        }
+        long[][][] dp = new long[N + 1][m][n];
+        for (int k = 1; k <= N; k ++) {
+            for (int p = 0; p < m; p ++) {
+                for (int q = 0; q < n; q ++) {
+                    if (p == 0) {
+                        if (q == 0) {
+                            dp[k][p][q] = dp[k - 1][p][q + 1] + dp[k - 1][p + 1][q] + 2;
+                        }else if(q == n - 1) {
+                            dp[k][p][q] = dp[k - 1][p][q - 1] + dp[k - 1][p + 1][q] + 2;
+                        }else{
+                            dp[k][p][q] = dp[k - 1][p][q + 1] + dp[k - 1][p + 1][q] + dp[k - 1][p][q - 1] + 1;
+                        }
+                    }else if (p == m - 1) {
+                        if (q == 0) {
+                            dp[k][p][q] = dp[k - 1][p][q + 1] + dp[k - 1][p - 1][q] + 2;
+                        }else if(q == n - 1) {
+                            dp[k][p][q] = dp[k - 1][p][q - 1] + dp[k - 1][p - 1][q] + 2;
+                        }else{
+                            dp[k][p][q] = dp[k - 1][p][q + 1] + dp[k - 1][p - 1][q] + dp[k - 1][p][q - 1] + 1;
+                        }
+                    }else if (q == 0) {
+                        dp[k][p][q] = dp[k - 1][p][q + 1] + dp[k - 1][p - 1][q] + dp[k - 1][p + 1][q] + 1;
+                    }else if (q == n - 1){
+                        dp[k][p][q] = dp[k - 1][p + 1][q] + dp[k - 1][p - 1][q] + dp[k - 1][p][q - 1] + 1;
+                    }else{
+                        dp[k][p][q] = dp[k - 1][p + 1][q] + dp[k - 1][p - 1][q] + dp[k - 1][p][q - 1] + dp[k - 1][p][q + 1];
+                    }
+                    if (dp[k][p][q] > TAG) dp[k][p][q] %= TAG;
+                }
+            }
+        }
+        return (int) (dp[N][i][j] % TAG);
+    }
+
+    private int solve(int n, int N, int j, int TAG) {
+        long[][] dp = new long[N + 1][n];
+        for (int p = 1; p <= N; p ++) {
+            for (int q = 0; q < n; q ++) {
+                if (q == 0) {
+                    dp[p][q] = dp[p - 1][q + 1] + 3;
+                }else if (q == n - 1) {
+                    dp[p][q] = dp[p - 1][q - 1] + 3;
+                }else{
+                    dp[p][q] = dp[p - 1][q - 1] + dp[p - 1][q + 1] + 2;
+                }
+            }
+        }
+        return (int) (dp[N][j] % TAG);
+    }
+*/
+
 // Solution 4: Bottom up DP optimization
 // Refer to
 // https://leetcode.com/articles/out-of-boundary-paths/
+/**
+ 
+*/
