@@ -50,5 +50,35 @@ class Solution {
 }
 
 // Solution 2: Spread From Center
+// Runtime: 8 ms, faster than 66.62% of Java online submissions for Longest Palindromic Substring.
+// Memory Usage: 36.9 MB, less than 98.79% of Java online submissions for Longest Palindromic Substring.
+class Solution {
+    public String longestPalindrome(String s) {
+        int len = s.length();
+        String result = "";
+        for(int i = 0; i < len; i++) {
+            String s1 = extend(s, i, i);
+            String s2 = extend(s, i, i + 1);
+            if(s1.length() > result.length()) {
+                result = s1;
+            }
+            if(s2.length() > result.length()) {
+                result = s2;
+            }
+        }
+        return result;
+    }
+    
+    private String extend(String s, int i, int j) {
+        while(i >= 0 && j < s.length()) {
+            if(s.charAt(i) != s.charAt(j)) {
+                break;
+            }
+            i--;
+            j++;
+        }
+        return s.substring(i + 1, j);
+    }
+}
 
 // Solution 3: DP
