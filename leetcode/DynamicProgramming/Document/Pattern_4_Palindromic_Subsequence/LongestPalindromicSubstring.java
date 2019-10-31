@@ -136,3 +136,46 @@ class Solution {
         return s.substring(start, start + maxLen);
     }
 }
+
+// Style 2:
+// Refer to
+// http://articles.leetcode.com/longest-palindromic-substring-part-i/
+class Solution {
+    public static String longestPalindrome(String s) {
+           int length = s.length();
+           int maxLength = 1;
+           int longestBegin = 0;
+           boolean[][] table = new boolean[1000][1000];       
+           // All single character (substring length = 1) are
+           // naturally palindrome
+           for(int i = 0; i < length; i++) {
+               table[i][i] = true;
+           }       
+           // Be careful on boundary conditions, if missing "-1" will
+           // show error as java.lang.StringIndexOutOfBoundsException: 
+           // String index out of range: 5 when input "babad", this
+           // is because we assume current substring length is 2, 
+           // need to make sure s.charAt(i + 1) in boundary
+           for(int i = 0; i < length - 1; i++) {
+               if(s.charAt(i) == s.charAt(i + 1)) {
+                   table[i][i + 1] = true;
+                   maxLength = 2;
+                   longestBegin = i;
+               }
+           }        
+           // Be careful on boundary conditions, len can equal to length
+           // if missing "=", error will show as e.g input "CCC", expect
+           // output "CCC", error output "CC"
+           for(int len = 3; len <= length; len++) {
+               for(int i = 0; i < length - len + 1; i++) {
+                   int j = i + len - 1;
+                   if(s.charAt(i) == s.charAt(j) && table[i + 1][j - 1]) {
+                       table[i][j] = true;
+                       maxLength = len;
+                       longestBegin = i;
+                   }
+               }
+           }      
+           return s.substring(longestBegin, longestBegin + maxLength);
+       }
+}
