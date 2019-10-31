@@ -18,15 +18,66 @@ Output:
 2
 One possible longest palindromic subsequence is "bb".
 */
-// Solution 1: Top down DP (DFS + Memoization)
+// Solution 1: Native DFS (TLE)
 // Refer to
 // https://leetcode.com/problems/longest-palindromic-subsequence/discuss/99101/Straight-forward-Java-DP-solution
+class Solution {
+    public int longestPalindromeSubseq(String s) {
+        return helper(s, 0, s.length() - 1);
+    }
+    
+    private int helper(String s, int i, int j) {
+        if(i > j) {
+            return 0;
+        }
+        if(i == j) {
+            return 1;
+        }
+        int result = 0;
+        if(s.charAt(i) == s.charAt(j)) {
+            result += helper(s, i + 1, j - 1) + 2;
+        } else {
+            result += Math.max(helper(s, i + 1, j), helper(s, i, j - 1));
+        }
+        return result;
+    }
+}
 
 
+// Solution 2: Top down DP (DFS + Memoization)
+// Refer to
+// https://leetcode.com/problems/longest-palindromic-subsequence/discuss/99101/Straight-forward-Java-DP-solution
+// Runtime: 18 ms, faster than 89.66% of Java online submissions for Longest Palindromic Subsequence.
+// Memory Usage: 52.3 MB, less than 5.55% of Java online submissions for Longest Palindromic Subsequence.
+class Solution {
+    public int longestPalindromeSubseq(String s) {
+        Integer[][] memo = new Integer[s.length()][s.length()];
+        return helper(s, 0, s.length() - 1, memo);
+    }
+    
+    private int helper(String s, int i, int j, Integer[][] memo) {
+        if(memo[i][j] != null) {
+            return memo[i][j];
+        }
+        if(i > j) {
+            return 0;
+        }
+        if(i == j) {
+            return 1;
+        }
+        int result = 0;
+        if(s.charAt(i) == s.charAt(j)) {
+            result += helper(s, i + 1, j - 1, memo) + 2;
+        } else {
+            result += Math.max(helper(s, i + 1, j, memo), helper(s, i, j - 1, memo));
+        }
+        memo[i][j] = result;
+        return result;
+    }
+}
 
 
-
-// Solution 2: DP
+// Solution 3: DP
 // Style 1: Similar to Longest Palindrome Substring way, loop i down and loop j up
 // The return dp[0][len - 1] means pick up the start index i = 0 to the end index j = len - 1 dp result
 // which cover the full length of the string
