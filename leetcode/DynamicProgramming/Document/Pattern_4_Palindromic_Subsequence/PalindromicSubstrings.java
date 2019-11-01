@@ -52,3 +52,22 @@ class Solution {
 // Solution 2: Expand from center
 // Refer to
 // https://leetcode.com/problems/palindromic-substrings/discuss/105688/Very-Simple-Java-Solution-with-Detail-Explanation
+class Solution {
+    int count = 1;
+    public int countSubstrings(String s) {
+        int len = s.length();
+        for(int i = 0; i < len - 1; i++) {
+            expand(s, i, i);
+            expand(s, i, i + 1);
+        }
+        return count;
+    }
+    
+    private void expand(String s, int i, int j) {
+        while(i >= 0 && j < s.length() && s.charAt(i) == s.charAt(j)) {
+            count++;
+            i--;
+            j++;
+        }
+    }
+}
