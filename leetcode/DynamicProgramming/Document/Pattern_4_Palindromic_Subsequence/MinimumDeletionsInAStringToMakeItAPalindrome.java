@@ -58,11 +58,11 @@ class Solution {
  subproblems which can further be broken down into yet smaller subproblems, and so on, the problem also 
  exhibits overlapping subproblems we will end up solving the same subproblem over and over again, let us 
  consider recursion tree for sequence of length 6 having all distinct characters (say ABCDEF)
-									                                  (0,5)
-					              (1,5)                                        (0,4)
-			        (2,5)   	        (1,4)	       	              (1,4)            (0,3)
+                                                  (0,5)
+		            (1,5)                                        (0,4)
+	        (2,5)   	    (1,4)	       	        (1,4)            (0,3)
 	  (3,5)       (2,4)    (2,4)     (1,3)               ()   (1,3)      (1,3)   (0,2)
-	(4,5) (3,4)(3,4) (2,3) ()  () (2,3)  (1,2)                () ()      () () (1,2) (0,1)
+       (4,5) (3,4) (3,4) (2,3) ()  () (2,3)  (1,2)                () ()      () () (1,2) (0,1)
 
 As we can see, the same subproblems are getting computed again and again, we know that problems
 having optimal substructure and overlapping subproblems can be solved by dynamic programming, in which 
@@ -97,4 +97,35 @@ class Solution {
     }
 }
 
-// Solution 3: 
+// Solution 3: Full length minus Longest Common Subsequence length
+// Refer to
+// https://www.techiedelight.com/find-minimum-number-deletions-convert-string-into-palindrome/
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Pattern_4_Palindromic_Subsequence/LongestPalindromicSubsequence.java
+/**
+ The problem is also a classic variation of Longest Common Subsequence(LCS) problem, the idea is to find 
+ the Longest Palindromic Substring of given string, then the minimum number of deletions required will 
+ be size of the string minus size of the longest palindromic subsequence. We can easily find the longest
+ palindromic substring by taking Longest Common Subsequence of a given string with its reverse 
+ i.e. call LCS(X, reverse(X))
+*/
+class Solution {
+    public int minDeletions(String s) {
+        return s.length() - longestPalindromeSubseq(s);
+    }	
+	
+    public int longestPalindromeSubseq(String s) {
+        int len = s.length();
+        int[][] dp = new int[len][len];
+        for(int i = len - 1; i >= 0; i--) {
+            dp[i][i] = 1;
+            for(int j = i + 1; j < len; j++) {
+                if(s.charAt(i) == s.charAt(j)) {
+                    dp[i][j] = dp[i + 1][j - 1] + 2;
+                } else {
+                    dp[i][j] = Math.max(dp[i + 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+        return dp[0][len - 1];
+    }
+}
