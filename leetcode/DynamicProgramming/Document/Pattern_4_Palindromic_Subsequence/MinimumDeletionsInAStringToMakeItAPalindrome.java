@@ -26,6 +26,10 @@ Output : 2
      This yeilds the below recursive relation:
      T[i...j] = | T[i + 1...j - 1]                       (if X[i] == X[j])
                 | 1 + max(T[i + 1...j], T[i...j - 1])    (if X[i] 1= X[j])
+  The worst case time complexity of above solution is exponenetial O(2^n) and auxiliary 
+  space used by the program is O(1).
+  The worst case happens when there is no repeated character present in X and each recursive 
+  call will end up with two recursive calls.       
 */
 class Solution {
     public int minDeletions(String s) {
@@ -45,3 +49,52 @@ class Solution {
         return 1 + Math.min(helper(s, i, j - 1), helper(s, i + 1, j));
     }
 }
+
+// Solution 2: Top down DP (DFS + Memoization)
+// Refer to
+// https://www.techiedelight.com/find-minimum-number-deletions-convert-string-into-palindrome/
+/**
+ The problem has an optimal substructure, we have seen that the problem can be broken down into smaller 
+ subproblems which can further be broken down into yet smaller subproblems, and so on, the problem also 
+ exhibits overlapping subproblems we will end up solving the same subproblem over and over again, let us 
+ consider recursion tree for sequence of length 6 having all distinct characters (say ABCDEF)
+									                                  (0,5)
+					              (1,5)                                        (0,4)
+			        (2,5)   	        (1,4)	       	              (1,4)            (0,3)
+	  (3,5)       (2,4)    (2,4)     (1,3)               ()   (1,3)      (1,3)   (0,2)
+	(4,5) (3,4)(3,4) (2,3) ()  () (2,3)  (1,2)                () ()      () () (1,2) (0,1)
+
+As we can see, the same subproblems are getting computed again and again, we know that problems
+having optimal substructure and overlapping subproblems can be solved by dynamic programming, in which 
+subproblem solutions are Memoized rather than computed again and again.
+Time complexity is O(n^2) and auxiliary space used by the program is O(n^2)
+*/
+class Solution {
+    public int minDeletions(String s) {
+        int len = s.length();
+        Integer[][] memo = new Integer[len][len];
+        return helper(s, 0, len - 1, memo);
+    }
+
+    public int helper(String s, int i, int j, Integer[][] memo) {
+        if (memo[i][j] != null) {
+            return memo[i][j];
+        }
+        // Base condition
+        if (i >= j) {
+            return 0;
+        }
+        // If last character of the String is same as the first character
+        // no need to remove anything character, just checking next level
+        int result = 0;
+        if (s.charAt(i) == s.charAt(j)) {
+            result = helper(s, i + 1, j - 1, memo);
+        } else {
+            result = 1 + Math.min(helper(s, i, j - 1, memo), helper(s, i + 1, j, memo));
+        }
+        memo[i][j] = result;
+        return result;
+    }
+}
+
+// Solution 3: 
