@@ -107,6 +107,7 @@ class Solution {
  be size of the string minus size of the longest palindromic subsequence. We can easily find the longest
  palindromic substring by taking Longest Common Subsequence of a given string with its reverse 
  i.e. call LCS(X, reverse(X))
+ Time complexity is O(n^2) and auxiliary space used by the program is O(n^2)
 */
 class Solution {
     public int minDeletions(String s) {
