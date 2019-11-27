@@ -28,8 +28,8 @@
  dp[i] represents the count of unique subsequence ends with S[i].
  dp[i] is initialized to 1 for S[0 ... i]
  For each dp[i], we define j from 0 to i - 1, we have:
- if s[j] != s[i], dp[i] += dp[j]
- if s[j] == s[i], do nothing to avoid duplicates.
+ if S[j] != S[i], dp[i] += dp[j]
+ if S[j] == S[i], do nothing to avoid duplicates.
  Then result = sum(dp[0], ... dp[n - 1])
  Time complexity: O(n^2)
 */
