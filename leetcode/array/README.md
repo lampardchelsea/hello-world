@@ -355,3 +355,6 @@ binary-search-java-code/29)
 <p>1. [Zeller Formula] (https://leetcode.com/problems/day-of-the-week/discuss/377384/JavaC%2B%2BPython-Zeller-Formula)
 <p>2. [Zeller Formula 2] (https://www.hackerearth.com/blog/developers/how-to-find-the-day-of-a-week/)
 <p>3. [Common way + 1970-1-1 is Friday] (https://leetcode.com/problems/day-of-the-week/discuss/377384/JavaC++Python-Zeller-Formula/339135)
+
+<p>Number of Matching Subsequences
+<p>1. [Efficient and simple, go through words in parallel, with explanation] (https://leetcode.com/problems/number-of-matching-subsequences/discuss/117634/Efficient-and-simple-go-through-words-in-parallel-with-explanation)
