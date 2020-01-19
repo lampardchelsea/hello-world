@@ -53,3 +53,27 @@ class Solution {
         return result;
     }
 }
+
+// Solution 2: O(N) time
+/**
+ Furthermore, we can use a sum to represent sum(dp[0], ..., dp[i - 1]).
+ And also a count array, in which count[S.charAt(i) - 'a'] represents the count of presented subsequence ends with S.charAt(i).
+ Then dp[i] = sum - count[S.charAt(i) - 'a'].
+ Time complexity: O(n)
+*/
+class Solution {
+    public int distinctSubseqII(String S) {
+        int n = S.length(), M = (int)1e9 + 7;
+        int[] dp = new int[n];
+        Arrays.fill(dp, 1);
+        int[] count = new int[26];
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            int index = S.charAt(i) - 'a';
+            dp[i] += sum - count[index];
+            dp[i] = (dp[i] + M) % M;
+            sum = (sum + dp[i]) % M;
+            count[index] = (count[index] + dp[i]) % M;
+        }
+        return sum;
+    }
