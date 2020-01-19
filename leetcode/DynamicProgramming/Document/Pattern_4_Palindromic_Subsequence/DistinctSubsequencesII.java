@@ -56,9 +56,9 @@ class Solution {
 
 // Solution 2: O(N) time
 /**
- Furthermore, we can use a sum to represent sum(dp[0], ..., dp[i - 1]).
+ Furthermore, we can use a result to represent sum(dp[0], ..., dp[i - 1]).
  And also a count array, in which count[S.charAt(i) - 'a'] represents the count of presented subsequence ends with S.charAt(i).
- Then dp[i] = sum - count[S.charAt(i) - 'a'].
+ Then dp[i] = result - count[S.charAt(i) - 'a'].
  Time complexity: O(n)
 */
 class Solution {
@@ -67,14 +67,14 @@ class Solution {
         int[] dp = new int[n];
         Arrays.fill(dp, 1);
         int[] count = new int[26];
-        int sum = 0;
+        int result = 0;
         for (int i = 0; i < n; i++) {
             int index = S.charAt(i) - 'a';
-            dp[i] += sum - count[index];
+            dp[i] += result - count[index];
             dp[i] = (dp[i] + M) % M;
-            sum = (sum + dp[i]) % M;
+            result = (result + dp[i]) % M;
             count[index] = (count[index] + dp[i]) % M;
         }
-        return sum;
+        return result;
     }
 }
