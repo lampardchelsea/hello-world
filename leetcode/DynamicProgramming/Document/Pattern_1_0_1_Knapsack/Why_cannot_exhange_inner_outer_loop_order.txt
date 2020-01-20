@@ -1,7 +1,7 @@
 /**
  Why we cannot exchange inner / outer loop order for DP ?
  Refer to
- The difference of two java DP solution of Combination Sum IV
+ The difference of two java DP solution of Combination Sum IV -> 这道题题目虽含有combination,但实际就是求permutation
  https://leetcode.com/problems/combination-sum-iv/discuss/85063/The-difference-of-two-java-DP-solution-of-Combination-Sum-IV
  solution 1 : (correct one)
 public class Solution {
