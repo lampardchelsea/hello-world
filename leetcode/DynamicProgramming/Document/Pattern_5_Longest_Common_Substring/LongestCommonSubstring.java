@@ -68,4 +68,51 @@ class Solution {
     }
 }
 
-// Solution 2: DP
+// Solution 2: Bottom Up DP
+// Refer to
+// https://algorithms.tutorialhorizon.com/dynamic-programming-longest-common-substring/
+/**
+ Base Cases: If any of the string is null then LCS will be 0.
+ Check if ith character in one string A is equal to jth character in string B
+ Case 1: both characters are same
+ LCS[i][j] = 1 + LCS[i-1][j-1] (add 1 to the result and remove the last character from both the strings 
+ and check the result for the smaller string.)
+ Case 2: both characters are not same.
+ LCS[i][j] = 0
+ At the end, traverse the matrix and find the maximum element in it, This will the length of Longest Common Substring.
+*/
+class Solution {
+    public static int longestCommonSubstring(String s1, String s2) {
+        int m = s1.length() + 1;
+        int n = s2.length() + 1;
+        int[][] dp = new int[m][n];
+        // If s2 is null then dp of s1, s2 = 0
+        for (int i = 0; i < n; i++) {
+            dp[0][i] = 0;
+        }
+        // If s1 is null then dp of s1, s2 = 0
+        for (int j = 0; j < m; j++) {
+            dp[j][0] = 0;
+        }
+        // Fill the rest of the dp matrix
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                } else {
+                    dp[i][j] = 0;
+                }
+            }
+        }
+        // Find the maximum value
+        int result = -1;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (result < dp[i][j]) {
+                    result = dp[i][j];
+                }
+            }
+        }
+        return result;
+    }
+}
