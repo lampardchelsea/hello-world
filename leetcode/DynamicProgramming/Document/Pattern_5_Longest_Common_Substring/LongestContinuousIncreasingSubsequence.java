@@ -30,3 +30,34 @@ class Solution {
 }
 
 // Solution 2: DP
+class Solution {
+    public int findLengthOfLCIS(int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        // State
+        int n = nums.length;
+        int[] f = new int[n];
+        // initialize
+        for(int i = 0; i < n; i++) {
+            f[i] = 1;
+        }
+        int max = 0;
+        // function
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < i; j++) {
+                // Refer to
+                // https://leetcode.com/problems/longest-increasing-subsequence/description/
+                // DP solution:
+                // Just add one more condition to make sure it is continuous sequence,
+                // as j + 1 = i
+                if(nums[j] < nums[i] && j + 1 == i) {
+                    f[i] = Math.max(f[i], f[j] + 1);
+                }
+            }
+            max = Math.max(max, f[i]);
+        }
+        // answer
+        return max;
+    }
+}
