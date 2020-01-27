@@ -38,9 +38,20 @@ import java.util.Queue;
  * Solution
  * https://discuss.leetcode.com/topic/13854/easy-bfs-topological-sort-java/11
  * https://discuss.leetcode.com/topic/13854/easy-bfs-topological-sort-java/6?page=1
+ * https://leetcode.com/problems/course-schedule/discuss/58509/C%2B%2B-BFSDFS
+ * This problem is equivalent to detecting a cycle in the directed graph represented by prerequisites. 
+ * Both BFS and DFS can be used to solve it using the idea of topological sort. Since pair<int, int> 
+ * is inconvenient for implementing graph algorithms, we first transform it to the adjacency-list 
+ * representation. If course u is a prerequisite of course v, then the adjacency list of u will contain v.
+ * 
+ * BFS
+ * BFS uses the indegrees of each node. We will first try to find a node with 0 indegree. If we fail 
+ * to do so, there must be a cycle in the graph and we return false. Otherwise we set its indegree to 
+ * be -1 to prevent from visiting it again and reduce the indegrees of its neighbors by 1. This process 
+ * will be repeated for n (number of nodes) times.
  */
 public class CourseSchedule {
-	// Solution 1: 70ms (No adjacency list)
+    // Solution 1: 70ms (No adjacency list)
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         // Find all nodes indegree
         // Initialize an indegree array, size based on 'numCourses',
