@@ -208,3 +208,54 @@ public class CourseSchedule {
 		System.out.println(result);
 	}
 }
+
+// Better explaination:
+// https://segmentfault.com/a/1190000003814058
+/**
+ 复杂度
+ 时间 O(N) 空间 O(N)
+
+ 思路
+ 先修课问题本质上是一个有向图，如果这个图无环，我们可以根据拓扑排序遍历到所有节点，如果有环则拓扑排序无法完成，
+ 遍历到的节点将少于总节点数，因为有的节点是孤岛。这题我们先根据边的关系，建一个图，并计算每个节点的入度，
+ 这里用的是数组来建图。然后从入度为0的节点，也就是入口开始广度优先搜索，按照拓扑排序的顺序遍历，最后看遍历过
+ 的节点数和总节点数的关系就行了。拓扑排序的使用方法参见外文字典。
+*/
+public class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        ArrayList[] graph = new ArrayList[numCourses];
+        int[] indegree = new int[numCourses];
+        // 先初始化图，每个赋一个空列表
+        for(int i = 0; i < numCourses; i++){
+            graph[i] = new ArrayList<Integer>();
+        }
+        // 根据边建立图，并计算入度
+        for(int i = 0; i < prerequisites.length; i++){
+            graph[prerequisites[i][1]].add(prerequisites[i][0]);
+            indegree[prerequisites[i][0]]++;
+        }
+        // 找到有向图的入口
+        Queue<Integer> queue = new LinkedList<Integer>();
+        for(int i = 0; i < indegree.length; i++){
+            if(indegree[i] == 0){
+                queue.add(i);
+            }
+        }
+        // 按照拓扑排序的顺序，进行广度优先搜索
+        int cnt = 0;
+        while(!queue.isEmpty()){
+            Integer curr = queue.poll();
+            cnt++;
+            ArrayList<Integer> nexts = graph[curr];
+            for(int i = 0; i < nexts.size(); i++){
+                int next = nexts.get(i);
+                indegree[next]--;
+                if(indegree[next] == 0){
+                    queue.offer(next); 
+                }
+            }
+        }
+        return cnt == numCourses;
+    }
+}
+
