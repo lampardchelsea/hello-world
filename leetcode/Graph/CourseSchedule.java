@@ -59,17 +59,17 @@ public class CourseSchedule {
         // you have to take, labeled from 0 to n - 1.
         int[] indegree = new int[numCourses];
         for(int i = 0; i < prerequisites.length; i++) {
-            // Definition of relationship between current node and
+            // Definition of relationship between prerequisite node and
             // its neighbor:
             // E.g To take course 0 you have to first take 
             // course 1, which is expressed as a pair: [0,1]
             // based on this setting, we can analyze pair as
-            // pair[0] -> neighbor of current node
-            // pair[1] -> current node
+            // pair[0] -> neighbor of prerequisite node
+            // pair[1] -> prerequisite node
             int[] pair = prerequisites[i];
-            // Update item in indegree array at index of current node
-            // which is 'pair[1]'
-            indegree[pair[1]]++;
+            // Update item in indegree array at index of neighbor of prerequisite node
+            // which is 'pair[0]'
+            indegree[pair[0]]++;
         }
         // Find all start nodes based on indegree = 0, which means
         // no dependent on prerequisite node, also prepare a queue
