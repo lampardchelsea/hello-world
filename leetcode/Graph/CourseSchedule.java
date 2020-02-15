@@ -259,3 +259,6 @@ public class Solution {
     }
 }
 
+// DFS soltuion:
+// https://leetcode.com/problems/course-schedule/discuss/58524/Java-DFS-and-BFS-solution
+// https://leetcode.com/problems/course-schedule/discuss/58524/Java-DFS-and-BFS-solution/60036
