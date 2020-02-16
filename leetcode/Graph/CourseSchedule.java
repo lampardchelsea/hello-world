@@ -262,3 +262,40 @@ public class Solution {
 // DFS soltuion:
 // https://leetcode.com/problems/course-schedule/discuss/58524/Java-DFS-and-BFS-solution
 // https://leetcode.com/problems/course-schedule/discuss/58524/Java-DFS-and-BFS-solution/60036
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        if(numCourses == 0 || prerequisites == null || prerequisites.length == 0) {
+            return true;
+        }
+        ArrayList[] graph = new ArrayList[numCourses];
+        for(int i = 0; i < numCourses; i++) {
+            graph[i] = new ArrayList<Integer>();
+        }
+        for(int i = 0; i < prerequisites.length; i++) {
+            graph[prerequisites[i][1]].add(prerequisites[i][0]);
+        }
+        boolean[] visited = new boolean[numCourses];
+        for(int i = 0; i < numCourses; i++) {
+            if(!helper(i, graph, visited)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private boolean helper(int course, ArrayList[] graph, boolean[] visited) {
+        if(visited[course]) {
+            return false;
+        } else {
+            visited[course] = true;   
+        }
+        for(int i = 0; i < graph[course].size(); i++) {
+            int neighbor = (int)graph[course].get(i);
+            if(!helper(neighbor, graph, visited)) {
+                return false;
+            }
+        }
+        visited[course] = false;
+        return true;
+    }
+}
