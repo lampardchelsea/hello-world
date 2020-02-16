@@ -299,3 +299,79 @@ class Solution {
         return true;
     }
 }
+
+// You can simply add a dp array in your existing code to prevent revisiting the nodes as well as to deal with cycles.
+// The runtime will be greatly improved. (from 63ms to 10ms)
+// https://leetcode.com/problems/course-schedule/discuss/58524/Java-DFS-and-BFS-solution/169446
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        if(numCourses == 0 || prerequisites == null || prerequisites.length == 0) {
+            return true;
+        }
+        ArrayList[] graph = new ArrayList[numCourses];
+        for(int i = 0; i < numCourses; i++) {
+            graph[i] = new ArrayList<Integer>();
+        }
+        for(int i = 0; i < prerequisites.length; i++) {
+            graph[prerequisites[i][1]].add(prerequisites[i][0]);
+        }
+        boolean[] visited = new boolean[numCourses];
+        boolean[] dp = new boolean[numCourses];
+        for(int i = 0; i < numCourses; i++) {
+            if(!helper(i, graph, visited, dp)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private boolean helper(int course, ArrayList[] graph, boolean[] visited, boolean[] dp) {
+        if(visited[course]) {
+            return dp[course];
+        } else {
+            visited[course] = true;   
+        }
+        for(int i = 0; i < graph[course].size(); i++) {
+            int neighbor = (int)graph[course].get(i);
+            if(!helper(neighbor, graph, visited, dp)) {
+                dp[course] = false;
+                return false;
+            }
+        }
+        dp[course] = true;
+        return true;
+    }
+}
+
+// A more readable DFS + Memoization version
+// Refer to
+// https://leetcode.com/problems/course-schedule/discuss/58524/Java-DFS-and-BFS-solution/60015
+public class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        boolean[] canFinish = new boolean[numCourses]; // history
+        boolean[] waitingList = new boolean[numCourses];
+        for (int i = 0; i < numCourses; i++) {
+            if (!canFinishThisCourse(i,prerequisites,waitingList,canFinish)) { return false; }
+        }
+        return true;
+    }
+    public boolean canFinishThisCourse(int course, int[][] prerequisites, boolean[] waitingList, boolean[] canFinish) {
+        if (canFinish[course]) { return true; }
+        if (waitingList[course]) { return false; } // find circle
+        // dfs backtracking
+        waitingList[course] = true;
+        for (int[] pair : prerequisites) {
+            if (pair[0] == course) {
+                if (!canFinishThisCourse(pair[1],prerequisites,waitingList,canFinish)) { return false; }
+            }
+        }
+        waitingList[course] = false;
+        canFinish[course] = true;
+        return true;
+    }
+}
+
+// Best explaination video
+// BFS refer to
+// https://www.youtube.com/watch?v=u4v_kvOfumU&t=312s
+// https://www.youtube.com/watch?v=0LjVxtLnNOk
