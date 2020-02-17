@@ -84,3 +84,57 @@ public class Solution {
         return (numCourses == 0) ? order : new int[0];
     }
 }
+
+// Refer to
+// Use the same strategy as Course Schedule, just adding an ArrayList to store the course visiting sequence on path
+// https://segmentfault.com/a/1190000003814058
+class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        if(numCourses == 0 || prerequisites == null) {
+            return new int[0];
+        }
+        int[] indegree = new int[numCourses];
+        ArrayList[] graph = new ArrayList[numCourses];
+        for(int i = 0; i < numCourses; i++) {
+            graph[i] = new ArrayList<Integer>();
+        }
+        for(int i = 0; i < prerequisites.length; i++) {
+            graph[prerequisites[i][1]].add(prerequisites[i][0]);
+            indegree[prerequisites[i][0]]++;
+        }
+        Queue<Integer> queue = new LinkedList<Integer>();
+        for(int i = 0; i < numCourses; i++) {
+            if(indegree[i] == 0) {
+                queue.offer(i);
+            }
+        }
+        // Adding path to record BFS visiting course sequence
+        List<Integer> path = new ArrayList<Integer>();
+        int count = 0;
+        while(!queue.isEmpty()) {
+            int course = queue.poll();
+            count++;
+            // Add current course on path
+            path.add(course);
+            ArrayList<Integer> neighbors = graph[course];
+            for(int i = 0; i < neighbors.size(); i++) {
+                int neighbor = neighbors.get(i);
+                indegree[neighbor]--;
+                if(indegree[neighbor] == 0) {
+                    queue.offer(neighbor);
+                }
+            }
+        }
+        // Convert result into array
+        int[] result = new int[path.size()];
+        for(int i = 0; i < result.length; i++) {
+            result[i] = path.get(i);
+        }
+        if(count == numCourses) {
+            return result;
+        } else {
+            return new int[0];
+        }
+    }
+}
+
