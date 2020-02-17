@@ -85,6 +85,7 @@ public class Solution {
     }
 }
 
+// BFS solution
 // Refer to
 // Use the same strategy as Course Schedule, just adding an ArrayList to store the course visiting sequence on path
 // https://segmentfault.com/a/1190000003814058
@@ -140,3 +141,67 @@ class Solution {
     }
 }
 
+// DFS solution
+// Refer to
+// https://leetcode.com/problems/course-schedule-ii/discuss/383621/Better-than-97-93-DFS-JAVA
+class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        if(numCourses == 0 || prerequisites == null) {
+            return new int[0];
+        }
+        // mark node visited after visiting all its neighbors, if any.
+        boolean[] visited = new boolean[numCourses]; 
+        // keep track of elements in dfs recusion, to detect loop. 
+        // Note that visited array alone cannot suffice since we mark 
+        // a node visited only after visiting all its neighbors.
+        boolean[] dp = new boolean[numCourses];
+        ArrayList[] graph = new ArrayList[numCourses];
+        for(int i = 0; i < numCourses; i++) {
+            graph[i] = new ArrayList<Integer>();
+        }
+        for(int i = 0; i < prerequisites.length; i++) {
+            graph[prerequisites[i][1]].add(prerequisites[i][0]);
+        }
+        // Adding path to record DFS visiting course sequence
+        List<Integer> path = new ArrayList<Integer>();
+        for(int i = 0; i < numCourses; i++) {
+            if(!canFinishThisCourse(path, i, graph, visited, dp)) {
+                return new int[0];
+            }
+        }
+        // Important !!! Need to revese the path, since the last node add first
+        // as recursive to the deepest level first, and 'path.add(course);' 
+        // happen there, or use stack instead of ArrayList to store
+        Collections.reverse(path);
+        int[] result = new int[path.size()];
+        for(int i = 0; i < path.size(); i++) {
+            result[i] = path.get(i);
+        }
+        return result;
+    }
+    
+    private boolean canFinishThisCourse(List<Integer> path, int course, ArrayList[] graph, boolean[] visited, boolean[] dp) {
+        if(visited[course]) {
+            return true;
+        }
+        // loop detected
+        if(dp[course]) {
+            return false;
+        }
+        // dfs backtracking
+        dp[course] = true;
+        for(int i = 0; i < graph[course].size(); i++) {
+            int neighbor = (int)graph[course].get(i);
+            if(!canFinishThisCourse(path, neighbor, graph, visited, dp)) {
+                return false;
+            }
+        }
+        dp[course] = false;
+        // since all neighbors are now visited for n, mark true.
+        visited[course] = true;
+        // add to final result.
+        path.add(course);
+        // since no loop detected, return true
+        return true;
+    }
+}
