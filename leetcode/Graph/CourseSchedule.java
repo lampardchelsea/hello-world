@@ -221,6 +221,18 @@ public class CourseSchedule {
  这里用的是数组来建图。然后从入度为0的节点，也就是入口开始广度优先搜索，按照拓扑排序的顺序遍历，最后看遍历过
  的节点数和总节点数的关系就行了。拓扑排序的使用方法参见外文字典。
 */
+// 有个英文解释也很不错
+// Refer to
+// https://leetcode.com/problems/course-schedule/discuss/58799/C%2B%2B-dfs-(backtracking)-and-bfs-(indegree)-methods
+/**
+ Second method is bfs. First compute the indegree array (how many edges toward a node). Use a stack to push all 
+ nodes with indegree 0. Start from a node on the stack and subtract by 1 of all the nodes on its adjacency list. 
+ If after subtraction, the node has indegree 0, push it onto stack. Do this recursively for all nodes on stack 
+ until no nodes are on stack (you pop a node after subtracting by 1 of all nodes on its adjacency list). If 
+ there is at least one node that is never pushed on stack, the graph has a cycle. Too see why draw a digraph 
+ with a cycle between two nodes (1->2, 2->1) and for all other nodes draw no cycle. Follow this algorithm you 
+ will see the indegree array will be all 0 except for node 1 and 2, which both have indegree 1.
+*/
 public class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         ArrayList[] graph = new ArrayList[numCourses];
