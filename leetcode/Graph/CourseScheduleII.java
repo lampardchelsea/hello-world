@@ -88,6 +88,8 @@ public class Solution {
 // Refer to
 // Use the same strategy as Course Schedule, just adding an ArrayList to store the course visiting sequence on path
 // https://segmentfault.com/a/1190000003814058
+// Runtime: 3 ms, faster than 97.37% of Java online submissions for Course Schedule II.
+// Memory Usage: 42.8 MB, less than 96.34% of Java online submissions for Course Schedule II.
 class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         if(numCourses == 0 || prerequisites == null) {
