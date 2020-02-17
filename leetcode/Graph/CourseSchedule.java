@@ -232,6 +232,7 @@ public class CourseSchedule {
  there is at least one node that is never pushed on stack, the graph has a cycle. Too see why draw a digraph 
  with a cycle between two nodes (1->2, 2->1) and for all other nodes draw no cycle. Follow this algorithm you 
  will see the indegree array will be all 0 except for node 1 and 2, which both have indegree 1.
+ I think both algorithms run in O(V+E) time and O(V) space I do not take the adjacency list into account)
 */
 public class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
