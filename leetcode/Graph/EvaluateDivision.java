@@ -169,3 +169,72 @@ class Solution {
         }
     }
 }
+
+// Style 3: Just tweak DFS part
+// Refer to
+// https://leetcode.com/problems/evaluate-division/discuss/171649/1ms-DFS-with-Explanations
+class Solution {
+    public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
+        double[] result = new double[queries.size()];
+        // Build the graph
+        Map<String, List<Edge>> graph = new HashMap<String, List<Edge>>();
+        for(int i = 0; i < equations.size(); i++) {
+            List<String> equation = equations.get(i);
+            String u = equation.get(0);
+            String v = equation.get(1);
+            double weight = values[i];
+            Edge ef = new Edge(v, weight);
+            Edge eb = new Edge(u, 1.0 / weight);
+            if(!graph.containsKey(u)) {
+                graph.put(u, new ArrayList<Edge>());
+            }
+            graph.get(u).add(ef);
+            if(!graph.containsKey(v)) {
+                graph.put(v, new ArrayList<Edge>());
+            }
+            graph.get(v).add(eb);
+        }
+        // DFS
+        for(int i = 0; i < queries.size(); i++) {
+            List<String> query = queries.get(i);
+            String start = query.get(0);
+            String end = query.get(1);
+            Set<String> visited = new HashSet<String>();
+            result[i] = helper(start, end, graph, visited, 1.0);
+        }
+        return result;
+    }
+    
+    private double helper(String start, String end, Map<String, List<Edge>> graph, Set<String> visited, double distance) {
+        // Should not return 'distance', must return -1.0, which effect equal to 'if(!visited.contains(start)) {...}' in style 2
+        if(visited.contains(start)) {
+            return -1.0;
+        }
+        if(!graph.containsKey(start) || !graph.containsKey(end)) {
+            return -1.0;
+        }
+        if(start.equals(end)) {
+            return distance;
+        }
+        visited.add(start);
+        List<Edge> list = graph.get(start);
+        for(Edge e : list) {
+            double result = helper(e.to, end, graph, visited, e.weight * distance);
+            if(result != -1.0) {
+                return result;
+            }
+        }
+        return -1.0;
+    }
+    
+    class Edge {        
+        String to;
+        double weight;
+        public Edge(String s, double w) {
+            this.to = s;
+            this.weight = w;
+        }
+    }
+}
+
+
