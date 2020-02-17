@@ -343,30 +343,49 @@ class Solution {
     }
 }
 
-// A more readable DFS + Memoization version
+// A more readable DFS + Backtracking + Memoization version
 // Refer to
 // https://leetcode.com/problems/course-schedule/discuss/58524/Java-DFS-and-BFS-solution/60015
+// Explain refer to
+// 
+/*
+* "dp" is to mark nodes in a "path". If a node is marked and you 
+* see it again in a "path", the graph has a cycle.
+* "visited" is to mark visited nodes in a graph. Once a node is flaged 
+* it will not be used as a starting point to search for cycles 
+* (i.e. it is for backtracking)
+* "nei" is the adjacency list. The problem gives us the "edge list"
+* it is better to convert it to adjacency list first
+*/
 public class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        boolean[] canFinish = new boolean[numCourses]; // history
-        boolean[] waitingList = new boolean[numCourses];
+        boolean[] visited = new boolean[numCourses]; // history
+        boolean[] dp = new boolean[numCourses];
         for (int i = 0; i < numCourses; i++) {
-            if (!canFinishThisCourse(i,prerequisites,waitingList,canFinish)) { return false; }
+            if (!canFinishThisCourse(i, prerequisites, visited, dp)) { 
+		return false; 
+	    }
         }
         return true;
     }
-    public boolean canFinishThisCourse(int course, int[][] prerequisites, boolean[] waitingList, boolean[] canFinish) {
-        if (canFinish[course]) { return true; }
-        if (waitingList[course]) { return false; } // find circle
+    public boolean canFinishThisCourse(int course, int[][] prerequisites, boolean[] visited, boolean[] dp) {
+        if (visited[course]) { 
+            return true; 
+	}
+        if (dp[course]) { 
+            return false; // find circle
+	}
         // dfs backtracking
-        waitingList[course] = true;
+        dp[course] = true;
         for (int[] pair : prerequisites) {
             if (pair[0] == course) {
-                if (!canFinishThisCourse(pair[1],prerequisites,waitingList,canFinish)) { return false; }
+                if (!canFinishThisCourse(pair[1], prerequisites, visited, dp)) { 
+                    return false; 
+		}
             }
         }
-        waitingList[course] = false;
-        canFinish[course] = true;
+        dp[course] = false;
+        visited[course] = true;
         return true;
     }
 }
@@ -375,3 +394,5 @@ public class Solution {
 // BFS refer to
 // https://www.youtube.com/watch?v=u4v_kvOfumU&t=312s
 // https://www.youtube.com/watch?v=0LjVxtLnNOk
+// DFS refer to
+// https://leetcode.com/problems/course-schedule/discuss/58799/C%2B%2B-dfs-(backtracking)-and-bfs-(indegree)-methods
