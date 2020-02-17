@@ -343,7 +343,9 @@ class Solution {
     }
 }
 
-// A more readable DFS + Backtracking + Memoization version
+// A more readable DFS + Backtracking + Memoization version (But not transform prerequisites into graph, no build graph)
+// Runtime: 21 ms, faster than 83.69% of Java online submissions for Course Schedule.
+// Memory Usage: 41.4 MB, less than 100% of Java online submissions for Course Schedule.
 // Refer to
 // https://leetcode.com/problems/course-schedule/discuss/58524/Java-DFS-and-BFS-solution/60015
 // Explain refer to
@@ -354,8 +356,6 @@ class Solution {
 * "visited" is to mark visited nodes in a graph. Once a node is flaged 
 * it will not be used as a starting point to search for cycles 
 * (i.e. it is for backtracking)
-* "nei" is the adjacency list. The problem gives us the "edge list"
-* it is better to convert it to adjacency list first
 */
 public class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
@@ -389,6 +389,63 @@ public class Solution {
         return true;
     }
 }
+
+// A more readable DFS + Backtracking + Memoization version (Transform prerequisites into graph and pass on DFS)
+// Runtime: 2 ms, faster than 99.69% of Java online submissions for Course Schedule.
+// Memory Usage: 41.7 MB, less than 98.46% of Java online submissions for Course Schedule.
+// Refer to
+// https://leetcode.com/problems/course-schedule/discuss/58524/Java-DFS-and-BFS-solution/60015
+/*
+* "dp" is to mark nodes in a "path". If a node is marked and you 
+* see it again in a "path", the graph has a cycle.
+* "visited" is to mark visited nodes in a graph. Once a node is flaged 
+* it will not be used as a starting point to search for cycles 
+* (i.e. it is for backtracking)
+* "neighbor" is the adjacency list. The problem gives us the "edge list"
+* it is better to convert it to adjacency list first
+*/
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        boolean[] visited = new boolean[numCourses]; // history
+        boolean[] dp = new boolean[numCourses];
+        // Build graph based on prerequisites
+        ArrayList[] graph = new ArrayList[numCourses];
+        for(int i = 0; i < numCourses; i++) {
+            graph[i] = new ArrayList<Integer>();
+        }
+        for(int i = 0; i < prerequisites.length; i++) {
+            graph[prerequisites[i][1]].add(prerequisites[i][0]);
+        }
+        // Pass graph instead of prerequisites on DFS
+        for(int i = 0; i < numCourses; i++) {
+            if(!canFinishThisCourse(i, graph, visited, dp)) { 
+		 return false; 
+	    }
+        }
+        return true;
+    }
+    
+    public boolean canFinishThisCourse(int course, ArrayList[] graph, boolean[] visited, boolean[] dp) {
+        if(visited[course]) { 
+            return true; 
+	}
+        if(dp[course]) { 
+            return false; // find circle
+	}
+        // dfs backtracking
+        dp[course] = true;
+        for(int i = 0; i < graph[course].size(); i++) {
+            int neighbor = (int)graph[course].get(i);
+            if(!canFinishThisCourse(neighbor, graph, visited, dp)) { 
+                return false;
+            }
+        }
+        dp[course] = false;
+        visited[course] = true;
+        return true;
+    }
+}
+
 
 // Best explaination video
 // BFS refer to
