@@ -403,6 +403,7 @@ public class Solution {
 * (i.e. it is for backtracking)
 * "neighbor" is the adjacency list. The problem gives us the "edge list"
 * it is better to convert it to adjacency list first
+* I think both algorithms run in O(V+E) time and O(V) space I do not take the adjacency list into account)
 */
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
