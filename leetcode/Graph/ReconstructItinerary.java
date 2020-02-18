@@ -122,3 +122,143 @@ public class ReconstructItinerary {
 	}
 
 }
+
+// More clear solution from DFS + Backtracking
+// Refer to
+// https://leetcode.com/problems/reconstruct-itinerary/discuss/78799/Very-Straightforward-DFS-Solution-with-Detailed-Explanations
+/**
+ The nice thing about DFS is it tries a path, and if that's wrong (i.e. path does not lead to solution), 
+ DFS goes one step back and tries another path. It continues to do so until we've found the correct path 
+ (which leads to the solution). You need to always bear this nice feature in mind when utilizing DFS to 
+ solve problems.
+ 
+ In this problem, the path we are going to find is an itinerary which:
+ (1) uses all tickets to travel among airports
+ (2) preferably in ascending lexical order of airport code
+
+ Keep in mind that requirement 1 must be satisfied before we consider 2. If we always choose the airport 
+ with the smallest lexical order, this would lead to a perfectly lexical-ordered itinerary, but pay attention 
+ that when doing so, there can be a "dead end" somewhere in the tickets such that we are not able visit all 
+ airports (or we can't use all our tickets), which is bad because it fails to satisfy requirement 1 of this 
+ problem. Thus we need to take a step back and try other possible airports, which might not give us a perfectly 
+ ordered solution, but will use all tickets and cover all airports.
+
+ Thus it's natural to think about the "backtracking" feature of DFS. We start by building a graph and then sorting 
+ vertices in the adjacency list so that when we traverse the graph later, we can guarantee the lexical order of 
+ the itinerary can be as good as possible. When we have generated an itinerary, we check if we have used all our 
+ airline tickets. If not, we revert the change and try another ticket. We keep trying until we have used all our tickets.
+*/
+class Solution {
+    public List<String> findItinerary(List<List<String>> tickets) {
+        // Build graph
+        Map<String, List<String>> graph = new HashMap<String, List<String>>();
+        for(int i = 0; i < tickets.size(); i++) {
+            String from = tickets.get(i).get(0);
+            String to = tickets.get(i).get(1);
+            if(!graph.containsKey(from)) {
+                graph.put(from, new ArrayList<String>());
+            }
+            graph.get(from).add(to);
+        }
+        for(String airport: graph.keySet()) {
+            Collections.sort(graph.get(airport));
+        }
+        // DFS
+        List<String> result = new ArrayList<String>();
+        helper("JFK", graph, result);
+        return result;
+    }
+    
+    private boolean helper(String curr, Map<String, List<String>> graph, List<String> result) {
+        // Base case
+        // When you have no airports in the graph
+        if(graph.keySet().size() == 0) {
+            result.add(curr);
+            return true;
+        }
+        // Airport is visited or this airport is not a "from" airport
+        //if(!graph.containsKey(curr)) {
+        //    return false;
+        //}
+        List<String> to_list = graph.get(curr);
+        if(to_list != null) {
+            for(int i = 0; i < to_list.size(); i++) {
+                String to = to_list.get(i);
+                result.add(curr);
+                // remove "to" airport from curr airport's list
+                graph.get(curr).remove(i);
+                if(graph.get(curr).size() == 0) {
+                    graph.remove(curr);
+                }
+                if(helper(to, graph, result)) {
+                    return true;
+                }
+                // backtracking since if current path not work, then restore graph
+                graph.putIfAbsent(curr, new ArrayList<String>());
+                graph.get(curr).add(i, to);
+                result.remove(result.size() - 1);
+            }            
+        }
+        return false;
+    }
+}
+
+
+
+// Wrong solution with PriorityQueue + Backtracking
+// Should not use PriorityQueue to do backtracking, because when you find the current path not good and try to do backtracking 
+// by add back the removed airport, the issue for PriorityQueue is it will always restore to original order since its sort automatically,
+class Solution {
+    public List<String> findItinerary(List<List<String>> tickets) {
+        // Build graph
+        Map<String, PriorityQueue<String>> graph = new HashMap<String, PriorityQueue<String>>();
+        for(int i = 0; i < tickets.size(); i++) {
+            String from = tickets.get(i).get(0);
+            String to = tickets.get(i).get(1);
+            if(!graph.containsKey(from)) {
+                graph.put(from, new PriorityQueue<String>());
+            }
+            graph.get(from).add(to);
+        }
+        // DFS
+        List<String> result = new ArrayList<String>();
+        helper("JFK", graph, result);
+        return result;
+    }
+    
+    private boolean helper(String curr, Map<String, PriorityQueue<String>> graph, List<String> result) {
+        // Base case
+        // When you have no airports in the graph
+        if(graph.keySet().size() == 0) {
+            result.add(curr);
+            return true;
+        }
+        // Airport is visited or this airport is not a "from" airport
+        //if(!graph.containsKey(curr)) {
+        //    return false;
+        //}
+        PriorityQueue<String> to_list = graph.get(curr);
+        if(to_list != null) {
+            for(int i = 0; i < to_list.size(); i++) {
+                String to = to_list.poll();
+                result.add(curr);
+                //graph.get(curr).remove(to); --> no need to remove again since already polled from PQ
+                if(graph.get(curr).size() == 0) {
+                    graph.remove(curr);
+                }
+                if(helper(to, graph, result)) {
+                    return true;
+                }
+                graph.putIfAbsent(curr, new PriorityQueue<String>());
+                graph.get(curr).add(to); // here is the wrong place, when add back to PQ, it restore to original order and deadly loop start
+                result.remove(result.size() - 1);
+            }            
+        }
+        return false;
+    }
+}
+
+
+
+
+
