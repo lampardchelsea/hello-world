@@ -27,3 +27,6 @@
 <p>Evaluate Division
 <p>1. [Java AC Solution using graph] (https://leetcode.com/problems/evaluate-division/discuss/88169/Java-AC-Solution-using-graph)
 <p>2. [Java AC Solution using graph 2] (https://leetcode.com/problems/evaluate-division/discuss/88169/Java-AC-Solution-using-graph/93115)
+
+<p>Find the Town Judge
+<p>1. [Indegree - outdegree] (https://leetcode.com/problems/find-the-town-judge/discuss/312565/JAVA%3A-Simple-and-Concise-solution-with-detailed-explanation)
