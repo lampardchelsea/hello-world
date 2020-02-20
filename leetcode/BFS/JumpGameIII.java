@@ -33,7 +33,7 @@ Constraints:
 0 <= start < arr.length
 */
 
-// Solution 1:
+// Solution 1: BFS
 // Refer to
 // https://leetcode.com/problems/jump-game-iii/discuss/463872/Simple-one-using-queue-and-visited-paths-JAVA
 class Solution {
