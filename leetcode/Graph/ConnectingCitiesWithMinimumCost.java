@@ -154,5 +154,46 @@ class UnionFind {
 
 // Kruskal Algorithm
 // https://www.cnblogs.com/Dylan-Java-NYC/p/11280623.html
+class UnionFind {
+    private int[] parent;
+    // Adding one more array as size to monitor each component size
+    private int[] size;
+    private int count;
+    public UnionFind(int n) {
+        parent = new int[n];
+        size = new int[n];
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+            size[i] = i;
+        }
+        count = n;
+    }
+
+    // Kruskal different than Prim part is happening on union strategy
+    public void union(int a, int b) {
+        int src = find(a);
+        int dst = find(b);
+        if (size[src] > size[dst]) {
+            parent[dst] = src;
+            size[src] += size[dst];
+        } else {
+            parent[src] = dst;
+            size[dst] += size[src];
+        }
+        count--;
+    }
+
+    public int find(int x) {
+        if (parent[x] == x) {
+            return x;
+        }
+        return parent[x] = find(parent[x]);
+    }
+
+    public int get_count() {
+        return count;
+    }
+}
+
 
 // https://code.dennyzhang.com/connecting-cities-with-minimum-cost
