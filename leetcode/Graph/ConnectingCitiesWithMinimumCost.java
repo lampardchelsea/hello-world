@@ -148,6 +148,7 @@ class UnionFind {
     }
 }
 
+// Very similar question for Amazon OA
 // https://leetcode.com/discuss/interview-question/356981/Amazon-or-OA-2019-or-Min-Cost-to-Connect-All-Nodes/347846
 
 
@@ -195,5 +196,5 @@ class UnionFind {
     }
 }
 
-
+// Very similar question for Amazon OA
 // https://code.dennyzhang.com/connecting-cities-with-minimum-cost
