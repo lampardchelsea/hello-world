@@ -2,6 +2,8 @@
  Refer to
  https://code.dennyzhang.com/connecting-cities-with-minimum-cost
  https://leetcode.com/discuss/interview-question/356981
+ https://www.cnblogs.com/Dylan-Java-NYC/p/11280623.html
+ 
  There are N cities numbered from 1 to N.
 
  You are given connections, where each connections[i] = [city1, city2, cost] represents the cost to connect 
