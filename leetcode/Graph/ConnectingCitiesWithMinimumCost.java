@@ -2,7 +2,7 @@
  Refer to
  https://code.dennyzhang.com/connecting-cities-with-minimum-cost
  https://leetcode.com/discuss/interview-question/356981
- https://www.cnblogs.com/Dylan-Java-NYC/p/11280623.html
+
  
  There are N cities numbered from 1 to N.
 
@@ -36,6 +36,16 @@
  connections[i][0] != connections[i][1]
 */
 
-// Solution 1:
+// Solution 1: Union Find (based on two different algorithm Prim and Kruskal)  
 // Refer to
-// 
+// Prim Algorithm
+// https://blog.csdn.net/fuxuemingzhu/article/details/101214765
+
+// https://leetcode.com/discuss/interview-question/356981/Amazon-or-OA-2019-or-Min-Cost-to-Connect-All-Nodes/347846
+
+
+
+// Kruskal Algorithm
+// https://www.cnblogs.com/Dylan-Java-NYC/p/11280623.html
+
+// https://code.dennyzhang.com/connecting-cities-with-minimum-cost
