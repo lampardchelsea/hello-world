@@ -30,3 +30,12 @@
 
 <p>Find the Town Judge
 <p>1. [Indegree - outdegree] (https://leetcode.com/problems/find-the-town-judge/discuss/312565/JAVA%3A-Simple-and-Concise-solution-with-detailed-explanation)
+
+<p>Connecting Cities With Minimum Cost
+<p>1. [Prim union found algorithm] (https://blog.csdn.net/fuxuemingzhu/article/details/101214765)
+<p>2. [Kruskal union found Algorithm] (https://www.cnblogs.com/Dylan-Java-NYC/p/11280623.html)  
+  
+<p>Min Cost to Connect All Nodes
+<p>1. [Prim union found algorithm] (https://leetcode.com/discuss/interview-question/356981/Amazon-or-OA-2019-or-Min-Cost-to-Connect-All-Nodes/347846)
+<p>2. [Kruskal union found Algorithm] (https://code.dennyzhang.com/connecting-cities-with-minimum-cost)
+
