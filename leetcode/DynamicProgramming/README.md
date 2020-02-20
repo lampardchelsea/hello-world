@@ -172,3 +172,8 @@
 <p>Make Array Strictly Increasing
 <p>1. [DP + LIS 300] (https://leetcode.com/problems/make-array-strictly-increasing/discuss/377495/Java-dp-solution-%3A-A-simple-change-from-Longest-Increasing-Subsequence)
 <p>2. [Explain about the helper method] (https://leetcode.com/problems/make-array-strictly-increasing/discuss/377495/Java-dp-solution-:-A-simple-change-from-Longest-Increasing-Subsequence/339264)
+  
+<p>Partition Array for Maximum Sum
+<p>1. [Java O(NK). Faster than 99.82%. Less memory than 100%. With Explanation.] (https://leetcode.com/problems/partition-array-for-maximum-sum/discuss/299443/Java-O(NK).-Faster-than-99.82.-Less-memory-than-100.-With-Explanation.)
+  
+  
