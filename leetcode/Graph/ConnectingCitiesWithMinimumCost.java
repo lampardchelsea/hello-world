@@ -80,6 +80,73 @@ Kruskal算法是基于贪心的思想得到的。首先我们把所有的边按�
 
 // Prim Algorithm
 // https://blog.csdn.net/fuxuemingzhu/article/details/101214765
+import java.util.Arrays;
+
+public class Solution {
+    public static int minimumCost(int N, int[][] connections) {
+        int result = 0;
+        // Sort cost by ascending order
+        Arrays.sort(connections, (a, b) - > a[2] - b[2]);
+        UnionFind uf = new UnionFind(N);
+        for (int i = 0; i < connections.length; i++) {
+            int[] connection = connections[i];
+            // Decrease 1 in case of array index start from 0 but city number start from 1
+            // Mapping index to number is important
+            int a = connection[0] - 1;
+            int b = connection[1] - 1;
+            int cost = connection[2];
+            if (uf.find(a) != uf.find(b)) {
+                uf.union(a, b);
+                result += cost;
+            }
+            if (uf.get_count() == 1) {
+                return result;
+            }
+        }
+        return -1;
+    }
+    
+    public static void main(String[] args) {
+        int N = 3;
+        int[][] connections = {{1, 2, 5}, {1, 3, 6}, {2, 3, 1}};
+        //int N = 4;
+        //int[][] connections = {{1, 2, 3}, {3, 4, 4}};
+        int result = minimumCost(N, connections);
+        System.out.println(result);
+    }
+}
+
+class UnionFind {
+    private int[] parent;
+    private int count;
+    public UnionFind(int n) {
+        parent = new int[n];
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+        }
+        count = n;
+    }
+
+    public void union(int a, int b) {
+        int src = find(a);
+        int dst = find(b);
+        if (src != dst) {
+            parent[src] = dst;
+            count--;
+        }
+    }
+
+    public int find(int x) {
+        if (parent[x] == x) {
+            return x;
+        }
+        return parent[x] = find(parent[x]);
+    }
+
+    public int get_count() {
+        return count;
+    }
+}
 
 // https://leetcode.com/discuss/interview-question/356981/Amazon-or-OA-2019-or-Min-Cost-to-Connect-All-Nodes/347846
 
