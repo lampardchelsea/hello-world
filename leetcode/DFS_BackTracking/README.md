@@ -215,3 +215,6 @@
 
 <p>Binary Watch
 <p>1. [3ms Java Solution Using Backtracking and Idea of "Permutation and Combination"] (https://leetcode.com/problems/binary-watch/discuss/88456/3ms-Java-Solution-Using-Backtracking-and-Idea-of-%22Permutation-and-Combination%22)
+
+<p>Jump Game III
+<p>1. [DFS] (https://leetcode.com/problems/jump-game-iii/discuss/463872/Simple-one-using-queue-and-visited-paths-JAVA/417023)
