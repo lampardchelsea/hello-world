@@ -34,7 +34,47 @@
 // Solution 1: DFS
 // Refer to
 // https://leetcode.com/problems/count-servers-that-communicate/discuss/436167/Simple-java-DFS-solution-similar-to-200.-number-of-islands
-
+// Runtime: 11 ms, faster than 22.57% of Java online submissions for Count Servers that Communicate.
+// Memory Usage: 47.1 MB, less than 100.00% of Java online submissions for Count Servers that Communicate.
+class Solution {
+    public int countServers(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int result = 0;
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                if(grid[i][j] == 1) {
+                    int val = helper(grid, i, j);
+                    if(val > 1) {
+                        result += val;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+    
+    private int helper(int[][] grid, int i, int j) {
+        // Set grid[i][j] as -1 to mark as visited
+        grid[i][j] = -1;
+        int result = 1;
+        int m = grid.length;
+        int n = grid[0].length;
+        // jth column count
+        for(int x = 0; x < m; x++) {
+            if(grid[x][j] == 1) {
+                result += helper(grid, x, j);
+            }
+        }
+        // ith row count
+        for(int y = 0; y < n; y++) {
+            if(grid[i][y] == 1) {
+                result += helper(grid, i, y);
+            }
+        }
+        return result;
+    }
+}
 
 
 // Solution 2: Concise solution without DFS
@@ -42,6 +82,8 @@
 // https://leetcode.com/problems/count-servers-that-communicate/discuss/436188/Java-or-Clean-And-Simple-or-Beats-100
 // https://leetcode.com/problems/count-servers-that-communicate/discuss/436188/Java-or-Clean-And-Simple-or-Beats-100/392655
 // https://leetcode.com/problems/count-servers-that-communicate/discuss/438394/Javascript-and-C%2B%2B-solutions
+// Runtime: 2 ms, faster than 98.68% of Java online submissions for Count Servers that Communicate.
+// Memory Usage: 46.4 MB, less than 100.00% of Java online submissions for Count Servers that Communicate.
 /**
  Synopsis:
  Count the amount of servers per row i and column j. And simultaneously track each server's row i and column j.
