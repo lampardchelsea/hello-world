@@ -51,6 +51,7 @@ For the directed graph follow up please see Redundant Connection II). We apologi
  After the initialization, we can combine them in the following part of the code.
 */
 
+// https://www.geeksforgeeks.org/union-find-algorithm-set-2-union-by-rank/
 /**
  What is path compression ?
  The second optimization to naive method is Path Compression. The idea is to flatten the tree when find() is 
@@ -83,6 +84,7 @@ The two techniques complement each other. The time complexity of each operation 
 than O(Logn). In fact, amortized time complexity effectively becomes small constant.
 */
 
+// https://leetcode.com/problems/redundant-connection/discuss/123819/Union-Find-with-Explanations-(Java-Python)
 /**
  An edge will connect two nodes into one connected component.
 
