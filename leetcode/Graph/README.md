@@ -39,3 +39,8 @@
 <p>1. [Prim union found algorithm] (https://leetcode.com/discuss/interview-question/356981/Amazon-or-OA-2019-or-Min-Cost-to-Connect-All-Nodes/347846)
 <p>2. [Kruskal union found Algorithm] (https://code.dennyzhang.com/connecting-cities-with-minimum-cost)
 
+<p>Redundant Connection
+<p>1. [Union Find] (https://leetcode.com/problems/redundant-connection/discuss/107984/10-line-Java-solution-Union-Find./222254)
+<p>2. [Path compression] (https://www.geeksforgeeks.org/union-find-algorithm-set-2-union-by-rank/)
+<p>3. [Why we use parent[i] = i ?] (https://leetcode.com/problems/redundant-connection/discuss/107984/10-line-Java-solution-Union-Find./222254)
+<p>4. [DFS Java Solution With Explanation] (https://leetcode.com/problems/redundant-connection/discuss/277026/DFS-Java-Solution-With-Explanation)
