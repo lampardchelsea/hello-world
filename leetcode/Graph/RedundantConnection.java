@@ -156,3 +156,50 @@ class UnionFind {
 }
 
 
+// Solution 2: DFS
+// Refer to
+// https://leetcode.com/problems/redundant-connection/discuss/277026/DFS-Java-Solution-With-Explanation
+/**
+ We build adjList progressevily as we go on adding edges. Say we are trying to add the edge [u,v] and 
+  want to know if that will form a cyle. We do not add the edge yet but we do dfs on the existing graph 
+  to see if we can reach v from u. If we can, then adding [u,v] will form a cycle. But we need the last 
+  possible edge that will form a cycle, so we can just set it to ret and move on without adding it.
+
+Also since it is a dfs on an undirected graph, we have v in u's children and u in v's. So to avoid exploring 
+the same edge from both the ends, we can pass in the current parent pre down the stack calls.
+*/
+class Solution {
+    public int[] findRedundantConnection(int[][] edges) {
+        int n = edges.length + 1;
+        List<List<Integer>> graph = new ArrayList<List<Integer>>(n);
+        for(int i = 0; i < n; i++) {
+            graph.add(new ArrayList<Integer>());
+        }
+        for(int[] edge : edges) {
+            int a = edge[0];
+            int b = edge[1];
+            if(helper(a, b, 0, graph)) {
+                return edge;
+            } else {
+                graph.get(a).add(b);
+                graph.get(b).add(a);
+            }
+        }
+        return null;
+    }
+    
+    private boolean helper(int u, int v, int pre, List<List<Integer>> graph) {
+        if(u == v) {
+            return true;
+        }
+        for(int w : graph.get(u)) {
+            if(w == pre) {
+                continue;
+            }
+            if(helper(w, v, u, graph)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
