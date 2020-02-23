@@ -92,3 +92,7 @@
 <p>Top K Frequent Words
 <p>1. [Comparing strings by their alphabetical order] (https://stackoverflow.com/questions/6203411/comparing-strings-by-their-alphabetical-order)
 
+<p>Path With Maximum Minimum Value
+<p>1. [Max PQ + BFS] (https://www.cnblogs.com/Dylan-Java-NYC/p/11297106.html)
+
+
