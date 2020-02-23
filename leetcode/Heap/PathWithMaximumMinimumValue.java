@@ -25,7 +25,7 @@
  0 <= A[i][j] <= 10^9
 */
 
-// Solution 1: MaxPQ
+// Solution 1: MaxPQ + BFS
 // Refer to
 // https://www.cnblogs.com/Dylan-Java-NYC/p/11297106.html
 /**
