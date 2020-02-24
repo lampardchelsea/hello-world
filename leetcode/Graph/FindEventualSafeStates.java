@@ -40,6 +40,11 @@ Each graph[i] will be a sorted list of different integers, chosen within the ran
 // Solution 1: Tological Sort
 // Refer to
 // https://leetcode.com/problems/find-eventual-safe-states/discuss/120633/Java-Solution-(DFS-andand-Topological-Sort)
+/**
+ Using degree array to record the out-degree, neighbors map to record In-neighbors(for example 0->1, 2->1, map(1) = [0, 2]).
+ Add the node whose out-degree is 0 into queue and result Set, then process each node in the queue, if the out-degree 
+ of one node becomes 0, add it to queue until queue is empty.
+*/
 // https://www.cnblogs.com/grandyang/p/9319966.html
 /**
  这道题给了我们一个有向图，然后定义了一种最终安全状态的结点，就是说该结点要在自然数K步内停止，所谓停止的意思，就是再没有向外的边，
