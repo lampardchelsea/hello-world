@@ -176,4 +176,7 @@
 <p>Partition Array for Maximum Sum
 <p>1. [Java O(NK). Faster than 99.82%. Less memory than 100%. With Explanation.] (https://leetcode.com/problems/partition-array-for-maximum-sum/discuss/299443/Java-O(NK).-Faster-than-99.82.-Less-memory-than-100.-With-Explanation.)
   
-  
+<p>Max Of Min Altitudes  
+<p>1. [DP thought] (https://leetcode.com/discuss/interview-question/383669/Amazon-or-OA-2019-or-Max-Of-Min-Altitudes/350117)
+<p>2. [2D and 1D DP] (https://leetcode.com/discuss/interview-question/383669/Amazon-or-OA-2019-or-Max-Of-Min-Altitudes/369694)
+
