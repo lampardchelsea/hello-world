@@ -356,6 +356,7 @@ class Solution {
     }
 }
 
+// DFS detect cycle
 // A more readable DFS + Backtracking + Memoization version (But not transform prerequisites into graph, no build graph)
 // Runtime: 21 ms, faster than 83.69% of Java online submissions for Course Schedule.
 // Memory Usage: 41.4 MB, less than 100% of Java online submissions for Course Schedule.
