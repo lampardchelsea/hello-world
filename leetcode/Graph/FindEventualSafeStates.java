@@ -36,6 +36,50 @@ Each graph[i] will be a sorted list of different integers, chosen within the ran
  ain't it just saying 'A node is evetually safe if all path from the node ends at a terminal node'
 */
 
+// Who is the center ? who is the neighbor ?
+// Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/CourseSchedule.java
+/**
+ For Course Schedule, we need to find initial indegree = 0 course, and from defition we know for a[0, 1], 
+ all present as 1 -> 0
+ course 1 is pre-requisite of course 0, so indegree for course 1 is 0, for course 0 is 1, that's why we 
+ have indegree[0]++
+ to implement toplogical sort, we should define initial indegree = 0 course which is course 1 as center
+ and course 0 as its neighbor, then when remove course 1 and remove relation between course 1 and 0, the
+ next will able to remove course 0 next.
+ ----------------------
+ course 1 -> course 0
+ indegree[course 0]++
+ course 1 indegree = 0 -> center -> what we want as initial toplogical start point
+ course 0 indegree = 1 -> neighbor
+ so course 0 is neighbor of course 1
+ ----------------------
+ // 根据边建立图，并计算入度
+ for(int i = 0; i < prerequisites.length; i++){
+     graph[prerequisites[i][1]].add(prerequisites[i][0]); --> prerequisites[i][1] as course 1 and prerequisites[i][0] as course 0
+     indegree[prerequisites[i][0]]++;
+ }
+ ======================================================================================================
+ For Find Eventual Safe States, we need to find initial outdegree = 0 state, and from definition we know
+ for (state 0 -> state 1) means state 1 has outdegree 0 and state 0 has outdegree 1. In case of implementing
+ toplogical sort start from outdegree = 0 state, we need state 1 as center, and state 0 as its neighbor
+ to build graph, then we able to remove state 1 first and remove state 0 next.
+ ----------------------
+ state 0 -> state 1
+ outdegree[state 0]++
+ state 1 outdegree = 0 -> center ->  what we want as initial toplogical start point
+ state 0 indegree = 1 -> neighbor
+ so state 0 is neighbor of state 1
+ ----------------------
+ for(int i = 0; i < graph.length; i++) {
+     for(int element : graph[i]) {
+         neighbors.putIfAbsent(element, new HashSet<Integer>());
+         neighbors.get(element).add(i);  --> element could be state 1 as center and i as state 0 as neighbor which has outdegree > 0
+         out_degree[i]++;
+     }
+ }
+*/
+
 
 // Solution 1: Tological Sort
 // Refer to
