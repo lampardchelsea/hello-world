@@ -66,6 +66,24 @@ If it has been colored, check if the current color is the same as the color that
  如果没被染色，则将当前顶点染色，然后再遍历与该顶点相连的所有的顶点，调用递归函数，如果返回 false 了，则当前递归函数
  的返回 false，循环结束返回 true
 */
+
+// https://leetcode.com/problems/is-graph-bipartite/discuss/115492/JAVA-DFS-two-colorability-O(N)%3A-easy-clean-illustrated-informally-proved
+/**
+ Try to color all nodes with alternating colors. If we came back to an already-colored node with a different color, 
+ then we return false. This is a typical application of DFS/BFS cycle detection described in Robert Sedgwick's 
+ Algorithms (4th ed.) book.
+ 
+ Slight explanation of correctness: why is it that we can be sure that as long as we have a cycle, where we try 
+ to color one node with a different color the second time, we know for sure the graph is bad? This is because 
+ the node just prior to the conflicting node must have the same color as the conflicting node itself. And as 
+ long as such a cycle exists, there is no way you can bipartite-partition all nodes within this cycle because, 
+ well, these two just won't do. What if there are no cycles? Well, cycle-free graphs are always bipartite.
+ 
+ Multiple DFS is required since the nodes might not be fully connected. Each DFS will color one independent subgraph. 
+ If one DFS discovers that one subgraph is okay, we can safely move on: it does not matter anymore because this 
+ subgraph and its consisting nodes won't further affect any other independent subgraph.
+*/
+
 class Solution {
     public boolean isBipartite(int[][] graph) {
         int[] colors = new int[graph.length];
@@ -96,4 +114,16 @@ class Solution {
         return true;
     }
 }
+
+// Solution 2: BFS
+// Refer to
+// https://leetcode.com/problems/is-graph-bipartite/discuss/115487/Java-Clean-DFS-solution-with-Explanation
+// https://www.cnblogs.com/grandyang/p/8519566.html
+/**
+ 我们再来看一种迭代的解法，整体思路还是一样的，还是遍历整个顶点，如果未被染色，则先染色为1，然后使用 BFS 进行遍历，
+ 将当前顶点放入队列 queue 中，然后 while 循环 queue 不为空，取出队首元素，遍历其所有相邻的顶点，如果相邻顶点未被染色，
+ 则染成和当前顶点相反的颜色，然后把相邻顶点加入 queue 中，否则如果当前顶点和相邻顶点颜色相同，直接返回 false，
+ 循环退出后返回 true
+*/
+
 
