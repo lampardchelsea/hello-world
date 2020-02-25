@@ -125,5 +125,38 @@ class Solution {
  则染成和当前顶点相反的颜色，然后把相邻顶点加入 queue 中，否则如果当前顶点和相邻顶点颜色相同，直接返回 false，
  循环退出后返回 true
 */
-
+class Solution {
+    public boolean isBipartite(int[][] graph) {
+        int[] colors = new int[graph.length];
+        for(int i = 0; i < graph.length; i++) {
+            // For each un-painted node start a BFS (similar like for
+            // each un-painted node start a DFS)
+            if(colors[i] == 0) {
+                Queue<Integer> queue = new LinkedList<Integer>();
+                queue.offer(i);
+                colors[i] = 1;
+                while(!queue.isEmpty()) {
+                    int cur = queue.poll();
+                    for(int next : graph[cur]) {
+                        // If adjacent node of current node not painted
+                        // paint it with different color than current node
+                        // e.g adjacent node is 0, current node is 1, then
+                        // paint adjacent node as -1
+                        if(colors[next] == 0) {
+                            queue.offer(next);
+                            colors[next] = -colors[cur];
+                        // If adjacent node already painted, but the color
+                        // same as current node, then circle happen, return
+                        // false, colors[next] == colors[cur] and
+                        // colors[next] != -colors[cur] both works
+                        } else if(colors[next] == colors[cur]) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+}
 
