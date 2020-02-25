@@ -44,3 +44,10 @@
 <p>2. [Path compression] (https://www.geeksforgeeks.org/union-find-algorithm-set-2-union-by-rank/)
 <p>3. [Why we use parent[i] = i ?] (https://leetcode.com/problems/redundant-connection/discuss/107984/10-line-Java-solution-Union-Find./222254)
 <p>4. [DFS Java Solution With Explanation] (https://leetcode.com/problems/redundant-connection/discuss/277026/DFS-Java-Solution-With-Explanation)
+
+<p>Find Eventual Safe States
+<p>1. [Understanding problem] (https://leetcode.com/problems/find-eventual-safe-states/discuss/244269/cut-the-crap-in-problem-description)
+<p>2. [Who is the center ? who is the neighbor ?] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/CourseSchedule.java)
+<p>3. [Toplogical Sort] (https://leetcode.com/problems/find-eventual-safe-states/discuss/120633/Java-Solution-(DFS-andand-Topological-Sort))  
+<p>4. [DFS to detect cycle] (https://leetcode.com/problems/course-schedule/discuss/58524/Java-DFS-and-BFS-solution/60015)
+<p>5. [DFS with 3 status] (https://www.cnblogs.com/grandyang/p/9319966.html)
