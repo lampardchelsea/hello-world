@@ -51,3 +51,8 @@
 <p>3. [Toplogical Sort] (https://leetcode.com/problems/find-eventual-safe-states/discuss/120633/Java-Solution-(DFS-andand-Topological-Sort))  
 <p>4. [DFS to detect cycle] (https://leetcode.com/problems/course-schedule/discuss/58524/Java-DFS-and-BFS-solution/60015)
 <p>5. [DFS with 3 status] (https://www.cnblogs.com/grandyang/p/9319966.html)
+
+<p>Is Graph Bipartite?
+<p>1. [DFS / BFS + 2 color painting issue] (https://leetcode.com/problems/is-graph-bipartite/discuss/115487/Java-Clean-DFS-solution-with-Explanation)
+<p>2. [中文解释] (https://www.cnblogs.com/grandyang/p/8519566.html)
+<p>3. [Better explain] (https://leetcode.com/problems/is-graph-bipartite/discuss/115492/JAVA-DFS-two-colorability-O(N)%3A-easy-clean-illustrated-informally-proved)
