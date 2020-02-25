@@ -144,10 +144,49 @@ class Solution {
     }
 }
 
-
+// DFS detect cycle
 // Solution 2: DFS
 // https://leetcode.com/problems/find-eventual-safe-states/discuss/138233/Java-find-cycle-method-23ms
-
+// https://leetcode.com/problems/course-schedule/discuss/58524/Java-DFS-and-BFS-solution/60015
+/**
+ * "currentVisited" is to mark nodes in a "path". If a node is marked and you 
+ * see it again in a "path", the graph has a cycle.
+ * "globalVisited" is to mark visited nodes in a graph. Once a node is flaged 
+ * it will not be used as a starting point to search for cycles 
+ * (i.e. it is for backtracking)
+*/
+class Solution {
+    public List<Integer> eventualSafeNodes(int[][] graph) {
+        List<Integer> result = new ArrayList<Integer>();
+        boolean[] globalVisited = new boolean[graph.length];
+        boolean[] currentVisited = new boolean[graph.length];
+        for(int i = 0; i < graph.length; i++) {
+            if(helper(i, graph, globalVisited, currentVisited)) {
+                result.add(i);
+            }
+        }
+        Collections.sort(result);
+        return result;
+    }
+    
+    private boolean helper(int state, int[][] graph, boolean[] globalVisited, boolean[] currentVisited) {
+        if(globalVisited[state]) {
+            return true;
+        }
+        if(currentVisited[state]) {
+            return false; // find circle
+        }
+        currentVisited[state] = true;
+        for(int next : graph[state]) {
+            if(!helper(next, graph, globalVisited, currentVisited)) {
+                return false;
+            }
+        }
+        currentVisited[state] = false;
+        globalVisited[state] = true;
+        return true;
+    }
+}
 
 
 
@@ -165,6 +204,38 @@ class Solution {
  并且返回true
 */
 
+// when color[i] = 1 means node i is visiting.
+// when color[i] = 0 means node i is not visited.
+// when color[i] = 2 means node i has been already visited.
+// when color[i] = 1 and it is visited again, it is not safe, otherwise it is safe.
+class Solution {
+    public List<Integer> eventualSafeNodes(int[][] graph) {
+       int N = graph.length;
+       int[] color = new int[N];
+       List<Integer> res = new ArrayList<>();
+       for (int i = 0; i < N; i++) {
+           if (dfs(i, color, graph))
+               res.add(i);
+       }
+       return res;
+   }
+    
+   private boolean dfs(int i, int[] color, int[][] graph) {
+       if (color[i] > 0) {
+           return color[i] == 2;
+       }
+       
+       color[i] = 1;
+       for (int neighbor : graph[i]) {
+           if (color[neighbor] == 2) continue;
+           
+           if (color[neighbor] == 1 || !dfs(neighbor, color, graph)) 
+               return false;
+       }
+       color[i] = 2;
+       return true;
+   }
+}
 
 
 
