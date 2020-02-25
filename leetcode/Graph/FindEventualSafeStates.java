@@ -105,7 +105,44 @@ Each graph[i] will be a sorted list of different integers, chosen within the ran
 当前队首结点的所有结点，我们在正向边集合中删除对应的边，如果此时结点出度为0了，将其加入队列queue中等待下一步处理，这样while循环退出后，
 所有的安全状态结点都已经标记好了，我们直接遍历safe数组，将其存入结果res中即可
 */
-
+// Runtime: 59 ms, faster than 24.16% of Java online submissions for Find Eventual Safe States.
+// Memory Usage: 56.1 MB, less than 100.00% of Java online submissions for Find Eventual Safe States.
+class Solution {
+    public List<Integer> eventualSafeNodes(int[][] graph) {
+        List<Integer> result = new ArrayList<Integer>();
+        int[] out_degree = new int[graph.length];
+        Map<Integer, Set<Integer>> neighbors = new HashMap<Integer, Set<Integer>>();
+        for(int i = 0; i < graph.length; i++) {
+            for(int element : graph[i]) {
+                neighbors.putIfAbsent(element, new HashSet<Integer>());
+                neighbors.get(element).add(i);
+                out_degree[i]++;
+            }
+        }
+        Queue<Integer> queue = new LinkedList<Integer>();
+        for(int i = 0; i < graph.length; i++) {
+            if(out_degree[i] == 0) {
+                queue.offer(i);
+                result.add(i);
+            }
+        }
+        while(!queue.isEmpty()) {
+            int cur = queue.poll();
+            if(neighbors.containsKey(cur)) {
+                Set<Integer> set = neighbors.get(cur);
+                for(int a : set){
+                    out_degree[a]--;
+                    if(out_degree[a] == 0) {
+                        result.add(a);
+                        queue.offer(a);
+                    }
+                }
+            }
+        }
+        Collections.sort(result);
+        return result;
+    }
+}
 
 
 // Solution 2: DFS
