@@ -146,6 +146,12 @@ class Solution {
 
 
 // Solution 2: DFS
+// https://leetcode.com/problems/find-eventual-safe-states/discuss/138233/Java-find-cycle-method-23ms
+
+
+
+
+// Solution 3: DFS with 3 status
 // Refer to
 // https://leetcode.com/problems/find-eventual-safe-states/discuss/120633/Java-Solution-(DFS-andand-Topological-Sort)
 // https://www.cnblogs.com/grandyang/p/9319966.html
