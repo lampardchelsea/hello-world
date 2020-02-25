@@ -66,5 +66,34 @@ If it has been colored, check if the current color is the same as the color that
  如果没被染色，则将当前顶点染色，然后再遍历与该顶点相连的所有的顶点，调用递归函数，如果返回 false 了，则当前递归函数
  的返回 false，循环结束返回 true
 */
+class Solution {
+    public boolean isBipartite(int[][] graph) {
+        int[] colors = new int[graph.length];
+        for (int i = 0; i < graph.length; i++) {
+            // If node not paint on any color yet, but not able to paint
+            // any color further is not a bipartite graph
+            // Start paint with color = 1
+            if (colors[i] == 0 && !helper(i, graph, colors, 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
+    private boolean helper(int node, int[][] graph, int[] colors, int color) {
+        // If node painted, check if it match the color try to paint on it
+        // if not match means not bipartite graph
+        if (colors[node] != 0) {
+            return colors[node] == color;
+        }
+        colors[node] = color;
+        for (int next: graph[node]) {
+            // The adjacent nodes paint with different color as -1
+            if (!helper(next, graph, colors, -color)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
 
