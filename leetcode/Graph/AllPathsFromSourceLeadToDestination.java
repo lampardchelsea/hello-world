@@ -46,6 +46,12 @@ edges[i].length == 2
 
 // Solution 1:
 // Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/FindEventualSafeStates.java
+/**
+ This problem is for indegree, how to build outdegree graph we can refer to FindEventualSafeStates.java,
+ for build indegree is just reverse for build outdegree.
+*/
+
 // https://www.cnblogs.com/Dylan-Java-NYC/p/11349641.html
 /**
  There are 2 cases it should return false.
