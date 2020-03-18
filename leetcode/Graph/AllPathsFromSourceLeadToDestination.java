@@ -58,8 +58,9 @@ edges[i].length == 2
  case 1: it encounters a node that has no outgoing edges, but it is not destination.
  case 2: it has cycle.
  Otherwise, it returns true.
- Could iterate graph with BFS. When indegree of a node becomes negative, then ther is cycle.
+ Could iterate graph with BFS. When indegree of a node becomes negative, then there is cycle.
  Time Complexity: O(n+e). e = edges.length.
  Space: O(n+e).
 */
+
 
