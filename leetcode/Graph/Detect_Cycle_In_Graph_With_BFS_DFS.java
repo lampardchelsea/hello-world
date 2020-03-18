@@ -11,4 +11,7 @@
  
  Detect Cycle in a Directed Graph
  https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
+ 
+ Why DFS and not BFS for finding cycle in graphs
+ https://stackoverflow.com/questions/2869647/why-dfs-and-not-bfs-for-finding-cycle-in-graphs
 */
