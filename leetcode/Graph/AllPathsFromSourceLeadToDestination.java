@@ -62,5 +62,35 @@ edges[i].length == 2
  Time Complexity: O(n+e). e = edges.length.
  Space: O(n+e).
 */
-
+class Solution {
+    public static boolean leadsToDestination(int n, int[][] edges, int source, int destination) {
+        Map < Integer, Set < Integer >> graph = new HashMap < Integer, Set < Integer >> ();
+        for (int i = 0; i < n; i++) {
+            graph.put(i, new HashSet < Integer > ());
+        }
+        int[] indegrees = new int[n];
+        for (int[] edge: edges) {
+            graph.get(edge[0]).add(edge[1]);
+            indegrees[edge[1]]++;
+        }
+        Queue < Integer > queue = new LinkedList < Integer > ();
+        queue.add(source);
+        while (!queue.isEmpty()) {
+            int cur = queue.poll();
+            // A node that has no outgoing edges, but it is not destination.
+            if (graph.get(cur).size() == 0 && cur != destination) {
+                return false;
+            }
+            for (int neighbor: graph.get(cur)) {
+                // When indegree of a node becomes negative, then there is cycle.
+                if (indegrees[neighbor] < 0) {
+                    return false;
+                }
+                indegrees[neighbor]--;
+                queue.add(neighbor);
+            }
+        }
+        return true;
+    }
+}
 
