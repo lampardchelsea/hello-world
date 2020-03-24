@@ -121,7 +121,11 @@ class Cycle {
         return false;
     }
 }
- 
+
+Time Complexity: The program does a simple BFS Traversal of graph and graph is represented 
+using adjacency list. So the time complexity is O(V+E)
+
+
  3. Detect cycle in an undirected graph
  https://www.geeksforgeeks.org/detect-cycle-undirected-graph/
  
