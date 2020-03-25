@@ -140,7 +140,7 @@
 
   Actually BFS implement on this way is Toplogical Sort, examples on below problems:
   CourseSchedule.java
-  
+====================================================================================================  
  
  2. Detect cycle in an undirected graph using BFS
  https://www.geeksforgeeks.org/detect-cycle-in-an-undirected-graph-using-bfs/
@@ -226,14 +226,98 @@ class Cycle {
 
 Time Complexity: The program does a simple BFS Traversal of graph and graph is represented 
 using adjacency list. So the time complexity is O(V+E)
+====================================================================================================
 
-
- 3. Detect cycle in an undirected graph
+ 3. Detect cycle in an undirected graph using DFS
  https://www.geeksforgeeks.org/detect-cycle-undirected-graph/
+==================================================================================================== 
  
- 4. Detect Cycle in a Directed Graph
+ 4. Detect Cycle in a Directed Graph using DFS
  https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
+ class Graph {
+
+    private final int V;
+    private final List < List < Integer >> adj;
+
+    public Graph(int V) {
+        this.V = V;
+        adj = new ArrayList < > (V);
+
+        for (int i = 0; i < V; i++)
+            adj.add(new LinkedList < > ());
+    }
+
+    // This function is a variation of DFSUtil() in
+    // https://www.geeksforgeeks.org/archives/18212
+    private boolean isCyclicUtil(int i, boolean[] visited, boolean[] recStack) {
+
+        // Mark the current node as visited and
+        // part of recursion stack
+        if (recStack[i])
+            return true;
+
+        if (visited[i])
+            return false;
+
+        visited[i] = true;
+
+        recStack[i] = true;
+        List < Integer > children = adj.get(i);
+
+        for (Integer c: children)
+            if (isCyclicUtil(c, visited, recStack))
+                return true;
+
+        recStack[i] = false;
+
+        return false;
+    }
+
+    private void addEdge(int source, int dest) {
+        adj.get(source).add(dest);
+    }
+
+    // Returns true if the graph contains a
+    // cycle, else false.
+    // This function is a variation of DFS() in
+    // https://www.geeksforgeeks.org/archives/18212
+    private boolean isCyclic() {
+
+        // Mark all the vertices as not visited and
+        // not part of recursion stack
+        boolean[] visited = new boolean[V];
+        boolean[] recStack = new boolean[V];
+
+        // Call the recursive helper function to
+        // detect cycle in different DFS trees
+        for (int i = 0; i < V; i++)
+            if (isCyclicUtil(i, visited, recStack))
+                return true;
+
+        return false;
+    }
+
+    // Driver code
+    public static void main(String[] args) {
+        Graph graph = new Graph(4);
+        graph.addEdge(0, 1);
+        graph.addEdge(0, 2);
+        graph.addEdge(1, 2);
+        graph.addEdge(2, 0);
+        graph.addEdge(2, 3);
+        graph.addEdge(3, 3);
+
+        if (graph.isCyclic())
+            System.out.println("Graph contains cycle");
+        else
+            System.out.println("Graph doesn't " + "contain cycle");
+    }
+}
  
+ The DFS implement examples on below problems:
+  CourseSchedule.java
+====================================================================================================
+
  5. Why DFS and not BFS for finding cycle in graphs
  https://stackoverflow.com/questions/2869647/why-dfs-and-not-bfs-for-finding-cycle-in-graphs
 */
