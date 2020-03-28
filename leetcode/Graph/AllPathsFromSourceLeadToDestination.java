@@ -94,3 +94,45 @@ class Solution {
     }
 }
 
+// As not sure 'When indegree of a node becomes negative, then there is cycle' will widely suitable
+// convert it with classic way to handle
+// Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/Detect_Cycle_In_Graph_With_BFS_DFS.java
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/CourseSchedule.java
+class Solution {
+    public static boolean leadsToDestination(int n, int[][] edges, int source, int destination) {
+        Map < Integer, Set < Integer >> graph = new HashMap < Integer, Set < Integer >> ();
+        for (int i = 0; i < n; i++) {
+            graph.put(i, new HashSet < Integer > ());
+        }
+        int[] indegrees = new int[n];
+        for (int[] edge: edges) {
+            graph.get(edge[0]).add(edge[1]);
+            indegrees[edge[1]]++;
+        }
+        Queue < Integer > queue = new LinkedList < Integer > ();
+        queue.add(source);
+        int count = 0;
+        while (!queue.isEmpty()) {
+            int cur = queue.poll();
+            // A node that has no outgoing edges, but it is not destination.
+            if (graph.get(cur).size() == 0 && cur != destination) {
+                return false;
+            }
+            // Classic way to identify if any cycle in the graph
+            // by checking count against total nodes number
+            for (int neighbor: graph.get(cur)) {
+                indegrees[neighbor]--;
+                if (indegrees[neighbor] == 0) {
+                    queue.add(neighbor);
+                }
+            }
+            count++;
+        }
+        if (count != n) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
