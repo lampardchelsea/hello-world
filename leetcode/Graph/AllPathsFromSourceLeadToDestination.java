@@ -44,7 +44,7 @@ edges[i].length == 2
 0 <= destination <= n - 1
 */
 
-// Solution 1:
+// Solution 1: BFS (not classic to detect cycle)
 // Refer to
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/FindEventualSafeStates.java
 /**
@@ -94,6 +94,7 @@ class Solution {
     }
 }
 
+// Solution 2: BFS (classic to detect cycle)
 // As not sure 'When indegree of a node becomes negative, then there is cycle' will widely suitable
 // convert it with classic way to handle
 // Refer to
@@ -136,3 +137,5 @@ class Solution {
         }
     }
 }
+
+// Solution 3: DFS
