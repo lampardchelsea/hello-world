@@ -139,6 +139,15 @@ class Solution {
 }
 
 // Solution 3: DFS (not classic to detect cyle but with 3 status)
+// Refer to
+// https://www.cnblogs.com/Dylan-Java-NYC/p/11349641.html
+/**
+ Could iterate by DFS too.
+ If current node has been visited within current DFS, then there is cycle.
+ When traversing all the nodes, make current node as done. 
+ Time Complexity: O(n+e).
+ Space: O(n+e).
+*/
 class Solution {
     public boolean leadsToDestination(int n, int[][] edges, int source, int destination) {
         Set < Integer > [] graph = new Set[n];
