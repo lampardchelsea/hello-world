@@ -175,5 +175,40 @@ class Solution {
 }
 
 // Solution 4: DFS (classic way to detect cycle)
+class Solution {
+    public boolean leadsToDestination(int n, int[][] edges, int source, int destination) {
+        boolean[] visited = new boolean[n];
+        boolean[] dp = new boolean[n];
+        Set < Integer > [] graph = new Set[n];
+        for (int i = 0; i < n; i++) {
+            graph[i] = new HashSet < Integer > ();
+        }
+        for (int[] edge: edges) {
+            graph[edge[0]].add(edge[1]);
+        }
+        return dfs(source, destination, graph, visited, dp);
+    }
 
+    private boolean dfs(int cur, int destination, Set < Integer > [] graph, boolean[] visited, boolean[] dp) {
+        if (visited[cur]) {
+            return true;
+        }
+        if (dp[cur]) {
+            return false; // find circle
+        }
+        // Add one more check a node that has no outgoing edges, but it is not destination.
+        if (graph[cur].size() == 0) {
+            return cur == destination;
+        }
+        dp[cur] = true;
+        for (int nei: graph[cur]) {
+            if (!dfs(nei, destination, graph, visited, dp)) {
+                return false;
+            }
+        }
+        dp[cur] = false;
+        visited[cur] = true;
+        return true;
+    }
+}
 
