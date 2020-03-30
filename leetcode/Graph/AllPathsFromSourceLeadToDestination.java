@@ -138,4 +138,42 @@ class Solution {
     }
 }
 
-// Solution 3: DFS
+// Solution 3: DFS (not classic to detect cyle but with 3 status)
+class Solution {
+    public boolean leadsToDestination(int n, int[][] edges, int source, int destination) {
+        Set < Integer > [] graph = new Set[n];
+        for (int i = 0; i < n; i++) {
+            graph[i] = new HashSet < Integer > ();
+        }
+
+        for (int[] edge: edges) {
+            graph[edge[0]].add(edge[1]);
+        }
+
+        return dfs(source, destination, graph, new int[n]);
+    }
+
+    private boolean dfs(int cur, int destination, Set < Integer > [] graph, int[] visited) {
+        if (visited[cur] != 0) {
+            return visited[cur] == 2;
+        }
+
+        if (graph[cur].size() == 0) {
+            return cur == destination;
+        }
+
+        visited[cur] = 1;
+        for (int nei: graph[cur]) {
+            if (!dfs(nei, destination, graph, visited)) {
+                return false;
+            }
+        }
+
+        visited[cur] = 2;
+        return true;
+    }
+}
+
+// Solution 4: DFS (classic way to detect cycle)
+
+
