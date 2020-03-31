@@ -222,3 +222,10 @@
 <p>Count Servers that Communicate
 <p>1. [Concise solution] (https://leetcode.com/problems/count-servers-that-communicate/discuss/436188/Java-or-Clean-And-Simple-or-Beats-100/392655)
 <p>2. [DFS] (https://leetcode.com/problems/count-servers-that-communicate/discuss/436167/Simple-java-DFS-solution-similar-to-200.-number-of-islands)
+
+<p>All Paths From Source To Target
+<p>1. [DFS + backtracking] (https://leetcode.com/problems/all-paths-from-source-to-target/discuss/297408/Java-DFS-solution-Easy-to-understand-and-Explanation)
+  
+  
+  
+
