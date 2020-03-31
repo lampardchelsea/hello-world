@@ -62,4 +62,7 @@
 <p>2. [Why time complexity is 2^N] (https://leetcode.com/problems/all-paths-from-source-to-target/discuss/118713/Java-DFS-Solution/1984)  
 <p>3. [BFS] (https://leetcode.com/problems/all-paths-from-source-to-target/discuss/118857/Java-short-and-easy-BFS)  
   
+<p>All Paths From Source Lead To Destination
+<p>1. [No classic BFS cycle detect] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/FindEventualSafeStates.java)  
+<p>2. [Two cases should return false] (https://www.cnblogs.com/Dylan-Java-NYC/p/11349641.html)  
   
