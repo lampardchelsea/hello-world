@@ -77,3 +77,32 @@ class Solution {
         }
     }
 }
+
+// Solution 2: BFS
+// Refer to
+// https://leetcode.com/problems/all-paths-from-source-to-target/discuss/118857/Java-short-and-easy-BFS
+class Solution {
+    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        Queue<List<Integer>> queue = new LinkedList<List<Integer>>();
+        List<Integer> path = new ArrayList<Integer>();
+        path.add(0);
+        queue.add(path);
+        int n = graph.length;
+        while(!queue.isEmpty()) {
+            List<Integer> list = queue.poll();
+            int lastNodeOfCurrentPath = list.get(list.size() - 1);
+            if(lastNodeOfCurrentPath == n - 1) {
+                result.add(list);
+                continue;
+            }
+            for(int neighbor : graph[lastNodeOfCurrentPath]) {
+                // Expand the neighbor on the path
+                List<Integer> next = new ArrayList<Integer>(list);
+                next.add(neighbor);
+                queue.add(next);
+            }
+        }
+        return result;
+    }
+}
