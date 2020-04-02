@@ -89,7 +89,38 @@ class Solution {
 */
 
 // https://blog.csdn.net/qq_35644234/article/details/60870719
-
+class Solution {
+    public int networkDelayTime(int[][] times, int N, int K) {
+        Map<Integer, Map<Integer, Integer>> map = new HashMap<Integer, Map<Integer, Integer>>();
+        for(int[] time : times) {
+            map.putIfAbsent(time[0], new HashMap<Integer, Integer>());
+            map.get(time[0]).put(time[1], time[2]);
+        }
+        boolean[] visited = new boolean[N + 1];
+        // element as {Node ID, distance}, pq order based on distance as minimum heap
+        // Replace the normal queue used by BFS to PriorityQueue used by Dijkstra
+        PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a, b) -> (a[1] - b[1]));
+        pq.add(new int[]{K, 0});
+        int result = 0;
+        while(!pq.isEmpty()) {
+            int[] cur = pq.poll();
+            int curNode = cur[0];
+            int curDist = cur[1];
+            // If not visited before, mark as visited
+            if(!visited[curNode]) {
+                visited[curNode] = true;
+                N--;
+                result = curDist;
+                if(map.containsKey(curNode)) {
+                  for(int neighbor : map.get(curNode).keySet()) {
+                      pq.add(new int[]{neighbor, curDist + map.get(curNode).get(neighbor)});
+                  }    
+                }
+            }
+        }
+        return N == 0 ? result : -1;
+    }
+}
 
 
 
