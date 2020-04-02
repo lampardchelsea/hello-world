@@ -68,4 +68,6 @@
   
 <p>Network Delay Time
 <p>1. [Java, Djikstra/bfs, Concise and very easy to understand] (https://leetcode.com/problems/network-delay-time/discuss/210698/Java-Djikstrabfs-Concise-and-very-easy-to-understand)
+<p>2. [最短路径问题---Dijkstra算法详解] (https://blog.csdn.net/qq_35644234/article/details/60870719)
+
 
