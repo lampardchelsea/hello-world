@@ -66,3 +66,6 @@
 <p>1. [No classic BFS cycle detect] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/FindEventualSafeStates.java)  
 <p>2. [Two cases should return false] (https://www.cnblogs.com/Dylan-Java-NYC/p/11349641.html)  
   
+<p>Network Delay Time
+<p>1. [Java, Djikstra/bfs, Concise and very easy to understand] (https://leetcode.com/problems/network-delay-time/discuss/210698/Java-Djikstrabfs-Concise-and-very-easy-to-understand)
+
