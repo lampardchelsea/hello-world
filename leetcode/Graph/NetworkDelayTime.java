@@ -80,7 +80,7 @@ class Solution {
     }
 }
 
-// Solution 1: Djikstra/bfs
+// Solution 1: Djikstra / BFS
 // Refer to
 // https://leetcode.com/problems/network-delay-time/discuss/210698/Java-Djikstrabfs-Concise-and-very-easy-to-understand
 /**
