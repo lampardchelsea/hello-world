@@ -118,7 +118,7 @@ class UnionFind {
     }
 }
 
-// Solution 2:
+// Solution 2: DFS
 // Refer to
 // https://leetcode.com/problems/satisfiability-of-equality-equations/discuss/234492/Python3-Easy-DFS
 // https://leetcode.com/problems/satisfiability-of-equality-equations/discuss/271948/Java-Union-Find(100)-and-DFS(98)
