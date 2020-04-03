@@ -117,3 +117,61 @@ class UnionFind {
         return count;
     }
 }
+
+// Solution 2:
+// Refer to
+// https://leetcode.com/problems/satisfiability-of-equality-equations/discuss/234492/Python3-Easy-DFS
+// https://leetcode.com/problems/satisfiability-of-equality-equations/discuss/271948/Java-Union-Find(100)-and-DFS(98)
+/**
+ Bascially we are making a graph.
+If a == b we will have two edges: a->b and b->a.
+After we construct the graph, we check all the x != y
+and make sure they are not able to visit each other.
+*/
+class Solution {
+    public boolean equationsPossible(String[] equations) {
+        Map<Character, Set<Character>> graph = new HashMap<Character, Set<Character>>();
+        for(String e : equations) {
+            if(e.charAt(1) == '=') {
+                graph.putIfAbsent(e.charAt(0), new HashSet<Character>());
+                graph.putIfAbsent(e.charAt(3), new HashSet<Character>());
+                graph.get(e.charAt(0)).add(e.charAt(3));
+                graph.get(e.charAt(3)).add(e.charAt(0));
+            }
+        }
+        for(String e : equations) {
+            if(e.charAt(1) == '!') {
+                Character base = e.charAt(0);
+                Character target = e.charAt(3);
+                // In case for a != a, must before next check
+                if(base == target) {
+                    return false;
+                }
+                if(!graph.containsKey(base) || !graph.containsKey(target)) {
+                    continue;
+                }
+                Set<Character> visited = new HashSet<Character>();
+                if(hasConflict(base, target, graph, visited)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+    private boolean hasConflict(Character base, Character target, Map<Character, Set<Character>> graph, Set<Character> visited) {
+        if(base == target) {
+            return true;
+        }
+        visited.add(base);
+        for(Character neighbor : graph.get(base)) {
+            if(!visited.contains(neighbor)) {
+                if(hasConflict(neighbor, target, graph, visited)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
+
