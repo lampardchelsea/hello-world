@@ -212,3 +212,6 @@
 <p>1. [In Java, we can use TreeMap.floorKey(timestamp) to find the largest timestamp smaller than the given timestamp] (https://leetcode.com/problems/time-based-key-value-store/solution/)  
   
 <p>Invalid Transactions
+
+<p>How Many Numbers Are Smaller Than the Current Number
+<p>1. [HashMap + Sort Array] (https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/discuss/535421/Java-Clean-HashMap-solution-with-explanation)
