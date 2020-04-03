@@ -70,4 +70,12 @@
 <p>1. [Java, Djikstra/bfs, Concise and very easy to understand] (https://leetcode.com/problems/network-delay-time/discuss/210698/Java-Djikstrabfs-Concise-and-very-easy-to-understand)
 <p>2. [最短路径问题---Dijkstra算法详解] (https://blog.csdn.net/qq_35644234/article/details/60870719)
 
+<p>Satisfiability of Equality Equations
+<p>1. [Union Find] (https://leetcode.com/problems/satisfiability-of-equality-equations/discuss/234486/JavaC%2B%2BPython-Easy-Union-Find)
+<p>2. [DFS] (https://leetcode.com/problems/satisfiability-of-equality-equations/discuss/234492/Python3-Easy-DFS)
+<p>3. [DFS] (https://leetcode.com/problems/satisfiability-of-equality-equations/discuss/271948/Java-Union-Find(100)-and-DFS(98))
+  
+  
+
+
 
