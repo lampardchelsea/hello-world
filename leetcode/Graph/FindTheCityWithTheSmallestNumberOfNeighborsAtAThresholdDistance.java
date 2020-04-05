@@ -104,6 +104,12 @@ class Solution {
  This will allow updating a node's weight more than once without looping forever.
 */
 // https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/discuss/538326/Simple-DFS-without-dijkstra
+/**
+ Return how many neighbor cities satisfy threashold
+ (1) If this city is already visited, check the stored visited distance and current distance. If current distance is lower, ignore the current city and visit the current city's neighbours.
+ (2) If true, Ignore the current city and visit the neighbours
+ (3) If false, this the first time this city is visited. Add this city to the output.
+*/
 class Solution {
     public int findTheCity(int n, int[][] edges, int distanceThreshold) {
         Map<Integer, Map<Integer, Integer>> graph = new HashMap<Integer, Map<Integer, Integer>>();
@@ -135,20 +141,18 @@ class Solution {
         return result;
     }
     
-    /**
-     Return how many neighbor cities satisfy threashold
-     (1) If this city is already visited, check the stored visited distance and current distance. If current distance is lower, ignore the current city and visit the current city's neighbours.
-     (2) If true, Ignore the current city and visit the neighbours
-     (3) If false, this the first time this city is visited. Add this city to the output.
-    */
     private void helper(int currNode, int currDistance, int distanceThreshold, Set<Integer> visited, Map<Integer, Map<Integer, Integer>> graph, int[] storedVisitedDistance) {
+        // Only record smallest distance from source node to current node, if current path from source node to current
+        // node has larger distance than stored one then ignore
         if(storedVisitedDistance[currNode] <= currDistance || currDistance > distanceThreshold) {
             return;
         }
+        // Update distance from source node to current node
         storedVisitedDistance[currNode] = currDistance;
         if(graph.containsKey(currNode)) {
             for(int neighbor : graph.get(currNode).keySet()) {
                 if(!visited.contains(neighbor)) {
+                    // Add and then remove to allow re-visit the same node once again from other path
                     visited.add(neighbor);
                     helper(neighbor, currDistance + graph.get(currNode).get(neighbor), distanceThreshold, visited, graph, storedVisitedDistance);
                     visited.remove(neighbor);
