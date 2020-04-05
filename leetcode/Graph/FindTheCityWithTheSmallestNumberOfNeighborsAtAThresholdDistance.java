@@ -99,8 +99,64 @@ class Solution {
 // How to process it with DFS ?
 // Refer to
 // https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/discuss/490312/JavaC%2B%2BPython-Easy-Floyd-Algorithm
+/**
+ Just visit a node when processing it and unvisit it after done processing.
+ This will allow updating a node's weight more than once without looping forever.
+*/
 // https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/discuss/538326/Simple-DFS-without-dijkstra
-
+class Solution {
+    public int findTheCity(int n, int[][] edges, int distanceThreshold) {
+        Map<Integer, Map<Integer, Integer>> graph = new HashMap<Integer, Map<Integer, Integer>>();
+        for(int[] edge : edges) {
+            graph.putIfAbsent(edge[0], new HashMap<Integer, Integer>());
+            graph.putIfAbsent(edge[1], new HashMap<Integer, Integer>());
+            graph.get(edge[0]).put(edge[1], edge[2]);
+            graph.get(edge[1]).put(edge[0], edge[2]);
+        }
+        // Initial as n since at most one node will have n - 1 neighbor nodes
+        int min_neighbors = n;
+        int[] counts = new int[n];
+        for(int i = 0; i < n; i++) {
+            Set<Integer> visited = new HashSet<Integer>();
+            int[] storedVisitedDistance = new int[n];
+            Arrays.fill(storedVisitedDistance, Integer.MAX_VALUE);
+            helper(i, 0, distanceThreshold, visited, graph, storedVisitedDistance);
+            for(int j = 0; j < n; j++) {
+                counts[j] += storedVisitedDistance[j] != Integer.MAX_VALUE ? 1 : 0;
+            }
+        }
+        int result = 0;
+        for(int i = 0; i < n; i++) {
+            if(counts[i] <= min_neighbors) {
+                min_neighbors = counts[i];
+                result = i;
+            }
+        }
+        return result;
+    }
+    
+    /**
+     Return how many neighbor cities satisfy threashold
+     (1) If this city is already visited, check the stored visited distance and current distance. If current distance is lower, ignore the current city and visit the current city's neighbours.
+     (2) If true, Ignore the current city and visit the neighbours
+     (3) If false, this the first time this city is visited. Add this city to the output.
+    */
+    private void helper(int currNode, int currDistance, int distanceThreshold, Set<Integer> visited, Map<Integer, Map<Integer, Integer>> graph, int[] storedVisitedDistance) {
+        if(storedVisitedDistance[currNode] <= currDistance || currDistance > distanceThreshold) {
+            return;
+        }
+        storedVisitedDistance[currNode] = currDistance;
+        if(graph.containsKey(currNode)) {
+            for(int neighbor : graph.get(currNode).keySet()) {
+                if(!visited.contains(neighbor)) {
+                    visited.add(neighbor);
+                    helper(neighbor, currDistance + graph.get(currNode).get(neighbor), distanceThreshold, visited, graph, storedVisitedDistance);
+                    visited.remove(neighbor);
+                }
+            }
+        }
+    }
+}
 
 
 
