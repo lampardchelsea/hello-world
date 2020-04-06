@@ -190,6 +190,12 @@ However, there was a corner case not passing:
 5
 [[0,1,2],[0,4,8],[1,2,3],[1,4,2],[2,3,1],[3,4,1]]
 2
+
+And build with maximum heap, not like NetworkDelayTime.java build with minimum heap and using Dijkstra
+if using minimum heap, will fail with below test case
+		int[][] edges = {{0,1,10}, {0,2,1}, {2,3,1}, {1,3,1}, {1,4,1}, {4,5,10}};
+		int n = 6;
+		int distanceThreshold = 20;
 */
 class Solution {
     public int findTheCity(int n, int[][] edges, int distanceThreshold) {
