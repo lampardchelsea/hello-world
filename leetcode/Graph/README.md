@@ -75,7 +75,12 @@
 <p>2. [DFS] (https://leetcode.com/problems/satisfiability-of-equality-equations/discuss/234492/Python3-Easy-DFS)
 <p>3. [DFS] (https://leetcode.com/problems/satisfiability-of-equality-equations/discuss/271948/Java-Union-Find(100)-and-DFS(98))
   
+<p>Find the City With the Smallest Number of Neighbors at a Threshold Distance
+<p>1. [DFS] (https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/discuss/490364/Why-cannot-I-use-DFS-for-this-problem)
+<p>2. [Why classic DFS not working ?] (https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/discuss/490555/The-Reason-of-DFS-Not-Working-(Explain-Graph-and-Example))
+<p>3. [Dijkstra + BFS] (https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/discuss/490283/Java-PriorityQueue-%2B-BFS)
+<p>4. [Dijkstra + BFS] (https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/discuss/490586/Why-Dijkstra-over-BFS-Why-heap-over-FIFO)
   
-
+  
 
 
