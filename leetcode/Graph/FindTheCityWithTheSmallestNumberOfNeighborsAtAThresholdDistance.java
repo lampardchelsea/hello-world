@@ -163,5 +163,74 @@ class Solution {
 }
 
 
+// Solution 2: Dijkstra (BFS with PriorityQueue, MaxHeap)
+// Refer to
+// https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/discuss/490283/Java-PriorityQueue-%2B-BFS
+/**
+ Time Complexity: Dijkstra on one vertex is O(ElogV), so for all vertices is O(VElogV)
+ The description says 1 <= edges.length <= n * (n - 1) / 2, so O(E) = O(V^2)
+ Therefore, the final time complexity is O(V^3logV) which should be slower than Floyd Warshall (O(V^3))
+*/
 
+// https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/discuss/490586/Why-Dijkstra-over-BFS-Why-heap-over-FIFO
+/**
+ For this problem, why we have to use Dijkstra over BFS, that is, using heap over FIFO? 
+ Knowing that bfs has better performance.
+Because, we have to pop the shrotest distance first to include every loop. The reason is the 
+visited node may block some countable path, if you dont do that.
+For example,
+[0, 2,5], [0,1,1], [1, 2, 1], [2,3,1].
+If you count all the feasible nodes with distance 4 on node 0, you will be like to miss 3, 
+since BFS will put neighbor 2 in visited list. then the feasible path [0, 1, 2, 3] with 
+distance 3, will be early terminated at node [2], bacause it was visted.
 
+During the contest, I was using BFS , which used a normal FIFO queue(see comented line), 
+since every pop and poll only takes O(1), over Dijkstra, whe every pop and poll only takes O(lgk).
+However, there was a corner case not passing:
+5
+[[0,1,2],[0,4,8],[1,2,3],[1,4,2],[2,3,1],[3,4,1]]
+2
+*/
+class Solution {
+    public int findTheCity(int n, int[][] edges, int distanceThreshold) {
+        Map<Integer, Set<int[]>> g = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            g.put(i, new HashSet<>());
+        }
+        for (int[] e : edges) {
+            if (e[2] > distanceThreshold) continue;
+            g.get(e[0]).add(new int[]{e[1], e[2]});
+            g.get(e[1]).add(new int[]{e[0], e[2]});
+        }
+        int min = n + 1;
+        int res = -1;
+        for (int i = 0; i < n; i++) {
+            int count  = bfs(g, distanceThreshold, i);
+            if (count <= min) {
+                min = count;
+                res = i;
+            }
+        }
+        return res;
+    }
+
+    private int bfs(Map<Integer,Set<int[]>> g, int distanceThreshold, int i) {
+        // Queue<int[]> q = new LinkedList<>(); 
+        Queue<int[]> q = new PriorityQueue<>((a, b) -> (b[1] - a[1])); // have to be heap over FIFO, and it must be maximum heap
+        q.add(new int[]{i, distanceThreshold});
+        Set<Integer> visited = new HashSet<>();
+        int count = -1;
+        while (!q.isEmpty()) {
+            int[] city = q.poll();
+            if (visited.contains(city[0])) continue;
+            visited.add(city[0]);
+            count++;
+            for (int[] neighbor : g.get(city[0])) {
+                if (!visited.contains(neighbor[0]) && city[1] >= neighbor[1]) {
+                    q.add(new int[]{neighbor[0], city[1] - neighbor[1]});
+                }
+            }
+        }
+        return count;
+    }
+}
