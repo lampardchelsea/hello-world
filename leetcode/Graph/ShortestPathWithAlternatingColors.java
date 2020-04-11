@@ -41,6 +41,7 @@ red_edges[i].length == blue_edges[i].length == 2
 // Solution 1: BFS
 // Refer to
 // https://leetcode.com/problems/shortest-path-with-alternating-colors/discuss/340258/Java-BFS-Solution-with-Video-Explanation
+// https://youtu.be/Y44KhDTSOMQ
 class Solution {
     public int[] shortestAlternatingPaths(int n, int[][] red_edges, int[][] blue_edges) {
         int[][] graph = new int[n][n];
