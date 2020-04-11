@@ -81,6 +81,6 @@
 <p>3. [Dijkstra + BFS] (https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/discuss/490283/Java-PriorityQueue-%2B-BFS)
 <p>4. [Dijkstra + BFS] (https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/discuss/490586/Why-Dijkstra-over-BFS-Why-heap-over-FIFO)
   
-  
-
+<p>Shortest Path with Alternating Colors  
+<p>1. [Java BFS Solution with Video Explanation] (https://leetcode.com/problems/shortest-path-with-alternating-colors/discuss/340258/Java-BFS-Solution-with-Video-Explanation)
 
