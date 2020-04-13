@@ -37,12 +37,12 @@ Both str1 and str2 contain only lowercase English letters.
  Space: O(n).
 */
 
-// https://www.twblogs.net/a/5d66d523bd9eee5327fec62c
+// https://blog.csdn.net/lemonmillie/article/details/100045180
 /**
- 遍歷一遍str1，就知道str1的每個字符應該映射到誰了
- 但是1個字符不能映射到2個字符 同時 str1裏的字符個數應該少於str2裏的字符個數
- 此外，如果str2有26個字符時，除非兩個字符串相等，否則不可能轉化成功，因爲str1此時也得有26個字符，但是不管動了哪個字符，
- 映射完之後就只有25個字符了，這時候無法再映射回26個字符
+ 遍历一遍str1，就知道str1的每个字符应该映射到谁了
+ 但是1个字符不能映射到2个字符 同时 str1里的字符个数应该少于str2里的字符个数
+ 此外，如果str2有26个字符时，除非两个字符串相等，否则不可能转化成功，
+ 因为str1此时也得有26个字符，但是不管动了哪个字符，映射完之后就只有25个字符了，这时候无法再映射回26个字符
 */
 
 // https://www.cnblogs.com/slowbirdoflsh/p/11356674.html
