@@ -87,3 +87,10 @@
 
 <p>Redundant Connection II
 <p>1. [Union Find] (https://leetcode.com/problems/redundant-connection-ii/discuss/108045/C++Java-Union-Find-with-explanation-O(n)/213568)
+  
+<p>Optimize Water Distribution In AVillage
+<p>1. [Kruskal (Minimum Spanning Tree) algorithm] (https://github.com/azl397985856/leetcode/blob/master/problems/1168.optimize-water-distribution-in-a-village-en.md)
+<p>2. [LeetCode 1168. Optimize Water Distribution in a Village 中文解释 Chinese Version] (https://www.youtube.com/watch?v=JxaO5n_530c)
+<p>3. [Kruskal（最小生成树)] (http://bookshadow.com/weblog/2019/08/25/leetcode-optimize-water-distribution-in-a-village/)
+<p>4. [Detect Cycle using Union Find ?] (https://www.youtube.com/watch?time_continue=162&v=mHz-mx-8lJ8&feature=emb_logo)
+
