@@ -84,3 +84,6 @@
 <p>Shortest Path with Alternating Colors  
 <p>1. [Java BFS Solution with Video Explanation] (https://leetcode.com/problems/shortest-path-with-alternating-colors/discuss/340258/Java-BFS-Solution-with-Video-Explanation)
 <p>2. [Video explain] (https://youtu.be/Y44KhDTSOMQ)
+
+<p>Redundant Connection II
+<p>1. [Union Find] (https://leetcode.com/problems/redundant-connection-ii/discuss/108045/C++Java-Union-Find-with-explanation-O(n)/213568)
