@@ -144,17 +144,17 @@ public class CourseSchedule {
 	    //     ArrayList<DirectedGraphNode> neighbors;
 	    //     DirectedGraphNode(int x) { label = x; neighbors = new ArrayList<DirectedGraphNode>(); }
 	    // };
-	    List < Integer > [] allAdjacents = new List[numCourses];
+	    List<Integer>[] allAdjacents = new List[numCourses];
 	    int[] indegree = new int[numCourses];
 
 	    // Get all nodes indegree and initialize all adjacents of each node
 	    // O(E)
-	    for (int i = 0; i < prerequisites.length; i++) {
+	    for(int i = 0; i < prerequisites.length; i++) {
 		int[] pair = prerequisites[i];
 		// pair[0] -> neighbor of current node
 		// pair[1] -> current node
 		// Initialize adjacents for current node
-		List < Integer > list = allAdjacents[pair[1]];
+		List<Integer> list = allAdjacents[pair[1]];
 		if (list == null) {
 		    list = new LinkedList < Integer > ();
 		    allAdjacents[pair[1]] = list;
@@ -168,27 +168,27 @@ public class CourseSchedule {
 
 	    // Get start nodes and add to queue (indegree = 0)
 	    // O(E)
-	    Queue < Integer > queue = new LinkedList < Integer > ();
-	    for (int i = 0; i < numCourses; i++) {
-		if (indegree[i] == 0) {
+	    Queue<Integer> queue = new LinkedList<Integer>();
+	    for(int i = 0; i < numCourses; i++) {
+		if(indegree[i] == 0) {
 		    queue.offer(i);
 		}
 	    }
 
 	    // Topological sort with BFS
 	    // O(V + E)
-	    while (!queue.isEmpty()) { // O(V)
+	    while(!queue.isEmpty()) { // O(V)
 		numCourses--;
 		int node = queue.poll();
 		// Get node's adjacency
-		List < Integer > adjacents = allAdjacents[node];
+		List<Integer> adjacents = allAdjacents[node];
 		// Important check on if adjacents of current node exist
 		// or not, if not exist skip
-		if (adjacents == null) {
+		if(adjacents == null) {
 		    continue;
 		}
 		// Update indegree by minus 1 for all adjacents of current node
-		for (Integer neighbor: adjacents) { // O(E)
+		for(Integer neighbor: adjacents) { // O(E)
 		    indegree[neighbor]--;
 		    if (indegree[neighbor] == 0) {
 			queue.offer(neighbor);
