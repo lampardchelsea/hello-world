@@ -191,6 +191,11 @@ class Solution {
     }
     
     private boolean canFinishThisCourse(List<Integer> path, int course, ArrayList[] graph, boolean[] visited, boolean[] dp) {
+        // Why return true ?
+        // Refer to
+        // https://leetcode.com/problems/course-schedule-ii/discuss/59317/Two-AC-solution-in-Java-using-BFS-and-DFS-with-explanation/60618
+        // which means the subtree whose root is i has been dfs traversed and all the nodes in 
+        // subtree has been put in the result(if we request), so we do not need to traverse it again
         if(visited[course]) {
             return true;
         }
