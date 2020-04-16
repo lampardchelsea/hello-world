@@ -172,6 +172,16 @@ class Solution {
         // Important !!! Need to revese the path, since the last node add first
         // as recursive to the deepest level first, and 'path.add(course);' 
         // happen there, or use stack instead of ArrayList to store
+        // https://efficientcodeblog.wordpress.com/2017/11/28/topological-sort-dfs-bfs-and-dag/
+        /**
+        DFS Implementation  Mechanism for Topological Sort:
+        While doing a DFS we will search for the sink vertices, and as we get a sink 
+        vertex we will disconnect that vertex from the graph and will then backtrack 
+        and search for the next sink vertex along the search path, until all the vertices 
+        in the graph are visited. This way we will get all the vertices in totally 
+        reverse order of that of what a topological ordering should be. So we would need 
+        to reverse the order to get the topological sort.
+        */
         Collections.reverse(path);
         int[] result = new int[path.size()];
         for(int i = 0; i < path.size(); i++) {
