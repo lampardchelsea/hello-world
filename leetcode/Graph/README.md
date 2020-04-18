@@ -94,3 +94,10 @@
 <p>3. [Kruskal（最小生成树)] (http://bookshadow.com/weblog/2019/08/25/leetcode-optimize-water-distribution-in-a-village/)
 <p>4. [Detect Cycle using Union Find ?] (https://www.youtube.com/watch?time_continue=162&v=mHz-mx-8lJ8&feature=emb_logo)
 
+<p>Alien Dictionary
+<p>1. [Topological Sort + DFS] (https://www.cnblogs.com/grandyang/p/5250200.html)
+<p>2. [Topological Sort + DFS] (https://www.cnblogs.com/jcliblogger/p/4758761.html)
+<p>3. [Topological Sort + BFS] (https://zhuhan0.blogspot.com/2017/06/leetcode-269-alien-dictionary.html)
+<p>4. [Topological Sort + BFS] (https://massivealgorithms.blogspot.com/2019/04/leetcode-269-alien-dictionary.html)
+<p>5. [Topological Sort + BFS + Video explain] (https://www.youtube.com/watch?v=LA0X_N-dEsg)  
+
