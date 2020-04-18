@@ -44,7 +44,8 @@
 // Refer to
 // https://zhuhan0.blogspot.com/2017/06/leetcode-269-alien-dictionary.html
 /**
- Topological sort:
+ Topological sort: 
+ Applicable for DAG (Directed Acycle Graph)
  1.Build graph: a map of character -> set of character.
  2.Also get in-degrees for each character. In-degrees will be a map of character -> integer.
  3.Topological sort:
@@ -79,6 +80,8 @@ public class Solution {
                 graph.put(c, new HashSet<Character>());
             }
         }
+        // Compare the first different character between two words
+        // e.g a -> b, a has an out edge point to b
         for(int i = 1; i < words.length; i++) {
             String first = words[i - 1];
             String second = words[i];
