@@ -121,3 +121,80 @@ public class Solution {
         return sb.toString();
     }
 }
+
+// If want to pass test case on LintCode
+// Input
+// Show Difference
+// ["zy","zx"]
+// Output
+// "yzx"
+// Expected
+// "yxz"
+// There may be multiple valid order of letters, return the smallest in lexicographical order
+// we have to use PriorityQueue instead of LinkedList to guarantee lexicological order
+// Refer to
+// https://www.lintcode.com/problem/alien-dictionary/discuss
+public class Solution {
+    /**
+     * @param words: a list of words
+     * @return: a string which is correct order
+     */
+    public String alienOrder(String[] words) {
+        Map<Character, Set<Character>> graph = new HashMap<Character, Set<Character>>();
+        int[] indegree = new int[26];
+        buildGraph(words, graph, indegree);
+        String order = topologicalSort(graph, indegree);
+        return order.length() == graph.size() ? order : "";
+    }
+    
+    private void buildGraph(String[] words, Map<Character, Set<Character>> graph, int[] indegree) {
+        for(String word : words) {
+            for(Character c : word.toCharArray()) {
+                graph.putIfAbsent(c, new HashSet<Character>());
+            }
+        }
+        for(int i = 1; i < words.length; i++) {
+            String first = words[i - 1];
+            String second = words[i];
+            int length = Math.min(first.length(), second.length());
+            for(int j = 0; j < length; j++) {
+                char parent = first.charAt(j);
+                char child = second.charAt(j);
+                if(parent != child) {
+                    if(!graph.get(parent).contains(child)) {
+                        graph.get(parent).add(child);
+                        indegree[child - 'a']++;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    
+    private String topologicalSort(Map<Character, Set<Character>> graph, int[] indegree) {
+        Queue<Character> queue = new PriorityQueue<Character>();
+        StringBuilder sb = new StringBuilder();
+        for(Character c : graph.keySet()) {
+            if(indegree[c - 'a'] == 0) {
+                queue.offer(c);
+            }
+        }
+        while(!queue.isEmpty()) {
+            Character c = queue.poll();
+            sb.append(c);
+            if(graph.get(c) == null || graph.get(c).size() == 0) {
+                continue;
+            }
+            for(char neighbor : graph.get(c)) {
+                indegree[neighbor - 'a']--;
+                if(indegree[neighbor - 'a'] == 0) {
+                    queue.offer(neighbor);
+                }
+            }
+        }
+        return sb.toString();
+    }
+}
+
+
+
