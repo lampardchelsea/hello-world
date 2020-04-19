@@ -91,8 +91,15 @@ class Solution {
 
 // Solution 2: Topological Sort (DFS)
 // Refer to
-// 
+// https://www.cnblogs.com/lz87/p/11280484.html
 /**
- 
+ Because we have to first take all prerequisites of a course beforing taking it, we know the 
+ following two property of this problem.
+1. If there is a cycle, there is no way of studying all courses.
+2. If there is no cycle, the minimum number of semesters needed to study all courses is determined 
+by the longest acyclic path, i.e, we are looking for the longest acyclic path with each edge's 
+weight being 1. This is exactly the same problem with Max path value in directed graph. The only 
+difference is the dynamic programming state.
+Both runtime and space are O(V+E).
 */
 
