@@ -105,4 +105,59 @@ https://www.cnblogs.com/lz87/p/10354361.html
 The only difference is the dynamic programming state.
 Both runtime and space are O(V+E).
 */
+class Solution {
+    public int minimumSemesters(int N, int[][] relations) {
+        Map < Integer, Set < Integer >> graph = new HashMap < Integer, Set < Integer >> ();
+        int[] indegree = new int[N + 1];
+        for (int i = 1; i < N + 1; i++) {
+            graph.put(i, new HashSet < Integer > ());
+        }
+        for (int[] relation: relations) {
+            if (!graph.get(relation[0]).contains(relation[1])) {
+                graph.get(relation[0]).add(relation[1]);
+                indegree[relation[1]]++;
+            }
+        }
+        int[] longestPath = new int[N + 1];
+        boolean[] visited = new boolean[N + 1];
+        boolean[] dp = new boolean[N + 1];
+        for (int i = 1; i < N + 1; i++) {
+            if (!helper(graph, i, visited, dp, longestPath)) {
+                return -1;
+            }
+        }
+        // If there is no cycle, the minimum number of semesters needed to study all 
+        // courses is determined by the longest acyclic path, i.e, we are looking for 
+        // the longest acyclic path with each edge's weight being 1.
+        int result = 0;
+        for (int i = 1; i < N + 1; i++) {
+            if (result < longestPath[i]) {
+                result = longestPath[i];
+            }
+        }
+        return result;
+    }
 
+    public boolean helper(Map < Integer, Set < Integer >> graph, int i, boolean[] visited, boolean[] dp, int[] longestPath) {
+        if (visited[i]) {
+            return true;
+        }
+        if (dp[i]) {
+            return false;
+        }
+        dp[i] = true;
+        for (int neighbor: graph.get(i)) {
+            if (!helper(graph, neighbor, visited, dp, longestPath)) {
+                return false;
+            }
+        }
+        dp[i] = false;
+        visited[i] = true;
+        // We are looking for the longest acyclic path with each edge's weight being 1.
+        for (int neighbor: graph.get(i)) {
+            longestPath[i] = Math.max(longestPath[i], longestPath[neighbor]);
+        }
+        longestPath[i]++;
+        return true;
+    }
+}
