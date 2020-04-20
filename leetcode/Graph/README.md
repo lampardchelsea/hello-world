@@ -101,3 +101,9 @@
 <p>4. [Topological Sort + BFS] (https://massivealgorithms.blogspot.com/2019/04/leetcode-269-alien-dictionary.html)
 <p>5. [Topological Sort + BFS + Video explain] (https://www.youtube.com/watch?v=LA0X_N-dEsg)  
 
+<p>Parallel Courses
+<p>1. [Topological Sort + BFS] (https://www.cnblogs.com/lz87/p/11280484.html)
+<p>2. [Topological Sort + DFS] (https://www.cnblogs.com/lz87/p/11280484.html)
+<p>3. [Max path value in directed graph] (https://www.cnblogs.com/lz87/p/10354361.html)
+<p>4. [Google | Onsite | Largest Value Path in a Directed graph] (https://leetcode.com/discuss/interview-question/277534/Google-Largest-Value-Path-in-a-Directed-graph/265117)
+  
