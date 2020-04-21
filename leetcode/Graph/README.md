@@ -107,3 +107,7 @@
 <p>3. [Max path value in directed graph] (https://www.cnblogs.com/lz87/p/10354361.html)
 <p>4. [Google | Onsite | Largest Value Path in a Directed graph] (https://leetcode.com/discuss/interview-question/277534/Google-Largest-Value-Path-in-a-Directed-graph/265117)
   
+<p>Max Path Value In Directed Graph
+<p>1. [Google | Onsite | Largest Value Path in a Directed graph] (https://leetcode.com/discuss/interview-question/277534/Google-Largest-Value-Path-in-a-Directed-graph/265117)
+<p>2. [Max path value in directed graph] (https://www.cnblogs.com/lz87/p/10354361.html)
+  
