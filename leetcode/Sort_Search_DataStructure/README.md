@@ -173,6 +173,11 @@
 <p>9. [Lazy evaluation and example of how python 2.2+ use iterator implement lazy evaluation as simulating laziness in eager languages] (https://en.wikipedia.org/wiki/Lazy_evaluation)
 <p>10. [Self loop appears in adjacency list twice] (https://en.wikipedia.org/wiki/Loop_(graph_theory))
 
+<p> Cornell Graph Honor Courses
+<p>1. [Graph traversals - tricolor algorithm, breadth-first search, depth-first search, cycle detection, topological sort, connected components] (https://www.cs.cornell.edu/courses/cs2112/2014fa/lectures/lecture.html?id=traversals)
+<p>2. [Dijkstra's single-source shortest path algorithm - The single-source shortest path problem, Dijkstra's algorithm, Proving correctness of the algorithm, Extensions: generalizing distance, Extensions: A*] (https://www.cs.cornell.edu/courses/cs2112/2014fa/lectures/lecture.html?id=ssp)
+
+
 # Recursion
 <p> Document
 <p>1. [MIT Recursion] (http://web.mit.edu/6.005/www/fa15/classes/10-recursion/)
