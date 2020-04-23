@@ -2,6 +2,7 @@
 <p>1. [Princeton Sorting and Searching] (http://introcs.cs.princeton.edu/java/42sort/)
 <p>2. [Princeton Graphs] (http://algs4.cs.princeton.edu/40graphs/)
 <p>3. [Princeton Bags, Queues and Stacks] (http://algs4.cs.princeton.edu/13stacks/)
+<p>4. [Object-Oriented Design and Data Structures – Honors] (https://www.cs.cornell.edu/courses/cs2112/2014fa/)
 
 # Useful links for specific problems
 
