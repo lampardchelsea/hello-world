@@ -89,8 +89,9 @@ class Solution {
 public class Solution {
     public static void main(String[] args) {
         Solution s = new Solution();
-        //int[][] times = {{1,2,15}, {1,3,14}, {1,4,9}, {4,5,23}, {3,2,5}, 
-        //		{3,5,17}, {2,6,20}, {3,6,30}, {5,6,3}, {6,7,16}, {2,7,37}, {5,7,20}};
+        // The test case based on https://www.cs.cornell.edu/courses/cs2112/2014fa/lectures/lecture.html?id=ssp
+        int[][] times = {{1,2,15}, {1,3,14}, {1,4,9}, {4,5,23}, {3,2,5}, 
+        		{3,5,17}, {2,6,20}, {3,6,30}, {5,6,3}, {6,7,16}, {2,7,37}, {5,7,20}};
         int K = 1;
         int N = 7;
         int result = s.networkDelayTime(times, N, K);
