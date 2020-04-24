@@ -80,7 +80,62 @@ class Solution {
     }
 }
 
-// Solution 1: Djikstra / BFS
+// Solution 1: Dijkstra / BFS classic version
+// Refer to
+// https://leetcode.com/problems/network-delay-time/discuss/210698/Java-Djikstrabfs-Concise-and-very-easy-to-understand
+// https://leetcode.com/problems/network-delay-time/discuss/539965/Java-Clean-code-with-analysis
+// https://www.cs.cornell.edu/courses/cs2112/2014fa/lectures/lecture.html?id=ssp
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/Documents/Dijkstra_single-source_shortest_path_algorithm_CS%202112_ENGRD_2112_Cornell.pdf
+public class Solution {
+    public static void main(String[] args) {
+        Solution s = new Solution();
+        //int[][] times = {{1,2,15}, {1,3,14}, {1,4,9}, {4,5,23}, {3,2,5}, 
+        //		{3,5,17}, {2,6,20}, {3,6,30}, {5,6,3}, {6,7,16}, {2,7,37}, {5,7,20}};
+        int K = 1;
+        int N = 7;
+        int result = s.networkDelayTime(times, N, K);
+        System.out.println(result);
+    }
+
+    public int networkDelayTime(int[][] times, int N, int K) {
+        if (N <= 0 || K < 0 || K > N || times == null || times.length == 0) {
+            return 0;
+        }
+        Map < Integer, List < int[] >> graph = new HashMap < > ();
+        for (int i = 1; i <= N; i++) {
+            graph.put(i, new ArrayList < > ());
+        }
+        for (int[] time: times) {
+            graph.get(time[0]).add(new int[] {time[1], time[2]});
+        }
+        PriorityQueue < int[] > minHeap = new PriorityQueue < int[] > (
+            (a, b) - > Integer.compare(a[1], b[1]));
+        minHeap.offer(new int[] {K, 0});
+        int[] distance = new int[N + 1];
+        Arrays.fill(distance, Integer.MAX_VALUE);
+        distance[K] = 0;
+        distance[0] = 0; // As nodes are labels from 1 to N and the max time for network delay is the max of this array if successful
+        Set < Integer > visited = new HashSet < > ();
+        while (!minHeap.isEmpty()) {
+            int[] current = minHeap.poll();
+            int from = current[0];
+            int dist = current[1];
+            if (!visited.add(from)) continue; // Optimization
+            for (int[] dest: graph.get(from)) {
+                int to = dest[0];
+                int newDist = Math.min(distance[to], dest[1] + dist);
+                if (!visited.contains(to)) { // Check to avoid any cycle
+                    distance[to] = newDist;
+                    minHeap.offer(new int[] {to, newDist});
+                }
+            }
+        }
+        return visited.size() == N ? Arrays.stream(distance).max().getAsInt() : -1;
+    }
+}
+
+
+// Solution 2: Djikstra / BFS
 // Refer to
 // https://leetcode.com/problems/network-delay-time/discuss/210698/Java-Djikstrabfs-Concise-and-very-easy-to-understand
 /**
