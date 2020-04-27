@@ -86,6 +86,30 @@ class Solution {
 // https://leetcode.com/problems/network-delay-time/discuss/539965/Java-Clean-code-with-analysis
 // https://www.cs.cornell.edu/courses/cs2112/2014fa/lectures/lecture.html?id=ssp
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/Documents/Dijkstra_single-source_shortest_path_algorithm_CS%202112_ENGRD_2112_Cornell.pdf
+// https://www.cs.princeton.edu/courses/archive/spring13/cos423/lectures/04GreedyAlgorithmsII.pdf
+/**
+ Dijkstra's algorithm: efficient implementation
+ Implementation.
+ ・Algorithm stores d(v) for each explored node v.
+ ・Priority queue stores π (v) for each unexplored node v.
+ ・Recall: d(u) = π (u) when u is deleted from priority queue.
+   DIJKSTRA (V, E, s) 
+   Create an empty priority queue.
+   FOR EACH v ≠ s : d(v) ← ∞; d(s) ← 0.
+   FOR EACH v ∈ V : insert v with key d(v) into priority queue.
+   WHILE (the priority queue is not empty)
+     u ← delete-min from priority queue.
+     FOR EACH edge (u, v) ∈ E leaving u:
+       IF d(v) > d(u) + ℓ(u, v)
+         decrease-key of v to d(u) + ℓ(u, v) in priority queue.
+         d(v) ← d(u) + ℓ(u, v). 
+
+  Performance. Depends on PQ: n insert, n delete-min, m decrease-key.
+  ・Array implementation optimal for dense graphs.
+  ・Binary heap much faster for sparse graphs.
+  ・4-way heap worth the trouble in performance-critical situations.
+  ・Fibonacci/Brodal best in theory, but not worth implementing.
+*/
 public class Solution {
     public static void main(String[] args) {
         Solution s = new Solution();
