@@ -71,6 +71,7 @@
 <p>2. [Dijkstra algorithm template] (https://leetcode.com/problems/network-delay-time/discuss/539965/Java-Clean-code-with-analysis)
 <p>3. [Java, Djikstra/bfs, Concise and very easy to understand] (https://leetcode.com/problems/network-delay-time/discuss/210698/Java-Djikstrabfs-Concise-and-very-easy-to-understand)
 <p>4. [最短路径问题---Dijkstra算法详解] (https://blog.csdn.net/qq_35644234/article/details/60870719)
+<p>5. [Dijkstra's algorithm: efficient implementation] (https://www.cs.princeton.edu/courses/archive/spring13/cos423/lectures/04GreedyAlgorithmsII.pdf)
 
 <p>Satisfiability of Equality Equations
 <p>1. [Union Find] (https://leetcode.com/problems/satisfiability-of-equality-equations/discuss/234486/JavaC%2B%2BPython-Easy-Union-Find)
