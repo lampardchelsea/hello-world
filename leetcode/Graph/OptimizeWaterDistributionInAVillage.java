@@ -75,6 +75,21 @@ Here use weighted-Union-find to check whether 2 nodes connceted or not, and unio
 // https://www.youtube.com/watch?time_continue=162&v=mHz-mx-8lJ8&feature=emb_logo
 // For each edge, make subsets using both the vertices of the edge, if both of the vertices are in the same subsets, then a cycle find.
 
+// Kruskal template
+// https://www.cs.princeton.edu/courses/archive/spring13/cos423/lectures/04GreedyAlgorithmsII.pdf
+/**
+ KRUSKAL (V, E, c) 
+ SORT m edges by weight so that c(e1) ≤ c(e2) ≤ … ≤ c(em)
+ S ← φ
+ FOREACH v ∈ V: MAKESET(v).
+ FOR i = 1 TO m
+   (u, v) ← ei
+   IF FINDSET(u) ≠ FINDSET(v) <- are u and v in same component?
+     S ← S ∪ { ei }
+     UNION(u, v) <- make u and v in same component
+ RETURN S
+*/
+
 class Solution {
     public int minCostToSupplyWater(int n, int[] wells, int[][] pipes) {
         List < EdgeCost > costs = new ArrayList < EdgeCost > ();
