@@ -56,6 +56,22 @@
  4. connections iteration: O(m) runtime, as both the uf find and connect operations take O(1) time on average.
 */
 
+// Kruskal template
+// Refer to
+// https://www.cs.princeton.edu/courses/archive/spring13/cos423/lectures/04GreedyAlgorithmsII.pdf
+/**
+ KRUSKAL (V, E, c) 
+ SORT m edges by weight so that c(e1) ≤ c(e2) ≤ … ≤ c(em)
+ S ← φ
+ FOREACH v ∈ V: MAKESET(v).
+ FOR i = 1 TO m
+   (u, v) ← ei
+   IF FINDSET(u) ≠ FINDSET(v) <- are u and v in same component?
+     S ← S ∪ { ei }
+     UNION(u, v) <- make u and v in same component
+ RETURN S
+*/
+
 /**
  * Definition for a Connection.
  * public class Connection {
