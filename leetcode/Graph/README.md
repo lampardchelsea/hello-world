@@ -114,3 +114,9 @@
 <p>1. [Google | Onsite | Largest Value Path in a Directed graph] (https://leetcode.com/discuss/interview-question/277534/Google-Largest-Value-Path-in-a-Directed-graph/265117)
 <p>2. [Max path value in directed graph] (https://www.cnblogs.com/lz87/p/10354361.html)
   
+<p>Minimum Spanning Tree
+<p>1. [Kruskal] (https://www.cnblogs.com/lz87/p/7476882.html)
+<p>2. [Princeton Kruskal template] (https://www.cs.princeton.edu/courses/archive/spring13/cos423/lectures/04GreedyAlgorithmsII.pdf)
+<p>3. [Lintcode 629 Minimum Spanning Tree解题笔记] (http://www.noteanddata.com/lintcode-629-Minimum-Spanning-Tree.html#java%E8%A7%A3%E9%A2%98%E4%BB%A3%E7%A0%81)
+<p>4. [Prim + Kruskal] (https://blog.csdn.net/roufoo/article/details/85271791)
+ 
