@@ -120,3 +120,9 @@
 <p>3. [Lintcode 629 Minimum Spanning Tree解题笔记] (http://www.noteanddata.com/lintcode-629-Minimum-Spanning-Tree.html#java%E8%A7%A3%E9%A2%98%E4%BB%A3%E7%A0%81)
 <p>4. [Prim + Kruskal] (https://blog.csdn.net/roufoo/article/details/85271791)
  
+<p>Cheapest Flights Within K Stops
+<p>1. [Looks like Dijkstra but update condition changed as actually PriorityQueue solution only (https://leetcode.com/problems/cheapest-flights-within-k-stops/discuss/128776/5-ms-AC-Java-Solution-based-on-Dijkstra's-Algorithm)
+<p>2. [PriorityQueue] (https://leetcode.com/problems/cheapest-flights-within-k-stops/discuss/115541/JavaPython-Priority-Queue-Solution)
+<p>3. [Why we not update global costs array with int newCost = Math.min(costs[to], currCost + cost) ?] (https://leetcode.com/problems/cheapest-flights-within-k-stops/discuss/115541/JavaPython-Priority-Queue-Solution/222415)
+<p>4. [This is a pretty big modification of Dijkstras] (https://leetcode.com/problems/cheapest-flights-within-k-stops/discuss/115541/JavaPython-Priority-Queue-Solution/301827)
+<p>5. [Why we also need to update when if(newStop < stops[to]) ?] (https://leetcode.com/problems/cheapest-flights-within-k-stops/discuss/115541/JavaPython-Priority-Queue-Solution/156055)
