@@ -126,3 +126,7 @@
 <p>3. [Why we not update global costs array with int newCost = Math.min(costs[to], currCost + cost) ?] (https://leetcode.com/problems/cheapest-flights-within-k-stops/discuss/115541/JavaPython-Priority-Queue-Solution/222415)
 <p>4. [This is a pretty big modification of Dijkstras] (https://leetcode.com/problems/cheapest-flights-within-k-stops/discuss/115541/JavaPython-Priority-Queue-Solution/301827)
 <p>5. [Why we also need to update when if(newStop < stops[to]) ?] (https://leetcode.com/problems/cheapest-flights-within-k-stops/discuss/115541/JavaPython-Priority-Queue-Solution/156055)
+
+<p>Reachable Nodes In Subdivided Graph
+<p>1. [Why we use maxPQ for Dijkstra ?] (https://leetcode.com/problems/reachable-nodes-in-subdivided-graph/discuss/157252/Logical-Thinking-with-Clear-Code)
+<p>2. [Detail explaination for maxPQ code] (https://leetcode.com/problems/reachable-nodes-in-subdivided-graph/discuss/156777/Java-Dijkstra-Solution/162482)
