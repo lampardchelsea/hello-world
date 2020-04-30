@@ -132,4 +132,7 @@
 <p>2. [Detail explaination for maxPQ code] (https://leetcode.com/problems/reachable-nodes-in-subdivided-graph/discuss/156777/Java-Dijkstra-Solution/162482)
 
 <p>Number of Operations to Make Network Connected
-<p>1. [Union Find] (https://leetcode.com/problems/number-of-operations-to-make-network-connected/discuss/477677/Java-Union-Find-(count-components-and-extra-edges))
+<p>1. [Union Find native link] (https://leetcode.com/problems/number-of-operations-to-make-network-connected/discuss/477677/Java-Union-Find-(count-components-and-extra-edges))
+<p>2. [Union Find link by size] (https://www.cs.princeton.edu/~wayne/kleinberg-tardos/pdf/UnionFind.pdf)
+<p>3. [Union Find link by size] (https://leetcode.com/problems/friend-circles/discuss/101336/Java-solution-Union-Find/266043)
+  
