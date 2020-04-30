@@ -98,6 +98,8 @@ class UnionFind {
  Link-by-size
  Maintain a tree size (number of nodes) for each root node.
  Link root of smaller tree to root of larger tree (breaking ties arbitrarily).
+ Theorem. Using link-by-size, any UNION or FIND operation takes O(log n) time
+ in the worst case, where n is the number of elements. 
  UNION(x, y) 
  r ← FIND(x).
  s ← FIND(y).
