@@ -5,7 +5,7 @@ import java.util.Stack;
 // 有效括号和其中字符的长度
 // 以下三个 全为6
 
-public class ValiadParentheses {
+public class ValidParentheses {
     public static void main(String[] args) {
         System.out.println(validLength("()()((00))"));
         System.out.println(validLength("()(((00))"));
