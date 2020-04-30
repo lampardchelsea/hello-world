@@ -73,6 +73,15 @@ class Solution {
 
 // Solution 2: Union find native link
 // Refer to
+// https://www.cs.princeton.edu/~wayne/kleinberg-tardos/pdf/UnionFind.pdf
+/**
+ UNION(x, y) 
+ r ← FIND(x).
+ s ← FIND(y).
+ parent[r] ← s.
+ Theorem. Using naïve linking, a UNION or FIND operation can take Θ(n) time
+ in the worst case, where n is the number of elements. 
+*/
 // https://leetcode.com/problems/friend-circles/discuss/101336/Java-solution-Union-Find
 // Style 1:
 class Solution {
