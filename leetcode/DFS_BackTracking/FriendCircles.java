@@ -217,7 +217,6 @@ class Solution {
         public int count() { return count; }
     }
     
-    
     public int findCircleNum(int[][] M) {
         int n = M.length;
         UF uf = new UF(n);
