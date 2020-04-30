@@ -130,3 +130,6 @@
 <p>Reachable Nodes In Subdivided Graph
 <p>1. [Why we use maxPQ for Dijkstra ?] (https://leetcode.com/problems/reachable-nodes-in-subdivided-graph/discuss/157252/Logical-Thinking-with-Clear-Code)
 <p>2. [Detail explaination for maxPQ code] (https://leetcode.com/problems/reachable-nodes-in-subdivided-graph/discuss/156777/Java-Dijkstra-Solution/162482)
+
+<p>Number of Operations to Make Network Connected
+<p>1. [Union Find] (https://leetcode.com/problems/number-of-operations-to-make-network-connected/discuss/477677/Java-Union-Find-(count-components-and-extra-edges))
