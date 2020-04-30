@@ -40,6 +40,15 @@
 
 // Solution 1: Union Find native link
 // Refer to
+// https://www.cs.princeton.edu/~wayne/kleinberg-tardos/pdf/UnionFind.pdf
+/**
+ UNION(x, y) 
+ r ← FIND(x).
+ s ← FIND(y).
+ parent[r] ← s.
+ Theorem. Using naïve linking, a UNION or FIND operation can take Θ(n) time
+ in the worst case, where n is the number of elements. 
+*/
 // https://leetcode.com/problems/number-of-operations-to-make-network-connected/discuss/477677/Java-Union-Find-(count-components-and-extra-edges)
 class Solution {
     public int makeConnected(int n, int[][] connections) {
