@@ -38,7 +38,7 @@
  No two computers are connected by more than one cable.
 */
 
-// Solution 1: UnionFind
+// Solution 1: Union Find native link
 // Refer to
 // https://leetcode.com/problems/number-of-operations-to-make-network-connected/discuss/477677/Java-Union-Find-(count-components-and-extra-edges)
 class Solution {
@@ -90,5 +90,79 @@ class UnionFind {
     }
 }
 
+// Solution 2: Union Find link by size
+// Refer to
+// https://www.cs.princeton.edu/~wayne/kleinberg-tardos/pdf/UnionFind.pdf
+// https://leetcode.com/problems/friend-circles/discuss/101336/Java-solution-Union-Find/266043
+/**
+ Link-by-size
+ Maintain a tree size (number of nodes) for each root node.
+ Link root of smaller tree to root of larger tree (breaking ties arbitrarily).
+ UNION(x, y) 
+ r ← FIND(x).
+ s ← FIND(y).
+ IF (r = s) RETURN.
+ ELSE IF (size[r] > size[s])
+   parent[s] ← r.
+   size[r] ← size[r] + size[s].
+ ELSE
+   parent[r] ← s.
+   size[s] ← size[r] + size[s].
+*/
+class Solution {
+    public int makeConnected(int n, int[][] connections) {
+        UnionFind uf = new UnionFind(n);
+        int extraEdges = 0;
+        for(int i = 0; i < connections.length; i++) {
+            int p1 = uf.find(connections[i][0]);
+            int p2 = uf.find(connections[i][1]);
+            if(p1 == p2) {
+                extraEdges++;
+            } else {
+                uf.union(connections[i][0], connections[i][1]);
+            }
+        }
+        return extraEdges >= uf.get_count() - 1 ? uf.get_count() - 1 : -1;
+    }
+}
 
-
+class UnionFind {
+    int[] parent;
+    int[] size;
+    int count;
+    public UnionFind(int n) {
+        parent = new int[n];
+        size = new int[n];
+        for(int i = 0; i < n; i++) {
+            parent[i] = i;
+            size[i] = 1;
+        }
+        count = n;
+    }
+    
+    public int find(int x) {
+        if(parent[x] == x) {
+            return x;
+        }
+        return parent[x] = find(parent[x]);
+    }
+    
+    public void union(int a, int b) {
+        int src = find(a);
+        int dst = find(b);
+        if(src != dst) {
+            if(size[src] > size[dst]) {
+                parent[dst] = src;
+                size[src] += size[dst];
+            } else {
+                parent[src] = dst;
+                size[dst] += size[src];
+            }
+        }
+        count--;
+    }
+    
+    public int get_count() {
+        return count;
+    }
+}
