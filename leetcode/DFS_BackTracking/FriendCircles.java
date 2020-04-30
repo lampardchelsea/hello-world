@@ -172,7 +172,25 @@ class Solution {
 
 // Solution 3: Union Find link by size
 // Refer to
+// https://www.cs.princeton.edu/~wayne/kleinberg-tardos/pdf/UnionFind.pdf
 // https://leetcode.com/problems/friend-circles/discuss/101336/Java-solution-Union-Find/266043
+/**
+ Link-by-size
+ Maintain a tree size (number of nodes) for each root node.
+ Link root of smaller tree to root of larger tree (breaking ties arbitrarily).
+ Theorem. Using link-by-size, any UNION or FIND operation takes O(log n) time
+ in the worst case, where n is the number of elements. 
+ UNION(x, y) 
+ r ← FIND(x).
+ s ← FIND(y).
+ IF (r = s) RETURN.
+ ELSE IF (size[r] > size[s])
+   parent[s] ← r.
+   size[r] ← size[r] + size[s].
+ ELSE
+   parent[r] ← s.
+   size[s] ← size[r] + size[s].
+*/
 class Solution {
     class UF {
         private int[] parent, size;
