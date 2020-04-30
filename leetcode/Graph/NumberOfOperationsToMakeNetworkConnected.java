@@ -177,3 +177,78 @@ class UnionFind {
         return count;
     }
 }
+
+// Solution 3: Union Find link by rank
+// Refer to
+// https://leetcode.com/problems/friend-circles/discuss/101336/Java-solution-Union-Find
+// https://www.cs.princeton.edu/~wayne/kleinberg-tardos/pdf/UnionFind.pdf
+/**
+ UNION(x, y)
+ r ← FIND(x).
+ s ← FIND(y).
+ IF (r = s) RETURN.
+ ELSE IF (rank[r] > rank[s])
+   parent[s] ← r.
+ ELSE IF (rank[r] < rank[s])
+   parent[r] ← s.
+ ELSE
+   parent[r] ← s.
+   rank[s] ← rank[s] + 1.
+*/
+class Solution {
+    public int makeConnected(int n, int[][] connections) {
+        UnionFind uf = new UnionFind(n);
+        int extraEdges = 0;
+        for(int i = 0; i < connections.length; i++) {
+            int p1 = uf.find(connections[i][0]);
+            int p2 = uf.find(connections[i][1]);
+            if(p1 == p2) {
+                extraEdges++;
+            } else {
+                uf.union(connections[i][0], connections[i][1]);
+            }
+        }
+        return extraEdges >= uf.get_count() - 1 ? uf.get_count() - 1 : -1;
+    }
+}
+
+class UnionFind {
+    int[] parent;
+    int[] rank;
+    int count;
+    public UnionFind(int n) {
+        parent = new int[n];
+        rank = new int[n];
+        for(int i = 0; i < n; i++) {
+            parent[i] = i;
+        }
+        count = n;
+    }
+    
+    public int find(int x) {
+        if(parent[x] == x) {
+            return x;
+        }
+        return parent[x] = find(parent[x]);
+    }
+    
+    public void union(int a, int b) {
+        int src = find(a);
+        int dst = find(b);
+        if(src != dst) {
+            if(rank[src] > rank[dst]) {
+                parent[dst] = src;
+            } else {
+                parent[src] = dst;
+                if(rank[src] == rank[dst]) {
+                    rank[src]++;
+                }
+            }
+        }
+        count--;
+    }
+    
+    public int get_count() {
+        return count;
+    }
+}
