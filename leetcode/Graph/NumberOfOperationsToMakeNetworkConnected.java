@@ -183,6 +183,10 @@ class UnionFind {
 // https://leetcode.com/problems/friend-circles/discuss/101336/Java-solution-Union-Find
 // https://www.cs.princeton.edu/~wayne/kleinberg-tardos/pdf/UnionFind.pdf
 /**
+ Link-by-rank. Maintain an integer rank for each node, initially 0. Link root of
+ smaller rank to root of larger rank; if tie, increase rank of larger root by 1.
+ Theorem. Using link-by-rank, any UNION or FIND operation takes O(log n) time
+ in the worst case, where n is the number of elements.
  UNION(x, y)
  r ← FIND(x).
  s ← FIND(y).
