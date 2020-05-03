@@ -136,3 +136,8 @@
 <p>2. [Union Find link by size] (https://www.cs.princeton.edu/~wayne/kleinberg-tardos/pdf/UnionFind.pdf)
 <p>3. [Union Find link by size] (https://leetcode.com/problems/friend-circles/discuss/101336/Java-solution-Union-Find/266043)
   
+<p>Shortest Path Visiting All Nodes
+<p>1. [Fast BFS Solution (46ms) -- Clear, Detailed Explanation Included] (https://leetcode.com/problems/shortest-path-visiting-all-nodes/discuss/135809/Fast-BFS-Solution-(46ms)-Clear-Detailed-Explanation-Included)
+<p>2. [We don't need 'cost' in Node object] (https://leetcode.com/problems/shortest-path-visiting-all-nodes/discuss/135809/Fast-BFS-Solution-(46ms)-Clear-Detailed-Explanation-Included/237938)
+  
+  
