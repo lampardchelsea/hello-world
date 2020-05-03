@@ -139,5 +139,5 @@
 <p>Shortest Path Visiting All Nodes
 <p>1. [Fast BFS Solution (46ms) -- Clear, Detailed Explanation Included] (https://leetcode.com/problems/shortest-path-visiting-all-nodes/discuss/135809/Fast-BFS-Solution-(46ms)-Clear-Detailed-Explanation-Included)
 <p>2. [We don't need 'cost' in Node object] (https://leetcode.com/problems/shortest-path-visiting-all-nodes/discuss/135809/Fast-BFS-Solution-(46ms)-Clear-Detailed-Explanation-Included/237938)
-  
+<p>3. [What is 1 << 0?] (https://stackoverflow.com/questions/18215681/what-is-1-0)  
   
