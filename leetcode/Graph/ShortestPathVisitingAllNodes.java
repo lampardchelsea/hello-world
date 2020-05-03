@@ -58,6 +58,9 @@
 /**
  I think we could get rid of the cost attribute just by looping the queue by levels. It will cause less confusion
 */
+
+// What is 1 << 0?
+// https://stackoverflow.com/questions/18215681/what-is-1-0
 class Solution {
     public int shortestPathLength(int[][] graph) {
         int n = graph.length;
