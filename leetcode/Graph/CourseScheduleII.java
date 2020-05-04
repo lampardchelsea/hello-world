@@ -85,7 +85,7 @@ public class Solution {
     }
 }
 
-// BFS solution
+// Topological Sort solution
 // Refer to
 // Use the same strategy as Course Schedule, just adding an ArrayList to store the course visiting sequence on path
 // https://segmentfault.com/a/1190000003814058
