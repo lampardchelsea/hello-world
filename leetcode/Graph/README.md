@@ -141,3 +141,6 @@
 <p>2. [We don't need 'cost' in Node object] (https://leetcode.com/problems/shortest-path-visiting-all-nodes/discuss/135809/Fast-BFS-Solution-(46ms)-Clear-Detailed-Explanation-Included/237938)
 <p>3. [What is 1 << 0?] (https://stackoverflow.com/questions/18215681/what-is-1-0)  
   
+<p>Sort Items by Groups Respecting Dependencies
+<p>1. [Two levels (group + item) Topological Sort] (https://leetcode.com/problems/sort-items-by-groups-respecting-dependencies/discuss/389805/JAVA-Topological-sort.-Detailed-Explanation)
+
