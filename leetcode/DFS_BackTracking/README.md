@@ -229,4 +229,6 @@
 <p>Number of Squareful Arrays
 <p>1. [Java Backtracking similar to Permutations II] (https://leetcode.com/problems/number-of-squareful-arrays/discuss/238658/Java-Backtracking-similar-to-Permutations-II)
   
-
+<p>Similar String Groups
+<p>1. [DFS] (https://leetcode.com/problems/similar-string-groups/discuss/132318/Simple-Java-Solution-using-DFS)
+<p>2. [To consider the case that two strings are exactly same, you need to add || count == 0 in helper()] (https://leetcode.com/problems/similar-string-groups/discuss/132318/Simple-Java-Solution-using-DFS/297615)
