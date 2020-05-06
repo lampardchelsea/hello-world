@@ -358,3 +358,5 @@ binary-search-java-code/29)
 
 <p>Number of Matching Subsequences
 <p>1. [Efficient and simple, go through words in parallel, with explanation] (https://leetcode.com/problems/number-of-matching-subsequences/discuss/117634/Efficient-and-simple-go-through-words-in-parallel-with-explanation)
+  
+<p>Kids With the Greatest Number of Candies
