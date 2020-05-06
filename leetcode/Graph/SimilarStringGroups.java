@@ -26,6 +26,7 @@
 
 // Solution 1: Union Find
 // Refer to
+// https://leetcode.com/problems/similar-string-groups/discuss/132317/Simple-Java-8-Python-Union-Find
 // https://leetcode.com/problems/similar-string-groups/discuss/132318/Simple-Java-Solution-using-DFS/267794
 class Solution {
     public int numSimilarGroups(String[] A) {
