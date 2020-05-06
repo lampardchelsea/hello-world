@@ -226,6 +226,7 @@
 <p>All Paths From Source To Target
 <p>1. [DFS + backtracking] (https://leetcode.com/problems/all-paths-from-source-to-target/discuss/297408/Java-DFS-solution-Easy-to-understand-and-Explanation)
   
-  
+<p>Number of Squareful Arrays
+<p>1. [Java Backtracking similar to Permutations II] (https://leetcode.com/problems/number-of-squareful-arrays/discuss/238658/Java-Backtracking-similar-to-Permutations-II)
   
 
