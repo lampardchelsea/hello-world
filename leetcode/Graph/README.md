@@ -4,6 +4,8 @@ ReachableNodesInSubdividedGraph.java -> Reversed Dijkstra
 NetworkDelayTime.java -> Dijkstra  
 OptimizeWaterDistributionInAVillage.java -> Kruskal  
 FriendCircles.java / NumberOfOperationsToMakeNetworkConnected.java -> Union Find (native union / union by size / union by rank)  
+Need to find Prim example also
+
 
 # Leetcode graph issues
 <p>1. [Leetcode tree issues] (https://leetcode.com/problemset/all/?tagSlugs=graph)
