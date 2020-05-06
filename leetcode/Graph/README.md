@@ -1,3 +1,10 @@
+CourseScheduleII.java / SortItemsByGroupsRespectingDependencies.java / ParallelCourse.java -> Topological Sort  
+CheapestFlightsWithinKStops.java -> Not Dijkstra and condition changed  
+ReachableNodesInSubdividedGraph.java -> Reversed Dijkstra  
+NetworkDelayTime.java -> Dijkstra  
+OptimizeWaterDistributionInAVillage.java -> Kruskal  
+FriendCircles.java / NumberOfOperationsToMakeNetworkConnected.java -> Union Find (native union / union by size / union by rank)  
+
 # Leetcode graph issues
 <p>1. [Leetcode tree issues] (https://leetcode.com/problemset/all/?tagSlugs=graph)
 
