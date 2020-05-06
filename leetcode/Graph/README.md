@@ -153,3 +153,7 @@ Need to find Prim example also
 <p>Sort Items by Groups Respecting Dependencies
 <p>1. [Two levels (group + item) Topological Sort] (https://leetcode.com/problems/sort-items-by-groups-respecting-dependencies/discuss/389805/JAVA-Topological-sort.-Detailed-Explanation)
 
+<p>Similar String Groups
+<p>1. [Union Find] (https://leetcode.com/problems/similar-string-groups/discuss/132317/Simple-Java-8-Python-Union-Find)
+<p>2. [Union Find] (https://leetcode.com/problems/similar-string-groups/discuss/132318/Simple-Java-Solution-using-DFS/267794)
+  
