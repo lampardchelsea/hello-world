@@ -2,7 +2,7 @@ CourseScheduleII.java / SortItemsByGroupsRespectingDependencies.java / ParallelC
 CheapestFlightsWithinKStops.java -> Not Dijkstra and condition changed  
 ReachableNodesInSubdividedGraph.java -> Reversed Dijkstra  
 NetworkDelayTime.java -> Dijkstra  
-OptimizeWaterDistributionInAVillage.java -> Kruskal  
+OptimizeWaterDistributionInAVillage.java / MinCostToRepairEdges.java / MinCostToConnectAllNodes.java -> Kruskal  
 FriendCircles.java / NumberOfOperationsToMakeNetworkConnected.java -> Union Find (native union / union by size / union by rank)  
 Need to find Prim example also
 
