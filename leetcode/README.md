@@ -9,3 +9,4 @@
       [Analysis of Algorithms | Set 4 Analysis of Loops] (http://www.geeksforgeeks.org/analysis-of-algorithms-set-4-analysis-of-loops/)
 <p>4. [LeetCode全部题目] (http://leetcode.liangjiateng.cn/leetcode/algorithm)
 <p>5. [吴老技术讲座福利&Leetcode题解(已更新)] (https://1drv.ms/u/s!ApYB3hxyEgimgek9Ft-gNgMm6MdPTg?e=mhq41U吴老技术讲座福利&Leetcode题解(已更新))
+<p>6. [陈楚list] (https://hjweds.gitbooks.io/leetcode)
