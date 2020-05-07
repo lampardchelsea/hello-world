@@ -49,7 +49,7 @@ class Solution {
             pq.add(e);
             hset.add(e[0] + " " + e[1]);
         }
-      
+        // Edges already exist set cost = 0 to match the minPQ poll sequence
         for (int[] e: edges) {
             String s = e[0] + " " + e[1];
             if (hset.contains(s)) continue;
