@@ -157,3 +157,5 @@ Need to find Prim example also
 <p>1. [Union Find] (https://leetcode.com/problems/similar-string-groups/discuss/132317/Simple-Java-8-Python-Union-Find)
 <p>2. [Union Find] (https://leetcode.com/problems/similar-string-groups/discuss/132318/Simple-Java-Solution-using-DFS/267794)
   
+<p>Min Cost to Repair Edges
+<p>1. [Kruskal + Union Find] (https://leetcode.com/discuss/interview-question/357310/Amazon-or-OA-2019-or-Min-Cost-to-Repair-Edges/405367)
