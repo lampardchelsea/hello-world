@@ -2,6 +2,7 @@
  * Refer to
  * http://flyingcat2013.blog.51cto.com/7061638/1281614
  * http://blog.csdn.net/morewindows/article/details/6684558
+ * https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/tutorial/
 */
 public class QuickSort {
     public void quickSort(int[] arr) {
