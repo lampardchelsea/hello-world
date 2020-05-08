@@ -10,6 +10,8 @@
 // The list of size N is divided into a max of logN parts, and the merging of 
 // all sublists into a single list takes O(N) time, the worst case run time of 
 // this algorithm is O(NlogN)
+// Space Complexity
+// Additional aux array require O(N)
 public class Merge {
     public Merge() {}
 
