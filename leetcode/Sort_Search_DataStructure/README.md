@@ -125,6 +125,8 @@
 <p>1. [用Java写算法之五：快速排序] (http://flyingcat2013.blog.51cto.com/7061638/1281614)
 <p>2. [白话经典算法系列之六 快速排序 快速搞定] (http://blog.csdn.net/morewindows/article/details/6684558)
 
+<p>Bubble Sort
+<p>1. [Hackerearth Bubble Sort] (https://www.hackerearth.com/practice/algorithms/sorting/bubble-sort/tutorial/)
 
 <p>Heap Sort And Priority Queue
 <p>1. [Princeton Priority Queue and Heap Sort] (http://algs4.cs.princeton.edu/24pq/)
