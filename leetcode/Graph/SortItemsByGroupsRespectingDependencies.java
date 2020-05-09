@@ -78,6 +78,40 @@ Coming on to the dependencies that are in the same group we can use topological 
 relative order of items in the same group. Thus this will get us our final answer.
 */
 class Solution {
+    // Test case same as given example
+    public static void main(String[] args) {
+        Solution s = new Solution();
+        int n = 8;
+        int m = 2;
+        int[] group = new int[] {-1, -1, 1, 0, 0, 1, 0, -1};
+        List<List<Integer>> beforeItems = new ArrayList<List<Integer>>();
+        List<Integer> beforeItem0 = new ArrayList<Integer>();
+        List<Integer> beforeItem1 = new ArrayList<Integer>();
+        beforeItem1.add(6);
+        List<Integer> beforeItem2 = new ArrayList<Integer>();
+        beforeItem2.add(5);
+        List<Integer> beforeItem3 = new ArrayList<Integer>();
+        beforeItem3.add(6);
+        List<Integer> beforeItem4 = new ArrayList<Integer>();
+        beforeItem4.add(3);
+        beforeItem4.add(6);
+        List<Integer> beforeItem5 = new ArrayList<Integer>();
+        List<Integer> beforeItem6 = new ArrayList<Integer>();
+        List<Integer> beforeItem7 = new ArrayList<Integer>();
+        beforeItems.add(beforeItem0);
+        beforeItems.add(beforeItem1);
+        beforeItems.add(beforeItem2);
+        beforeItems.add(beforeItem3);
+        beforeItems.add(beforeItem4);
+        beforeItems.add(beforeItem5);
+        beforeItems.add(beforeItem6);
+        beforeItems.add(beforeItem7);
+        int[] result = s.sortItems(n, m, group, beforeItems);
+        for (int i = 0; i < result.length; i++) {
+            System.out.print(result[i] + " ");
+        }
+    }	
+	
     Map<Integer, List<Integer>> groupGraph;
     Map<Integer, List<Integer>> itemGraph;
     int[] groupsIndegree;
