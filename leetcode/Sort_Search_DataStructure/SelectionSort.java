@@ -69,3 +69,50 @@ public class SelectionSort {
 		show(a);
 	}
 }
+
+// Rework
+// Refer to
+// https://www.hackerearth.com/practice/algorithms/sorting/selection-sort/tutorial/
+public class Solution {
+    public void selection_sort(int A[], int n) {
+        // temporary variable to store the position of minimum element
+        int minimum;
+        // reduces the effective size of the array by one in  each iteration.
+        for (int i = 0; i < n - 1; i++) {
+            // assuming the first element to be the minimum of the unsorted array .
+            minimum = i;
+            // gives the effective size of the unsorted  array .
+            for (int j = i + 1; j < n; j++) {
+                if (A[j] < A[minimum]) { //finds the minimum element
+                    minimum = j;
+                }
+            }
+            // putting minimum element on its proper position.
+            swap(A, minimum, i);
+        }
+    }
+
+    public void swap(int[] A, int a, int b) {
+        int temp = A[a];
+        A[a] = A[b];
+        A[b] = temp;
+    }
+
+    public static void main(String[] args) {
+        Solution q = new Solution();
+        int[] arr = {9,7,8,3,2,1};
+        q.selection_sort(arr, 6);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < arr.length; i++) {
+            if (i == arr.length - 1) {
+                sb.append(arr[i]);
+            } else {
+                sb.append(arr[i]).append("->");
+            }
+        }
+        System.out.println(sb.toString());
+    }
+}
+
+
+
