@@ -92,6 +92,8 @@ public class Solution {
         }
     }
 
+    // Must use swap(array, i, j) style since swap(array[i], array[j]) style won't modify
+    // on original array
     public void swap(int[] A, int a, int b) {
         int temp = A[a];
         A[a] = A[b];
