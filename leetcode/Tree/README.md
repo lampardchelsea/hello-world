@@ -282,3 +282,9 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
   
 <p>Serialize and Deserialize N-ary Tree
 <p>1. [Level order traversal] (http://shibaili.blogspot.com/2018/11/428-serialize-and-deserialize-n-ary-tree.html)
+
+<p>Range Sum Query - Mutable
+<p>1. [17 ms Java solution with segment tree] (https://leetcode.com/problems/range-sum-query-mutable/discuss/75724/17-ms-Java-solution-with-segment-tree) 
+<p>2. [A Recursive approach to Segment Trees, Range Sum Queries & Lazy Propagation] (https://leetcode.com/articles/a-recursive-approach-to-segment-trees-range-sum-queries-lazy-propagation/)
+<p>3. [Hackerearth Segment Trees] (https://www.hackerearth.com/practice/data-structures/advanced-data-structures/segment-trees/tutorial/)
+
