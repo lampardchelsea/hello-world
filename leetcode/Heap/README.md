@@ -101,3 +101,9 @@
 <p>3. [Why we not update global costs array with int newCost = Math.min(costs[to], currCost + cost) ?] (https://leetcode.com/problems/cheapest-flights-within-k-stops/discuss/115541/JavaPython-Priority-Queue-Solution/222415)
 <p>4. [This is a pretty big modification of Dijkstras] (https://leetcode.com/problems/cheapest-flights-within-k-stops/discuss/115541/JavaPython-Priority-Queue-Solution/301827)
 <p>5. [Why we also need to update when if(newStop < stops[to]) ?] (https://leetcode.com/problems/cheapest-flights-within-k-stops/discuss/115541/JavaPython-Priority-Queue-Solution/156055)
+
+<p>Maximum Number of Events That Can Be Attended
+<p>1. [[Java/C++/Python] Priority Queue] (https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/discuss/510263/JavaC++Python-Priority-Queue/451931)
+<p>2. [【Detailed analysis】Let me lead you to the solution step by step] (https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/discuss/510262/Detailed-analysisLet-me-lead-you-to-the-solution-step-by-step)  
+  
+
