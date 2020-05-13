@@ -132,5 +132,46 @@ Complexity
 Time O(d + nlogn), where D is the range of A[i][1]
 Space O(N)
 */
+class Solution {
+    public int maxEvents(int[][] events) {
+        // Sort event by increasing start time
+        Arrays.sort(events, (a, b) -> a[0] - b[0]);
+        // Build min heap to sort end time from end soon to later
+        PriorityQueue<Integer> minPQ = new PriorityQueue<Integer>();
+        int result = 0;
+        int n = events.length;
+        int totalDays = 0;
+        for(int j = 0; j < n; j++) {
+            if(events[j][1] > totalDays) {
+                totalDays = events[j][1];
+            }
+        }
+        int i = 0;
+        for(int d = 1; d <= totalDays; d++) {
+            // Add new events that can attend on day 'd'
+            // use while loop since multiple events may happen on same day
+            while(i < n && events[i][0] == d) {
+                // What we care about is the end date of events been added on heap
+                minPQ.offer(events[i][1]);
+                i++;
+            }
+            // Remove events that are already closed
+            while(!minPQ.isEmpty() && minPQ.peek() < d) {
+                minPQ.poll();
+            }
+            // Use day 'd' to attend to the event that closes earlier
+            if(!minPQ.isEmpty()) {
+                result++;
+                minPQ.poll();
+            }
+        }
+        return result;
+    }
+}
+
+// Solution 2: Segment Tree
+// Refer to
+// https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/discuss/515808/Java-Segment-Tree-Solution
+
 
 
