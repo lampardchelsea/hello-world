@@ -86,4 +86,58 @@ class MyCalendar {
  Refer to
  https://leetcode.com/problems/my-calendar-i/discuss/139110/Java-Binary-Search-Tree-Solution/164064
 */
+class MyCalendar {
+    private SegmentTreeNode root;
+    private boolean intervalFound;
+    
+    public MyCalendar() {
+        intervalFound = false;
+    }
+    
+    public boolean book(int start, int end) {
+        if(end < start || start < 0) {
+            return false;
+        }
+        root = insert(root, start, end);
+        if(intervalFound) {
+            // For next run of 'book' restore 'intervalFound'
+            intervalFound = false; 
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    private SegmentTreeNode insert(SegmentTreeNode node, int new_node_start, int new_node_end) {
+        if(node == null) {
+            // If recursively till end and not interrupted means we found an available interval, then create a node
+            intervalFound = true;
+            return new SegmentTreeNode(new_node_start, new_node_end);
+        }
+        if(node.start >= new_node_end) {
+            node.left = insert(node.left, new_node_start, new_node_end); // Add new node to current node's left
+        } else if(node.end <= new_node_start) {
+            node.right = insert(node.right, new_node_start, new_node_end); // Add new node to current node's right
+        }
+        return node;
+    }
+}
 
+class SegmentTreeNode {
+    public int start;
+    public int end;
+    public SegmentTreeNode left;
+    public SegmentTreeNode right;
+    
+    public SegmentTreeNode(int start, int end) {
+        this.start = start;
+        this.end = end;
+    }
+}
+
+
+/**
+ * Your MyCalendar object will be instantiated and called as such:
+ * MyCalendar obj = new MyCalendar();
+ * boolean param_1 = obj.book(start,end);
+ */
