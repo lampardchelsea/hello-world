@@ -75,6 +75,11 @@
  
  If our event conflicts with a double booking, it's invalid. Otherwise, we add conflicts with the 
  calendar to our double bookings, and add the event to our calendar.
+ 
+ Complexity Analysis
+ Time Complexity: O(N^2), where N is the number of events booked. For each new event, we process every 
+ previous event to decide whether the new event can be booked. This leads to sum_k^N O(k) = O(N^2) complexity.
+ Space Complexity: O(N), the size of the calendar.
 */
 class MyCalendarTwo {
     List<int[]> calendar;
