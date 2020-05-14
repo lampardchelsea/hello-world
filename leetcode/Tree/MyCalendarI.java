@@ -89,6 +89,9 @@ class MyCalendar {
  Complexity Analysis
  Time Complexity (Java): O(NlogN), where N is the number of events booked. For each new event, we search 
  that the event is legal in O(logN) time, then insert it in O(1) time.
+ Time Complexity (Python): O(N^2) worst case, with O(NlogN) on random data. For each new event, we insert 
+ the event into our binary tree. As this tree may not be balanced, it may take a linear number of steps 
+ to add each event.
  Space Complexity: O(N), the size of the data structures used.
 */
 class MyCalendar {
