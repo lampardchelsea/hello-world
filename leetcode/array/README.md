@@ -360,3 +360,10 @@ binary-search-java-code/29)
 <p>1. [Efficient and simple, go through words in parallel, with explanation] (https://leetcode.com/problems/number-of-matching-subsequences/discuss/117634/Efficient-and-simple-go-through-words-in-parallel-with-explanation)
   
 <p>Kids With the Greatest Number of Candies
+
+<p>My Calendar I
+<p>1. [Brutal Force to find intervals] (https://leetcode.com/problems/my-calendar-i/solution/)
+  
+<p>My Calendar II
+<p>1. [Brutal Force to find intervals] (https://leetcode.com/problems/my-calendar-ii/discuss/109519/JavaC%2B%2B-Clean-Code-with-Explanation)
+<p>2. [Brutal Force to find intervals] (https://leetcode.com/problems/my-calendar-ii/solution/)
