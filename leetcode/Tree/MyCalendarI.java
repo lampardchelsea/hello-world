@@ -71,5 +71,19 @@ class MyCalendar {
 // Solution 2: Segment Tree
 // Refer to
 // https://leetcode.com/problems/my-calendar-i/discuss/139110/Java-Binary-Search-Tree-Solution
-
+/**
+ The solution is inspired by the segment tree data structure. Basically, we can construct those event 
+ intervals into a binary search tree based on the start and end time. Simple example:
+ insert(10, 20);
+ insert(20, 30);
+ insert(0, 9);
+ The tree structure would be like:
+ (0, 9) <- (10, 20) -> (20, 30)
+ if there is overlap of the time interval, we can return a dummy node, (-1, -1) to indicate that.
+ The solution beats 97%, but the worst case time complexity would be O(n), since the tree could not be balanced.
+ 
+ Note: No need to create dummy node as (-1, -1), just need is to have a global state marker
+ Refer to
+ https://leetcode.com/problems/my-calendar-i/discuss/139110/Java-Binary-Search-Tree-Solution/164064
+*/
 
