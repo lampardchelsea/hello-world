@@ -288,3 +288,9 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>2. [A Recursive approach to Segment Trees, Range Sum Queries & Lazy Propagation] (https://leetcode.com/articles/a-recursive-approach-to-segment-trees-range-sum-queries-lazy-propagation/)
 <p>3. [Hackerearth Segment Trees] (https://www.hackerearth.com/practice/data-structures/advanced-data-structures/segment-trees/tutorial/)
 
+<p>My Calendar I
+<p>1. [Brute Force] (https://leetcode.com/problems/my-calendar-i/solution/)
+<p>2. [Segment Tree] (https://leetcode.com/problems/my-calendar-i/discuss/139110/Java-Binary-Search-Tree-Solution)
+<p>3. [Update] (https://leetcode.com/problems/my-calendar-i/discuss/139110/Java-Binary-Search-Tree-Solution/164064)
+
+
