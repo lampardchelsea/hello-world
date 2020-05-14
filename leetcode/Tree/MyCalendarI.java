@@ -85,6 +85,11 @@ class MyCalendar {
  Note: No need to create dummy node as (-1, -1), just need is to have a global state marker
  Refer to
  https://leetcode.com/problems/my-calendar-i/discuss/139110/Java-Binary-Search-Tree-Solution/164064
+ 
+ Complexity Analysis
+ Time Complexity (Java): O(NlogN), where N is the number of events booked. For each new event, we search 
+ that the event is legal in O(logN) time, then insert it in O(1) time.
+ Space Complexity: O(N), the size of the data structures used.
 */
 class MyCalendar {
     private SegmentTreeNode root;
