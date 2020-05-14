@@ -87,11 +87,21 @@ class MyCalendar {
  https://leetcode.com/problems/my-calendar-i/discuss/139110/Java-Binary-Search-Tree-Solution/164064
  
  Complexity Analysis
- Time Complexity (Java): O(NlogN), where N is the number of events booked. For each new event, we search 
+ Time Complexity (Java TreeMap): 
+ For Java TreeMap, we will have a TreeMap where the keys are the start of each interval, 
+ and the values are the ends of those intervals. When inserting the interval [start, end), we check if there is a 
+ conflict on each side with neighboring intervals: we would like calendar.get(prev)) <= start <= end <= next for 
+ the booking to be valid (or for prev or next to be null respectively.)
+ O(NlogN), where N is the number of events booked. For each new event, we search 
  that the event is legal in O(logN) time, then insert it in O(1) time.
- Time Complexity (Python): O(N^2) worst case, with O(NlogN) on random data. For each new event, we insert 
+ 
+ Time Complexity (Java Segment Tree): 
+ For Java Segment Tree, we will create a binary tree. Each node represents some interval [self.start, self.end) while 
+ self.left, self.right represents nodes that are smaller or larger than the current node.
+ O(N^2) worst case, with O(NlogN) on random data. For each new event, we insert 
  the event into our binary tree. As this tree may not be balanced, it may take a linear number of steps 
  to add each event.
+ 
  Space Complexity: O(N), the size of the data structures used.
 */
 class MyCalendar {
