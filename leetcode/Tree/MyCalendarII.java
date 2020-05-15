@@ -156,7 +156,7 @@ class MyCalendarTwo {
             // then we put another node has overlap to previous new node,
             // increasing that previous new node 'overlap_count' to 2,
             // now if you try to put another node has overlap to both nodes
-            // by 'query' method, it will blcok
+            // by 'query' method, it will block
             return new SegmentTreeNode(new_node_start, new_node_end, 1);
         }
         if(node.end <= new_node_start) {
