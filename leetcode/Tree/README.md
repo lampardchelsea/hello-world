@@ -293,4 +293,10 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>2. [Segment Tree] (https://leetcode.com/problems/my-calendar-i/discuss/139110/Java-Binary-Search-Tree-Solution)
 <p>3. [Update] (https://leetcode.com/problems/my-calendar-i/discuss/139110/Java-Binary-Search-Tree-Solution/164064)
 
-
+<p>My Calendar II
+<p>1. [Brute Force] (https://leetcode.com/problems/my-calendar-ii/discuss/109519/JavaC%2B%2B-Clean-Code-with-Explanation)  
+<p>2. [Segment Tree] (https://leetcode.com/problems/my-calendar-ii/discuss/232261/Simple-and-Optimal-Segment-Tree-Solution) 
+<p>3. [Segment Tree + Lazy Propagation] (https://leetcode.com/problems/my-calendar-ii/discuss/109528/nlogd-Java-solution-using-segment-tree-with-lazy-propagation-(for-the-general-case-of-K-booking))
+  
+  
+  
