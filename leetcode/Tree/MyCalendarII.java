@@ -34,6 +34,7 @@
 
 // Solution 1: Brutal Force
 // Refer to
+// Style 1
 // https://leetcode.com/problems/my-calendar-ii/discuss/109519/JavaC%2B%2B-Clean-Code-with-Explanation
 /**
  The big idea is pretty simple:
@@ -60,7 +61,42 @@
  a: a0 |----| a1
  b:              b0 |----| b1
 */
+class MyCalendarTwo {
+    private List<int[]> books = new ArrayList<int[]>();
+    public boolean book(int start, int end) {
+        MyCalendar overlaps = new MyCalendar();
+        for(int[] book : books) {
+            if(book[1] > start && book[0] < end) { // overlap exist
+                if(!overlaps.book(Math.max(book[0], start), Math.min(book[1], end))) {
+                    return false; // overlaps overlapped
+                }
+            }
+        }
+        books.add(new int[] {start, end});
+        return true;
+    }
+    
+    private static class MyCalendar {
+        List<int[]> books = new ArrayList<int[]>();
+        public boolean book(int start, int end) {
+            for(int[] book : books) {
+                if(book[1] > start && book[0] < end) {
+                    return false;
+                }
+            }
+            books.add(new int[] {start, end});
+            return true;
+        }        
+    }
+}
 
+/**
+ * Your MyCalendarTwo object will be instantiated and called as such:
+ * MyCalendarTwo obj = new MyCalendarTwo();
+ * boolean param_1 = obj.book(start,end);
+ */
+
+// Style 2
 // https://leetcode.com/problems/my-calendar-ii/solution/
 /**
  Intuition
@@ -105,6 +141,9 @@ class MyCalendarTwo {
         return true;
     }
 }
+
+
+
 
 /**
  * Your MyCalendarTwo object will be instantiated and called as such:
@@ -451,3 +490,44 @@ public boolean book(int start, int end) {
     return true;
 }
  */
+
+// Follow up questions:
+// Refer to
+// https://leetcode.com/problems/my-calendar-ii/discuss/619695/Follow-up-questions%3A-A-new-event-can-be-added-if-it-will-not-cause-a-K-booking.
+/**
+ One follow up question is
+ A new event can be added if it will not cause a K-booking.
+ A K-booking happens when K events have some non-empty intersection (ie., there is some time that is common to all K events.)
+*/
+class MyCalendarTwo {
+    List<List<int[]>> overlaps;
+    int k = 2;   // For triple-booking   
+    public MyCalendarTwo() {
+        overlaps = new ArrayList<>();
+        for(int i = 0; i < k; i++) {
+            overlaps.add(new ArrayList<>());
+        }
+    }
+    
+    public boolean book(int start, int end) {     
+        for(int i = 0; i < k; i++) {
+            // Find overlap in the i-th overlaps
+            for(int[] o : overlaps.get(i)) {
+                if(i == 0) {
+                    if(Math.max(o[0], start) < Math.min(o[1], end)) {
+                        return false;
+                    }
+                } else {
+                    if(Math.max(o[0], start) < Math.min(o[1], end)) {
+                        overlaps.get(i-1).add(new int[] {Math.max(o[0], start), Math.min(o[1], end)});
+                    }  
+                }
+            }
+        }
+        // Add interval into calendar: O(1)
+        overlaps.get(k-1).add(new int[]{ start, end });
+        return true;
+    }
+}
+
+
