@@ -159,3 +159,57 @@ class SegmentTreeNode {
  * MyCalendar obj = new MyCalendar();
  * boolean param_1 = obj.book(start,end);
  */
+
+// Note: For Segement Tree solution we have another style
+// Just change the boolean to int for interval count, it also works
+// Refer to
+// https://leetcode.com/problems/my-calendar-ii/discuss/232261/Simple-and-Optimal-Segment-Tree-Solution
+class MyCalendar {
+    private SegmentTreeNode root;
+    private int intervalFound;
+    
+    public MyCalendar() {
+        intervalFound = 0;
+    }
+    
+    public boolean book(int start, int end) {
+        if(end < start || start < 0) {
+            return false;
+        }
+        root = insert(root, start, end);
+        if(intervalFound == 1) {
+            // For next run of 'book' restore 'intervalFound'
+            intervalFound = 0; 
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    private SegmentTreeNode insert(SegmentTreeNode node, int new_node_start, int new_node_end) {
+        if(node == null) {
+            // If recursively till end and not interrupted means we found an available interval, then create a node
+            intervalFound = 1;
+            return new SegmentTreeNode(new_node_start, new_node_end);
+        }
+        if(node.start >= new_node_end) {
+            node.left = insert(node.left, new_node_start, new_node_end); // Add new node to current node's left
+        } else if(node.end <= new_node_start) {
+            node.right = insert(node.right, new_node_start, new_node_end); // Add new node to current node's right
+        }
+        return node;
+    }
+}
+
+class SegmentTreeNode {
+    public int start;
+    public int end;
+    public SegmentTreeNode left;
+    public SegmentTreeNode right;
+    
+    public SegmentTreeNode(int start, int end) {
+        this.start = start;
+        this.end = end;
+    }
+}
+
