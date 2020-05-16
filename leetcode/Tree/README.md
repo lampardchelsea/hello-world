@@ -297,7 +297,9 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>1. [Brute Force] (https://leetcode.com/problems/my-calendar-ii/discuss/109519/JavaC%2B%2B-Clean-Code-with-Explanation)  
 <p>2. [Segment Tree] (https://leetcode.com/problems/my-calendar-ii/discuss/232261/Simple-and-Optimal-Segment-Tree-Solution) 
 <p>3. [Segment Tree + Lazy Propagation] (https://leetcode.com/problems/my-calendar-ii/discuss/109528/nlogd-Java-solution-using-segment-tree-with-lazy-propagation-(for-the-general-case-of-K-booking))
-<p>4. [Follow up questions: A new event can be added if it will not cause a K-booking] (https://leetcode.com/problems/my-calendar-ii/discuss/619695/Follow-up-questions%3A-A-new-event-can-be-added-if-it-will-not-cause-a-K-booking.)   
+<p>4. [Follow up questions: A new event can be added if it will not cause a K-booking] (https://leetcode.com/problems/my-calendar-ii/discuss/619695/Follow-up-questions%3A-A-new-event-can-be-added-if-it-will-not-cause-a-K-booking.)
+<p>5. [Timeline] (https://leetcode.com/problems/my-calendar-ii/discuss/109550/Simple-AC-by-TreeMap)
+<p>6. [Timeline 解释] (https://www.cnblogs.com/grandyang/p/7968035.html)
   
 <p>My Calendar III
 <p>1. [Timeline] (https://leetcode.com/problems/my-calendar-iii/discuss/109556/JavaC%2B%2B-Clean-Code)
