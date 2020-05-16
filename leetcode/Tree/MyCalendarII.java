@@ -491,6 +491,50 @@ public boolean book(int start, int end) {
 }
  */
 
+// Solution 4: Timeline
+// Refer to
+// https://leetcode.com/problems/my-calendar-ii/discuss/109550/Simple-AC-by-TreeMap
+// https://www.cnblogs.com/grandyang/p/7968035.html
+class MyCalendarTwo {
+    private TreeMap<Integer, Integer> timeline = new TreeMap<Integer, Integer>();
+    
+    public MyCalendarTwo() {
+        
+    }
+    
+    public boolean book(int start, int end) {
+        // 1 new event will start at [s]
+        timeline.put(start, timeline.getOrDefault(start, 0) + 1);
+        // 1 new event will end at [e]
+        timeline.put(end, timeline.getOrDefault(end, 0) - 1);
+        int ongoing = 0;
+        for(int v : timeline.values()) {
+            ongoing += v;
+            if(ongoing > 2) {
+                timeline.put(start, timeline.get(start) - 1);
+                if(timeline.get(start) == 0) {
+                    timeline.remove(start);
+                }
+                timeline.put(end, timeline.get(end) + 1);
+                if(timeline.get(end) == 0) {
+                    timeline.remove(end);
+                }
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+/**
+ * Your MyCalendarTwo object will be instantiated and called as such:
+ * MyCalendarTwo obj = new MyCalendarTwo();
+ * boolean param_1 = obj.book(start,end);
+ */
+
+
+
+
 // Follow up questions:
 // Refer to
 // https://leetcode.com/problems/my-calendar-ii/discuss/619695/Follow-up-questions%3A-A-new-event-can-be-added-if-it-will-not-cause-a-K-booking.
@@ -529,5 +573,3 @@ class MyCalendarTwo {
         return true;
     }
 }
-
-
