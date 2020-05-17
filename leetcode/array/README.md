@@ -371,3 +371,7 @@ binary-search-java-code/29)
 <p>Rectangle Area
 <p>1. [My Java solution [Sum of areas - Overlapped area]] (https://leetcode.com/problems/rectangle-area/discuss/62138/My-Java-solution-Sum-of-areas-Overlapped-area)  
   
+<p>Rectangle Overlap
+<p>1. [Math] (https://leetcode.com/problems/rectangle-overlap/solution/)
+<p>2. [My Calendar I] (https://leetcode.com/problems/my-calendar-i/solution/)  
+  
