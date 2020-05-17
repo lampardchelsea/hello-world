@@ -367,3 +367,7 @@ binary-search-java-code/29)
 <p>My Calendar II
 <p>1. [Brutal Force to find intervals] (https://leetcode.com/problems/my-calendar-ii/discuss/109519/JavaC%2B%2B-Clean-Code-with-Explanation)
 <p>2. [Brutal Force to find intervals] (https://leetcode.com/problems/my-calendar-ii/solution/)
+  
+<p>Rectangle Area
+<p>1. [My Java solution [Sum of areas - Overlapped area]] (https://leetcode.com/problems/rectangle-area/discuss/62138/My-Java-solution-Sum-of-areas-Overlapped-area)  
+  
