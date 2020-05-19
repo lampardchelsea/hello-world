@@ -38,6 +38,17 @@
  有些异曲同工之妙，都还是为了计算高度差服务的。要搞清楚这道题的核心思想，不是一件容易的事，博主的建议是就拿题目中给的例子带入
  到下面的代码中，一步一步执行，并分析结果，是能够初步的了解解题思路的
 */
+// https://leetcode.com/problems/rectangle-area-ii/discuss/137941/Java-TreeMap-solution-inspired-by-Skyline-and-Meeting-Room/147184
+/**
+ Collections.sort(data, (a,b)-> a.x-b.x); is enough, because you use TreeMap below, I've tried and lower the runtime.
+ We can replace below with above one line
+   Collections.sort(data, (a, b) -> {
+        if (a.x == b.x) {
+            return b.y - a.y;
+        }
+        return a.x - b.x;
+    });
+*/
 class Solution {
     class Point {
         int x, y, val;
@@ -89,3 +100,4 @@ class Solution {
         return result;
     }
 }
+
