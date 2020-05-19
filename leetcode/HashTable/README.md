@@ -215,3 +215,9 @@
 
 <p>How Many Numbers Are Smaller Than the Current Number
 <p>1. [HashMap + Sort Array] (https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/discuss/535421/Java-Clean-HashMap-solution-with-explanation)
+
+<p>Rectangle Area II
+<p>1. [Recurisve Solution] (https://leetcode.com/problems/rectangle-area-ii/discuss/138028/Clean-Recursive-Solution-Java)
+<p>2. [Similar to Skyline] (https://leetcode.com/problems/rectangle-area-ii/discuss/137941/Java-TreeMap-solution-inspired-by-Skyline-and-Meeting-Room)
+<p>3. [中文解释] (https://www.cnblogs.com/grandyang/p/11371256.html)
+  
