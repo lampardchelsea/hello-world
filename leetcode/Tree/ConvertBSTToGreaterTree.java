@@ -15,11 +15,31 @@ Output: The root of a Greater Tree like this:
              18
             /   \
           20     13
+          
+This is same problem as below:
+Binary Search Tree to Greater Sum Tree
+https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/
+Given the root of a binary search tree with distinct values, modify it so that every node has 
+a new value equal to the sum of the values of the original tree that are greater than or equal to node.val.
+
+As a reminder, a binary search tree is a tree that satisfies these constraints:
+
+The left subtree of a node contains only nodes with keys less than the node's key.
+The right subtree of a node contains only nodes with keys greater than the node's key.
+Both the left and right subtrees must also be binary search trees.
 */
+
 // Solution 1: Reverse in-order traversal
+// Style 1: With global veriable
 // Refer to
 // https://leetcode.com/problems/convert-bst-to-greater-tree/solution/
 // https://leetcode.com/problems/convert-bst-to-greater-tree/discuss/100506/Java-Recursive-O(n)-time/152561
+// https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/discuss/286725/JavaC%2B%2BPython-Revered-Inorder-Traversal
+/**
+ We need to do the work from biggest to smallest, right to left.
+ pre will record the previous value the we get, which the total sum of bigger values.
+ For each node, we update root.val with root.val + pre.
+*/
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -36,14 +56,14 @@ class Solution {
             return null;
         }
         convertBST(root.right);
-        root.val += sum;
+        root.val += sum; 
         sum = root.val;
         convertBST(root.left);
         return root;
     }
 }
 
-// Solution 2: With helper method and not use global variable
+// Style 2: With helper method and not use global variable
 // Refer to
 // https://leetcode.com/problems/convert-bst-to-greater-tree/discuss/100506/Java-Recursive-O(n)-time/104632
 /**
@@ -71,3 +91,23 @@ class Solution {
         return left; // Tricky point, not return root.val
     }
 }
+
+// Style 3:
+// Refer to
+// https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/discuss/286725/JavaC%2B%2BPython-Revered-Inorder-Traversal
+class Solution {
+    int pre = 0;
+    public TreeNode bstToGst(TreeNode root) {
+        if (root.right != null) {
+            bstToGst(root.right);
+        }
+        //pre = root.val = pre + root.val;
+        root.val = pre + root.val;
+        pre = root.val;
+        if (root.left != null) {
+            bstToGst(root.left);
+        }
+        return root;
+    }
+}
+
