@@ -111,3 +111,38 @@ class Solution {
     }
 }
 
+// Solution 2: Iterative with stack
+// Refer to
+// https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/discuss/286906/Java-3-iterative-and-recursive-codes-w-comments-and-explanation.
+/**
+ 因为中序遍历有递归和迭代两种写法，逆中序遍历同样也可以写成迭代的形式
+ Iterative version: use stack to pop out the nodes in reversed in order sequence.
+ 1.Initially, use cur to point to the root,
+ 2.push into Stack the right-most path of current subtree;
+ 3.pop out a node, update sum and the node value;
+ 4.point cur to the node's left child, if any;
+ Repeat the above till the stack is empty and cur has no left child.
+*/
+class Solution {
+    public TreeNode bstToGst(TreeNode root) {
+        int sum = 0;
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode cur = root;
+        while(cur != null || !stack.isEmpty()) {
+            // Save right-most path of the current subtree
+            while(cur != null) {
+                stack.push(cur);
+                cur = cur.right;                
+            }
+            // Pop out by reversed in-order.
+            cur = stack.pop();
+            // Update sum.
+            sum += cur.val;
+            // Update node value.
+            cur.val = sum;
+            // Move to left branch.
+            cur = cur.left;
+        }
+        return root;   
+    }
+}
