@@ -127,6 +127,10 @@ class Solution {
     public TreeNode bstToGst(TreeNode root) {
         int sum = 0;
         Stack<TreeNode> stack = new Stack<TreeNode>();
+        // Assign root to a new node 'cur' for traverse and update any node
+        // we need to do this because we have to reserve original 'root' for
+        // return the whole tree but also need to update tree nodes with new
+        // node 'cur'
         TreeNode cur = root;
         while(cur != null || !stack.isEmpty()) {
             // Save right-most path of the current subtree
