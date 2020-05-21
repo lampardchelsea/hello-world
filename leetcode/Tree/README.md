@@ -217,10 +217,13 @@
 <p>Cousins in Binary Tree
 <p>1. [BFS level order traversal with additional check] (https://leetcode.com/problems/cousins-in-binary-tree/discuss/239376/Java-BFS-time-and-space-beat-100)
   
-<p>Convert BST to Greater Tree
+<p>Convert BST to Greater Tree / Binary Search Tree to Greater Sum Tree
 <p>1. [Solution] (https://leetcode.com/problems/convert-bst-to-greater-tree/solution/)
 <p>2. [Reverse in-order traversal] (https://leetcode.com/problems/convert-bst-to-greater-tree/discuss/100506/Java-Recursive-O(n)-time/152561)
 <p>3. [Helper method without global variable] (https://leetcode.com/problems/convert-bst-to-greater-tree/discuss/100506/Java-Recursive-O(n)-time/104632)
+<p>4. [Recursive with reversed inorder traverse] (https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/discuss/286725/JavaC%2B%2BPython-Revered-Inorder-Traversal)
+<p>5. [Iterative with stack] (https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/discuss/286906/Java-3-iterative-and-recursive-codes-w-comments-and-explanation.)
+  
   
 <p>Diameter of Binary Tree
 <p>[1st link a bit wrong with additional '+1' in calculating diameter = 1 + leftDepth + rightDepth] (https://leetcode.com/problems/diameter-of-binary-tree/discuss/101132/Java-Solution-MaxDepth)
