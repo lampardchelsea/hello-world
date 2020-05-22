@@ -105,9 +105,6 @@ binary-search-java-code/29)
 <p>1. [My Accepted Java Solution] (https://discuss.leetcode.com/topic/3695/my-accepted-java-solution/8)
 <p>2. [Similar way with Inorder and Postorder] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/ConstructBinaryTreeFromInorderAndPostorderTraversal.java)
 
-<p>Convert Sorted Array to Binary Search Tree
-<p>1. [Recursive Solution] (https://discuss.leetcode.com/topic/3158/my-accepted-java-solution/2)
-
 <p>Game Of Life
 <p>1. [Best Solution] (https://discuss.leetcode.com/topic/29054/easiest-java-solution-with-explanation)
 <p>2. [Game of Life 生命游戏 and follow up answers] (https://segmentfault.com/a/1190000003819277)
