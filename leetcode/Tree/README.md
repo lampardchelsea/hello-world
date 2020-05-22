@@ -310,6 +310,7 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
   
 <p>Balance a Binary Search Tree
 <p>1. [[Java/C++] Sorted Array to BST - O(N) - Clean code] (https://leetcode.com/problems/balance-a-binary-search-tree/discuss/539686/JavaC%2B%2B-Sorted-Array-to-BST-O(N)-Clean-code)
+<p>2. [Iterative Solution] (https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/discuss/35218/Java-Iterative-Solution/241775)  
  
 <p>Convert Sorted Array to Binary Search Tree
 <p>1. [Recursive Solution] (https://discuss.leetcode.com/topic/3158/my-accepted-java-solution/2)
