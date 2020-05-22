@@ -50,3 +50,55 @@ class Solution {
         return node;
     }
 }
+
+// Solution 2: Iterative
+// Refer to
+// https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
+// https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/discuss/35218/Java-Iterative-Solution/241775
+class Solution {
+    List<TreeNode> sortedArr = new ArrayList<TreeNode>();
+    public TreeNode balanceBST(TreeNode root) {
+        inorderTraverse(root);
+        return sortedArrayToBST(sortedArr);
+    }
+    
+    private void inorderTraverse(TreeNode root) {
+        if(root == null) {
+            return;
+        }
+        inorderTraverse(root.left);
+        sortedArr.add(root);
+        inorderTraverse(root.right);
+    }
+    
+    private TreeNode sortedArrayToBST(List<TreeNode> list) {
+        if(list == null || list.size() == 0) {
+            return null;
+        }
+        TreeNode root = new TreeNode(0);
+        Stack<Object> stack = new Stack<Object>();
+        stack.push(list.size() - 1);
+        stack.push(0);
+        stack.push(root);
+        while(!stack.isEmpty()) {
+            TreeNode node = (TreeNode)stack.pop();
+            int start = (int)stack.pop();
+            int end = (int)stack.pop();
+            int mid = start + (end - start) / 2;
+            node.val = list.get(mid).val;
+            if(mid - 1 >= start) {
+                node.left = new TreeNode(0);
+                stack.push(mid - 1);
+                stack.push(start);
+                stack.push(node.left);
+            }
+            if(mid + 1 <= end) {
+                node.right = new TreeNode(0);
+                stack.push(end);
+                stack.push(mid + 1);
+                stack.push(node.right);
+            }
+        }
+        return root;
+    }
+}
