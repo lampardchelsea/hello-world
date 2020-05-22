@@ -307,3 +307,9 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>My Calendar III
 <p>1. [Timeline] (https://leetcode.com/problems/my-calendar-iii/discuss/109556/JavaC%2B%2B-Clean-Code)
 <p>2. [Timeline 解释] (https://www.cnblogs.com/grandyang/p/7968035.html)
+  
+<p>Balance a Binary Search Tree
+<p>1. [[Java/C++] Sorted Array to BST - O(N) - Clean code] (https://leetcode.com/problems/balance-a-binary-search-tree/discuss/539686/JavaC%2B%2B-Sorted-Array-to-BST-O(N)-Clean-code)
+ 
+ 
+ 
