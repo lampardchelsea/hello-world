@@ -134,7 +134,7 @@ at that point is if I searched my left I searched my right and I find a node on 
 I find a node on right, either x can be left or right, same for y. They are going
 to be unique, so there won't be duplicate.
                           root 
-						                    /  \
+                          /  \
                        left   right
                         (x)    (y)
 What will happen is this roots must be the lowest common ancestor, right. If I search
@@ -151,14 +151,14 @@ common ancestor given a root of a tree and two notes to find. This node is the a
 that question, and we return it upwards and again the code is in the description go
 between this and the code to further understand this deeply.
      this is the node to return    --->    root
-  						                                   /  \
+                                           /  \
                                         left   right
                                          (x)    (y)
 
 So we saw the full case, the case where I find x and then y or y and then x, then the node
 is the lowest common ancestor because of the nature of recursion and the laws we defined.
      1.Find both case  --->   root
-  			                         /  \
+                              /  \
                            left   right
                            (x/y)  (y/x)
 
@@ -175,14 +175,14 @@ we're saying this is the node y, from this call I want to return that because I'
 from roots I can reach y, from root I can reach y. So let's see the other case, and I'm
 going to slowly build this up to a final point I'm gonna make. 
      2.Find either but not both  --->    root
-  			                                    /  \
+                                         /  \
                                      left   right
                                      (x/y)  (nothing)
 So we see here found nothing on the left, if I found somthing on the right, that means I
 either can reach x or y from this node, so I don't return myself but return the x or the y
 whatever I found back upwards saying I can reach this value from this root. 
      2.Find either but not both  --->    root
-  			                                    /  \
+                                         /  \
                                      left   right
                                      (nothing)  (x/y)
 So each call, remember, represents asking what is the lowest common ancestor from this node,
