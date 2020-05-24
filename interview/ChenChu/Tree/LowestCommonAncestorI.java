@@ -40,7 +40,7 @@ The lowest common ancestor of 2 and 9 is 9
             return root;
         }
     }
-iterative:
+// iterative:
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         while (true) {
             if (root.val > p.val && root.val > q.val)
