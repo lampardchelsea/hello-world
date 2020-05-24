@@ -1,4 +1,6 @@
 /**
+ Refer to
+ https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
  * Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST.
  * According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two 
  * nodes v and w as the lowest node in T that has both v and w as descendants (where we allow a node to 
@@ -28,15 +30,9 @@
   * 则结果在当前结点的左子树里，如果当前结点小于两个节点，则结果在当前节点的右子树里。最后一种情况就是当前节点大于或等于较小节点，
   * 小于或等于较大节点，直接返回当前节点即可。
 */
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
+// Solution 1: Recursive
+// Refer to
+// https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/discuss/64954/My-Java-Solution
 public class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if(root == null) {
@@ -58,3 +54,8 @@ public class Solution {
         return root;
     }
 }
+
+// Solution 2: Iterative
+// Refer to
+// 
+
