@@ -25,6 +25,7 @@
 <p>2. [Root To Leaf Binary Tree Paths(ArrayList version, same as Path Sum)] (http://www.programcreek.com/2014/05/leetcode-binary-tree-paths-java/)
 <p>3. [ArrayList(Collection<? extends E> c)] (http://stackoverflow.com/questions/4370085/arraylistcollection-extends-e-c)
 <p>4. [Binary Tree Paths] (http://www.jiuzhang.com/solutions/binary-tree-paths/)
+<p>5. [Best video explain --> Lowest Common Ancestor Between 2 Binary Tree Nodes (A Recursive Approach)] (https://www.youtube.com/watch?v=py3R23aAPCA)
 <p>5. [Lowest Common Ancestor of a Binary Tree(Ethan Li)] (https://segmentfault.com/a/1190000003509399)
 <p>6. [Lowest Common Ancestor of a Binary Tree(GeeksForGeeks -> contain wrong condition)] (http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/)
 <p>7. [Lowest Common Ancestor of a Binary Search Tree(Ethan Li)] (https://segmentfault.com/a/1190000003509399)
