@@ -258,6 +258,14 @@ class Solution {
 // Solution 2: Iterative
 // Refer to
 // https://xuyiruan.com/2019/02/06/Lowest-Common-Ancestor-Series/
+/**
+ DFS iterative Algorithm
+ 1.traverse tree itertively with stack to look for p and q
+ 2.use HashMap<TreeNode, TreeNode> parent to record <child, parent> relation.
+ 3.once both p and q found (child, parent relation for both p and q found)
+ 4.add p's all ancester to a Set
+ 5.traverse q's ancesters in order, and first shared ancester is the shared LCA
+*/
 // https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/discuss/65236/JavaPython-iterative-solution
 // https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/discuss/303992/JAVA%3A-iterative-and-recursive-with-detailed-explanation
 /**
