@@ -5,4 +5,8 @@ Section 1: Tree
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/LowestCommonAncestorOfABinarySearchTree.java  
    [Answer 2:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/LowestCommonAncestorOfABinaryTree.java)
    
-2. 
+2. [Lowest Common Ancestor II] (https://www.lintcode.com/problem/lowest-common-ancestor-ii/description)  
+   [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/lintcode/BinaryTree__DivideAndConquer/VideoExamples/LowestCommonAncestorII.java)  
+   
+3. [Lowest Common Ancestor III] ()
+   
