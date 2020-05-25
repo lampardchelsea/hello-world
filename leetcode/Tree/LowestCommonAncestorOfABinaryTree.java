@@ -254,3 +254,51 @@ class Solution {
         return root;
     }
 }
+
+// Solution 2: Iterative
+// Refer to
+// https://xuyiruan.com/2019/02/06/Lowest-Common-Ancestor-Series/
+// https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/discuss/65236/JavaPython-iterative-solution
+// https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/discuss/303992/JAVA%3A-iterative-and-recursive-with-detailed-explanation
+/**
+  Non Recursive BFS Approach: TC - O(n)
+  Step 1: traverse all the tree and save the node-parent pairs (in a hash map) for all the nodes in the 
+          tree (till the point we encounter BOTH p and q)
+  Step 2: start from p and save all the parents of p till root (including p and root) in a hash set
+  Step 3: start from q and and navigate through all the parents till root and whenever you see a parent 
+          that is present in the set (common ancestor for p and q), that is LCA
+*/
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        // [key, value] -> [child, parent]
+        Map<TreeNode, TreeNode> parents = new HashMap<TreeNode, TreeNode>();
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        // Pre-order traverse
+        parents.put(root, null);
+        stack.push(root);
+        while(!parents.containsKey(p) || !parents.containsKey(q)) {
+            TreeNode node = stack.pop();
+            if(node.left != null) {
+                parents.put(node.left, node);
+                stack.push(node.left);
+            }
+            if(node.right != null) {
+                parents.put(node.right, node);
+                stack.push(node.right);
+            }
+        }
+        // Find all parents from 'p' till root
+        Set<TreeNode> parents_p = new HashSet<TreeNode>();
+        while(p != null) {
+            parents_p.add(p);
+            p = parents.get(p);
+        }
+        // Starting from 'q', get all its parents till the root and 
+        // in the process, whenever you see the parent node that is 
+        // already present in the 'parents_p' set, that's the LCA node
+        while(!parents_p.contains(q)) {
+            q = parents.get(q);
+        }
+        return q;
+    }
+}
