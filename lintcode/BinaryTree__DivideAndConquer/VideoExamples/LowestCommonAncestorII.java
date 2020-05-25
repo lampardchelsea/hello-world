@@ -36,7 +36,7 @@
  * }
  */
 
-// Solution 1: 
+// Solution 1: Iterative
 // Refer to
 // https://xuyiruan.com/2019/02/06/Lowest-Common-Ancestor-Series/
 /**
@@ -46,6 +46,8 @@
  node to root and add all its ancester to a Set in ordder. Then trace from q to root and return the first 
  shared node as LCA
 */
+// Also refer to iterative solution on original question
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/LowestCommonAncestorOfABinaryTree.java
 public class Solution {
     /*
      * @param root: The root of the tree
