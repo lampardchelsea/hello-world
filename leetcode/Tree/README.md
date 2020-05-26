@@ -321,4 +321,6 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>Range Sum of BST
 <p>1. [Recursive / Iterative Solution] (https://leetcode.com/problems/range-sum-of-bst/discuss/192019/JavaPython-3-3-similar-recursive-and-1-iterative-methods-w-comment-and-analysis.)
 
-
+<p>Lowest Common Ancestor Of A Binary Tree Nodes Not Guaranteed In Tree
+<p>1. [Leverage LCA common way and check special case] (https://gist.github.com/Lcjc/538709c0c1e15d70efb14d5d93220462)
+  
