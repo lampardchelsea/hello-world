@@ -1,5 +1,47 @@
 /**
  Refer to
+ https://www.lintcode.com/problem/lowest-common-ancestor-iii/description
+ Given the root and two nodes in a Binary Tree. Find the lowest common ancestor(LCA) of the two nodes.
+ The lowest common ancestor is the node with largest depth which is the ancestor of both nodes.
+ Return null if LCA does not exist.
+
+ Example
+ Example1
+ Input: 
+ {4, 3, 7, #, #, 5, 6}
+ 3 5
+ 5 6
+ 6 7 
+ 5 8
+ Output: 
+ 4
+ 7
+ 7
+ null
+ Explanation:
+   4
+  / \
+ 3   7
+    / \
+   5   6
+
+ LCA(3, 5) = 4
+ LCA(5, 6) = 7
+ LCA(6, 7) = 7
+ LCA(5, 8) = null
+
+ Example2
+ Input:
+ {1}
+ 1 1
+ Output: 
+ 1
+ Explanation:
+ The tree is just a node, whose value is 1.
+ Notice
+ node A or node B may not exist in tree.
+ Each node has a different value
+ 
  https://hjweds.gitbooks.io/leetcode/lowest-common-ancestor-iii.html
  https://gist.github.com/Lcjc/538709c0c1e15d70efb14d5d93220462
  Lowest Common Ancestor in Binary Tree (not guaranteed in tree)
@@ -40,18 +82,24 @@
 /**
  Solution: 做法与Lowest Common Ancestor I相同，但当返回结果是one或two时，要检查two是否在one的子树里
 */
-class Solution {
-    public TreeNode lowestCommonAncestorOfABinaryTreeNodesNotGuaranteedInTree(TreeNode root, TreeNode p, TreeNode q) {
-        TreeNode candidateLCA = lowestCommonAncestor(root, p, q);
-        // If candidate LCA equals node 'p', check if 'q' in subtree as root as 'p'
-        if(candidateLCA == p) {
-            return find(p, q) ? p : null; 
+public class Solution {
+    /*
+     * @param root: The root of the binary tree.
+     * @param A: A TreeNode
+     * @param B: A TreeNode
+     * @return: Return the LCA of the two nodes.
+     */
+    public TreeNode lowestCommonAncestor3(TreeNode root, TreeNode A, TreeNode B) {
+        TreeNode candidateLCA = lowestCommonAncestor(root, A, B);
+        // If candidate LCA equals node 'A', check if 'A' in subtree as root as 'B'
+        if(candidateLCA == A) {
+            return find(A, B) ? A : null; 
         }
-        // If candidate LCA equals node 'q', check if 'p' in subtree as root as 'q'
-        if(candidateLCA == q) {
-            return find(q, p) ? q : null;
+        // If candidate LCA equals node 'B', check if 'B' in subtree as root as 'A'
+        if(candidateLCA == B) {
+            return find(B, A) ? B : null;
         }
-        // If candidate LCA not equal to 'p' or 'q', return directly
+        // If candidate LCA not equal to 'A' or 'B', return directly
         return candidateLCA;
     }
     
@@ -75,16 +123,13 @@ class Solution {
     }
     
     // Check if node is under root
-    private TreeNode find(TreeNode root, TreeNode node) {
+    private boolean find(TreeNode root, TreeNode node) {
        if(root == null) {
-          return null;
+          return false;
        }
        if(root == node) {
-          return root;
+          return true;
        }
        return find(root.left, node) || find(root.right, node);
     }
 }
-
-
-
