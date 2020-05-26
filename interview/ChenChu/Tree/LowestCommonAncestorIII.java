@@ -1,5 +1,8 @@
 /**
-Given two nodes in a binary tree, find their lowest common ancestor (the given two nodes are not guaranteed to be in the binary tree).
+Refer to
+https://hjweds.gitbooks.io/leetcode/lowest-common-ancestor-iii.html
+Given two nodes in a binary tree, find their lowest common ancestor (the given two nodes are not 
+guaranteed to be in the binary tree).
 Return null If any of the nodes is not in the tree.
 Assumptions
 There is no parent pointer for the nodes in the binary tree
