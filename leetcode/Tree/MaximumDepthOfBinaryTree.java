@@ -61,15 +61,16 @@ public class Solution {
  */
 class Solution {
     public int maxDepth(TreeNode root) {
-        if(root == null) {
-            return 0;
-        }
+        //if(root == null) {
+        //    return 0;
+        //}
         return helper(root);
     }
     
     private int helper(TreeNode root) {
         if(root == null) {
-            return Integer.MIN_VALUE;
+            //return Integer.MIN_VALUE;
+            return 0;
         }
         if(root.left == null && root.right == null) {
             return 1;
