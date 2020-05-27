@@ -24,6 +24,12 @@ public class Solution {
         return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
     }
 }
+// OR we can compress into 1 line
+class Solution {
+    public int maxDepth(TreeNode root) {
+        return root == null ? 0 : Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+    }
+}
 
 // Solution 2:
 // Refer to http://www.jiuzhang.com/solutions/maximum-depth-of-binary-tree/
