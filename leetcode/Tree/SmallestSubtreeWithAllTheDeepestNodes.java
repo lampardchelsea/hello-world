@@ -127,6 +127,10 @@ class Solution {
  If they both have the same depth nodes, then node will be the answer.
  
  The TreeNodeWithHeight.height of our answer is always 1 more than the largest childResult.height we have.
+ 
+ Complexity Analysis
+ Time Complexity: O(N), where N is the number of nodes in the tree.
+ Space Complexity: O(N).
 */
 
 // https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/discuss/146808/C++JavaPython-One-Pass/301421
