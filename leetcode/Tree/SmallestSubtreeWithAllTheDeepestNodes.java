@@ -109,6 +109,10 @@ class Solution {
 // Solution 2: One Pass recursive
 // Refer to
 // https://leetcode.com/articles/smallest-subtree-with-all-the-deepest-nodes/
+/**
+ 
+*/
+
 // https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/discuss/146808/C++JavaPython-One-Pass/301421
 /**
  * The question is unclear. For example, if we did not have nodes 7 and 4, the answer would
@@ -127,7 +131,7 @@ class Solution {
  * rooted at node. If leftHeight > rightHeight, it means the deepest subtree must be rooted
  * at left child. If rightHeight > leftHeight, it means the deepest subtree must be rooted
  * at right child.
- 
+ *
  * Which traversal allows us to traverse from bottom-up? Postorder! So we use it in the code.
  */
 class Solution {
@@ -175,6 +179,13 @@ public class Solution {
              6     2   0     8
                  /   \
                 7     4
+         * 			3 -> 5 -> 6 -> return L -1 / R -1 -> new TreeNodeWithHeight(node (6), L.height(-1) + 1);
+                     -> 2 -> 7 -> return L -1 / R -1 -> new TreeNodeWithHeight(L.node (7), L.height(-1) + 1);
+                          -> 4 -> return L -1 / R -1 -> new TreeNodeWithHeight(L.node (4), L.height(-1) + 1);
+                     -> return new TreeNodeWithHeight(R.node (2), R.height (1) + 1);
+                -> 1 -> 0 -> return L -1 / R -1 -> new TreeNodeWithHeight(0, L.height(-1) + 1);
+                     -> 8 -> return L -1 / R -1 -> new TreeNodeWithHeight(8, L.height(-1) + 1);
+                 -> return new TreeNodeWithHeight(node (1), L.height (1) + 1);
          */
         Solution q = new Solution();
         TreeNode root = q.new TreeNode(3);
@@ -225,6 +236,12 @@ public class Solution {
         }
         TreeNodeWithHeight L = helper(node.left);
         TreeNodeWithHeight R = helper(node.right);
+        //1. If we realize that the leftHeight == rightHeight, it means we have found 
+        //   the deepest subtree rooted at node.
+        //2. If leftHeight > rightHeight, it means the deepest subtree must be rooted
+        //   at left child.
+        //3. If rightHeight > leftHeight, it means the deepest subtree must be rooted
+        //   at right child.
         if (L.height == R.height) {
             return new TreeNodeWithHeight(node, L.height + 1);
         } else if (L.height > R.height) {
