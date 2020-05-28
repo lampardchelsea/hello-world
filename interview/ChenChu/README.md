@@ -13,6 +13,7 @@ Section 1: Tree
    
 4. [] ()  
 
-5. [Smallest Subtree with all the Deepest Nodes] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/SmallestSubtreeWithAllTheDeepestNodes.java)  
+5. [Smallest Subtree with all the Deepest Nodes] (https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/)  
+   [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/SmallestSubtreeWithAllTheDeepestNodes.java)  
 
    
