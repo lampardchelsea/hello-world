@@ -324,3 +324,9 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>Lowest Common Ancestor Of A Binary Tree Nodes Not Guaranteed In Tree
 <p>1. [Leverage LCA common way and check special case] (https://gist.github.com/Lcjc/538709c0c1e15d70efb14d5d93220462)
   
+<p>Smallest Subtree with all the Deepest Nodes
+<p>1. [Two pass + 1 pass solution] (https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/solution/)
+<p>2. [Offical Solution] (https://leetcode.com/articles/smallest-subtree-with-all-the-deepest-nodes/)
+<p>3. [1 pass solution bottom up recursive best explain] (https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/discuss/146808/C++JavaPython-One-Pass/301421)
+
+
