@@ -109,8 +109,129 @@ class Solution {
 // Solution 2: One Pass recursive
 // Refer to
 // https://leetcode.com/articles/smallest-subtree-with-all-the-deepest-nodes/
+// https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/discuss/146808/C++JavaPython-One-Pass/301421
 /**
+ * The question is unclear. For example, if we did not have nodes 7 and 4, the answer would
+ * be TreeNode(3). If we did not have node 4, the answer would be TreeNode(7) and not
+ * TreeNode(2). Similarly, if we did not have 7, the answer would be TreeNode(4) and not
+ * TreeNode(2).
+ *
+ * Intuitively, we should be traversing from the children to the parent and calculate the
+ * height from bottom. So the null nodes would have height -1. The leaf nodes would have the
+ * height 0 and the root would have the max height.
+ * Note: In origial post the null nodes height set as 0 and leaf node height as 1, but these
+ * two values violate the rule about 
+ * 
+ * At each node, we keep a pair<height_of_node_from_bottom, node>. At a given node, if we
+ * realize that the leftHeight == rightHeight, it means we have found the deepest subtree
+ * rooted at node. If leftHeight > rightHeight, it means the deepest subtree must be rooted
+ * at left child. If rightHeight > leftHeight, it means the deepest subtree must be rooted
+ * at right child.
  
-*/
+ * Which traversal allows us to traverse from bottom-up? Postorder! So we use it in the code.
+ */
+class Solution {
+    public TreeNode subtreeWithAllDeepest(TreeNode root) {
+        TreeNodeWithHeight result = helper(root);
+        return result.node;
+    }
+    
+    // Important to implement bottom-up traverse, we need Postorder
+    private TreeNodeWithHeight helper(TreeNode node) {
+        if(node == null) {
+            return new TreeNodeWithHeight(null, -1);
+        }
+        TreeNodeWithHeight L = helper(node.left);
+        TreeNodeWithHeight R = helper(node.right);
+        if(L.height == R.height) {
+            return new TreeNodeWithHeight(node, L.height + 1);
+        } else if(L.height > R.height) {
+            return new TreeNodeWithHeight(L.node, L.height + 1);
+        } else {
+            return new TreeNodeWithHeight(R.node, R.height + 1);
+        }
+    }
+}
 
+class TreeNodeWithHeight {
+    int height;
+    TreeNode node;
+    public TreeNodeWithHeight(TreeNode node, int height) {
+        this.height = height;
+        this.node = node;
+    }
+}
+
+// Testing version:
+public class Solution {
+    public static void main(String[] args) {
+        /**
+         * Test with below binary tree
+         * 
+         *           3
+         *       /       \
+                5         1
+              /   \	    /   \
+             6     2   0     8
+                 /   \
+                7     4
+         */
+        Solution q = new Solution();
+        TreeNode root = q.new TreeNode(3);
+        root.left = q.new TreeNode(5);
+        root.right = q.new TreeNode(1);
+        root.left.left = q.new TreeNode(6);
+        root.left.right = q.new TreeNode(2);
+        root.left.right.left = q.new TreeNode(7);
+        root.left.right.right = q.new TreeNode(4);
+        root.right.left = q.new TreeNode(0);
+        root.right.right = q.new TreeNode(8);
+        TreeNode result = q.subtreeWithAllDeepest(root);
+        System.out.println(result.val);
+    }
+
+    class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) {
+            this.val = val;
+        }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    class TreeNodeWithHeight {
+        int height;
+        TreeNode node;
+        public TreeNodeWithHeight(TreeNode node, int height) {
+            this.height = height;
+            this.node = node;
+        }
+    }
+
+    public TreeNode subtreeWithAllDeepest(TreeNode root) {
+        TreeNodeWithHeight result = helper(root);
+        return result.node;
+    }
+
+    private TreeNodeWithHeight helper(TreeNode node) {
+        if (node == null) {
+            return new TreeNodeWithHeight(null, -1);
+        }
+        TreeNodeWithHeight L = helper(node.left);
+        TreeNodeWithHeight R = helper(node.right);
+        if (L.height == R.height) {
+            return new TreeNodeWithHeight(node, L.height + 1);
+        } else if (L.height > R.height) {
+            return new TreeNodeWithHeight(L.node, L.height + 1);
+        } else {
+            return new TreeNodeWithHeight(R.node, R.height + 1);
+        }
+    }
+}
 
