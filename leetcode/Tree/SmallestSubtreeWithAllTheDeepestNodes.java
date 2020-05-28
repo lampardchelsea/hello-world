@@ -110,7 +110,23 @@ class Solution {
 // Refer to
 // https://leetcode.com/articles/smallest-subtree-with-all-the-deepest-nodes/
 /**
+ Intuition
+ We can combine both depth first searches in Approach #1 into an approach that does both steps in one pass. 
+ We will have some function dfs(node) that returns both the answer for this subtree, and the distance from 
+ node to the deepest nodes in this subtree.
+
+ Algorithm
+ The TreeNodeWithHeight (on some subtree) returned by our (depth-first search) recursion will have two parts: 
+ TreeNodeWithHeight.node: the largest depth node that is equal to or an ancestor of all the deepest nodes of this subtree. 
+ TreeNodeWithHeight.height: the number of nodes in the path from the root of this subtree, to the deepest node in this subtree.
  
+ We can calculate these answers disjointly for dfs(node):
+ 
+ To calculate the TreeNodeWithHeight.node of our answer:
+ If one childResult has deeper nodes, then childResult.node will be the answer.
+ If they both have the same depth nodes, then node will be the answer.
+ 
+ The TreeNodeWithHeight.height of our answer is always 1 more than the largest childResult.height we have.
 */
 
 // https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/discuss/146808/C++JavaPython-One-Pass/301421
@@ -143,7 +159,7 @@ class Solution {
     // Important to implement bottom-up traverse, we need Postorder
     private TreeNodeWithHeight helper(TreeNode node) {
         if(node == null) {
-            return new TreeNodeWithHeight(null, -1);
+            return new TreeNodeWithHeight(null, -1); // Null node height -1, leaf node height 0
         }
         TreeNodeWithHeight L = helper(node.left);
         TreeNodeWithHeight R = helper(node.right);
@@ -185,7 +201,7 @@ public class Solution {
                      -> return new TreeNodeWithHeight(R.node (2), R.height (1) + 1);
                 -> 1 -> 0 -> return L -1 / R -1 -> new TreeNodeWithHeight(0, L.height(-1) + 1);
                      -> 8 -> return L -1 / R -1 -> new TreeNodeWithHeight(8, L.height(-1) + 1);
-                 -> return new TreeNodeWithHeight(node (1), L.height (1) + 1);
+                 -> return new TreeNodeWithHeight(L.node (1), L.height (1) + 1);
          */
         Solution q = new Solution();
         TreeNode root = q.new TreeNode(3);
