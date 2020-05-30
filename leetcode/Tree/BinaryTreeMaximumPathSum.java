@@ -199,13 +199,30 @@ return Math.max(0, root.val + dfs(root.left) + dfs(root.right))
     }
     private int backtrack(TreeNode root){
         if(root == null) return 0;
-        int leftSum = Math.max(0, backtrack(root.left)); //left branch less than 0, then not take left branch
-        int rightSum = Math.max(0, backtrack(root.right)); //right branch less than 0, then not take right branch 
-        max = Math.max(max, leftSum + rightSum + root.val); //root, left + root, right + root, left + right + root;
-        return Math.max(0, Math.max(root.val + leftSum, root.val + rightSum)); //take left+root or right+root or root or 0
+        int leftSum = Math.max(0, backtrack(root.left)); // left branch less than 0, then not take left branch
+        int rightSum = Math.max(0, backtrack(root.right)); // right branch less than 0, then not take right branch 
+        max = Math.max(max, leftSum + rightSum + root.val); // root, left + root, right + root, left + right + root;
+        return Math.max(0, Math.max(root.val + leftSum, root.val + rightSum)); // take left+root or right+root or root or 0
     }
 */
-
+class Solution {
+    int maxValue;
+    public int maxPathSum(TreeNode root) {
+        maxValue = Integer.MIN_VALUE;
+        helper(root);
+        return maxValue;
+    }
+    // Post-order traverse
+    private int helper(TreeNode node) {
+        if(node == null) {
+            return 0;
+        }
+        int left = Math.max(0, helper(node.left)); // left branch less than 0, then not take left branch
+        int right = Math.max(0, helper(node.right)); // right branch less than 0, then not take right branch 
+        maxValue = Math.max(maxValue, node.val + left + right); // root, left + root, right + root, left + right + root;
+        return Math.max(left, right) + node.val; // take left+root or right+root or root or 0
+    }
+}
 
 
 // Re-work
