@@ -122,7 +122,97 @@ public class BinaryTreeMaximumPathSum {
         // Returns the maximum sum of the path that can be extended to input node's parent.
         // Same meaning as update 'singlePath'
         return Math.max(left, right) + root.val;
-    }
-    
-    
+    }   
 }
+
+// Re-work
+// Solution 1: Recursive
+// Refer to
+// https://leetcode.com/problems/binary-tree-maximum-path-sum/discuss/39775/Accepted-short-solution-in-Java/37681
+/**
+ Just want to add a explanation about the last two lines based on my comprehension.
+     maxValue = Math.max(maxValue, left + right + node.val);
+     return Math.max(left, right) + node.val;
+ maxValue is the value which recording whether this current root is the final root, so we use left + right + node.val. 
+ But to the upper layer(after return statement), we cannot choose both left and right brunches, so we need to select 
+ the larger one, so we use max(left, right) + node.val to prune the lower brunch.
+*/
+
+// https://leetcode.com/problems/binary-tree-maximum-path-sum/discuss/39775/Accepted-short-solution-in-Java/192437
+/**
+ Each node actually has two roles when it comes to function maxPathDown. When processing the final result maxValue, 
+ the node is treated as the highest point of a path. When calculating its return value, it is only part of a path 
+ (left or right part), and this return value will be used to calculate path sum of other paths with some other 
+ nodes(above the current one) as their highest point.
+*/
+
+// https://leetcode.com/problems/binary-tree-maximum-path-sum/discuss/39775/Accepted-short-solution-in-Java/190770
+/**
+ Idea & Cases Explanation. Java + recursion
+ At first, I think 2 parameters should be return in recursion. Then I find that we only need to update max once, 
+ so I move max to be a member parameter.
+
+Basic idea:
+store/update max during post-order traversal.
+return maximum branches
+a) 0
+b) root.val
+c) root.val + dfs(root.left)
+d) root.val + dfs(root.right)
+Whole situation can be broken down to four cases:
+
+1.root
+left<0 right<0
+max = Math.max(0, root.val + 0 + 0)
+return Math.max(0, root.val)
+
+2.root
+left>0 right<0
+max = Math.max(0, root.val + dfs(root.left) + 0)
+return Math.max(0, root.val + dfs(root.left))
+
+3.root
+left<0 right>0
+max = Math.max(0, root.val + 0 + dfs(root.right) + 0)
+return Math.max(0, root.val + dfs(root.right))
+
+4.root
+left>0 right>0
+max = Math.max(0, root.val + 0 + dfs(root.left) + dfs(root.right))
+return Math.max(0, root.val + dfs(root.left) + dfs(root.right))
+
+    int max = Integer.MIN_VALUE;
+    public int maxPathSum(TreeNode root) {
+        if(root == null) return 0;
+        backtrack(root);
+        return max;
+    }
+    private int backtrack(TreeNode root){
+        if(root == null) return 0;
+        int leftSum = Math.max(0, backtrack(root.left)); //left branch less than 0, then not take left branch
+        int rightSum = Math.max(0, backtrack(root.right)); //right branch less than 0, then not take right branch 
+        max = Math.max(max, leftSum + rightSum + root.val); //root, left + root, right + root, left + right + root;
+        return Math.max(0, Math.max(root.val + leftSum, root.val + rightSum)); //take left+root or right+root or root or 0
+    }
+*/
+
+
+
+// Re-work
+// Solution 2: Iterative
+// Refer to
+// https://leetcode.com/problems/binary-tree-maximum-path-sum/discuss/39927/Iterative-Java-solution
+/**
+ The idea of mine approach is similar to recursive solutions which can be found in other posts but made in iterative manner. 
+ We just need to traverse the nodes in post-order (the same as the order of topological sorting, actually) storing the 
+ maximum root paths in a cache and updating the result value. 
+*/
+
+
+
+
+
+
+
+
+
