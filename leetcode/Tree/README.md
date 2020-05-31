@@ -76,6 +76,8 @@
 <p>Binary Tree Maximum Path Sum
 <p>1. [Purely Divide and Conquer] (http://www.jiuzhang.com/solutions/binary-tree-maximum-path-sum/)
 <p>2. [Traverse + Divide and Conquer] (https://discuss.leetcode.com/topic/4407/accepted-short-solution-in-java/8)
+<p>3. [Brute Force recursive in O(N^2)] (https://afteracademy.com/blog/maximum-path-sum-in-a-binary-tree)
+<p>4. [Post-order traverse in O(N)] (https://leetcode.com/problems/binary-tree-maximum-path-sum/discuss/39775/Accepted-short-solution-in-Java)  
 
 <p>Validate Binary Search Tree
 <p>1. [Template - Purely Traverse] (http://www.jiuzhang.com/solution/validate-binary-search-tree/)
