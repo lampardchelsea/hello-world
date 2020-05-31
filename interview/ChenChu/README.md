@@ -18,7 +18,7 @@ Section 1: Tree
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/SmallestSubtreeWithAllTheDeepestNodes.java)  
 
 6. [Maximum Path Sum Binary Tree I] (https://hjweds.gitbooks.io/leetcode/maximum-path-sum-binary-tree-i.html)  
-   [Answer 1:] (https://www.geeksforgeeks.org/find-maximum-path-sum-two-leaves-binary-tree/)  
+   [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/interview/ChenChu/Tree/MaximumPathSumBinaryTreeI.java)  
    
 7. [Maximum Path Sum Binary Tree II] (https://hjweds.gitbooks.io/leetcode/maximum-path-sum-binary-tree-ii.html)  
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/BinaryTreeMaximumPathSum.java)  
