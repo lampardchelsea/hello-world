@@ -81,7 +81,9 @@ public class Solution {
         }
         int left = helper(root.left);
         int right = helper(root.right);
-        //left和right非空时才更新max
+        // left和right非空时才更新max 
+        // (Solution: 注意是leaf to leaf，所以只有root.left != null && root.right != null时才更新max, 
+        //注意recursion返回的是一支路径)
         if (root.left != null && root.right != null) {
             int sum = root.val + left + right;
             max = Math.max(max, sum);
