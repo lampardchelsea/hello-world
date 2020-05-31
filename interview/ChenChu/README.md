@@ -17,4 +17,11 @@ Section 1: Tree
 5. [Smallest Subtree with all the Deepest Nodes] (https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/)  
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/SmallestSubtreeWithAllTheDeepestNodes.java)  
 
+6. [Maximum Path Sum Binary Tree I] (https://hjweds.gitbooks.io/leetcode/maximum-path-sum-binary-tree-i.html)  
+   [Answer 1:] (https://www.geeksforgeeks.org/find-maximum-path-sum-two-leaves-binary-tree/)  
    
+7. [Maximum Path Sum Binary Tree II] (https://hjweds.gitbooks.io/leetcode/maximum-path-sum-binary-tree-ii.html)  
+   [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/BinaryTreeMaximumPathSum.java)  
+   
+8. [] ()  
+   [] ()  
