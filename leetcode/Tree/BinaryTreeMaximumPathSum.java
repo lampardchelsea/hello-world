@@ -125,8 +125,77 @@ public class BinaryTreeMaximumPathSum {
     }   
 }
 
+
 // Re-work
-// Solution 1: Recursive
+// Solution 1: Recursive in O(N^2) time
+// Refer to
+// https://afteracademy.com/blog/maximum-path-sum-in-a-binary-tree
+/**
+ Brute force and Efficient solutions
+ We will be discussing two possible solutions for this problem:
+ Brute force approach: Traverse left and right subtree of each node and calculate maximum possible sum path.
+ Recursive approach: We calculate the maximum path sum rooted at each node and update the max sum during the traversal.
+ 
+ Brute Force:
+ We can update the max path sum passing through each node T in the tree by traversing the T's left subtree and right subtree.
+ 
+ Solution steps:
+ 1.Assume we have nodes numbered 1 to N
+ 2.sum(i) = Maximum sum of a path containing node(i). Clearly the solution of the problem is max(sum(1), sum(2), ...., sum(N))
+ 3.Now, what is the maximum sum of a path containing a particular node(i)?
+ 4.left_result: maximum path sum starting at node(i).left
+ 5.right_result: maximum path sum starting at node(i).right
+ 6.sum(i) = max(left_result, 0) + max(right_result, 0) + node(i).val
+*/
+class Solution {
+    int maxValue;
+    int left_result;
+    int right_result;
+    public int maxPathSum(TreeNode root) {
+        maxValue = Integer.MIN_VALUE;
+        max_path_sum_helper(root);
+        return maxValue;
+    }
+
+    private void max_path_sum_helper(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        left_result = Integer.MIN_VALUE;
+        right_result = Integer.MIN_VALUE;
+        // Find maximum path sum starting from node.left
+        helper_left(node.left, 0);
+        // Find maximum path sum starting from node.right
+        helper_right(node.right, 0);
+        left_result = Math.max(left_result, 0);
+        right_result = Math.max(right_result, 0);
+        maxValue = Math.max(left_result + right_result + node.val, maxValue);
+        max_path_sum_helper(node.left);
+        max_path_sum_helper(node.right);
+    }
+
+    private void helper_left(TreeNode node, int sum_so_far) {
+        if (node == null) {
+            return;
+        }
+        left_result = Math.max(left_result, sum_so_far + node.val);
+        helper_left(node.left, sum_so_far + node.val);
+        helper_left(node.right, sum_so_far + node.val);
+    }
+
+    private void helper_right(TreeNode node, int sum_so_far) {
+        if (node == null) {
+            return;
+        }
+        right_result = Math.max(right_result, sum_so_far + node.val);
+        helper_right(node.left, sum_so_far + node.val);
+        helper_right(node.right, sum_so_far + node.val);
+    }
+}
+
+
+// Re-work
+// Solution 2: Recursive in O(N) time
 // Refer to
 // https://leetcode.com/problems/binary-tree-maximum-path-sum/discuss/39775/Accepted-short-solution-in-Java
 /**
