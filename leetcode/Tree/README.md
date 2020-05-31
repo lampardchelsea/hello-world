@@ -329,4 +329,6 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>2. [Offical Solution] (https://leetcode.com/articles/smallest-subtree-with-all-the-deepest-nodes/)
 <p>3. [1 pass solution bottom up recursive best explain] (https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/discuss/146808/C++JavaPython-One-Pass/301421)
 
-
+<p>Maximum Difference Between Node and Ancestor
+<p>1. [DFS style 1] (https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/discuss/278183/Java-DFS)
+<p>2. [DFS style 2] (https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/discuss/274610/JavaC%2B%2BPython-Top-Down)
