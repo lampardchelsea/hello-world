@@ -160,5 +160,27 @@ public class PathSum {
 }
 
 
+// Re-work
+// Solution 1: Recursive
+// Refer to
+// https://leetcode.com/problems/path-sum/discuss/36378/AcceptedMy-recursive-solution-in-Java/34584
+
+
+
+// Re-work
+// Solution 2: Iterative
+// Refer to
+// https://leetcode.com/problems/path-sum/discuss/36534/My-java-no-recursive-method/34652
+
+
+
+
+
+
+
+
+
+
+
 
 
