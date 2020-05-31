@@ -223,23 +223,3 @@ class Solution {
         return Math.max(left, right) + node.val; // take left+root or right+root or root or 0
     }
 }
-
-
-// Re-work
-// Solution 2: Iterative
-// Refer to
-// https://leetcode.com/problems/binary-tree-maximum-path-sum/discuss/39927/Iterative-Java-solution
-/**
- The idea of mine approach is similar to recursive solutions which can be found in other posts but made in iterative manner. 
- We just need to traverse the nodes in post-order (the same as the order of topological sorting, actually) storing the 
- maximum root paths in a cache and updating the result value. 
-*/
-
-
-
-
-
-
-
-
-
