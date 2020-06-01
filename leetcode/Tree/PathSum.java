@@ -164,23 +164,44 @@ public class PathSum {
 // Solution 1: Recursive
 // Refer to
 // https://leetcode.com/problems/path-sum/discuss/36378/AcceptedMy-recursive-solution-in-Java/34584
-
+class Solution {
+    public boolean hasPathSum(TreeNode root, int sum) {
+        if(root == null) {
+            return false;
+        }
+        if(root.left == null && root.right == null) {
+            return root.val == sum;
+        }
+        return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
+    }
+}
 
 
 // Re-work
 // Solution 2: Iterative
 // Refer to
 // https://leetcode.com/problems/path-sum/discuss/36534/My-java-no-recursive-method/34652
-
-
-
-
-
-
-
-
-
-
-
-
-
+class Solution {
+    public boolean hasPathSum(TreeNode root, int sum) {
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        Stack<Integer> sums = new Stack<Integer>();
+        stack.push(root);
+        sums.push(sum);
+        while(!stack.isEmpty() && root != null) {
+            TreeNode curr = stack.pop();
+            int val = sums.pop();
+            if(curr.left == null && curr.right == null && curr.val == val) {
+                return true;
+            }
+            if(curr.left != null) {
+                stack.push(curr.left);
+                sums.push(val - curr.val);
+            }
+            if(curr.right != null) {
+                stack.push(curr.right);
+                sums.push(val - curr.val);
+            }
+        }
+        return false;
+    }
+}
