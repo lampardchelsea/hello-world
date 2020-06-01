@@ -143,5 +143,74 @@ public class Solution {
     }
 }
 
+// Re-work
+// Solution 1: DFS + backtracking
+// Refer to
+// https://leetcode.com/problems/path-sum-ii/discuss/36683/DFS-with-one-LinkedList-accepted-java-solution
+public class Solution {
+    public static void main(String[] args) {
+        /**
+	 * Test with below binary tree
+	 * 
+	 *           3
+	 *       /       \
+		5         1
+	      /   \     /   \
+	     6     2   0     8
+	   /   \
+	  7     4
+	 */
+        Solution q = new Solution();
+        TreeNode root = q.new TreeNode(3);
+        root.left = q.new TreeNode(5);
+        root.right = q.new TreeNode(1);
+        root.left.left = q.new TreeNode(6);
+        root.left.right = q.new TreeNode(2);
+        root.left.right.left = q.new TreeNode(7);
+        root.left.right.right = q.new TreeNode(4);
+        root.right.left = q.new TreeNode(0);
+        root.right.right = q.new TreeNode(8);
+        List < List < Integer >> result = q.pathSum(root, 14);
+        System.out.println(result.toString());
+    }
+
+    class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) {
+            this.val = val;
+        }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    public List < List < Integer >> pathSum(TreeNode root, int sum) {
+        List < List < Integer >> result = new ArrayList < List < Integer >> ();
+        helper(root, sum, result, new ArrayList < Integer > ());
+        return result;
+    }
+
+    private void helper(TreeNode node, int sum, List < List < Integer >> result, List < Integer > list) {
+        if (node == null) {
+            return;
+        }
+        List < Integer > temp = new ArrayList < Integer > (list);
+        temp.add(node.val);
+        if (node.left == null && node.right == null && node.val == sum) {
+            result.add(temp);
+            return;
+        }
+        helper(node.left, sum - node.val, result, temp);
+        helper(node.right, sum - node.val, result, temp);
+        temp.remove(temp.size() - 1);
+    }
+}
+
+
 
 
