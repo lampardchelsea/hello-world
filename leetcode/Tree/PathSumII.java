@@ -147,6 +147,35 @@ public class Solution {
 // Solution 1: DFS + backtracking
 // Refer to
 // https://leetcode.com/problems/path-sum-ii/discuss/36683/DFS-with-one-LinkedList-accepted-java-solution
+// Also answering why we need deep copy
+// Refer to
+// https://leetcode.com/problems/path-sum-ii/discuss/36698/Another-accepted-Java-solution/34853
+// https://leetcode.com/problems/path-sum-ii/discuss/36698/Another-accepted-Java-solution/34852
+/**
+ Re: Another accepted Java solution
+@jeantimex Thank you for your solution !
+I am a fresh man to Java language, and I have a question.
+In your void pathSum(TreeNode root, ...) function, I change the block
+
+if (root.left == null && root.right == null && sum == root.val ) {
+    res.add(new ArrayList<Integer>(sol));
+}
+with
+
+if (root.left == null && root.right == null && sum == root.val ) {
+    res.add(sol);
+}
+but It didn't work. Would you mind helping to figure it out? Thank you : )
+
+when the recursion goes up, the sol size will always decrease by1. As a result, 
+the final size of sol will be 0. So if you write res.add(sol), it will be null 
+list finally. The function of new ArrayList(sol) is to create a new list which 
+has same value as sol, rather than res.add(sol) offering the reference to sol.
+
+Also refer to
+https://stackoverflow.com/questions/45929473/difference-on-list-add-and-list-addnew-arraylist/45929525#45929525
+https://stackoverflow.com/questions/19843506/why-does-my-arraylist-contain-n-copies-of-the-last-item-added-to-the-list
+*/
 public class Solution {
     public static void main(String[] args) {
         /**
@@ -210,6 +239,13 @@ public class Solution {
         temp.remove(temp.size() - 1);
     }
 }
+
+// Re-work
+// Solution 2: Iterative
+// Refer to
+// 
+
+
 
 
 
