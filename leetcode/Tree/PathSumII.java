@@ -242,9 +242,83 @@ public class Solution {
 
 // Re-work
 // Solution 2: Iterative
+// Important criteria: Iterative Inorder Traverse Template
 // Refer to
-// 
+// Preorder, Inorder and Postorder Traversal Iterative Java Solution
+// https://leetcode.com/problems/binary-tree-postorder-traversal/discuss/45621/preorder-inorder-and-postorder-traversal-iterative-java-solution
+/**
+ public List<Integer> inorderTraversal(TreeNode root) {
+    List<Integer> list = new ArrayList<>();
+    if(root == null) return list;
+    Stack<TreeNode> stack = new Stack<>();
+    while(root != null || !stack.empty()){
+        while(root != null){
+            stack.push(root);
+            root = root.left;
+        }
+        root = stack.pop();
+        list.add(root.val);
+        root = root.right;
+    }
+    return list;
+}
+*/
 
+// https://leetcode.com/problems/path-sum-ii/discuss/36695/Java-Solution:-iterative-and-recursive/34840
+class Solution {
+    // In-order traveral
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<List<Integer>> list = new ArrayList<List<Integer>>();
+        if(root == null) {
+            return list;
+        }
+        List<Integer> path = new ArrayList<Integer>();
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        // Sum alone the current path
+        int pathSum = 0;
+        TreeNode curr = root;
+        // Use 'prev' to judge whether the right subtree has been visited
+        TreeNode prev = null;
+        while(curr != null || !stack.isEmpty()) {
+            // Go down all the way to the left leaf node
+            // add all the left nodes to the stack 
+            while(curr != null) {
+                stack.push(curr);
+                // Record the current path
+                path.add(curr.val);
+                // Record the current sum along the current path
+                pathSum += curr.val;
+                curr = curr.left;
+            }
+            // Check left leaf node's right subtree 
+            // or check if it is not from the right subtree
+            // why peek here? 
+            // because if it has right subtree, we don't need to push it back
+            curr = stack.peek();
+            if(curr.right != null && curr.right != prev) {
+                curr = curr.right;
+                continue; // back to the outer while loop
+            }
+            // Check leaf
+            if(curr.left == null && curr.right == null && pathSum == sum) {
+                list.add(new ArrayList<Integer>(path));
+                // Why do we need new arraylist here?
+                // if we are using the same path variable path
+                // path will be cleared after the traversal
+            }
+            // Pop out the current value
+            stack.pop();
+            prev = curr;
+            // Subtract current node's val from path sum
+            pathSum -= curr.val;
+            // As this current node is done, remove it from the current path
+            path.remove(path.size() - 1);
+            // Reset current node to null, so check the next item from the stack
+            curr = null;
+        }
+        return list;
+    }
+}
 
 
 
