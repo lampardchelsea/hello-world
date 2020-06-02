@@ -334,3 +334,7 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>Maximum Difference Between Node and Ancestor
 <p>1. [DFS style 1] (https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/discuss/278183/Java-DFS)
 <p>2. [DFS style 2] (https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/discuss/274610/JavaC%2B%2BPython-Top-Down)
+
+<p>Binary Tree Inorder Traversal
+<p>1. [Preorder, Inorder and Postorder Traversal Iterative Java Solution] (https://leetcode.com/problems/binary-tree-postorder-traversal/discuss/45621/preorder-inorder-and-postorder-traversal-iterative-java-solution)
+
