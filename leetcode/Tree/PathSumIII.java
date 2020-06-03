@@ -124,3 +124,61 @@ class Solution {
         return result;
     }
 }
+
+// Re-work
+// Solution 1: Brute Force: O(nlogn) ~ O(n^2)
+// Refer to
+// https://leetcode.com/problems/path-sum-iii/discuss/141424/Python-step-by-step-walk-through.-Easy-to-understand.-Two-solutions-comparison.-%3A-)
+/**
+ 1.1 High level walk-through:
+(Define return) Define a global var: self.numOfPaths in the main function.
+(1st layer DFS) Use recursive traverse to go through each node (can be any order: pre, in, post all fine).
+(2nd layer DFS) For each node, walk all paths. If a path sum equals to the target: self.numOfPaths += 1
+Return result: return self.numOfPaths
+1.2 Complexity analysis
+1.2.1 Space
+Space complexity is O(1), due to there is no extra cache. However, for any recursive question, we need to 
+think about stack overflow, namely the recursion should not go too deep.
+Assume we have n TreeNodes in total, the tree height will vary from O(n) (single sided tree) to O(logn)(balanced tree).
+The two DFS will go as deep as the tree height.
+1.2.2 Time
+Time complexity depends on the two DFS.
+1st layer DFS will always take O(n), due to here we will take each node out, there are in total n TreeNodes
+2nd layer DFS will take range from O(n) (single sided tree) to O(logn)(balanced tree). This is due to here we 
+are get all the paths from a given node. The length of path is proportional to the tree height.
+Therefore, the total time complexity is O(nlogn) to O(n^2).
+*/
+class Solution {
+    // define global variable
+    int count;
+    public int pathSum(TreeNode root, int sum) {
+        count = 0;
+        helper(root, sum);
+        return count;
+    }
+    
+    // 1st layer DFS to go through each node
+    // traverse through the tree, at each treenode, call another DFS to test if a path sum include the answer
+    private void helper(TreeNode node, int sum) {
+        if(node == null) {
+            return;
+        }
+        dfs(node, sum); // we can move the line to any order, here is pre-order
+        helper(node.left, sum);
+        helper(node.right, sum);
+    }
+    
+    // for a given node, DFS to find any path that sum == target, if find count += 1
+    private void dfs(TreeNode node, int sum) {
+        if(node == null) {
+            return;
+        }
+        if(node.val == sum) {
+            count++;
+        }
+        dfs(node.left, sum - node.val);
+        dfs(node.right, sum - node.val);
+    }
+}
+
+
