@@ -181,4 +181,103 @@ class Solution {
     }
 }
 
+// Solution 2: DFS + backtracking
+// Refer to
+// https://leetcode.com/problems/path-sum-iii/discuss/91878/17-ms-O(n)-java-Prefix-sum-method/96424
+/**
+ his is an excellent idea and took me some time to figure out the logic behind.
+ Hope my comment below could help some folks better understand this solution.
+
+ 1.The prefix stores the sum from the root to the current node in the recursion
+ 2.The map stores <prefix sum, frequency> pairs before getting to the current node. 
+   We can imagine a path from the root to the current node. The sum from any node in 
+   the middle of the path to the current node = the difference between the sum from 
+   the root to the current node and the prefix sum of the node in the middle.
+ 3.We are looking for some consecutive nodes that sum up to the given target value, 
+   which means the difference discussed in 2. should equal to the target value. 
+   In addition, we need to know how many differences are equal to the target value.
+ 4.Here comes the map. The map stores the frequency of all possible sum in the path 
+   to the current node. If the difference between the current sum and the target value 
+   exists in the map, there must exist a node in the middle of the path, such that from 
+   this node to the current node, the sum is equal to the target value.
+ 5.Note that there might be multiple nodes in the middle that satisfy what is discussed 
+   in 4. The frequency in the map is used to help with this.
+ 6.Therefore, in each recursion, the map stores all information we need to calculate the 
+   number of ranges that sum up to target. Note that each range starts from a middle node, 
+   ended by the current node.
+ 7.To get the total number of path count, we add up the number of valid paths ended by 
+   EACH node in the tree.
+ 8.Each recursion returns the total count of valid paths in the subtree rooted at the current node. 
+   And this sum can be divided into three parts:
+ - the total number of valid paths in the subtree rooted at the current node's left child
+ - the total number of valid paths in the subtree rooted at the current node's right child
+ - the number of valid paths ended by the current node
+ The interesting part of this solution is that the prefix is counted from the top(root) to the bottom(leaves), 
+ and the result of total count is calculated from the bottom to the top :D
+*/
+
+// https://leetcode.com/problems/path-sum-iii/discuss/91878/17-ms-O(n)-java-Prefix-sum-method/96427
+/**
+ This solution makes me confused at first and seems others are having the same problem.
+ The idea is based on path.
+ Suppose now the hash table preSum stores the prefix sum of the whole path. Then after adding current 
+ node's val to the pathsum, if (pathsum-target) is in the preSum, then we know that at some node of 
+ path we have a (pathsum-target) preSum, hence we have a path of target. Actually, it is the path 
+ starting from that node.
+ 
+ Now the problem is how to maintain this preSum table? Since one path's preSum is different from others, 
+ we have to change it. However, we should notice that we can reuse the most part of the preSum table. 
+ If we are done with current node, we just need to delete the current pathsum in the preSum, and leave 
+ all other prefix sum in it. Then, in higher layers, we can forget everything about this node (and its descendants).
+ That's why we have
+ preSum.put(sum, preSum.get(sum) - 1);
+ // this deletes current pathsum and leave all previous sums
+ After running the algorithm, the preSum table should contain keys of all possible path sum starting from 
+ root, but all values of them are 0, except key 0. For instance in the example we should have:
+ {0: 1, 7: 0, 10: 0, 15: 0, 16: 0, 17: 0, 18: 0, 21: 0}
+ 
+ Hope it helps.
+ @jeffery said in 17 ms O(n) java Prefix sum method:
+ Could we know what's the two sum problem and its solution we are talking here?
+ I a curious how to solve it using prefix sum.
+ Thanks
+ 
+ @marcusgao94 said in 17 ms O(n) java Prefix sum method:
+ Could you explain what exactly your hashmap saves? what does the key mean in the hashmap? Why can you save 
+ the number of paths to a Integer? I think you must associate the number of paths to a certain node, instead 
+ of the prefix sum value. Because if two nodes on two different branches have same prefix value, the number 
+ of paths to them may not be the same, and if you calls preSum.get(prefix) then the res will be wrong.
+
+ And why do you need to put preSum(sum, 1) first and at last let preSum(sum) - 1?
+*/
+class Solution {
+    public int pathSum(TreeNode root, int sum) {
+        if(root == null) {
+            return 0;
+        }
+        Map<Integer, Integer> preSum = new HashMap<Integer, Integer>();
+        // [key, value] -> <prefix sum, frequency>
+        // The prefix stores the sum from the root to the current node in the recursion
+        preSum.put(0, 1);
+        return helper(root, 0, sum, preSum);
+    }
+    
+    private int helper(TreeNode curr, int currSum, int target, Map<Integer, Integer> preSum) {
+        if(curr == null) {
+            return 0;
+        }
+        // update the prefix sum by adding the current val
+        currSum += curr.val;
+        // get the number of valid path, ended by the current node
+        int numPathToCurr = preSum.getOrDefault(currSum - target, 0);
+        // update the map with the current sum, so the map is good to be passed to the next recursion
+        preSum.put(currSum, preSum.getOrDefault(currSum, 0) + 1);
+        // add the 3 parts discussed in 8. together
+        int result = numPathToCurr + helper(curr.left, currSum, target, preSum) + helper(curr.right, currSum, target, preSum);
+        // restore the map, as the recursion goes from the bottom to the top
+        preSum.put(currSum, preSum.get(currSum) - 1);
+        return result;
+    }
+}
+
 
