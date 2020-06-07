@@ -340,3 +340,8 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>Binary Tree Preorder Traversal
 <p>1. [Preorder, Inorder and Postorder Traversal Iterative Java Solution] (https://leetcode.com/problems/binary-tree-postorder-traversal/discuss/45621/preorder-inorder-and-postorder-traversal-iterative-java-solution)
 
+<p>Path Sum IV
+<p>1. [Pre-order Traverse] (https://massivealgorithms.blogspot.com/2017/08/leetcode-666-path-sum-iv.html)
+<p>2. [中文解释] (https://www.cnblogs.com/grandyang/p/7570954.html)
+<p>3. [Official Solution] (https://leetcode.com/articles/path-sum-iv/)
+
