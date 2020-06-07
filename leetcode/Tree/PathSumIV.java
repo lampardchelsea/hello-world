@@ -81,12 +81,13 @@ public class Solution {
         return totalSum;
     }
     
+    // Pre-order Traverse
     private void helper(int root, int preSum) {
         int level = root / 10;
         int pos = root % 10;
         int left = (level + 1) * 10 + pos * 2 - 1;
         int right = (level + 1) * 10 + pos * 2;
-        // 'curSum' used to record current path sum
+        // Pre-order traverse, 'curSum' used to record current path sum
         int curSum = preSum + map.get(root);
         // If a leaf node means find a full path which record in 'curSum'
         // add it to 'totalSum'
