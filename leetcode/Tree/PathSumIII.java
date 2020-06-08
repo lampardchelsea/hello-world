@@ -251,6 +251,7 @@ class Solution {
  And why do you need to put preSum(sum, 1) first and at last let preSum(sum) - 1?
 */
 
+// Simplifed as: given an array, find out whether existing a subarray whose sum is a given number
 // https://leetcode.com/problems/path-sum-iii/discuss/91915/My-detailed-explanation-to-the-HashMap-method
 /**
  This is a recursion problem involved tree and HashMap. It requires a through understanding of recursion. 
