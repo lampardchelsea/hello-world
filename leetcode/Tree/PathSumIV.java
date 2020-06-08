@@ -110,3 +110,59 @@ public class Solution {
         }
     }
 }
+
+// Solution 2: Iterative + Level-order Traverse
+// Refer to
+// https://www.cnblogs.com/grandyang/p/7570954.html
+/**
+ 下面这种方法是迭代的形式，我们使用的层序遍历，与先序遍历不同的是，我们不能维护一个当前路径之和的变量，
+ 这样会重复计算结点值，而是在遍历每一层的结点时，加上其父结点的值，如果某一个结点没有子结点了，
+ 才将累加起来的结点值加到结果res中
+*/
+public class Solution {
+    /**
+     * @param nums: a list of integers
+     * @return: return an integer
+     */
+    public int pathSum(int[] nums) {
+        if(nums == null) {
+            return 0;
+        }
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(int num : nums) {
+            int key = num / 10;
+            int val = num % 10;
+            map.put(key, val);
+        }
+        int result = 0;
+        Queue<Integer> q = new LinkedList<Integer>();
+        q.offer(nums[0] / 10);
+        // Level-order traverse
+        while(!q.isEmpty()) {
+            int root = q.poll();
+            int level = root / 10;
+            int pos = root % 10;
+            int left = (level + 1) * 10 + pos * 2 - 1;
+            int right = left + 1;
+            // Find a leaf node, a valid path get, add to the result
+            if(!map.containsKey(left) && !map.containsKey(right)) {
+                result += map.get(root);
+            }
+            // Update left node's value by adding its parent root value
+            if(map.containsKey(left)) {
+                map.put(left, map.get(left) + map.get(root));
+                q.offer(left);
+            }
+            // Update right node's value by adding its parent root value
+            if(map.containsKey(right)) {
+                map.put(right, map.get(right) + map.get(root));
+                q.offer(right);
+            }
+        }
+        return result;
+    }
+}
+
+
+
+
