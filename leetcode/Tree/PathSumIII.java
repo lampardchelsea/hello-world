@@ -250,6 +250,34 @@ class Solution {
 
  And why do you need to put preSum(sum, 1) first and at last let preSum(sum) - 1?
 */
+
+// https://leetcode.com/problems/path-sum-iii/discuss/91915/My-detailed-explanation-to-the-HashMap-method
+/**
+ This is a recursion problem involved tree and HashMap. It requires a through understanding of recursion. 
+ I am surprised that this problem is categorized to "easy" in LeetCode.
+ A simple version of this problem: each node represents a number and find out whether existing a path that 
+ sums to a given number. Let's call it Problem A.
+ A further simplified problem: given an array, find out whether existing a subarray whose sum is a given number. 
+ Let's call it Problem B.
+ How to solve Problem B? The idea is to use a HashSet to store prefix sum. Iteratively scan each number in 
+ the array and calculate the current sum, then check if curSum - target exists in the HashSet, if so return true; 
+ otherwise add curSum to the HashSet. Maybe you can get the idea quickly from the code:
+    // input parameters: int[] nums, int target
+    Set<Integer> set = new HashSet<>();
+    curSum = 0;
+    for (int i : nums) {
+        curSum += i;
+        if (set.contains(curSum - target)) {
+            return true;
+        } else {
+            set.add(curSum);
+        }
+    }
+    return false;
+ Now you can see that, after nums[i] is visited, the HashSet stores prefix sums from 0th element to the 0th element, 
+ 1st element, 2nd element, ... , ith element. If curSum - target exists in the HashSet, it means there is one subarray 
+ ended at current element, whose sum is target. Time complexity is O(n) and space complexity is O(n).
+*/
 class Solution {
     public int pathSum(TreeNode root, int sum) {
         if(root == null) {
