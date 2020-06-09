@@ -110,6 +110,8 @@
 <p>1. [Java recursive (O(logn) space) and iterative solutions (O(1) space) with explanation and figure] (https://discuss.leetcode.com/topic/40924/java-recursive-o-logn-space-and-iterative-solutions-o-1-space-with-explanation-and-figure)
 <p>2. [Binary Tree Upside Down的三种解法] (http://blog.csdn.net/whuwangyi/article/details/43186045)
 <p>3. [Binary Tree Upside Down 二叉树的上下颠倒] (http://www.cnblogs.com/grandyang/p/5172838.html)
+<p>4. [Best explain for discipline for thinking about recursive and iterative idea] (https://medium.com/@jimdaosui/binary-tree-upside-down-77af203c79af)
+<p>5. [Explain with graph] (http://rainykat.blogspot.com/2017/01/leetcodelinkedin-156-binary-tree-upside.html)
   
 <p>Binary Tree Right Side View
 <p>1. [Youtube Solution (BFS + DFS)] (https://www.youtube.com/watch?v=obLedSdUSow)
