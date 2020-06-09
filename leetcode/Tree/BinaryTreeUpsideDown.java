@@ -146,3 +146,94 @@ public class BinaryTreeUpsideDown {
 
 
 // Solution 2: Iterative
+/**
+ Best explain example:
+ Suppose that we are given a binary tree:
+    
+    1
+   / \
+  2   3
+ / \
+4   5
+-------------------------------------------------------------------------
+Initialization:     prev = NULL, cur = 1, next = NULL, lastRight = NULL
+
+      NULL (prev)
+     /       \
+    1 (curr)  NULL (lastRight)
+   /       \
+  2 (next)  3
+ / \
+4   5
+-------------------------------------------------------------------------
+1st Iteration:      store 2 in next
+		    let 1 left point to NULL (lastRight)
+		    store 3 in lastRight
+		    let 1 right point to NULL (prev)
+		    move prev to 1 (cur)
+		    move cur to 2 (next)
+Binary Tree:            
+
+    1
+
+  2   3
+ / \
+4   5
+Data Structure:     prev = 1, cur = 2, next = 2, lastRight = 3
+-------------------------------------------------------------------------
+2nd Iteration:      store 4 in next
+		    let 2 left point to 3 (lastRight)
+		    store 5 in lastRight
+		    let 2 right point to 1 (prev)
+		    move prev to 2 (cur)
+		    move cur to 4 (next)
+Binary Tree:            
+
+    1
+   /
+  2 - 3
+
+4   5
+Data Structure:     prev = 2, cur = 4, next = 4, lastRight = 5
+-------------------------------------------------------------------------
+3rd Iteration:      store NULL in next
+		    let 4 left point to 5 (lastRight)
+		    store NULL in lastRight
+		    let 4 right point to 2 (prev)
+		    move prev to 4 (cur)
+		    move cur to NULL (next)
+Binary Tree:            
+
+    1
+   /
+  2 - 3
+ / 
+4 - 5
+Data Structure:     prev = 4, cur = NULL, next = NULL, lastRight = NULL
+return prev = 4
+*/
+public class Solution {
+    /**
+     * @param root: the root of binary tree
+     * @return: new root
+     */
+    public TreeNode upsideDownBinaryTree(TreeNode root) {
+        if(root == null) {
+            return null;
+        }
+        TreeNode prev = null;
+        TreeNode curr = root;
+        TreeNode next = null;
+        TreeNode lastRight = null;
+        while(curr != null) {
+            next = curr.left;
+            curr.left = lastRight;
+            lastRight = curr.right;
+            curr.right = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+}
+
