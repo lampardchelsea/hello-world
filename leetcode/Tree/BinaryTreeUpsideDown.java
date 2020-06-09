@@ -136,3 +136,13 @@ public class BinaryTreeUpsideDown {
 		System.out.println(result.val);
 	}
 }
+
+
+// Re-work
+// Link two explain together to find the discipline
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/Document/Binary_Tree_Upside_Down.pdf
+// http://rainykat.blogspot.com/2017/01/leetcodelinkedin-156-binary-tree-upside.html
+// Solution 1: Recursive
+
+
+// Solution 2: Iterative
