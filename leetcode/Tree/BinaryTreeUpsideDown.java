@@ -147,8 +147,55 @@ public class BinaryTreeUpsideDown {
 
 // Solution 2: Iterative
 /**
- Best explain example:
- Suppose that we are given a binary tree:
+Best explain example:
+This is a little bit complicated problem at my first glance. But still, let’s break down the big problem and 
+have a list of things to do, then let’s hope this question could be easier.
+The goal is to make the tree upside down. How do we accomplish this more specifically? Note that if a node has 
+left child, its left child will become the new root and the current root’s right child and the current root 
+will become the new root’s left and right children, respectively. So let’s make a list:
+If the current root has left child, make the left child right point to the current root.
+If the current root has left child, make the left child left point to the current root.
+Repeat the operations above until the current root does not have left child.
+But how do we actually implement this idea? Note that in the example above,
+at the very beginning, we will make node 2 left point to 1 and right point to 3, but then the subtrees of node 
+2 are lost, so its really hard to keep track of those information.
+So let’s try to think a little bit differently. First, if we ignore the existence of right subtrees, what could 
+we get in this scenario? In the example above,
+    1                   1
+   / \                 /
+  2   3    ----->     2 
+ / \                 /
+4   5               4
+What does this new tree look like? It’s literally equivalent to a singly linked list, isn’t it? If node 1 is 
+the root of this binary tree, then it is also the head of this list, as well. And we can also consider the 
+left pointer of a node the next pointer in a list node. Hence, we can easily transform this problem into linked 
+list reversal problem, and the only additional issue is to connect correctly for the right subtrees.
+In terms of connecting right subtrees, let’s make some observations. Again, in that example, there are two 
+right subtree connections we need to make. First, we need to left point node 2 to the right subtree of 1, 
+which is node 3. 2->3. The second one is that we need to point node 4 to node 5, which is the right child 
+of 2. 4->5. So the only thing we need to do here, is just to left point the new root to the right child on 
+the previous level. Therefore, we can simply save its information in the last round of iteration and use it 
+in the current round.
+
+First, we will do the sanity check. Then, we will just simulate the algorithm of singly linked list reversal 
+along the left subtree track. We can do such analogy,
+╔═══════════╦═══════════════════════╦════════════════════╗
+║ Variables ║      Binary Tree      ║ Singly Linked List ║
+╠═══════════╬═══════════════════════╬════════════════════╣
+║ prev      ║ parent node           ║ previous node      ║
+║ cur       ║ current node          ║ current node       ║
+║ next      ║ left child node       ║ next node          ║
+║ lastRight ║ last right child node ║                    ║
+╚═══════════╩═══════════════════════╩════════════════════╝
+Thus, we can summarize the algorithms in a few steps that are easier to understand:
+1.Store the next root, the left child of the current node.
+2.Flip. Left point the current node to the right subtree on the last level, and right point the current node to its parent.
+3.Update the previous, the current and the last right node for next iteration. Note that the current’s right node 
+  is supposed to be the last right node in the next round, but we modified it in step 2, so we can store that value 
+  in advance or update it between the two flip operations (as it shows in the code).
+
+Let’s go through the example above:
+Suppose that we are given a binary tree:
     
     1
    / \
