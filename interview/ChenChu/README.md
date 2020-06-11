@@ -35,11 +35,11 @@ Section 1: Tree
 11. [Reverse Binary Tree Upside Down] (https://hjweds.gitbooks.io/leetcode/reverse-binary-tree-upside-down.html)  
     [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/BinaryTreeUpsideDown.java)  
     
-12. [] ()  
-    [] ()  
+12. [Identical Binary Tree] (https://hjweds.gitbooks.io/leetcode/identical-binary-tree.html)  
+    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/SameTree.java)  
     
-13. [] ()  
-    [] ()  
+13. [Symmetric Binary Tree] (https://hjweds.gitbooks.io/leetcode/symmetric-binary-tree.html)  
+    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/FlipEquivalentBinaryTrees.java)  
     
 14. [] ()  
     [] ()  
