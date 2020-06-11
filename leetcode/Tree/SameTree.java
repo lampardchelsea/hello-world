@@ -33,6 +33,23 @@ public class Solution {
 // Refer to
 // https://www.cnblogs.com/grandyang/p/4053384.html
 // https://leetcode.com/problems/same-tree/solution/
+// Solution 1: Pre-order recursive (DFS)
+class Solution {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        // p and q are both null
+        if(p == null && q == null) {
+            return true;
+        }
+        // one of p and q is null
+        if(p == null || q == null) {
+            return false;
+        }
+        if(p.val != q.val) {
+            return false;
+        }
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    }
+}
 
-
+// Solution 2: 
 
