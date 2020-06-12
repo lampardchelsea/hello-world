@@ -76,6 +76,11 @@ class Solution {
 }
 
 // Solution 2: Pre-order iterative traverse
+// Refer to
+// Two queue version
+// https://leetcode.com/problems/same-tree/discuss/32684/My-non-recursive-method
+// One queue version
+// https://leetcode.com/problems/same-tree/discuss/32684/My-non-recursive-method/119184
 /**
   这道题还有非递归的解法，因为二叉树的四种遍历(层序，先序，中序，后序)
   均有各自的迭代和递归的写法，这里我们先来看先序的迭代写法，相当于同时
