@@ -34,6 +34,9 @@ public class Solution {
 // https://www.cnblogs.com/grandyang/p/4053384.html
 // https://leetcode.com/problems/same-tree/solution/
 // Solution 1: Pre-order recursive (DFS)
+/**
+ 判断两棵树是否相同和之前的判断两棵树是否对称都是一样的原理，利用深度优先搜索 DFS 来递归
+*/
 class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {
         // p and q are both null
@@ -51,5 +54,10 @@ class Solution {
     }
 }
 
-// Solution 2: 
+// Solution 2: In-order traverse
+/**
+  这道题还有非递归的解法，因为二叉树的四种遍历(层序，先序，中序，后序)
+  均有各自的迭代和递归的写法，这里我们先来看先序的迭代写法，相当于同时
+  遍历两个数，然后每个节点都进行比较, 可参见之间那道 Binary Tree Preorder Traversal
+*/
 
