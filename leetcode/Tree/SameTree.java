@@ -34,6 +34,27 @@ public class Solution {
 // https://www.cnblogs.com/grandyang/p/4053384.html
 // https://leetcode.com/problems/same-tree/solution/
 // Solution 1: Pre-order recursive (DFS)
+// Refer to
+// https://leetcode.com/problems/same-tree/discuss/32687/Five-line-Java-solution-with-recursion/31600
+/**
+ public boolean isSameTree(TreeNode p, TreeNode q) {
+    
+    // Equal nullity denotes that this branch is the same (local equality)
+    // This is a base case, but also handles being given two empty trees
+    if (p == null && q == null) return true;
+    
+    // Unequal nullity denotes that the trees aren't the same
+    // Note that we've already ruled out equal nullity above
+    else if (p == null || q == null) return false;
+        
+    // Both nodes have values; descend iff those values are equal
+    // "&&" here allows for any difference to overrule a local equality
+    if (p.val == q.val) return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    
+    // If we're here, both nodes have values, and they're unequal, so the trees aren't the same
+    return false;
+}
+*/
 /**
  判断两棵树是否相同和之前的判断两棵树是否对称都是一样的原理，利用深度优先搜索 DFS 来递归
 */
