@@ -54,7 +54,7 @@ class Solution {
     }
 }
 
-// Solution 2: In-order traverse
+// Solution 2: Pre-order iterative traverse
 /**
   这道题还有非递归的解法，因为二叉树的四种遍历(层序，先序，中序，后序)
   均有各自的迭代和递归的写法，这里我们先来看先序的迭代写法，相当于同时
