@@ -128,7 +128,27 @@ class Solution {
 // Now we conver it from 2 Stack into 1 Stack (Pre-order iterative traverse)
 // Refer to
 // https://leetcode.com/problems/same-tree/discuss/32684/My-non-recursive-method/119184
-
+class Solution {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        stack.push(p);
+        stack.push(q);
+        while(!stack.isEmpty()) {
+            TreeNode a = stack.pop();
+            TreeNode b = stack.pop();
+            if(a == null && b == null) {
+                continue;
+            } else if(a == null || b == null || a.val != b.val) {
+                return false;
+            }
+            stack.push(a.left);
+            stack.push(b.left);
+            stack.push(a.right);
+            stack.push(b.right);
+        }
+        return true;
+    }
+}
 
 // Solution 3: In-order iterative traverse 
 // Refer to
@@ -183,5 +203,3 @@ class Solution {
         return true;
     }
 }
-
-
