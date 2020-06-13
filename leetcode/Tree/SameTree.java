@@ -124,3 +124,28 @@ class Solution {
         return stack_p.size() == stack_q.size();
     }
 }
+
+// Now we conver it from 2 Stack into 1 Queue
+// Refer to
+// https://leetcode.com/problems/same-tree/discuss/32684/My-non-recursive-method/119184
+class Solution {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.offer(p);
+        queue.offer(q);
+        while(!queue.isEmpty()) {
+            TreeNode a = queue.poll();
+            TreeNode b = queue.poll();
+            if(a == null && b == null) {
+                continue;
+            } else if(a == null || b == null || a.val != b.val) {
+                return false;
+            }
+            queue.offer(a.left);
+            queue.offer(b.left);
+            queue.offer(a.right);
+            queue.offer(b.right);
+        }
+        return true;
+    }
+}
