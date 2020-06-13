@@ -149,3 +149,30 @@ class Solution {
         return true;
     }
 }
+
+// Solution 3: In-order iterative traverse 
+// Refer to
+// https://www.cnblogs.com/grandyang/p/4053384.html
+class Solution {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        while(p != null || q != null || !stack.isEmpty()) {
+            while(p != null || q != null) {
+                if((p == null && q != null) || (p != null && q == null) || (p.val != q.val)) {
+                    return false;
+                }
+                stack.push(p);
+                stack.push(q);
+                p = p.left;
+                q = q.left;
+            }
+            p = stack.pop();
+            q = stack.pop();
+            p = p.right;
+            q = q.right;
+        }
+        return true;
+    }
+}
+
+// Solution 4: 
