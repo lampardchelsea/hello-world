@@ -125,30 +125,10 @@ class Solution {
     }
 }
 
-// Now we conver it from 2 Stack into 1 Queue (Pre-order iterative traverse)
+// Now we conver it from 2 Stack into 1 Stack (Pre-order iterative traverse)
 // Refer to
 // https://leetcode.com/problems/same-tree/discuss/32684/My-non-recursive-method/119184
-class Solution {
-    public boolean isSameTree(TreeNode p, TreeNode q) {
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
-        queue.offer(p);
-        queue.offer(q);
-        while(!queue.isEmpty()) {
-            TreeNode a = queue.poll();
-            TreeNode b = queue.poll();
-            if(a == null && b == null) {
-                continue;
-            } else if(a == null || b == null || a.val != b.val) {
-                return false;
-            }
-            queue.offer(a.left);
-            queue.offer(b.left);
-            queue.offer(a.right);
-            queue.offer(b.right);
-        }
-        return true;
-    }
-}
+
 
 // Solution 3: In-order iterative traverse 
 // Refer to
@@ -178,6 +158,30 @@ class Solution {
 // Solution 4: Level-order iterative traverse
 // Refer to
 // https://www.cnblogs.com/grandyang/p/4053384.html
-
+/**
+ 对于层序遍历的迭代写法，其实跟先序遍历的迭代写法非常的类似，只不过把栈换成了队列，
+ 对应之前那道 Binary Tree Level Order Traversal
+*/
+class Solution {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.offer(p);
+        queue.offer(q);
+        while(!queue.isEmpty()) {
+            TreeNode a = queue.poll();
+            TreeNode b = queue.poll();
+            if(a == null && b == null) {
+                continue;
+            } else if(a == null || b == null || a.val != b.val) {
+                return false;
+            }
+            queue.offer(a.left);
+            queue.offer(b.left);
+            queue.offer(a.right);
+            queue.offer(b.right);
+        }
+        return true;
+    }
+}
 
 
