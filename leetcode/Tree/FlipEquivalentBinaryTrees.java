@@ -71,3 +71,21 @@ class Solution {
     }
 }
 
+// Re-work
+// Solution 1: Recursive DFS
+// Refer to
+// https://leetcode.com/problems/flip-equivalent-binary-trees/discuss/200514/JavaPython-3-DFS-3-liners-and-BFS-with-explanation-time-and-space%3A-O(n).
+/**
+ If at least one of the two root nodes is null, are they equal? if yes, true; if no, false;
+ otherwise, neither node is null; if the values of the two nodes are:
+ 2a) NOT equal, return false;
+ 2b) equal, compare their children recursively. --> and we have two modes for compare child, left VS. left + right VS. right / left VS. right + right VS. left
+*/
+class Solution {
+    public boolean flipEquiv(TreeNode root1, TreeNode root2) {
+        if(root1 == null || root2 == null) {
+            return root1 == root2;
+        }
+        return root1.val == root2.val && (flipEquiv(root1.left, root2.left) && flipEquiv(root1.right, root2.right) || flipEquiv(root1.left, root2.right) && flipEquiv(root1.right, root2.left));
+    }
+}
