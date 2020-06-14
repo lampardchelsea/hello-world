@@ -74,6 +74,19 @@ class Solution {
 // Re-work
 // Solution 1: Recursive DFS
 // Refer to
+// https://leetcode.com/problems/flip-equivalent-binary-trees/solution/
+/**
+Approach 1: Recursion
+Intuition
+If root1 and root2 have the same root value, then we only need to check if their children are equal (up to ordering.)
+Algorithm
+There are 3 cases:
+1.If root1 or root2 is null, then they are equivalent if and only if they are both null.
+2.Else, if root1 and root2 have different values, they aren't equivalent.
+3.Else, let's check whether the children of root1 are equivalent to the children of root2. 
+There are two different ways to pair these children. (left VS. left + right VS. right / left VS. right + right VS. left)
+*/
+
 // https://leetcode.com/problems/flip-equivalent-binary-trees/discuss/200514/JavaPython-3-DFS-3-liners-and-BFS-with-explanation-time-and-space%3A-O(n).
 /**
  If at least one of the two root nodes is null, are they equal? if yes, true; if no, false;
@@ -89,3 +102,8 @@ class Solution {
         return root1.val == root2.val && (flipEquiv(root1.left, root2.left) && flipEquiv(root1.right, root2.right) || flipEquiv(root1.left, root2.right) && flipEquiv(root1.right, root2.left));
     }
 }
+
+// Solution 2: Iterative
+
+
+
