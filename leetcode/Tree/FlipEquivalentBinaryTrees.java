@@ -103,7 +103,41 @@ class Solution {
     }
 }
 
-// Solution 2: Iterative
-
+// Solution 2: Iterative (BFS)
+// Refer to
+// https://leetcode.com/problems/flip-equivalent-binary-trees/discuss/200514/JavaPython-3-DFS-3-liners-and-BFS-with-explanation-time-and-space%3A-O(n).
+class Solution {
+    public boolean flipEquiv(TreeNode root1, TreeNode root2) {
+        Queue<TreeNode> q1 = new LinkedList<TreeNode>();
+        Queue<TreeNode> q2 = new LinkedList<TreeNode>();
+        q1.offer(root1);
+        q2.offer(root2);
+        while(!q1.isEmpty() && !q2.isEmpty()) {
+            TreeNode n1 = q1.poll();
+            TreeNode n2 = q2.poll();
+            if(n1 == null || n2 == null) {
+                if(n1 == n2) {
+                    continue;
+                } else {
+                    return false;
+                }
+            }
+            if(n1.val != n2.val) {
+                return false;
+            }
+            // Two equal models based on switch left / right
+            if((n1.left == null && n2.left == null) || (n1.left != null && n2.left != null && n1.left.val == n2.left.val)) {
+                q1.offer(n1.left);
+                q1.offer(n1.right);
+            } else {
+                q1.offer(n1.right);
+                q1.offer(n1.left);
+            }
+            q2.offer(n2.left);
+            q2.offer(n2.right);
+        }
+        return q1.isEmpty() && q2.isEmpty();
+    }
+}
 
 
