@@ -38,11 +38,11 @@ Section 1: Tree
 12. [Identical Binary Tree] (https://hjweds.gitbooks.io/leetcode/identical-binary-tree.html)  
     [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/SameTree.java)  
     
-13. [Symmetric Binary Tree] (https://hjweds.gitbooks.io/leetcode/symmetric-binary-tree.html)  
+13. [Flip Equivalent Binary Trees] (https://hjweds.gitbooks.io/leetcode/symmetric-binary-tree.html)  
     [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/FlipEquivalentBinaryTrees.java)  
     
-14. [] ()  
-    [] ()  
+14. [Symmetric Binary Tree] (https://hjweds.gitbooks.io/leetcode/symmetric-binary-tree.html)  
+    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/SymmetricTree.java)  
     
 15. [] ()  
     [] ()  
