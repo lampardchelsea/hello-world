@@ -47,8 +47,8 @@ Section 1: Tree
 15. [Balanced Binary Tree] (https://hjweds.gitbooks.io/leetcode/balanced-binary-tree.html)  
     [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/BalancedBinaryTree.java)  
 
-16. [] ()  
-    [] ()  
+16. [Binary Tree Diameter] (https://hjweds.gitbooks.io/leetcode/binary-tree-diameter.html)  
+    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/DiameterOfBinaryTree.java)  
     
 17. [] ()  
     [] ()  
