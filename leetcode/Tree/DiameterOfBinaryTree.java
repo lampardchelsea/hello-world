@@ -53,3 +53,56 @@ class Solution {
         return Math.max(leftDepth, rightDepth) + 1;
     }
 }
+
+// Re-work
+// Solution 1:O(N^2) solution
+// Refer to
+// https://leetcode.com/problems/diameter-of-binary-tree/discuss/101120/Java-easy-to-understand-solution
+/**
+ 
+*/
+
+
+// Solution 2: O(N) DFS solution
+// Refer to
+// https://leetcode.com/problems/diameter-of-binary-tree/discuss/101132/Java-Solution-MaxDepth
+// https://leetcode.com/problems/diameter-of-binary-tree/discuss/101132/Java-Solution-MaxDepth/193803
+// https://leetcode.com/problems/diameter-of-binary-tree/discuss/101132/Java-Solution-MaxDepth/309240
+/**
+ So although the longest path doesn't have to go through the root node, it has to pass the root node of 
+ some subtree of the tree (because it has to be from one leaf node to another leaf node, otherwise we 
+ can extend it for free). The longest path that passes a given node as the ROOT node is T = left_height+right_height. 
+ So you just calculate T for all nodes and output the max T.
+*/
+class Solution {
+    // Global veriable to track maximum diameter in each round
+    int maxDiameter;
+    public int diameterOfBinaryTree(TreeNode root) {
+        maxDiameter = 0;
+        if(root == null) {
+            return 0;
+        }
+        helper(root);
+        return maxDiameter;
+    }
+    
+    private int helper(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        int left = helper(root.left);
+        int right = helper(root.right);
+        // The length of path between two nodes is represented by 
+        // the number of edges between them, so no need 'left + right + 1'
+        maxDiameter = Math.max(maxDiameter, left + right);
+        return Math.max(left, right) + 1;
+    }
+}
+
+
+
+
+
+
+
+
