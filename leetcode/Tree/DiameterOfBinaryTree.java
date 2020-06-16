@@ -124,10 +124,3 @@ class Solution {
         return Math.max(left, right) + 1;
     }
 }
-
-
-// Solution 3: Iterative
-// Refer to
-// 
-
-
