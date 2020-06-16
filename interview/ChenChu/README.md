@@ -50,8 +50,8 @@ Section 1: Tree
 16. [Binary Tree Diameter] (https://hjweds.gitbooks.io/leetcode/binary-tree-diameter.html)  
     [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/DiameterOfBinaryTree.java)  
     
-17. [] ()  
-    [] ()  
+17. [Most Frequent Subtree Sum] (https://hjweds.gitbooks.io/leetcode/most-frequent-subtree-sum.html)  
+    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/HashTable/MostFrequentSubtreeSum.java)  
     
 18. [] ()  
     [] ()  
