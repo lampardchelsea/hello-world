@@ -60,3 +60,31 @@ class Solution {
         return max_i;
     }
 }
+
+// Re-work
+// Solution 1: Recursive
+// Refer to
+// https://leetcode.com/problems/maximum-binary-tree/discuss/106149/Java-solution-recursion
+class Solution {
+    public TreeNode constructMaximumBinaryTree(int[] nums) {
+        return helper(nums, 0, nums.length - 1);
+    }
+    
+    private TreeNode helper(int[] nums, int i, int j) {
+        if(i > j) {
+            return null;
+        }
+        int max_index = i;
+        for(int k = i + 1; k <= j; k++) {
+            if(nums[k] > nums[max_index]) {
+                max_index = k;
+            }
+        }
+        TreeNode root = new TreeNode(nums[max_index]);
+        root.left = helper(nums, i, max_index - 1);
+        root.right = helper(nums, max_index + 1, j);
+        return root;
+    }
+}
+
+
