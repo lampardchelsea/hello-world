@@ -191,9 +191,40 @@ class Solution {
 }
 
 
-
-
-
+// Solution 2: Iterative
+// https://leetcode.com/problems/subtree-of-another-tree/discuss/102724/Java-Solution-tree-traversal/106046
+class Solution {
+    public boolean isSubtree(TreeNode s, TreeNode t) {
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.offer(s);
+        while(!q.isEmpty()) {
+            TreeNode node = q.poll();
+            if(isSameTree(node, t)) {
+                return true;
+            }
+            if(node.left != null) {
+                q.offer(node.left);
+            }
+            if(node.right != null) {
+                q.offer(node.right);
+            }
+        }
+        return false;
+    }
+    
+    private boolean isSameTree(TreeNode node, TreeNode t) {
+        if(node == null && t == null) {
+            return true;
+        }
+        if(node == null || t == null) {
+            return false;
+        }
+        if(node.val != t.val) {
+            return false;
+        }
+        return isSameTree(node.left, t.left) && isSameTree(node.right, t.right);
+    }
+}
 
 
 
