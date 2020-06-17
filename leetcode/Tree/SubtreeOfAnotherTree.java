@@ -158,6 +158,13 @@ public:
     
 };
 */
+// https://leetcode.com/problems/subtree-of-another-tree/discuss/102724/Java-Solution-tree-traversal/247836
+/**
+ If assum m is the number of nodes in the 1st tree and n is the number of nodes in the 2nd tree, then
+ Time complexity: O(m*n), worst case: for each node in the 1st tree, we need to check if isSame(Node s, Node t). 
+ Total m nodes, isSame(...) takes O(n) worst case
+ Space complexity: O(height of 1str tree)(Or you can say: O(m) for worst case, O(logm) for average case)
+*/
 class Solution {
     public boolean isSubtree(TreeNode s, TreeNode t) {
         if(s == null) {
