@@ -121,3 +121,72 @@ class Solution {
             && compare(a.right, b.right);
     }
 }
+
+// Re-work
+// Solution 1: Recursive
+// Refer to
+// https://leetcode.com/problems/subtree-of-another-tree/discuss/102724/Java-Solution-tree-traversal
+// https://leetcode.com/problems/subtree-of-another-tree/discuss/102724/Java-Solution-tree-traversal/153500
+/**
+The question is exactly similar to the Leetcode 100 Same Tree
+Solution for Leetcode 100: https://leetcode.com/problems/same-tree/discuss/148340/CPP-Easy-to-Understand
+Also Check Leetcode 101 [Symmetric Tree]https://leetcode.com/problems/symmetric-tree/description/)
+Leetcode 101 eh? :P
+Okay so now you will be absolutely comfortable with this question. It just requires you to 
+1.Start with a node of tree s (lets call this s-node)
+2.Compare the trees forming with root s-node and root t
+3.If the trees match(leetcode 100 logic) then return true
+4.Else go to step one and check for s->left || s->right
+class Solution {
+public:
+    bool isSubtree(TreeNode* s, TreeNode* t) {
+        if(!s) return false;
+        return isSameTree(s,t) || isSubtree(s->left,t) || isSubtree(s->right,t);
+    }
+    
+    //Leetcode 100
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(p==NULL && q==NULL)
+            return true;
+        if(p==NULL || q==NULL)
+            return false;
+        if(p->val == q->val)
+            return isSameTree(p->left,q->left) && isSameTree(p->right,q->right);
+        else
+            return false;
+    }
+    
+};
+*/
+class Solution {
+    public boolean isSubtree(TreeNode s, TreeNode t) {
+        if(s == null) {
+            return false;
+        }
+        if(isSame(s, t)) {
+            return true;
+        }
+        return isSubtree(s.left, t) || isSubtree(s.right, t);
+    }
+    
+    private boolean isSame(TreeNode s, TreeNode t) {
+        if(s == null && t == null) {
+            return true;
+        }
+        if(s == null || t == null) {
+            return false;
+        }
+        if(s.val != t.val) {
+            return false;
+        }
+        return isSame(s.left, t.left) && isSame(s.right, t.right);
+    }
+}
+
+
+
+
+
+
+
+
