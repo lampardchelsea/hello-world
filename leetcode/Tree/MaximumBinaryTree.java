@@ -173,6 +173,34 @@ return the bottom node of stack.
 然后压栈当前元素；
 最后返回的是栈底的元素(最大的元素作为根)；
 */
-
+class Solution {
+    public TreeNode constructMaximumBinaryTree(int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return null;
+        }
+        // Use stack to maintain decreasing order sequence
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        for(int i = 0; i < nums.length; i++) {
+            TreeNode node = new TreeNode(nums[i]);
+            // If the peek element is smaller than current number,
+            // then it would be the left child of current number then pop it.
+            while(!stack.isEmpty() && stack.peek().val < node.val) {
+                node.left = stack.pop();
+            }
+            // Now the bigger number's (if exist and left on the stack) 
+            // right child is current number.
+            if(!stack.isEmpty()) {
+                stack.peek().right = node;
+            }
+            stack.push(node);
+        }
+        // Get the buttom element of stack (the largest one)
+        TreeNode result = null;
+        while(!stack.isEmpty()) {
+            result = stack.pop();
+        }
+        return result;
+    }
+}
 
 
