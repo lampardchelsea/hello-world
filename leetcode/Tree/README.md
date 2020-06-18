@@ -348,3 +348,7 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>2. [中文解释] (https://www.cnblogs.com/grandyang/p/7570954.html)
 <p>3. [Official Solution] (https://leetcode.com/articles/path-sum-iv/)
 
+<p>Count Univalue Subtree
+<p>1. [4 Solutions] (https://www.cnblogs.com/grandyang/p/5206862.html)
+
+
