@@ -1,6 +1,6 @@
 /**
  Refer to
- https://www.cnblogs.com/grandyang/p/5206862.html
+ https://www.lintcode.com/problem/count-univalue-subtrees/description
  Given a binary tree, count the number of uni-value subtrees.
  A Uni-value subtree means all nodes of the subtree have the same value.
  Example :
@@ -24,7 +24,31 @@
  第一种解法的思路是先序遍历树的所有的节点，然后对每一个节点调用判断以当前节点为根的字数的所有节点
  是否相同，判断方法可以参考之前那题 Same Tree，用的是分治法的思想，分别对左右字数分别调用递归
 */
-
+public class Solution {
+    /**
+     * @param root: the given tree
+     * @return: the number of uni-value subtrees.
+     */
+    int count = 0;
+    public int countUnivalSubtrees(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        if(isUnival(root, root.val)) {
+            count++; 
+        }
+        countUnivalSubtrees(root.left);
+        countUnivalSubtrees(root.right);
+        return count;
+    }
+    
+    private boolean isUnival(TreeNode root, int val) {
+        if(root == null) {
+            return true;
+        }
+        return root.val == val && isUnival(root.left, val) && isUnival(root.right, val);
+    }
+}
 
 
 
