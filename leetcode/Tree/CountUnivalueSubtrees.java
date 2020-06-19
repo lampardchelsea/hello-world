@@ -62,4 +62,25 @@ public class Solution {
  不能使用双竖杠或的原因是，如果是双竖杠或，一旦左半边为 true 了，整个就直接是 true 了，右半边就不会
  再计算了，这样的话，一旦右子树中有值相同的子树也不会被计算到结果 res 中了
 */
-
+public class Solution {
+    /**
+     * @param root: the given tree
+     * @return: the number of uni-value subtrees.
+     */
+    int count = 0;
+    public int countUnivalSubtrees(TreeNode root) {
+        isUnival(root, -1);
+        return count;
+    }
+    
+    private boolean isUnival(TreeNode node, int val) {
+        if(node == null) {
+            return true;
+        }
+        if(!isUnival(node.left, node.val) | !isUnival(node.right, node.val)) {
+            return false;
+        }
+        count++;
+        return node.val == val;
+    }
+}
