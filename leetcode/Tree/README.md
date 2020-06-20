@@ -351,4 +351,5 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>Count Univalue Subtree
 <p>1. [4 Solutions] (https://www.cnblogs.com/grandyang/p/5206862.html)
 
-
+<p>Find Duplicate Subtrees
+<p>1. [Recursive + Encoded + HashMap] (https://leetcode.com/problems/find-duplicate-subtrees/discuss/106011/Java-Concise-Postorder-Traversal-Solution)  
