@@ -204,5 +204,33 @@ class Solution {
     }
 }
 
+// Solution 4: Iterative
+// Refer to
+// https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/discuss/252754/Java-Stack-Iterative-Solution
+class Solution {
+    public TreeNode bstFromPreorder(int[] preorder) {
+        if(preorder == null || preorder.length == 0) {
+            return null;
+        }
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode root = new TreeNode(preorder[0]);
+        stack.push(root);
+        for(int i = 1; i < preorder.length; i++) {
+            TreeNode node = new TreeNode(preorder[i]);
+            if(node.val < stack.peek().val) {
+                stack.peek().left = node;
+            } else {
+                TreeNode parent = null;
+                while(!stack.isEmpty() && node.val > stack.peek().val) {
+                    parent = stack.pop();
+                }
+                parent.right = node;
+            }
+            stack.push(node);
+        }
+        return root;
+    }
+}
+
 
 
