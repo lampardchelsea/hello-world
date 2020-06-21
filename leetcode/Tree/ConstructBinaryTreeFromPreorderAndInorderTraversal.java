@@ -76,4 +76,24 @@ class Solution {
 /**
  Note that arguments preEnd and inorder are not needed.
 */
-
+class Solution {
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        Map<Integer, Integer> inMap = new HashMap<Integer, Integer>();
+        for(int i = 0; i < inorder.length; i++) {
+            inMap.put(inorder[i], i);
+        }
+        return helper(0, 0, inorder.length - 1, preorder, inMap);
+    }
+    
+    private TreeNode helper(int preStart, int inStart, int inEnd, int[] preorder, Map<Integer, Integer> inMap) {
+        if(inStart > inEnd) {
+            return null;
+        }
+        TreeNode root = new TreeNode(preorder[preStart]);
+        int inIndex = inMap.get(preorder[preStart]);
+        int leftChildNum = inIndex - inStart;
+        root.left = helper(preStart + 1, inStart, inIndex - 1, preorder, inMap);
+        root.right = helper(preStart + leftChildNum + 1, inIndex + 1, inEnd, preorder, inMap);
+        return root;
+    }
+}
