@@ -105,4 +105,104 @@ class Solution {
     }
 }
 
+// Solution 2: Recursive lower and upper bound
+// Refer to
+// https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/discuss/589801/JAVA-3-WAYS-TO-DO-THE-PROBLEM!-O(N)-APPROACH
+// https://www.techiedelight.com/build-binary-search-tree-from-preorder-sequence/
+/**
+We can reduce the time complexity to O(n) by following a different approach
+that doesn't involve searching for index which separates the keys of left
+and right sub-tree. We know that in a BST, each node has key which is greater
+than all keys present in its left sub-tree and less than the keys presented in
+the right sub-tree, the idea to pass the information regarding the valid range
+of keys for current root node and its children in the recurrsion itself.
+Start wby getting the range as [INT_MIN, INT_MAX] for the root node, this means
+that the root node and any of its children can have keys in the range between
+INT_MIN and INT_MAX, like previous approach, we construct the root node of BST
+from the first item in the preorder sequence. Suppose the root node has value x,
+we recur for right sub-tree with range (x, INT_MAX) and recur for the left sub-tree
+with range [IN_MIN, x). To construct the complete BST, we recursively set the
+range for each recursive call and simply return if next element of preorder
+traversal is out of the valid range.
+*/
+class Solution {
+    int i;
+    public TreeNode bstFromPreorder(int[] preorder) {
+        if(preorder == null) {
+            return null;
+        }
+        i = 0;
+        return helper(preorder, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+    
+    private TreeNode helper(int[] preorder, int start, int end) {
+        if(i == preorder.length || preorder[i] < start || preorder[i] > end) {
+            return null;
+        }
+        int val = preorder[i];
+        i++;
+        TreeNode node = new TreeNode(val);
+        node.left = helper(preorder, start, val);
+        node.right = helper(preorder, val, end);
+        return node;
+    }
+}
+
+// Solution 3: Recursive only upper bound
+// Refer to
+// https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/discuss/589801/JAVA-3-WAYS-TO-DO-THE-PROBLEM!-O(N)-APPROACH
+/**
+Every node has an upper bound.
+Left node is bounded by the parent node's value.
+Right node is bounded by the ancestor's bound.
+Using the example in the question:
+The nodes [5, 1, 7] are all bounded by 8.
+The node 1 is bounded by 5.
+8 is the root node, but if you think deeper about it, it is bounded by Integer.MAX_VALUE. i.e. imagine there 
+is a root parent node Integer.MAX_VALUE with left node being 8.
+This also means that both 10 and 12 nodes, which are also right nodes, are also bounded by Integer.MAX_VALUE.
+We use a recursive function together with an outer index variable i to traverse and construct the tree. When 
+we create a tree node, we increment i to process the next element in the preorder array.
+
+We don't need to care about lower bound. When we construct the tree, we try to create left node first. If the 
+condition fails (i.e. current number is greater than the parent node value), then we try to create the right 
+node which automatically satisfies the condition, hence no lower bound is needed
+
+EXPLANATON-
+"explanation- It is  possible to do this because when we construct the " left child " the upper bound will be 
+the node value itself and no lower bound will be needed!
+	-no lower bound is required for "right child" because we have arrived at this point of creating the right 
+ child only because these elements failed to satisfy the left subtree conditions!"
+*/
+
+// https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/discuss/252232/JavaC%2B%2BPython-O(N)-Solution
+/**
+Give the function a bound the maximum number it will handle.
+The left recursion will take the elements smaller than node.val
+The right recursion will take the remaining elements smaller than bound
+Complexity
+bstFromPreorder is called exactly N times.
+It's same as a preorder traversal.
+Time O(N)
+Space O(H)
+*/
+class Solution {
+    int i = 0;
+    public TreeNode bstFromPreorder(int[] preorder) {
+        return helper(preorder, Integer.MAX_VALUE);
+    }
+    
+    private TreeNode helper(int[] preorder, int bound) {
+        if(i == preorder.length || preorder[i] > bound) {
+            return null;
+        }
+        TreeNode root = new TreeNode(preorder[i]);
+        i++;
+        root.left = helper(preorder, root.val);
+        root.right = helper(preorder, bound);
+        return root;
+    }
+}
+
+
 
