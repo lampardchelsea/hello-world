@@ -44,11 +44,36 @@ Therefore the immediate right child index is preStart + numsOnLeft + 1 (remember
 ahead of children nodes but you don't know which one is the left child which one is the right, and this is why we need inorder array)
 numsOnLeft = root - inStart.
 */
+class Solution {
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        return helper(0, 0, inorder.length - 1, preorder, inorder);
+    }
+    
+    private TreeNode helper(int preStart, int inStart, int inEnd, int[] preorder, int[] inorder) {
+        if(inStart > inEnd) {
+            return null;
+        }
+        TreeNode root = new TreeNode(preorder[preStart]);
+        int inIndex = 0;
+        for(int i = inStart; i <= inEnd; i++) {
+            if(inorder[i] == root.val) {
+                inIndex = i;
+            }
+        }
+        int leftChildNum = inIndex - inStart;
+        root.left = helper(preStart + 1, inStart, inIndex - 1, preorder, inorder);
+        root.right = helper(preStart + leftChildNum + 1, inIndex + 1, inEnd, preorder, inorder);
+        return root;
+    }
+}
 
 // https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/discuss/34538/My-Accepted-Java-Solution/32871
 /**
  One improvement: remember to use HashMap to cache the inorder[] position. This can reduce your solution from 20ms to 5ms.
 */
 
-
+// https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/discuss/34538/My-Accepted-Java-Solution/32851
+/**
+ Note that arguments preEnd and inorder are not needed.
+*/
 
