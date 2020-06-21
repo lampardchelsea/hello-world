@@ -353,3 +353,8 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 
 <p>Find Duplicate Subtrees
 <p>1. [Recursive + Encoded + HashMap] (https://leetcode.com/problems/find-duplicate-subtrees/discuss/106011/Java-Concise-Postorder-Traversal-Solution)  
+
+<p>Construct Binary Tree from Preorder and Inorder Traversal
+<p>1. [Recursive] (https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/discuss/34538/My-Accepted-Java-Solution)  
+<p>2. [How to get right child index in preorder array] (https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/discuss/34538/My-Accepted-Java-Solution/32854)
+<p>3. [use HashMap to cache the inorder[] position] (https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/discuss/34538/My-Accepted-Java-Solution/32871)  
