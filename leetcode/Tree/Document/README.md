@@ -7,7 +7,6 @@ Solve Tree Problem Guidelines:
 
 ========================================================  
 Similar Problems  
-========================================================  
 Group 1:  
 1028. Recover a Tree From Preorder Traversal  
 1008. Construct Binary Search Tree from Preorder Traversal  
