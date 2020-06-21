@@ -14,7 +14,7 @@ Group 1:
 105. Construct Binary Tree from Preorder and Inorder Traversal  
 889. Construct Binary Tree from Preorder and Postorder Traversal  
 
-Group 2:
+Group 2:  
 100. Same Tree  
 101. Symmetric Tree  
 572. Subtree of Another Tree  
