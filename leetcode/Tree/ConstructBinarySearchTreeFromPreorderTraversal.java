@@ -207,6 +207,10 @@ class Solution {
 // Solution 4: Iterative
 // Refer to
 // https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/discuss/252754/Java-Stack-Iterative-Solution
+// https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/discuss/34555/The-iterative-solution-is-easier-than-you-think!/117721
+/**
+ Same way as how we handle the iterative solution of Construct Binary Tree from Preorder and Inorder Traversal
+*/
 class Solution {
     public TreeNode bstFromPreorder(int[] preorder) {
         if(preorder == null || preorder.length == 0) {
