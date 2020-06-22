@@ -97,3 +97,50 @@ class Solution {
         return root;
     }
 }
+
+// Solution 2: Iterative
+// Refer to
+// https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/discuss/34555/The-iterative-solution-is-easier-than-you-think!/117721
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/ConstructBinarySearchTreeFromPreorderTraversal.java
+/**
+ Same way as how we handle the iterative solution of Construct Binary Search Tree From Preorder Traversal
+*/
+class Solution {
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        if(preorder == null || preorder.length == 0) {
+            return null;
+        }
+        // Build a map of the indices of the values as they appear in the inorder array
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(int i = 0; i < inorder.length; i++) {
+            map.put(inorder[i], i);
+        }
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode root = new TreeNode(preorder[0]);
+        stack.push(root);
+        // For remaining all nodes in preorder, use map build by inorder 
+        // to get node's relative position, the operation is same 
+        // as Construct Binary Search Tree From Preorder Traversal
+        for(int i = 1; i < preorder.length; i++) {
+            TreeNode node = new TreeNode(preorder[i]);
+            if(map.get(node.val) < map.get(stack.peek().val)) {
+                // The new node is on the left of the last node,
+                // so it must be its left child (that's the way preorder works)
+                stack.peek().left = node;
+            } else {
+                // The new node is on the right of the last node,
+                // so it must be the right child of either the last node
+                // or one of the last node's ancestors.
+                // pop the stack until we either run out of ancestors
+                // or the node at the top of the stack is to the right of the new node
+                TreeNode parent = null;
+                while(!stack.isEmpty() && map.get(node.val) > map.get(stack.peek().val)) {
+                    parent = stack.pop();
+                }
+                parent.right = node;
+            }
+            stack.push(node);
+        }
+        return root;
+    }
+}
