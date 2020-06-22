@@ -49,20 +49,20 @@ class Solution {
         return helper(0, 0, inorder.length - 1, preorder, inorder);
     }
     
-    private TreeNode helper(int preStart, int inStart, int inEnd, int[] preorder, int[] inorder) {
+    private TreeNode helper(int rootIndexInPreorder, int inStart, int inEnd, int[] preorder, int[] inorder) {
         if(inStart > inEnd) {
             return null;
         }
-        TreeNode root = new TreeNode(preorder[preStart]);
-        int inIndex = 0;
+        TreeNode root = new TreeNode(preorder[rootIndexInPreorder]);
+        int rootIndexInInorder = 0;
         for(int i = inStart; i <= inEnd; i++) {
             if(inorder[i] == root.val) {
-                inIndex = i;
+                rootIndexInInorder = i;
             }
         }
-        int leftChildNum = inIndex - inStart;
-        root.left = helper(preStart + 1, inStart, inIndex - 1, preorder, inorder);
-        root.right = helper(preStart + leftChildNum + 1, inIndex + 1, inEnd, preorder, inorder);
+        int leftChildNum = rootIndexInInorder - inStart;
+        root.left = helper(rootIndexInPreorder + 1, inStart, rootIndexInInorder - 1, preorder, inorder);
+        root.right = helper(rootIndexInPreorder + leftChildNum + 1, rootIndexInInorder + 1, inEnd, preorder, inorder);
         return root;
     }
 }
@@ -85,15 +85,15 @@ class Solution {
         return helper(0, 0, inorder.length - 1, preorder, inMap);
     }
     
-    private TreeNode helper(int preStart, int inStart, int inEnd, int[] preorder, Map<Integer, Integer> inMap) {
+    private TreeNode helper(int rootIndexInPreorder, int inStart, int inEnd, int[] preorder, Map<Integer, Integer> inMap) {
         if(inStart > inEnd) {
             return null;
         }
-        TreeNode root = new TreeNode(preorder[preStart]);
-        int inIndex = inMap.get(preorder[preStart]);
-        int leftChildNum = inIndex - inStart;
-        root.left = helper(preStart + 1, inStart, inIndex - 1, preorder, inMap);
-        root.right = helper(preStart + leftChildNum + 1, inIndex + 1, inEnd, preorder, inMap);
+        TreeNode root = new TreeNode(preorder[rootIndexInPreorder]);
+        int rootIndexInInorder = inMap.get(preorder[rootIndexInPreorder]);
+        int leftChildNum = rootIndexInInorder - inStart;
+        root.left = helper(rootIndexInPreorder + 1, inStart, rootIndexInInorder - 1, preorder, inMap);
+        root.right = helper(rootIndexInPreorder + leftChildNum + 1, rootIndexInInorder + 1, inEnd, preorder, inMap);
         return root;
     }
 }
