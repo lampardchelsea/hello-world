@@ -358,3 +358,8 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>1. [Recursive] (https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/discuss/34538/My-Accepted-Java-Solution)  
 <p>2. [How to get right child index in preorder array] (https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/discuss/34538/My-Accepted-Java-Solution/32854)
 <p>3. [use HashMap to cache the inorder[] position] (https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/discuss/34538/My-Accepted-Java-Solution/32871)  
+<p>4. [Iterative] (https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/discuss/34555/The-iterative-solution-is-easier-than-you-think!/117721)  
+
+<p>Construct Binary Tree from Inorder and Postorder Traversal
+<p>1. [Recursive] (https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/discuss/34782/My-recursive-Java-code-with-O(n)-time-and-O(n)-space)
+<p>2. [] ()
