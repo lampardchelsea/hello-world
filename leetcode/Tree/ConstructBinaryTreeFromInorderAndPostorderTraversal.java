@@ -73,3 +73,44 @@ class Solution {
         return root;
     }
 }
+
+// Solution 3: Iterative
+// Refer to
+// https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/discuss/34807/Java-iterative-solution-with-explanation/33119
+class Solution {
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        if(inorder == null || inorder.length == 0) {
+            return null;
+        }
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode root = new TreeNode(postorder[postorder.length - 1]);
+        stack.push(root);
+        // i is index in postorder[]
+        // j is index in inorder[]
+        int i = postorder.length - 2;
+        int j = inorder.length - 1;
+        while(i >= 0) {
+            TreeNode curr = stack.peek();
+            if(curr.val != inorder[j]) {
+                // As long as we have not reach the rightmost node we can safely follow right path and attach right child
+                TreeNode right = new TreeNode(postorder[i]);
+                curr.right = right;
+                stack.push(right);
+                i--;
+            } else {
+                // Found the node from stack where we have not visited its left subtree
+                while(!stack.isEmpty() && stack.peek().val == inorder[j]) {
+                    curr = stack.pop();
+                    j--;
+                }
+                TreeNode left = new TreeNode(postorder[i]);
+                curr.left = left;
+                stack.push(left);
+                i--;
+            }
+        }
+        return root;
+    }
+}
+
+
