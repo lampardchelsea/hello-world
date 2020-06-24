@@ -16,11 +16,7 @@ By using above 2 given In order and Level Order traversal, construct Binary Tree
               6    7 
 */
 
-// Solution 1:
-// Refer to
-// https://www.techiedelight.com/construct-binary-tree-from-inorder-level-order-traversals/
 // https://javabypatel.blogspot.com/2015/08/construct-binary-tree-from-inorder-and-level-order-traversals.html
-// https://hjweds.gitbooks.io/leetcode/reconstruct-binary-tree-with-levelorder-and-inorder.html
 /**
 Algorithm
 We just saw that first element of Level order traversal is root node.
@@ -41,5 +37,76 @@ Repeat the  Step 1 and Step 2 for new inOrder arrays.
 So, keeping the above rule in mind, 
 */
 
+
+// Solution 1: Recursive build map with inorder
+// Refer to
+// https://hjweds.gitbooks.io/leetcode/reconstruct-binary-tree-with-levelorder-and-inorder.html
+/**
+ Solution: level[]第一个为root, 找到该数值在in[]的位置（利用hashmap），再把level[]剩下的拆分为左半部和右半部两个list(根据index大小)
+*/
+class Solution {
+    class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) {
+            this.val = val;
+        }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    public TreeNode buildTree(int[] inorder, int[] levelorder) {
+        Map < Integer, Integer > map = new HashMap < Integer, Integer > ();
+        /**
+         Why have to use list ?
+         Because in levelorder, we cannot split remained array by continuous indexed elements, that kind of solution able
+         to implement on Construct Binary Tree From Preorder / Postorder And Inorder Traversal, but not here.
+         E.g
+         int[] inOrder =    { 4, 2, 6, 5, 7, 1, 3 };
+         int[] levelOrder = { 1, 2, 3, 4, 5, 6, 7 };
+         Round 1: 1 is the root, 3 should be right child, {4, 2, 6, 5, 7} should be left child
+         Round 2: in levelOrder besides root 1, we cannnot split remained array {2, 3, 4, 5, 6, 7} by continuous indexes
+                  since 3 is in middle of {2, 3, 4, 5, 6, 7} in level order traverse
+         The solution is separately build 2 list to store left / right child based on index mapping relation of root index in inorder array
+        */
+        List < Integer > levelorderlist = new ArrayList < Integer > ();
+        for (int i = 0; i < inorder.length; i++) {
+            map.put(inorder[i], i);
+            levelorderlist.add(levelorder[i]);
+        }
+        return helper(inorder, 0, inorder.length - 1, levelorderlist, map);
+    }
+
+    private TreeNode helper(int[] inorder, int inStart, int inEnd, List < Integer > levelorderlist, Map < Integer, Integer > map) {
+        if (inStart > inEnd) {
+            return null;
+        }
+        TreeNode root = new TreeNode(levelorderlist.get(0));
+        int rootIndexInInorder = map.get(root.val);
+        List < Integer > leftList = new ArrayList < Integer > ();
+        List < Integer > rightList = new ArrayList < Integer > ();
+        for (int i = 1; i < levelorderlist.size(); i++) {
+            int num = levelorderlist.get(i);
+            int pos = map.get(num);
+            if (pos < rootIndexInInorder) {
+                leftList.add(num);
+            } else {
+                rightList.add(num);
+            }
+        }
+        root.left = helper(inorder, inStart, rootIndexInInorder - 1, leftList, map);
+        root.right = helper(inorder, rootIndexInInorder + 1, inEnd, rightList, map);
+        return root;
+    }
+}
+
+// Solution 2: 
+// Refer to
+// https://www.techiedelight.com/construct-binary-tree-from-inorder-level-order-traversals/
 
 
