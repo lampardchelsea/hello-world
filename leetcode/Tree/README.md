@@ -364,7 +364,7 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>1. [Recursive] (https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/discuss/34782/My-recursive-Java-code-with-O(n)-time-and-O(n)-space)
 
 <p>Construct Binary Tree from Inorder and Levelorder Traversal
-<p>1. [Recursive] (https://www.techiedelight.com/construct-binary-tree-from-inorder-level-order-traversals/)
-<p>2. [Recursive] (https://javabypatel.blogspot.com/2015/08/construct-binary-tree-from-inorder-and-level-order-traversals.html)
-
+<p>1. [Recursive and build map with levelorder] (https://www.techiedelight.com/construct-binary-tree-from-inorder-level-order-traversals/)
+<p>2. [Recursive without map and O(n^2)] (https://javabypatel.blogspot.com/2015/08/construct-binary-tree-from-inorder-and-level-order-traversals.html)
+<p>3. [Recursive and build map with inorder] (https://hjweds.gitbooks.io/leetcode/reconstruct-binary-tree-with-levelorder-and-inorder.html)
 
