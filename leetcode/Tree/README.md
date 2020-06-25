@@ -368,3 +368,9 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>2. [Recursive without map and O(n^2)] (https://javabypatel.blogspot.com/2015/08/construct-binary-tree-from-inorder-and-level-order-traversals.html)
 <p>3. [Recursive and build map with inorder] (https://hjweds.gitbooks.io/leetcode/reconstruct-binary-tree-with-levelorder-and-inorder.html)
 
+<p>Add One Row to Tree
+<p>1. [DFS + BFS Solution] (https://leetcode.com/problems/add-one-row-to-tree/solution/)  
+  
+  
+  
+
