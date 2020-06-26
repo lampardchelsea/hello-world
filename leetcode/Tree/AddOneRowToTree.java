@@ -161,4 +161,49 @@ class Solution {
     }
 }
 
+// Solution 3: Iterative with Queue
+// Refer to
+// https://leetcode.com/problems/add-one-row-to-tree/discuss/104547/Java-three-methods-one-BFS-and-two-DFS/107355
+class Solution {
+    public TreeNode addOneRow(TreeNode root, int v, int d) {
+        if(d == 1) {
+            TreeNode n = new TreeNode(v);
+            n.left = root;
+            return n;
+        }
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.offer(root);
+        int depth = 1;
+        while(!q.isEmpty()) {
+            int size = q.size();
+            if(depth != d - 1) {
+                for(int i = 0; i < size; i++) {
+                    TreeNode node = q.poll();
+                    if(node.left != null) {
+                        q.offer(node.left);
+                    }
+                    if(node.right != null) {
+                        q.offer(node.right);
+                    }
+                }
+                depth++;
+            } else {
+                for(int i = 0; i < size; i++) {
+                    TreeNode node = q.poll();
+                    TreeNode original_left = node.left;
+                    TreeNode original_right = node.right;
+                    TreeNode new_left = new TreeNode(v);
+                    TreeNode new_right = new TreeNode(v);
+                    node.left = new_left;
+                    new_left.left = original_left;
+                    node.right = new_right;
+                    new_right.right = original_right;
+                }
+                break;
+            }
+        }
+        return root;
+    }
+}
+
 
