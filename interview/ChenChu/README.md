@@ -59,6 +59,6 @@ Section 1: Tree
 19. [Add One Row to Tree] (https://hjweds.gitbooks.io/leetcode/add-one-row-to-tree.html)  
     [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/AddOneRowToTree.java)  
     
-20. [] ()  
-    [] ()  
+20. [Merge Two Binary Trees] (https://hjweds.gitbooks.io/leetcode/merge-two-binary-trees.html)  
+    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/MergeTwoBinaryTrees.java)  
     
