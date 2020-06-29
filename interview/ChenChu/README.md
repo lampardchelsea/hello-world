@@ -62,3 +62,19 @@ Section 1: Tree
 20. [Merge Two Binary Trees] (https://hjweds.gitbooks.io/leetcode/merge-two-binary-trees.html)  
     [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/MergeTwoBinaryTrees.java)  
     
+21. [Construct String From Binary Tree] (https://hjweds.gitbooks.io/leetcode/construct-string-from-binary-tree.html)  
+    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/ConstructStringFromBinaryTree.java)  
+    
+22. [] ()  
+    [] ()  
+    
+23. [] ()  
+    [] ()  
+    
+24. [] ()  
+    [] ()  
+    
+
+
+
+
