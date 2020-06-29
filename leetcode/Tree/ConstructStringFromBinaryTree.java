@@ -144,8 +144,44 @@ class Solution {
 
 // Solution 3: Iterative
 // Refer to
-// 
-
+// https://leetcode.com/problems/construct-string-from-binary-tree/discuss/103992/Java-Solution-Tree-Traversal/106935
+class Solution {
+    public String tree2str(TreeNode t) {
+        if(t == null) {
+            return "";
+        }
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        stack.push(t);
+        Set<TreeNode> visited = new HashSet<TreeNode>();
+        StringBuilder sb = new StringBuilder();
+        while(!stack.isEmpty()) {
+            TreeNode node = stack.peek();
+            // Vistied before, pop and put a close ) into res
+            if(visited.contains(node)) {
+                stack.pop();
+                sb.append(")");
+            // Not visited before
+            } else {
+                visited.add(node);
+                sb.append("(" + node.val);
+                // If left is null, right is not null, need to put a pair of brakcet
+                if(node.left == null && node.right != null) {
+                    sb.append("()");
+                }
+                // Push its children into stack first right child then left child
+                // since when pop out we need left first then right
+                if(node.right != null) {
+                    stack.push(node.right);
+                }
+                if(node.left != null) {
+                    stack.push(node.left);
+                }
+            }
+        }
+        // Don't forget to trim the most outside bracket
+        return sb.substring(1, sb.length() - 1);
+    }
+}
 
 
 
