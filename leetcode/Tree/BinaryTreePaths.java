@@ -191,6 +191,35 @@ I think this is by far the on the best solutions in Java.
 3. If we do concat root + "for(path : childrenPaths)" in every recursion call, it will not be time efficient;
 4. If we do iteration, the queues are not slick enough in this question.
 */
-
+class Solution {
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String> result = new ArrayList<String>();
+        StringBuilder sb = new StringBuilder();
+        helper(root, result, sb);
+        return result;
+    }
+    
+    private void helper(TreeNode root, List<String> result, StringBuilder sb) {
+        if(root == null) {
+            return;
+        }
+        // When using StringBuilder, We can just keep track of the length 
+        // of the StringBuilder before we append anything to it before 
+        // recursion and afterwards set the length back.
+        int len = sb.length();
+        sb.append(root.val);
+        if(root.left == null && root.right == null) {
+            result.add(sb.toString());
+        } else {
+            // Another trick is when to append the "->", since we don't 
+            // need the last arrow at the end of the string, we only 
+            // append it before recurse to the next level of the tree.
+            sb.append("->");
+            helper(root.left, result, sb);
+            helper(root.right, result, sb);
+        }
+        sb.setLength(len);
+    }
+}
 
 
