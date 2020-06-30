@@ -141,3 +141,35 @@ public class BinaryTreePaths {
     }
     
 }
+
+// Re-work
+// Solution 1: Recursive with String concatenation
+// Refer to
+// https://leetcode.com/problems/binary-tree-paths/discuss/68258/Accepted-Java-simple-solution-in-8-lines
+
+
+
+// Solution 2: Recursive with StringBuilder
+// Refer to
+// https://leetcode.com/problems/binary-tree-paths/discuss/68258/Accepted-Java-simple-solution-in-8-lines/70164
+/**
+The time complexity for the problem should be O(n), since we are basically visiting each node in the tree. 
+Yet an interviewer might ask you for further optimization when he or she saw a string concatenation. 
+A string concatenation is just too costly. A StringBuilder can be used although a bit tricky since it 
+is not immutable like string is.
+When using StringBuilder, We can just keep track of the length of the StringBuilder before we append anything to 
+it before recursion and afterwards set the length back. Another trick is when to append the "->", since we don't 
+need the last arrow at the end of the string, we only append it before recurse to the next level of the tree.  
+*/
+
+// https://leetcode.com/problems/binary-tree-paths/discuss/68265/Java-solution-using-StringBuilder-instead-of-string-manipulation.
+/**
+I think this is by far the on the best solutions in Java.
+1. If we use str1 + str2 it will bring a lot of unnecessary clones;
+2. If we clone StringBuffer it's as bad as cloning string;
+3. If we do concat root + "for(path : childrenPaths)" in every recursion call, it will not be time efficient;
+4. If we do iteration, the queues are not slick enough in this question.
+*/
+
+
+
