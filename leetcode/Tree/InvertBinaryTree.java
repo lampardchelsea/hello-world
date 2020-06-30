@@ -219,3 +219,42 @@ public class Solution {
         return root;
     }
 }
+
+// Re-work
+// Solution 1: Recursive
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        if(root == null) {
+            return null;
+        }
+        TreeNode left = invertTree(root.left);
+        TreeNode right = invertTree(root.right);
+        root.left = right;
+        root.right = left;
+        return root;
+    }
+}
+
+// Solution 2: Iterative
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        if(root == null) {
+            return null;
+        }
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.offer(root);
+        while(!q.isEmpty()) {
+            TreeNode n = q.poll();
+            TreeNode temp = n.left;
+            n.left = n.right;
+            n.right = temp;
+            if(n.left != null) {
+                q.offer(n.left);
+            }
+            if(n.right != null) {
+                q.offer(n.right);
+            }
+        }
+        return root;
+    }
+}
