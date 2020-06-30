@@ -146,7 +146,28 @@ public class BinaryTreePaths {
 // Solution 1: Recursive with String concatenation
 // Refer to
 // https://leetcode.com/problems/binary-tree-paths/discuss/68258/Accepted-Java-simple-solution-in-8-lines
-
+class Solution {
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String> result = new ArrayList<String>();
+        helper(root, result, "");
+        return result;
+    }
+    
+    private void helper(TreeNode root, List<String> result, String str) {
+        if(root == null) {
+            return;
+        }
+        if(root.left == null && root.right == null) {
+            result.add(str + root.val);
+        }
+        if(root.left != null) {
+            helper(root.left, result, str + root.val + "->");
+        }
+        if(root.right != null) {
+            helper(root.right, result, str + root.val + "->");
+        }
+    }
+}
 
 
 // Solution 2: Recursive with StringBuilder
