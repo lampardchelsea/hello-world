@@ -117,3 +117,67 @@ public class Solution {
      return depth;
   }
 }
+
+// Re-work
+// Solution 1: Iterative Solution
+// Refer to
+// https://leetcode.com/problems/minimum-depth-of-binary-tree/discuss/36061/My-solution-used-level-order-traversal/34305
+// Style 1:
+class Solution {
+    public int minDepth(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.offer(root);
+        int depth = 0;
+        while(!q.isEmpty()) {
+            depth += 1;
+            int size = q.size();
+            for(int i = 0; i < size; i++) {
+                TreeNode n = q.poll();
+                if(n.left != null) {
+                    q.offer(n.left);
+                }
+                if(n.right != null) {
+                    q.offer(n.right);
+                }
+                if(n.left == null && n.right == null) {
+                    return depth;
+                }
+            }
+        }
+        return depth;
+    }
+}
+
+// Style 2:
+class Solution {
+    public int minDepth(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.offer(root);
+        int depth = 1;
+        while(!q.isEmpty()) {
+            int size = q.size();
+            for(int i = 0; i < size; i++) {
+                TreeNode n = q.poll();
+                if(n.left != null) {
+                    q.offer(n.left);
+                }
+                if(n.right != null) {
+                    q.offer(n.right);
+                }
+                if(n.left == null && n.right == null) {
+                    return depth;
+                }
+            }
+            depth += 1;
+        }
+        return depth;
+    }
+}
+
+
