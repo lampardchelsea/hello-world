@@ -222,4 +222,41 @@ class Solution {
     }
 }
 
+// Solution 3: Iterative with DFS + Stack
+// Refer to
+// https://leetcode.com/problems/binary-tree-paths/discuss/68423/Java-recursive-and-iterative-solutions.
+/**
+ Each element in stack is a full path and keep growing when move to node's next level (left / right child)
+*/
+class Solution {
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String> result = new ArrayList<String>();
+        Stack<Node> stack = new Stack<Node>();
+        Node n = new Node(root, "");
+        stack.push(n);
+        while(!stack.isEmpty()) {
+            Node curr = stack.pop();
+            TreeNode curr_node = curr.node;
+            String curr_str = curr.str;
+            if(curr_node != null) {
+                if(curr_node.left == null && curr_node.right == null) {
+                    curr_str += curr.node.val;
+                    result.add(curr_str);
+                }
+                stack.push(new Node(curr_node.left, curr_str + curr_node.val + "->"));
+                stack.push(new Node(curr_node.right, curr_str + curr_node.val + "->"));
+            }
+        }
+        return result;
+    }
+    
+    class Node {
+        TreeNode node;
+        String str;
+        public Node(TreeNode node, String str) {
+            this.node = node;
+            this.str = str;
+        }
+    }
+}
 
