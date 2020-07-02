@@ -371,6 +371,7 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>Add One Row to Tree
 <p>1. [DFS + BFS Solution] (https://leetcode.com/problems/add-one-row-to-tree/solution/)  
   
-  
+<p>Unique Binary Search Trees II
+<p>1. [Recursive with O(N^3)] (https://leetcode.com/problems/unique-binary-search-trees-ii/discuss/31494/A-simple-recursive-solution/30203)
   
 
