@@ -94,3 +94,64 @@ private List<TreeNode> getAns(int start, int end) {
     }
     return ans;
 }
+
+// Another explain
+class Solution {
+    public List<TreeNode> generateTrees(int n) {
+        List<TreeNode> result = new ArrayList<TreeNode>();
+        if(n == 0) {
+            return result;
+        }
+        return helper(1, n);
+    }
+    
+    private List<TreeNode> helper(int lo, int hi) {
+        List<TreeNode> list = new ArrayList<TreeNode>();
+        // Base case
+        // Refer to
+        // https://www.youtube.com/watch?v=GZ0qvkTAjmw
+        /**
+          Why the base case is lo > hi ?
+          Because when we reach to the leave node and you still call
+          recursive helper() method, the boundary will become below:
+          e.g i = 5 -> left = helper(5,4), right = helper(6,5)
+          hence lo > hi always the terminate condition
+        */
+        if(lo > hi) {
+            return list;
+        }
+        for(int i = lo; i <= hi; i++) {
+            List<TreeNode> left = helper(lo, i - 1);
+            List<TreeNode> right = helper(i + 1, hi);
+            // Create root should in each block since for loop
+            // in the block means create multiple root required
+            // TreeNode root = new TreeNode(i);
+            if(left.size() == 0 && right.size() == 0) {
+                TreeNode root = new TreeNode(i);
+                list.add(root);
+            } else if(right.size() == 0) {
+                for(TreeNode l : left) {
+                    TreeNode root = new TreeNode(i);
+                    root.left = l;
+                    list.add(root);
+                }
+            } else if(left.size() == 0) {
+                for(TreeNode r : right) {
+                    TreeNode root = new TreeNode(i);
+                    root.right = r;
+                    list.add(root);
+                }
+            } else {
+                for(TreeNode l : left) {
+                    for(TreeNode r : right) {
+                        TreeNode root = new TreeNode(i);
+                        root.left = l;
+                        root.right = r;
+                        list.add(root);
+                    }
+                }   
+            }
+        }
+        return list;
+    }
+}
