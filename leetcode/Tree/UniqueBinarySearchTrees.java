@@ -77,7 +77,7 @@ public int numTrees(int n) {
 
 // https://leetcode.com/problems/unique-binary-search-trees/discuss/31666/DP-Solution-in-6-lines-with-explanation.-F(i-n)-G(i-1)-*-G(n-i)/30482
 /**
- Hope it will help you to understand :
+Hope it will help you to understand :
     
     n = 0;     null   
     
@@ -87,25 +87,25 @@ public int numTrees(int n) {
     
     count[1] = 1 
     
-    n = 2;    1__           __2     
-    		           \         /                 
-    		        count[1]  count[1]
+    n = 2;          1__           __2
+                       \         /                 
+                    count[1]  count[1]
     
     count[2] = 1 + 1 = 2
    
-    n = 3;    1__                 __2__                   __3
-    		           \              /       \                /
-    		         count[2]    count[1]    count[1]      count[2]
+    n = 3;          1__                 __2__                   __3
+                       \               /     \                 /
+                     count[2]    count[1]    count[1]      count[2]
     
     count[3] = 2 + 1 + 2  = 5
     
-    n = 4;    1__                 __2__                   ___3___                  
-    		            \             /        \               /       \
-    		         count[3]  count[1]    count[2]        count[2]   count[1]
+    n = 4;          1__                 __2__                  __3__
+                       \               /     \                /     \
+                     count[3]    count[1]    count[2]     count[2]   count[1]
     
                  __4
-               /
-           count[3]   
+                /
+           count[3]
     
     count[4] = 5 + 2 + 2 + 5 = 14     
     
