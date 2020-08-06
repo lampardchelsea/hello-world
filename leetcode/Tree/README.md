@@ -375,3 +375,8 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>1. [Recursive with O(N^3)] (https://leetcode.com/problems/unique-binary-search-trees-ii/discuss/31494/A-simple-recursive-solution/30203)
 <p>2. [中文解释] (https://leetcode.wang/leetCode-95-Unique-Binary-Search-TreesII.html#%E8%A7%A3%E6%B3%95%E5%9B%9B-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-2)  
 
+<p>Unique Binary Search Trees
+<p>1. [DP Solution in 6 lines with explanation. F(i, n) = G(i-1) * G(n-i)] (https://leetcode.com/problems/unique-binary-search-trees/discuss/31666/DP-Solution-in-6-lines-with-explanation.-F(i-n)-G(i-1)-*-G(n-i))
+<p>2. [Graph explain] (https://leetcode.com/problems/unique-binary-search-trees/discuss/31666/DP-Solution-in-6-lines-with-explanation.-F(i-n)-G(i-1)-*-G(n-i)/30482)  
+
+
