@@ -69,4 +69,83 @@ class Solution {
     }
 }
 
+// Solution 2: DFS iterative
+// Refer to
+// https://leetcode.com/problems/sum-root-to-leaf-numbers/discuss/41474/Java-iterative-and-recursive-solutions.
+// Style 1: Avoid null point exception by check left, right child node not null
+class Node {
+    TreeNode node;
+    int sum;
+    public Node(TreeNode node, int sum) {
+        this.node = node;
+        this.sum = sum;
+    }
+}
 
+class Solution {
+    public int sumNumbers(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        int result = 0;
+        Stack<Node> stack = new Stack<Node>();
+        Node node = new Node(root, 0);
+        stack.push(node);
+        while(!stack.isEmpty()) {
+            Node curNode = stack.pop();
+            TreeNode curTreeNode = curNode.node;
+            int curSum = curNode.sum;
+            curSum = curSum * 10 + curTreeNode.val;
+            if(curTreeNode.left == null && curTreeNode.right == null) {
+                result += curSum;
+            }
+            // Avoid null point exception by check left, right child node not null,
+            // then no node contains null treenode will push onto stack
+            if(curTreeNode.left != null) {
+                stack.push(new Node(curTreeNode.left, curSum));
+            }
+            if(curTreeNode.right != null) {
+                stack.push(new Node(curTreeNode.right, curSum));
+            }
+        }
+        return result;
+    }
+}
+
+// Style 2: Avoid null point exception by check current treenode not null in next iteration
+class Node {
+    TreeNode node;
+    int sum;
+    public Node(TreeNode node, int sum) {
+        this.node = node;
+        this.sum = sum;
+    }
+}
+
+class Solution {
+    public int sumNumbers(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        int result = 0;
+        Stack<Node> stack = new Stack<Node>();
+        Node node = new Node(root, 0);
+        stack.push(node);
+        while(!stack.isEmpty()) {
+            Node curNode = stack.pop();
+            TreeNode curTreeNode = curNode.node;
+            int curSum = curNode.sum;
+            // Avoid null point exception by check current treenode not null in next iteration
+            // which may introduce by new Node(curTreeNode.left, curSum) or new Node(curTreeNode.right, curSum)
+            if(curTreeNode != null) {
+                curSum = curSum * 10 + curTreeNode.val;
+                if(curTreeNode.left == null && curTreeNode.right == null) {
+                    result += curSum;
+                }
+                stack.push(new Node(curTreeNode.left, curSum));
+                stack.push(new Node(curTreeNode.right, curSum));
+            }
+        }
+        return result;
+    }
+}
