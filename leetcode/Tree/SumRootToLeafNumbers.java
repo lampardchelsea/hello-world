@@ -32,7 +32,7 @@ The root-to-leaf path 4->0 represents the number 40.
 Therefore, sum = 495 + 491 + 40 = 1026.
 */
 
-// Solution 1: Recursive Solution
+// Solution 1: Recursive Solution (Pre-order traversal)
 // Refer to
 // https://leetcode.com/problems/sum-root-to-leaf-numbers/discuss/41363/Short-Java-solution.-Recursion./39619
 /**
