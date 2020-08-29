@@ -71,7 +71,13 @@ Section 1: Tree
 23. [Sum-Root-To-Leaf-Numbers] (https://hjweds.gitbooks.io/leetcode/content/sum-root-to-leaf-numbers.html)  
     [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/SumRootToLeafNumbers.java)
     
-24. [] ()  
+24. [Different Ways to Add Parentheses] (https://leetcode.com/problems/different-ways-to-add-parentheses/)  
+    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/DifferentWaysToAddParentheses.java)  
+    
+25. [] ()  
+    [] ()  
+    
+26. [] ()  
     [] ()  
     
 
