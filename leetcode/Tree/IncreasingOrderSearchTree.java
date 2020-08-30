@@ -116,3 +116,53 @@ class Solution {
         inorder(node.right, list);
     }
 }
+
+// Solution 2: Approach 2: Traversal with Relinking
+// Refer to
+// https://leetcode.com/problems/increasing-order-search-tree/solution/
+/**
+ Intuition and Algorithm
+ We can perform the same in-order traversal as in Approach 1. During the traversal, we'll construct the answer on the fly, 
+ reusing the nodes of the given tree by cutting their left child and adjoining them to the answer.
+ Complexity Analysis
+ Time Complexity: O(N), where N is the number of nodes in the given tree.
+ Space Complexity: O(H) in additional space complexity, where H is the height of the given tree, and the size of the implicit 
+                   call stack in our in-order traversal.
+*/
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    TreeNode tmp;
+    public TreeNode increasingBST(TreeNode root) {
+        // Create new root as one more pre-head
+        TreeNode newRoot = new TreeNode(0);
+        tmp = newRoot;
+        inorder(root);
+        return newRoot.right;
+    }
+    
+    private void inorder(TreeNode node) {
+        if(node == null) {
+            return;
+        }
+        inorder(node.left);
+        node.left = null;
+        tmp.right = node;
+        tmp = node;
+        inorder(node.right);
+    }
+}
+
