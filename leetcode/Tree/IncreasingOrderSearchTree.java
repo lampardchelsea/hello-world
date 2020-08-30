@@ -166,3 +166,41 @@ class Solution {
     }
 }
 
+// Solution 3: Iterative + Stack
+// Refer to
+// https://leetcode.com/problems/increasing-order-search-tree/discuss/165885/C++JavaPython-Self-Explained-5-line-O(N)/218381
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/BinaryTreeInorderTraversal.java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public TreeNode increasingBST(TreeNode root) {
+        TreeNode tmp = new TreeNode(0);
+        TreeNode cur = tmp;
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        while(!stack.isEmpty() || root != null) {
+            while(root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            root.left = null;
+            cur.right = root;
+            cur = root;
+            root = root.right;
+        }
+        return tmp.right;
+    }
+}
