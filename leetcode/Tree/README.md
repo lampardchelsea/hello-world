@@ -386,5 +386,6 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>Increasing Order Search Tree
 <p>1. [In-Order Traversal] (https://leetcode.com/problems/increasing-order-search-tree/solution/)  
 <p>2. [In-Order Relinking] (https://leetcode.com/problems/increasing-order-search-tree/solution/)  
-
+<p>3. [Binary Search Tree Inorder Traversal with stack] (https://leetcode.com/problems/increasing-order-search-tree/discuss/165885/C++JavaPython-Self-Explained-5-line-O(N)/218381)
+<p>4. [Binary Search Tree Inorder Traversal with stack] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/BinaryTreeInorderTraversal.java)
 
