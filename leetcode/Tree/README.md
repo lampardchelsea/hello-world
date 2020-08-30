@@ -383,3 +383,7 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>1. [Recursive] (https://leetcode.com/problems/sum-root-to-leaf-numbers/discuss/41363/Short-Java-solution.-Recursion./39619)
 <p>2. [Iterative with DFS + BFS] (https://leetcode.com/problems/sum-root-to-leaf-numbers/discuss/41474/Java-iterative-and-recursive-solutions.)  
   
+<p>Increasing Order Search Tree
+<p>1. [In-Order Traversal] (https://leetcode.com/problems/increasing-order-search-tree/solution/)  
+
+
