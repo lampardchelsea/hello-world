@@ -171,6 +171,9 @@ class Solution {
 // https://leetcode.com/problems/increasing-order-search-tree/discuss/165885/C++JavaPython-Self-Explained-5-line-O(N)/218381
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/BinaryTreeInorderTraversal.java
 /**
+ Just need to mix Binary Tree Inorder Traversal with stack and edit how to handle inorder part
+*/
+/**
  * Definition for a binary tree node.
  * public class TreeNode {
  *     int val;
