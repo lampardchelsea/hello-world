@@ -72,6 +72,10 @@ class Solution {
         inorder(node.right, vals);
     }
 }
+
+Complexity Analysis
+Time Complexity: O(N), where N is the number of nodes in the given tree.
+Space Complexity: O(N), the size of the answer.
 */
 /**
  * Definition for a binary tree node.
