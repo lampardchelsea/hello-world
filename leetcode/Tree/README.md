@@ -393,3 +393,7 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>Deepest Leaves Sum
 <p>1. [Maximum Depth Of Binary Tree] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/MaximumDepthOfBinaryTree.java)
 <p>2. [Recursive to find maximum value by the way] (https://leetcode.com/problems/deepest-leaves-sum/discuss/565187/Java-Recursive-faster-than-100.00)
+  
+<p>Sum of Nodes with Even-Valued Grandparent
+<p>1. [BFS] (https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/discuss/482991/Easy-BFS-solution-in-Java)
+<p>2. [DFS] ()
