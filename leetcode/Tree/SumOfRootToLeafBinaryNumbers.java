@@ -58,4 +58,156 @@ class Solution {
     }
 }
 
-// Solution 2: 
+// Solution 2: DFS iterative
+// Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/SumRootToLeafNumbers.java
+// Style 1: Avoid null point exception by check left, right child node not null
+class Node {
+    TreeNode node;
+    int sum;
+    public Node(TreeNode node, int sum) {
+        this.node = node;
+        this.sum = sum;
+    }
+}
+
+class Solution {
+    public int sumRootToLeaf(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        int result = 0;
+        Stack<Node> stack = new Stack<Node>();
+        Node node = new Node(root, 0);
+        stack.push(node);
+        while(!stack.isEmpty()) {
+            Node curNode = stack.pop();
+            TreeNode curTreeNode = curNode.node;
+            int curSum = curNode.sum;
+            curSum = curSum * 2 + curTreeNode.val;
+            if(curTreeNode.left == null && curTreeNode.right == null) {
+                result += curSum;
+            }
+            if(curTreeNode.left != null) {
+                stack.push(new Node(curTreeNode.left, curSum));
+            }
+            if(curTreeNode.right != null) {
+                stack.push(new Node(curTreeNode.right, curSum));
+            }
+        }
+        return result;
+    }
+}
+
+// Style 2: Avoid null point exception by check current treenode not null in next iteration
+class Node {
+    TreeNode node;
+    int sum;
+    public Node(TreeNode node, int sum) {
+        this.node = node;
+        this.sum = sum;
+    }
+}
+
+class Solution {
+    public int sumRootToLeaf(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        int result = 0;
+        Stack<Node> stack = new Stack<Node>();
+        Node node = new Node(root, 0);
+        stack.push(node);
+        while(!stack.isEmpty()) {
+            Node curNode = stack.pop();
+            TreeNode curTreeNode = curNode.node;
+            int curSum = curNode.sum;
+            if(curTreeNode != null) {
+                curSum = curSum * 2 + curTreeNode.val;
+                if(curTreeNode.left == null && curTreeNode.right == null) {
+                    result += curSum;
+                }
+                stack.push(new Node(curTreeNode.left, curSum));
+                stack.push(new Node(curTreeNode.right, curSum));
+            }
+        }
+        return result;
+    }
+}
+
+// Solution 3: BFS iterative
+// Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/SumRootToLeafNumbers.java
+// Style 1:Avoid null point exception by check left, right child node not null
+class Node {
+    TreeNode node;
+    int sum;
+    public Node(TreeNode node, int sum) {
+        this.node = node;
+        this.sum = sum;
+    }
+}
+
+class Solution {
+    public int sumRootToLeaf(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        int result = 0;
+        Queue<Node> q = new LinkedList<Node>();
+        Node node = new Node(root, 0);
+        q.offer(node);
+        while(!q.isEmpty()) {
+            Node curNode = q.poll();
+            TreeNode curTreeNode = curNode.node;
+            int curSum = curNode.sum;
+            curSum = curSum * 2 + curTreeNode.val;
+            if(curTreeNode.left == null && curTreeNode.right == null) {
+                result += curSum;
+            }
+            if(curTreeNode.left != null) {
+                q.offer(new Node(curTreeNode.left, curSum)); 
+            }
+            if(curTreeNode.right != null) {
+                q.offer(new Node(curTreeNode.right, curSum));
+            }
+        }
+        return result;
+    }
+}
+
+// Style 2:Avoid null point exception by check current treenode not null in next iteration
+class Node {
+    TreeNode node;
+    int sum;
+    public Node(TreeNode node, int sum) {
+        this.node = node;
+        this.sum = sum;
+    }
+}
+
+class Solution {
+    public int sumRootToLeaf(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        int result = 0;
+        Queue<Node> q = new LinkedList<Node>();
+        Node node = new Node(root, 0);
+        q.offer(node);
+        while(!q.isEmpty()) {
+            Node curNode = q.poll();
+            TreeNode curTreeNode = curNode.node;
+            int curSum = curNode.sum;
+            if(curTreeNode != null) {
+                curSum = curSum * 2 + curTreeNode.val;
+                if(curTreeNode.left == null && curTreeNode.right == null) {
+                    result += curSum;
+                }
+                q.offer(new Node(curTreeNode.left, curSum));
+                q.offer(new Node(curTreeNode.right, curSum));
+            }
+        }
+        return result;
+    }
+}
