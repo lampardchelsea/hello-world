@@ -83,3 +83,33 @@ class Solution {
         helper(node.right, curDepth + 1);
     }
 }
+
+// Solution 2: Recursive
+// Refer to
+// https://leetcode.com/problems/deepest-leaves-sum/discuss/565187/Java-Recursive-faster-than-100.00
+class Solution {
+    int maxDepth = 0;
+    int sum = 0;
+    public int deepestLeavesSum(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        helper(root, 1);
+        return sum;
+    }
+    private void helper(TreeNode node, int curDepth) {
+        if(node == null) {
+            return;
+        }
+        if(curDepth > maxDepth) {
+            // Reset sum to 0 if current depth larger than max depth
+            sum = 0;
+            maxDepth = curDepth;
+        }
+        if(curDepth == maxDepth) {
+            sum += node.val;
+        }
+        helper(node.left, curDepth + 1);
+        helper(node.right, curDepth + 1);
+    }
+}
