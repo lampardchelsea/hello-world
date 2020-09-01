@@ -400,3 +400,5 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 
 <p>All Elements in Two Binary Search Trees
 <p>1. [Merge two sorted arrays] (https://www.geeksforgeeks.org/merge-two-sorted-arrays/)
+<p>2. [Two stacks + Inorder traverse] (https://leetcode.com/problems/all-elements-in-two-binary-search-trees/discuss/464073/C++-One-Pass-Traversal/416303)
+<p>3. [Two stacks + Inorder traverse] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/BinaryTreeInorderTraversal.java)
