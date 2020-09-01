@@ -81,3 +81,50 @@ class Solution {
         }
     }
 }
+
+// Solution 2: BFS + HashMap
+// Refer to
+// https://webcache.googleusercontent.com/search?q=cache:zPR9W0ea2Y0J:https://leetcode.com/articles/kill-process/+&cd=1&hl=en&ct=clnk&gl=us
+/**
+ Algorithm
+ We can also make use of Breadth First Search to obtain all the children(direct + indirect) of a particular node, once the data structure 
+ of the form (process:[listofallitsdirectchildren] has been obtained. The process of obtaining the data structure is the same as in the 
+ previous approach.
+ In order to obtain all the child processes to be killed for a particular parent chosen to be killed, we can make use of Breadth First 
+ Search. For this, we add the node to be killed to a queue. Then, we remove an element from the front of the queue and add it 
+ to the return list. Further, for every element removed from the front of the queue, we add all its direct children(obtained from the 
+ data structure created) to the end of the queue. We keep on doing so till the queue becomes empty.
+ 
+ Complexity Analysis
+ Time complexity : O(n). We need to traverse over the ppid array of size nn once. Also, atmost nn additions/removals are done from the queue.
+ Space complexity : O(n). mapmap of size n is used.
+*/
+class Solution {
+    public List < Integer > killProcess(List < Integer > pid, List < Integer > ppid, int kill) {
+        // Build ppid-pid key value pair relationship, ppid(> 0) is the unique key,
+        // it may relate to one or multiple pid(s)
+        Map < Integer, List < Integer >> map = new HashMap < Integer, List < Integer >> ();
+        for (int i = 0; i < ppid.size(); i++) {
+            if (ppid.get(i) > 0) {
+                List < Integer > list = map.getOrDefault(ppid.get(i), new ArrayList < Integer > ());
+                list.add(pid.get(i));
+                map.put(ppid.get(i), list);
+            }
+        }
+        List < Integer > result = new ArrayList < Integer > ();
+        Queue < Integer > q = new LinkedList < Integer > ();
+        q.offer(kill);
+        while (!q.isEmpty()) {
+            int cur_ppid = q.poll();
+            result.add(cur_ppid);
+            if (map.containsKey(cur_ppid)) {
+                for (int cur_pid: map.get(cur_ppid)) {
+                    q.offer(cur_pid);
+                }
+            }
+        }
+        return result;
+    }
+}
+
+// Solution 3:
