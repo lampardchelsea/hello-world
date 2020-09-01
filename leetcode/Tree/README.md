@@ -402,3 +402,8 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>1. [Merge two sorted arrays] (https://www.geeksforgeeks.org/merge-two-sorted-arrays/)
 <p>2. [Two stacks + Inorder traverse] (https://leetcode.com/problems/all-elements-in-two-binary-search-trees/discuss/464073/C++-One-Pass-Traversal/416303)
 <p>3. [Two stacks + Inorder traverse] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/BinaryTreeInorderTraversal.java)
+
+<p>All Possible Full Binary Trees
+<p>1. [Recursive: build all possible FBT of leftSubTree and rightSubTree with number n] (https://leetcode.com/problems/all-possible-full-binary-trees/discuss/216853/Java%3A-Easy-with-Examples)
+<p>2. [Unique Binary Tree II] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/UniqueBinarySearchTreesII.java)
+<p>3. [Different Ways To Add Parentheses] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/DifferentWaysToAddParentheses.java)
