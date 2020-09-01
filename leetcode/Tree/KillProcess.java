@@ -32,4 +32,52 @@ The given kill id is guaranteed to be one of the given PIDs.
 n >= 1.
 */
 
-// Solution 1:
+// Solution 1: DFS Recurisve + HashMap
+// Refer to
+// https://massivealgorithms.blogspot.com/2017/05/leetcode-582-kill-process.html
+// https://webcache.googleusercontent.com/search?q=cache:zPR9W0ea2Y0J:https://leetcode.com/articles/kill-process/+&cd=1&hl=en&ct=clnk&gl=us
+/**
+ Algorithm
+ Instead of making the tree structure, we can directly make use of a data structure which stores a particular process 
+ value and the list of its direct children. For this, in the current implementation, we make use of a hashmap map, 
+ which stores the data in the form parent:[listofallitsdirectchildren].
+ Thus, now, by traversing just once over the ppid array, and adding the corresponding pid values to the children 
+ list at the same time, we can obtain a better structure storing the parent-children relationship.
+ Again, similar to the previous approach, now we can add the process to be killed to the return list, and keep on adding 
+ its children to the return list in a recursive manner by obtaining the child information from the structure created previously.
+
+ Complexity Analysis
+ Time complexity : O(n). We need to traverse over the ppid array of size n once. The getAllChildren function also 
+                         takes atmost n time, since no node can be a child of two nodes.
+ Space complexity : O(n). map of size n is used.
+*/
+class Solution {
+    public List < Integer > killProcess(List < Integer > pid, List < Integer > ppid, int kill) {
+        // Build ppid-pid key value pair relationship, ppid(> 0) is the unique key,
+        // it may relate to one or multiple pid(s)
+        Map < Integer, List < Integer >> map = new HashMap < Integer, List < Integer >> ();
+        for (int i = 0; i < ppid.size(); i++) {
+            if (ppid.get(i) > 0) {
+                List < Integer > list = map.getOrDefault(ppid.get(i), new ArrayList < Integer > ());
+                list.add(pid.get(i));
+                map.put(ppid.get(i), list);
+            }
+        }
+        List < Integer > result = new ArrayList < Integer > ();
+        result.add(kill);
+        helper(map, result, kill);
+        return result;
+    }
+
+    private void helper(Map < Integer, List < Integer >> map, List < Integer > result, int kill) {
+        // Terminate condition is map not contains 'kill' number as ppid key 
+        // in ppid-pid key value pair
+        if (map.containsKey(kill)) {
+            List < Integer > pids = map.get(kill);
+            for (int pid: pids) {
+                result.add(pid);
+                helper(map, result, pid);
+            }
+        }
+    }
+}
