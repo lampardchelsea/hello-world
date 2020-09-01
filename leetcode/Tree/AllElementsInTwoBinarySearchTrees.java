@@ -89,5 +89,49 @@ class Solution {
     }
 }
 
-// Solution 2: 
-
+// Solution 2: Two stacks + Inorder traverse
+// Refer to
+// https://leetcode.com/problems/all-elements-in-two-binary-search-trees/discuss/464073/C++-One-Pass-Traversal/416303
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/BinaryTreeInorderTraversal.java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
+        List<Integer> result = new ArrayList<Integer>();
+        Stack<TreeNode> stack1 = new Stack<TreeNode>();
+        Stack<TreeNode> stack2 = new Stack<TreeNode>();
+        while(!stack1.isEmpty() || root1 != null || !stack2.isEmpty() || root2 != null) {
+            while(root1 != null) {
+                stack1.push(root1);
+                root1 = root1.left;
+            }
+            while(root2 != null) {
+                stack2.push(root2);
+                root2 = root2.left;
+            }
+            if(stack2.isEmpty() || !stack1.isEmpty() && stack1.peek().val <= stack2.peek().val) {
+                root1 = stack1.pop();
+                result.add(root1.val);
+                root1 = root1.right;
+            } else {
+                root2 = stack2.pop();
+                result.add(root2.val);
+                root2 = root2.right;
+            }
+        }
+        return result;
+    }
+}
