@@ -39,6 +39,8 @@
 // Refer to
 // https://leetcode.com/problems/all-possible-full-binary-trees/discuss/216853/Java%3A-Easy-with-Examples
 /**
+ Runtime: 11 ms, faster than 14.36% of Java online submissions for All Possible Full Binary Trees.
+ Memory Usage: 56.5 MB, less than 16.73% of Java online submissions for All Possible Full Binary Trees.
  class Solution {
     public List<TreeNode> allPossibleFBT(int N) {
         // Recursive: build all possible FBT of leftSubTree and rightSubTree with number n
