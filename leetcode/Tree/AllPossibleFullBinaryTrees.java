@@ -88,21 +88,6 @@
 */
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/UniqueBinarySearchTreesII.java
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/DifferentWaysToAddParentheses.java
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
 class Solution {
     public List<TreeNode> allPossibleFBT(int N) {
         return helper(N);        
@@ -135,6 +120,47 @@ class Solution {
 }
 
 // Solution 2: Memoization
-
-
+// Refer to
+// https://leetcode.com/problems/all-possible-full-binary-trees/discuss/163433/Java-Recursive-Solution-with-Explanation
+/**
+We can also add a cache so we don't repeat N values, and return an empty set if N is even because we can't 
+make a full binary tree with an even number of nodes. (Don't have to create a copy, we can use the same list).
+Runtime: 3 ms, faster than 59.59% of Java online submissions for All Possible Full Binary Trees.
+Memory Usage: 54.4 MB, less than 30.86% of Java online submissions for All Possible Full Binary Trees.
+*/
+class Solution {
+    Map<Integer, List<TreeNode>> memo = new HashMap<Integer, List<TreeNode>>();
+    public List<TreeNode> allPossibleFBT(int N) {
+        return helper(N);        
+    }
+    
+    private List<TreeNode> helper(int N) {
+        List<TreeNode> result = new ArrayList<TreeNode>();
+        if(N % 2 == 0) {
+            return result;
+        }
+        if(memo.containsKey(N)) {
+            return memo.get(N);
+        }
+        if(N == 1) {
+            result.add(new TreeNode(0));
+            return result;
+        }
+        for(int i = 1; i < N; i += 2) {
+            List<TreeNode> left = helper(i);
+            // Additional -1 for root
+            List<TreeNode> right = helper(N - i - 1);
+            for(TreeNode l : left) {
+                for(TreeNode r : right) {
+                    TreeNode root = new TreeNode(0);
+                    root.left = l;
+                    root.right = r;
+                    result.add(root);
+                }
+            }
+        }
+        memo.put(N, result);
+        return result;
+    }
+}
 
