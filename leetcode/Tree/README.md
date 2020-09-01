@@ -396,4 +396,4 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
   
 <p>Sum of Nodes with Even-Valued Grandparent
 <p>1. [BFS] (https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/discuss/482991/Easy-BFS-solution-in-Java)
-<p>2. [DFS] ()
+<p>2. [DFS] (https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/discuss/477095/Easy-DFS-solution)
