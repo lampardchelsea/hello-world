@@ -416,3 +416,6 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 
 <p>Find a Corresponding Node of a Binary Tree in a Clone of That Tree
 <p>1. [DFS + Pre-order traversal] (https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree/discuss/537728/Java-Simple-Solution/477497) 
+
+<p>Clone Binary Tree
+<p>1. [DFS + Pre-order traversal] (https://www.hackingnote.com/en/interview/problems/clone-binary-tree)
