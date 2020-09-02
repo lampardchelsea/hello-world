@@ -413,3 +413,6 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>1. [DFS Recurisve + HashMap] (https://webcache.googleusercontent.com/search?q=cache:zPR9W0ea2Y0J:https://leetcode.com/articles/kill-process/+&cd=1&hl=en&ct=clnk&gl=us)
 <p>2. [BFS + HashMap] (https://webcache.googleusercontent.com/search?q=cache:zPR9W0ea2Y0J:https://leetcode.com/articles/kill-process/+&cd=1&hl=en&ct=clnk&gl=us)
 <p>3. [Tree Simulation] (https://webcache.googleusercontent.com/search?q=cache:zPR9W0ea2Y0J:https://leetcode.com/articles/kill-process/+&cd=1&hl=en&ct=clnk&gl=us)
+
+<p>Find a Corresponding Node of a Binary Tree in a Clone of That Tree
+<p>1. [DFS + Pre-order traversal] (https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree/discuss/537728/Java-Simple-Solution/477497) 
