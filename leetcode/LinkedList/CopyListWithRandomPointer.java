@@ -30,65 +30,65 @@
  *  第三遍，则是把新旧两个表拆开，返回新的表即可。
  */
 public class CopyListWithRandomPointer {
-	 private class RandomListNode {
-		 int label;
-		 RandomListNode next, random;
-		 RandomListNode(int x) { 
-			 this.label = x; 
-		 }
-     }
-	
-	public RandomListNode copyRandomList(RandomListNode head) {
-		// Be careful, for this question, we should not use this check
-		// if given input as one node, it will directly return itself
-		// as original not the copy
-		// E.g
-		// Input: {-1,#}
-		// Output: Node with label -1 was not copied but a reference to the original one.
-//        if(head == null || head.next == null) {
-//            return head;
-//        }
+    private class RandomListNode {
+        int label;
+        RandomListNode next, random;
+        RandomListNode(int x) {
+            this.label = x;
+        }
+    }
 
-		// First round: make copy of each node,
-		// and link them together side-by-side in a single list.
+    public RandomListNode copyRandomList(RandomListNode head) {
+        // Be careful, for this question, we should not use this check
+        // if given input as one node, it will directly return itself
+        // as original not the copy
+        // E.g
+        // Input: {-1,#}
+        // Output: Node with label -1 was not copied but a reference to the original one.
+        //        if(head == null || head.next == null) {
+        //            return head;
+        //        }
+
+        // First round: make copy of each node,
+        // and link them together side-by-side in a single list.
         RandomListNode itr = head;
         RandomListNode nextTemp;
-        while(itr != null) {
-        	// Create a copy node based on 'label'
-        	RandomListNode copy = new RandomListNode(itr.label);
-        	// Reserve original next node of 'itr' into 'nextTemp'
-        	nextTemp = itr.next;
-        	// Insert copy node between 'itr' and 'itr.next'
+        while (itr != null) {
+            // Create a copy node based on 'label'
+            RandomListNode copy = new RandomListNode(itr.label);
+            // Reserve original next node of 'itr' into 'nextTemp'
+            nextTemp = itr.next;
+            // Insert copy node between 'itr' and 'itr.next'
             copy.next = nextTemp;
             itr.next = copy;
             // Advance 'itr' to original next node of 'itr' as 'nextTemp'
             itr = nextTemp;
         }
-        
+
         // Second round: assign random pointers for the copy nodes.
         itr = head;
-        while(itr != null) {
-        	if(itr.random != null) {
-        		// Current node's next node(itr.next) is a copy node, 
-        		// its 'random' value will be assigned by current node's
-        		// 'random' value(a node point)'s next node
-        		// E.g 1 -> 1' -> 3 -> 3'
-        		// if 1 has random value as 3, then 1' has random value as 3'
-                itr.next.random = itr.random.next;        		
-        	}
-        	// Skip the copy node
-        	// E.g 1 -> 1' -> 3 -> 3', if itr = 1 now, it will skip 1'
+        while (itr != null) {
+            if (itr.random != null) {
+                // Current node's next node(itr.next) is a copy node, 
+                // its 'random' value will be assigned by current node's
+                // 'random' value(a node point)'s next node
+                // E.g 1 -> 1' -> 3 -> 3'
+                // if 1 has random value as 3, then 1' has random value as 3'
+                itr.next.random = itr.random.next;
+            }
+            // Skip the copy node
+            // E.g 1 -> 1' -> 3 -> 3', if itr = 1 now, it will skip 1'
             itr = itr.next.next;
         }
-        
+
         // Third round: restore the original list, and extract the copy list.
         itr = head;
         RandomListNode dummy = new RandomListNode(-1);
         RandomListNode copy;
         RandomListNode copyItr = dummy;
-        while(itr != null) {
-        	// Reuse 'nextTemp' to reserve original next node of 'itr'
-        	// E.g 1 -> 1' -> 3 -> 3', if itr = 1 now, we reserve 3 in nextTemp
+        while (itr != null) {
+            // Reuse 'nextTemp' to reserve original next node of 'itr'
+            // E.g 1 -> 1' -> 3 -> 3', if itr = 1 now, we reserve 3 in nextTemp
             nextTemp = itr.next.next;
             // E.g 1 -> 1' -> 3 -> 3', if itr = 1 now, copy is 1'
             copy = itr.next;
@@ -104,23 +104,22 @@ public class CopyListWithRandomPointer {
             // Move itr to nextTemp for next loop, e.g if itr = 1 now, move to 3
             itr = nextTemp;
         }
-        
+
         return dummy.next;
     }
-	
-	public static void main(String[] args) {
-		CopyListWithRandomPointer c = new CopyListWithRandomPointer();
-		RandomListNode one = c.new RandomListNode(1);
-		RandomListNode two = c.new RandomListNode(2);
-		RandomListNode three = c.new RandomListNode(3);
-		RandomListNode four = c.new RandomListNode(4);
-		one.next = two;
-		two.next = three;
-		three.next = four;
-		one.random = three;
-		two.random = four;
-		RandomListNode result = c.copyRandomList(one);
-		System.out.println(result.label);
-	}
-}
 
+    public static void main(String[] args) {
+        CopyListWithRandomPointer c = new CopyListWithRandomPointer();
+        RandomListNode one = c.new RandomListNode(1);
+        RandomListNode two = c.new RandomListNode(2);
+        RandomListNode three = c.new RandomListNode(3);
+        RandomListNode four = c.new RandomListNode(4);
+        one.next = two;
+        two.next = three;
+        three.next = four;
+        one.random = three;
+        two.random = four;
+        RandomListNode result = c.copyRandomList(one);
+        System.out.println(result.label);
+    }
+}
