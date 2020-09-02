@@ -127,4 +127,60 @@ class Solution {
     }
 }
 
-// Solution 3:
+// Solution 3: Tree Simulation [Accepted]
+// Refer to
+// https://webcache.googleusercontent.com/search?q=cache:zPR9W0ea2Y0J:https://leetcode.com/articles/kill-process/+&cd=1&hl=en&ct=clnk&gl=us
+/**
+ Algorithm
+ We can view the given process relationships in the form of a tree. We can construct the tree in such a way that every node stores information 
+ about its own value as well as the list of all its direct children nodes. Thus, now, once the tree has been generated, we can simply start 
+ off by killing the required node, and recursively killing the children of each node encountered rather than traversing over the whole ppid 
+ array for every node as done in the previous approach.
+ 
+ In order to implement this, we've made use of a Node class which represents a node of a tree. Each node represents a process. Thus, every 
+ node stores its own value(Node.val) and the list of all its direct children(Node.children). We traverse over the whole 
+ pid array and create nodes for all of them. Then, we traverse over the ppid array, and make the parent nodes out of them, and at the 
+ same time add all their direct children nodes in their Node.children list. In this way, we convert the given process structure 
+ into a tree structure.
+ 
+ Now, that we've obtained the tree structure, we can add the node to be killed to the return list l. Now, we can directly obtain all the 
+ direct children of this node from the tree, and add its direct children to the return list. For every node added to the return list, we 
+ repeat the same process of obtaining the children recursively.
+ 
+ Complexity Analysis
+ Time complexity : O(n). We need to traverse over the ppid and pid array of size n once. The getAllChildren function also 
+ takes atmost n time, since no node can be a child of two nodes.
+ Space complexity : O(n). mapmap of size nn is used.
+*/
+class Node {
+    int val;
+    List < Node > children;
+    public Node(int val) {
+        this.val = val;
+        this.children = new ArrayList < Node > ();
+    }
+
+    public void addChild(Node child) {
+        this.children.add(child);
+    }
+}
+
+class Solution {
+    public List < Integer > killProcess(List < Integer > pid, List < Integer > ppid, int kill) {
+        Map < Integer, Node > map = new HashMap < Integer, Node > ();
+        List < Integer > result = new ArrayList < Integer > ();
+        for (int i = 0; i < pid.size(); i++) {
+            Node node = new Node(pid.get(i));
+            map.put(pid.get(i), node);
+        }
+        for (int i = 0; i < ppid.size(); i++) {
+            if (ppid.get(i) > 0) {
+                Node node = map.get(ppid.get(i));
+                node.addChild(map.get(pid.get(i)));
+            }
+        }
+        result.add(kill);
+        helper(map.get(kill), result);
+        return result;
+    }
+}
