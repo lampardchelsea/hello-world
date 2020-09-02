@@ -408,3 +408,8 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>2. [Unique Binary Tree II] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/UniqueBinarySearchTreesII.java)
 <p>3. [Different Ways To Add Parentheses] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/DifferentWaysToAddParentheses.java)
 <p>4. [Memoization] (https://leetcode.com/problems/all-possible-full-binary-trees/discuss/163433/Java-Recursive-Solution-with-Explanation)
+
+<p>Kill Process
+<p>1. [DFS Recurisve + HashMap] (https://webcache.googleusercontent.com/search?q=cache:zPR9W0ea2Y0J:https://leetcode.com/articles/kill-process/+&cd=1&hl=en&ct=clnk&gl=us)
+<p>2. [BFS + HashMap] (https://webcache.googleusercontent.com/search?q=cache:zPR9W0ea2Y0J:https://leetcode.com/articles/kill-process/+&cd=1&hl=en&ct=clnk&gl=us)
+<p>3. [Tree Simulation] (https://webcache.googleusercontent.com/search?q=cache:zPR9W0ea2Y0J:https://leetcode.com/articles/kill-process/+&cd=1&hl=en&ct=clnk&gl=us)
