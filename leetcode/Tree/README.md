@@ -419,3 +419,6 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 
 <p>Clone Binary Tree
 <p>1. [DFS + Pre-order traversal] (https://www.hackingnote.com/en/interview/problems/clone-binary-tree)
+
+<p>Clone Binary Tree With Random Pointer
+<p>1. [Hashmap + Pre-order traversal] (https://www.techiedelight.com/clone-a-binary-tree-with-random-pointers/) 
