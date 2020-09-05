@@ -422,3 +422,8 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 
 <p>Clone Binary Tree With Random Pointer
 <p>1. [Hashmap + Pre-order traversal] (https://www.techiedelight.com/clone-a-binary-tree-with-random-pointers/) 
+
+<p>Clone N-ary Tree
+<p>1. [Relation between clone binary tree and clone N-ary tree] (https://leetcode.com/discuss/interview-question/417039/Amazon-or-Onsite-or-Clone-N-ary-Tree/376167)
+<p>2. [DFS] (https://leetcode.jp/leetcode-1490-clone-n-ary-tree-%e8%a7%a3%e9%a2%98%e6%80%9d%e8%b7%af%e5%88%86%e6%9e%90/)
+<p>3. [DFS] (https://blog.csdn.net/qq_46105170/article/details/108270779)
