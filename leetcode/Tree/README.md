@@ -427,3 +427,7 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>1. [Relation between clone binary tree and clone N-ary tree] (https://leetcode.com/discuss/interview-question/417039/Amazon-or-Onsite-or-Clone-N-ary-Tree/376167)
 <p>2. [DFS] (https://leetcode.jp/leetcode-1490-clone-n-ary-tree-%e8%a7%a3%e9%a2%98%e6%80%9d%e8%b7%af%e5%88%86%e6%9e%90/)
 <p>3. [DFS] (https://blog.csdn.net/qq_46105170/article/details/108270779)
+
+<p>Binary Tree Prune
+<p>1. [Post-order traversal by recursively checking current tree contains 1 or not] (https://leetcode.com/problems/binary-tree-pruning/solution/)
+<p>2. [Post-order traversal by recursively removing leaf node with value 0] (https://www.cnblogs.com/grandyang/p/9539584.html)
