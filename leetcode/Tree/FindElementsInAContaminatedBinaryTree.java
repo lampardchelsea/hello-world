@@ -114,8 +114,3 @@ class FindElements {
  * FindElements obj = new FindElements(root);
  * boolean param_1 = obj.find(target);
  */
- 
- // Solution 2:
- // Refer to
- // 
- 
