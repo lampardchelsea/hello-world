@@ -437,3 +437,6 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 
 <p>Delete Leaves With a Given Value
 <p>1. [Post-order traversal by recursively removing leaf node with target value] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/BinaryTreePruning.java)
+
+<p>Path In Zigzag Labelled Binary Tree
+<p>1. [Simple solution in java (Using properties of complete binary tree) (O log N)] (https://leetcode.com/problems/path-in-zigzag-labelled-binary-tree/discuss/323312/Simple-solution-in-java-(Using-properties-of-complete-binary-tree)-(O-log-N))
