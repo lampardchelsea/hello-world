@@ -434,3 +434,6 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 
 <p>Find Elements in a Contaminated Binary Tree
 <p>1. [DFS pre-order traversal + Hashset] (https://leetcode.com/problems/find-elements-in-a-contaminated-binary-tree/discuss/431107/JavaPython-3-DFS-clean-code-w-analysis.)
+
+<p>Delete Leaves With a Given Value
+<p>1. [Post-order traversal by recursively removing leaf node with target value] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/BinaryTreePruning.java)
