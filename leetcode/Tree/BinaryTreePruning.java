@@ -51,7 +51,48 @@ contains a 1, and it also prunes all subtrees not containing 1.
 If for example, node.left does not contain a one, then we should prune it via node.left = null.
 Also, the parent needs to be checked. If for example the tree is a single node 0, the answer is an empty tree.
 */
-
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public TreeNode pruneTree(TreeNode root) {
+        if(containsOne(root)) {
+            return root;
+        }
+        return null;
+    }
+    
+    private boolean containsOne(TreeNode root) {
+        if(root == null) {
+            return false;
+        }
+        boolean left = containsOne(root.left);
+        boolean right = containsOne(root.right);
+        // If left subtree not contains 1, remove left subtree
+        if(!left) {
+            root.left = null;
+        }
+        // If right subtree not contains 1, remove right subtree
+        if(!right) {
+            root.right = null;
+        }
+        // If root.val equals 1 or left or right subtree contains 1
+        // then current tree contains 1
+        return root.val == 1 || left || right;
+    }
+}
 
 // Solution 2:
 // Refer to
