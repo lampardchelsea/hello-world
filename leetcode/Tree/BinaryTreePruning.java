@@ -52,6 +52,7 @@ If for example, node.left does not contain a one, then we should prune it via no
 Also, the parent needs to be checked. If for example the tree is a single node 0, the answer is an empty tree.
 */
 
+
 // Solution 2:
 // Refer to
 // https://leetcode.com/problems/binary-tree-pruning/solution/142544
@@ -68,3 +69,36 @@ Also, the parent needs to be checked. If for example the tree is a single node 0
 用后序遍历。那么想到这里，解题思路跃然纸上了吧，我们首先对结点判空，如果不存在，直接返回空。然后分别对左右子结点调用递归函数，
 此时判断，如果当前结点是值为1的叶结点，那么移除该结点，即返回空，否则返回原结点即可
 */
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public TreeNode pruneTree(TreeNode root) {
+        if(root == null) {
+            return null;
+        }
+        // Since we have to change tree structure, have to re-assign to
+        // 'root' instead of creating new node, e.g TreeNode left = 
+        // pruneTree(root.left) will not work
+        root.left = pruneTree(root.left);
+        root.right = pruneTree(root.right);
+        // Use post-order traversal since checking left, right child
+        // first, then if satisfy condition remove current root
+        if(root.left == null && root.right == null && root.val == 0) {
+            root = null;
+        }
+        return root;
+    }
+}
