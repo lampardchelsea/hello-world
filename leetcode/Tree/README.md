@@ -440,3 +440,6 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 
 <p>Path In Zigzag Labelled Binary Tree
 <p>1. [Simple solution in java (Using properties of complete binary tree) (O log N)] (https://leetcode.com/problems/path-in-zigzag-labelled-binary-tree/discuss/323312/Simple-solution-in-java-(Using-properties-of-complete-binary-tree)-(O-log-N))
+
+<p>Count Good Nodes in Binary Tree
+<p>1. [Record the maximum value along the path from the root to the node] (https://leetcode.com/problems/count-good-nodes-in-binary-tree/discuss/635258/JavaPython-3-Simple-recursion-w-brief-explanation-and-analysis.)
