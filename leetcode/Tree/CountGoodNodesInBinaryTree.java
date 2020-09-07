@@ -44,6 +44,7 @@ Each node's value is between [-10^4, 10^4].
 1.Update the maximum value found while recurse down to the paths from root to leaves;
 2.If node value >= current maximum, count it in.
 3.return the total number after the completion of all recursions.
+Time: O(n), space: O(h), where n and h are the number and height of the binary tree, respectively.
 */
 
 /**
