@@ -12,7 +12,8 @@
 
  Example 1:
  
-
+     0 --> 1 --> 3 <-- 2      ==>    0 <-- 1 <-- 3 <-- 2
+       <-- 4 --> 5                     <-- 4 <-- 5
 
  Input: n = 6, connections = [[0,1],[1,3],[2,3],[4,0],[4,5]]
  Output: 3
@@ -20,7 +21,7 @@
 
  Example 2:
  
-
+    0 <-- 1 --> 2 <-- 3 --> 4   ==>  0 <-- 1 <-- 2 <-- 3 <-- 4
 
  Input: n = 5, connections = [[1,0],[1,2],[3,2],[3,4]]
  Output: 2
@@ -38,6 +39,18 @@
  connections[i][0] != connections[i][1]
 */
 
-// Solution 1: 
+// Solution 1: Graph + Directed adjacent map traversal with DFS
 // Refer to
 // https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero/discuss/661672/C%2B%2BJava-Track-Direction
+/**
+Based on the problem description, we have a tree, and node zero is the root.
+
+However, the direction can point either from a parent to a child (positive), or from a child to its parent (negative). 
+To solve the problem, we traverse the tree and count edges that are directed from a parent to a child. Direction of 
+those edges need to be changed to arrive at zero node.
+
+In the code below, I am using the adjacency list, and the sign indicates the direction. If the index is positive - the direction 
+is from a parent to a child and we need to change it (change += (to > 0)).
+
+Note that we cannot detect the direction for zero (-0 == 0), but it does not matter as we start our traversal from zero.
+*/
