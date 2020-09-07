@@ -443,3 +443,8 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 
 <p>Count Good Nodes in Binary Tree
 <p>1. [Record the maximum value along the path from the root to the node] (https://leetcode.com/problems/count-good-nodes-in-binary-tree/discuss/635258/JavaPython-3-Simple-recursion-w-brief-explanation-and-analysis.)
+  
+<p>Pseudo-Palindromic Paths in a Binary Tree
+<p>1. [DFS pre-order traversal + array clone] (https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/discuss/648538/JavaPython-3-2-similar-recursive-O(n)-codes-w-brief-explanation-and-analysis.)
+<p>2. [DFS pre-order traversal + backtracking] (https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/discuss/648517/Palindrome-Property-Trick-Java-Solution-Explained)
+<p>3. [Why we need to backtracking on array] (https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/discuss/648517/Palindrome-Property-Trick-Java-Solution-Explained/554820)
