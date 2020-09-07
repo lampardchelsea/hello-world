@@ -53,4 +53,47 @@ In the code below, I am using the adjacency list, and the sign indicates the dir
 is from a parent to a child and we need to change it (change += (to > 0)).
 
 Note that we cannot detect the direction for zero (-0 == 0), but it does not matter as we start our traversal from zero.
+
+Complexity Analysis
+Time: O(n). We visit each node once.
+Memory: O(n). We store n nodes in the adjacency list, with n - 1 edges in total.
 */
+class Solution {
+    public int minReorder(int n, int[][] connections) {
+        List<List<Integer>> adj_lists = new ArrayList<List<Integer>>();
+        for(int i = 0; i < n; i++) {
+            adj_lists.add(new ArrayList<Integer>());
+        }
+        for(int[] c : connections) {
+            adj_lists.get(c[0]).add(c[1]);
+            adj_lists.get(c[1]).add(-c[0]);
+        }
+        boolean[] visited = new boolean[n];
+        return helper(adj_lists, visited, 0);
+    }
+    
+    private int helper(List<List<Integer>> adj_lists, boolean[] visited, int from) {
+        int result = 0;
+        visited[from] = true;
+        for(int to : adj_lists.get(from)) {
+            if(!visited[Math.abs(to)]) {
+                if(to > 0) {
+                    result += 1;
+                }
+                result += helper(adj_lists, visited, Math.abs(to));
+            }
+        }
+        return result;
+    }
+}
+
+// Solution 2: Get rid of 'visited'
+// Refer to
+// https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero/discuss/661672/C%2B%2BJava-Track-Direction
+// https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero/discuss/661672/C++Java-Track-Direction/603863
+/**
+ Bonus: Minimalizm Version
+ Instead of visited, we can just pass the previous index to prevent going back, as suggested by zed_b. 
+ This is possible because every node has only one parent in the tree.
+*/
+
