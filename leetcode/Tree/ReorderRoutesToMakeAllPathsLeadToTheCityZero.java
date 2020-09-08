@@ -96,4 +96,29 @@ class Solution {
  Instead of visited, we can just pass the previous index to prevent going back, as suggested by zed_b. 
  This is possible because every node has only one parent in the tree.
 */
-
+class Solution {
+    public int minReorder(int n, int[][] connections) {
+        List<List<Integer>> adj_lists = new ArrayList<List<Integer>>();
+        for(int i = 0; i < n; i++) {
+            adj_lists.add(new ArrayList<Integer>());
+        }
+        for(int[] c : connections) {
+            adj_lists.get(c[0]).add(c[1]);
+            adj_lists.get(c[1]).add(-c[0]);
+        }
+        return helper(adj_lists, -1, 0);
+    }
+    
+    private int helper(List<List<Integer>> adj_lists, int prev, int from) {
+        int result = 0;
+        for(int to : adj_lists.get(from)) {
+            if(prev != Math.abs(to)) {
+                if(to > 0) {
+                    result += 1;
+                }
+                result += helper(adj_lists, from, Math.abs(to));
+            }
+        }
+        return result;
+    }
+}
