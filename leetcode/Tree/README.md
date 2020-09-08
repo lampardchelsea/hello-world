@@ -454,3 +454,6 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>2. [Recursion, with explanation] (https://leetcode.com/problems/delete-nodes-and-return-forest/discuss/328854/Python-Recursion-with-explanation-Question-seen-in-a-2016-interview)
 <p>3. [DFS 分析1] (https://blog.csdn.net/fuxuemingzhu/article/details/101542543)
 <p>4. [DFS 分析2] (https://zhongwen.gitbook.io/leetcode-report/medium/1110.-delete-nodes-and-return-forest)
+
+<p>Reorder Routes to Make All Paths Lead to the City Zero
+<p>1. [Graph + Directed adjacent map traversal with DFS] (https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero/discuss/661672/C%2B%2BJava-Track-Direction)
