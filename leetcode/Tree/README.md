@@ -463,3 +463,7 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>2. [Same DFS style by get rid of visited] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/ReorderRoutesToMakeAllPathsLeadToTheCityZero.java)
 <p>3. [Similar to Diameter of binary tree] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/DiameterOfBinaryTree.java)
 <p>4. [中文解释] (https://blog.csdn.net/qq_17550379/article/details/102897279)
+
+<p> Convert Binary Search Tree to Sorted Doubly Linked List
+<p>1. [DFS] (https://www.cnblogs.com/grandyang/p/9615871.html)
+<p>2. [Official solution] (https://blog.csdn.net/zhangpeterx/article/details/89567460)
