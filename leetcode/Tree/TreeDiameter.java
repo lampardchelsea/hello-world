@@ -53,4 +53,44 @@
  两个（相当于之前问题中的l和r），dfs的返回结果就是最长的那个路径加1（表示当前节点可以访问的最远距离
 */
 
+// Also refer to below 2 problems to get final solution
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/ReorderRoutesToMakeAllPathsLeadToTheCityZero.java
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/DiameterOfBinaryTree.java
+class Solution {
+    int result = 0;
+    public int treeDiameter(int[][] edges) {
+        if(edges == null || edges.length == 0) {
+            return 0;
+        }
+        int n = edges.length + 1;
+        List<List<Integer>> adj_lists = new ArrayList<List<Integer>>;
+        for(int i = 0; i < n; i++) {
+            adj_lists.add(new ArrayList<Integer>());
+        }
+        for(int[] e : edges) {
+            adj_lists[e[0]].add(e[1]);
+            adj_lists[e[1]].add(e[0]);
+        }
+        dfs(adj_lists, -1, 0);
+        return result;
+    }
+
+    private int dfs(List<List<Integer>> adj_lists, int parent, int root){
+        int max1 = 0;
+        int max2 = 0;
+        for(int next : adj_lists.get(root)) {
+            if(next != parent) {
+                int depth = dfs(adj_lists, root, next);
+                if(depth > max1) {
+                    max2 = max1;
+                    max1 = depth;
+                } else if(depth > max2) {
+                    max2 = depth;
+                }
+            }
+        }
+        result = Math.max(result, max1 + max2);
+        return max1 + 1;
+    }
+}
 
