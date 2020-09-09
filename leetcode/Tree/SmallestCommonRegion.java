@@ -36,3 +36,12 @@ All strings consist of English letters and spaces with at most 20 letters.
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/LowestCommonAncestorOfABinarySearchTree.java
 // https://blog.csdn.net/xiyang0405/article/details/104747193
 // https://www.cnblogs.com/Dylan-Java-NYC/p/12075993.html
+/**
+ With the regions list, we could construct partent HashMap with child pointing to parent.
+ Maintain all the regions used while finding ancestor of region1.
+ When finding ancestor of region2, return the first occurance of region that is in used, it would be smallest common region.
+ Time Complexity: O(n). n = regions.size() * average length. h is height of parent tree.
+ Space: O(n).
+*/
+
+
