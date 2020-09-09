@@ -44,4 +44,9 @@ All strings consist of English letters and spaces with at most 20 letters.
  Space: O(n).
 */
 
+// https://www.jianshu.com/p/7bb4936a1419
+/**
+ 因为只要单向找，所以hashmap这个key value pair，这里是表示一个方向，所以建从孩子到parent的好用，就可以从input开始查了。
+ 这里用了一个set记录region1的path，region2就可以一路查上去了。
+*/
 
