@@ -467,3 +467,8 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p> Convert Binary Search Tree to Sorted Doubly Linked List
 <p>1. [DFS] (https://www.cnblogs.com/grandyang/p/9615871.html)
 <p>2. [Official solution] (https://blog.csdn.net/zhangpeterx/article/details/89567460)
+
+<p>Smallest Common Region
+<p>1. [Two solutions] (https://blog.csdn.net/xiyang0405/article/details/104747193)
+<p>2. [LCA + Hashmap] (https://www.cnblogs.com/Dylan-Java-NYC/p/12075993.html)
+<p>3. [LCA + Hashmap] (https://www.jianshu.com/p/7bb4936a1419)
