@@ -60,6 +60,41 @@ All strings consist of English letters and spaces with at most 20 letters.
  【分析】
   1. 基于树的纵向遍历使用DFS算法和helper函数也是一类典型题目。
   2. 未保存整个树结构，以及确认是否为根节点进行了很多重复操作。此外在寻找目标节点时，也遍历了很多不相关子树和节点，造成很多多余时间开销。
+class Solution {
+private:
+    unordered_map<string, string> par;
+public:
+    string findSmallestRegion(vector<vector<string>>& regions, string region1, string region2) {
+        for(auto r: regions) {
+            string r0 = r[0];
+            for(int i = 1; i < r.size(); ++i)
+                par[r[i]] = r0;
+        }
+        int d1 = 0, d2 = 0;
+        string r1 = region1, r2 = region2;
+        while(par.find(r1) != par.end()) {
+            r1 = par[r1];
+            d1++;
+        }
+        while(par.find(r2) != par.end()) {
+            r2 = par[r2];
+            d2++;
+        }
+        while(d1 > d2) {
+            region1 = par[region1];
+            d1--;
+        }
+        while(d2 > d1) {
+            region2 = par[region2];
+            d2--;
+        }
+        while(region1 != region2) {
+            region1 = par[region1];
+            region2 = par[region2];
+        }
+        return region1;
+    }
+};
 */
 /**
 	regions = [["Earth","North America","South America"],
