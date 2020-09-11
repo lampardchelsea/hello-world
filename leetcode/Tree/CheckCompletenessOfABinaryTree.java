@@ -71,3 +71,29 @@ class Solution {
         return true;
     }
 }
+
+// Solution 2: Java easy Level-Order Traversal, one while-loop
+// Refer to
+// https://www.cnblogs.com/Dylan-Java-NYC/p/11144993.html
+/**
+ Perform level order traversal on the tree, if popped node is not null, then add its left and right child, no matter if they are null or not.
+ If the tree is complete, when first met null in the queue, then the rest should all be null. Otherwise, it is not complete.
+ Time Complexity: O(n).
+ Space: O(n).
+ 类似 Complete Binary Tree Inserter.
+*/
+class Solution {
+    public boolean isCompleteTree(TreeNode root) {
+        LinkedList<TreeNode> que = new LinkedList<TreeNode>();
+        que.add(root);
+        while(que.peek() != null){
+            TreeNode cur = que.poll();
+            que.add(cur.left);
+            que.add(cur.right);
+        }
+        while(!que.isEmpty() && que.peek() == null){
+            que.poll();
+        }
+        return que.isEmpty();
+    }
+}
