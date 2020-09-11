@@ -472,3 +472,8 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>1. [Two solutions] (https://blog.csdn.net/xiyang0405/article/details/104747193)
 <p>2. [LCA + Hashmap] (https://www.cnblogs.com/Dylan-Java-NYC/p/12075993.html)
 <p>3. [LCA + Hashmap] (https://www.jianshu.com/p/7bb4936a1419)
+
+<p>Complete Binary Tree Inserter
+<p>1. [Queue + List + parent / child index relationship] (https://leetcode.com/problems/complete-binary-tree-inserter/discuss/178424/C%2B%2BJavaPython-O(1)-Insert)
+<p>2. [Node at the nth index will have their children stored at 2n + 1th and 2n + 2th index in the array.] (https://leetcode.com/problems/complete-binary-tree-inserter/discuss/611953/Java-Simple-solution-(with-FULL-EXPLANATION))
+<p>3. [If not introduce parent child index relationship then use normal strategy to find first node not have both left/right child] (https://www.cnblogs.com/Dylan-Java-NYC/p/11145099.html)
