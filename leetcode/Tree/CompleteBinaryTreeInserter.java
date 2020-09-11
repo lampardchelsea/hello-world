@@ -23,6 +23,10 @@
  Every value of a given or inserted node is between 0 and 5000.
 */
 
+// Full Tree vs Complete Tree
+// Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/Document/Full_vs_Complete_binary_tree.pdf
+
 // Solution 1: Queue + List + parent / child index relationship
 // Refer to
 // https://leetcode.com/problems/complete-binary-tree-inserter/discuss/178424/C%2B%2BJavaPython-O(1)-Insert
