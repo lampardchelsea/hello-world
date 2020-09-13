@@ -84,11 +84,53 @@
  Once we have both left and right arrays for a particular root, we have to just calculate total number of good 
  node pairs formed using result += left[l]*right[r];
  Before we bactrack to parent, we have to return the distance for parents by adding up left and right subtrees of 
- current node. Note that we are doing - res[i+1] = left[i]+right[i];
+ current node. Note that we are doing -> res[i+1] = left[i]+right[i];
  The intution is that, if a leaf node is at distance i from current node, it would be at distance i+1 from its parent. 
  Hence, will building the res array, we are adding sum in i+1 th position and return to parent.
 */
-
-
-
-
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    int count = 0;
+    public int countPairs(TreeNode root, int distance) {
+        helper(root, distance);
+        return count;
+    }
+    
+    private int[] helper(TreeNode node, int distance) {
+        int[] result = new int[distance + 1];
+        if(node == null) {
+            return result;
+        }
+        if(node.left == null && node.right == null) {
+            result[1] = 1;
+            return result;
+        }
+        int[] left = helper(node.left, distance);
+        int[] right = helper(node.right, distance);
+        for(int i = 1; i < left.length; i++) {
+            for(int j = 1; j < right.length; j++) {
+                if(i + j <= distance) {
+                    count += left[i] * right[j];
+                }
+            }
+        }
+        for(int i = 1; i < result.length - 1; i++) {
+            result[i + 1] = left[i] + right[i];
+        }
+        return result;
+    }
+}
