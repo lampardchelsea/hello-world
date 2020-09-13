@@ -478,3 +478,9 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>2. [Node at the nth index will have their children stored at 2n + 1th and 2n + 2th index in the array.] (https://leetcode.com/problems/complete-binary-tree-inserter/discuss/611953/Java-Simple-solution-(with-FULL-EXPLANATION))
 <p>3. [If not introduce parent child index relationship then use normal strategy to find first node not have both left/right child] (https://www.cnblogs.com/Dylan-Java-NYC/p/11145099.html)
 <p>4. [Full Tree vs Complete Tree] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/Document/Full_vs_Complete_binary_tree.pdf)
+
+<p>Minimum Time to Collect All Apples in a Tree
+<p>1. [DFS + adjacent list] (https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/discuss/623673/Concise-explanation-with-a-Picture-for-Visualization)
+<p>2. [DFS + adjacent list] (https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/discuss/623686/Java-Detailed-Explanation-Build-Tree-%2B-DFS)
+<p>3. [DFS + boolean return] (https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/discuss/623735/Java-Easy-DFS)
+  
