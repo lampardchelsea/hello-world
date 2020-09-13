@@ -484,3 +484,7 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>2. [DFS + adjacent list] (https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/discuss/623686/Java-Detailed-Explanation-Build-Tree-%2B-DFS)
 <p>3. [DFS + boolean return] (https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/discuss/623735/Java-Easy-DFS)
   
+<p>Number of Good Leaf Nodes Pairs
+<p>1. [[Java] Detailed Explanation - Post-Order - Cache in Array] (https://leetcode.com/problems/number-of-good-leaf-nodes-pairs/discuss/755784/Java-Detailed-Explanation-Post-Order-Cache-in-Array) 
+<p>2. [[Java] DFS Solution with a Twist ,100% Faster [Explained]] (https://leetcode.com/problems/number-of-good-leaf-nodes-pairs/discuss/756198/Java-DFS-Solution-with-a-Twist-100-Faster-Explained)
+<p>3. [Diameter of binary tree] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/DiameterOfBinaryTree.java)
