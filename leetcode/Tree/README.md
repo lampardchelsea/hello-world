@@ -488,3 +488,10 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>1. [[Java] Detailed Explanation - Post-Order - Cache in Array] (https://leetcode.com/problems/number-of-good-leaf-nodes-pairs/discuss/755784/Java-Detailed-Explanation-Post-Order-Cache-in-Array) 
 <p>2. [[Java] DFS Solution with a Twist ,100% Faster [Explained]] (https://leetcode.com/problems/number-of-good-leaf-nodes-pairs/discuss/756198/Java-DFS-Solution-with-a-Twist-100-Faster-Explained)
 <p>3. [Diameter of binary tree] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/DiameterOfBinaryTree.java)
+
+<p>Longest ZigZag Path in a Binary Tree
+<p>1. [Style 1: Record previous direction + Collect step after return] (https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/discuss/534418/Java-DFS-Solution-with-comment-O(N)-Clean-code)
+<p>2. [Style 1: Record previous direction + Collect step after return] (https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/discuss/531880/Simple-Java-Code-With-Comments/670284)
+<p>3. [Best style 1: Record previous direction + Collect step before return] (https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/discuss/531867/JavaPython-DFS-Solution/471524)
+<p>4. [Style 2: Start without 2 directions] (https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/discuss/531808/Java-Recursion-Try-each-node-as-a-zigzag-root-then-return-valid-sum-to-parent)
+<p>5. [Style 2: Start without 2 directions] (ttps://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/discuss/531808/Java-Recursion-Try-each-node-as-a-zigzag-root-then-return-valid-sum-to-parent/555995)
