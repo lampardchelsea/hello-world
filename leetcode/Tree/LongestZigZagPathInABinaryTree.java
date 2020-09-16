@@ -150,6 +150,75 @@ class Solution {
 }
 */
 
+// Style 1: Record previous direction + Collect step before return
+class Solution {
+    int result = 0;
+    public int longestZigZag(TreeNode root) {
+        // initial as 0 step in case only 1 node as root node
+        // true --> previous direction move from current node to right
+        helper(root.right, 0, true);
+        // false --> previous direction move from current node to left
+        helper(root.left, 0, false);
+        return result;
+    }
+    
+    private void helper(TreeNode root, int step, boolean previousDirection) {
+        // If initial as 0 step, then collect step before return when root is null
+        result = Math.max(result, step);
+        if(root == null) {
+            return;
+        }
+        if(previousDirection) {
+            // Now already at root.right, moved 1(more) step, to continue zigzag,
+            // should move from current node to left, this action will record as
+            // preivous direction move from current node to left --> 'false'
+            helper(root.left, step + 1, false);
+            // Now keep as root.right, restart from current node, to start zigzag,
+            // should move from current node to right, this action will record as
+            // previous direction move from current node to right --> 'true'
+            helper(root.right, 0, true);
+        } else {
+            helper(root.right, step + 1, true);
+            helper(root.left, 0, false);
+        }
+    }
+}
+
+// Style 2: Record previous direction + Collect step after return
+class Solution {
+    int result = 0;
+    public int longestZigZag(TreeNode root) {
+        // initial as 1 step assume move from current node to next node
+        // regardless next node exist or not
+        // true --> previous direction move from current node to right 
+        helper(root.right, 1, true);
+        // false --> previous direction move from current node to left
+        helper(root.left, 1, false);
+        return result;
+    }
+    
+    private void helper(TreeNode root, int step, boolean previousDirection) {
+        if(root == null) {
+            return;
+        }
+        // If initial as 1 step, then collect step after return when root is null
+        result = Math.max(result, step);
+        if(previousDirection) {
+            // Now already at root.right, moved 1(more) step, to continue zigzag,
+            // should move from current node to left, this action will record as
+            // preivous direction move from current node to left --> 'false'
+            helper(root.left, step + 1, false);
+            // Now keep as root.right, restart from current node, to start zigzag,
+            // should move from current node to right, this action will record as
+            // previous direction move from current node to right --> 'true'
+            helper(root.right, 1, true);
+        } else {
+            helper(root.right, step + 1, true);
+            helper(root.left, 1, false);
+        }
+    }
+}
+
 
 // Solution 2: Start without 2 directions
 // Refer to
