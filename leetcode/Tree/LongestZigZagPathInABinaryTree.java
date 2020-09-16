@@ -70,6 +70,31 @@ class Solution {
 
 // https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/discuss/531880/Simple-Java-Code-With-Comments/670284
 /**
+Style 1:
+class Solution {
+    static int max = 0;
+    public static int longestZigZag(TreeNode root) {
+        if (root == null) return -1;// if null return -1
+        max = 0;
+        helper(root.right, 1, true);// go right
+        helper(root.left, 1, false);// go left
+        return max;
+    }
+
+    private static void helper(TreeNode root, int step, boolean isRight) {
+        if (root == null) return;
+        max = Math.max(max, step);
+        if (isRight) {// if coming from right go left
+            helper(root.left, step + 1, false);
+            helper(root.right, 1, true);//try again from start
+        } else {// else coming from left then go right
+            helper(root.right, step + 1, true);
+            helper(root.left, 1, false);
+        }
+    }
+}
+
+Style 2:
 class Solution {
     public int longestZigZag(TreeNode root) {
         if (root == null) return 0;
