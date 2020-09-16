@@ -70,7 +70,12 @@ class Solution {
 
 // https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/discuss/531880/Simple-Java-Code-With-Comments/670284
 /**
-Style 1:
+Style 1: DFS start not directly from root but from root.left and root.right, then 'step' initial as 1 not 0, since 'root' move
+to 'root.right', 'root.left' both situation count as 1. 'isRight' means current node's parent node go to right side to reach
+current node, for example, 'helper(root.right, 1, true)' means current node(root.right)'s parent node(root) go to right side
+to reach current node, then we set as 'true' to record this go to right action, another example, current node is 'root.right', 
+if next step move to 'root.right.left', which means go to left side, it satisfy the requirement of zigzag movement, 
+so 'step' plus 1, and we set as 'false' to record this go to left action as 'helper(root.left, step + 1, false)'
 class Solution {
     static int max = 0;
     public static int longestZigZag(TreeNode root) {
