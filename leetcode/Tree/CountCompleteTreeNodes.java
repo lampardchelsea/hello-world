@@ -101,6 +101,40 @@ class Solution {
  节点个数加上右子树的节点个数再加1(根节点)，其中左右子树节点个数的计算可以使用递归来计算
 */
 
+// https://leetcode.com/problems/count-complete-tree-nodes/discuss/61958/Concise-Java-solutions-O(log(n)2)
+/**
+ A Different Solution - 544 ms
+ Here's one based on victorlee's C++ solution.
+class Solution {
+    public int countNodes(TreeNode root) {
+        if (root == null)
+            return 0;
+        TreeNode left = root, right = root;
+        int height = 0;
+        while (right != null) {
+            left = left.left;
+            right = right.right;
+            height++;
+        }
+        if (left == null)
+            return (1 << height) - 1;
+        return 1 + countNodes(root.left) + countNodes(root.right);
+    }
+}
+
+Note that that's basically this:
+public int countNodes(TreeNode root) {
+    if (root == null)
+        return 0;
+    return 1 + countNodes(root.left) + countNodes(root.right)
+}
+
+That would be O(n). But... the actual solution has a gigantic optimization. It first walks all the way left and right to determine 
+the height and whether it's a full tree, meaning the last row is full. If so, then the answer is just 2^height-1. And since always 
+at least one of the two recursive calls is such a full tree, at least one of the two calls immediately stops. 
+Again we have runtime O(log(n)^2).
+*/
+
 // https://leetcode.com/problems/count-complete-tree-nodes/discuss/61948/Accepted-Easy-Understand-Java-Solution
 /**
  public class Solution {
