@@ -220,7 +220,7 @@ class Solution {
     }
 }
 
-// Solution 4: Concise Java solutions O(log(n)^2)
+// Solution 4: DFS Concise Java solutions O(log(n)^2)
 // Refer to
 // https://www.cnblogs.com/grandyang/p/4567827.html
 /**
@@ -274,3 +274,16 @@ class Solution {
         return 1 + getHeight(node.left);
     }
 }
+
+// Solution 5: BFS Concise Java solutions O(log(n)^2)
+// Refer to
+// https://www.cnblogs.com/grandyang/p/4567827.html
+/**
+ 我们也可以写成迭代的形式，用一个 while 循环，感觉好处是调用 getHeight 函数的次数变少了，因为开头计算的高度h可以一直用，每下一层后，h自减1即可
+*/
+
+// https://leetcode.com/problems/count-complete-tree-nodes/discuss/61958/Concise-Java-solutions-O(log(n)2)
+/**
+ Here's an iterative version as well, with the benefit that I don't recompute h in every step.
+*/
+
