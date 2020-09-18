@@ -286,4 +286,30 @@ class Solution {
 /**
  Here's an iterative version as well, with the benefit that I don't recompute h in every step.
 */
-
+class Solution {
+    public int countNodes(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        int count = 0;
+        int h = getHeight(root);
+        while(root != null) {
+            if(getHeight(root.right) == h - 1) {
+                count += 1 << h;
+                root = root.right;
+            } else {
+                count += 1 << (h - 1);
+                root = root.left;
+            }
+            h--;
+        }
+        return count;
+    }
+    
+    private int getHeight(TreeNode node) {
+        if(node == null) {
+            return -1;
+        }
+        return 1 + getHeight(node.left);
+    }
+}
