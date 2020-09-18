@@ -219,11 +219,57 @@ class Solution {
     }
 }
 
-// Solution 4: 
+// Solution 4: Concise Java solutions O(log(n)^2)
 // Refer to
-// https://leetcode.com/problems/count-complete-tree-nodes/discuss/61958/Concise-Java-solutions-O(log(n)2)
+// https://www.cnblogs.com/grandyang/p/4567827.html
 /**
- 
+ 这道题还有一个标签是 Binary Search，但是在论坛上看了一圈下来，并没有发现有经典的二分搜索的写法，只找到了下面这个类似二分
+ 搜索的解法，感觉应该不算严格意义上的二分搜素法吧，毕竟 left，right 变量和 while 循环都没有，只是隐约有点二分搜索法的影子
+ 在里面，即根据条件选左右分区。首先我们需要一个 getHeight 函数，这是用来统计当前结点的左子树的最大高度的，因为一直走的是
+ 左子结点，若当前结点不存在，则返回 -1。我们对当前结点调用 getHeight 函数，得到左子树的最大高度h，若为 -1，则说明当前结点
+ 不存在，直接返回0。否则就对右子结点调用 getHeight 函数，若返回值为 h-1，说明左子树是一棵完美二叉树，则左子树的结点个数是 
+ 2^h-1 个，再加上当前结点，总共是 2^h 个，即 1<<h，此时再加上对右子结点调用递归函数的返回值即可。若对右子结点调用 getHeight 
+ 函数的返回值不为 h-1，说明右子树一定是完美树，且高度为 h-1，则总结点个数为 2^(h-1)-1，加上当前结点为 2^(h-1)，即 1<<(h-1)，
+ 然后再加上对左子结点调用递归函数的返回值即可。这样貌似也算一种二分搜索法吧
 */
 
-// https://www.cnblogs.com/grandyang/p/4567827.html
+// https://leetcode.com/problems/count-complete-tree-nodes/discuss/61958/Concise-Java-solutions-O(log(n)2)
+/**
+ Explanation
+ The height of a tree can be found by just going left. Let a single node tree have height 0. Find the height h of 
+ the whole tree. If the whole tree is empty, i.e., has height -1, there are 0 nodes.
+ Otherwise check whether the height of the right subtree is just one less than that of the whole tree, meaning left 
+ and right subtree have the same height.
+ If yes, then the last node on the last tree row is in the right subtree and the left subtree is a full tree of 
+ height h-1. So we take the 2^h-1 nodes of the left subtree plus the 1 root node plus recursively the number of nodes 
+ in the right subtree.
+ If no, then the last node on the last tree row is in the left subtree and the right subtree is a full tree of height 
+ h-2. So we take the 2^(h-1)-1 nodes of the right subtree plus the 1 root node plus recursively the number of nodes in 
+ the left subtree.
+ Since I halve the tree in every recursive step, I have O(log(n)) steps. Finding a height costs O(log(n)). 
+ So overall O(log(n)^2).
+*/
+class Solution {
+    public int countNodes(TreeNode root) {
+        int h = getHeight(root);
+        if(h < 0) {
+            return 0;
+        }
+        int r_h = getHeight(root.right);
+        if(r_h == h - 1) {
+            return (1 << h) + countNodes(root.right);
+        } else {
+            return (1 << h - 1) + countNodes(root.left);
+        }
+    }
+    
+    // For complete tree we can only check left subtree height
+    // A tree with only root node has height 0 and a tree with zero nodes 
+    // would be considered as empty. An empty tree has height of -1
+    private int getHeight(TreeNode node) {
+        if(node == null) {
+            return -1;
+        }
+        return 1 + getHeight(node.left);
+    }
+}
