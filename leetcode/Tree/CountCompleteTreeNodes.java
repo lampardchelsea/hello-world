@@ -197,6 +197,7 @@ class Solution {
         if(root == null) {
             return 0;
         }
+        // If root == null, depth is 0, but height is -1, here we use depth concept only
         int leftDepth = 0;
         int rightDepth = 0;
         // Be careful, need to create 2 new cursor traverse the tree
