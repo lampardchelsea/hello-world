@@ -218,3 +218,12 @@ class Solution {
         }
     }
 }
+
+// Solution 4: 
+// Refer to
+// https://leetcode.com/problems/count-complete-tree-nodes/discuss/61958/Concise-Java-solutions-O(log(n)2)
+/**
+ 
+*/
+
+// https://www.cnblogs.com/grandyang/p/4567827.html
