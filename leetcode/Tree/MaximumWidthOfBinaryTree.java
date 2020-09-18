@@ -61,12 +61,10 @@
 */
 
 // Wrong Solution:
-              2
-				1          4
-		  3  null    5
-			  
-[2,1,4,3,null,5] -> expected 3, return 2
-
+//              2
+//         1          4
+//       3  null    5
+// [2,1,4,3,null,5] -> expected 3, return 2
 class Solution {
     int maxWidth = 0;
     public int widthOfBinaryTree(TreeNode root) {
@@ -97,3 +95,7 @@ class Solution {
         helper(node.right);
     }
 }
+
+// SOlution 1:
+// Refer to
+// 
