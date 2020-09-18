@@ -503,3 +503,6 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>4. [Use the nature of complete binary tree / perfect binary tree / full binary tree] (https://www.cnblogs.com/grandyang/p/4567827.html)
 <p>5. [DFS Concise Java solutions O(log(n)^2)] (https://leetcode.com/problems/count-complete-tree-nodes/discuss/61958/Concise-Java-solutions-O(log(n)2))
 <p>6. [BFS Concise Java solutions O(log(n)^2)] (https://leetcode.com/problems/count-complete-tree-nodes/discuss/61958/Concise-Java-solutions-O(log(n)2))
+  
+<p>Maximum Width of Binary Tree
+<p>1. [If the index of a node is i, the indices of its two children are 2*i and 2*i + 1] (https://leetcode.com/problems/maximum-width-of-binary-tree/discuss/106654/JavaC%2B%2B-Very-simple-dfs-solution)
