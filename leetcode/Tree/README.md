@@ -495,3 +495,11 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>3. [Best style 1: Record previous direction + Collect step before return] (https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/discuss/531867/JavaPython-DFS-Solution/471524)
 <p>4. [Style 2: Start without 2 directions] (https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/discuss/531808/Java-Recursion-Try-each-node-as-a-zigzag-root-then-return-valid-sum-to-parent)
 <p>5. [Style 2: Start without 2 directions] (ttps://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/discuss/531808/Java-Recursion-Try-each-node-as-a-zigzag-root-then-return-valid-sum-to-parent/555995)
+
+<p>Count Complete Tree Nodes
+<p>1. [Brutal force BFS]
+<p>2. [Brutal force DFS] (https://www.cnblogs.com/grandyang/p/4567827.html)
+<p>3. [Use the nature of complete binary tree / perfect binary tree / full binary tree] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/Document/Full_Compelete_Perfect_Tree.pdf)
+<p>4. [Use the nature of complete binary tree / perfect binary tree / full binary tree] (https://www.cnblogs.com/grandyang/p/4567827.html)
+<p>5. [DFS Concise Java solutions O(log(n)^2)] (https://leetcode.com/problems/count-complete-tree-nodes/discuss/61958/Concise-Java-solutions-O(log(n)2))
+<p>6. [BFS Concise Java solutions O(log(n)^2)] (https://leetcode.com/problems/count-complete-tree-nodes/discuss/61958/Concise-Java-solutions-O(log(n)2))
