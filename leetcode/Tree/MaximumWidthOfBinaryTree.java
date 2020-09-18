@@ -96,6 +96,41 @@ class Solution {
     }
 }
 
-// SOlution 1:
+// Solution 1: Very simple dfs solution
 // Refer to
-// 
+// https://leetcode.com/problems/maximum-width-of-binary-tree/discuss/106654/JavaC%2B%2B-Very-simple-dfs-solution
+/**
+ We know that a binary tree can be represented by an array (assume the root begins from the position with index 1 in the array). 
+ If the index of a node is i, the indices of its two children are 2*i and 2*i + 1. The idea is to use two arrays (start[] and end[]) 
+ to record the the indices of the leftmost node and rightmost node in each level, respectively. For each level of the tree, the width 
+ is end[level] - start[level] + 1. Then, we just need to find the maximum width.
+*/
+class Solution {
+    int maxWidth = 0;
+    public int widthOfBinaryTree(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        helper(root, 0, 0, new ArrayList<Integer>(), new ArrayList<Integer>());
+        return maxWidth;
+    }
+    
+    private void helper(TreeNode node, int index, int depth, List<Integer> start, List<Integer> end) {
+        if(node == null) {
+            return;
+        }
+        // Tricky, if 'start' size equal to depth means new index not insert onto array yet,
+        // insert on 'start' and 'end' both then, but if 'start' size not equal to depth means
+        // it just updated, then the next change should happen only on 'end'
+        if(start.size() == depth) {
+            start.add(index);
+            end.add(index);
+        } else {
+            end.set(depth, index);
+        }
+        int curWidth = (end.get(depth) - start.get(depth)) + 1;
+        maxWidth = Math.max(curWidth, maxWidth);
+        helper(node.left, index * 2, depth + 1, start, end);
+        helper(node.right, index * 2 + 1, depth + 1, start, end);
+    }
+}
