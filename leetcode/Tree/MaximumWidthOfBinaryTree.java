@@ -96,7 +96,7 @@ class Solution {
     }
 }
 
-// Solution 1: Very simple dfs solution
+// Solution 1: DFS (If the index of a node is i, the indices of its two children are 2*i and 2*i + 1)
 // Refer to
 // https://leetcode.com/problems/maximum-width-of-binary-tree/discuss/106654/JavaC%2B%2B-Very-simple-dfs-solution
 /**
