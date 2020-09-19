@@ -506,3 +506,8 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
   
 <p>Maximum Width of Binary Tree
 <p>1. [If the index of a node is i, the indices of its two children are 2*i and 2*i + 1] (https://leetcode.com/problems/maximum-width-of-binary-tree/discuss/106654/JavaC%2B%2B-Very-simple-dfs-solution)
+
+<p>Linked List in Binary Tree
+<p>1. [Recursive, exactly the same as "572. Subtree of Another Tree"] (https://leetcode.com/problems/linked-list-in-binary-tree/discuss/524881/Python-Recursive-Solution-O(N)-Time)
+<p>2. [Explain 1] (https://leetcode.com/problems/linked-list-in-binary-tree/discuss/630094/Java-recursive-DFS-beats-100-time-and-space-easy-solution)
+<p>3. [Explain 2] (https://leetcode.com/problems/linked-list-in-binary-tree/discuss/525249/java-exactly-the-same-as-%22572.-Subtree-of-Another-Tree%22)
