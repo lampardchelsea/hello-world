@@ -29,6 +29,13 @@
 
 // Solution 1: Recursive, exactly the same as "572. Subtree of Another Tree"
 // Refer to
+// https://leetcode.com/problems/linked-list-in-binary-tree/discuss/524881/Python-Recursive-Solution-O(N)-Time
+/**
+Solution 1: Brute DFS
+Time O(N * min(L,H))
+Space O(H)
+where N = tree size, H = tree height, L = list length.
+*/
 // https://leetcode.com/problems/linked-list-in-binary-tree/discuss/630094/Java-recursive-DFS-beats-100-time-and-space-easy-solution
 // https://leetcode.com/problems/linked-list-in-binary-tree/discuss/525249/java-exactly-the-same-as-%22572.-Subtree-of-Another-Tree%22
 /**
