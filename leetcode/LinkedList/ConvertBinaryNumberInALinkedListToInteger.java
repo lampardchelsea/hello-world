@@ -69,3 +69,56 @@ class Solution {
         return result;
     }
 }
+
+// Solution 2: Binary Representation
+// Refer to
+// https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/solution/
+// Style 1: Check head != null
+class Solution {
+    public int getDecimalValue(ListNode head) {
+        int result = 0;
+        while(head != null) {
+            result = result * 2 + head.val;
+            head = head.next;
+        }
+        return result;
+    }
+}
+// Style 2: Check head.next != null
+class Solution {
+    public int getDecimalValue(ListNode head) {
+        int result = head.val;
+        while(head.next != null) {
+            result = result * 2 + head.next.val;
+            head = head.next;
+        }
+        return result;
+    }
+}
+
+// Solution 3: Bit Manipulation
+// Refer to
+// https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/solution/
+// Style 1: Check head != null
+class Solution {
+    public int getDecimalValue(ListNode head) {
+        int result = 0;
+        while(head != null) {
+            result = (result << 1) | head.val;
+            head = head.next;
+        }
+        return result;
+    }
+}
+
+// Style 2: Check head.next != null
+class Solution {
+    public int getDecimalValue(ListNode head) {
+        int result = head.val;
+        while(head.next != null) {
+            result = (result << 1) | head.next.val;
+            head = head.next;
+        }
+        return result;
+    }
+}
