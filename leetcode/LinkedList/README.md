@@ -112,3 +112,6 @@
 
 <p>Next Greater Node In Linked List
 <p>1. [Very similar to this problem 503. Next Greater Element II] (https://leetcode.com/problems/next-greater-node-in-linked-list/discuss/265508/JavaC%2B%2BPython-Next-Greater-Element)
+
+<p>Convert Binary Number in a Linked List to Integer
+<p>1. [Reverse linked list] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/ReverseLinkedList.java)
