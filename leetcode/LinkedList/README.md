@@ -115,3 +115,4 @@
 
 <p>Convert Binary Number in a Linked List to Integer
 <p>1. [Reverse linked list] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/ReverseLinkedList.java)
+<p>2. [Binary Representation and Bit Manipulation] (https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/solution/)
