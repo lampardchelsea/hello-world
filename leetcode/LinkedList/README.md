@@ -116,3 +116,6 @@
 <p>Convert Binary Number in a Linked List to Integer
 <p>1. [Reverse linked list] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/ReverseLinkedList.java)
 <p>2. [Binary Representation and Bit Manipulation] (https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/solution/)
+
+<p>Flatten a Multilevel Doubly Linked List
+<p>1. [Intuitive flatten node with child link] (https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/discuss/150321/Easy-Understanding-Java-beat-95.7-with-Explanation)
