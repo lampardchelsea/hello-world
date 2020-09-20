@@ -511,3 +511,8 @@ Otherwise, the tree is not complete.] (https://leetcode.com/problems/check-compl
 <p>1. [Recursive, exactly the same as "572. Subtree of Another Tree"] (https://leetcode.com/problems/linked-list-in-binary-tree/discuss/524881/Python-Recursive-Solution-O(N)-Time)
 <p>2. [Explain 1] (https://leetcode.com/problems/linked-list-in-binary-tree/discuss/630094/Java-recursive-DFS-beats-100-time-and-space-easy-solution)
 <p>3. [Explain 2] (https://leetcode.com/problems/linked-list-in-binary-tree/discuss/525249/java-exactly-the-same-as-%22572.-Subtree-of-Another-Tree%22)
+
+<p>Sum of Distances in Tree
+<p>1. [Brute force 1 pass DFS (TLE) --> Time Complexity: O(n^2)] (https://leetcode.com/problems/sum-of-distances-in-tree/discuss/466998/TLE-C%2B%2B-DFS-%2B-undirected-graph..Need-some-idea-to-fix-this-problem.-6469-accepted.)
+<p>2. [2 PASS DFS --> Time Complexity O(N)] (https://www.cnblogs.com/grandyang/p/11520804.html)
+<p>3. [2 PASS DFS 2 --> Time Complexity O(N)] (https://leetcode.com/problems/sum-of-distances-in-tree/discuss/130583/C%2B%2BJavaPython-Pre-order-and-Post-order-DFS-O(N))
