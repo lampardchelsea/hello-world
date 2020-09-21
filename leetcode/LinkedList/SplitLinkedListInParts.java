@@ -34,7 +34,7 @@
  k will be an integer in the range [1, 50].
 */
 
-// Solution 1:
+// Solution 1: Iterate with 2 iterator, 1 for recording next start node, 1 for cut off next start node tailing
 // Refer to
 // https://leetcode.com/problems/split-linked-list-in-parts/discuss/109296/JavaC%2B%2B-Clean-Code
 /**
