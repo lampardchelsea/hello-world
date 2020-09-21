@@ -125,4 +125,107 @@ class Solution {
     }
 }
 
+// Solution 2:
+// Refer to
+// https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/discuss/366319/JavaC%2B%2BPython-Greedily-Skip-with-HashMap
+/**
+ Intuition
+Assume the input is an array.
+Do you know how to solve it?
+Scan from the left, and calculate the prefix sum.
+Whenever meet the seen prefix,
+remove all elements of the subarray between them.
 
+Solution 1
+Because the head ListNode can be removed in the end,
+I create a dummy ListNode and set it as a previous node of head.
+prefix calculates the prefix sum from the first node to the current cur node.
+
+Next step, we need an important hashmap m (no good name for it),
+It takes a prefix sum as key, and the related node as the value.
+
+Then we scan the linked list, accumulate the node's value as prefix sum.
+
+If it's a prefix that we've never seen, we set m[prefix] = cur.
+If we have seen this prefix, m[prefix] is the node we achieve this prefix sum.
+We want to skip all nodes between m[prefix] and cur.next (exclusive).
+So we simplely do m[prefix].next = cur.next.
+We keep doing these and it's done.
+
+Complexity
+Time O(N), one pass
+SpaceO(N), for hashmap
+*/
+
+// https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/discuss/366337/Java-Iterative-and-Recursive-solution
+/**
+ Method 1: Iterative:
+Use a hashmap to keep track the prefix sum.
+If current sum is zero, it means the sum from first node to current node is zero. So the new head is the next node.
+If the current sum already exists the hashmap (say node-i), it means the sum from node-(i+1) to current node is zero. So, we remove those nodes.
+For example,
+input = [1,2,3,-3,1]
+i = 0, prefixSum = 1
+i = 1, prefixSum = 3
+i = 2, prefixSum = 6
+i = 3, prefixSum = 3  // prefixsum = 3 is already in the hashmap. It means the sum of subarray [2,3] is zero.
+i = 4, prefixSum = 4
+Use a dummy head to simplify code.
+*/
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode removeZeroSumSublists(ListNode head) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode curr = dummy;
+        int preSum = 0;
+        Map<Integer, ListNode> map = new HashMap<Integer, ListNode>();
+        while(curr != null) {
+            preSum += curr.val;
+            if(map.containsKey(preSum)) {
+                // We have this preSum before then relocate cursor back to
+                // that previous recorded start node's next node, which suppose
+                // to be the first node of a chain (till 2nd preSum happen)
+                // to remove, also we need to remove the corresponding 'key'
+                // in the map, since when we build map follow the rule of
+                // preSum calcualted by cumulative sum of all previous node,
+                // we can find these preSum(s) based on (preSum + curr.val),
+                // each loop till find the 2nd preSum (check by keyToRemove !=
+                // preSum) will find a new preSum as key need to remove from map
+                // e.g 1,2,-3,3,1
+                // cumulative sum as 0,1,3,0,3,4
+                // First time we see 0 and it map to dummy node
+                // Second time we see 0 it map to node -3
+                // the supposed section to remove is 1->2->-3
+                // and then dummy node should go with next node of -3 as 3
+                // during remove nodes, clean up key-value pair as
+                // {1, node 1}, {3, node 2}, here 1 calculated based on
+                // (preSum + curr.val) -> (0 + 1), 3 calculated based on
+                // (preSum + curr.val) -> (1 + 2)
+                curr = map.get(preSum).next;
+                int keyToRemove = preSum + curr.val;
+                while(keyToRemove != preSum) {
+                    map.remove(keyToRemove);
+                    curr = curr.next;
+                    keyToRemove += curr.val;
+                }
+                // Now we cut off the section
+                map.get(preSum).next = curr.next;
+            } else {
+                map.put(preSum, curr);
+            }
+            curr = curr.next;
+        }
+        return dummy.next;
+    }
+}
