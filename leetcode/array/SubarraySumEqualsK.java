@@ -25,12 +25,12 @@
  Approach #2 Using Cummulative sum [Accepted]
  Algorithm
  Instead of determining the sum of elements everytime for every new subarray considered, we can make use of a 
- cumulative sum array , sumsum. Then, in order to calculate the sum of elements lying between two indices, we 
+ cumulative sum array , sum. Then, in order to calculate the sum of elements lying between two indices, we 
  can subtract the cumulative sum corresponding to the two indices to obtain the sum directly, instead of 
  iterating over the subarray to obtain the sum.
- In this implementation, we make use of a cumulative sum array, sumsum, such that sum[i]sum[i] is used to 
- store the cumulative sum of numsnums array upto the element corresponding to the (i-1)th index. Thus, to 
- determine the sum of elements for the subarray nums[i:j]nums[i:j], we can directly use sum[j+1] - sum[i].
+ In this implementation, we make use of a cumulative sum array, sumsum, such that sum[i] is used to 
+ store the cumulative sum of nums array upto the element corresponding to the (i-1)th index. Thus, to 
+ determine the sum of elements for the subarray nums[i:j], we can directly use sum[j+1] - sum[i].
 */
 class Solution {
     public int subarraySum(int[] nums, int k) {
