@@ -28,7 +28,7 @@
  cumulative sum array , sum. Then, in order to calculate the sum of elements lying between two indices, we 
  can subtract the cumulative sum corresponding to the two indices to obtain the sum directly, instead of 
  iterating over the subarray to obtain the sum.
- In this implementation, we make use of a cumulative sum array, sumsum, such that sum[i] is used to 
+ In this implementation, we make use of a cumulative sum array, sum, such that sum[i] is used to 
  store the cumulative sum of nums array upto the element corresponding to the (i-1)th index. Thus, to 
  determine the sum of elements for the subarray nums[i:j], we can directly use sum[j+1] - sum[i].
 */
