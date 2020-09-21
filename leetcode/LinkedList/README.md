@@ -122,3 +122,6 @@
 
 <p>Split Linked List in Parts
 <p>1. [Iterate with 2 iterator, 1 for recording next start node, 1 for cut off next start node tailing] (https://leetcode.com/problems/split-linked-list-in-parts/discuss/109296/JavaC%2B%2B-Clean-Code)
+
+<p>Remove Zero Sum Consecutive Nodes from Linked List
+<p>1. [How to calculate subarray sum equal K ?] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/SubarraySumEqualsK.java)
