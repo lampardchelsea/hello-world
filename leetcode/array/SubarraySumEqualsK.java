@@ -95,14 +95,14 @@ class Solution {
    upto two indices is the same, the sum of the elements lying in between those indices is zero. Extending the same 
    thought further, if the cumulative sum upto two indices, say i and j is at a difference of k 
    i.e. if sum[i] - sum[j] = k, the sum of elements lying between indices i and j is k.
-   Based on these thoughts, we make use of a hashmap map which is used to store the cumulative sum upto all the 
+   Based on these thoughts, we make use of a hashmap which is used to store the cumulative sum upto all the 
    indices possible along with the number of times the same sum occurs. We store the data in the form: 
    (sum_i, no. of occurences of sum_i) We traverse over the array nums and keep on finding the cumulative sum. 
    Every time we encounter a new sum, we make a new entry in the hashmap corresponding to that sum. If the same 
    sum occurs again, we increment the count corresponding to that sum in the hashmap. 
-   Further, for every sum encountered, we also determine the number of times the sum sum-k has occured already, 
+   Further, for every sum encountered, we also determine the number of times the sum k has occured already, 
    since it will determine the number of times a subarray with sum k has occured upto the current index. 
-   We increment the countcount by the same amount.
+   We increment the count by the same amount.
    After the complete array has been traversed, the count gives the required result.
    Complexity Analysis
    Time complexity : O(n) The entire nums array is traversed only once.
