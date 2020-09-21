@@ -119,3 +119,6 @@
 
 <p>Flatten a Multilevel Doubly Linked List
 <p>1. [Intuitive flatten node with child link] (https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/discuss/150321/Easy-Understanding-Java-beat-95.7-with-Explanation)
+
+<p>Split Linked List in Parts
+<p>1. [Iterate with 2 iterator, 1 for recording next start node, 1 for cut off next start node tailing] (https://leetcode.com/problems/split-linked-list-in-parts/discuss/109296/JavaC%2B%2B-Clean-Code)
