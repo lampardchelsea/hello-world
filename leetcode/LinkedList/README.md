@@ -125,3 +125,5 @@
 
 <p>Remove Zero Sum Consecutive Nodes from Linked List
 <p>1. [How to calculate subarray sum equal K ?] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/SubarraySumEqualsK.java)
+<p>2. [HashMap + preSum] (https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/discuss/366319/JavaC%2B%2BPython-Greedily-Skip-with-HashMap)
+<p>3. [HashMap + preSum] (https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/discuss/366337/Java-Iterative-and-Recursive-solution)
