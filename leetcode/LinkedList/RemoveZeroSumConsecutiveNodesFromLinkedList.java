@@ -167,6 +167,15 @@ class Solution {
 
     private List < Integer > noOverlapSubarraySumEqualZeroIndexes(List < Integer > list) {
         List < Integer > result = new ArrayList < Integer > ();
+        // sum[i] is used to store the cumulative sum of nums array upto the element corresponding 
+	// to the (i - 1)th index. Thus, to determine the sum of elements for the subarray nums[i:j], 
+	// we can directly use sum[j + 1] - sum[i]. --> sum[end] - sum[start] means sum of elements 
+	// for the sub-list[start:end - 1]
+	// e.g input list as [1, 2, -3, 3, 1] --> sum as [0, 1, 3, 0, 3, 4]
+        // the first start / end pair will be start = 0, end = 3 since sum[3] - sum[0] = 0 - 0 = 0
+	// so end = j + 1 --> j = 2, start = i --> i = 0, which means sum of sub-list[0:2] as [1, 2, -3]
+	// is 0, which is correct, to no-overlap for next possible range, the next start should no
+	// less than index 3, which is the last end index --> start >= pre_end
         int[] sum = new int[list.size() + 1];
         for (int i = 1; i <= list.size(); i++) {
             sum[i] = sum[i - 1] + list.get(i - 1);
