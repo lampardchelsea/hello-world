@@ -83,10 +83,10 @@ Section 1: Tree
 
 Section 2: Linked List
 1. [Palindrome Linked List] (https://hjweds.gitbooks.io/leetcode/content/palindrome-linked-list.html)  
-   [Answer 1:] ()  
+   [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/PalindromeLinkedList.java)  
    
-2. [] ()  
-   [] ()  
+2. [Reverse Nodes in k-Group] (https://hjweds.gitbooks.io/leetcode/content/chapter1/reverse-nodes-in-k-group.html)  
+   [Answer 1:] ()  
    
 3. [] ()  
    [] ()  
