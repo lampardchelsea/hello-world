@@ -78,9 +78,18 @@ Section 1: Tree
     [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/UniqueBinarySearchTreesII.java)  
     
 26. [Largest BST Subtree] (https://www.techiedelight.com/find-size-largest-bst-in-binary-tree/)  
-    [Answr 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/LargestBSTSubtree.java)  
+    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Tree/LargestBSTSubtree.java)  
     
 
-
+Section 2: Linked List
+1. [Palindrome Linked List] (https://hjweds.gitbooks.io/leetcode/content/palindrome-linked-list.html)  
+   [Answer 1:] ()  
+   
+2. [] ()  
+   [] ()  
+   
+3. [] ()  
+   [] ()  
+   
 
 
