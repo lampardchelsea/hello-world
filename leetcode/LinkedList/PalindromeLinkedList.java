@@ -230,3 +230,65 @@ public class Solution {
         return true;
     }
 }
+
+// Re-work
+// Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/ReverseLinkedList.java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        ListNode iter = head;
+        int count = 0;
+        while(iter != null) {
+            iter = iter.next;
+            count++;
+        }
+        int half_count = 0;
+        ListNode prev = new ListNode(0);
+        prev.next = head;
+        ListNode curr = prev;
+        if(count % 2 == 0) {
+            half_count = count / 2;
+            while(half_count > 0) {
+                curr = curr.next;
+                half_count--;
+            } 
+        } else {
+            half_count = (count - 1) / 2;
+            half_count += 1;
+            while(half_count > 0) {
+                curr = curr.next;
+                half_count--;
+            }
+        }
+        ListNode prev_second_half = curr;
+        // Very important !!! 
+        // Store the second half start node and cut off previous node with it,
+        // then original list split into 2 sublists, then reverse the 2nd sublist
+        ListNode second_half_start = curr.next;
+        curr.next = null;
+        while(second_half_start != null) {
+            ListNode nextTemp = second_half_start.next;
+            second_half_start.next = prev_second_half;
+            prev_second_half = second_half_start;
+            second_half_start = nextTemp;
+        }
+        while(head != null && prev_second_half != null) {
+            if(head.val != prev_second_half.val) {
+                return false;
+            }
+            head = head.next;
+            prev_second_half = prev_second_half.next;
+        }
+        return true;
+    }
+}
