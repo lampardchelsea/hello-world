@@ -292,3 +292,83 @@ class Solution {
         return true;
     }
 }
+
+// Solution 2: Two pointers
+// Refer to
+// https://leetcode.com/problems/palindrome-linked-list/discuss/64501/Java-easy-to-understand
+/**
+This can be solved by reversing the 2nd half and compare the two halves. Let's start with an example [1, 1, 2, 1].
+
+In the beginning, set two pointers fast and slow starting at the head.
+
+1 -> 1 -> 2 -> 1 -> null 
+sf
+(1) Move: fast pointer goes to the end, and slow goes to the middle.
+
+1 -> 1 -> 2 -> 1 -> null 
+          s          f
+(2) Reverse: the right half is reversed, and slow pointer becomes the 2nd head.
+
+1 -> 1    null <- 2 <- 1           
+h                      s
+(3) Compare: run the two pointers head and slow together and compare.
+
+1 -> 1    null <- 2 <- 1             
+     h            s
+     
+==============================================================================================
+odd number of nodes
+  1 -> 2 -> 3 -> 4 -> 5 -> null
+fast
+           fast
+                     fast
+
+slow 
+      slow
+           slow
+           ---> slow = slow.next
+
+even number of nodes
+  1 -> 2 -> 3 -> 4 -> null
+fast
+           fast
+                      fast
+
+slow
+      slow
+           slow
+*/
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while(fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        if(fast != null) {
+            slow = slow.next;
+        }
+        slow = reverse(slow);
+        fast = head;
+        while(slow != null) {
+            if(slow.val != fast.val) {
+                return false;
+            }
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return true;
+    }
+    
+    private ListNode reverse(ListNode head) {
+        ListNode prev = null;
+        while(head != null) {
+            ListNode nextTemp = head.next;
+            head.next = prev;
+            prev = head;
+            head = nextTemp;
+        }
+        return prev;
+    } 
+}
