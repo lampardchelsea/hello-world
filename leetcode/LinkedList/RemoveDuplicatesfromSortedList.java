@@ -35,3 +35,35 @@ public class Solution {
         return head;
     }
 }
+
+// Re-work
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        if(head == null) {
+            return head;
+        }
+        ListNode temp = head;
+        ListNode iter = head.next;
+        while(iter != null) {
+            if(temp.val == iter.val) {
+                // Skip 'iter' node
+                temp.next = iter.next;
+            } else {
+                // Re-assign new value to 'temp'
+                temp = iter;
+            }
+            iter = iter.next;
+        }
+        return head;
+    }
+}
