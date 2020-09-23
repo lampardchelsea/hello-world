@@ -155,3 +155,102 @@ public class ReverseNodesInKGroup {
     }
 }
 
+// Re-work
+// Solution 1: Iterative
+/**
+  Interative solution actually follow as keep inserting at head
+  Refer to
+  https://leetcode.com/problems/reverse-nodes-in-k-group/discuss/11423/Short-but-recursive-Java-code-with-comments/225224
+  https://leetcode.com/problems/reverse-nodes-in-k-group/discuss/11413/Share-my-Java-Solution-with-comments-in-line
+  https://leetcode.com/problems/reverse-nodes-in-k-group/discuss/11413/Share-my-Java-Solution-with-comments-in-line/248864
+  头插法:不停的把then插到prev后面
+  initial: prev -> 1 -> 2 -> 3 -> 4 -> 5
+  k = 3
+  target:  prev -> 3 -> 2 -> 1 -> 4 -> 5
+  ============================================================   
+  round1:  prev -> 1 -> 2 -> 3 -> 4 -> 5
+                 start
+                       then
+           ---------------------------------
+           Step 1: start.next = then.next => 3
+           Step 2: then.next = prev.next => 1
+           Step 3: prev.next = then => 2
+           Step 4: then = start.next => 3
+           ---------------------------------
+           prev -> 2 -> 1 -> 3 -> 4 -> 5
+             2 inserted as new node but not lose connection 
+             since it inherits connection of old 'then' ('then'
+             update from 2 to 3) 
+                      start
+                            then
+  ============================================================
+  round 2: prev -> 2 -> 1 -> 3 -> 4 -> 5
+                      start
+                            then
+           ---------------------------------
+           Step 1: start.next = then.next => 4
+           Step 2: then.next = prev.next => 2
+           Step 3: prev.next = then => 3
+           Step 4: then = start.next => 4
+           ---------------------------------
+           prev -> 3 -> 2 -> 1 -> 4 -> 5
+             3 inserted as new node but not lose connection
+             since it inherits connection of old 'then' ('then'
+             update from 3 to 4)
+                            start
+                                 then
+  ============================================================
+  prev = start;
+  Now after round 2 we finish reverse of the only section when k = 3
+  and nodes in list as 5, so we update 'prev' from '-1' to '1',
+  which actually is 'start' node and prepare for possible existing
+  next reverse
+*/
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        if(head == null || head.next == null || k == 1) {
+            return head;
+        }
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode iter = dummy;
+        int size = 0;
+        while(iter.next != null) {
+            size++;
+            iter = iter.next;
+        }
+        int groups = size / k;
+        ListNode prev = dummy;
+        for(int i = 0; i < groups; i++) {
+            ListNode start = prev.next;
+            ListNode then = start.next;
+            /**
+              Why j from 0 to k - 2 (loop k - 1 times)?
+              if k = 3, means reverse 1 to 3(3 nodes), still need loop 2 times 
+              to get the same effect, if k = 2, means reverse 1 to 2(2 nodes), 
+              need loop 1 time to get the effect, so loop terminate condition 
+              set up as 'while(k-- > 1)' same as loop k - 1 times
+            */
+            for(int j = 0; j < k - 1; j++) {
+                /**
+                  Refer to
+                  https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/ReverseLinkedListII.java
+                  node1.next = node2.next;//node1交换到node2的后面
+                  node2.next = startpoint.next;//node2交换到最开始
+                  startpoint.next = node2;//node2作为新的点
+                  node2 = node1.next;//node2回归到node1的下一个，继续遍历
+                */
+                start.next = then.next; // switch 'start' and 'then', record next node of 'then', and assign to 'start.next' which will used in re-point later
+                then.next = prev.next;  // 2 steps to insert 'then' behind 'prev' as new node
+                prev.next = then;
+                then = start.next; // re-point 'then' as next node of 'start' for next round
+            }
+            prev = start;
+        }
+        return dummy.next;
+    }
+}
+
+// Solution 2: Recursive
+// Refer to
+// https://leetcode.com/problems/reverse-nodes-in-k-group/discuss/11423/Short-but-recursive-Java-code-with-comments
