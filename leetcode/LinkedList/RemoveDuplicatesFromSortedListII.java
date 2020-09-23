@@ -215,3 +215,64 @@ class Solution {
         return dummy.next;
     }
 }
+
+
+// Solution 2:
+// Refer to
+// https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/discuss/28335/My-accepted-Java-code
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode prev = dummy;
+        ListNode curr = head;
+        while(curr != null) {
+            while(curr.next != null && curr.val == curr.next.val) {
+                curr = curr.next;
+            }
+            // Refer to
+            // https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/discuss/28335/My-accepted-Java-code/152490
+            // Why use pre.next == cur not pre.next.val == cur.val?
+            // To check whether cur has moved forward or not, because you want 
+            // to make sure if current position's element is unique, then you 
+            // can move forward, so you have to compare pointers. value's 
+            // comparison is only to find dups and discard them.
+            if(prev.next == curr) {
+                prev = prev.next;
+            } else {
+                prev.next = curr.next;
+            }
+            curr = curr.next;
+        }
+        return dummy.next;
+    }
+}
+
+// https://leetcode.wang/leetCode-82-Remove-Duplicates-from-Sorted-ListII.html
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode prev = dummy;
+        ListNode curr = head;
+        boolean equal = false;
+        while(curr != null) {
+            // curr 和 curr.next 相等，curr 不停后移
+            while(curr.next != null && curr.val == curr.next.val) {
+                curr = curr.next;
+                equal = true;
+            }
+            if(equal) {
+                // 发生了相等的情况, prev.next 直接指向 curr.next 删除所有重复数字
+                prev.next = curr.next;
+                equal = false;
+            } else {
+                // 没有发生相等的情况, prev 移到 curr 的地方
+                prev = curr;
+            }
+            // curr 后移
+            curr = curr.next;
+        }
+        return dummy.next;
+    }
+}
