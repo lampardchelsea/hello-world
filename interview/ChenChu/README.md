@@ -88,8 +88,17 @@ Section 2: Linked List
 2. [Reverse Nodes in k-Group] (https://hjweds.gitbooks.io/leetcode/content/chapter1/reverse-nodes-in-k-group.html)  
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/ReverseNodesInKGroup.java)  
    
-3. [] ()  
+3. [Remove Duplicates from Sorted List II] (https://hjweds.gitbooks.io/leetcode/content/remove-duplicates-from-sorted-list-ii.html)  
+   [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/RemoveDuplicatesfromSortedList.java)  
+   [Answer 2:] ()  
+   
+4. [] ()  
    [] ()  
+   
+5. [] ()  
+   [] ()  
+   
+
    
 
 
