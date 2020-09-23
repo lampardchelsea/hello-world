@@ -114,3 +114,104 @@ public class RemoveDuplicatesFromSortedListII {
 		System.out.println(result.val);
 	}
 }
+
+// Re-work
+// Style 1:
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        if(head == null) {
+            return head;
+        }
+        // dummy -> head -> head.next
+        //  prev    curr    iter
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode prev = dummy;
+        ListNode curr = head;
+        ListNode iter = head.next;
+        int currValCount = 1;
+        while(iter != null) {
+            if(curr.val == iter.val) {
+                currValCount++;
+                // Test case: No different value node than current node till end
+                // [1,2,2] -> expected [1]
+                // Since not able to use 'prev.next = iter' to remove all duplicates
+                // node, have to clean up all nodes from 'prev.next' till end
+                if(iter.next == null) {
+                    prev.next = null;
+                }
+            } else {
+                if(currValCount > 1) {
+                    prev.next = iter; // Remove all duplicate nodes including first occurrence
+                    curr = iter;      // Update curr to iter
+                    currValCount = 1; // Reset count to 1
+                } else {
+                    prev = curr;
+                    curr = iter;
+                }
+            }
+            iter = iter.next;
+        }
+        // Test case: [1,2,2] -> expected [1] output []
+        // Or we can put the case handling here
+        //if(currValCount > 1) {
+        //    prev.next = null;
+        //}
+        return dummy.next;
+    }
+}
+
+// Style 2:
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        if(head == null) {
+            return head;
+        }
+        // dummy -> head -> head.next
+        //  prev    curr    iter
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode prev = dummy;
+        ListNode curr = head;
+        ListNode iter = head.next;
+        int currValCount = 1;
+        while(iter != null) {
+            if(curr.val == iter.val) {
+                currValCount++;
+                // Test case: No different value node than current node till end
+                // [1,2,2] -> expected [1]
+                // Since not able to use 'prev.next = iter' to remove all duplicates
+                // node, have to clean up all nodes from 'prev.next' till end
+                //if(iter.next == null) {
+                //    prev.next = null;
+                //}
+            } else {
+                if(currValCount > 1) {
+                    prev.next = iter; // Remove all duplicate nodes including first occurrence
+                    curr = iter;      // Update curr to iter
+                    currValCount = 1; // Reset count to 1
+                } else {
+                    prev = curr;
+                    curr = iter;
+                }
+            }
+            iter = iter.next;
+        }
+        // Test case: [1,2,2] -> expected [1] output []
+        // Or we can put the case handling here
+        if(currValCount > 1) {
+            prev.next = null;
+        }
+        return dummy.next;
+    }
+}
