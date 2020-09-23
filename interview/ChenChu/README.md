@@ -90,7 +90,7 @@ Section 2: Linked List
    
 3. [Remove Duplicates from Sorted List II] (https://hjweds.gitbooks.io/leetcode/content/remove-duplicates-from-sorted-list-ii.html)  
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/RemoveDuplicatesfromSortedList.java)  
-   [Answer 2:] ()  
+   [Answer 2:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/RemoveDuplicatesFromSortedListII.java)  
    
 4. [] ()  
    [] ()  
