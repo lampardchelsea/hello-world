@@ -82,13 +82,14 @@ Section 1: Tree
     
 
 Section 2: Linked List
-1. [Palindrome Linked List] (https://hjweds.gitbooks.io/leetcode/content/palindrome-linked-list.html)  
+1. [Palindrome Linked List I and II] (https://hjweds.gitbooks.io/leetcode/content/palindrome-linked-list.html)  
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/PalindromeLinkedList.java)  
+   [Answer 2:] ()
    
 2. [Reverse Nodes in k-Group] (https://hjweds.gitbooks.io/leetcode/content/chapter1/reverse-nodes-in-k-group.html)  
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/ReverseNodesInKGroup.java)  
    
-3. [Remove Duplicates from Sorted List II] (https://hjweds.gitbooks.io/leetcode/content/remove-duplicates-from-sorted-list-ii.html)  
+3. [Remove Duplicates from Sorted List I and II] (https://hjweds.gitbooks.io/leetcode/content/remove-duplicates-from-sorted-list-ii.html)  
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/RemoveDuplicatesfromSortedList.java)  
    [Answer 2:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/RemoveDuplicatesFromSortedListII.java)  
    
