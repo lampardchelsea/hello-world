@@ -84,3 +84,54 @@ public class ReorderList {
 	}
 	
 }
+
+// Re-work
+// Solution 1: 
+// Refer to
+// https://leetcode.com/problems/reorder-list/discuss/44992/Java-solution-with-3-steps
+class Solution {
+    public void reorderList(ListNode head) {
+        if(head == null || head.next == null) {
+            return;
+        }
+        ListNode iter = head;
+        int count = 0;
+        while(iter != null) {
+            iter = iter.next;
+            count++;
+        }
+        int first_half_size = (count % 2 == 0 ? count / 2 : (count + 1) / 2);
+        int second_half_size = count - first_half_size;
+        // Find prev node of second half
+        ListNode second_half_prev = new ListNode(-1);
+        second_half_prev.next = head;
+        for(int i = 0; i < first_half_size; i++) {
+            second_half_prev = second_half_prev.next;
+        }
+        // Reverse second half
+        ListNode second_half_start = second_half_prev.next;
+        ListNode second_half_then = second_half_start.next;
+        for(int i = 0; i < second_half_size - 1; i++) {
+            second_half_start.next = second_half_then.next;
+            second_half_then.next = second_half_prev.next;
+            second_half_prev.next = second_half_then;
+            second_half_then = second_half_start.next;
+        }
+        // Merge two half without cut off in middle, not very intuitive
+        // Initial: 1 -> 2 -> 4 -> 3
+        //          p1   |
+        //        second_half_prev
+        //                    p2
+        // 
+        // Target:  1 -> 4 -> 2 -> 3
+        ListNode p1 = head;
+        ListNode p2 = second_half_prev.next;
+        while(p1 != second_half_prev){
+        	second_half_prev.next = p2.next;
+            p2.next = p1.next;
+            p1.next = p2;
+            p1 = p2.next;
+            p2 = second_half_prev.next;
+        }
+    }
+}
