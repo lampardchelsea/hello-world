@@ -504,7 +504,9 @@ public class Solution {
         }
         ListNode iter1 = headA;
         ListNode iter2 = headB;
+	// If iter1 & iter2 have different len, then we will stop the loop after second iteration
         while(iter1 != iter2) {
+	    // For the end of first iteration, we just reset the pointer to the head of another linkedlist
             if(iter1 == null) {
                 iter1 = headB;
             } else {
