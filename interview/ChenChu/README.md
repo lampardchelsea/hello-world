@@ -96,7 +96,13 @@ Section 2: Linked List
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/ReverseLinkedListII.java)
    [Answer 2:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/ReverseLinkedList.java)
    
-5. [] ()  
+5. [Reorder List] (https://hjweds.gitbooks.io/leetcode/content/reorder-list.html)  
+   [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/ReorderList.java)  
+   
+6. [] ()  
+   [] ()  
+   
+7. [] ()  
    [] ()  
    
 
