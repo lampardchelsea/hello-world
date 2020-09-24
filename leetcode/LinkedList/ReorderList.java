@@ -86,7 +86,7 @@ public class ReorderList {
 }
 
 // Re-work
-// Solution 1: 
+// Solution 1: Merge two half without cutting in middle, not very intuitive
 // Refer to
 // https://leetcode.com/problems/reorder-list/discuss/44992/Java-solution-with-3-steps
 class Solution {
@@ -132,6 +132,70 @@ class Solution {
             p1.next = p2;
             p1 = p2.next;
             p2 = second_half_prev.next;
+        }
+    }
+}
+
+// Solution 2: Merge two half with cut off in middle, very intuitive
+// Refer to
+// https://leetcode.com/problems/reorder-list/discuss/44992/Java-solution-with-3-steps/155674
+class Solution {
+    public void reorderList(ListNode head) {
+        if(head == null || head.next == null) {
+            return;
+        }
+        ListNode iter = head;
+        int count = 0;
+        while(iter != null) {
+            iter = iter.next;
+            count++;
+        }
+        int first_half_size = (count % 2 == 0 ? count / 2 : (count + 1) / 2);
+        int second_half_size = count - first_half_size;
+        // Find prev node of second half
+        ListNode second_half_prev = new ListNode(-1);
+        second_half_prev.next = head;
+        for(int i = 0; i < first_half_size; i++) {
+            second_half_prev = second_half_prev.next;
+        }
+        // Reverse second half
+        ListNode second_half_start = second_half_prev.next;
+        ListNode second_half_then = second_half_start.next;
+        for(int i = 0; i < second_half_size - 1; i++) {
+            second_half_start.next = second_half_then.next;
+            second_half_then.next = second_half_prev.next;
+            second_half_prev.next = second_half_then;
+            second_half_then = second_half_start.next;
+        }
+        /**
+           Merge two half with cut off in middle, very intuitive
+           Initial: 1 -> 2 -> 4 -> 3
+                    p1   |
+                  second_half_prev
+                              p2
+           
+           Target:  1 -> 4 -> 2 -> 3
+          -------------------------------------------------------------------
+           second_half_prev.next = null; --> Don't cut off on original pointer
+           We have to make a copy as new head for second half as 'head2', after 
+           split it will be:
+           First half: 1 -> 2 -> null
+                       |
+                      head
+           Second half: 4 -> 3 -> null
+                        |
+                      head2
+          -------------------------------------------------------------------
+        */    
+        ListNode head2 = second_half_prev.next;
+        second_half_prev.next = null;
+        while(head != null && head2 != null) {
+        	ListNode tmp1 = head.next;
+        	ListNode tmp2 = head2.next;
+        	head2.next = head.next;
+        	head.next = head2;
+        	head = tmp1;
+        	head2 = tmp2;
         }
     }
 }
