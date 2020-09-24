@@ -252,6 +252,117 @@ A:          a1 → a2
                    ↗            
 B:     b1 → b2 → b3
        b
+204
+            headB = headB.next;
+205
+        }
+206
+        return headA;
+207
+    }
+208
+}
+209
+​
+210
+// Solution 2: No calculate length
+211
+// Refer to
+212
+// https://leetcode.com/problems/intersection-of-two-linked-lists/discuss/49785/Java-solution-without-knowing-the-difference-in-len!
+213
+// https://leetcode.com/problems/intersection-of-two-linked-lists/discuss/49785/Java-solution-without-knowing-the-difference-in-len!/165648
+214
+/**
+215
+Visualization of this solution:
+216
+Case 1 (Have Intersection & Same Len):
+217
+​
+218
+       a
+219
+A:     a1 → a2 → a3
+220
+                   ↘
+221
+                     c1 → c2 → c3 → null
+222
+                   ↗            
+223
+B:     b1 → b2 → b3
+224
+       b
+225
+            a
+226
+A:     a1 → a2 → a3
+227
+                   ↘
+228
+                     c1 → c2 → c3 → null
+229
+                   ↗            
+230
+B:     b1 → b2 → b3
+231
+            b
+232
+                 a
+233
+A:     a1 → a2 → a3
+234
+                   ↘
+235
+                     c1 → c2 → c3 → null
+236
+                   ↗            
+237
+B:     b1 → b2 → b3
+238
+                 b
+239
+A:     a1 → a2 → a3
+240
+                   ↘ a
+241
+                     c1 → c2 → c3 → null
+242
+                   ↗ b            
+243
+B:     b1 → b2 → b3
+244
+Since a == b is true, end loop while(a != b), return the intersection node a = c1.
+245
+​
+246
+Case 2 (Have Intersection & Different Len):
+247
+​
+248
+            a
+249
+A:          a1 → a2
+250
+                   ↘
+251
+                     c1 → c2 → c3 → null
+252
+                   ↗            
+253
+B:     b1 → b2 → b3
+254
+       b
+255
+                 a
+256
+A:          a1 → a2
+257
+                   ↘
+258
+                     c1 → c2 → c3 → null
+
                  a
 A:          a1 → a2
                    ↘
@@ -386,3 +497,25 @@ most of the doubts posted previously.
  长度不同的话，较短的链表先到达结尾，然后指针转向较长的链表。此刻，较长的链表继续向末尾走，多走的距离刚好就是最开始介绍的解法，
  链表的长度差，走完之后指针转向较短的链表。然后继续走的话，相遇的位置就刚好是相遇点了。
 */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if(headA == null || headB == null) {
+            return null;
+        }
+        ListNode iter1 = headA;
+        ListNode iter2 = headB;
+        while(iter1 != iter2) {
+            if(iter1 == null) {
+                iter1 = headB;
+            } else {
+                iter1 = iter1.next;
+            }
+            if(iter2 == null) {
+                iter2 = headA;
+            } else {
+                iter2 = iter2.next;
+            }
+        }
+        return iter1;
+    }
+}
