@@ -159,3 +159,230 @@ public class IntersectionOfTwoLinkedLists {
 		System.out.println(result1);
 	}
 }
+
+// Re-work
+// Solution 1: Calculate length
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if(headA == null || headB == null) {
+            return null;
+        }
+        ListNode iter1 = headA;
+        ListNode iter2 = headB;
+        int len1 = 0;
+        int len2 = 0;
+        while(iter1 != null) {
+            iter1 = iter1.next;
+            len1++;
+        }
+        while(iter2 != null) {
+            iter2 = iter2.next;
+            len2++;
+        }
+        if(len1 > len2) {
+            for(int i = 0; i < len1 - len2; i++) {
+                headA = headA.next;
+            }
+        } else {
+            for(int i = 0; i < len2 - len1; i++) {
+                headB = headB.next;
+            }
+        }
+        while(headA != headB) {
+            headA = headA.next;
+            headB = headB.next;
+        }
+        return headA;
+    }
+}
+
+// Solution 2: No calculate length
+// Refer to
+// https://leetcode.com/problems/intersection-of-two-linked-lists/discuss/49785/Java-solution-without-knowing-the-difference-in-len!
+// https://leetcode.com/problems/intersection-of-two-linked-lists/discuss/49785/Java-solution-without-knowing-the-difference-in-len!/165648
+/**
+Visualization of this solution:
+Case 1 (Have Intersection & Same Len):
+
+       a
+A:     a1 → a2 → a3
+                   ↘
+                     c1 → c2 → c3 → null
+                   ↗            
+B:     b1 → b2 → b3
+       b
+            a
+A:     a1 → a2 → a3
+                   ↘
+                     c1 → c2 → c3 → null
+                   ↗            
+B:     b1 → b2 → b3
+            b
+                 a
+A:     a1 → a2 → a3
+                   ↘
+                     c1 → c2 → c3 → null
+                   ↗            
+B:     b1 → b2 → b3
+                 b
+A:     a1 → a2 → a3
+                   ↘ a
+                     c1 → c2 → c3 → null
+                   ↗ b            
+B:     b1 → b2 → b3
+Since a == b is true, end loop while(a != b), return the intersection node a = c1.
+
+Case 2 (Have Intersection & Different Len):
+
+            a
+A:          a1 → a2
+                   ↘
+                     c1 → c2 → c3 → null
+                   ↗            
+B:     b1 → b2 → b3
+       b
+                 a
+A:          a1 → a2
+                   ↘
+                     c1 → c2 → c3 → null
+                   ↗            
+B:     b1 → b2 → b3
+            b
+A:          a1 → a2
+                   ↘ a
+                     c1 → c2 → c3 → null
+                   ↗            
+B:     b1 → b2 → b3
+                 b
+A:          a1 → a2
+                   ↘      a
+                     c1 → c2 → c3 → null
+                   ↗ b           
+B:     b1 → b2 → b3
+A:          a1 → a2
+                   ↘           a
+                     c1 → c2 → c3 → null
+                   ↗      b           
+B:     b1 → b2 → b3
+A:          a1 → a2
+                   ↘                a = null, then a = b1
+                     c1 → c2 → c3 → null
+                   ↗           b           
+B:     b1 → b2 → b3
+A:          a1 → a2
+                   ↘ 
+                     c1 → c2 → c3 → null
+                   ↗                b = null, then b = a1 
+B:     b1 → b2 → b3
+       a
+            b         
+A:          a1 → a2
+                   ↘ 
+                     c1 → c2 → c3 → null
+                   ↗
+B:     b1 → b2 → b3
+            a
+                 b         
+A:          a1 → a2
+                   ↘ 
+                     c1 → c2 → c3 → null
+                   ↗ 
+B:     b1 → b2 → b3
+                 a
+A:          a1 → a2
+                   ↘ b
+                     c1 → c2 → c3 → null
+                   ↗ a
+B:     b1 → b2 → b3
+Since a == b is true, end loop while(a != b), return the intersection node a = c1.
+
+Case 3 (Have No Intersection & Same Len):
+
+       a
+A:     a1 → a2 → a3 → null
+B:     b1 → b2 → b3 → null
+       b
+            a
+A:     a1 → a2 → a3 → null
+B:     b1 → b2 → b3 → null
+            b
+                 a
+A:     a1 → a2 → a3 → null
+B:     b1 → b2 → b3 → null
+                 b
+                      a = null
+A:     a1 → a2 → a3 → null
+B:     b1 → b2 → b3 → null
+                      b = null
+Since a == b is true (both refer to null), end loop while(a != b), return a = null.
+
+Case 4 (Have No Intersection & Different Len):
+
+       a
+A:     a1 → a2 → a3 → a4 → null
+B:     b1 → b2 → b3 → null
+       b
+            a
+A:     a1 → a2 → a3 → a4 → null
+B:     b1 → b2 → b3 → null
+            b
+                 a
+A:     a1 → a2 → a3 → a4 → null
+B:     b1 → b2 → b3 → null
+                 b
+                      a
+A:     a1 → a2 → a3 → a4 → null
+B:     b1 → b2 → b3 → null
+                      b = null, then b = a1
+       b                   a = null, then a = b1
+A:     a1 → a2 → a3 → a4 → null
+B:     b1 → b2 → b3 → null
+            b                   
+A:     a1 → a2 → a3 → a4 → null
+B:     b1 → b2 → b3 → null
+       a
+                 b
+A:     a1 → a2 → a3 → a4 → null
+B:     b1 → b2 → b3 → null
+            a
+                      b
+A:     a1 → a2 → a3 → a4 → null
+B:     b1 → b2 → b3 → null
+                 a
+                           b = null
+A:     a1 → a2 → a3 → a4 → null
+B:     b1 → b2 → b3 → null
+                      a = null
+Since a == b is true (both refer to null), end loop while(a != b), return a = null.
+
+Notice that if list A and list B have the same length, this solution will terminate in no more than 1 traversal; 
+if both lists have different lengths, this solution will terminate in no more than 2 traversals -- in the second 
+traversal, swapping a and b synchronizes a and b before the end of the second traversal. By synchronizing a and b 
+I mean both have the same remaining steps in the second traversal so that it's guaranteed for them to reach the 
+first intersection node, or reach null at the same time (technically speaking, in the same iteration) -- see 
+Case 2 (Have Intersection & Different Len) and Case 4 (Have No Intersection & Different Len).
+
+PS: There are many great explanations of this solution for various cases, I believe to visualize it can resolve 
+most of the doubts posted previously.
+*/
+
+// https://leetcode.wang/leetcode-160-Intersection-of-Two-Linked-Lists.html
+/**
+ 它没有去分别求两个链表的长度，而是把所有的情况都合并了起来。
+ 如果没有重合部分，那么 a 和 b 在某一时间点 一定会同时走到 null，从而结束循环。
+ 如果有重合部分，分两种情况。
+ 长度相同的话， a 和 b 一定是同时到达相遇点，然后返回。
+ 长度不同的话，较短的链表先到达结尾，然后指针转向较长的链表。此刻，较长的链表继续向末尾走，多走的距离刚好就是最开始介绍的解法，
+ 链表的长度差，走完之后指针转向较短的链表。然后继续走的话，相遇的位置就刚好是相遇点了。
+*/
