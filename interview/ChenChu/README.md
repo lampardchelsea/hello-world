@@ -99,11 +99,11 @@ Section 2: Linked List
 5. [Reorder List] (https://hjweds.gitbooks.io/leetcode/content/reorder-list.html)  
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/ReorderList.java)  
    
-6. [] ()  
-   [] ()  
+6. [Intersection of Two Linked Lists] (https://hjweds.gitbooks.io/leetcode/content/intersection-of-two-linked-lists.html)  
+   [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/IntersectionofTwoLinkedLists.java)  
    
-7. [] ()  
-   [] ()  
+7. [Odd Even Linked List] (https://hjweds.gitbooks.io/leetcode/content/odd-even-linked-list.html)  
+   [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/OddEvenLinkedList.java)  
    
 
    
