@@ -66,3 +66,37 @@ public class OddEvenLinkedList {
     	System.out.println(result.val);
     }
 }
+
+// Re-work
+class Solution {
+    public ListNode oddEvenList(ListNode head) {
+        if(head == null) {
+            return head;
+        }
+        ListNode oddDummy = new ListNode(-1);
+        ListNode evenDummy = new ListNode(-1);
+        ListNode iter1 = oddDummy;
+        ListNode iter2 = evenDummy;
+        ListNode iter = head;
+        int count = 1;
+        while(iter != null) {
+            // Magic way to split out single node, reserve next node and all 
+            // its connection for further use and cut off connection
+            ListNode nextNode = iter.next;
+            iter.next = null;
+            if(count % 2 == 1) {
+                iter1.next = iter;
+                iter1 = iter1.next;
+            } else {
+                iter2.next = iter;
+                iter2 = iter2.next;
+            }
+            // Restore iterator with previous reserved next node after split 
+            // out single node
+            iter = nextNode;
+            count++;
+        }
+        iter1.next = evenDummy.next;
+        return oddDummy.next;
+    }
+}
