@@ -60,3 +60,34 @@ The hostname may not start or end with the hyphen-minus character (‘-‘).
 See: https://en.wikipedia.org/wiki/Hostname#Restrictions_on_valid_hostnames
 You may assume there’re no duplicates in url library.
 */
+
+// Solution 1: Stack
+// Refer to
+// https://github.com/varunu28/LeetCode-Java-Solutions/blob/master/Medium/Web%20Crawler.java
+/**
+ * // This is the HtmlParser's API interface.
+ * // You should not implement it, or speculate about its implementation
+ * interface HtmlParser {
+ *     public List<String> getUrls(String url) {}
+ * }
+ */
+class Solution {
+    public List<String> crawl(String startUrl, HtmlParser htmlParser) {
+    
+    }
+}
+
+// Solution 2: BFS
+// https://wentao-shao.gitbook.io/leetcode/data-structure/1236.web-crawler
+/**
+ * // This is the HtmlParser's API interface.
+ * // You should not implement it, or speculate about its implementation
+ * interface HtmlParser {
+ *     public List<String> getUrls(String url) {}
+ * }
+ */
+class Solution {
+    public List<String> crawl(String startUrl, HtmlParser htmlParser) {
+    
+    }
+}
