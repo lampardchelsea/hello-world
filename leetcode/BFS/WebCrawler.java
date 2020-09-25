@@ -73,11 +73,11 @@ You may assume there’re no duplicates in url library.
  */
 class Solution {
     public List<String> crawl(String startUrl, HtmlParser htmlParser) {
-    
+        
     }
 }
 
-// Solution 2: BFS
+// Solution 2: Queue + BFS
 // https://wentao-shao.gitbook.io/leetcode/data-structure/1236.web-crawler
 /**
  * // This is the HtmlParser's API interface.
@@ -88,6 +88,25 @@ class Solution {
  */
 class Solution {
     public List<String> crawl(String startUrl, HtmlParser htmlParser) {
-    
+        Set<String> visited = new HashSet<String>();
+        Queue<String> q = new LinkedList<String>();
+        String hostname = getHostName(startUrl);
+        q.offer(hostname);
+        visited.add(hostname);
+        while(!q.isEmpty()) {
+            String currUrl = q.poll();
+            for(String url : htmlParser.getUrls(currUrl)) {
+                if(!visited.contains(url) && url.contains(hostname)) {
+                    q.offer(url);
+                    visited.add(url);
+                }
+            }
+        }
+        return new ArrayList<String>(set);
+    }
+ 
+    private String getHostName(String startUrl) {
+        String[] ss = startUrl.split("/");
+        return ss[2];
     }
 }
