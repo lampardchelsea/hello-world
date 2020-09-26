@@ -239,6 +239,69 @@ class Crawler extends Thread {
 Runtime: 2 ms, faster than 97.83% of Java online submissions for Web Crawler Multithreaded.
 Memory Usage: 89.5 MB, less than 100.00% of Java online submissions for Web Crawler Multithreaded.
 */
+class Solution {
+    public List < String > crawl(String startUrl, HtmlParser htmlParser) {
+        String hostname = getHostName(startUrl);
+        // Initial a new crawler thread to crawl all url start with same hostname of 'startUrl'
+        Crawler crawler = new Crawler(startUrl, hostname, htmlParser);
+        // Initial result of thread
+        crawler.result = new ArrayList < String > ();
+        // Start thread, same effect as initial for DFS
+        crawler.start();
+        // Wait all threads done
+        crawler.joinThread(crawler);
+        // Return result
+        return crawler.result;
+    }
+
+    private String getHostName(String url) {
+        String[] splits = url.split("/");
+        return splits[2];
+    }
+}
+
+// Crawler thread the effect equal to original DFS
+class Crawler extends Thread {
+    String startUrl;
+    String hostname;
+    HtmlParser htmlParser;
+
+    // Store result
+    public static volatile List < String > result = new ArrayList < String > ();
+
+    // Initial thread
+    public Crawler(String startUrl, String hostname, HtmlParser htmlParser) {
+        this.startUrl = startUrl;
+        this.hostname = hostname;
+        this.htmlParser = htmlParser;
+    }
+
+    public void run() {
+        if (!result.contains(startUrl) && startUrl.contains(hostname)) {
+            result.add(startUrl);
+            // Each url will initial a new thread to continue similar as DFS
+            List < Thread > threads = new ArrayList < Thread > ();
+            for (String url: htmlParser.getUrls(startUrl)) {
+                Crawler crawler = new Crawler(url, hostname, htmlParser);
+                crawler.start();
+                threads.add(crawler);
+            }
+            // Wait all child threads execution done, then terminate main thread
+            for (Thread t: threads) {
+                joinThread(t);
+            }
+        }
+    }
+
+    public static void joinThread(Thread thread) {
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+
+        }
+    }
+}
+
 
 // Solution 2: Implement Runnable
 // Refer to
