@@ -81,3 +81,79 @@ The hostname may not start or end with the hyphen-minus character (‘-‘).
 See: https://en.wikipedia.org/wiki/Hostname#Restrictions_on_valid_hostnames
 You may assume there’re no duplicates in url library.
 */
+
+// Solution 1: Extends Thread
+// Refer to
+// https://leetcode.jp/leetcode-1242-web-crawler-multithreaded-%e8%a7%a3%e9%a2%98%e6%80%9d%e8%b7%af%e5%88%86%e6%9e%90/
+/**
+ 这本是一道dfs题目，但要使用多线程来解决。可以理解为dfs的多线程升级版。标准的dfs解法可以参照 LEETCODE 1236. Web Crawler 
+ 解题思路分析 这篇文章。普通做dfs深度优先搜索时，我们需要通过一个起点，不停的dfs递归调用搜索到所有节点，本题也不例外，
+ dfs是核心思路，不同的是，我们需要将dfs方法内的代码放到线程中，在做dfs递归操作时，不是递归调用本身，而是需要再开启一个新的线程而已。
+ 需要注意的一点是，多线程不同于单线程，在我们开启一个线程后，主线程并不会等待子线程执行结束再返回结果，因此我们应该想到，
+ 在返回结果之前，必须等待所有子线程执行结束，否则我们无法得到所有结果。等待子线程结束的方法很多，在java中最为简单的便是
+ 使用Thread.join()方法，这样主线程会被挂起，当join的子线程执行完毕之后，主线程才会继续向下执行。
+ import java.net.URI;
+ class Solution {
+   public List<String> crawl(String startUrl, HtmlParser htmlParser) {
+        // 取得startUrl的域名
+        String host = URI.create(startUrl).getHost();
+        // 新建一个线程，爬取startUrl中的所有链接
+        Crawler crawler = new Crawler(startUrl, host, htmlParser);
+        // 初始化线程的返回结果
+        crawler.res = new ArrayList<>();
+        // 开启线程（相当于从起点开始dfs）
+        crawler.start();
+        // 等待线程执行结束
+        Crawler.joinThread(crawler);
+        // 返回线程的执行结果
+        return crawler.res;
+    }
+}
+// 爬虫线程（相当于原始的dfs方法）
+class Crawler extends Thread {
+    String startUrl; // 当前url
+    String hostname; // 域名
+    HtmlParser htmlParser; // 爬虫接口
+    // 返回结果
+    public static volatile List<String> res = new ArrayList<>();
+    // 初始化线程
+    public Crawler(String startUrl, String hostname, HtmlParser htmlParser){
+        this.startUrl = startUrl;
+        this.hostname = hostname;
+        this.htmlParser = htmlParser;
+    }
+    @Override 
+    public void run(){
+        // 获得当前url的域名
+        String host=URI.create(startUrl).getHost();
+        // 如果当前域名不属于目标网站，或者当前域名已经爬过，略过
+        if(!host.equals(hostname) || res.contains(startUrl)){
+            return;
+        }
+        // 将当前url加入结果集
+        res.add(startUrl);
+        // 记录当前url页面包含的链接
+        // 每个链接启动一个新的线程继续dfs
+        List<Thread> threads = new ArrayList<>();
+        for(String s: htmlParser.getUrls(startUrl)){
+            Crawler crawler = new Crawler(s, hostname, htmlParser);
+            crawler.start();
+            threads.add(crawler);
+        }
+        // 等待每个子线程执行结束后，再结束当前线程
+        for(Thread t: threads){
+            joinThread(t);
+        }
+    }
+    
+    public static void joinThread(Thread thread){
+        try{
+            thread.join();
+        } catch(InterruptedException e){
+        }
+    }
+}
+本题解法执行时间为2ms。
+Runtime: 2 ms, faster than 97.83% of Java online submissions for Web Crawler Multithreaded.
+Memory Usage: 89.5 MB, less than 100.00% of Java online submissions for Web Crawler Multithreaded.
+*/
