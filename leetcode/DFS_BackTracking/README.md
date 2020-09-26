@@ -228,3 +228,9 @@
 <p>Similar String Groups
 <p>1. [DFS] (https://leetcode.com/problems/similar-string-groups/discuss/132318/Simple-Java-Solution-using-DFS)
 <p>2. [To consider the case that two strings are exactly same, you need to add || count == 0 in helper()] (https://leetcode.com/problems/similar-string-groups/discuss/132318/Simple-Java-Solution-using-DFS/297615)
+
+<p>Minesweeper
+<p>1. [DFS 1] (https://leetcode.com/problems/minesweeper/discuss/99841/Straight-forward-Java-solution)
+<p>2. [DFS why we can avoid use visited] (https://leetcode.com/problems/minesweeper/discuss/99826/Java-Solution-DFS-%2B-BFS)
+<p>3. [BFS why no need check 'board[r][c] == 'X'' in while loop] (https://leetcode.com/problems/minesweeper/discuss/99826/Java-Solution-DFS-+-BFS/135989) 
+<p>4. [BFS why we can avoid use visited] (https://leetcode.com/problems/minesweeper/discuss/99841/Straight-forward-Java-solution/104052)
