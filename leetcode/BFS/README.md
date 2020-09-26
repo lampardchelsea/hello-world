@@ -31,4 +31,9 @@
 <p>2. [BFS + DFS] (https://leetcode.jp/leetcode-1236-web-crawler-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/)
 
 <p>Web Crawler Multithreaded
-<p>1. [] ()
+<p>1. [Point 1] (https://zhang0peter.com/2020/02/12/LeetCode-1242-Web-Crawler-Multithreaded/)
+<p>2. [Point 2] (https://yifei.me/note/818/)
+<p>3. [Extends Thread] (https://leetcode.jp/leetcode-1242-web-crawler-multithreaded-%e8%a7%a3%e9%a2%98%e6%80%9d%e8%b7%af%e5%88%86%e6%9e%90/)
+<p>4. [Implement Runnable] (http://guanzhou.pub/2020/07/01/LeetCode1/)
+<p>5. [Using Executor] (https://blog.csdn.net/u013325815/article/details/104355226)
+<p>6. [Follow Up] (https://leetcode.com/discuss/interview-question/124657/Design-a-distributed-web-crawler-that-will-crawl-all-the-pages-of-wikipedia/269291)
