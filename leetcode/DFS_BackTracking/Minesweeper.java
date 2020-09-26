@@ -65,6 +65,12 @@ This is a typical Search problem, either by using DFS or BFS. Search rules:
 2.If click on an empty cell ('E'), depends on how many surrounding mine:
   2.1 Has surrounding mine(s), mark it with number of surrounding mine(s), stop further search.
   2.2 No surrounding mine, mark it as 'B', continue search its 8 neighbors.
+
+Why no need a 'visited' check in Minesweeper ?
+And we don't need to initial a 'boolean[][] visited' to avoid infinite loop on DFS because
+in each step we either update a cell 'E' to 'B' or digit number or update a cell 'M' to 'X',
+and in the DFS check, we have "board[x][y] != 'E'" to block any possibility to step into a 
+cell twice to update it.
 */
 class Solution {
     public char[][] updateBoard(char[][] board, int[] click) {
