@@ -297,7 +297,7 @@ class Crawler extends Thread {
         try {
             thread.join();
         } catch (InterruptedException e) {
-
+            e.printStackTrace();
         }
     }
 }
