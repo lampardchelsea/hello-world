@@ -66,7 +66,6 @@ This is a typical Search problem, either by using DFS or BFS. Search rules:
   2.1 Has surrounding mine(s), mark it with number of surrounding mine(s), stop further search.
   2.2 No surrounding mine, mark it as 'B', continue search its 8 neighbors.
 */
-
 class Solution {
     public char[][] updateBoard(char[][] board, int[] click) {
         int x = click[0];
