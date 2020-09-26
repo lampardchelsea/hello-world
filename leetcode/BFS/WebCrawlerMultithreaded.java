@@ -276,6 +276,7 @@ class Crawler extends Thread {
         this.htmlParser = htmlParser;
     }
 
+    @Override
     public void run() {
         if (!result.contains(startUrl) && startUrl.contains(hostname)) {
             result.add(startUrl);
@@ -402,6 +403,66 @@ class Solution {
     }
 }
 */
+class Solution {
+    public List < String > crawl(String startUrl, HtmlParser htmlParser) {
+        String hostname = getHostName(startUrl);
+        Crawler crawler = new Crawler(startUrl, hostname, htmlParser);
+        // reset result as static property belongs to class, it will go through all of the test cases
+        crawler.map = new ConcurrentHashMap();
+        crawler.result = crawler.map.newKeySet();
+        Thread thread = new Thread(crawler);
+        thread.start();
+        // Wait for thread to complete
+        crawler.joinThread(thread);
+        return new ArrayList < String > (crawler.result);
+    }
+
+    private String getHostName(String url) {
+        String[] splits = url.split("/");
+        return splits[2];
+    }
+}
+
+class Crawler implements Runnable {
+    String startUrl;
+    String hostname;
+    HtmlParser htmlParser;
+    public static ConcurrentHashMap < String, String > map = new ConcurrentHashMap < String, String > ();
+    public static Set < String > result = map.newKeySet();
+
+    public Crawler(String startUrl, String hostname, HtmlParser htmlParser) {
+        this.startUrl = startUrl;
+        this.hostname = hostname;
+        this.htmlParser = htmlParser;
+    }
+
+    @Override
+    public void run() {
+        if (!result.contains(startUrl) && startUrl.contains(hostname)) {
+            result.add(startUrl);
+            List < Thread > threads = new ArrayList < Thread > ();
+            for (String url: htmlParser.getUrls(startUrl)) {
+                Crawler crawler = new Crawler(url, hostname, htmlParser);
+                Thread thread = new Thread(crawler);
+                thread.start();
+                threads.add(thread);
+            }
+            // Wait for all threads to complete
+            for (Thread t: threads) {
+                joinThread(t);
+            }
+        }
+    }
+
+    public static void joinThread(Thread thread) {
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
 
 // Solution 3: Using Executor
 // Refer to
