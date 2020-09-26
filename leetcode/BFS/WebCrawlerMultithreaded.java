@@ -407,7 +407,12 @@ class Solution {
     public List < String > crawl(String startUrl, HtmlParser htmlParser) {
         String hostname = getHostName(startUrl);
         Crawler crawler = new Crawler(startUrl, hostname, htmlParser);
-        // reset result as static property belongs to class, it will go through all of the test cases
+        // Reset result as static property belongs to class, it will go through all of the test cases
+	// Or we should follow the standard way to create ConcurrentHashMap in main Solution class 
+	// and pass the map into Crawler class from constructor way
+	// Refer to
+	// https://www.codejava.net/java-core/concurrency/java-concurrent-collection-concurrenthashmap-examples
+	// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Concurrency/Document/ConcurrentHashMap_MultipleThread_Example.docx
         crawler.map = new ConcurrentHashMap();
         crawler.result = crawler.map.newKeySet();
         Thread thread = new Thread(crawler);
