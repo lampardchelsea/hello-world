@@ -125,6 +125,12 @@ Also the check for 'mines' inside the while loop is not required as well, since 
 */
 // https://leetcode.com/problems/minesweeper/discuss/99841/Straight-forward-Java-solution/104052
 /**
+Why no need a 'visited' check in Minesweeper ?
+And we don't need to initial a 'boolean[][] visited' to avoid infinite loop on DFS because
+in each step we either update a cell 'E' to 'B' or digit number or update a cell 'M' to 'X',
+and in the DFS check, we have "board[x][y] != 'E'" to block any possibility to step into a 
+cell twice to update it.
+
   if (num == 0) {
       board[curX][curY] = 'B';
       for (int i = -1; i < 2; i++) {
