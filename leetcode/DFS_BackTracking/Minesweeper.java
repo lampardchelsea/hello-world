@@ -118,4 +118,83 @@ class Solution {
 
 // Solution 2: BFS
 // Refer to
-// 
+// https://leetcode.com/problems/minesweeper/discuss/99826/Java-Solution-DFS-+-BFS/135989
+/**
+A minor improvement - You don't need to check the case 'board[r][c] == 'X'', when you count the the mines adjacent to a cell.
+Also the check for 'mines' inside the while loop is not required as well, since you will never 'reach' a mine during traversal.
+*/
+// https://leetcode.com/problems/minesweeper/discuss/99841/Straight-forward-Java-solution/104052
+/**
+  if (num == 0) {
+      board[curX][curY] = 'B';
+      for (int i = -1; i < 2; i++) {
+          for (int j = -1; j < 2; j++) {
+              if (i == 0 && j == 0) continue;
+              int newX = curX + i, newY = curY + j;
+              if (newX < 0 || newY < 0 || newX >= board.length || newY >= board[0].length || board[newX][newY] != 'E') continue;
+              queue.offer(newX * n + newY);
+              board[newX][newY] = 'B'; // Avoid being added again
+          }
+      }
+  } else {
+      board[curX][curY] = (char)(num + '0');
+  }
+*/
+class Solution {
+    int[] dx = {1,1,0,-1,-1,-1,0,1};
+    int[] dy = {0,-1,-1,-1,0,1,1,1};
+    public char[][] updateBoard(char[][] board, int[] click) {
+        int x = click[0];
+        int y = click[1];
+        if(board[x][y] == 'M') {
+            board[x][y] = 'X';
+            return board;
+        }
+        Queue<int[]> q = new LinkedList<int[]>();
+        q.offer(new int[] {x, y});
+        while(!q.isEmpty()) {
+            int[] curr = q.poll();
+            /**
+              Refer to
+              https://leetcode.com/problems/minesweeper/discuss/99826/Java-Solution-DFS-+-BFS/135989
+              A minor improvement - You don't need to check the case 'board[r][c] == 'X'', 
+              when you count the the mines adjacent to a cell.
+              Also the check for 'mines' inside the while loop is not required as well, 
+              since you will never reach a 'mine' during traversal.
+            */
+            //if(board[curr[0]][curr[1]] == 'M') {
+            //    board[curr[0]][curr[1]] = 'X';
+            //    return board;
+            //}
+            int num = getSurroundMinesNum(board, curr[0], curr[1]);
+            if(num == 0) {
+                board[curr[0]][curr[1]] = 'B';
+                for(int i = 0; i < 8; i++) {
+                    int new_x = curr[0] + dx[i];
+                    int new_y = curr[1] + dy[i];
+                    if(new_x >= 0 && new_x < board.length && new_y >= 0 && new_y < board[0].length && board[new_x][new_y] == 'E') {
+                        q.offer(new int[] {new_x, new_y});
+                        // Don't forget to update 'E' to 'B', otherwise infinite loop
+                        // In DFS we actually do the same way to avoid using 'visited'
+                        board[new_x][new_y] = 'B';
+                    }
+                }
+            } else {
+                board[curr[0]][curr[1]] = (char)(num + '0');
+            }
+        }
+        return board;
+    }
+        
+    private int getSurroundMinesNum(char[][] board, int x, int y) {
+        int count = 0;
+        for(int i = 0; i < 8; i++) {
+            int new_x = x + dx[i];
+            int new_y = y + dy[i];
+            if(new_x >= 0 && new_x < board.length && new_y >= 0 && new_y < board[0].length && board[new_x][new_y] == 'M') {
+               count++;
+            }
+        }
+        return count;
+    }
+}
