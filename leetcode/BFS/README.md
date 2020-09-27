@@ -40,3 +40,6 @@
 
 <p>Open the Lock
 <p>1. [Regular java BFS solution and 2-end BFS solution with improvement] (https://leetcode.com/problems/open-the-lock/discuss/110237/Regular-java-BFS-solution-and-2-end-BFS-solution-with-improvement)
+
+<p>Rotting Oranges
+<p>1. [BFS + Start from rotten oranges, similar as Walls And Gates] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/BFS/WallsAndGates.java)
