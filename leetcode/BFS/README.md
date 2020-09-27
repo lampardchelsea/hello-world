@@ -43,3 +43,7 @@
 
 <p>Rotting Oranges
 <p>1. [BFS + Start from rotten oranges, similar as Walls And Gates] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/BFS/WallsAndGates.java)
+
+<p>Shortest Bridge
+<p>1. [Java DFS find the island -> BFS expand the island: Use boolean flag with break out] (https://leetcode.com/problems/shortest-bridge/discuss/189321/Java-DFS-find-the-island-greater-BFS-expand-the-island)
+<p>2. [Java DFS find the island -> BFS expand the island: Use boolean flag directly on condition of for loop] (https://leetcode.com/problems/shortest-bridge/discuss/189321/Java-DFS-find-the-island-greater-BFS-expand-the-island/258399)
