@@ -65,7 +65,7 @@ class Solution {
         if(target.equals("0000")) {
             return 0;
         }
-		// Must have visited to remove infinite loop when encounter already visited number
+        // Must have visited to remove infinite loop when encounter already visited number
         Set<String> visited = new HashSet<>();
         visited.add("0000");
         Queue<String> q = new LinkedList<String>();
@@ -97,8 +97,8 @@ class Solution {
                             visited.add(minus_one_string);
                         }
                     }
-					// Must reset chars based on original String in case each round only change 1 digit out of 4
-					// from original chars, and should not based on previous changed chars
+                    // Must reset chars based on original String in case each round only change 1 digit out of 4
+                    // from original chars, and should not based on previous changed chars
                     chars = curr.toCharArray();
                 }
                 for(String s : next) {
