@@ -37,3 +37,6 @@
 <p>4. [Implement Runnable] (http://guanzhou.pub/2020/07/01/LeetCode1/)
 <p>5. [Using Executor] (https://blog.csdn.net/u013325815/article/details/104355226)
 <p>6. [Follow Up] (https://leetcode.com/discuss/interview-question/124657/Design-a-distributed-web-crawler-that-will-crawl-all-the-pages-of-wikipedia/269291)
+
+<p>Open the Lock
+<p>1. [Regular java BFS solution and 2-end BFS solution with improvement] (https://leetcode.com/problems/open-the-lock/discuss/110237/Regular-java-BFS-solution-and-2-end-BFS-solution-with-improvement)
