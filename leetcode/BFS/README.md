@@ -47,3 +47,7 @@
 <p>Shortest Bridge
 <p>1. [Java DFS find the island -> BFS expand the island: Use boolean flag with break out] (https://leetcode.com/problems/shortest-bridge/discuss/189321/Java-DFS-find-the-island-greater-BFS-expand-the-island)
 <p>2. [Java DFS find the island -> BFS expand the island: Use boolean flag directly on condition of for loop] (https://leetcode.com/problems/shortest-bridge/discuss/189321/Java-DFS-find-the-island-greater-BFS-expand-the-island/258399)
+
+<p>Check if There is a Valid Path in a Grid
+<p>1. [BFS + Check if able to move one step back to check really connectioned or not + Direction order matters] (https://leetcode.com/problems/check-if-there-is-a-valid-path-in-a-grid/discuss/547371/Java-clean-BFS)
+<p>2. [Why (-d[0], -d[1]) in directions[grid[ni][nj]]: ?] (https://leetcode.com/problems/check-if-there-is-a-valid-path-in-a-grid/discuss/547263/Python-easy-DFS)
