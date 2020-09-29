@@ -51,3 +51,6 @@
 <p>Check if There is a Valid Path in a Grid
 <p>1. [BFS + Check if able to move one step back to check really connectioned or not + Direction order matters] (https://leetcode.com/problems/check-if-there-is-a-valid-path-in-a-grid/discuss/547371/Java-clean-BFS)
 <p>2. [Why (-d[0], -d[1]) in directions[grid[ni][nj]]: ?] (https://leetcode.com/problems/check-if-there-is-a-valid-path-in-a-grid/discuss/547263/Python-easy-DFS)
+
+<p>Pacific Atlantic Water Flow
+<p>1. [Java BFS & DFS from Ocean] (https://leetcode.com/problems/pacific-atlantic-water-flow/discuss/90733/Java-BFS-and-DFS-from-Ocean)
