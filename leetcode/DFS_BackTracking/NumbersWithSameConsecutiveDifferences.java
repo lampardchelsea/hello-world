@@ -81,3 +81,36 @@ class Solution {
         }
     }
 }
+
+// Solution 2: BFS level traversal
+// Refer to
+// https://leetcode.com/problems/numbers-with-same-consecutive-differences/solution/
+class Solution {
+    public int[] numsSameConsecDiff(int n, int k) {
+        List<Integer> q = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        // Iterate from 2nd digit to nth digit
+        for(int i = 2; i <= n; i++) {
+            List<Integer> next_q = new ArrayList<Integer>();
+            for(int num : q) {
+                int lastDigit = num % 10;
+                List<Integer> nextDigits = new ArrayList<Integer>();
+                nextDigits.add(lastDigit + k);
+                if(k != 0) {
+                    nextDigits.add(lastDigit - k);
+                }
+                for(int nextDigit : nextDigits) {
+                    if(nextDigit >= 0 && nextDigit < 10) {
+                        int newNum = num * 10 + nextDigit;
+                        next_q.add(newNum);
+                    }
+                }
+            }
+            q = next_q;
+        }
+        int[] result = new int[q.size()];
+        for(int i = 0; i < q.size(); i++) {
+            result[i] = q.get(i);
+        }
+        return result;
+    }
+}
