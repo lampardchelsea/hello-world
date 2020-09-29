@@ -180,3 +180,6 @@
 <p>1. [DP thought] (https://leetcode.com/discuss/interview-question/383669/Amazon-or-OA-2019-or-Max-Of-Min-Altitudes/350117)
 <p>2. [2D and 1D DP] (https://leetcode.com/discuss/interview-question/383669/Amazon-or-OA-2019-or-Max-Of-Min-Altitudes/369694)
 
+<p>01 Matrix
+<p>1. [Two ways scan (top-left / bottom-right) DP] (https://leetcode.com/problems/01-matrix/discuss/101051/Simple-Java-solution-beat-99-(use-DP))
+<p>2. [Explain DP] (https://leetcode.com/problems/01-matrix/discuss/101051/Simple-Java-solution-beat-99-(use-DP)/113437)
