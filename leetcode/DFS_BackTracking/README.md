@@ -234,3 +234,7 @@
 <p>2. [DFS why we can avoid use visited] (https://leetcode.com/problems/minesweeper/discuss/99826/Java-Solution-DFS-%2B-BFS)
 <p>3. [BFS why no need check 'board[r][c] == 'X'' in while loop] (https://leetcode.com/problems/minesweeper/discuss/99826/Java-Solution-DFS-+-BFS/135989) 
 <p>4. [BFS why we can avoid use visited] (https://leetcode.com/problems/minesweeper/discuss/99841/Straight-forward-Java-solution/104052)
+
+<p>Numbers With Same Consecutive Differences
+<p>1. [DFS] (https://leetcode.com/problems/numbers-with-same-consecutive-differences/discuss/798716/Java-Idea-Explained-or-DFS-Easy-to-Understand)
+<p>2. [BFS] (https://leetcode.com/problems/numbers-with-same-consecutive-differences/solution/)
