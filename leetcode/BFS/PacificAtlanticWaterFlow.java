@@ -108,3 +108,47 @@ class Solution {
 // Solution 2: DFS
 // Refer to
 // https://leetcode.com/problems/pacific-atlantic-water-flow/discuss/90733/Java-BFS-and-DFS-from-Ocean
+class Solution {
+    public List<List<Integer>> pacificAtlantic(int[][] matrix) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if(matrix == null || matrix.length == 0 || matrix[0] == null || matrix[0].length == 0) {
+            return result;
+        }
+        int m = matrix.length;
+        int n = matrix[0].length;
+        boolean[][] pVisited = new boolean[m][n];
+        boolean[][] aVisited = new boolean[m][n];
+        for(int i = 0; i < m; i++) {
+            helper(i, 0, -1, pVisited, matrix);      // first column
+            helper(i, n - 1, -1, aVisited, matrix);  // last column 
+        }
+        for(int i = 0; i < n; i++) {
+            helper(0, i, -1, pVisited, matrix);      // first row
+            helper(m - 1, i, -1, aVisited, matrix);  // last row
+        }
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                if(pVisited[i][j] && aVisited[i][j]) {
+                    List<Integer> list = new ArrayList<Integer>();
+                    list.add(i);
+                    list.add(j);
+                    result.add(list);
+                }
+            }
+        }
+        return result;
+    }
+    
+    int[] dx = new int[] {0,0,1,-1};
+    int[] dy = new int[] {1,-1,0,0};
+    private void helper(int x, int y, int height, boolean[][] visited, int[][] matrix) {
+        if(x >= 0 && x < matrix.length && y >= 0 && y < matrix[0].length && !visited[x][y] && matrix[x][y] >= height) {
+            visited[x][y] = true;
+            for(int i = 0; i < 4; i++) {
+                int new_x = x + dx[i];
+                int new_y = y + dy[i];
+                helper(new_x, new_y, matrix[x][y], visited, matrix);
+            }
+        }
+    }
+}
