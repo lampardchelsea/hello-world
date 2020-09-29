@@ -58,4 +58,4 @@
 <p>0 1 Matrix
 <p>1. [BFS level order traversal start from 0 cell, similar to 417.Pacific Atlantic Water Flow which start from Ocean] (https://leetcode.com/problems/01-matrix/discuss/248525/Java-BFS-solution-with-comments)
 <p>2. [Two ways scan (top-left / bottom-right) DP] (https://leetcode.com/problems/01-matrix/discuss/101051/Simple-Java-solution-beat-99-(use-DP))
-<p>3. [Explain DP)] (https://leetcode.com/problems/01-matrix/discuss/101051/Simple-Java-solution-beat-99-(use-DP)/113437)
+<p>3. [Explain DP] (https://leetcode.com/problems/01-matrix/discuss/101051/Simple-Java-solution-beat-99-(use-DP)/113437)
