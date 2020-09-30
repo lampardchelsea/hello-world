@@ -62,3 +62,5 @@
 
 <p>Shortest Path in a Grid with Obstacles Elimination
 <p>1. [BFS + 2D array to track eliminate chances for all possible path but keep updating value for minimum obstacles(most eliminate chance remains) encounter path] (https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/discuss/452184/Clean-Java-BFS-with-comments.)
+<p>2. [BFS + 3D array initial as 0,0,k] (https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/discuss/451787/Python-O(m*n*k)-BFS-Solution-with-Explanation)
+<p>3. [BFS + 3D array initial as 0,0,0] (https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/discuss/451796/Java-Straightforward-BFS-O(MNK)-time-or-O(MNK)-space)
