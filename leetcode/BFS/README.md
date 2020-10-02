@@ -67,3 +67,6 @@
 
 <p>Shortest Path in Binary Matrix
 <p>1. [BFS + 8 directions] (https://leetcode.com/problems/shortest-path-in-binary-matrix/discuss/312706/JAVA-BFS)
+
+<p>Sliding Puzzle
+<p>1. [BFS with each time switch 0 to another position] (https://leetcode.com/problems/sliding-puzzle/discuss/146652/Java-8ms-BFS-with-algorithm-explained)
