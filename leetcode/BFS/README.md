@@ -70,3 +70,6 @@
 
 <p>Sliding Puzzle
 <p>1. [BFS with each time switch 0 to another position] (https://leetcode.com/problems/sliding-puzzle/discuss/146652/Java-8ms-BFS-with-algorithm-explained)
+
+<p>Maximum Candies You Can Get from Boxes
+<p>1. [BFS with additional boolean array to separately store to be opened box status and opened box status] (https://leetcode.com/problems/maximum-candies-you-can-get-from-boxes/discuss/457658/Easy-way-using-Queue-JAVA)
