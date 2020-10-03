@@ -168,6 +168,53 @@ public class Solution {
   so use priorityQueue instead a Queue for a standard bfs search.
 */
 
+// Standard PQ implementation (include minDis array and visited array both, then compare and update 'minDis[neighbor]' 
+// with 'curDist + map.get(curNode).get(neighbor))', if 'curDist + map.get(curNode).get(neighbor)' is smaller then
+// update 'minDis[neighbor]' with 'curDist + map.get(curNode).get(neighbor))'
+// Refer to
+// https://leetcode.com/problems/network-delay-time/discuss/183873/Java-solutions-using-Dijkstra-FloydWarshall-and-Bellman-Ford-algorithm
+// Note: the original post forget to update minDis[neighbor]
+class Solution {
+    public int networkDelayTime(int[][] times, int N, int K) {
+       Map<Integer, Map<Integer, Integer>> map = new HashMap<Integer, Map<Integer, Integer>>();
+        for(int[] time : times) {
+            map.putIfAbsent(time[0], new HashMap<Integer, Integer>());
+            map.get(time[0]).put(time[1], time[2]);
+        }
+        boolean[] visited = new boolean[N + 1];
+        int[] minDis = new int[N + 1];
+        Arrays.fill(minDis, Integer.MAX_VALUE);
+        minDis[K] = 0;
+        // element as {Node ID, distance}, pq order based on distance as minimum heap
+        // Replace the normal queue used by BFS to PriorityQueue used by Dijkstra
+        PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a, b) -> (a[1] - b[1]));
+        pq.add(new int[]{K, 0});
+        int result = 0;
+        while(!pq.isEmpty()) {
+            int[] cur = pq.poll();
+            int curNode = cur[0];
+            int curDist = cur[1];
+            // If not visited before, mark as visited
+            if(!visited[curNode]) {
+                visited[curNode] = true;
+                N--;
+                result = curDist;
+                if(map.containsKey(curNode)) {
+                    for(int neighbor : map.get(curNode).keySet()) {
+                        if(curDist + map.get(curNode).get(neighbor) < minDis[neighbor]) {
+                            minDis[neighbor] = curDist + map.get(curNode).get(neighbor);
+                            pq.add(new int[]{neighbor, curDist + map.get(curNode).get(neighbor)});   
+                        }
+                    }
+                }
+            }
+        }
+        return N == 0 ? result : -1;
+    }
+}
+
+
+// Remove minDis array
 // https://blog.csdn.net/qq_35644234/article/details/60870719
 class Solution {
     public int networkDelayTime(int[][] times, int N, int K) {
@@ -201,6 +248,3 @@ class Solution {
         return N == 0 ? result : -1;
     }
 }
-
-
-
