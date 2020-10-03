@@ -64,30 +64,30 @@ class Solution {
         // Important: Must have another boolean array to separately 
         // store opened box and to be opened box status
         boolean[] toBeOpened = new boolean[len];
-        Queue<Integer> q = new LinkedList<Integer>();
+        Queue < Integer > q = new LinkedList < Integer > ();
         // Initial boxes
-        for(int initialBox : initialBoxes) {
+        for (int initialBox: initialBoxes) {
             q.offer(initialBox);
             toBeOpened[initialBox] = true;
         }
-        while(!q.isEmpty()) {
+        while (!q.isEmpty()) {
             int curr = q.poll();
             // Not used and box open
-            if(status[curr] == 1 && !opened[curr]) {
+            if (status[curr] == 1 && !opened[curr]) {
                 result += candies[curr];
                 opened[curr] = true;
                 // Find all keys in current box
-                for(int key : keys[curr]) {
-                	status[key] = 1;
+                for (int key: keys[curr]) {
+                    status[key] = 1;
                     // Box was found and we have the key
-                	if(toBeOpened[key]) {
-                		q.offer(key);
-                	}
+                    if (toBeOpened[key]) {
+                        q.offer(key);
+                    }
                 }
                 // Find all boxes in current box
-                for(int containedBox : containedBoxes[curr]) {
-                	toBeOpened[containedBox] = true;
-                	q.offer(containedBox);
+                for (int containedBox: containedBoxes[curr]) {
+                    toBeOpened[containedBox] = true;
+                    q.offer(containedBox);
                 }
             }
         }
