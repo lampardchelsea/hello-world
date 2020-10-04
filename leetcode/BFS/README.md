@@ -73,3 +73,8 @@
 
 <p>Maximum Candies You Can Get from Boxes
 <p>1. [BFS with additional boolean array to separately store to be opened box status and opened box status] (https://leetcode.com/problems/maximum-candies-you-can-get-from-boxes/discuss/457658/Easy-way-using-Queue-JAVA)
+
+<p>Minimum Cost to Make at Least One Valid Path in a Grid
+<p>1. [BFS + DFS] (https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/discuss/524886/JavaC%2B%2BPython-BFS-and-DFS)
+<p>2. [Shortest bridge BFS + DFS] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/BFS/ShortestBridge.java)
+<p>3. [Dijkstra] (https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/discuss/524820/Java-2-different-solutions-Clean-code)
