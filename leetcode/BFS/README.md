@@ -82,3 +82,6 @@
 <p>Bus Routes
 <p>1. [BFS level order traverse + reversely mapping stop to buses pass the stop] (https://leetcode.com/problems/bus-routes/discuss/122712/Simple-Java-Solution-using-BFS)
 <p>2. [为何要建立反向mapping, bus stop -> buses pass the stop] (https://www.cnblogs.com/grandyang/p/10293947.html)
+
+<p>Shortest Path to Get All Keys
+<p>1. [BFS + key set present as string and able to re-visit same cell after getting new key] (https://leetcode.com/problems/shortest-path-to-get-all-keys/discuss/146878/Java-BFS-Solution)
