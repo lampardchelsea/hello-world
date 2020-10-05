@@ -33,6 +33,8 @@ The number of keys is in [1, 6].  Each key has a different letter and opens exac
 // Refer to
 // https://leetcode.com/problems/shortest-path-to-get-all-keys/discuss/146878/Java-BFS-Solution
 // https://leetcode.com/problems/shortest-path-to-get-all-keys/discuss/146941/C%2B%2B-BFS-with-current-key-recorded-visited-map-(12ms)
+// Also refer to same thought from 1293.Shortest Path In A Grid With Obstacles Elimination for record visited status in case re-visit after get key
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/BFS/ShortestPathInAGridWithObstaclesElimination.java
 class State {
     int x;
     int y;
