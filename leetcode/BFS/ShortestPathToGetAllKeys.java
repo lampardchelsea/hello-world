@@ -85,9 +85,9 @@ class Solution {
             char c = (char) ('a' + i);
             finalKeys += c;
         }
-		for(int i = 0; i < totalPossibleKeys - keysNum; i++) {
-		    finalKeys += 'x';
-		}
+        for(int i = 0; i < totalPossibleKeys - keysNum; i++) {
+            finalKeys += 'x';
+        }
         int step = 0;
         while(!q.isEmpty()) {
             int size = q.size();
@@ -116,7 +116,7 @@ class Solution {
                         // Find new key then update current key string (the string
                         // initially set as "xxxxxx" and keep update when find new key)
                         if(c >= 'a' && c <= 'f') {
-							int replaceIndex = c - 'a';
+                            int replaceIndex = c - 'a';
                             char[] chars = new_key.toCharArray();
                             chars[replaceIndex] = c;
                             new_key = new String(chars);
