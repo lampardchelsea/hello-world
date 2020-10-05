@@ -78,3 +78,7 @@
 <p>1. [BFS + DFS] (https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/discuss/524886/JavaC%2B%2BPython-BFS-and-DFS)
 <p>2. [Shortest bridge BFS + DFS] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/BFS/ShortestBridge.java)
 <p>3. [Dijkstra] (https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/discuss/524820/Java-2-different-solutions-Clean-code)
+
+<p>Bus Routes
+<p>1. [BFS level order traverse + reversely mapping stop to buses pass the stop] (https://leetcode.com/problems/bus-routes/discuss/122712/Simple-Java-Solution-using-BFS)
+<p>2. [为何要建立反向mapping, bus stop -> buses pass the stop] (https://www.cnblogs.com/grandyang/p/10293947.html)
