@@ -82,11 +82,11 @@ class Solution {
                         if(grid[new_x][new_y] == 0) {
                             // Since current cell value is 0 not consuming chance
                             eliminateChanceRemains[new_x][new_y] = currPathRemain;
-                            q.offer(new int[] {new_x, new_y, currPathRemain});
+                            q.offer(new int[] {new_x, new_y, eliminateChanceRemains[new_x][new_y]});
                         } else if(grid[new_x][new_y] == 1 && currPathRemain > 0) {
                             // Since current cell value is 1 consuming 1 chance
                             eliminateChanceRemains[new_x][new_y] = currPathRemain - 1;
-                            q.offer(new int[] {new_x, new_y, currPathRemain - 1});
+                            q.offer(new int[] {new_x, new_y, eliminateChanceRemains[new_x][new_y]});
                         }
                         visited[new_x][new_y] = true;
                     }
