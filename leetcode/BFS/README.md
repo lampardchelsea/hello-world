@@ -86,3 +86,8 @@
 <p>Shortest Path to Get All Keys
 <p>1. [BFS + key set present as string and able to re-visit same cell after getting new key] (https://leetcode.com/problems/shortest-path-to-get-all-keys/discuss/146878/Java-BFS-Solution)
 <p>2. [Same thought from 1293.Shortest Path In A Grid With Obstacles Elimination for record visited status in case re-visit after get key] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/BFS/ShortestPathInAGridWithObstaclesElimination.java)
+
+<p>Jump Game IV
+<p>1. [[Java/C++] BFS Solution - Clean code - O(N)] (https://leetcode.com/problems/jump-game-iv/discuss/502699/JavaC%2B%2B-BFS-Solution-Clean-code-O(N))
+<p>2. [Why we can use list.clear() to cut down time from O(N^2) to O(N) ?] (https://leetcode.com/problems/jump-game-iv/discuss/502699/JavaC++-BFS-Solution-Clean-code-O(N)/445620)
+<p>3. [list.clear() vs list = new ArrayList<Integer>()] (https://stackoverflow.com/questions/6961356/list-clear-vs-list-new-arraylistinteger)
