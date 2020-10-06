@@ -39,7 +39,7 @@ Constraints:
 -10^8 <= arr[i] <= 10^8
 */
 
-// Solution 1: BFS + list.clear() to do magic cut off traverse time from O(N^2) to O(N)
+// Solution 1: BFS + list.clear() to do magic cut down traverse time from O(N^2) to O(N)
 // Refer to
 // https://leetcode.com/problems/jump-game-iv/discuss/502699/JavaC%2B%2B-BFS-Solution-Clean-code-O(N)
 // https://leetcode.com/problems/jump-game-iv/discuss/502699/JavaC++-BFS-Solution-Clean-code-O(N)/445620
