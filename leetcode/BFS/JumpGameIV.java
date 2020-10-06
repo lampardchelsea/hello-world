@@ -89,7 +89,7 @@ class Solution {
                         q.offer(index);
                     }
                 }
-                //next = new ArrayList<Integer>(); --> This will not work ?
+                //next = new ArrayList<Integer>(); --> This will not work ? TLE on 50000 len arary with 49999's 7 and last one is 11 test case
                 // Only clear() will help ?
                 // Refer to
                 // https://stackoverflow.com/questions/6961356/list-clear-vs-list-new-arraylistinteger
