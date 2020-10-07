@@ -91,3 +91,8 @@
 <p>1. [[Java/C++] BFS Solution - Clean code - O(N)] (https://leetcode.com/problems/jump-game-iv/discuss/502699/JavaC%2B%2B-BFS-Solution-Clean-code-O(N))
 <p>2. [Why we can use list.clear() to cut down time from O(N^2) to O(N) ?] (https://leetcode.com/problems/jump-game-iv/discuss/502699/JavaC++-BFS-Solution-Clean-code-O(N)/445620)
 <p>3. [list.clear() vs list = new ArrayList<Integer>()] (https://stackoverflow.com/questions/6961356/list-clear-vs-list-new-arraylistinteger)
+
+<p>K-Similar Strings
+<p>1. [中文解释何时需要交换字符] (https://www.cnblogs.com/grandyang/p/11343552.html)
+<p>2. [When to switch the chars] (https://leetcode.com/problems/k-similar-strings/discuss/140099/JAVA-BFS-32-ms-cleanconciseexplanationwhatever)
+<p>3. [When to switch the chars 2] (https://leetcode.com/problems/k-similar-strings/discuss/140099/JAVA-BFS-32-ms-cleanconciseexplanationwhatever/176099)
