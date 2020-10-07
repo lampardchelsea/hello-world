@@ -33,110 +33,109 @@ import java.util.Queue;
  * 内圈点更优。
  */
 public class BuildPostOffice {
-	private class Coordinate {
-		int x;
-		int y;
-		boolean visited;
-		public Coordinate(int x, int y) {
-			this.x = x;
-			this.y = y;
-			this.visited = false;
-		}
-	}
-	
-	public int shortestDistance(int[][] grid) {
-		if(grid == null || grid.length == 0 || grid[0].length == 0) {
-			return -1;
-		}
-		// Magic numbers
-		int[] directionX = {0, 0, -1, 1, -1, 1, -1, 1};
-		int[] directionY = {-1, 1, 0, 0, -1, -1, 1, 1};
-		int m = grid.length;
-		int n = grid[0].length;
-		
-		List<Coordinate> houses = new ArrayList<Coordinate>();
-		List<Integer> xArr = new ArrayList<Integer>();
-		List<Integer> yArr = new ArrayList<Integer>();
-		// Find house positions
-		for(int i = 0; i < m; i++) {
-			for(int j = 0; j < n; j++) {
-				if(grid[i][j] == 1) {
-					houses.add(new Coordinate(i, j));
-					xArr.add(i);
-					yArr.add(j);
-				}
-			}
-		}
-		// No empty space
-		if(houses.size() == m * n) {
-			return -1;
-		}
-		// If no house
-		if(houses.size() == 0) {
-			return 0;
-		}
-		// Find median of house positions
-		int xMedian = getMedian(xArr);
+    private class Coordinate {
+        int x;
+        int y;
+        boolean visited;
+        public Coordinate(int x, int y) {
+            this.x = x;
+            this.y = y;
+            this.visited = false;
+        }
+    }
+
+    public int shortestDistance(int[][] grid) {
+        if (grid == null || grid.length == 0 || grid[0].length == 0) {
+            return -1;
+        }
+        // Magic numbers
+        int[] directionX = {0, 0, -1, 1, -1, 1, -1, 1};
+        int[] directionY = {-1, 1, 0, 0, -1, -1, 1, 1};
+        int m = grid.length;
+        int n = grid[0].length;
+
+        List < Coordinate > houses = new ArrayList < Coordinate > ();
+        List < Integer > xArr = new ArrayList < Integer > ();
+        List < Integer > yArr = new ArrayList < Integer > ();
+        // Find house positions
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1) {
+                    houses.add(new Coordinate(i, j));
+                    xArr.add(i);
+                    yArr.add(j);
+                }
+            }
+        }
+        // No empty space
+        if (houses.size() == m * n) {
+            return -1;
+        }
+        // If no house
+        if (houses.size() == 0) {
+            return 0;
+        }
+        // Find median of house positions
+        int xMedian = getMedian(xArr);
         int yMedian = getMedian(yArr);
-		// BFS
-        Queue<Coordinate> queue = new LinkedList<Coordinate>();
+        // BFS
+        Queue < Coordinate > queue = new LinkedList < Coordinate > ();
         Coordinate median = new Coordinate(xMedian, yMedian);
         queue.add(median);
         int minDistance = Integer.MAX_VALUE;
-        while(!queue.isEmpty()) {
-        	// Need level traverse as outside level is surely 
-        	// bad than inside level positions
-        	int size = queue.size();
-        	for(int i = 0; i < size; i++) {
-        		Coordinate coor = queue.poll();
-        		coor.visited = true;
-        		if(grid[coor.x][coor.y] == 0) {
-        			minDistance = Math.min(minDistance, search(houses, coor));
-        		}
-        		// Check all its 8 directions adjacent for smaller path sum
-        		for(int j = 0; j < 8; j++) {
-        			Coordinate adj = new Coordinate(coor.x + directionX[j], coor.y + directionY[j]);
-                    if(!inBound(adj, grid) || adj.visited) {
-                    	continue;
+        while (!queue.isEmpty()) {
+            // Need level traverse as outside level is surely 
+            // bad than inside level positions
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                Coordinate coor = queue.poll();
+                coor.visited = true;
+                if (grid[coor.x][coor.y] == 0) {
+                    minDistance = Math.min(minDistance, search(houses, coor));
+                }
+                // Check all its 8 directions adjacent for smaller path sum
+                for (int j = 0; j < 8; j++) {
+                    Coordinate adj = new Coordinate(coor.x + directionX[j], coor.y + directionY[j]);
+                    if (!inBound(adj, grid) || adj.visited) {
+                        continue;
                     }
                     queue.add(adj);
-        		}
-        	}
-        	if(minDistance != Integer.MAX_VALUE) {
-        		return minDistance;
-        	}
+                }
+            }
+            if (minDistance != Integer.MAX_VALUE) {
+                return minDistance;
+            }
         }
         return -1;
-	}
-	
-	private boolean inBound(Coordinate coor, int[][] grid) {
-		int m = grid.length;
-		int n = grid[0].length;
-		return coor.x >= 0 && coor.x < m && coor.y >= 0 && coor.y < n;
-	}
-	
-	private int search(List<Coordinate> houses, Coordinate coor) {
-		int sum = 0;
-		for(Coordinate house : houses) {
-			sum += Math.abs(coor.x - house.x) + Math.abs(coor.y - house.y);
-		}
-		return sum;
-	}
-	
-	private int getMedian(List<Integer> list) {
-		Collections.sort(list);
-		int median = list.get(list.size() / 2);
-		if(list.size() % 2 == 0) {
-			median = (median + list.get(list.size() / 2 - 1)) / 2;
-		}
-		return median;
-	}
-	
-	public static void main(String[] args) {
-		BuildPostOffice b = new BuildPostOffice();
-		int[][] grid = {{0, 1, 0, 0}, {1, 0, 1, 1}, {0, 1, 0, 0}};
-		int result = b.shortestDistance(grid);
-		System.out.println(result);
-	}
-}
+    }
 
+    private boolean inBound(Coordinate coor, int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        return coor.x >= 0 && coor.x < m && coor.y >= 0 && coor.y < n;
+    }
+
+    private int search(List < Coordinate > houses, Coordinate coor) {
+        int sum = 0;
+        for (Coordinate house: houses) {
+            sum += Math.abs(coor.x - house.x) + Math.abs(coor.y - house.y);
+        }
+        return sum;
+    }
+
+    private int getMedian(List < Integer > list) {
+        Collections.sort(list);
+        int median = list.get(list.size() / 2);
+        if (list.size() % 2 == 0) {
+            median = (median + list.get(list.size() / 2 - 1)) / 2;
+        }
+        return median;
+    }
+
+    public static void main(String[] args) {
+        BuildPostOffice b = new BuildPostOffice();
+        int[][] grid = {{0, 1, 0, 0}, {1, 0, 1, 1}, {0, 1, 0, 0}};
+        int result = b.shortestDistance(grid);
+        System.out.println(result);
+    }
+}
