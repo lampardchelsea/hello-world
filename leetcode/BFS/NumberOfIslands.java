@@ -303,3 +303,46 @@ class Solution {
         }
     }
 }
+
+// Re-work
+// BFS
+class Solution {
+    public int numIslands(char[][] grid) {
+        if(grid == null || grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
+        int m = grid.length;
+        int n = grid[0].length;
+        int result = 0;
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                if(grid[i][j] == '1') {
+                    helper(grid, i, j);
+                    result++;
+                }
+            }
+        }
+        return result;
+    }
+    
+    private void helper(char[][] grid, int x, int y) {
+        int[] dx = new int[] {0,0,1,-1};
+        int[] dy = new int[] {1,-1,0,0};
+        Queue<int[]> q = new LinkedList<int[]>();
+        q.offer(new int[] {x, y});
+        grid[x][y] = '0';
+        while(!q.isEmpty()) {
+            int[] cur = q.poll();
+            for(int i = 0; i < 4; i++) {
+                int new_x = cur[0] + dx[i];
+                int new_y = cur[1] + dy[i];
+                if(new_x >= 0 && new_x < grid.length && new_y >= 0 && new_y < grid[0].length) {
+                    if(grid[new_x][new_y] == '1') {
+                        grid[new_x][new_y] = '0';
+                        q.offer(new int[] {new_x, new_y});
+                    }
+                }
+            }
+        }
+    }
+}
