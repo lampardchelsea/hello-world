@@ -106,6 +106,26 @@ Section 2: Linked List
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/LinkedList/OddEvenLinkedList.java)  
    
 
+Section 3: BFS
+1. [Number of Islands] (https://hjweds.gitbooks.io/leetcode/content/number-of-islands.html)  
+   [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/BFS/NumberOfIslands.java)  
+   
+2. [Is Graph Bipartite] (https://hjweds.gitbooks.io/leetcode/content/bipartite.html)  
+   [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/IsGraphBipartite.java)  
+   
+3. [Course Schedule] (https://hjweds.gitbooks.io/leetcode/content/course-schedule.html)  
+   [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/CourseSchedule.java)  
+   
+4. [] ()  
+   [] ()  
+   
+5. [] ()  
+   [] ()  
+   
+6. [] ()  
+   [] ()  
+   
+7.
    
 
 
