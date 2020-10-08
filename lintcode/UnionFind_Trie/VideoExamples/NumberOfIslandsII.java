@@ -70,95 +70,95 @@ import java.util.List;
  * 二刷:
  * 加入了Path compression以及Weight， 速度快了不少。
  * Time Complexity - (k * logmn)  Space Complexity - O(mn),  这里k是positions的长度
- */
+*/
 public class NumberOfIslandsII {
-	private class UnionFind {
-		private int[] father;
-		
-		public UnionFind(int n) {
-			father = new int[n + 1];
-			for(int i = 1; i < n + 1; i++) {
-				father[i] = i;
-			}
-		}
-		
-		//TODO: Change to while style
-		/**
-		 * Refer to
-		 * https://discuss.leetcode.com/topic/29613/easiest-java-solution-with-explanations/2
-		 * PATH COMPRESSION (BONUS)
-			If you have time, add one line to shorten the tree. 
-			The new runtime becomes: 19ms (95.94%).			
-			public int find(int[] roots, int id) {
-			    while(id != roots[id]) {
-			        roots[id] = roots[roots[id]];   // only one line added
-			        id = roots[id];
-			    }
-			    return id;
-			}
-		 */
-		public int find(int x) {
-			if(father[x] == x) {
-				return x;
-			}
-			return father[x] = find(father[x]);
-		}
-		
-		public void connect(int a, int b) {
-			int root_a = find(a);
-			int root_b = find(b);
-			if(root_a != root_b) {
-				father[root_a] = root_b;
-			}
-		}
-	}
-	
-	// O(mn * k) k is length of positions
-	public List<Integer> numIslands2(int m, int n, int[][] positions) {
-		List<Integer> result = new ArrayList<Integer>();
-		if(positions == null || positions.length == 0) {
-			return result;
-		}
-		if(positions[0].length == 0) {
-			return result;
-		}
-		int[] isLand = new int[m * n];
-	    UnionFind u = new UnionFind(m * n);
-	    int count = 0;
-		int[] dx = {-1, 0, 0, 1};
-	    int[] dy = {0, 1, -1, 0};
-	    for(int i = 0; i < positions.length; i++) {
-	    	int x = positions[i][0];
-	    	int y = positions[i][1];
-	    	count++;
-	    	int pos = x * m + y;
-	    	if(isLand[pos] != 1) {
-	    		isLand[pos] = 1;
-	    		// O(4 * k) --> O(k)
-	    		for(int j = 0; j < 4; j++) {
-	    			int next_x = x + dx[j];
-	    			int next_y = y + dy[j];
-	    			int newPos = next_x * m + next_y;
-	    			if(next_x >= 0 && next_x < n && next_y >= 0 && next_y < m && isLand[newPos] == 1) {
-	    				// UNION operation is only changing the root parent so the running time is O(1).
-	    				u.connect(pos, newPos);
-	    				count--;
-	    			}
-	    		}
-	    	}
-	    	result.add(count);
-	    }
-	    return result;
-	}
-	
-	public static void main(String[] args) {
-		NumberOfIslandsII numberOfIslandsII = new NumberOfIslandsII();
-		int[][] positions = {{0,0},{0,1},{2,2},{2,1}};
-		int m = 3, n = 3;
-	    List<Integer> result = numberOfIslandsII.numIslands2(m, n, positions);
-	    for(Integer i : result) {
-	    	System.out.print(i + " ");
-	    }
-	}
-	
+    private class UnionFind {
+        private int[] father;
+        
+        public UnionFind(int n) {
+            father = new int[n + 1];
+            for (int i = 1; i < n + 1; i++) {
+                father[i] = i;
+            }
+        }
+
+        //TODO: Change to while style
+        /**
+         * Refer to
+         * https://discuss.leetcode.com/topic/29613/easiest-java-solution-with-explanations/2
+         * PATH COMPRESSION (BONUS)
+        	If you have time, add one line to shorten the tree. 
+        	The new runtime becomes: 19ms (95.94%).			
+        	public int find(int[] roots, int id) {
+        	    while(id != roots[id]) {
+        	        roots[id] = roots[roots[id]];   // only one line added
+        	        id = roots[id];
+        	    }
+        	    return id;
+        	}
+         */
+        public int find(int x) {
+            if (father[x] == x) {
+                return x;
+            }
+            return father[x] = find(father[x]);
+        }
+
+        public void connect(int a, int b) {
+            int root_a = find(a);
+            int root_b = find(b);
+            if (root_a != root_b) {
+                father[root_a] = root_b;
+            }
+        }
+    }
+
+    // O(mn * k) k is length of positions
+    public List < Integer > numIslands2(int m, int n, int[][] positions) {
+        List < Integer > result = new ArrayList < Integer > ();
+        if (positions == null || positions.length == 0) {
+            return result;
+        }
+        if (positions[0].length == 0) {
+            return result;
+        }
+        int[] isLand = new int[m * n];
+        UnionFind u = new UnionFind(m * n);
+        int count = 0;
+        int[] dx = {-1, 0, 0, 1};
+        int[] dy = {0, 1, -1, 0};
+        for (int i = 0; i < positions.length; i++) {
+            int x = positions[i][0];
+            int y = positions[i][1];
+            count++;
+            int pos = x * m + y;
+            if (isLand[pos] != 1) {
+                isLand[pos] = 1;
+                // O(4 * k) --> O(k)
+                for (int j = 0; j < 4; j++) {
+                    int next_x = x + dx[j];
+                    int next_y = y + dy[j];
+                    int newPos = next_x * m + next_y;
+                    if (next_x >= 0 && next_x < n && next_y >= 0 && next_y < m && isLand[newPos] == 1) {
+                        // UNION operation is only changing the root parent so the running time is O(1).
+                        u.connect(pos, newPos);
+                        count--;
+                    }
+                }
+            }
+            result.add(count);
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        NumberOfIslandsII numberOfIslandsII = new NumberOfIslandsII();
+        int[][] positions = {{0,0},{0,1},{2,2},{2,1}};
+        int m = 3, n = 3;
+        List < Integer > result = numberOfIslandsII.numIslands2(m, n, positions);
+        for (Integer i: result) {
+            System.out.print(i + " ");
+        }
+    }
+
 }
