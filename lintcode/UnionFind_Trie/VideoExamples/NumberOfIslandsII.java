@@ -127,6 +127,10 @@ public class NumberOfIslandsII {
         int count = 0;
         int[] dx = {-1, 0, 0, 1};
         int[] dy = {0, 1, -1, 0};
+	// Initially assume every cell are in non-island set {-1}. When point A is added, we create 
+	// a new root, i.e., a new island. Then, check if any of its 4 neighbors belong to the same 
+	// island. If not, union the neighbor by setting the root to be the same. Remember to skip 
+	// non-island cells.
         for (int i = 0; i < positions.length; i++) {
             int x = positions[i][0];
             int y = positions[i][1];
