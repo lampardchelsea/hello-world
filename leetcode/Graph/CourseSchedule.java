@@ -82,21 +82,21 @@ public class CourseSchedule {
         }
         // Topological Sort with BFS
         while(!queue.isEmpty()) {
-            int startNode = queue.poll();
+            int startCourse = queue.poll();
             numCourses--;
             // Update indegree for all neighbors of current node
             for(int[] pair : prerequisites) {
-                // If neighbour of current node('pair[0]') equal to start node
-                // we store on queue previously(since we only store
+                // If any course's pre-course('pair[1]') equal to start 
+		// course, we store on queue previously(since we only store
                 // total of n courses labeled from 0 to n - 1,
                 // this equation relation will be unique for each 
-                // start node on queue), update current node('pair[1]')'s
+                // start node on queue), update current node('pair[0]')'s
                 // indegree by minus 1
-                if(pair[0] == startNode) {
-                    indegree[pair[1]]--;
+                if(pair[1] == startCourse) {
+                    indegree[pair[0]]--;
                     // Adding newly matched node onto queue
-                    if(indegree[pair[1]] == 0) {
-                        queue.offer(pair[1]);
+                    if(indegree[pair[0]] == 0) {
+                        queue.offer(pair[0]);
                     }
                 }
             }
