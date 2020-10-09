@@ -19,7 +19,7 @@
     valid substrings, not shortest ones.
     Scan from left to right, avoiding invalid strs (on the fly) by checking num of open parens.
     If it's '(', either use it, or remove it.
-    If it's '(', either use it, or remove it.
+    If it's ')', either use it, or remove it.
     Otherwise just append it.
     Lastly set StringBuilder to the last decision point.
     In each step, make sure:
