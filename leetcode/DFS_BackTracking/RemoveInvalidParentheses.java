@@ -150,3 +150,90 @@ class Solution {
         sb.setLength(len); // Backtracking, lastly set StringBuilder to the last decision point.
     }
 }
+
+// Re-work
+// BFS
+// Refer to
+// https://leetcode.com/problems/remove-invalid-parentheses/discuss/75032/Share-my-Java-BFS-solution
+/**
+The idea is straightforward, with the input string s, we generate all possible states by removing one ( or ), 
+check if they are valid, if found valid ones on the current level, put them to the final result list and we 
+are done, otherwise, add them to a queue and carry on to the next level.
+
+The good thing of using BFS is that we can guarantee the number of parentheses that need to be removed is minimal, 
+also no recursion call is needed in BFS.
+
+Thanks to @peisi, we don't need stack to check valid parentheses.
+
+Time complexity:
+In BFS we handle the states level by level, in the worst case, we need to handle all the levels, we can analyze 
+the time complexity level by level and add them up to get the final complexity.
+
+On the first level, there's only one string which is the input string s, let's say the length of it is n, to check 
+whether it's valid, we need O(n) time. On the second level, we remove one ( or ) from the first level, so there 
+are C(n, n-1) new strings, each of them has n-1 characters, and for each string, we need to check whether it's 
+valid or not, thus the total time complexity on this level is (n-1) x C(n, n-1). Come to the third level, total 
+time complexity is (n-2) x C(n, n-2), so on and so forth...
+
+Finally we have this formula:
+T(n) = n x C(n, n) + (n-1) x C(n, n-1) + ... + 1 x C(n, 1) = n x 2^(n-1).
+*/
+class Solution {
+    public List<String> removeInvalidParentheses(String s) {
+        List<String> result = new ArrayList<String>();
+        Set<String> visited = new HashSet<String>();
+        Queue<String> q = new LinkedList<String>();
+        q.offer(s);
+        visited.add(s);
+        // This ensures once we've found a valid parentheses pattern, 
+        // we don't do any further bfs using items pending in the queue 
+        // since any further bfs would only yield strings of smaller length. 
+        // However the items already in queue need to be processed since 
+        // there could be other solutions of the same length.
+        boolean found = false;
+        while(!q.isEmpty()) {
+            String cur = q.poll();
+            if(isValid(cur)) {
+                result.add(cur);
+                found = true;
+            }
+            // Use boolean flag 'found' to block further depth (smaller
+            // length string) check, but keep check current depth by continue
+            if(found) {
+                continue;
+            }
+            for(int i = 0; i < cur.length(); i++) {
+                // If current char is '(' or ')' try to remove
+                if(cur.charAt(i) == '(' || cur.charAt(i) == ')') {
+                    String next = cur.substring(0, i) + cur.substring(i + 1);
+                    if(!visited.contains(next)) {
+                        visited.add(next);
+                        q.offer(next);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+    
+    // No need to use stack to check valid parentheses pair or not
+    private boolean isValid(String s) {
+        int count = 0;
+        for(int i = 0; i < s.length(); i++) {
+            // When encounter open parenthesis increase count
+            if(s.charAt(i) == '(') {
+                count++;
+            }
+            if(s.charAt(i) == ')') {
+                // In the case of valid parentheses, the count cannot be 0 
+                // if a closing parenthesis is encountered, since 0 means
+                // no open parenthesis
+                if(count == 0) {
+                    return false;
+                }
+                count--;
+            }
+        }
+        return count == 0;
+    }
+}
