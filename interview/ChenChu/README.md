@@ -116,8 +116,8 @@ Section 3: BFS
 3. [Course Schedule] (https://hjweds.gitbooks.io/leetcode/content/course-schedule.html)  
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/CourseSchedule.java)  
    
-4. [] ()  
-   [] ()  
+4. [Remove Invalid Parentheses] (https://hjweds.gitbooks.io/leetcode/content/remove-invalid-parentheses.html)  
+   [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/RemoveInvalidParentheses.java)  
    
 5. [] ()  
    [] ()  
