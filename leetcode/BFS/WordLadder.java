@@ -168,3 +168,52 @@ class Solution {
         return 0;
     }
 
+// Re-work
+// BFS
+class Solution {
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        // Must use hashset to check 'contains' to improve speed
+        Set<String> dict = new HashSet<String>();
+        for(String s : wordList) {
+            dict.add(s);
+        }
+        if(!wordList.contains(endWord)) {
+            return 0;
+        }
+        if(beginWord.equals(endWord)) {
+            return 1;
+        }
+        Set<String> visited = new HashSet<String>();
+        Queue<String> q = new LinkedList<String>();
+        q.offer(beginWord);
+        visited.add(beginWord);
+        int step = 1;
+        while(!q.isEmpty()) {
+            int size = q.size();
+            for(int i = 0; i < size; i++) {
+                String cur = q.poll();
+                if(cur.equals(endWord)) {
+                    return step;
+                }
+                for(int j = 0; j < cur.length(); j++) {
+                    for(char c = 'a'; c <= 'z'; c++) {
+                        char[] chars = cur.toCharArray();
+                        if(chars[j] == c) {
+                            continue;
+                        }
+                        chars[j] = c;
+                        String next = new String(chars);
+                        // Instead of use original wordList.contains(next), have
+                        // to use dict.contains(next) to improve speed
+                        if(!visited.contains(next) && dict.contains(next)) {
+                            visited.add(next);
+                            q.offer(next);
+                        }
+                    }
+                }
+            }
+            step++;
+        }
+        return 0;
+    }
+}
