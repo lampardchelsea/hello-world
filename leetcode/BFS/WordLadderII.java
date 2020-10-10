@@ -168,3 +168,197 @@ public class WordLadderII {
         }
     }
 }
+
+// Re-work
+// Refer to
+// https://leetcode.com/problems/word-ladder-ii/discuss/40475/My-concise-JAVA-solution-based-on-BFS-and-DFS/251345
+/**
+ public void bfs(String beginWord, String endWord, Set<String> dict, Map<String, Set<String>> graph, Map<String, Integer> distance) {
+    Queue<String> queue = new LinkedList<>();
+    queue.offer(beginWord);
+    distance.put(beginWord, 0);
+    
+    while (!queue.isEmpty()) {
+        boolean reachEnd = false;
+        int size = queue.size();
+        for (int i = 0; i < size; i++) {
+            String curWord = queue.poll();
+            
+            // try all possible substitution (26 characters) in every position of current word, 
+	    // if newWord exists in dictionary, we add it to the adjacency list of curWord
+            for (int j = 0; j < curWord.length(); j++) {
+                char[] curWordArr = curWord.toCharArray();
+                for (char c = 'a'; c <= 'z'; c++) {
+                    curWordArr[j] = c;
+                    String newWord = new String(curWordArr);
+                    if (dict.contains(newWord)) {
+                        graph.putIfAbsent(curWord, new HashSet<>());
+                        graph.get(curWord).add(newWord);
+                    }
+                }
+            }
+            
+            // traverse all neighbors of current word, update distance map and queue for next ladder (level)
+            // WARNING: DO NOT USE visited set, since it is hard to deal with end word if endWord is visited
+            for (String neighbor : graph.get(curWord)) {
+                if (!distance.containsKey(neighbor)) {
+                    distance.put(neighbor, distance.get(curWord) + 1);
+                    if (neighbor.equals(endWord)) {
+                        reachEnd = true;
+                    }
+                    else {
+                        queue.offer(neighbor);
+                    }
+                }
+            }
+            if (reachEnd) {
+                break;
+            }
+        }
+    }
+}
+*/
+
+// Wrong BFS
+// Wrong Solution by using visited, when test individually for BFS, the graph not build intacted.
+// The expected graph and distance is below:
+// {lot=[dot, hot, log], hit=[hot], log=[cog, dog, lot], dot=[hot, lot, dog], cog=[], hot=[dot, lot, hit], dog=[cog]}
+// {lot=2, hit=0, log=3, dot=2, cog=4, hot=1, dog=3}
+// The wrong BFS give below:
+// {lot=[log], hit=[hot], dot=[dog], hot=[lot, dot], dog=[cog]} --> Missing a lot
+// {lot=2, hit=0, log=3, dot=2, cog=4, hot=1, dog=3}
+class Solution {
+    public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+        List<List<String>> result = new ArrayList<List<String>>();
+        Map<String, Set<String>> graph = new HashMap<String, Set<String>>();
+        Map<String, Integer> distance = new HashMap<String, Integer>();
+        Set<String> dict = new HashSet<String>(wordList);
+        bfs(beginWord, endWord, dict, graph, distance);
+        dfs(beginWord, endWord, dict, graph, distance, result, new ArrayList<String>());
+        return result;
+    }
+    
+    private void dfs(String beginWord, String endWord, Set<String> dict, Map<String, Set<String>> graph, Map<String, Integer> distance, List<List<String>> result, List<String> temp) {
+        temp.add(beginWord);
+        if(beginWord.equals(endWord)) {
+            result.add(new ArrayList<String>(temp));
+        }
+        if(graph.get(beginWord) != null) {
+            for(String next : graph.get(beginWord)) {
+                if(distance.get(next) == distance.get(beginWord) + 1) {
+                    dfs(next, endWord, dict, graph, distance, result, temp);
+                }
+            }   
+        }
+        temp.remove(temp.size() - 1);
+    }
+    
+    private void bfs(String beginWord, String endWord, Set<String> dict, Map<String, Set<String>> graph, Map<String, Integer> distance) {
+        Queue<String> q = new LinkedList<String>();
+        Set<String> visited = new HashSet<String>();
+        q.offer(beginWord);
+        visited.add(beginWord);
+        distance.put(beginWord, 0);
+        while(!q.isEmpty()) {
+            int size = q.size();
+            for(int i = 0; i < size; i++) {
+                String cur = q.poll();
+                if(cur.equals(endWord)) {
+                    break;
+                }
+                for(int j = 0; j < cur.length(); j++) {
+                    for(char c = 'a'; c <= 'z'; c++) {
+                        char[] chars = cur.toCharArray();
+                        if(chars[j] == c) {
+                            continue;
+                        }
+                        chars[j] = c;
+                        String next = new String(chars);
+                        if(!visited.contains(next) && dict.contains(next)) {
+                            visited.add(next);
+                            q.offer(next);
+                            Set<String> neighbors = graph.putIfAbsent(cur, new HashSet<String>());
+                            graph.get(cur).add(next);
+                            distance.put(next, distance.get(cur) + 1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Correct one with remove visited but use distance map to check visited or not
+class Solution {
+    public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+        List<List<String>> result = new ArrayList<List<String>>();
+        Map<String, Set<String>> graph = new HashMap<String, Set<String>>();
+        Map<String, Integer> distance = new HashMap<String, Integer>();
+        Set<String> dict = new HashSet<String>(wordList);
+        bfs(beginWord, endWord, dict, graph, distance);
+        dfs(beginWord, endWord, dict, graph, distance, result, new ArrayList<String>());
+        return result;
+    }
+    
+    private void dfs(String beginWord, String endWord, Set<String> dict, Map<String, Set<String>> graph, Map<String, Integer> distance, List<List<String>> result, List<String> temp) {
+        temp.add(beginWord);
+        if(beginWord.equals(endWord)) {
+            result.add(new ArrayList<String>(temp));
+        }
+        if(graph.get(beginWord) != null) {
+            for(String next : graph.get(beginWord)) {
+                if(distance.get(next) == distance.get(beginWord) + 1) {
+                    dfs(next, endWord, dict, graph, distance, result, temp);
+                }
+            }   
+        }
+        temp.remove(temp.size() - 1);
+    }
+    
+    private void bfs(String beginWord, String endWord, Set<String> dict, Map<String, Set<String>> graph, Map<String, Integer> distance) {
+        Queue<String> q = new LinkedList<String>();
+        //Set<String> visited = new HashSet<String>();
+        q.offer(beginWord);
+        //visited.add(beginWord);
+        distance.put(beginWord, 0);
+        while(!q.isEmpty()) {
+            int size = q.size();
+            for(int i = 0; i < size; i++) {
+                String cur = q.poll();
+                //if(cur.equals(endWord)) {
+                //    break;
+                //}
+                for(int j = 0; j < cur.length(); j++) {
+                    for(char c = 'a'; c <= 'z'; c++) {
+                        char[] chars = cur.toCharArray();
+                        if(chars[j] == c) {
+                            continue;
+                        }
+                        chars[j] = c;
+                        String next = new String(chars);
+                        //if(!visited.contains(next) && dict.contains(next)) {
+                        if(dict.contains(next)) {
+                            //visited.add(next);
+                            //q.offer(next);
+                            graph.putIfAbsent(cur, new HashSet<String>());
+                            graph.get(cur).add(next);
+                            if(!distance.containsKey(next)) {
+                            	distance.put(next, distance.get(cur) + 1);
+                            	if(next.equals(endWord)) {
+                            		break;
+                            	} else {
+                            		q.offer(next);
+                            	}
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
