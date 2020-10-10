@@ -350,7 +350,6 @@ class Solution {
                             		q.offer(next);
                             	}
                             }
-                            
                         }
                     }
                 }
