@@ -217,3 +217,67 @@ class Solution {
         return 0;
     }
 }
+
+// Bi-direction BFS
+class Solution {
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        // Must use hashset to check 'contains' to improve speed
+        Set<String> dict = new HashSet<String>();
+        for(String s : wordList) {
+            dict.add(s);
+        }
+        if(!wordList.contains(endWord)) {
+            return 0;
+        }
+        if(beginWord.equals(endWord)) {
+            return 1;
+        }
+        Set<String> visited = new HashSet<String>();
+        Queue<String> q1 = new LinkedList<String>();
+        Queue<String> q2 = new LinkedList<String>();
+        q1.offer(beginWord);
+        visited.add(beginWord);
+        q2.offer(endWord);
+        visited.add(endWord);
+        int step = 1;
+        while(!q1.isEmpty() && !q2.isEmpty()) {
+            // Always check the smaller size queue and keep q1 as smaller one
+            // and q2 is by the way to keep the larger one
+            if(q1.size() > q2.size()) {
+                Queue<String> temp = q2;
+                q2 = q1;
+                q1 = temp;
+            }
+            Queue<String> nextQ = new LinkedList<String>();
+            int size = q1.size();
+            for(int i = 0; i < size; i++) {
+                String cur = q1.poll();
+                for(int j = 0; j < cur.length(); j++) {
+                    for(char c = 'a'; c <= 'z'; c++) {
+                        char[] chars = cur.toCharArray();
+                        if(chars[j] == c) {
+                            continue;
+                        }
+                        chars[j] = c;
+                        String next = new String(chars);
+                        // If opponent queue contains next string then just need
+                        // 1 more step to reach the target string
+                        if(q2.contains(next)) {
+                            return step + 1;
+                        }
+                        // Instead of use original wordList.contains(next), have
+                        // to use dict.contains(next) to improve speed
+                        if(!visited.contains(next) && dict.contains(next)) {
+                            visited.add(next);
+                            nextQ.offer(next);
+                        }
+                    }
+                }
+            }
+            // q1 already processed and update to nextQ
+            q1 = nextQ;
+            step++;
+        }
+        return 0;
+    }
+}
