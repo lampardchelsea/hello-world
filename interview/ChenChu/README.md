@@ -128,8 +128,8 @@ Section 3: BFS
 7. [Surrounded Regions] (https://hjweds.gitbooks.io/leetcode/content/surrounded-regions.html)  
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/SurroundedRegions.java)  
    
-8. [] ()  
-   [] ()  
+8. [Minimum Height Trees] (https://hjweds.gitbooks.io/leetcode/content/minimum-height-trees.html)  
+   [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/MinimumHeightTrees.java)  
    
 9. [] ()  
    [] ()  
