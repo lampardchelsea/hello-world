@@ -257,3 +257,49 @@ class Solution {
     }
 }
 
+// Re-work
+// Use indegree + BFS, similar to Course Schedule
+// Refer to
+// https://leetcode.com/problems/minimum-height-trees/discuss/76055/Share-some-thoughts/211634
+class Solution {
+    public List<Integer> findMinHeightTrees(int n, int[][] edges) {
+        if(edges == null || edges.length == 0 || edges[0].length == 0) {
+            List<Integer> result = new ArrayList<Integer>();
+            result.add(0);
+            return result;
+        }
+        Map<Integer, List<Integer>> graph = new HashMap<Integer, List<Integer>>();
+        for(int i = 0; i < n; i++) {
+            graph.put(i, new ArrayList<Integer>());
+        }
+        for(int[] edge : edges) {
+            graph.get(edge[0]).add(edge[1]);
+            graph.get(edge[1]).add(edge[0]);
+        }
+        Queue<Integer> q = new LinkedList<Integer>();
+        int[] indegree = new int[n];
+        for(int i = 0; i < n; i++) {
+            indegree[i] = graph.get(i).size();
+            if(indegree[i] == 1) {
+                q.offer(i);
+            }
+        }
+        List<Integer> result = new ArrayList<Integer>();
+        while(n > 2) {
+            int size = q.size();
+            n -= size;
+            for(int i = 0; i < size; i++) {
+                int cur = q.poll();
+                List<Integer> neighbors = graph.get(cur);
+                for(int neighbor : neighbors) {
+                    indegree[neighbor]--;
+                    if(indegree[neighbor] == 1) {
+                        q.offer(neighbor);
+                    }
+                }
+            }
+        }
+        result.addAll(q);
+        return result;
+    }
+}
