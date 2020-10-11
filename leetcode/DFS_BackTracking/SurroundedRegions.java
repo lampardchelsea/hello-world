@@ -86,5 +86,57 @@ class Solution {
             dfs(board, row + dx[i], col + dy[i]);
         }
     }
+}
 
+// Re-work
+// BFS
+class Solution {
+    public void solve(char[][] board) {
+        if(board == null || board.length == 0 || board[0].length == 0) {
+            return;
+        }
+        int m = board.length;
+        int n = board[0].length;
+        Queue<int[]> q = new LinkedList<int[]>();
+        for(int i = 0; i < m; i++) {
+            if(board[i][0] == 'O') {
+                q.offer(new int[] {i, 0});
+            }
+            if(board[i][n - 1] == 'O') {
+                q.offer(new int[] {i, n - 1});
+            }
+        }
+        for(int i = 0; i < n; i++) {
+            if(board[0][i] == 'O') {
+                q.offer(new int[] {0, i});
+            }
+            if(board[m - 1][i] == 'O') {
+                q.offer(new int[] {m - 1, i});
+            }
+        }
+        int[] dx = new int[] {0,0,1,-1};
+        int[] dy = new int[] {1,-1,0,0};
+        while(!q.isEmpty()) {
+            int[] cur = q.poll();
+            int x = cur[0];
+            int y = cur[1];
+            board[x][y] = '1';
+            for(int i = 0; i < 4; i++) {
+                int new_x = x + dx[i];
+                int new_y = y + dy[i];
+                if(new_x >= 0 && new_x < m && new_y >= 0 && new_y < n && board[new_x][new_y] == 'O') {
+                    q.offer(new int[] {new_x, new_y});
+                }
+            }
+        }
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                if(board[i][j] == 'O') {
+                    board[i][j] = 'X';
+                } else if(board[i][j] == '1') {
+                    board[i][j] = 'O';
+                }
+            }
+        }
+    }
 }
