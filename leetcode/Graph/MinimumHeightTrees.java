@@ -263,7 +263,9 @@ class Solution {
 // https://leetcode.com/problems/minimum-height-trees/discuss/76055/Share-some-thoughts/211634
 class Solution {
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
-        if(edges == null || edges.length == 0 || edges[0].length == 0) {
+        // This is needed...since when there is only 1 vertex... the indegree of 
+        // it will be 0..this case is not included in the following discussion...
+        if(n == 1) {
             List<Integer> result = new ArrayList<Integer>();
             result.add(0);
             return result;
