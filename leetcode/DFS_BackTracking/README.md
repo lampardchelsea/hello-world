@@ -238,3 +238,7 @@
 <p>Numbers With Same Consecutive Differences
 <p>1. [DFS] (https://leetcode.com/problems/numbers-with-same-consecutive-differences/discuss/798716/Java-Idea-Explained-or-DFS-Easy-to-Understand)
 <p>2. [BFS] (https://leetcode.com/problems/numbers-with-same-consecutive-differences/solution/)
+
+<p>Matchsticks to Square
+<p>1. [DFS + backtracking] (https://leetcode.com/problems/matchsticks-to-square/discuss/95729/Java-DFS-Solution-with-Explanation)
+<p>2. [Optimization by sorting the array first] (https://leetcode.com/problems/matchsticks-to-square/discuss/95729/Java-DFS-Solution-with-Explanation)
