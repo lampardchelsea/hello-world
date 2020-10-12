@@ -19,3 +19,7 @@
 
 <p>Knight Dialer
 <p>1. [How to solve this problem explained for noobs!!!] (https://leetcode.com/problems/knight-dialer/discuss/190787/How-to-solve-this-problem-explained-for-noobs!!!)
+
+<p>Concatenated Words
+<p>1. [[Java] DFS + Memoization - Clean code] (https://leetcode.com/problems/concatenated-words/discuss/541520/Java-DFS-%2B-Memoization-Clean-code)
+<p>2. [Word Break] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/DFS_Memoization/WordBreak.java)
