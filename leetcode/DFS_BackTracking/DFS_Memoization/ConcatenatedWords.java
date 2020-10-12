@@ -55,4 +55,38 @@ class Solution {
     }
 }
 
-// Solution 2: 
+// Solution 2: Straigtforward DFS + Memoization
+// Refer to
+// https://leetcode.com/problems/concatenated-words/discuss/541520/Java-DFS-%2B-Memoization-Clean-code
+class Solution {
+    public List<String> findAllConcatenatedWordsInADict(String[] words) {
+        List<String> result = new ArrayList<String>();
+        Map<String, Boolean> memo = new HashMap<String, Boolean>();
+        Set<String> word_set = new HashSet<String>(Arrays.asList(words));
+        for(String word : words) {
+            if(helper(word, word_set, memo)) {
+                result.add(word);
+            }
+        }
+        return result;
+    }
+    
+    private boolean helper(String word, Set<String> word_set, Map<String, Boolean> memo) {
+        if(memo.containsKey(word)) {
+            return memo.get(word);
+        }
+        for(int i = 1; i < word.length(); i++) {
+            if(word_set.contains(word.substring(0, i))) {
+                String suffix = word.substring(i);
+                if(word_set.contains(suffix) || helper(suffix, word_set, memo)) {
+                    // can treat concatenated word as a new word for quickly lookup later
+                    //word_set.add(word);
+                    memo.put(word, true);
+                    return true;
+                }
+            }
+        }
+        memo.put(word, false);
+        return false;
+    }
+}
