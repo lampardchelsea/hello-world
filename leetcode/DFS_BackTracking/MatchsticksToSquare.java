@@ -109,7 +109,8 @@ class Solution {
     }
     
     private boolean helper(int index, int[] nums, int target, int[] sums) {
-        if(index == 0) {
+        // Must index == -1 instead of index == 0 for terminate case
+        if(index == -1) {
             if(sums[0] == target && sums[1] == target && sums[2] == target) {
                 return true;
             }
