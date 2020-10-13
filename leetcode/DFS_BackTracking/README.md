@@ -248,5 +248,6 @@
 <p>1. [Classic DFS + Optimization by sorting the array first] (https://leetcode.com/problems/partition-to-k-equal-sum-subsets/discuss/108741/Solution-with-Reference)
 <p>2. [中文解释] (https://www.cnblogs.com/grandyang/p/7733098.html)
   
-  
-  
+<p>Increasing Subsequences  
+<p>1. [DFS + Backtracking (Slower since filter out all duplicates at the end by Set<List<Integer>> result)] (https://leetcode.com/problems/increasing-subsequences/discuss/97130/Java-20-lines-backtracking-solution-using-set-beats-100.)  
+<p>2. [DFS + Backtracking (Super fast since filter out all duplicates at each level in DFS)] (https://leetcode.com/problems/increasing-subsequences/discuss/97130/Java-20-lines-backtracking-solution-using-set-beats-100./101617)
