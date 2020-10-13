@@ -16,6 +16,13 @@ Output:
 ]
 */
 
+// Why we are doing backtracking ?
+// Refer to
+// https://leetcode.com/problems/permutations/discuss/18239/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partioning)/260832
+// cuz java "pass by reference", after you pass "tempList" in the recursion, the "tempList" are changed, 
+// when go back we must undo the change. For example, [] -> [1], we have to remove to undo the add behavior [1] -> []. 
+// Then we can [] -> [2]. Without remove, it will be [1] -> [1, 2]
+
 // Solution 1:
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
