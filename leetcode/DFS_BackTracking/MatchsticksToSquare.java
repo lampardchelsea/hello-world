@@ -109,7 +109,11 @@ class Solution {
     }
     
     private boolean helper(int index, int[] nums, int target, int[] sums) {
-        // Must index == -1 instead of index == 0 for terminate case
+        // Must index == -1 instead of index == 0, test case: [4,3,2,3,5,2,1] and k = 4
+        // because for sums[i] += nums[index] also need to be checked when index = 0,
+        // then pass index = 0 to next level as helper(index - 1, ....), the terminate 
+        // checking condition should be if(index == -1) which will include previous
+        // level index = 0
         if(index == -1) {
             if(sums[0] == target && sums[1] == target && sums[2] == target) {
                 return true;
