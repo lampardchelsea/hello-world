@@ -17,6 +17,7 @@ The given array may contain duplicates, and two equal integers should also be co
 // Solution 1: DFS + Backtracking
 // Refer to
 // https://leetcode.com/problems/increasing-subsequences/discuss/97147/Java-solution-beats-100
+// https://leetcode.com/problems/increasing-subsequences/discuss/97130/Java-20-lines-backtracking-solution-using-set-beats-100./101613
 // https://leetcode.com/problems/increasing-subsequences/discuss/97130/Java-20-lines-backtracking-solution-using-set-beats-100./101617
 /**
 A possible improvement: instead of using a global set to remove duplication in the final results, we can maintain a local set at each step. 
@@ -44,13 +45,18 @@ class Solution {
         if(list.size() >= 2) {
             result.add(new ArrayList<Integer>(list));
         }
-        // Local set to filter possible duplicates
+        // Create a local set to filter possible duplicates
         /**
          e.g If not adding local set to filter out duplicates, duplicate combination will generate
          as 4 with first 7 is [4,7], 4 with second 7 is also [4,7], [4,7] happen twice
          Input: [4,6,7,7]
          Output: [[4,6],[4,6,7],[4,6,7,7],[4,6,7],[4,7],[4,7,7],[4,7],[6,7],[6,7,7],[6,7],[7,7]]
          Expected: [[4,6],[4,6,7],[4,6,7,7],[4,7],[4,7,7],[6,7],[6,7,7],[7,7]]
+         After adding set, in each level, we will filter duplicate values after first present,
+         like here, we will only add first 7 for combination [4,7], the second 7 will filter out,
+         but this is just a local set, when process to next level, we will create a new set and
+         it will not block to add same value again but in next level, like here after [4,7] the
+         next level we can add 7 again as [4,7,7]
         */
         Set<Integer> visited = new HashSet<Integer>();
         for(int i = index; i < nums.length; i++) {
