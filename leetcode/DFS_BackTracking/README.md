@@ -242,3 +242,11 @@
 <p>Matchsticks to Square
 <p>1. [DFS + backtracking] (https://leetcode.com/problems/matchsticks-to-square/discuss/95729/Java-DFS-Solution-with-Explanation)
 <p>2. [Optimization by sorting the array first] (https://leetcode.com/problems/matchsticks-to-square/discuss/95729/Java-DFS-Solution-with-Explanation)
+<p>3. [This question is a typical problem of 698. Partition to K Equal Sum Subsets] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/PartitionToKEqualSumSubsets.java)
+
+<p>Partition to K Equal Sum Subsets
+<p>1. [Classic DFS + Optimization by sorting the array first] (https://leetcode.com/problems/partition-to-k-equal-sum-subsets/discuss/108741/Solution-with-Reference)
+<p>2. [中文解释] (https://www.cnblogs.com/grandyang/p/7733098.html)
+  
+  
+  
