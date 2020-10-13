@@ -210,6 +210,8 @@ class Solution {
  curSum大于target了，直接返回false，因为题目中限定了都是正数，并且我们也给数组排序了，后面的数字只能更大，这个剪枝
  操作大大的提高了运行速度
 */
+// Runtime: 0 ms, faster than 100.00% of Java online submissions for Partition to K Equal Sum Subsets.
+// Memory Usage: 36.5 MB, less than 7.06% of Java online submissions for Partition to K Equal Sum Subsets.
 class Solution {
     public boolean canPartitionKSubsets(int[] nums, int k) {
         int sum = 0;
