@@ -14,7 +14,33 @@ The range of integer in the given array is [-100,100].
 The given array may contain duplicates, and two equal integers should also be considered as a special case of increasing sequence.
 */
 
-// Solution 1: DFS + Backtracking
+// Solution 1: DFS + Backtracking (Slower since filter out all duplicates at the end by Set<List<Integer>> result)
+// Refer to
+// https://leetcode.com/problems/increasing-subsequences/discuss/97130/Java-20-lines-backtracking-solution-using-set-beats-100.
+class Solution {
+    public List<List<Integer>> findSubsequences(int[] nums) {
+        Set<List<Integer>> res = new HashSet<List<Integer>>();
+        helper(0, nums, res, new ArrayList<Integer>());
+        List result = new ArrayList(res);
+        return result;
+    }
+    
+    private void helper(int index, int[] nums, Set<List<Integer>> result, List<Integer> list) {
+        if(list.size() >= 2) {
+            result.add(new ArrayList<Integer>(list));
+        }
+        for(int i = index; i < nums.length; i++) {
+            if(list.size() == 0 || nums[i] >= list.get(list.size() - 1)) {
+                list.add(nums[i]);
+                helper(i + 1, nums, result, list);
+                list.remove(list.size() - 1);
+            }
+        }
+    }
+}
+
+
+// Solution 2: DFS + Backtracking (Super fast since filter out all duplicates at each level in DFS)
 // Refer to
 // https://leetcode.com/problems/increasing-subsequences/discuss/97147/Java-solution-beats-100
 // https://leetcode.com/problems/increasing-subsequences/discuss/97130/Java-20-lines-backtracking-solution-using-set-beats-100./101613
