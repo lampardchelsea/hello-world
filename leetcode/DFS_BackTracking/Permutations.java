@@ -23,6 +23,15 @@ Output:
 // when go back we must undo the change. For example, [] -> [1], we have to remove to undo the add behavior [1] -> []. 
 // Then we can [] -> [2]. Without remove, it will be [1] -> [1, 2]
 
+// How to generate all permutations by backtracking ?
+// Refer to
+// https://leetcode.com/problems/permutations/discuss/18239/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partioning)/18291
+// To generate all possible permutations, we need to remove the least recently added element while we are going up the recursive call stack.
+// In the first iteration of the for loop we add all permutations, that start with nums[0]. Then, before we can begin building all permutations 
+// starting with nums[1], we need to clear the tempList (which currently contains permutations from the first iteration of the for loop) - that's 
+// exactly what tempList.remove(tempList.size() - 1) line does.
+
+
 // Solution 1:
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
