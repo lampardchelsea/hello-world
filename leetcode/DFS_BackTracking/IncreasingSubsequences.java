@@ -16,6 +16,7 @@ The given array may contain duplicates, and two equal integers should also be co
 
 // Solution 1: DFS + Backtracking
 // Refer to
+// https://leetcode.com/problems/increasing-subsequences/discuss/97147/Java-solution-beats-100
 // https://leetcode.com/problems/increasing-subsequences/discuss/97130/Java-20-lines-backtracking-solution-using-set-beats-100./101617
 /**
 A possible improvement: instead of using a global set to remove duplication in the final results, we can maintain a local set at each step. 
@@ -33,6 +34,8 @@ class Solution {
     public List<List<Integer>> findSubsequences(int[] nums) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         // Since its a fixed order array --> Do not use Arrays.sort(nums) to change the order like what we did for Subsets problems
+        // Refer to
+        // https://github.com/lampardchelsea/hello-world/blob/master/lintcode/DFS/VideoExamples/SubsetsII.java
         helper(0, nums, result, new ArrayList<Integer>());
         return result;
     }
