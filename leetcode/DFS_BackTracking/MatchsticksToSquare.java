@@ -23,6 +23,10 @@ The length sum of the given matchsticks is in the range of 0 to 10^9.
 The length of the given matchstick array will not exceed 15.
 */
 
+// This question is a typical problem of 698. Partition to K Equal Sum Subsets
+// Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/PartitionToKEqualSumSubsets.java
+
 // Solution 1: DFS + backtracking
 // Refer to
 // https://leetcode.com/problems/matchsticks-to-square/discuss/95729/Java-DFS-Solution-with-Explanation
