@@ -38,6 +38,27 @@ Every integer represented in the 2D-array will be between 1 and N, where N is th
 
 // Solution 1: UnionFind
 // Refer to
+// https://leetcode.com/problems/redundant-connection-ii/discuss/108045/C%2B%2BJava-Union-Find-with-explanation-O(n)
+/**
+This problem is very similar to "Redundant Connection". But the description on the parent/child relationships is much better clarified.
+
+There are two cases for the tree structure to be invalid.
+1) A node having two parents;
+   including corner case: e.g. [[4,2],[1,5],[5,2],[5,3],[2,4]]
+2) A circle exists
+If we can remove exactly 1 edge to achieve the tree structure, a single node can have at most two parents. So my solution works in two steps.
+
+1) Check whether there is a node having two parents. 
+    If so, store them as candidates A and B, and set the second edge invalid. 
+2) Perform normal union find. 
+    If the tree is now valid 
+           simply return candidate B
+    else if candidates not existing 
+           we find a circle, return current edge; 
+    else 
+           remove candidate A instead of B.
+*/
+
 // https://leetcode.com/problems/redundant-connection-ii/discuss/108045/C++Java-Union-Find-with-explanation-O(n)/213568
 class Solution {
     Map<Integer, Integer> incoming = new HashMap<Integer, Integer>();
