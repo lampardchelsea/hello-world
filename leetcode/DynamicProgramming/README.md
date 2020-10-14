@@ -183,3 +183,6 @@
 <p>01 Matrix
 <p>1. [Two ways scan (top-left / bottom-right) DP] (https://leetcode.com/problems/01-matrix/discuss/101051/Simple-Java-solution-beat-99-(use-DP))
 <p>2. [Explain DP] (https://leetcode.com/problems/01-matrix/discuss/101051/Simple-Java-solution-beat-99-(use-DP)/113437)
+
+<p>Remove Boxes
+<p>1. [Java top-down and bottom-up DP solutions] (https://leetcode.com/problems/remove-boxes/discuss/101310/Java-top-down-and-bottom-up-DP-solutions)
