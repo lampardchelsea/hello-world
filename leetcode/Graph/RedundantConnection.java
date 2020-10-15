@@ -167,7 +167,7 @@ class UnionFind {
 
 Also since it is a dfs on an undirected graph, we have v in u's children and u in v's. So to avoid exploring 
 the same edge from both the ends, we can pass in the current parent pre down the stack calls.
-*/
+
 class Solution {
     public int[] findRedundantConnection(int[][] edges) {
         int n = edges.length + 1;
@@ -199,6 +199,46 @@ class Solution {
                 continue;
             }
             if(helper(w, v, u, graph)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+*/
+class Solution {
+    public int[] findRedundantConnection(int[][] edges) {
+        int n = edges.length + 1;
+        List<List<Integer>> graph = new ArrayList<List<Integer>>(n);
+        for(int i = 0; i < n; i++) {
+            graph.add(new ArrayList<Integer>());
+        }
+        for(int[] edge : edges) {
+            int a = edge[0];
+            int b = edge[1];
+            if(helper(a, b, 0, graph)) {
+                return edge;
+            } else {
+                graph.get(a).add(b);
+                graph.get(b).add(a);
+            }
+        }
+        return null;
+    }
+    
+    // We do dfs on the existing graph to see if we can reach target from curr
+    private boolean helper(int curr, int target, int prev, List<List<Integer>> graph) {
+        // If we can reach target from curr means cycle in graph found
+        if(curr == target) {
+            return true;
+        }
+        for(int neighbor : graph.get(curr)) {
+            // Must not re-visit already visited one
+            if(neighbor == prev) {
+                continue;
+            }
+            // Update curr to neighbor, prev to curr
+            if(helper(neighbor, target, curr, graph)) {
                 return true;
             }
         }
