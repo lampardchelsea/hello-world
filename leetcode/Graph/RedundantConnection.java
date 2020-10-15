@@ -188,7 +188,9 @@ class Solution {
         return null;
     }
     
+    // We do dfs on the existing graph to see if we can reach v from u
     private boolean helper(int u, int v, int pre, List<List<Integer>> graph) {
+        // If we can reach v from u means cycle in graph found
         if(u == v) {
             return true;
         }
