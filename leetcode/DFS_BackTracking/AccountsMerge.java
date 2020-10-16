@@ -150,5 +150,57 @@ class Solution {
     }
 }
 */
-
+class Solution {
+    public List<List<String>> accountsMerge(List<List<String>> accounts) {
+        List<List<String>> result = new ArrayList<List<String>>();
+        Map<String, String> owners = new HashMap<String, String>();
+        Map<String, String> parents = new HashMap<String, String>();
+        Map<String, TreeSet<String>> unions = new HashMap<String, TreeSet<String>>();
+        for(List<String> account : accounts) {
+            for(int i = 1; i < account.size(); i++) {
+                parents.put(account.get(i), account.get(i));
+                owners.put(account.get(i), account.get(0));
+            }
+        }
+        for(List<String> account : accounts) {
+            String p = find(account.get(1), parents);
+            for(int i = 2; i < account.size(); i++) {
+                // Important: must recursively trace back the root of ith account and connect to p
+                // test out by: 
+                /**
+                 Input:[["David","David0@m.co","David4@m.co","David3@m.co"],["David","David5@m.co","David5@m.co","David0@m.co"],["David","David1@m.co","David4@m.co","David0@m.co"],["David","David0@m.co","David1@m.co","David3@m.co"],["David","David4@m.co","David1@m.co","David3@m.co"]]
+                 Output:[["David","David0@m.co","David1@m.co","David3@m.co","David4@m.co"],["David","David0@m.co","David5@m.co"]]
+                 Expected:[["David","David0@m.co","David1@m.co","David3@m.co","David4@m.co","David5@m.co"]]
+                */
+                // This not link the actual root of ith account to p
+                // it just connect ith account's parent as p
+                //parents.put(account.get(i), p);
+                parents.put(find(account.get(i), parents), p);
+            }
+        }
+        for(List<String> account : accounts) {
+            String p = find(account.get(1), parents);
+            if(!unions.containsKey(p)) {
+                unions.put(p, new TreeSet<String>());
+            }
+            for(int i = 1; i < account.size(); i++) {
+                unions.get(p).add(account.get(i));
+            }
+        }
+        for(String p : unions.keySet()) {
+            List<String> emails = new ArrayList<String>(unions.get(p));
+            emails.add(0, owners.get(p));
+            result.add(emails);
+        }
+        return result;
+    }
+    
+    private String find(String s, Map<String, String> p) {
+        if(p.get(s) == s) {
+            return s;
+        } else {
+            return find(p.get(s), p);
+        }
+    }
+}
 
