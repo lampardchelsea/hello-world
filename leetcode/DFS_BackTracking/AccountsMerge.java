@@ -287,4 +287,46 @@ class Solution {
     }
 }
 
-
+// Solution 3: BFS (The idea behind is to build a graph and traverse the graph, it doesn't matter you are using DFS or BFS)
+// Refer to
+// https://leetcode.com/problems/accounts-merge/discuss/109158/Java-Solution-(Build-graph-+-DFS-search)/617044
+class Solution {
+    public List<List<String>> accountsMerge(List<List<String>> accounts) {
+        Map<String, Set<String>> graph = new HashMap<>();    // <email node, neighbor nodes>
+        Map<String, String> owners = new HashMap<>();        // <email, owner>
+        for (List<String> account : accounts) {
+            String owner = account.get(0);
+            for (int i = 1; i < account.size(); i++) {
+                if (!graph.containsKey(account.get(i))) {
+                    graph.put(account.get(i), new HashSet<>());
+                }
+                owners.put(account.get(i), owner);
+                if (i == 1) continue;
+                graph.get(account.get(i)).add(account.get(i - 1));
+                graph.get(account.get(i - 1)).add(account.get(i));
+            }
+        }
+        Set<String> visited = new HashSet<>();
+        List<List<String>> res = new LinkedList<>();
+        for (String email : owners.keySet()) {
+            List<String> list = new ArrayList<>();
+            if(visited.add(email)) {
+                Queue<String> q = new LinkedList<>();
+                q.offer(email);
+                while(!q.isEmpty()) {
+                    String curEmail = q.poll();
+                    list.add(curEmail);
+                    for(String next : graph.get(curEmail)) {
+                        if(visited.add(next)) {
+                            q.offer(next);
+                        }
+                    }
+                }
+                Collections.sort(list);
+                list.add(0, owners.get(email));
+                res.add(list);
+            }
+        }
+        return res;
+    }
+}
