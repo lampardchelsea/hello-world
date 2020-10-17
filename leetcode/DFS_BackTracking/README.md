@@ -251,3 +251,9 @@
 <p>Increasing Subsequences  
 <p>1. [DFS + Backtracking (Slower since filter out all duplicates at the end by Set<List<Integer>> result)] (https://leetcode.com/problems/increasing-subsequences/discuss/97130/Java-20-lines-backtracking-solution-using-set-beats-100.)  
 <p>2. [DFS + Backtracking (Super fast since filter out all duplicates at each level in DFS)] (https://leetcode.com/problems/increasing-subsequences/discuss/97130/Java-20-lines-backtracking-solution-using-set-beats-100./101617)
+
+<p>Accounts Merge
+<p>1. [Union-Find] (https://leetcode.com/problems/accounts-merge/discuss/109157/JavaC%2B%2B-Union-Find)
+<p>2. [Union-Find] (https://www.cnblogs.com/grandyang/p/7829169.html)
+<p>3. [DFS (Connect all emails as mutual way as graph + group another map for mapping onwers only)] (https://leetcode.com/problems/accounts-merge/discuss/109158/Java-Solution-(Build-graph-%2B-DFS-search))
+<p>4. [BFS (The idea behind is to build a graph and traverse the graph, it doesn't matter you are using DFS or BFS)] (https://leetcode.com/problems/accounts-merge/discuss/109158/Java-Solution-(Build-graph-+-DFS-search)/617044)
