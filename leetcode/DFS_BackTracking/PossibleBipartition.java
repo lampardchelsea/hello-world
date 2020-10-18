@@ -135,7 +135,7 @@ class Solution {
     }
 }
 
-// Solution 1: DFS + Build graph with map
+// Solution 2: DFS + Build graph with map
 // Refer to
 // https://www.youtube.com/watch?v=tfWcPtz91kE
 class Solution {
