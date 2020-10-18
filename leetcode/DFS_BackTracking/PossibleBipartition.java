@@ -138,3 +138,51 @@ class Solution {
 // Solution 1: DFS + Build graph with map
 // Refer to
 // https://www.youtube.com/watch?v=tfWcPtz91kE
+class Solution {
+    public boolean possibleBipartition(int N, int[][] dislikes) {
+        // Initial graph as map
+        Map<Integer, Set<Integer>> graph = new HashMap<Integer, Set<Integer>>();
+        for(int[] d : dislikes) {
+            int a = d[0];
+            int b = d[1];
+            graph.putIfAbsent(a, new HashSet<Integer>());
+            graph.putIfAbsent(b, new HashSet<Integer>());
+            graph.get(a).add(b);
+            graph.get(b).add(a);
+        }
+        int[] colors = new int[N + 1];
+        for(int i = 1; i <= N; i++) {
+            // Initially set non-colored node as 1, if not able to paint then not applicable
+            if(colors[i] == 0 && !helper(i, graph, colors, 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private boolean helper(int node, Map<Integer, Set<Integer>> graph, int[] colors, int color) {
+        // If node painted, check if it match the color try to paint on it
+        // if not match means not bipartite graph
+        if(colors[node] != 0) {
+            return colors[node] == color;
+        }
+        colors[node] = color;
+        // Additional check than 785. Is Graph Bipartite? since the graph in this
+        // problem is a raw graph, contains remained nodes rather than 785 which
+        // not contains remained nodes, and only when node value == 1 means it
+        // is the vertex of an edge given in dislikes and present in graph, if
+        // graph.get(next) == null means its not the vertex of an edge which setup = 1
+        // when build the graph, not belong to the edge, then not able to apply
+        // dfs on the node
+        if(graph.get(node) == null) {
+            return true;
+        }
+        for(int next : graph.get(node)) {
+            // The adjacent nodes paint with different color as -1
+            if(!helper(next, graph, colors, -color)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
