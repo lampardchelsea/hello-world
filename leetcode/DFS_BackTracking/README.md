@@ -257,3 +257,8 @@
 <p>2. [Union-Find] (https://www.cnblogs.com/grandyang/p/7829169.html)
 <p>3. [DFS (Connect all emails as mutual way as graph + group another map for mapping onwers only)] (https://leetcode.com/problems/accounts-merge/discuss/109158/Java-Solution-(Build-graph-%2B-DFS-search))
 <p>4. [BFS (The idea behind is to build a graph and traverse the graph, it doesn't matter you are using DFS or BFS)] (https://leetcode.com/problems/accounts-merge/discuss/109158/Java-Solution-(Build-graph-+-DFS-search)/617044)
+
+<p>Possible Bipartition
+<p>1. [DFS + Build graph with 2D array] (https://leetcode.com/problems/possible-bipartition/discuss/158957/Java-DFS-solution)
+<p>2. [Is Graph Bipartite ?] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/IsGraphBipartite.java)
+<p>3. [DFS + Build graph with map] (https://www.youtube.com/watch?v=tfWcPtz91kE)
