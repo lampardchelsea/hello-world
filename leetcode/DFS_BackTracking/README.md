@@ -262,3 +262,7 @@
 <p>1. [DFS + Build graph with 2D array] (https://leetcode.com/problems/possible-bipartition/discuss/158957/Java-DFS-solution)
 <p>2. [Is Graph Bipartite ?] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/IsGraphBipartite.java)
 <p>3. [DFS + Build graph with map] (https://www.youtube.com/watch?v=tfWcPtz91kE)
+
+<p>Unique Paths III
+<p>1. [DFS + Backtracking] (https://leetcode.com/problems/unique-paths-iii/discuss/221946/JavaPython-Brute-Force-Backstracking)
+<p>2. [Why empty initially set as 1 ?] (https://leetcode.com/problems/unique-paths-iii/discuss/221946/JavaPython-Brute-Force-Backstracking/698837)
