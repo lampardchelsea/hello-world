@@ -30,5 +30,47 @@ Constraints:
 0 <= grid[i][j] <=1
 */
 
-// Solution 1:
-// 
+// Solution 1: Same as 1020. Number of Enclaves
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/NumberOfEnclaves.java
+// https://leetcode.com/problems/number-of-closed-islands/discuss/425150/JavaC%2B%2B-with-picture-Number-of-Enclaves
+// https://leetcode.com/problems/number-of-closed-islands/discuss/425150/JavaC++-with-picture-Number-of-Enclaves/383306
+class Solution {
+    int[] dx = new int[] {0,0,1,-1};
+    int[] dy = new int[] {1,-1,0,0};
+    public int closedIsland(int[][] grid) {
+        // First, we need to remove all land connected to the edges using flood fill.
+        for(int i = 0; i < grid.length; i++) {
+            for(int j = 0; j < grid[0].length; j++) {
+                if(i == 0 || i == grid.length - 1 || j == 0 || j == grid[0].length - 1) {
+                    helper(i, j, grid);
+                }
+            }
+        }
+        // Then, we can count and flood-fill the remaining islands.
+        int result = 0;
+        for(int i = 0; i < grid.length; i++) {
+            for(int j = 0; j < grid[0].length; j++) {
+                if(grid[i][j] == 0) {
+                    result++;
+                    helper(i, j, grid);
+                }
+            }
+        }
+        return result;
+    }
+    
+    private void helper(int x, int y, int[][] grid) {
+        // A little different than 1020. Number of Enclaves, grid[x][y] == 0 instead
+        // of grid[x][y] == 1, since 0 means land not 1 here
+        if(x >= 0 && x < grid.length && y >= 0 && y < grid[0].length && grid[x][y] == 0) {
+            grid[x][y] = 1;
+            for(int i = 0; i < 4; i++) {
+                int new_x = x + dx[i];
+                int new_y = y + dy[i];
+                helper(new_x, new_y, grid);
+            }
+        }
+    }
+}
+
+// Solution 2:
