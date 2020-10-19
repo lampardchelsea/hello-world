@@ -28,7 +28,7 @@ n is odd.
 1 <= x <= n <= 100
 */
 
-// Solution 1: 3 subtrees (root, right, left) relations 
+// Solution 1: 3 subtrees (root, right, left) relations + DFS traversal with global parameter to record values
 // Refer to
 // https://leetcode.com/problems/binary-tree-coloring-game/discuss/350570/JavaC%2B%2BPython-Simple-recursion-and-Follow-Up
 /**
@@ -116,7 +116,7 @@ class Solution {
     }
 }
 
-// Solution 2: Another style of recursive
+// Solution 2: Another style of recursive + DFS 2 level traversal
 // https://leetcode.com/problems/binary-tree-coloring-game/discuss/367682/Simple-Clean-Java-Solution
 /**
 Short explanation:
