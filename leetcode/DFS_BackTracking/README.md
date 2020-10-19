@@ -276,3 +276,7 @@
 <p>2. [How to detect cycle with DFS + rank] (https://leetcode.com/problems/critical-connections-in-a-network/discuss/382638/DFS-detailed-explanation-O(orEor)-solution)
 <p>3. [Java Implementation] (https://leetcode.com/problems/critical-connections-in-a-network/discuss/382638/DFS-detailed-explanation-O(orEor)-solution/586316)
 <p>4. [Bridges in a connected graph] (https://stackoverflow.com/questions/11218746/bridges-in-a-connected-graph/11221469#11221469)
+
+<p>Number of Closed Islands
+<p>1. [Same as Number of Enclaves] (https://leetcode.com/problems/number-of-closed-islands/discuss/425150/JavaC%2B%2B-with-picture-Number-of-Enclaves)
+<p>2. [Number of Enclaves] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/NumberOfEnclaves.java)
