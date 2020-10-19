@@ -34,6 +34,9 @@ Constraints:
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/NumberOfEnclaves.java
 // https://leetcode.com/problems/number-of-closed-islands/discuss/425150/JavaC%2B%2B-with-picture-Number-of-Enclaves
 // https://leetcode.com/problems/number-of-closed-islands/discuss/425150/JavaC++-with-picture-Number-of-Enclaves/383306
+// Complexity Analysis
+// Time: O(n), where n is the total number of cells. We flood-fill all land cells once.
+// Memory: O(n) for the stack. Flood fill is DFS, and the maximum depth is n.
 class Solution {
     int[] dx = new int[] {0,0,1,-1};
     int[] dy = new int[] {1,-1,0,0};
