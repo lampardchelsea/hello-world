@@ -266,3 +266,7 @@
 <p>Unique Paths III
 <p>1. [DFS + Backtracking] (https://leetcode.com/problems/unique-paths-iii/discuss/221946/JavaPython-Brute-Force-Backstracking)
 <p>2. [Why empty initially set as 1 ?] (https://leetcode.com/problems/unique-paths-iii/discuss/221946/JavaPython-Brute-Force-Backstracking/698837)
+
+<p>Binary Tree Coloring Game
+<p>1. [DFS 2 level traversal] (https://leetcode.com/problems/binary-tree-coloring-game/discuss/367682/Simple-Clean-Java-Solution)
+<p>2. [DFS traversal with global parameter to record values] (https://leetcode.com/problems/binary-tree-coloring-game/discuss/350570/JavaC%2B%2BPython-Simple-recursion-and-Follow-Up)
