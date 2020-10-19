@@ -270,3 +270,9 @@
 <p>Binary Tree Coloring Game
 <p>1. [DFS 2 level traversal] (https://leetcode.com/problems/binary-tree-coloring-game/discuss/367682/Simple-Clean-Java-Solution)
 <p>2. [DFS traversal with global parameter to record values] (https://leetcode.com/problems/binary-tree-coloring-game/discuss/350570/JavaC%2B%2BPython-Simple-recursion-and-Follow-Up)
+
+<p>Critical Connections in a Network
+<p>1. [How to detect cycle with DFS] (https://github.com/lampardchelsea/hello-world/blob/d13eeccbc1d0886a46e48ce766684f364956c2cb/leetcode/Graph/CourseSchedule.java)
+<p>2. [How to detect cycle with DFS + rank] (https://leetcode.com/problems/critical-connections-in-a-network/discuss/382638/DFS-detailed-explanation-O(orEor)-solution)
+<p>3. [Java Implementation] (https://leetcode.com/problems/critical-connections-in-a-network/discuss/382638/DFS-detailed-explanation-O(orEor)-solution/586316)
+<p>4. [Bridges in a connected graph] (https://stackoverflow.com/questions/11218746/bridges-in-a-connected-graph/11221469#11221469)
