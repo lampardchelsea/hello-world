@@ -88,6 +88,7 @@ class Solution {
 // Solution 2: Coloring islands into different color and sum up
 // Refer to
 // https://leetcode.com/problems/making-a-large-island/discuss/127015/C%2B%2B-with-picture-O(n*m)
+// https://leetcode.com/problems/making-a-large-island/discuss/127015/C++-with-picture-O(n*m)/134932
 /**
 For each 1 in the grid, we paint all connected 1 with the next available color (2, 3, and so on). 
 We also remember the size of the island we just painted with that color.
@@ -95,3 +96,74 @@ Then, we analyze all 0 in the grid, and sum sizes of connected islands (based on
 Note that the same island can connect to 0 more than once. The example below demonstrates this idea 
 (the answer is highlighted):
 */
+// Time Complexity: O(m * n)
+// Space Complexity: 
+// Runtime: 8 ms, faster than 75.09% of Java online submissions for Making A Large Island.
+// Memory Usage: 39 MB, less than 5.06% of Java online submissions for Making A Large Island.
+class Solution {
+    public int largestIsland(int[][] grid) {
+        // (key, value) -> color, island size
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        // We won't paint island 0, hence make its size 0, we will use this value later  
+        map.put(0, 0);
+        int m = grid.length;
+        int n = grid[0].length;
+        // 0 and 1 is already used in grid, hence we start colorIndex from 2 
+        int colorIndex = 2;
+        // DFS to identify all groups of 1(island) and set up as different color
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                if(grid[i][j] == 1) {
+                    // Set up current island cells to number = 'color'
+                    int islandSize = helper(i, j, grid, colorIndex);
+                    map.put(colorIndex, islandSize);
+                    // Update colorIndex to next valid number
+                    colorIndex++;
+                }
+            }
+        }
+        // If there is no island 0 from grid, result should be the size of islands of first color
+        // If there is no island 1 from grid, result should be 0 
+        int result = map.getOrDefault(2, 0);
+        // Try all cell == 0 as candidates
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                if(grid[i][j] == 0) {
+                    // We use a set to avoid repeatly adding islands with the same color
+                    Set<Integer> set = new HashSet<Integer>();
+                    // If current island is at the boundary, we add 0 to the set, whose 
+                    // value is 0 in the map
+                    set.add(i > 0 ? grid[i - 1][j] : 0);
+                    set.add(i < m - 1 ? grid[i + 1][j] : 0);
+                    set.add(j > 0 ? grid[i][j - 1] : 0);
+                    set.add(j < n - 1 ? grid[i][j + 1] : 0);
+                    // We need to count current island as well, hence we initital size with 1
+                    int size = 1;
+                    for(int color : set) {
+                        size += map.get(color);
+                    }
+                    result = Math.max(result, size);
+                }
+            }
+        }
+        return result;
+    }
+    
+    // Helper method to paint current island and all its connected neighbors
+    // Return the size of all painted islands at the end
+    int[] dx = new int[] {0,0,1,-1};
+    int[] dy = new int[] {1,-1,0,0};
+    private int helper(int x, int y, int[][] grid, int color) {
+        if(x >= 0 && x < grid.length && y >= 0 && y < grid[0].length && grid[x][y] == 1) {
+            grid[x][y] = color;
+            int count = 1;
+            for(int i = 0; i < 4; i++) {
+                int new_x = x + dx[i];
+                int new_y = y + dy[i];
+                count += helper(new_x, new_y, grid, color);
+            }
+            return count;
+        }
+        return 0;
+    }
+}
