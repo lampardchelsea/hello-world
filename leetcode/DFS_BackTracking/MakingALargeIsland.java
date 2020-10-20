@@ -48,7 +48,9 @@ Notes:
 // https://leetcode.com/problems/making-a-large-island/discuss/127256/DFS-JAVA-AC-CONCISE-SOLUTION/668315
 // Time: O(grid.length * grid[0].length + numZeros * grid.length * grid[0].length) time, because we iterate 
 // through the entire grid, for every '0' we do a dfs which at most iterates through the entire grid again.
-// Space: O(grid.length * grid[0].length) space, because of the seen array and the stack space during the dfs.
+// Space: O(grid.length * grid[0].length) space, because of the visited array space during the dfs.
+// Runtime: 197 ms, faster than 13.19% of Java online submissions for Making A Large Island.
+// Memory Usage: 39.3 MB, less than 5.06% of Java online submissions for Making A Large Island.
 class Solution {
     public int largestIsland(int[][] grid) {
         int m = grid.length;
