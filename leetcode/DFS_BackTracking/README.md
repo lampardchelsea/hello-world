@@ -280,3 +280,7 @@
 <p>Number of Closed Islands
 <p>1. [Same as Number of Enclaves] (https://leetcode.com/problems/number-of-closed-islands/discuss/425150/JavaC%2B%2B-with-picture-Number-of-Enclaves)
 <p>2. [Number of Enclaves] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/NumberOfEnclaves.java)
+
+<p>Making A Large Island
+<p>1. [Native DFS + Backtracking] (https://www.cnblogs.com/grandyang/p/11669063.html)
+<p>2. [Coloring islands into different color and sum up] (https://leetcode.com/problems/making-a-large-island/discuss/127015/C%2B%2B-with-picture-O(n*m))
