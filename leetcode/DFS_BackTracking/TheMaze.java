@@ -102,50 +102,50 @@ class Solution {
 // int y = start_j is very critical
 class Solution {
     int[] dx = new int[]{0,0,1,-1};
-	int[] dy = new int[]{1,-1,0,0};
-	public boolean hasPath(int[][] maze, int[] start, int[] destination) {
-		if(maze == null || maze.length == 0) {
-			return false;
-		}
-		boolean[][] visited = new boolean[maze.length][maze[0].length];
-		return helper(maze, visited, start[0], start[1], destination[0], destination[1]);
-	}
-	
-	private boolean helper(int[][] maze, boolean[][] visited, int start_i, int start_j, int dest_i, int dest_j) {
-		if(start_i == dest_i && start_j == dest_j) {
-			return true;
-		}
-		if(start_i < 0 || start_i >= maze.length || start_j < 0 || start_j >= maze[0].length || visited[start_i][start_j]) {
-			return false;
-		}
-		visited[start_i][start_j] = true;
-		for(int k = 0; k < 4; k++) {
-		        // Don't understand why assign start_i, start_j to new variable x, y?
-			// Recording start position before start rolling in the maze, for next time start another
-			// direction's DFS, since we are rolling until hit the wall, so start position if not
-			// record will change to the stop position, which change the start condition of DFS in this
-			// time recursion, actually we do this in an implicit way in normal DFS as directly start
-			// four directions DFS in for loop, which not modify the start position
-			// Refer to
-			// https://leetcode.com/problems/flood-fill/
-			// for(int k = 0; k < 4; k++) {
-			//     dfs(i + dx[k], j + dy[k], image, visited, iniColor, newColor);
-			// }
-			int x = start_i;
-			int y = start_j;
-			// rolling until out or hit the wall
-			while(x >= 0 && x < maze.length && y >= 0 && y < maze[0].length && maze[x][y] != 1) {
-				x += dx[k];
-				y += dy[k];
-			}
-			// one step back to the stop position
-			x -= dx[k];
-			y -= dy[k];
-			// start a new dfs from the stop position
-			if(helper(maze, visited, x, y, dest_i, dest_j)) {
-				return true;
-			}
-		}
-		return false;
-	}
+    int[] dy = new int[]{1,-1,0,0};
+    public boolean hasPath(int[][] maze, int[] start, int[] destination) {
+        if (maze == null || maze.length == 0) {
+            return false;
+        }
+        boolean[][] visited = new boolean[maze.length][maze[0].length];
+        return helper(maze, visited, start[0], start[1], destination[0], destination[1]);
+    }
+
+    private boolean helper(int[][] maze, boolean[][] visited, int start_i, int start_j, int dest_i, int dest_j) {
+        if (start_i == dest_i && start_j == dest_j) {
+            return true;
+        }
+        if (start_i < 0 || start_i >= maze.length || start_j < 0 || start_j >= maze[0].length || visited[start_i][start_j]) {
+            return false;
+        }
+        visited[start_i][start_j] = true;
+        for (int k = 0; k < 4; k++) {
+            // Don't understand why assign start_i, start_j to new variable x, y?
+            // Recording start position before start rolling in the maze, for next time start another
+            // direction's DFS, since we are rolling until hit the wall, so start position if not
+            // record will change to the stop position, which change the start condition of DFS in this
+            // time recursion, actually we do this in an implicit way in normal DFS as directly start
+            // four directions DFS in for loop, which not modify the start position
+            // Refer to
+            // https://leetcode.com/problems/flood-fill/
+            // for(int k = 0; k < 4; k++) {
+            //     dfs(i + dx[k], j + dy[k], image, visited, iniColor, newColor);
+            // }
+            int x = start_i;
+            int y = start_j;
+            // rolling until out or hit the wall
+            while (x >= 0 && x < maze.length && y >= 0 && y < maze[0].length && maze[x][y] != 1) {
+                x += dx[k];
+                y += dy[k];
+            }
+            // one step back to the stop position
+            x -= dx[k];
+            y -= dy[k];
+            // start a new dfs from the stop position
+            if (helper(maze, visited, x, y, dest_i, dest_j)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
