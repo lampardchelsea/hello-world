@@ -284,3 +284,7 @@
 <p>Making A Large Island
 <p>1. [Native DFS + Backtracking] (https://www.cnblogs.com/grandyang/p/11669063.html)
 <p>2. [Coloring islands into different color and sum up] (https://leetcode.com/problems/making-a-large-island/discuss/127015/C%2B%2B-with-picture-O(n*m))
+
+<p>Time Needed to Inform All Employees
+<p>1. [Buttom Up + Top down DFS] (https://leetcode.com/problems/time-needed-to-inform-all-employees/discuss/532560/JavaC%2B%2BPython-DFS)
+<p>2. [BFS + DFS] (https://leetcode.com/problems/time-needed-to-inform-all-employees/discuss/533109/Java-BFSDFS-Solutions-Clean-code)
