@@ -130,12 +130,14 @@ Section 3: BFS
    
 8. [Minimum Height Trees] (https://hjweds.gitbooks.io/leetcode/content/minimum-height-trees.html)  
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/MinimumHeightTrees.java)  
-   
-9. [] ()  
+
+
+Section 4: DFS
+1. [] ()  
    [] ()  
    
-10. [] ()  
-    [] ()  
+2. [Longest Increasing Path in a Matrix] (https://hjweds.gitbooks.io/leetcode/content/longest-increasing-path-in-a-matrix.html)  
+   [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/LongestIncreasingPathInAMatrix.java)  
     
 
 
