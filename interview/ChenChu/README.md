@@ -133,8 +133,8 @@ Section 3: BFS
 
 
 Section 4: DFS
-1. [] ()  
-   [] ()  
+1. [Generate Random Maze] (https://hjweds.gitbooks.io/leetcode/content/generate-random-maze.html)  
+   [Answer 1:] ()  
    
 2. [Longest Increasing Path in a Matrix] (https://hjweds.gitbooks.io/leetcode/content/longest-increasing-path-in-a-matrix.html)  
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/LongestIncreasingPathInAMatrix.java)  
