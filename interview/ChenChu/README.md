@@ -139,5 +139,14 @@ Section 4: DFS
 2. [Longest Increasing Path in a Matrix] (https://hjweds.gitbooks.io/leetcode/content/longest-increasing-path-in-a-matrix.html)  
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/LongestIncreasingPathInAMatrix.java)  
     
+3. [Reconstruct Itinerary] (https://hjweds.gitbooks.io/leetcode/content/reconstruct-itinerary.html)  
+   [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/ReconstructItinerary.java) 
+   
+4. [] ()  
+   [] ()  
+   
+5. [] ()  
+   [] ()  
+   
 
 
