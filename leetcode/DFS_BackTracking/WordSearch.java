@@ -123,6 +123,43 @@ public class Solution {
                          dfs(board, word, index + 1, rowIndex, columnIndex - 1);
         board[rowIndex][columnIndex] ^= 255;
         return result;
+    }    
+}
+
+// Re-work
+class Solution {
+    public boolean exist(char[][] board, String word) {
+        int m = board.length;
+        int n = board[0].length;
+        boolean[][] visited = new boolean[m][n];
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                if(helper(board, i, j, word, 0, visited)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     
+    int[] dx = new int[] {0,0,1,-1};
+    int[] dy = new int[] {1,-1,0,0};
+    private boolean helper(char[][] board, int x, int y, String word, int index, boolean[][] visited) {
+        if(index == word.length()) {
+            return true;
+        }
+        if(x < 0 || x >= board.length || y < 0 || y >= board[0].length || board[x][y] != word.charAt(index) || visited[x][y]) {
+            return false;
+        }
+        visited[x][y] = true;
+        for(int i = 0; i < 4; i++) {
+            int new_x = x + dx[i];
+            int new_y = y + dy[i];
+            if(helper(board, new_x, new_y, word, index + 1, visited)) {
+                return true;
+            }
+        }
+        visited[x][y] = false;
+        return false;
+    }
 }
