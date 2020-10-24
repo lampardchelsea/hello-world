@@ -127,6 +127,12 @@ public class Solution {
 }
 
 // Re-work
+// https://leetcode.com/problems/word-search/discuss/27658/Accepted-very-short-Java-solution.-No-additional-space./26671
+// Time Complexity
+// Refer to
+// https://leetcode.com/problems/word-search/discuss/27658/Accepted-very-short-Java-solution.-No-additional-space./193004
+// Since no one is talking about the complexity. I think space is O(L) where L is the length of the word; and time is O(M * N * 4^L) 
+// where M*N is the size of the board and we have 4^L for each cell because of the recursion. Of course this would be an upper bound
 class Solution {
     public boolean exist(char[][] board, String word) {
         int m = board.length;
