@@ -152,6 +152,15 @@ Section 4: DFS
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/WordSearch.java)  
    [Answer 2:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/WordSearchII.java)  
    
-7. [] ()
+7. [Network Delay Time] (https://leetcode.com/problems/network-delay-time/)  
+   [] ()  
+   
+8. [] ()  
+   [] ()  
+   
+9. [] ()  
+   [] ()  
+   
+
 
 
