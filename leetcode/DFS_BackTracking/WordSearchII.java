@@ -617,6 +617,7 @@ class Solution {
             return;
         }
         temp += board[x][y];
+        // Stop earlier if current prefix not existing in Trie
         if(!trie.startWith(temp)) {
             return;
         }
