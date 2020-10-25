@@ -148,7 +148,7 @@ Section 4: DFS
 5. [0 1 Matrix] (https://hjweds.gitbooks.io/leetcode/content/01-matrix.html)  
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/BFS/01Matrix.java)  
    
-6. [Word Search I II] (https://hjweds.gitbooks.io/leetcode/content/word-search.html)  
+6. [Word Search I & II] (https://hjweds.gitbooks.io/leetcode/content/word-search.html)  
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/WordSearch.java)  
    [Answer 2:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/WordSearchII.java)  
    
