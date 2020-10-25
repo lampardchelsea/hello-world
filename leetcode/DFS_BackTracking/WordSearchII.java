@@ -680,3 +680,155 @@ class TrieNode {
         this.next = new TrieNode[26];
     }
 }
+
+// Super promotion
+// Refer to
+// https://leetcode.com/problems/word-search-ii/discuss/59780/Java-15ms-Easiest-Solution-(100.00)
+/**
+Backtracking + Trie
+Intuitively, start from every cell and try to build a word in the dictionary. Backtracking (dfs) is the powerful way 
+to exhaust every possible ways. Apparently, we need to do pruning when current character is not in any word.
+
+1. How do we instantly know the current character is invalid? HashMap?
+2. How do we instantly know what's the next valid character? LinkedList?
+3. But the next character can be chosen from a list of characters. "Mutil-LinkedList"?
+
+Combing them, Trie is the natural choice. Notice that:
+
+1. TrieNode is all we need. search and startsWith are useless.
+2. No need to store character at TrieNode. c.next[i] != null is enough.
+3. Never use c1 + c2 + c3. Use StringBuilder.
+4. No need to use O(n^2) extra space visited[m][n].
+5. No need to use StringBuilder. Storing word itself at leaf node is enough.
+6. No need to use HashSet to de-duplicate. Use "one time search" trie.
+
+For more explanations, check out dietpepsi's blog.
+
+Code Optimization
+UPDATE: Thanks to @dietpepsi we further improved from 17ms to 15ms.
+
+1. 59ms: Use search and startsWith in Trie class like this popular solution.
+2. 33ms: Remove Trie class which unnecessarily starts from root in every dfs call.
+3. 30ms: Use w.toCharArray() instead of w.charAt(i).
+4. 22ms: Use StringBuilder instead of c1 + c2 + c3.
+5. 20ms: Remove StringBuilder completely by storing word instead of boolean in TrieNode.
+6. 20ms: Remove visited[m][n] completely by modifying board[i][j] = '#' directly.
+7. 18ms: check validity, e.g., if(i > 0) dfs(...), before going to the next dfs.
+8. 17ms: De-duplicate c - a with one variable i.
+9. 15ms: Remove HashSet completely. dietpepsi's idea is awesome.
+https://leetcode.com/problems/word-search-ii/discuss/59780/Java-15ms-Easiest-Solution-(100.00)/60892
+You do not need Set<String> res to remove duplicate.
+You could just use List<String> res.
+Because the Trie has the ability of remove duplicate.
+All you need to do is to change
+
+if(p.word != null) res.add(p.word);
+Into
+
+if(p.word != null) {
+    res.add(p.word);
+    p.word = null;
+}
+Which removes the found word from the Trie.
+And you can just return res itself.
+
+The final run time is 15ms. Hope it helps!
+
+public List<String> findWords(char[][] board, String[] words) {
+    List<String> res = new ArrayList<>();
+    TrieNode root = buildTrie(words);
+    for (int i = 0; i < board.length; i++) {
+        for (int j = 0; j < board[0].length; j++) {
+            dfs (board, i, j, root, res);
+        }
+    }
+    return res;
+}
+
+public void dfs(char[][] board, int i, int j, TrieNode p, List<String> res) {
+    char c = board[i][j];
+    if (c == '#' || p.next[c - 'a'] == null) return;
+    p = p.next[c - 'a'];
+    if (p.word != null) {   // found one
+        res.add(p.word);
+        p.word = null;     // de-duplicate
+    }
+
+    board[i][j] = '#';
+    if (i > 0) dfs(board, i - 1, j ,p, res); 
+    if (j > 0) dfs(board, i, j - 1, p, res);
+    if (i < board.length - 1) dfs(board, i + 1, j, p, res); 
+    if (j < board[0].length - 1) dfs(board, i, j + 1, p, res); 
+    board[i][j] = c;
+}
+
+public TrieNode buildTrie(String[] words) {
+    TrieNode root = new TrieNode();
+    for (String w : words) {
+        TrieNode p = root;
+        for (char c : w.toCharArray()) {
+            int i = c - 'a';
+            if (p.next[i] == null) p.next[i] = new TrieNode();
+            p = p.next[i];
+       }
+       p.word = w;
+    }
+    return root;
+}
+
+class TrieNode {
+    TrieNode[] next = new TrieNode[26];
+    String word;
+}
+*/
+// Runtime: 11 ms, faster than 76.75% of Java online submissions for Word Search II.
+// Memory Usage: 47.9 MB, less than 5.11% of Java online submissions for Word Search II.
+class Solution {
+    public List<String> findWords(char[][] board, String[] words) {
+        List<String> res = new ArrayList<>();
+        TrieNode root = buildTrie(words);
+        for(int i = 0; i < board.length; i++) {
+            for(int j = 0; j < board[0].length; j++) {
+                helper(board, root, i, j, res);
+            }
+        }
+        return res;
+    }
+    
+    private TrieNode buildTrie(String[] words) {
+        TrieNode root = new TrieNode();
+        for(String w : words) {
+            TrieNode p = root;
+            for(char c : w.toCharArray()) {
+                int i = c - 'a';
+                if(p.next[i] == null) {
+                    p.next[i] = new TrieNode();
+                }
+                p = p.next[i];
+            }
+            p.word = w;
+        }
+        return root;
+    }
+    
+    int[] dx = new int[] {0,0,1,-1};
+    int[] dy = new int[] {1,-1,0,0};
+    private void helper(char[][] board, TrieNode p, int x, int y, List<String> res) {
+        if(x < 0 || x >= board.length || y < 0 || y >= board[0].length) return;
+        char c = board[x][y];
+        if(c == '#' || p.next[c - 'a'] == null) return;
+        p = p.next[c - 'a'];
+        if(p.word != null) {
+            res.add(p.word);
+            p.word = null;
+        }
+        board[x][y] = '#';
+        for(int i = 0; i < 4; i++) helper(board, p, x + dx[i], y + dy[i], res);
+        board[x][y] = c;
+    }
+}
+
+class TrieNode {
+    TrieNode[] next = new TrieNode[26];
+    String word;
+}
