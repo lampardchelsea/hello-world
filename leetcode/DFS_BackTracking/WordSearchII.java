@@ -589,3 +589,93 @@ class Solution {
         return false;
     }
 }
+
+// Re-work
+// Change Trie insert / get method from recursive to iterative
+class Solution {
+    public List<String> findWords(char[][] board, String[] words) {
+        List<String> result = new ArrayList<>();
+        int m = board.length;
+        int n = board[0].length;
+        boolean[][] visited = new boolean[m][n];
+        Trie trie = new Trie();
+        for(int i = 0; i < words.length; i++) {
+            trie.insert(words[i]);
+        }
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                helper(board, visited, "", trie, i, j, result);
+            }
+        }
+        return result;
+    }
+    
+    int[] dx = new int[] {0,0,1,-1};
+    int[] dy = new int[] {1,-1,0,0};
+    private void helper(char[][] board, boolean[][] visited, String temp, Trie trie, int x, int y, List<String> result) {
+        if(x < 0 || x >= board.length || y < 0 || y >= board[0].length || visited[x][y]) {
+            return;
+        }
+        temp += board[x][y];
+        if(!trie.startWith(temp)) {
+            return;
+        }
+        if(trie.search(temp) && !result.contains(temp)) {
+            result.add(temp);
+        }
+        visited[x][y] = true;
+        for(int i = 0; i < 4; i++) {
+            int new_x = x + dx[i];
+            int new_y = y + dy[i];
+            helper(board, visited, temp, trie, new_x, new_y, result);
+        }
+        visited[x][y] = false;
+    }
+}
+
+class Trie {
+    private TrieNode root;
+    public Trie() {
+        root = new TrieNode();
+    }
+    // Use iterative instead of recursive way
+    public TrieNode insert(String word) {
+        TrieNode p = root;
+        for(char c : word.toCharArray()) {
+            int i = c - 'a';
+            if(p.next[i] == null) {
+                p.next[i] = new TrieNode();
+            }
+            p = p.next[i];
+        }
+        p.isEnd = true;
+        return p;
+    }
+    // Use iterative instead of recursive way
+    public TrieNode get(String word) {
+        TrieNode p = root;
+        for(char c : word.toCharArray()) {
+            int i = c - 'a';
+            if(p.next[i] == null) {
+                return null;
+            }
+            p = p.next[i];
+        }
+        return p;
+    }
+    public boolean startWith(String word) {
+        return get(word) == null ? false : true;
+    }
+    public boolean search(String word) {
+        return get(word).isEnd;
+    }
+}
+
+class TrieNode {
+    TrieNode[] next;
+    boolean isEnd;
+    public TrieNode() {
+        this.isEnd = false;
+        this.next = new TrieNode[26];
+    }
+}
