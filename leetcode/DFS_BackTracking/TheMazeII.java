@@ -339,6 +339,7 @@ public class Solution {
                 // Comparison new distance with original value to make sure we need to update based on Dijkstra definition
                 // (if u -> v has dist[u] + step < dist[v] then we update)
                 if(distance[x][y] > newDistance) {
+                    distance[x][y] = newDistance;
                     minPQ.offer(new int[] {x, y, newDistance});
                 }
             }
