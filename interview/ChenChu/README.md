@@ -162,7 +162,8 @@ Section 4: DFS
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/Combinations.java)  
    
 10. [Combination Sum I & II & III & IV] ()  
-    [Answer 1:] ()  
+    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/CombinationSum.java)  
+    [Answer 2:] ()
 
 11. [] ()  
     [] ()  
