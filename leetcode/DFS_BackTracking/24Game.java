@@ -118,3 +118,51 @@ class Solution {
         return false;
     }
 }
+
+// Re-work
+// Refer to
+// https://leetcode.com/problems/24-game/discuss/107673/JAVA-Easy-to-understand.-Backtracking./196343
+class Solution {
+    public boolean judgePoint24(int[] nums) {
+        List<Double> arr = new ArrayList<Double>();
+        for(int num : nums) {
+            arr.add((double) num);
+        }
+        return helper(arr);
+    }
+    
+    // 每次dfs都是选取两张牌
+    private boolean helper(List<Double> list) {
+        // 如果此时list只剩下了一张牌
+        if(list.size() == 1) {
+            if(Math.abs(list.get(0) - 24.0) < 0.001) {
+                return true;
+            }
+            return false;
+        }
+        // 选取两张牌
+        for(int i = 0; i < list.size(); i++) {
+            for(int j = i + 1; j < list.size(); j++) {
+                Double a = list.get(i);
+                Double b = list.get(j);
+                // 计算下一个可能产生的组合
+                List<Double> temp = Arrays.asList(a + b, a - b, b - a, a * b, a / b, b / a);
+                for(Double t : temp) {
+                    List<Double> nextRound = new ArrayList<Double>();
+                    // 将他们中的一张加入到下一个list循环中去(代表一种可能)
+                    nextRound.add(t);
+                    // 把两张合并计算后的牌排除之后的所有其他牌也加入下一轮
+                    for(int k = 0; k < list.size(); k++) {
+                        if(k != i && k != j) {
+                            nextRound.add(list.get(k));
+                        }
+                    }
+                    if(helper(nextRound)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+}
