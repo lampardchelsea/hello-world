@@ -138,3 +138,26 @@ class Solution {
     }
 }
 
+// Re-work
+class Solution {
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        helper(1, result, new ArrayList<Integer>(), k, n);
+        return result;
+    }
+    
+    private void helper(int start, List<List<Integer>> result, List<Integer> list, int k, int target) {
+        if(k < 0 || target < 0) {
+            return;
+        }
+        if(k == 0 && target == 0) {
+            result.add(new ArrayList<Integer>(list));
+            return;
+        }
+        for(int i = start; i <= 9; i++) {
+            list.add(i);
+            helper(i + 1, result, list, k - 1, target - i);
+            list.remove(list.size() - 1);
+        }
+    }
+}
