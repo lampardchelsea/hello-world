@@ -93,3 +93,48 @@ public class CombinationSumII {
     }
 }
 
+// Re-work
+// Refer to
+// https://leetcode.com/problems/combination-sum-ii/discuss/16861/Java-solution-using-dfs-easy-understand/16652
+// https://leetcode.com/problems/combination-sum-ii/discuss/16861/Java-solution-using-dfs-easy-understand/16666
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        Arrays.sort(candidates);
+        helper(candidates, result, target, new ArrayList<Integer>(), 0);
+        return result;
+    }
+    
+    private void helper(int[] candidates, List<List<Integer>> result, int target, List<Integer> list, int index) {
+        if(target < 0) {
+            return;
+        }
+        if(target == 0) {
+            result.add(new ArrayList<Integer>(list));
+            return;
+        }
+        for(int i = index; i < candidates.length; i++) {
+	    /**
+	    Why we need i > index && candidates[i - 1] == candidates[i] ?
+	    https://leetcode.com/problems/combination-sum-ii/discuss/16861/Java-solution-using-dfs-easy-understand/16652
+	    Search in [1, 1, 1, 2, 2] for target 4, without the expression, you will get three identical combinations:
+            [1, 1, 2, 2] from index [0, 1, 3, 4] of the candidates;
+            [1, 1, 2, 2] from index [0, 2, 3, 4] of the candidates;
+            [1, 1, 2, 2] from index [1, 2, 3, 4] of the candidates.
+	    
+	    https://leetcode.com/problems/combination-sum-ii/discuss/16861/Java-solution-using-dfs-easy-understand/16666
+	    For those who don't understand how to avoid duplicate by:
+	    if "(i > cur && cand[i] == cand[i-1]) continue;
+	    when we should skip a number? not just it's the same as previous number, but also when it's previous number haven't been added!
+	    i > cur means cand[i - 1] is not added to the path (you should know why if you understand the algorithm), so if cand[i] == cand[i-1], then we shouldn't add cand[i].
+	    This tricky is very smart.
+	    */
+            if(i > index && candidates[i - 1] == candidates[i]) {
+                continue;
+            }
+            list.add(candidates[i]);
+            helper(candidates, result, target - candidates[i], list, i + 1);
+            list.remove(list.size() - 1);
+        }
+    }
+}
