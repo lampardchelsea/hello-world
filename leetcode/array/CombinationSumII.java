@@ -66,7 +66,9 @@ public class CombinationSumII {
                 // which already used in current loop for combination(Must sort first)
                 // 比如对1完成了搜索，那么我们要把后面的1都跳过去。当然，跳过只是针对本轮搜索的， 在对
                 // 第一个1的下一轮的搜索中，我们还是可以加上第二个1。只是我们不能再以第二个1开头了
-                // 而已。为了能连续跳过重复的数，这里我们必须先排序。
+                // 而已，因为如果以第二个1开头会部分重复以第一个1开头所得的组合。为了能连续跳过重复的数，这里我们必须先排序。
+                // 实际上并不是同一条dfs的path上不能出现重复的1，比如{1，1，1}就是一个解而且dfs的path上重复了1，
+                // 而是后面重复的1不能再和之前已经使用过的1出现在组合的同一个位置了
                 // E.g int[] candidates = {1, 1, 1, 1}, target = 3, if not skip
                 // redundant '1' for each round, will give result as 
                 // {{1, 1, 1}, {1, 1, 1}, {1, 1, 1}, {1, 1, 1}}, this is wrong
@@ -95,6 +97,12 @@ public class CombinationSumII {
 
 // Re-work
 // Refer to
+// Best video explain:
+// https://www.youtube.com/watch?v=j9_qWJClp64&feature=emb_logo --> Use [1,2,3,1] -> sort to [1,1,2,3] and target = 3 
+// as example to explain why the 2nd 1 will generate duplicate combination if put it as same as 1st 1 at the first
+// position of combination, because like [1,2] as a success combination the first position 1 comes from 1st 1 in
+// given array is good, but if we not filter the 2nd 1 out, then if this first position 1 comes from 2nd 1 in given
+// array will generate a duplicate [1,2]
 // https://leetcode.com/problems/combination-sum-ii/discuss/16861/Java-solution-using-dfs-easy-understand/16652
 // https://leetcode.com/problems/combination-sum-ii/discuss/16861/Java-solution-using-dfs-easy-understand/16666
 class Solution {
