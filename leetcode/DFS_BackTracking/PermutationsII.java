@@ -235,4 +235,59 @@ public class Solution {
     }
 }
 
-
+// Refer to
+// https://www.cnblogs.com/grandyang/p/4359825.html
+// 还有一种比较简便的方法，在 Permutations 的基础上稍加修改，用 TreeSet 来保存结果，利用其不会有重复项的特点，然后在递归函数中 swap 的地方，
+// 判断如果i和 start 不相同，但是 nums[i] 和 nums[start] 相同的情况下跳过，继续下一个循环，参见代码如下：
+/**
+class Solution {
+public:
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        set<vector<int>> res;
+        permute(nums, 0, res);
+        return vector<vector<int>> (res.begin(), res.end());
+    }
+    void permute(vector<int>& nums, int start, set<vector<int>>& res) {
+        if (start >= nums.size()) res.insert(nums);
+        for (int i = start; i < nums.size(); ++i) {
+            if (i != start && nums[i] == nums[start]) continue; // 剪枝
+            swap(nums[i], nums[start]);
+            permute(nums, start + 1, res);
+            swap(nums[i], nums[start]);
+        }
+    }
+};
+*/
+// 对于上面的解法，你可能会有疑问，我们不是在 swap 操作之前已经做了剪枝了么，为什么还是会有重复出现，以至于还要用 TreeSet 来取出重复呢。
+// 总感觉使用 TreeSet 去重复有点耍赖，可能并没有探究到本题深层次的内容。这是很好的想法，首先尝试将上面的 TreeSet 还原为 vector，并且
+// 在主函数调用递归之前给 nums 排个序（代码参见评论区三楼），然后测试一个最简单的例子：[1, 2, 2]，得到的结果为：
+// [[1,2,2], [2,1,2], [2,2,1], [2,2,1],  [2,1,2]]
+// 我们发现有重复项，那么剪枝究竟在做些什么，怎么还是没法防止重复项的产生！那个剪枝只是为了防止当 start = 1, i = 2 时，将两个2交换，
+// 这样可以防止 {1, 2, 2} 被加入两次。但是没法防止其他的重复情况，要闹清楚为啥，需要仔细分析一些中间过程，下面打印了一些中间过程的变量
+/**
+start = 0, i = 0 => {1 2 2} 
+start = 1, i = 1 => {1 2 2} 
+start = 2, i = 2 => {1 2 2} 
+start = 3 => saved  {1 2 2}
+start = 1, i = 2 => {1 2 2} skipped
+start = 0, i = 1 => {1 2 2} -> {2 1 2}
+start = 1, i = 1 => {2 1 2} 
+start = 2, i = 2 => {2 1 2} 
+start = 3 => saved  {2 1 2}
+start = 1, i = 2 => {2 1 2} -> {2 2 1}
+start = 2, i = 2 => {2 2 1} 
+start = 3 => saved  {2 2 1}
+start = 1, i = 2 => {2 2 1} -> {2 1 2} recovered
+start = 0, i = 1 => {2 1 2} -> {1 2 2} recovered
+start = 0, i = 2 => {1 2 2} -> {2 2 1}
+start = 1, i = 1 => {2 2 1} 
+start = 2, i = 2 => {2 2 1} 
+start = 3 => saved  {2 2 1}
+start = 1, i = 2 => {2 2 1} -> {2 1 2}
+start = 2, i = 2 => {2 1 2} 
+start = 3 => saved  {2 1 2}
+start = 1, i = 2 => {2 1 2} -> {2 2 1} recovered
+start = 0, i = 2 => {2 2 1} -> {1 2 2} recovered
+*/
+// 问题出在了递归调用之后的还原状态，参见上面的红色的两行，当 start = 0, i = 2 时，nums 已经还原到了 {1, 2, 2} 的状态，此时 nums[start] 
+// 不等于 nums[i]，剪枝在这已经失效了，那么交换后的 {2, 2, 1} 还会被存到结果 res 中，而这个状态在之前就已经存过了一次。
