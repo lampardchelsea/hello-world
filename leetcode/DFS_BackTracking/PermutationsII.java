@@ -15,6 +15,17 @@
  * Solution
  * https://leetcode.com/submissions/detail/114437976/
 */
+// Time Complexity
+// Refer to
+// https://leetcode.com/problems/permutations-ii/discuss/18594/Really-easy-Java-solution-much-easier-than-the-solutions-with-very-high-vote/121098
+/**
+The worst-case time complexity is O(n! * n).
+For any recursive function, the time complexity is O(branches^depth) * amount of work at each node in the recursive call tree. 
+However, in this case, we have n*(n-1)*(n*2)*(n-3)*...*1 branches at each level = n!, so the total recursive calls is O(n!)
+We do n-amount of work in each node of the recursive call tree, (a) the for-loop and (b) at each leaf when we add n elements 
+to an ArrayList. So this is a total of O(n) additional work per node.
+Therefore, the upper-bound time complexity is O(n! * n).
+*/
 public class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
@@ -60,6 +71,7 @@ public class Solution {
     }
 }
 
+// Wrong Solution
 // The solution for 40. Combination Sum II is the wrong way to solve this issue
 // Because that's the way for computing Permutation, since change the order will be recognize as different solution
 // e.g if target is 8, [2,6] and [6,2] is one combination but two permutation 
