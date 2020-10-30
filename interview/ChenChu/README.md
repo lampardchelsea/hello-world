@@ -168,8 +168,9 @@ Section 4: DFS
     [Answer 4:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/DFS_Memoization/CombinationSumIV.java)  
 
 11. [Permutation I & II] ()  
-    [] ()  
-    
+    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/Permutations.java)  
+    [Answer 2:] ()  
+
 12. [] ()  
     [] ()  
     
