@@ -64,3 +64,29 @@ class Solution {
         }
     }
 }
+
+// Solution 2: BFS
+// Refer to
+// https://leetcode.com/problems/letter-case-permutation/discuss/115485/Java-Easy-BFS-DFS-solution-with-explanation
+class Solution {
+    public List<String> letterCasePermutation(String S) {
+        List<String> result = new ArrayList<String>();
+        Queue<String> q = new LinkedList<String>();
+        q.offer(S);
+        for(int i = 0; i < S.length(); i++) {
+            if(Character.isLetter(S.charAt(i))) {
+                int size = q.size();
+                for(int j = 0; j < size; j++) {
+                    String cur = q.poll();
+                    char[] chars = cur.toCharArray();
+                    chars[i] = Character.toUpperCase(chars[i]);
+                    q.offer(new String(chars));
+                    char[] chars2 = cur.toCharArray();
+                    chars2[i] = Character.toLowerCase(chars2[i]);
+                    q.offer(new String(chars2));
+                }
+            }
+        }
+        return new LinkedList<String>(q);
+    }
+}
