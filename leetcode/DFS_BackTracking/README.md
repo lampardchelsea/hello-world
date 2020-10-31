@@ -288,3 +288,7 @@
 <p>Time Needed to Inform All Employees
 <p>1. [Buttom Up + Top down DFS] (https://leetcode.com/problems/time-needed-to-inform-all-employees/discuss/532560/JavaC%2B%2BPython-DFS)
 <p>2. [BFS + DFS] (https://leetcode.com/problems/time-needed-to-inform-all-employees/discuss/533109/Java-BFSDFS-Solutions-Clean-code)
+
+<p>Letter Case Permutation
+<p>1. [Java Easy BFS / DFS solution with explanation] (https://leetcode.com/problems/letter-case-permutation/discuss/115485/Java-Easy-BFS-DFS-solution-with-explanation)
+<p>2. [Java detailed explanation of DFS/Backtracking solution] (https://leetcode.com/problems/letter-case-permutation/discuss/255071/Java-detailed-explanation-of-DFSBacktracking-solution)
