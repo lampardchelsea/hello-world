@@ -25,6 +25,42 @@ S will be a string with length between 1 and 12.
 S will consist only of letters or digits.
 */
 
-// Solution 1:
+// Solution 1: DFS
 // Refer to
-// 
+// https://leetcode.com/problems/letter-case-permutation/discuss/115485/Java-Easy-BFS-DFS-solution-with-explanation
+// https://leetcode.com/problems/letter-case-permutation/discuss/255071/Java-detailed-explanation-of-DFSBacktracking-solution
+/**
+            a1b2   i=0, when it's at a, since it's a letter, we have two branches: a, A
+         /        \
+       a1b2       A1b2 i=1 when it's at 1, we only have 1 branch which is itself
+        |          |   
+       a1b2       A1b2 i=2 when it's at b, we have two branches: b, B
+       /  \        / \
+      a1b2 a1B2  A1b2 A1B2 i=3  when it's at 2, we only have one branch.
+       |    |     |     |
+      a1b2 a1B2  A1b2  A1B2 i=4 = S.length(). End recursion, add permutation to ans. 
+      
+      During this process, we are changing the S char array itself
+*/
+class Solution {
+    public List<String> letterCasePermutation(String S) {
+        List<String> result = new ArrayList<String>();
+        helper(S.toCharArray(), result, 0);
+        return result;
+    }
+    
+    private void helper(char[] chars, List<String> result, int index) {
+        if(index == chars.length) {
+            result.add(new String(chars));
+            return;
+        }
+        if(Character.isLetter(chars[index])) {
+            chars[index] = Character.toUpperCase(chars[index]);
+            helper(chars, result, index + 1);
+            chars[index] = Character.toLowerCase(chars[index]);
+            helper(chars, result, index + 1);
+        } else {
+            helper(chars, result, index + 1);
+        }
+    }
+}
