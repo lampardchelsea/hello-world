@@ -93,3 +93,76 @@ public class NextPermutation {
     	}
     }
 }
+
+// Re-work
+// Refer to
+// https://leetcode.com/problems/next-permutation/discuss/13866/Share-my-O(n)-time-solution/14234
+/**
+I don't know how many guys come up this solution only by himself. At least I cannot, I even don't know what is the next permutation. 
+I stole this solution from somewhere to here because I don't see a clear explanation in LeetCode discussion. I think the biggest 
+problem of this community is people here are too smart. They like writing "short code", they like using annotations like 
+nums[k] < nums[k + 1], they don't like to give example. Even when a problem as abstract as this one.
+
+I don't think any one can understand this solution without seeing an example, here is an example:
+2,3,6,5,4,1
+
+Solution:
+Step1, from right to left, find the first number which not increase in a ascending order. In this case which is 3.
+Step2, here we can have two situations:
+
+We cannot find the number, all the numbers increasing in a ascending order. This means this permutation is the last permutation, 
+we need to rotate back to the first permutation. So we reverse the whole array, for example, 6,5,4,3,2,1 we turn it to 1,2,3,4,5,6.
+
+We can find the number, then the next step, we will try to find the closest number which is larger than 3 on its right side. In this case it is 4.
+Then we swap 3 and 4, the list turn to 2,4,6,5,3,1.
+Last, we sort the numbers at the right of 4, we finally get 2,4,1,3,5,6.
+
+Time complexity is: O(n + n + nlogn)=O(n logn).
+
+class Solution {
+  public void nextPermutation(int[] nums) {
+    if(nums.length == 0) {
+      return;
+    }
+    
+    int i = nums.length - 2;
+    for(; i >= 0; i--) {
+      if(nums[i] < nums[i + 1]) {
+        break;
+      }
+    }
+    
+    if(i == -1) {
+     reverse(nums);
+     return;
+    }
+
+    int b = i + 1, a = i;
+    for(; i < nums.length; i++) {
+      if(nums[i] > nums[a] && nums[i] < nums[b]) {
+        b = i;
+      }
+    }
+    
+    swap(nums,a,b);
+    
+    Arrays.sort(nums, a + 1, nums.length);
+  }
+  
+  private void reverse(int[] nums) {
+    int s = 0, e = nums.length - 1;
+    while(s < e) {
+      int t = nums[s];
+      nums[s] = nums[e];
+      nums[e] = t;
+      s++; e--;
+    }
+  }
+  
+  private void swap(int[] nums, int a, int b) {
+      int t = nums[a];
+      nums[a] = nums[b];
+      nums[b] = t;    
+  }
+}
+*/
