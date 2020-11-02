@@ -166,3 +166,52 @@ class Solution {
   }
 }
 */
+class Solution {
+    public void nextPermutation(int[] nums) {
+        // Step1, from right to left, find the first number which not increase in a ascending order
+        int i = nums.length - 2;
+        for(; i >= 0; i--) {
+            if(nums[i] < nums[i + 1]) {
+                break;
+            }
+        }
+        // We cannot find the number, all the numbers increasing in a ascending order.
+        if(i == -1) {
+            reverse(nums);
+            return;
+        }
+        // We can find the number, then the next step, we will try to find the closest number 
+        // which is larger than it on its right side.
+        int a = i;
+        int b = i + 1;
+        for(; i < nums.length; i++) {
+            if(nums[i] > nums[a] && nums[i] < nums[b]) {
+                b = i;
+            }
+        }
+        // Then we swap these 2 digits
+        swap(nums, a, b);
+        // Last, we sort the numbers at the right the current index
+        Arrays.sort(nums, a + 1, nums.length);
+    }
+    
+    private void reverse(int[] nums) {
+        int i = 0;
+        int j = nums.length - 1;
+        while(i < j) {
+            int tmp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = tmp;
+            i++;
+            j--;
+        }
+    }
+    
+    private void swap(int[] nums, int a, int b) {
+        int tmp = nums[a];
+        nums[a] = nums[b];
+        nums[b] = tmp;
+    }
+}
+
+
