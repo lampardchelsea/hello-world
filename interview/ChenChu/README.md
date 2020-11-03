@@ -131,6 +131,17 @@ Section 3: BFS
 8. [Minimum Height Trees] (https://hjweds.gitbooks.io/leetcode/content/minimum-height-trees.html)  
    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/MinimumHeightTrees.java)  
 
+----- 9, 10, 11 have similar resolve pattern
+
+9. [Keys And Rooms] (https://leetcode.com/problems/keys-and-rooms/)  
+   [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/KeysAndRooms.java)  
+
+10. [Bus Routes] (https://leetcode.com/problems/bus-routes/)  
+    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/BFS/BusRoutes.java)  
+   
+11. [Maximum Candies You Can Get From Boxes] (https://leetcode.com/problems/maximum-candies-you-can-get-from-boxes/)  
+    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/BFS/MaximumCandiesYouCanGetFromBoxes.java)  
+
 
 Section 4: DFS
 1. [Generate Random Maze] (https://hjweds.gitbooks.io/leetcode/content/generate-random-maze.html)  
