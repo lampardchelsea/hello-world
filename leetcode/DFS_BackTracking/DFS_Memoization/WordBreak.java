@@ -184,3 +184,64 @@ class Solution {
         return false;
     }
 }
+
+
+// Re-work
+// Refer to
+// https://leetcode.com/problems/word-break/discuss/43819/DFS-with-Path-Memorizing-Java-Solution
+/**
+I write this method by what I learned from @mahdy in his post Decode Ways
+
+Use a set to record all position that cannot find a match in dict. That cuts down the run time of DFS to O(n^2)
+
+public class Solution {
+    public boolean wordBreak(String s, Set<String> dict) {
+        // DFS
+        Set<Integer> set = new HashSet<Integer>();
+        return dfs(s, 0, dict, set);
+    }
+    
+    private boolean dfs(String s, int index, Set<String> dict, Set<Integer> set){
+        // base case
+        if(index == s.length()) return true;
+        // check memory
+        if(set.contains(index)) return false;
+        // recursion
+        for(int i = index+1;i <= s.length();i++){
+            String t = s.substring(index, i);
+            if(dict.contains(t))
+                if(dfs(s, i, dict, set))
+                    return true;
+                else
+                    set.add(i);
+        }
+        set.add(index);
+        return false;
+    }
+}
+*/
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        Set<Integer> memo = new HashSet<Integer>();
+        return helper(s, wordDict, 0, memo);
+    }
+    
+    private boolean helper(String s, List<String> wordDict, int index, Set<Integer> memo) {
+        if(memo.contains(index)) {
+            return false;
+        }
+        if(index == s.length()) {
+            return true;
+        }
+        for(int i = index + 1; i <= s.length(); i++) {
+            String t = s.substring(index, i);
+            if(wordDict.contains(t)) {
+                if(helper(s, wordDict, i, memo)) {
+                    return true;
+                }
+            }
+        }
+        memo.add(index);
+        return false;
+    }
+}
