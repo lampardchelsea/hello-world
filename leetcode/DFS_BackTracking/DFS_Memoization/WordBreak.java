@@ -188,6 +188,16 @@ class Solution {
 
 // Re-work
 // Refer to
+// Time Compexity
+// https://leetcode.com/problems/word-break/discuss/169383/The-Time-Complexity-of-The-Brute-Force-Method-Should-Be-O(2n)-and-Prove-It-Below/452312
+/**
+T(N) = T(N-1) + T(N-2) + ... + T(0)
+T(N-1) = T(N-2) + ... + T(0)
+T(N) - T(N-1) = T(N-1)
+T(N) = 2*T(N-1)
+O(2^N)
+*/
+
 // https://leetcode.com/problems/word-break/discuss/43819/DFS-with-Path-Memorizing-Java-Solution
 /**
 I write this method by what I learned from @mahdy in his post Decode Ways
