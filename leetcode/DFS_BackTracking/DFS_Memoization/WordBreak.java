@@ -187,6 +187,8 @@ class Solution {
 
 
 // Re-work
+// Instead of store substring we can store index and also only pass index on recursive call, for substring style how the recursive call is built
+// up we can check on https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/DFS_Memoization/Word_Break_Brute_Force_Memoization_Time_Comlexity.docx
 // Refer to
 // Time Compexity
 // https://leetcode.com/problems/word-break/discuss/169383/The-Time-Complexity-of-The-Brute-Force-Method-Should-Be-O(2n)-and-Prove-It-Below/452312
