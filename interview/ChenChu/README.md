@@ -188,7 +188,7 @@ Section 4: DFS
 13. [Keys And Rooms] (https://leetcode.com/problems/keys-and-rooms/)  
     [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/KeysAndRooms.java)  
     
-14. [N Queue I & II] ()  
+14. [N Queens I & II] ()  
     [] ()  
     [] ()  
     
