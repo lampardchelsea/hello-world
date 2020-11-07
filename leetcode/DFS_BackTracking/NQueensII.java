@@ -94,3 +94,35 @@ class Solution {
         }
     }
 }
+
+// Re-work
+class Solution {
+    int count = 0;
+    public int totalNQueens(int n) {
+        boolean[] cols = new boolean[n];
+        boolean[] main_diag = new boolean[2 * n];
+        boolean[] sub_diag = new boolean[2 * n];
+        helper(cols, main_diag, sub_diag, 0, n);
+        return count;
+    }
+    
+    private void helper(boolean[] cols, boolean[] main_diag, boolean[] sub_diag, int rowIndex, int n) {
+        if(rowIndex == n) {
+            count++;
+        }
+        for(int colIndex = 0; colIndex < n; colIndex++) {
+            int main_diag_val = rowIndex - colIndex + n;
+            int sub_diag_val = rowIndex + colIndex;
+            if(cols[colIndex] || main_diag[main_diag_val] || sub_diag[sub_diag_val]) {
+                continue;
+            }
+            cols[colIndex] = true;
+            main_diag[main_diag_val] = true;
+            sub_diag[sub_diag_val] = true;
+            helper(cols, main_diag, sub_diag, rowIndex + 1, n);
+            cols[colIndex] = false;
+            main_diag[main_diag_val] = false;
+            sub_diag[sub_diag_val] = false;            
+        }
+    }
+}
