@@ -449,7 +449,7 @@ class Solution {
     }
     
     private boolean isValid(char[][] board, int rowIndex, int colIndex) {
-	// only check rows above current one    
+	// only check rows above current row    
         for(int i = 0; i < rowIndex; i++) {
             for(int j = 0; j < board[0].length; j++) {
 		// if 'Q' in the same col or the diagonal line, return false
