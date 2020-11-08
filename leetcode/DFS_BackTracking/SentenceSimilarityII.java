@@ -271,3 +271,184 @@ public class Solution {
 }
 
 // Union Find
+// Refer to
+// Style 1:
+// https://protegejj.gitbook.io/algorithm-practice/leetcode/union-find/737-sentence-similarity-ii
+/**
+思路:
+(1) 用union find的关键就是要给每个pair里的word分配一个unique id，然后用map存string到id的关系
+(2) 在遍历words1和words2，如果map里面没有words1或words2当前的词或者通过find我们发现当前word1和word2不在一个集合里，return false
+class Solution {
+    public boolean areSentencesSimilarTwo(String[] words1, String[] words2, String[][] pairs) {
+        if (words1.length != words2.length) {
+            return false;
+        }
+
+        UnionFind uf = new UnionFind(2 * pairs.length);
+
+        Map<String, Integer> map = new HashMap<>();
+        int id = 0;
+
+        for (String[] pair : pairs) {
+            for (String word : pair) {
+                if (!map.containsKey(word)) {
+                    map.put(word, id);
+                    ++id;
+                }
+            }
+
+            uf.union(map.get(pair[0]), map.get(pair[1]));
+        }
+
+
+        for (int i = 0; i < words1.length; i++) {
+            String word1 = words1[i];
+            String word2 = words2[i];
+
+            if (word1.equals(word2)) {
+                continue;
+            }
+
+            if (!map.containsKey(word1) || !map.containsKey(word2) || uf.find(map.get(word1)) != uf.find(map.get(word2))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    class UnionFind {
+        int[] sets;
+        int[] size;
+        int count;
+
+        public UnionFind(int n) {
+            sets = new int[n];
+            size = new int[n];
+            count = n;
+
+            for (int i = 0; i < n; i++) {
+                sets[i] = i;
+                size[i] = 1;
+            }
+        }
+
+        public int find(int node) {
+            while (node != sets[node]) {
+                node = sets[node];
+            }
+            return node;
+        }
+
+        public void union(int i, int j) {
+            int node1 = find(i);
+            int node2 = find(j);
+
+            if (node1 == node2) {
+                return;
+            }
+
+            if (size[node1] < size[node2]) {
+                sets[node1] = node2;
+                size[node2] += size[node1];
+            }
+            else {
+                sets[node2] = node1;
+                size[node1] += size[node2];
+            }
+            --count;
+        }
+    }
+}
+*/
+
+// Style 2:
+// https://taobaba.gitbook.io/leetcode/4-google/43-medium/10260-sentence-similarity-ii
+/**
+这个问题和 Sentence Similarity 的不同是similarity 是 transitive的。transitive的模型容易让人想到 union-find 模型，
+把所有similar的words都归类到同一个parent下面，每次检查2个word是否相同的时候，则检查其root是否一样即可
+class Solution {
+    public boolean areSentencesSimilarTwo(String[] words1, String[] words2, String[][] pairs) {
+        if(words1.length != words2.length) return false;
+
+        HashMap<String, String> roots = new HashMap();
+        for(String[] pair : pairs) {
+            // assign root as itself initially if not exists
+            roots.putIfAbsent(pair[0], pair[0]);
+            roots.putIfAbsent(pair[1], pair[1]);
+            union(roots, pair[0], pair[1]);
+        }
+
+        for(int i = 0; i < words1.length; i ++) {
+            if(words1[i].equals(words2[i]) || root(roots, words1[i]).equals(root(roots, words2[i]))) continue;
+            return false;
+        }
+        return true;
+    }
+
+    private void union(HashMap<String, String> roots, String word1, String word2) {
+        String root1 = root(roots, word1);
+        String root2 = root(roots, word2);
+
+        if(!root1.equals(root2)) {
+            roots.put(root1, root2);
+        }
+    }
+
+    private String root(HashMap<String, String> roots, String word) {
+        // 如果roots map里面没有记录该word，则return word自己即可
+        if(!roots.containsKey(word)) return word;
+        while(!word.equals(roots.get(word))) word = roots.get(word);
+        return word;
+    }
+}
+*/
+public class Solution {
+    /**
+     * @param words1: a list of string
+     * @param words2: a list of string
+     * @param pairs: a list of string pairs
+     * @return: return a boolean, denote whether two sentences are similar or not
+     */
+    public boolean isSentenceSimilarity(String[] words1, String[] words2, List<List<String>> pairs) {
+        if(words1.length != words2.length) {
+            return false;
+        }
+        Map<String, String> parent = new HashMap<String, String>();
+        // Set the default parent for each 'word' as itself
+        for(List<String> pair : pairs) {
+            parent.putIfAbsent(pair.get(0), pair.get(0));
+            parent.putIfAbsent(pair.get(1), pair.get(1));
+        }
+        // Union 'word' based on given pair, words in same pair should be same parent 
+        // which means in same group
+        for(List<String> pair : pairs) {
+            String root1 = find(pair.get(0), parent);
+            String root2 = find(pair.get(1), parent);
+            if(!root1.equals(root2)) {
+                parent.put(root1, root2);
+            }
+        }
+        // Check if any word pairs after union still not have same parent (not in the same group)
+        for(int i = 0; i < words1.length; i++) {
+            if(words1[i].equals(words2[i]) || find(words1[i], parent).equals(find(words2[i], parent))) {
+                continue;
+            }
+            return false;
+        }
+        return true;
+    }
+    
+    // Recursive way to implement find root function
+    private String find(String word, Map<String, String> parent) {
+        // If parent map not contains the 'word' as key, just return the 'word' itself
+        if(!parent.containsKey(word)) {
+            return word;
+        }
+        if(parent.get(word).equals(word)) {
+            return word;
+        }
+        // No path compression here
+        return find(parent.get(word), parent);
+    }
+}
+    
