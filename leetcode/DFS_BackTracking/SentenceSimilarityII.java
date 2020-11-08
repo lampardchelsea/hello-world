@@ -110,3 +110,112 @@ class Solution {
         return false;
     }
 }
+
+// Re-work
+// https://www.cnblogs.com/grandyang/p/8053934.html
+/**
+这道题是之前那道 Sentence Similarity 的拓展，那道题说单词之间不可传递，于是乎这道题就变成可以传递了，难度就增加了。不过没有关系，
+还是用经典老三样来解，BFS，DFS，和 Union Find。先来看 BFS 的解法，其实这道题的本质是无向连通图的问题，首先要做的就是建立这个连通图
+的数据结构，对于每个结点来说，要记录所有和其相连的结点，建立每个结点和其所有相连结点集合之间的映射，比如对于这三个相似对 
+(a, b), (b, c)，和(c, d)，我们有如下的映射关系：
+
+a -> {b}
+
+b -> {a, c}
+
+c -> {b, d}
+
+d -> {c}
+
+那么如果要验证a和d是否相似，就需要用到传递关系，a只能找到b，b可以找到a，c，为了不陷入死循环，将访问过的结点加入一个集合 visited，
+那么此时b只能去，c只能去d，那么说明a和d是相似的了。用for循环来比较对应位置上的两个单词，如果二者相同，那么直接跳过去比较接下来的。
+否则就建一个访问即可 visited，建一个队列 queue，然后把 words1 中的单词放入 queue，建一个布尔型变量 succ，标记是否找到，然后就是
+传统的 BFS 遍历的写法了，从队列中取元素，如果和其相连的结点中有 words2 中的对应单词，标记 succ 为 true，并 break 掉。否则就将取
+出的结点加入队列 queue，并且遍历其所有相连结点，将其中未访问过的结点加入队列 queue 继续循环
+
+class Solution {
+public:
+    bool areSentencesSimilarTwo(vector<string>& words1, vector<string>& words2, vector<pair<string, string>> pairs) {
+        if (words1.size() != words2.size()) return false;
+        unordered_map<string, unordered_set<string>> m;
+        for (auto pair : pairs) {
+            m[pair.first].insert(pair.second);
+            m[pair.second].insert(pair.first);
+        }    
+        for (int i = 0; i < words1.size(); ++i) {
+            if (words1[i] == words2[i]) continue;
+            unordered_set<string> visited;
+            queue<string> q{{words1[i]}};
+            bool succ = false;
+            while (!q.empty()) {
+                auto t = q.front(); q.pop();
+                if (m[t].count(words2[i])) {
+                    succ = true; break;
+                }
+                visited.insert(t);
+                for (auto a : m[t]) {
+                    if (!visited.count(a)) q.push(a);
+                }
+            }
+            if (!succ) return false;
+        }    
+        return true;
+    }
+};
+
+下面来看递归的写法，解题思路跟上面的完全一样，把主要操作都放到了一个递归函数中来写，参见代码如下：
+
+class Solution {
+public:
+    bool areSentencesSimilarTwo(vector<string>& words1, vector<string>& words2, vector<pair<string, string>> pairs) {
+        if (words1.size() != words2.size()) return false;
+        unordered_map<string, unordered_set<string>> m;
+        for (auto pair : pairs) {
+            m[pair.first].insert(pair.second);
+            m[pair.second].insert(pair.first);
+        }
+        for (int i = 0; i < words1.size(); ++i) {
+            unordered_set<string> visited;
+            if (!helper(m, words1[i], words2[i], visited)) return false;
+        }
+        return true;
+    }
+    bool helper(unordered_map<string, unordered_set<string>>& m, string& cur, string& target, unordered_set<string>& visited) {
+        if (cur == target) return true;
+        visited.insert(cur);
+        for (string word : m[cur]) {
+            if (!visited.count(word) && helper(m, word, target, visited)) return true;
+        }
+        return false;
+    }
+};
+
+下面这种解法就是碉堡了的联合查找 Union Find 了，这种解法的核心是一个 getRoot 函数，如果两个元素属于同一个群组的话，调用 getRoot 
+函数会返回相同的值。主要分为两部，第一步是建立群组关系，suppose 开始时每一个元素都是独立的个体，各自属于不同的群组。然后对于每一个
+给定的关系对，对两个单词分别调用 getRoot 函数，找到二者的祖先结点，如果从未建立过联系的话，那么二者的祖先结点时不同的，此时就要建立
+二者的关系。等所有的关系都建立好了以后，第二步就是验证两个任意的元素是否属于同一个群组，就只需要比较二者的祖先结点都否相同啦。是不是
+有点深度学习的赶脚，先建立模型 training，然后再 test。哈哈，博主乱扯的，二者并没有什么联系。这里保存群组关系的数据结构，有时用数组，
+有时用 HashMap，看输入的数据类型吧，如果输入元素的整型数的话，用 root 数组就可以了，如果是像本题这种的字符串的话，需要用 HashMap 
+来建立映射，建立每一个结点和其祖先结点的映射。注意这里的祖先结点不一定是最终祖先结点，而最终祖先结点的映射一定是最重祖先结点，所以 
+getRoot 函数的设计思路就是要找到最终祖先结点，那么就是当结点和其映射结点相同时返回，否则继续循环，可以递归写，也可以迭代写，这无所谓。
+注意这里第一行判空是相当于初始化，这个操作可以在外面写，就是要让初始时每个元素属于不同的群组
+class Solution {
+public:
+    bool areSentencesSimilarTwo(vector<string>& words1, vector<string>& words2, vector<pair<string, string>> pairs) {
+        if (words1.size() != words2.size()) return false;
+        unordered_map<string, string> m;       
+        for (auto pair : pairs) {
+            string x = getRoot(pair.first, m), y = getRoot(pair.second, m);
+            if (x != y) m[x] = y;
+        }
+        for (int i = 0; i < words1.size(); ++i) {
+            if (getRoot(words1[i], m) != getRoot(words2[i], m)) return false;
+        }
+        return true;
+    }
+    string getRoot(string word, unordered_map<string, string>& m) {
+        if (!m.count(word)) m[word] = word;
+        return word == m[word] ? word : getRoot(m[word], m);
+    }
+};
+*/
