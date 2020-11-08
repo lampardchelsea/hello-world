@@ -199,3 +199,7 @@ Section 4: DFS
 16. [Sentence Similarity I & II] (https://www.lintcode.com/problem/sentence-similarity/description)  
     [Answer 1:] (https://www.cnblogs.com/grandyang/p/8016251.html)  
     [Answer 2:] (https://www.cnblogs.com/grandyang/p/8053934.html)  
+
+17. [Redundant Connection I & II] ()  
+    [Answer 1:] ()  
+    [Answer 2:] ()  
