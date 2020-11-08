@@ -195,3 +195,7 @@ Section 4: DFS
 15. [Word Break I & II] (https://leetcode.com/problems/word-break/)  
     [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/DFS_Memoization/WordBreak.java)  
     [Answer 2:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/WordBreakII.java)  
+
+16. [Sentence Similarity I & II] (https://www.lintcode.com/problem/sentence-similarity/description)  
+    [Answer 1:] (https://www.cnblogs.com/grandyang/p/8016251.html)  
+    [Answer 2:] (https://www.cnblogs.com/grandyang/p/8053934.html)  
