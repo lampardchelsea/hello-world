@@ -219,3 +219,55 @@ public:
     }
 };
 */
+
+// DFS
+public class Solution {
+    /**
+     * @param words1: a list of string
+     * @param words2: a list of string
+     * @param pairs: a list of string pairs
+     * @return: return a boolean, denote whether two sentences are similar or not
+     */
+    public boolean isSentenceSimilarity(String[] words1, String[] words2, List<List<String>> pairs) {
+        if(words1.length != words2.length) {
+            return false;
+        }
+        Map<String, Set<String>> similar_words = new HashMap<String, Set<String>>();
+        for(List<String> pair : pairs) {
+            similar_words.putIfAbsent(pair.get(0), new HashSet<String>());
+            similar_words.get(pair.get(0)).add(pair.get(1));
+            similar_words.putIfAbsent(pair.get(1), new HashSet<String>());
+            similar_words.get(pair.get(1)).add(pair.get(0));
+        }
+        for(int i = 0; i < words1.length; i++) {
+            if(words1[i].equals(words2[i])) {
+                continue;
+            }
+            if(!similar_words.containsKey(words1[i])) {
+                return false;
+            }
+            if(!helper(words1[i], words2[i], similar_words, new HashSet<String>())) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private boolean helper(String cur, String target, Map<String, Set<String>> map, Set<String> visited) {
+        if(visited.contains(cur)) {
+            return false;
+        }
+        if(cur.equals(target)) {
+            return true;
+        }
+        visited.add(cur);
+        for(String next : map.get(cur)) {
+            if(helper(next, target, map, visited)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+// Union Find
