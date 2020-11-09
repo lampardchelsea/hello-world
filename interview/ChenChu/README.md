@@ -201,5 +201,5 @@ Section 4: DFS
     [Answer 2:] (https://www.cnblogs.com/grandyang/p/8053934.html)  
 
 17. [Redundant Connection I & II] ()  
-    [Answer 1:] ()  
-    [Answer 2:] ()  
+    [Answer 1:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/RedundantConnection.java)  
+    [Answer 2:] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/RedundantConnectionII.java)  
