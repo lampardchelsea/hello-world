@@ -245,3 +245,39 @@ class Solution {
         return false;
     }
 }
+
+// Re-work
+// Just remove the UnionFind class template and retrieve its core concept to run
+class Solution {
+    public int[] findRedundantConnection(int[][] edges) {
+        int numNodes = 2 * edges.length + 1;
+        int[] parent = new int[numNodes];
+        for(int i = 0; i < numNodes; i++) {
+            parent[i] = i;
+        }
+        for(int[] edge : edges) {
+            if(find(edge[0], parent) == find(edge[1], parent)) {
+                return edge;
+            }
+            union(edge[0], edge[1], parent);
+        }
+        return null;
+    }
+    
+    private int find(int x, int[] parent) {
+        if(x == parent[x]) {
+            return x;
+        }
+        return parent[x] = find(parent[x], parent);
+    }
+    
+    private void union(int x, int y, int[] parent) {
+        int src = find(x, parent);
+        int dst = find(y, parent);
+        if(src != dst) {
+            parent[src] = dst;
+        }
+    }
+}
+
+
