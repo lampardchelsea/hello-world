@@ -36,7 +36,77 @@ is > 1 before decrement, then count of repeated characters minus 1.
 If runner >= K-1 and there is no repeated characters, then res++.
 Time Complexity: O(n). n = S.length.
 Space: O(1).
+class Solution {
+    public int numKLenSubstrNoRepeats(String S, int K) {
+        if(S == null || S.length() < K){
+            return 0;
+        }
+        int [] map = new int[26];
+        int runner = 0;
+        int count = 0;
+        int res = 0;
+        while(runner < S.length()){
+            // Have runner to point the char in S. When frequency of this char is already >0, 
+            // which means it appears before, then have count of repeated characters plus 1.
+            if(map[S.charAt(runner)-'a']++ > 0){
+                count++;
+            }
+            // If runner >= K, then decrement S.charAt(runner-K) frequency. If its frequency 
+            // is > 1 before decrement, then count of repeated characters minus 1.
+            if(runner >= K){
+                if(map[S.charAt(runner-K)-'a']-- > 1){
+                    count--;
+                }
+            }
+            // If runner >= K-1 and there is no repeated characters, then res++.
+            if(runner >=K-1 && count == 0){
+                res++;
+            }
+            runner++;
+        }
+        return res;
+    }
+}
 */
+class Solution {
+    public int numKLenSubstrNoRepeats(String S, int K) {
+        if(S == null || S.length() < K) {
+            return 0;
+        }
+        int[] freq = new int[26];
+        // Have index to point the char in S
+        int index = 0;
+        int repeatCharCount = 0;
+        int result = 0;
+        while(index < S.length()) {
+            // Have index to point the char in S. When frequency of this char after update > 1, 
+            // which means it appears before, then have count of repeated characters plus 1.
+            freq[S.charAt(index) - 'a']++;
+            if(freq[S.charAt(index) - 'a'] > 1) {
+                repeatCharCount++;
+            }
+            // If index >= K, then decrement S.charAt(index - K) frequency. If its frequency 
+            // is > 0 after decrement, then count of repeated characters minus 1, since previously
+            // its counted as repeated character but since move out of slide window left boundary,
+            // have to remove it out from count of repeated characters
+            if(index >= K) {
+                freq[S.charAt(index - K) - 'a']--;
+                if(freq[S.charAt(index - K) - 'a'] > 0) {
+                    repeatCharCount--;
+                }
+            }
+            // If index >= K - 1 and there is no repeated characters, then means we found a result++.
+            if(index >= K - 1 && repeatedCharCount == 0) {
+                result++;
+            }
+            index++;
+        }
+        return result;
+    }
+}
+
+
+
 
 // https://www.jianshu.com/p/5871c1654762
 /**
