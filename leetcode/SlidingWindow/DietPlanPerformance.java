@@ -70,3 +70,32 @@ public int dietPlanPerformance(int[] calories, int k, int lower, int upper) {
 As we can see, we have followed the template to sum up the calories as we go and add in points based on the 
 window size. The window size remains constant as we go further in the array.
 */
+// The solution template is very similar to Find K-Length Substrings With No Repeated Characters
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/SlidingWindow/FindKLengthSubstringsWithNoRepeatedCharacters.java
+class Solution {
+    public int dietPlanPerformance(int[] calories, int k, int lower, int upper) {
+        if(k > calories.length) {
+            return 0;
+        }
+        int points = 0;
+        int sumCal = 0;
+        for(int i = 0; i < calories.length; i++) {
+            // Add new
+            sumCal += calories[i];
+            // Remove old
+            if(i >= k) {
+                sumCal -= calories[i - k];
+            }
+            // Collect result when we have a range as length of k
+            if(i >= k - 1) {
+                if(sumCal < lower) {
+                    points += -1;
+                }
+                if(sumCal > higher) {
+                    points += 1;
+                }
+            }
+        }
+        return points;
+    }
+}
