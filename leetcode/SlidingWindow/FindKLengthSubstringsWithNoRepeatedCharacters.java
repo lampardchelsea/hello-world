@@ -78,6 +78,7 @@ class Solution {
         return count;
     }
 }
+
 Runtime低于54.58%的submission应该主要还是因为使用了HashMap。换成之前的根据ASCII码个数设置的256数组试试
 class Solution {
     // Runtime: 3 ms, faster than 92.09% of Java online submissions for Find K-Length Substrings With No Repeated Characters.
