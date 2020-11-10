@@ -35,3 +35,38 @@ Constraints:
 // Solution 1: Sliding Window
 // Refer to
 // https://medium.com/@leetcodesolver/sliding-window-738403b3bd1d
+/**
+The sample template which would be useful to solve the above three problems are :
+windowSize - a variable that defines the size of the window
+arr - array consisting the list of numbers
+Element - represent the element of the array - it might be an integer, string, character (based on the array type)
+for(int i = 0; i < arr.length; i++) {
+  Element element = arr[i];
+  if( i > windowSize - 1) { 
+    // perform a series of actions as required by the problem.
+    // remove the first element of the window which has been visited 
+    // so that we could move ahead in the array without affecting      
+    // the window size
+  }
+}
+
+public int dietPlanPerformance(int[] calories, int k, int lower, int upper) {
+        if(k > calories.length)
+            return 0;
+        int points = 0, sumCal = 0;
+        for(int j = 0; j < calories.length; j++) {
+            sumCal += calories[j];
+            if(j >= k-1) {
+                if(j > k-1) {
+                    sumCal -= calories[j - k];
+                }
+                points += sumCal < lower ? -1 : 
+                          ((sumCal > upper) ? 1 : 0);    
+            }
+        }
+        return points;
+    }
+    
+As we can see, we have followed the template to sum up the calories as we go and add in points based on the 
+window size. The window size remains constant as we go further in the array.
+*/
