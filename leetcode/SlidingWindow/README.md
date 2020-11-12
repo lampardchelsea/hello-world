@@ -16,4 +16,5 @@
 <p>1. [Fixed length sliding window] (https://code.dennyzhang.com/minimum-swaps-to-group-all-1s-together)
 <p>2. [Template for fixed length sliding window] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/SlidingWindow/FindKLengthSubstringsWithNoRepeatedCharacters.java)   
   
-<p>
+<p>Grumpy Bookstore Owner
+<p>1. [Fixed length sliding window + Convert the problem into satisfied people + possible max un-satisfied people can be get from sliding window] (https://leetcode.com/problems/grumpy-bookstore-owner/discuss/299230/JavaPython-3-Sliding-window.)
