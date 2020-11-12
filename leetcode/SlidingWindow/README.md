@@ -18,3 +18,6 @@
   
 <p>Grumpy Bookstore Owner
 <p>1. [Fixed length sliding window + Convert the problem into satisfied people + possible max un-satisfied people can be get from sliding window] (https://leetcode.com/problems/grumpy-bookstore-owner/discuss/299230/JavaPython-3-Sliding-window.)
+
+<p>Maximum Number of Vowels in a Substring of Given Length
+<p>1. [Fixed length sliding window] (https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/discuss/648559/JavaPython-3-Slide-Window-O(n)-codes.)
