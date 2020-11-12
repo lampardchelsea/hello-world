@@ -14,5 +14,6 @@
 
 <p>Minimum Swaps to Group All 1's Together
 <p>1. [Fixed length sliding window] (https://code.dennyzhang.com/minimum-swaps-to-group-all-1s-together)
+<p>2. [Template for fixed length sliding window] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/SlidingWindow/FindKLengthSubstringsWithNoRepeatedCharacters.java)   
   
 <p>
