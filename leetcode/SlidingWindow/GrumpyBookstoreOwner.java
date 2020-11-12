@@ -59,6 +59,46 @@ class Solution {
     }
 }
 
-// Solution 2:
+// Solution 2: Convert the problem into satisfied people + possible max un-satisfied people can be get from sliding window,
+//             since in sliding window we can convert these un-satified people into satisfied, so max un-satisfied means
+//             we can get max satisfied after converting
 // Refer to
-// 
+// https://leetcode.com/problems/grumpy-bookstore-owner/discuss/299230/JavaPython-3-Sliding-window.
+/**
+Use a sliding window winOfMakeSatisfied to record the number of unsatisfied customers for X minutes. 
+Deduct the unsatisfied customers from left end of the sliding window when it is wider than X:
+winOfMakeSatisfied -= grumpy[i - X] * customers[i - X];.
+Use satisfied to record the number of satistified customers without grumpy technique.
+by the end of iterations, satisfied + max(winOfMakeSatisfied) is the answer.
+    public int maxSatisfied(int[] customers, int[] grumpy, int X) {
+        int satisfied = 0, maxMakeSatisfied = 0;
+        for (int i = 0, winOfMakeSatisfied = 0; i < grumpy.length; ++i) {
+            if (grumpy[i] == 0) { satisfied += customers[i]; }
+            else { winOfMakeSatisfied += customers[i]; }
+            if (i >= X) {
+                winOfMakeSatisfied -= grumpy[i - X] * customers[i - X];
+            }
+            maxMakeSatisfied = Math.max(winOfMakeSatisfied, maxMakeSatisfied);
+        }
+        return satisfied + maxMakeSatisfied;        
+    }
+*/
+class Solution {
+    public int maxSatisfied(int[] customers, int[] grumpy, int X) {
+        int maxUnsatisfied = 0;
+        int curWindowUnsatisfied = 0;
+        int satisfied = 0;
+        for(int i = 0; i < customers.length; i++) {
+            if(grumpy[i] == 0) {
+                satisfied += customers[i];
+            } else {
+                curWindowUnsatisfied += customers[i];
+            }
+            if(i >= X) {
+                curWindowUnsatisfied -= customers[i - X] * grumpy[i - X];
+            }
+            maxUnsatisfied = Math.max(maxUnsatisfied, curWindowUnsatisfied);
+        }
+        return satisfied + maxUnsatisfied;
+    }
+}
