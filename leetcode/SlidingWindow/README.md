@@ -11,3 +11,8 @@
 <p>Max Consecutive Ones III
 <p>1. [Unfixed length sliding window using two pointers + criteria] (https://leetcode.com/problems/max-consecutive-ones-iii/discuss/247564/JavaC%2B%2BPython-Sliding-Window)
 <p>2. [Unfixed length sliding window using two pointers + criteria] (https://leetcode.com/problems/max-consecutive-ones-iii/discuss/248287/java-sliding-windows-with-comments-in-line)
+
+<p>Minimum Swaps to Group All 1's Together
+<p>1. [Fixed length sliding window] (https://code.dennyzhang.com/minimum-swaps-to-group-all-1s-together)
+  
+<p>
