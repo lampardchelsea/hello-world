@@ -24,6 +24,41 @@ Note:
 0 <= grumpy[i] <= 1
 */
 
-// Solution 1: Fixed length sliding window
+// Solution 1: Fixed length sliding window but TLE
+/**
+76 / 78 test cases passed
+*/
+class Solution {
+    public int maxSatisfied(int[] customers, int[] grumpy, int X) {
+        int max = 0;
+        int curWindowMax = 0;
+        int curTotalMax = 0;
+        for(int i = 0; i < customers.length; i++) {
+            curWindowMax += customers[i];
+            if(i >= X) {
+                curWindowMax -= customers[i - X];
+            }
+            if(i >= X - 1) {
+                int pre_remain = 0;
+                int after_remain = 0;
+                for(int j = 0; j < i - X + 1; j++) {
+                    if(grumpy[j] == 0) {
+                        pre_remain += customers[j];
+                    }
+                }
+                for(int k = i + 1; k < customers.length; k++) {
+                    if(grumpy[k] == 0) {
+                        after_remain += customers[k];
+                    }
+                }
+                curTotalMax = curWindowMax + pre_remain + after_remain;
+                max = Math.max(curTotalMax, max);
+            }
+        }
+        return max;
+    }
+}
+
+// Solution 2:
 // Refer to
 // 
