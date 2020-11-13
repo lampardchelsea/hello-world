@@ -21,3 +21,7 @@
 
 <p>Maximum Number of Vowels in a Substring of Given Length
 <p>1. [Fixed length sliding window] (https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/discuss/648559/JavaPython-3-Slide-Window-O(n)-codes.)
+
+<p>Longest Substring with At Most Two Distinct Characters
+<p>1. [Unfixed length sliding window using two pointers + criteria] (https://github.com/cherryljr/LeetCode/blob/master/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.java)
+<p>2. [Longest Substring with At Most K Distinct Characters] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/String/LongestSubstringWithAtMostKDistinctCharacters.java)
