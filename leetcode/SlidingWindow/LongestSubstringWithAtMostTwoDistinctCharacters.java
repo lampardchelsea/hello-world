@@ -64,7 +64,7 @@ public class Solution {
     }
 }
 
-// Refer to
+// Good example refer to
 // https://github.com/cherryljr/LeetCode/blob/master/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.java
 /**
  * Using Sliding Window Template
