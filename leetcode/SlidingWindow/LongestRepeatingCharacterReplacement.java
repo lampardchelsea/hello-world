@@ -52,6 +52,8 @@ Then as end increase, the whole substring from 0 to end will violate the rule, s
 reach such situation, we update our max length.
 */
 
+
+// Why we don't update "maxRepeat" ?
 // Refer to
 // https://leetcode.com/problems/longest-repeating-character-replacement/discuss/91271/Java-12-lines-O(n)-sliding-window-solution-with-explanation/95833
 // https://leetcode.com/problems/longest-repeating-character-replacement/discuss/91271/Java-12-lines-O(n)-sliding-window-solution-with-explanation/95822
@@ -117,6 +119,8 @@ Execution:
   have tested so far). The algorithm becomes a search for the max and we only need to set the max when we have a new max.
 */
 
+
+// Why we have "j - i + 1 - maxRepeat > k" ?
 // Refer to
 // https://leetcode.com/problems/longest-repeating-character-replacement/discuss/91271/Java-12-lines-O(n)-sliding-window-solution-with-explanation/137008
 /**
