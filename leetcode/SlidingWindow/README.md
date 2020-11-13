@@ -9,8 +9,8 @@
 <p>1. [Fixed length sliding window] (https://medium.com/@leetcodesolver/sliding-window-738403b3bd1d)
   
 <p>Max Consecutive Ones III
-<p>1. [Unfixed length sliding window using two pointers + criteria] (https://leetcode.com/problems/max-consecutive-ones-iii/discuss/247564/JavaC%2B%2BPython-Sliding-Window)
-<p>2. [Unfixed length sliding window using two pointers + criteria] (https://leetcode.com/problems/max-consecutive-ones-iii/discuss/248287/java-sliding-windows-with-comments-in-line)
+<p>1. [Not fixed length sliding window using two pointers + criteria] (https://leetcode.com/problems/max-consecutive-ones-iii/discuss/247564/JavaC%2B%2BPython-Sliding-Window)
+<p>2. [Not fixed length sliding window using two pointers + criteria] (https://leetcode.com/problems/max-consecutive-ones-iii/discuss/248287/java-sliding-windows-with-comments-in-line)
 
 <p>Minimum Swaps to Group All 1's Together
 <p>1. [Fixed length sliding window] (https://code.dennyzhang.com/minimum-swaps-to-group-all-1s-together)
@@ -23,5 +23,11 @@
 <p>1. [Fixed length sliding window] (https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/discuss/648559/JavaPython-3-Slide-Window-O(n)-codes.)
 
 <p>Longest Substring with At Most Two Distinct Characters
-<p>1. [Unfixed length sliding window using two pointers + criteria] (https://github.com/cherryljr/LeetCode/blob/master/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.java)
+<p>1. [Not fixed length sliding window using two pointers + criteria] (https://github.com/cherryljr/LeetCode/blob/master/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.java)
 <p>2. [Longest Substring with At Most K Distinct Characters] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/String/LongestSubstringWithAtMostKDistinctCharacters.java)
+
+<p>Longest Repeating Character Replacement
+<p>1. [Not fixed length window using two pointers + criteria] (https://leetcode.com/problems/longest-repeating-character-replacement/discuss/91271/Java-12-lines-O(n)-sliding-window-solution-with-explanation)
+<p>2. [Why we don't update "maxRepeat" ? 1] (https://leetcode.com/problems/longest-repeating-character-replacement/discuss/91271/Java-12-lines-O(n)-sliding-window-solution-with-explanation/95833)
+<p>3. [Why we don't update "maxRepeat" ? 2] (https://leetcode.com/problems/longest-repeating-character-replacement/discuss/91271/Java-12-lines-O(n)-sliding-window-solution-with-explanation/95822)
+<p>4. [Why we have "j - i + 1 - maxRepeat > k" ?] (https://leetcode.com/problems/longest-repeating-character-replacement/discuss/91271/Java-12-lines-O(n)-sliding-window-solution-with-explanation/137008)
