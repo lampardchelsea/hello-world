@@ -59,3 +59,43 @@ class Solution {
         return result;
     }
 }
+
+// Solution 2: DP
+// Refer to
+// https://leetcode.com/problems/longest-turbulent-subarray/discuss/222511/DP-Thinking-Process-(Java)
+/**
+Intuitively, we can enumerate all possible subarrays and keep track of the longest turbulent subarray.
+After observation, we realize that the last element of the longest turbulent subarray must be one of elements in A.
+
+Let's define
+state[i]: longest turbulent subarray ending at A[i]
+state transition relies on the comparison sign between A[i - 1] and A[i], so
+state[i][0]: longest turbulent subarray ending at A[i] and A[i-1] < A[i]
+state[i][1]: longest turbulent subarray ending at A[i] and A[i-1] > A[i]
+
+state transition is
+state[i][0] = state[i - 1][1] + 1 or 1
+state[i][1] = state[i - 1][0] + 1 or 1
+
+We maintain maxLen as the maximum element in the state array.
+The result should be maxlen + 1.
+
+    public int maxTurbulenceSize(int[] A) {
+        if (A.length == 0) return 0;
+        
+        int n = A.length, maxLen = 0;
+        int[][] state = new int[n][2];
+        
+        for (int i = 1; i < n; i++) {
+            if (A[i - 1] < A[i]) {
+                state[i][0] = state[i - 1][1] + 1;
+                maxLen = Math.max(maxLen, state[i][0]);
+            } else if (A[i - 1] > A[i]) {
+                state[i][1] = state[i - 1][0] + 1;  
+                maxLen = Math.max(maxLen, state[i][1]);
+            }
+        }
+        
+        return maxLen + 1;
+    }
+*/
