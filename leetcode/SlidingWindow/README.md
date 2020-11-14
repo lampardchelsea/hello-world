@@ -34,3 +34,4 @@
 
 <p>Longest Turbulent Subarray
 <p>1. [Two flag to record] (https://leetcode.com/problems/longest-turbulent-subarray/discuss/221935/Java-O(N)-time-O(1)-space)
+<p>2. [DP] (https://leetcode.com/problems/longest-turbulent-subarray/discuss/222511/DP-Thinking-Process-(Java)) 
