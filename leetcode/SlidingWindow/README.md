@@ -31,3 +31,6 @@
 <p>2. [Why we don't update "maxRepeat" ? 1] (https://leetcode.com/problems/longest-repeating-character-replacement/discuss/91271/Java-12-lines-O(n)-sliding-window-solution-with-explanation/95833)
 <p>3. [Why we don't update "maxRepeat" ? 2] (https://leetcode.com/problems/longest-repeating-character-replacement/discuss/91271/Java-12-lines-O(n)-sliding-window-solution-with-explanation/95822)
 <p>4. [Why we have "j - i + 1 - maxRepeat > k" ?] (https://leetcode.com/problems/longest-repeating-character-replacement/discuss/91271/Java-12-lines-O(n)-sliding-window-solution-with-explanation/137008)
+
+<p>Longest Turbulent Subarray
+<p>1. [Two flag to record] (https://leetcode.com/problems/longest-turbulent-subarray/discuss/221935/Java-O(N)-time-O(1)-space)
