@@ -96,8 +96,10 @@ class Solution {
                 }
             }
             // If index >= K - 1 and there is no repeated characters, then means we found a result++.
-            if(index >= K - 1 && repeatedCharCount == 0) {
-                result++;
+            if(index >= K - 1) {
+                if(repeatedCharCount == 0) {
+                    result++;
+                }
             }
             index++;
         }
