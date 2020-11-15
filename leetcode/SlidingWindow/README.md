@@ -35,3 +35,6 @@
 <p>Longest Turbulent Subarray
 <p>1. [Two flag to record] (https://leetcode.com/problems/longest-turbulent-subarray/discuss/221935/Java-O(N)-time-O(1)-space)
 <p>2. [DP] (https://leetcode.com/problems/longest-turbulent-subarray/discuss/222511/DP-Thinking-Process-(Java)) 
+
+<p>Maximum Points You Can Obtain from Cards
+<p>1. [Fixed length sliding window + Find the smallest subarray sum of length len(cardPoints) - k] (https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/discuss/597763/Python3-Easy-Sliding-Window-O(n)%3A-Find-minimum-subarray)
