@@ -38,3 +38,6 @@
 
 <p>Maximum Points You Can Obtain from Cards
 <p>1. [Fixed length sliding window + Find the smallest subarray sum of length len(cardPoints) - k] (https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/discuss/597763/Python3-Easy-Sliding-Window-O(n)%3A-Find-minimum-subarray)
+
+<p>Permutation in String
+<p>1. [Fixed length sliding window] (https://leetcode.com/problems/permutation-in-string/discuss/102588/Java-Solution-Sliding-Window)
