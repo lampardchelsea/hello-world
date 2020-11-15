@@ -45,3 +45,7 @@
 <p>Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit
 <p>1. [Not fixed length sliding window + TreeMap to get natural sort for getting maximum / minimum value in window easily] (https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/discuss/609771/JavaC%2B%2BPython-Deques-O(N))
 <p>2. [How to use TreeMap for get maximum / minimum value in window ?] (https://www.baeldung.com/java-treemap)
+
+<p>Get Equal Substrings Within Budget
+<p>1. [Not fixed length sliding window] (https://leetcode.com/problems/get-equal-substrings-within-budget/discuss/392837/JavaC%2B%2BPython-Sliding-Window)
+<p>2. [Not fixed length sliding window] (https://leetcode.com/problems/get-equal-substrings-within-budget/discuss/392833/C%2B%2B-Sliding-window-O(n)-and-Prefix-sum-O(nlogn)-implementations)
