@@ -40,6 +40,8 @@ class Solution {
                 if(allZero(s1_freq)) {
                     return true;
                 }
+                // Since we remove element as index at i - s1_len at first by s1_freq[s2.charAt(i) - 'a']--,
+                // now we recover it by add 1 after this element out of sliding window
                 s1_freq[s2.charAt(i - s1_len) - 'a']++;
             }
             if(i >= s1_len - 1) {
