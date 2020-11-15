@@ -41,3 +41,7 @@
 
 <p>Permutation in String
 <p>1. [Fixed length sliding window] (https://leetcode.com/problems/permutation-in-string/discuss/102588/Java-Solution-Sliding-Window)
+
+<p>Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit
+<p>1. [Not fixed length sliding window + TreeMap to get natural sort for getting maximum / minimum value in window easily] (https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/discuss/609771/JavaC%2B%2BPython-Deques-O(N))
+<p>2. [How to use TreeMap for get maximum / minimum value in window ?] (https://www.baeldung.com/java-treemap)
