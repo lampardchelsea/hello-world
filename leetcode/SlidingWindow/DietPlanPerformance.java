@@ -32,7 +32,7 @@ Constraints:
 0 <= lower <= upper
 */
 
-// Solution 1: Sliding Window
+// Solution 1: Fixed length sliding window
 // Refer to
 // https://medium.com/@leetcodesolver/sliding-window-738403b3bd1d
 /**
