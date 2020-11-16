@@ -91,7 +91,7 @@ class Solution {
 /**
  * Approach #4 Using hashmap [Accepted]
    Algorithm
-   The idea behind this approach is as follows: If the cumulative sum(repreesnted by sum[i] for sum upto ith index) 
+   The idea behind this approach is as follows: If the cumulative sum(represented by sum[i] for sum upto ith index) 
    upto two indices is the same, the sum of the elements lying in between those indices is zero. Extending the same 
    thought further, if the cumulative sum upto two indices, say i and j is at a difference of k 
    i.e. if sum[i] - sum[j] = k, the sum of elements lying between indices i and j is k.
