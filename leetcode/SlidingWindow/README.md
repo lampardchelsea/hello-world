@@ -53,3 +53,6 @@
 <p>Number of Subsequences That Satisfy the Given Sum Condition
 <p>1. [Not fixed length sliding window + Two pointers to go from two ends to merge together] (https://leetcode.com/problems/number-of-subsequences-that-satisfy-the-given-sum-condition/discuss/709227/JavaC%2B%2BPython-Two-Sum)
 <p>2. [Not fixed length sliding window + Two pointers to go from two ends to merge together] (https://leetcode.com/problems/number-of-subsequences-that-satisfy-the-given-sum-condition/discuss/709227/JavaC++Python-Two-Sum/596404)
+
+<p>Longest Substring Without Repeating Characters
+<p>1. [Not fixed length sliding window + A great promotion on how to avoid check all map values for over 1 exist or not ?] (https://leetcode.com/problems/longest-substring-without-repeating-characters/discuss/1729/11-line-simple-Java-solution-O(n)-with-explanation)
