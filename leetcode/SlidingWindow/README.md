@@ -49,3 +49,7 @@
 <p>Get Equal Substrings Within Budget
 <p>1. [Not fixed length sliding window] (https://leetcode.com/problems/get-equal-substrings-within-budget/discuss/392837/JavaC%2B%2BPython-Sliding-Window)
 <p>2. [Not fixed length sliding window] (https://leetcode.com/problems/get-equal-substrings-within-budget/discuss/392833/C%2B%2B-Sliding-window-O(n)-and-Prefix-sum-O(nlogn)-implementations)
+
+<p>Number of Subsequences That Satisfy the Given Sum Condition
+<p>1. [Not fixed length sliding window + Two pointers to go from two ends to merge together] (https://leetcode.com/problems/number-of-subsequences-that-satisfy-the-given-sum-condition/discuss/709227/JavaC%2B%2BPython-Two-Sum)
+<p>2. [Not fixed length sliding window + Two pointers to go from two ends to merge together] (https://leetcode.com/problems/number-of-subsequences-that-satisfy-the-given-sum-condition/discuss/709227/JavaC++Python-Two-Sum/596404)
