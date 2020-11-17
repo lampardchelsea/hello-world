@@ -56,3 +56,7 @@
 
 <p>Longest Substring Without Repeating Characters
 <p>1. [Not fixed length sliding window + A great promotion on how to avoid check all map values for over 1 exist or not ?] (https://leetcode.com/problems/longest-substring-without-repeating-characters/discuss/1729/11-line-simple-Java-solution-O(n)-with-explanation)
+
+<p>Number of Submatrices That Sum to Target
+<p>1. [560. Subarray Sum Equals K] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/SubarraySumEqualsK.java)
+<p>2. [560. Subarray Sum Equals K + Not fixed sliding window implement by two pointers to control columns range] (https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/discuss/303750/JavaC%2B%2BPython-Find-the-Subarray-with-Target-Sum)
