@@ -65,3 +65,7 @@
 <p>1. [Not fixed length sliding window + exactly(K) = atMost(K) - atMost(K-1)] (https://leetcode.com/problems/subarrays-with-k-different-integers/discuss/523136/JavaC%2B%2BPython-Sliding-Window)
 <p>2. [Why ret += j - i + 1 ?] (https://leetcode.com/problems/subarrays-with-k-different-integers/discuss/523136/JavaC++Python-Sliding-Window/620828)
 <p>3. [Why ret += j - i + 1 ?] (https://leetcode.com/problems/subarrays-with-k-different-integers/discuss/523136/JavaC++Python-Sliding-Window/631972)
+
+<p>Minimum Window Substring
+<p>1. [Not fixed length sliding window + HashMap] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/String/MinimumWindowSubstring.java)
+<p>2. [Promote by just using int[] array] (https://leetcode.com/problems/minimum-window-substring/discuss/26808/Here-is-a-10-line-template-that-can-solve-most-'substring'-problems/25816)
