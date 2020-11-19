@@ -60,3 +60,8 @@
 <p>Number of Submatrices That Sum to Target
 <p>1. [560. Subarray Sum Equals K] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/SubarraySumEqualsK.java)
 <p>2. [560. Subarray Sum Equals K + Not fixed sliding window implement by two pointers to control columns range] (https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/discuss/303750/JavaC%2B%2BPython-Find-the-Subarray-with-Target-Sum)
+
+<p>Subarrays with K Different Integers
+<p>1. [Not fixed length sliding window + exactly(K) = atMost(K) - atMost(K-1)] (https://leetcode.com/problems/subarrays-with-k-different-integers/discuss/523136/JavaC%2B%2BPython-Sliding-Window)
+<p>2. [Why ret += j - i + 1 ?] (https://leetcode.com/problems/subarrays-with-k-different-integers/discuss/523136/JavaC++Python-Sliding-Window/620828)
+<p>3. [Why ret += j - i + 1 ?] (https://leetcode.com/problems/subarrays-with-k-different-integers/discuss/523136/JavaC++Python-Sliding-Window/631972)
