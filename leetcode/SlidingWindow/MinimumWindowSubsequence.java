@@ -38,3 +38,42 @@ The length of T will be in the range [1, 100].
 O(mn)。旋转，跳跃，我闭着眼，尘嚣看不见，你沉醉了没？博主已经沉醉在这双指针之舞中了
 */
 
+// Refer to
+// http://shibaili.blogspot.com/2018/12/727-minimum-window-subsequence.html
+/**
+Solution #1, 指针
+找到一个匹配之后，以结尾为起始点，倒退着往前找。这样找到的是在[i, j]里最短的符合要求的substring。最坏结果是找到跟原来一摸一样的。
+O(m * n) time. 对Complexity的需要研究一下
+
+ref： https://leetcode.com/problems/minimum-window-subsequence/discuss/109356/JAVA-two-pointer-solution-(12ms-beat-100)-with-explaination
+class Solution {
+    public String minWindow(String s, String t) {
+        int si = 0, ti = 0;
+        String rt = s + "123";
+        while (si < s.length()) {
+            if (s.charAt(si) == t.charAt(ti)) {
+                if (ti == t.length() - 1) {
+                    int end = si;                    
+                    while (ti >= 0) {
+                        while (s.charAt(si) != t.charAt(ti)) {
+                            si--;
+                        }
+                        ti--;
+                        si--;
+                    }
+                    
+                    si++;
+                    if (rt.length() > end - si + 1) {
+                        rt = s.substring(si, end + 1);
+                    }
+                }
+                ti++;
+            }
+            
+            si++;
+        }
+        
+        return rt.equals(s + "123") ? "" : rt;
+    }
+}
+*/
