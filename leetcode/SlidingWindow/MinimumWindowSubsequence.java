@@ -78,3 +78,50 @@ class Solution {
     }
 }
 */
+public class Solution {
+    /**
+     * @param S: a string
+     * @param T: a string
+     * @return: the minimum substring of S
+     */
+    public String minWindow(String S, String T) {
+        int i = 0; // index i for scanning S
+        int j = 0; // index j for scanning T
+        String tmp = S + ".";
+        // Outside while loop try to find first substring that T as subsequence,
+        // for now ignore requirement for minimum substring
+        // e.g S = "bbbbdde", T = "bde", then first substring will be "bbbbdde"
+        while(i < S.length()) {
+            if(S.charAt(i) == T.charAt(j)) {
+                // When we found full T as subsequence as substring of S we start
+                // move backwards to remove duplicate chars of first char in
+                // current found substring of S
+                // e.g currently we found first substring as "bbbbdde" of S that
+                // contains T = "bde" as subsequence, after inner while loop, it
+                // will remove all duplicate 'b' in front of last 'b', so the 
+                // minimum substring will update as "bdde"
+                if(j == T.length() - 1) {
+                    int end = i;
+                    while(j >= 0) {
+                        while(S.charAt(i) != T.charAt(j)) {
+                            i--;
+                        }
+                        i--;
+                        j--;
+                    }
+                    // Make up the additional -1 in while loop
+                    i++;
+                    // Update the substring to minimum length one
+                    if(tmp.length() > end - i + 1) {
+                        tmp = S.substring(i, end + 1);
+                    }
+                }
+                // When we find one digital in S match T increase index for scanning T
+                j++;
+            }
+            i++;
+        }
+        // In case not found (no change) then return empty String
+        return tmp.equals(S + ".") ? "" : tmp;
+    }
+}
