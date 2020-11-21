@@ -69,3 +69,8 @@
 <p>Minimum Window Substring
 <p>1. [Not fixed length sliding window + HashMap] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/String/MinimumWindowSubstring.java)
 <p>2. [Promote by just using int[] array] (https://leetcode.com/problems/minimum-window-substring/discuss/26808/Here-is-a-10-line-template-that-can-solve-most-'substring'-problems/25816)
+
+<p>Minimum Window Subsequence
+<p>1. [Not fixed length + Two points move forward and move back to remove all duplicates] (http://shibaili.blogspot.com/2018/12/727-minimum-window-subsequence.html)
+<p>2. [中文解说] (https://www.cnblogs.com/grandyang/p/8684817.html)
+
