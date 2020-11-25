@@ -7,3 +7,7 @@
 
 <p>Intersection of Three Sorted Arrays
 <p>1. [Three Pointers] (https://www.cnblogs.com/Dylan-Java-NYC/p/12047372.html)
+
+<p>Interval List Intersections
+<p>1. [Two Pointer Approach + Thinking Process Diagrams] (https://leetcode.com/problems/interval-list-intersections/discuss/647482/Python-Two-Pointer-Approach-%2B-Thinking-Process-Diagrams)
+<p>2. [Merge Intervals] (https://leetcode.com/problems/interval-list-intersections/solution/)
