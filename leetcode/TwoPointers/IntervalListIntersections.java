@@ -78,6 +78,8 @@ class Solution {
         while(i < A.length && j < B.length) {
             int lo = Math.max(A[i][0], B[j][0]);
             int hi = Math.min(A[i][1], B[j][1]);
+            // When lo > hi means no intersection between
+            // e.g [1,2] and [3,4] -> lo = 3, hi = 2
             if(lo <= hi) {
                 result.add(new int[] {lo, hi});
             }
