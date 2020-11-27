@@ -125,5 +125,9 @@ We can use StringBuilder as a stack.
         }
         return sb.toString();
     }
+
+Complexity
+Time O(N) for one pass
+Space O(N)
 */
 
