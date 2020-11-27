@@ -61,3 +61,70 @@ We can use StringBuilder as a stack.
     }
 */
 
+// Style 1: Actual stack used
+// Refer to
+// https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/discuss/392933/JavaC++Python-Two-Pointers-and-Stack-Solution/354981
+class Solution {
+    public String removeDuplicates(String s, int k) {
+        Stack<Node> stack = new Stack<Node>();
+        char[] chars = s.toCharArray();
+        for(char c : chars) {
+            // Compare previous char with current char and increase count
+            if(!stack.isEmpty() && stack.peek().c == c) {
+                stack.peek().count++;
+            // If new char set count as 1
+            } else {
+                stack.push(new Node(c, 1));
+            }
+            // If count reach to k then remove char
+            if(stack.peek().count == k) {
+                stack.pop();
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for(Node node : stack) {
+            for(int i = 0; i < node.count; i++) {
+                sb.append(node.c);
+            }
+        }
+        return sb.toString();
+    }
+}
+
+class Node {
+    char c;
+    int count;
+    public Node(char c, int count) {
+        this.c = c;
+        this.count = count;
+    }
+}
+
+// Style 2: No need actual stack but use StringBuilder
+// Refer to
+// https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/discuss/392933/JavaC%2B%2BPython-Two-Pointers-and-Stack-Solution
+/**
+Solution 2: Stack
+Save the character c and its count to the stack.
+If the next character c is same as the last one, increment the count.
+Otherwise push a pair (c, 1) into the stack.
+I used a dummy element ('#', 0) to avoid empty stack.
+
+
+Java
+By @motorix
+We can use StringBuilder as a stack.
+
+    public String removeDuplicates(String s, int k) {
+        int[] count = new int[s.length()];
+        StringBuilder sb = new StringBuilder();
+        for(char c : s.toCharArray()) {
+            sb.append(c);
+            int last = sb.length()-1;
+            count[last] = 1 + (last > 0 && sb.charAt(last) == sb.charAt(last-1) ? count[last-1] : 0);
+            if(count[last] >= k) sb.delete(sb.length()-k, sb.length());
+        }
+        return sb.toString();
+    }
+*/
+
