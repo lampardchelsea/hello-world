@@ -25,6 +25,31 @@ Note:
 /**
 Detail refer to
 https://github.com/lampardchelsea/hello-world/blob/master/leetcode/TwoPointers/Document/Interval_List_Intersections_Two_Points_Thinking_Process.docx
+E.g
+A = [[0,2],[5,10],[13,23],[24,25]]
+B = [[1,5],[8,12],[15,24],[25,26]]
+output = [[1,2],[5,5],[8,10],[15,23],[24,24],[25,25]]
+
+Compare interval range end between first element in array A and B
+A[0][1] = 2 < B[0][1] = 5	
+output[0][0] = Math.max(A[0][0], B[0][0]) -> Math.max(0, 1) -> 1
+output[0][1] = Math.min(A[0][1], B[0][1]) -> Math.min(2, 5) -> 2
+
+Since range end of first element in array A smaller than first element in array B,
+that essentially means we have exhausted the range of first element in array A and
+we should move on to next element in array A for a new range
+A[0] -> A[1]
+output[1][0] = Math.max(A[1][0], B[0][0]) -> Math.max(5, 1) -> 5
+output[1][1] = Math.min(A[1][1], B[0][1]) -> Math.min(10, 5) -> 5
+
+Now range end of second element in array A larger than first element range end in
+array B, that essentially means we have exhausted the range of first element in array
+B and we should move on to next element in array B for a new range
+B[0] -> B[1]
+output[2][0] = Math.max(A[1][0], B[1][0]) -> Math.max(5, 8) -> 8
+output[2][1] = Math.min(A[1][1], B[1][1]) -> Math.min(10, 12) -> 10
+
+Repeat process until exhausted both A and B
 */
 
 // https://leetcode.com/problems/interval-list-intersections/solution/
