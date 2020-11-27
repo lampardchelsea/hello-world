@@ -110,7 +110,6 @@ If the next character c is same as the last one, increment the count.
 Otherwise push a pair (c, 1) into the stack.
 I used a dummy element ('#', 0) to avoid empty stack.
 
-
 Java
 By @motorix
 We can use StringBuilder as a stack.
