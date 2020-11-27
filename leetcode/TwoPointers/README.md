@@ -11,3 +11,9 @@
 <p>Interval List Intersections
 <p>1. [Two Pointer Approach + Thinking Process Diagrams] (https://leetcode.com/problems/interval-list-intersections/discuss/647482/Python-Two-Pointer-Approach-%2B-Thinking-Process-Diagrams)
 <p>2. [Merge Intervals] (https://leetcode.com/problems/interval-list-intersections/solution/)
+
+<p>Candy Crash
+<p>1. [Two Pointers] (http://us.jiuzhang.com/problem/candy-crush/#tag-lang-java)
+<p>2. [中文解释] (https://www.cnblogs.com/grandyang/p/7858414.html)
+  
+<p>
