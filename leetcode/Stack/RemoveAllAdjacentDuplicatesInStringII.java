@@ -131,3 +131,25 @@ Time O(N) for one pass
 Space O(N)
 */
 
+// Solution 2: Two Pointers
+// Refer to
+// https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/discuss/392933/JavaC%2B%2BPython-Two-Pointers-and-Stack-Solution
+/**
+Intuition
+If you read my post last month about 1047. Remove All Adjacent Duplicates In String
+you cannot solve this problem easier.
+
+Solution 1: Two Pointers
+java
+    public String removeDuplicates(String s, int k) {
+        int i = 0, n = s.length(), count[] = new int[n];
+        char[] stack = s.toCharArray();
+        for (int j = 0; j < n; ++j, ++i) {
+            stack[i] = stack[j];
+            count[i] = i > 0 && stack[i - 1] == stack[j] ? count[i - 1] + 1 : 1;
+            if (count[i] == k) i -= k;
+        }
+        return new String(stack, 0, i);
+    }
+*/
+
