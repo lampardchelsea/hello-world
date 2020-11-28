@@ -16,4 +16,6 @@
 <p>1. [Two Pointers] (http://us.jiuzhang.com/problem/candy-crush/#tag-lang-java)
 <p>2. [中文解释] (https://www.cnblogs.com/grandyang/p/7858414.html)
   
-<p>
+<p>Shortest Distance to a Character
+<p>1. [Two Pointers] (https://leetcode.com/problems/shortest-distance-to-a-character/solution/) 
+<p>2. [2-Pass with record the position] (https://leetcode.com/problems/shortest-distance-to-a-character/discuss/125788/C%2B%2BJavaPython-2-Pass-with-Explanation)
