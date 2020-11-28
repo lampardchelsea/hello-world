@@ -25,7 +25,7 @@ Constraints:
 1 <= k <= nums.length
 */
 
-// Solution 1: Two Pointers atMost solution --> Same as 992. Subarrays With K Different Integers
+// Solution 1: Not fixed sliding window + Two Pointers atMost solution --> Same as 992. Subarrays With K Different Integers
 // Refer to
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/SlidingWindow/SubarraysWithKDifferentIntegers.java
 // https://leetcode.com/problems/count-number-of-nice-subarrays/discuss/824621/C%2B%2B-Sliding-Window-Solution-O(1)-Space
@@ -77,7 +77,7 @@ class Solution {
     } 
 }
 
-// Solution 2: Three Pointers
+// Solution 2: Not fixed sliding window + Three Pointers
 // Refer to
 // https://leetcode.com/problems/count-number-of-nice-subarrays/discuss/419378/JavaC%2B%2BPython-Sliding-Window-O(1)-Space
 // https://leetcode.com/problems/count-number-of-nice-subarrays/discuss/419378/JavaC++Python-Sliding-Window-O(1)-Space/458810
