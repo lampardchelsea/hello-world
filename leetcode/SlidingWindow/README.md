@@ -74,3 +74,9 @@
 <p>1. [Not fixed length + Two points move forward and move back to remove all duplicates] (http://shibaili.blogspot.com/2018/12/727-minimum-window-subsequence.html)
 <p>2. [中文解说] (https://www.cnblogs.com/grandyang/p/8684817.html)
 
+<p>Count Number of Nice Subarrays
+<p>1. [Same as Subarrays with K Different Integers] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/SlidingWindow/SubarraysWithKDifferentIntegers.java)
+<p>2. [Same as Subarrays with K Different Integers (https://leetcode.com/problems/count-number-of-nice-subarrays/discuss/824621/C%2B%2B-Sliding-Window-Solution-O(1)-Space)
+<p>3. [Three Pointers] (https://leetcode.com/problems/count-number-of-nice-subarrays/discuss/419378/JavaC%2B%2BPython-Sliding-Window-O(1)-Space)
+<p>4. [Three Pointers] (https://leetcode.com/problems/count-number-of-nice-subarrays/discuss/419378/JavaC++Python-Sliding-Window-O(1)-Space/458810)
+<p>5. [992. Subarrays with K Different Integers] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/SlidingWindow/SubarraysWithKDifferentIntegers.java)
