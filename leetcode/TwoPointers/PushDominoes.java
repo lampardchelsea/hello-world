@@ -107,4 +107,53 @@ Java:
 是R，则是上述的情况三，中间还是保持点不变；若左边界是R，右边界是L，则是情况四，那么先加 mid/2 个R，再加 mid%2 个点，
 最后加 mid/2 个L即可。然后i更新为j，继续循环即可
 */
+class Solution {
+    public String pushDominoes(String dominoes) {
+        // Additional 'L' and 'R' on left and right boundary will not effect on result
+        // but will help to build a sliding window starting as [L + original string + ... R/L]
+        // and gradually shift to the end and sliding window as [R/L + ... original string + R]
+        String d = 'L' + dominoes + 'R';
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0, j = 1; j < d.length(); j++) {
+            // Since we looking for next right boundary as either 'L' or 'R',
+            // we skip all '.'
+            if(d.charAt(j) == '.') {
+                continue;
+            }
+            int middle = j - i - 1;
+            if(i > 0) {
+                sb.append(d.charAt(i));
+            }
+            // Case 1: R....R -> RRRRRR
+            // Case 2: L....L -> LLLLLL
+            if(d.charAt(i) == d.charAt(j)) {
+                for(int k = 0; k < middle; k++) {
+                    sb.append(d.charAt(i));
+                }
+            // Case 3: L....R -> L....R
+            } else if(d.charAt(i) == 'L' && d.charAt(j) == 'R') {
+                for(int k = 0; k < middle; k++) {
+                    sb.append('.');
+                }
+            // Case 4: R....L -> RRRLLL or R.....L -> RRR.LLL
+            } else {
+                for(int k = 0; k < middle / 2; k++) {
+                    sb.append('R');
+                }
+                if(middle % 2 == 1) {
+                    sb.append('.');
+                }
+                for(int k = 0; k < middle / 2; k++) {
+                    sb.append('L');
+                }
+            }
+            // Update i to j for next section, like a sliding window gradually
+            // moving to the end, each section is start with 'R' or 'L' and end
+            // with 'R' or 'L'
+            i = j;
+        }
+        return sb.toString();
+    }
+}
 
+// Solution 2: 
