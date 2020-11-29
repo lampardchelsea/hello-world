@@ -19,3 +19,7 @@
 <p>Shortest Distance to a Character
 <p>1. [Two Pointers] (https://leetcode.com/problems/shortest-distance-to-a-character/solution/) 
 <p>2. [2-Pass with record the position] (https://leetcode.com/problems/shortest-distance-to-a-character/discuss/125788/C%2B%2BJavaPython-2-Pass-with-Explanation)
+
+<p>Push Dominoes
+<p>1. [Two Pointers + sliding window] (https://leetcode.com/problems/push-dominoes/discuss/132332/JavaC%2B%2BPython-Two-Pointers)
+<p>2. [Calculate Force] (https://leetcode.com/problems/push-dominoes/solution/)
