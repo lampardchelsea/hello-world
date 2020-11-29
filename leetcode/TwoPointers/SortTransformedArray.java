@@ -83,3 +83,4 @@ nums是有序的，如果不是有序的，我想很难有O(n)的解法。正因
 */
 
 // https://massivealgorithms.blogspot.com/2016/05/sort-transformed-array.html
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/TwoPointers/Document/Sort_Transformed_Array_math_picture_explain.docx
