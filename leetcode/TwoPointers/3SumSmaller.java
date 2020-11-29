@@ -50,4 +50,27 @@ public:
     }
 };
 */
+public class Solution {
+    /**
+     * @param nums:  an array of n integers
+     * @param target: a target
+     * @return: the number of index triplets satisfy the condition nums[i] + nums[j] + nums[k] < target
+     */
+    public int threeSumSmaller(int[] nums, int target) {
+        int count = 0;
+        Arrays.sort(nums);
+        for(int i = 0; i < nums.length - 2; i++) {
+            int sum = target - nums[i];
+            for(int j = i + 1; j < nums.length - 1; j++) {
+                for(int k = j + 1; k < nums.length; k++) {
+                    if(nums[j] + nums[k] < sum) {
+                        count++;
+                    }
+                }
+            }            
+        }
+        return count;
+    }
+}
 
+// Solution 2: 
