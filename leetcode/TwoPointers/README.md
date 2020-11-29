@@ -25,5 +25,5 @@
 <p>2. [Calculate Force] (https://leetcode.com/problems/push-dominoes/solution/)
 
 <p>Sort Transformed Array
-<p>1. [PriorityQueue] (https://www.cnblogs.com/grandyang/p/5595614.html)
-<p>2. [Two Pointers] (https://massivealgorithms.blogspot.com/2016/05/sort-transformed-array.html)
+<p>1. [PriorityQueue O(NlogN) solution + Two Pointers O(N) solution] (https://www.cnblogs.com/grandyang/p/5595614.html)
+<p>2. [Two Pointers O(N) solution picture explain] (https://massivealgorithms.blogspot.com/2016/05/sort-transformed-array.html)
