@@ -80,7 +80,61 @@ nums是有序的，如果不是有序的，我想很难有O(n)的解法。正因
 两端的数，将它们之中较小的数先存入res的开头，然后指针向中间移，重复比较过程，直到把res都填满。
 
 当a=0，函数是单调递增或递减的，那么从前往后填和从后往前填都可以，我们可以将这种情况和a>0合并。
+
+class Solution {
+public:
+    vector<int> sortTransformedArray(vector<int>& nums, int a, int b, int c) {
+        int n = nums.size(), i = 0, j = n - 1;
+        vector<int> res(n);
+        int idx = a >= 0 ? n - 1 : 0;
+        while (i <= j) {
+            if (a >= 0) {
+                res[idx--] = cal(nums[i], a, b, c) >= cal(nums[j], a, b, c) ? cal(nums[i++], a, b, c) : cal(nums[j--], a, b, c);
+            } else {
+                res[idx++] = cal(nums[i], a, b, c) >= cal(nums[j], a, b, c) ? cal(nums[j--], a, b, c) : cal(nums[i++], a, b, c);
+            }
+        }
+        return res;
+    }
+    int cal(int x, int a, int b, int c) {
+        return a * x * x + b * x + c;
+    }
+};
 */
 
 // https://massivealgorithms.blogspot.com/2016/05/sort-transformed-array.html
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/TwoPointers/Document/Sort_Transformed_Array_math_picture_explain.docx
+public class Solution {
+    /**
+     * @param nums: a sorted array
+     * @param a: 
+     * @param b: 
+     * @param c: 
+     * @return: a sorted array
+     */
+    public int[] sortTransformedArray(int[] nums, int a, int b, int c) {
+        int index;
+        if(a > 0) {
+            index = nums.length - 1 ;
+        } else {
+            index = 0;
+        }
+        int result[] = new int[nums.length];
+        int i = 0;
+        int j = nums.length - 1;
+        if(a > 0) {
+            while(i <= j) {
+                result[index--] = helper(nums[i], a, b, c) > helper(nums[j], a, b, c) ? helper(nums[i++], a, b, c) : helper(nums[j--], a, b, c);
+            }
+        } else {
+            while(i <= j) {
+                result[index++] = helper(nums[i], a, b, c) < helper(nums[j], a, b, c) ? helper(nums[i++], a, b, c) : helper(nums[j--], a, b, c);
+            }  
+        }
+        return result;
+    }
+
+    private int helper(int x, int a, int b, int c){
+        return a * x * x + b * x + c;
+    }
+}
