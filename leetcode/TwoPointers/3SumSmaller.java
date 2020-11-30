@@ -100,3 +100,42 @@ public:
     }
 };
 */
+
+// Refer to
+// http://buttercola.blogspot.com/2015/08/leetcode.html
+/**
+Understand the problem:
+The problem looks quite similar to the 3-sum. Thus we could still sort the array first and use two pointers. 
+
+The only thing needs to take special care of is how to move the pointers. There are two cases to handle: 
+  -- If A[i] + A[j] + A[k] < target, which means the numbers between j and k are all less than target, 
+  because the array is sorted. Then we move the j pointer forward. 
+  -- If A[i] + A[j] + A[k] >= target, we move k pointer backward.
+public class Solution {
+    public int threeSumSmaller(int[] nums, int target) {
+        if (nums == null || nums.length < 3) {
+            return 0;
+        }
+         
+        int result = 0;
+        Arrays.sort(nums);
+         
+        for (int i = 0; i < nums.length - 2; i++) {
+            int j = i + 1;
+            int k = nums.length - 1;
+            while (j < k) {
+                if (nums[i] + nums[j] + nums[k] < target) {
+                    result += (k - j);
+                    j++;
+                } else {
+                    k--;
+                }
+            }
+        }
+         
+        return result;
+    }
+}
+*/
+
+
