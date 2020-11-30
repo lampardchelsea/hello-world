@@ -27,3 +27,7 @@
 <p>Sort Transformed Array
 <p>1. [PriorityQueue O(NlogN) solution + Two Pointers O(N) solution] (https://www.cnblogs.com/grandyang/p/5595614.html)
 <p>2. [Two Pointers O(N) solution picture explain] (https://massivealgorithms.blogspot.com/2016/05/sort-transformed-array.html)
+
+<p>3 Sum Smaller
+<p>1. [Brute force + 3 Pointers] (https://www.cnblogs.com/grandyang/p/5235086.html)
+<p>2. [3 Pointers] (http://buttercola.blogspot.com/2015/08/leetcode.html)
