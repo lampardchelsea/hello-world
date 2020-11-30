@@ -46,3 +46,35 @@ class Solution {
         return count;
     }
 }
+
+// Solution 2: Prefix Sum
+// Refer to
+// https://leetcode.com/problems/binary-subarrays-with-sum/solution/
+/**
+Approach 2: Prefix Sums
+Intuition
+Let P[i] = A[0] + A[1] + ... + A[i-1]. Then P[j+1] - P[i] = A[i] + A[i+1] + ... + A[j], the sum of the subarray [i, j].
+Hence, we are looking for the number of i < j with P[j] - P[i] = S.
+
+Algorithm
+For each j, let's count the number of i with P[j] = P[i] + S. This is analogous to counting the number of subarrays ending in j with sum S.
+It comes down to counting how many P[i] + S we've seen before. We can keep this count on the side to help us find the final answer.
+
+class Solution {
+    public int numSubarraysWithSum(int[] A, int S) {
+        int N = A.length;
+        int[] P = new int[N + 1];
+        for (int i = 0; i < N; ++i)
+            P[i+1] = P[i] + A[i];
+
+        Map<Integer, Integer> count = new HashMap();
+        int ans = 0;
+        for (int x: P) {
+            ans += count.getOrDefault(x, 0);
+            count.put(x+S, count.getOrDefault(x+S, 0) + 1);
+        }
+
+        return ans;
+    }
+}
+*/
