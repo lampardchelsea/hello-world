@@ -31,3 +31,6 @@
 <p>3 Sum Smaller
 <p>1. [Brute force + 3 Pointers] (https://www.cnblogs.com/grandyang/p/5235086.html)
 <p>2. [3 Pointers] (http://buttercola.blogspot.com/2015/08/leetcode.html)
+
+<p>Boats to Save People
+<p>1. [Two Pointers + Greedy] (https://leetcode.com/problems/boats-to-save-people/solution/)
