@@ -80,3 +80,6 @@
 <p>3. [Three Pointers] (https://leetcode.com/problems/count-number-of-nice-subarrays/discuss/419378/JavaC%2B%2BPython-Sliding-Window-O(1)-Space)
 <p>4. [Three Pointers] (https://leetcode.com/problems/count-number-of-nice-subarrays/discuss/419378/JavaC++Python-Sliding-Window-O(1)-Space/458810)
 <p>5. [992. Subarrays with K Different Integers] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/SlidingWindow/SubarraysWithKDifferentIntegers.java)
+
+<p>Max Consecutive Ones II
+<p>1. [Not fixed length sliding window] (https://www.cnblogs.com/grandyang/p/6376115.html)
