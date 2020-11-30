@@ -83,3 +83,6 @@
 
 <p>Max Consecutive Ones II
 <p>1. [Not fixed length sliding window] (https://www.cnblogs.com/grandyang/p/6376115.html)
+
+<p>Binary Subarrays With Sum
+<p>1. [992. Subarrays with K Different Integers] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/SlidingWindow/SubarraysWithKDifferentIntegers.java)
