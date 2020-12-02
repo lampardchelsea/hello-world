@@ -47,7 +47,7 @@ class Solution {
     }
 }
 
-// Solution 2: Prefix Sum
+// Solution 2: Prefix Sum + HashMap
 // Refer to
 // https://leetcode.com/problems/binary-subarrays-with-sum/solution/
 /**
@@ -78,3 +78,22 @@ class Solution {
     }
 }
 */
+
+// This problem is exactly same as "Subarray Sum Equals K" 
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/SubarraySumEqualsK.java
+class Solution {
+    public int numSubarraysWithSum(int[] A, int S) {
+        int count = 0;
+        int sum = 0;
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        map.put(0, 1);
+        for(int i = 0; i < A.length; i++) {
+            sum += A[i];
+            if(map.containsKey(sum - S)) {
+                count += map.get(sum - S);
+            }
+            map.put(sum, map.getOrDefault(sum, 0) + 1);
+        }
+        return count;
+    }
+}
