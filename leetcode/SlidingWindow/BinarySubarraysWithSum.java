@@ -86,6 +86,8 @@ class Solution {
         int count = 0;
         int sum = 0;
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        // Why it is necessary to put (0,1) in the map before the loop. { map.put(0,1)} ?
+        // consider the case k = 3 and nums = [3]
         map.put(0, 1);
         for(int i = 0; i < A.length; i++) {
             sum += A[i];
