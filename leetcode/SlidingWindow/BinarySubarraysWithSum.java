@@ -79,7 +79,7 @@ class Solution {
 }
 */
 
-// This problem is exactly same as "Subarray Sum Equals K" 
+// This problem is exactly same as "560. Subarray Sum Equals K" 
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/SubarraySumEqualsK.java
 class Solution {
     public int numSubarraysWithSum(int[] A, int S) {
