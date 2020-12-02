@@ -86,3 +86,4 @@
 
 <p>Binary Subarrays With Sum
 <p>1. [992. Subarrays with K Different Integers] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/SlidingWindow/SubarraysWithKDifferentIntegers.java)
+<p>2. [560. Subarray Sum Equals K] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/SubarraySumEqualsK.java)
