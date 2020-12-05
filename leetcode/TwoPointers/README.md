@@ -34,3 +34,6 @@
 
 <p>Boats to Save People
 <p>1. [Two Pointers + Greedy] (https://leetcode.com/problems/boats-to-save-people/solution/)
+
+<p>Most Profit Assigning Work
+<p>1. [Two Pointers + Sort] (https://leetcode.com/problems/most-profit-assigning-work/discuss/127031/C%2B%2BJavaPython-Sort-and-Two-pointer)
