@@ -80,5 +80,58 @@ Java:
         }
         return res;
     }
-
 */
+class Solution {
+    public int maxProfitAssignment(int[] difficulty, int[] profit, int[] worker) {
+        // Sort work by ability
+        Arrays.sort(worker);
+        // Linking difficulty and profit
+        List<Node> jobs = new ArrayList<Node>();
+        for(int i = 0; i < difficulty.length; i++) {
+            jobs.add(new Node(difficulty[i], profit[i]));
+        }
+        // Sort jobs by difficulty
+        Collections.sort(jobs, new CustomComparator());
+        int maxProfit = 0;
+        int best = 0;
+        // Index i holding last maximum difficulty's corresponding job's position in jobs array
+        // and because we have sort the worker's ability already, if i stopped somewhere, next
+        // time j will point to even higher ability worker, so i no need to restart again from
+        // index 0 but keep moving forward based on last position
+        int i = 0;
+        int N = worker.length;
+        for(int j = 0; j < N; j++) {
+            int ability = worker[j];
+            while(i < N && ability >= jobs.get(i).difficulty) {
+                // we should compare always between current job's profit 
+                // and historical maximum profit, since higher difficulty
+                // doesn't mean higher profit
+                //best = jobs.get(i).profit;
+                // E.g output 204, expected 324
+                // difficulty= [68,35,52,47,86]
+                // profit = [67,17,1,81,3]
+                // worker = [92,10,85,84,82]
+                best = Math.max(best, jobs.get(i).profit);
+                i++;
+            }
+            maxProfit += best;
+        }
+        return maxProfit;
+    }
+}
+
+class CustomComparator implements Comparator<Node> {
+    @Override
+    public int compare(Node o1, Node o2) {
+        return o1.difficulty - o2.difficulty;
+    }
+}
+
+class Node {
+    int difficulty;
+    int profit;
+    public Node(int difficulty, int profit) {
+        this.difficulty = difficulty;
+        this.profit = profit;
+    }
+}
