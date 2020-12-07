@@ -37,3 +37,6 @@
 
 <p>Most Profit Assigning Work
 <p>1. [Two Pointers + Sort] (https://leetcode.com/problems/most-profit-assigning-work/discuss/127031/C%2B%2BJavaPython-Sort-and-Two-pointer)
+
+<p>Longest Mountain in Array
+<p>1. [Two Pointers + TWo Pass -> One Pass] (https://leetcode.com/problems/longest-mountain-in-array/discuss/135593/C%2B%2BJavaPython-1-pass-and-O(1)-space)
