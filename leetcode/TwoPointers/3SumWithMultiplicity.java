@@ -148,3 +148,17 @@ class Solution {
     }
 }
 */
+class Solution {
+    public int threeSumMulti(int[] A, int target) {
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        int result = 0;
+        int mod = 1000000007;
+        for(int i = 0; i < A.length; i++) {
+            result = (result + map.getOrDefault(target - A[i], 0)) % mod;
+            for(int j = 0; j < i; j++) {
+                map.put(A[j] + A[i], map.getOrDefault(A[j] + A[i], 0) + 1);
+            }
+        }
+        return result;
+    }
+}
