@@ -40,3 +40,11 @@
 
 <p>Longest Mountain in Array
 <p>1. [Two Pointers + TWo Pass -> One Pass] (https://leetcode.com/problems/longest-mountain-in-array/discuss/135593/C%2B%2BJavaPython-1-pass-and-O(1)-space)
+
+<p>3 Sum
+<p>1. [Two Pointers] (https://github.com/lampardchelsea/hello-world/blob/master/lintcode/TwoPoints/VideoExamples/TwoSum/3Sum.java)
+<p>2. [Two Pointers] (https://leetcode.com/problems/3sum/discuss/7380/Concise-O(N2)-Java-solution)
+  
+<p>3Sum With Multiplicity
+<p>1. [Same as 3 Sum style] (https://leetcode.com/problems/3sum-with-multiplicity/discuss/181080/Java-sorting-solution-O(N2))
+<p>2. [Two Pointers + HashMap] (https://leetcode.com/problems/3sum-with-multiplicity/discuss/181128/10-lines-Super-Super-Easy-Java-Solution)
