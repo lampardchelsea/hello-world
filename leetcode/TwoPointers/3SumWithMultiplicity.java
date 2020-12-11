@@ -73,7 +73,53 @@ class Solution {
 Time complexity: O(N^2)
 Space complexity: O(1)
 */
+class Solution {
+    public int threeSumMulti(int[] A, int target) {
+        Arrays.sort(A);
+        int mod = 1000000007;
+        int result = 0;
+        for(int i = 0; i < A.length - 2; i++) {
+            int lo = i + 1;
+            int hi = A.length - 1;
+            long count = 0;
+            while(lo < hi) {
+                if(A[lo] + A[hi] == target - A[i]) {
+                    // Count repeat elements from two directions, and
+                    // their production means how many tuples result same
+                    if(A[lo] != A[hi]) {
+                        long countL = 1;
+                        long countR = 1;
+                        while(lo + 1 < hi && A[lo + 1] == A[lo]) {
+                            countL++;
+                            lo++;
+                        }
+                        while(hi - 1 > lo && A[hi - 1] == A[hi]) {
+                            countR++;
+                            hi--;
+                        }
+                        count += (countL * countR) % mod;
+                        lo++;
+                        hi--;                    
+                    } else {
+                        // Since we already sort the array if A[lo] == A[hi] means
+                        // all elements between index lo and hi in A are same value
+                        long n = hi - lo + 1;
+                        count += (n * (n - 1) / 2) % mod;
+                        // No need to continue current loop since all elements are same
+                        break;
+                    }
 
+                } else if(A[lo] + A[hi] > target - A[i]) {
+                    hi--;
+                } else {
+                    lo++;
+                }
+            }
+            result = (int)(result + count) % mod;
+        }
+        return result;
+    }
+}
 
 
 // Solution 2: Two Pointers + HashMap
