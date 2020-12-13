@@ -35,7 +35,7 @@ s.length is a multiple of 4
 s contains only 'Q', 'W', 'E' and 'R'.
 */
 
-// Solution 1: Not fixed length sliding window
+// Solution 1: Not fixed length sliding window + reversely count char status outside window
 // Refer to
 // https://leetcode.com/problems/replace-the-substring-for-balanced-string/discuss/408978/JavaC%2B%2BPython-Sliding-Window
 /**
