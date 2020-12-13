@@ -87,3 +87,6 @@
 <p>Binary Subarrays With Sum
 <p>1. [992. Subarrays with K Different Integers] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/SlidingWindow/SubarraysWithKDifferentIntegers.java)
 <p>2. [560. Subarray Sum Equals K] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/SubarraySumEqualsK.java)
+
+<p>Replace the Substring for Balanced String
+<p>1. [Not fixed length sliding window + reversely count char status outside window] (https://leetcode.com/problems/replace-the-substring-for-balanced-string/discuss/408978/JavaC%2B%2BPython-Sliding-Window)
