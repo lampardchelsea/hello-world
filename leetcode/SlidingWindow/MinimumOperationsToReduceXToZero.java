@@ -28,30 +28,6 @@ Constraints:
 
 // Solution 1: Not fixed length slidnig window + 1423. Maximum Points You Can Obtain from Cards
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/SlidingWindow/MaximumPointsYouCanObtainFromCards.java
-// Template refer to
-// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/SlidingWindow/FindKLengthSubstringsWithNoRepeatedCharacters.java
-/**
-class Solution {
-    // Find minimum sum of sub-array lenght with cardPoints.length - k
-    public int maxScore(int[] cardPoints, int k) {
-        int n = cardPoints.length;
-        int totalSum = 0;
-        int minSum = Integer.MAX_VALUE;
-        int temp = 0;
-        for(int i = 0; i < n; i++) {
-            totalSum += cardPoints[i];
-            temp += cardPoints[i];
-            if(i >= n - k) {
-                temp -= cardPoints[i - n + k];
-            }
-            if(i >= n - k - 1) {
-                minSum = Math.min(temp, minSum);
-            }
-        }
-        return totalSum - minSum;
-    }
-}
-*/
 
 // Refer to
 // https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/discuss/936074/JavaPython-3-Sliding-window%3A-Longest-subarray-sum-to-the-target-sum(nums)-x.
