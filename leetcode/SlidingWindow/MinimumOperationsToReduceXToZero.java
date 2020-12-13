@@ -68,6 +68,10 @@ class Solution {
         sum = 0;
         for(int j = 0; j < n; j++) {
             sum += nums[j];
+            // i can equal to j, if only set as i < j, test out by below case:
+            // nums = [8828,9581,49,9818,9974,9869,9991,10000,10000,10000,9999,9993,9904,8819,1231,6309] and x = 134365
+            // Output: -1
+            // Expected: 16
             while(i <= j && sum > target) {
                 sum -= nums[i];
                 i++;
