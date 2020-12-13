@@ -69,13 +69,17 @@ class Solution {
         for(int j = 0; j < n; j++) {
             sum += nums[j];
             // i can equal to j which means use up all elements currently have, if only set as i < j, test out by below case:
-            // nums = [8828,9581,49,9818,9974,9869,9991,10000,10000,10000,9999,9993,9904,8819,1231,6309] and x = 134365
+            // Input: nums = [8828,9581,49,9818,9974,9869,9991,10000,10000,10000,9999,9993,9904,8819,1231,6309] and x = 134365
             // Output: -1
             // Expected: 16
             while(i <= j && sum > target) {
                 sum -= nums[i];
                 i++;
             }
+            // check 'sum == target' must after while loop, test out by below case:
+            // Input: nums = [3,2,20,1,1,3] and x = 10
+            // Output: -1
+            // Expected: 5
             if(sum == target) {
                 maxLen = Math.max(maxLen, j - i + 1);
             }
