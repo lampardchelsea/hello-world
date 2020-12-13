@@ -79,3 +79,27 @@ Similar problems:
 918. Maximum Sum Circular Subarray
 1423. Maximum Points You Can Obtain from Cards
 */
+class Solution {
+    public int minOperations(int[] nums, int x) {
+        int n = nums.length;
+        int sum = 0;
+        for(int j = 0; j < n; j++) {
+            sum += nums[j];
+        }
+        int target = sum - x;
+        int maxLen = -1;
+        int i = 0;
+        sum = 0;
+        for(int j = 0; j < n; j++) {
+            sum += nums[j];
+            while(i <= j && sum > target) {
+                sum -= nums[i];
+                i++;
+            }
+            if(sum == target) {
+                maxLen = Math.max(maxLen, j - i + 1);
+            }
+        }
+        return maxLen < 0 ? -1 : n - maxLen;
+    }
+}
