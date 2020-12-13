@@ -90,3 +90,7 @@
 
 <p>Replace the Substring for Balanced String
 <p>1. [Not fixed length sliding window + reversely count char status outside window] (https://leetcode.com/problems/replace-the-substring-for-balanced-string/discuss/408978/JavaC%2B%2BPython-Sliding-Window)
+
+<p>Minimum Operations to Reduce X to Zero
+<p>1. [Not fixed length slidnig window + 1423. Maximum Points You Can Obtain from Cards] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/SlidingWindow/MaximumPointsYouCanObtainFromCards.java)
+<p>2. [Sliding window: Longest subarray sum to the target = sum(nums) - x.] (https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/discuss/936074/JavaPython-3-Sliding-window%3A-Longest-subarray-sum-to-the-target-sum(nums)-x.)
