@@ -105,3 +105,24 @@ Java
         return res;
     }
 */
+class Solution {
+    public int balancedString(String s) {
+        int n = s.length();
+        int result = n;
+        int k = n / 4;
+        int i = 0;
+        int[] count = new int[128];
+        for(int j = 0; j < n; j++) {
+            count[s.charAt(j)]++;
+        }
+        for(int j = 0; j < n; j++) {
+            count[s.charAt(j)]--;
+            while(i < n && count['Q'] <= k && count['W'] <= k && count['E'] <= k && count['R'] <= k) {
+                result = Math.min(result, j - i + 1);
+                count[s.charAt(i)]++;
+                i++;
+            }
+        }
+        return result;
+    }
+}
