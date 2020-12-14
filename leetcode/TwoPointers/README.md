@@ -54,3 +54,7 @@
 
 <p>Intersection of Two Arrays
 <p>1. [Sort array + Two Pointers] (https://github.com/lampardchelsea/hello-world/blob/master/lintcode/LinkedList_Array/VideoExamples/IntersectionOfTwoArrays.java)
+
+<p>Intersection of Two Arrays II
+<p>1. [Sort array + Two Pointers] (https://leetcode.com/problems/intersection-of-two-arrays-ii/discuss/282372/Java-solution-with-all-3-follow-up-questions)
+<p>2. [HashMap] (https://github.com/lampardchelsea/hello-world/blob/master/lintcode/LinkedList_Array/VideoExamples/IntersectionOfTwoArraysII.java)
