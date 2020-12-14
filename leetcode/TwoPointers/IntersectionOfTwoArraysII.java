@@ -25,7 +25,8 @@ What if elements of nums2 are stored on disk, and the memory is limited such tha
 // Refer to
 // https://leetcode.com/problems/intersection-of-two-arrays-ii/discuss/282372/Java-solution-with-all-3-follow-up-questions
 /**
-The first question is relatively easy, create a hashmap base on number frequency of nums1(whichever one is longer). Then for every element of nums2, look upon the hashmap. If we found an intersection, deduct by 1 to avoid duplicate.
+The first question is relatively easy, create a hashmap base on number frequency of nums1(whichever one is longer). Then for every element of nums2, 
+look upon the hashmap. If we found an intersection, deduct by 1 to avoid duplicate.
 
 public int[] intersect(int[] nums1, int[] nums2) {
         HashMap<Integer, Integer> map = new HashMap<>();
