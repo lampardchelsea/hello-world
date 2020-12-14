@@ -120,3 +120,29 @@ class Solution {
         return result;
     }
 }
+
+// Solution 2: HashMap
+// Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/lintcode/LinkedList_Array/VideoExamples/IntersectionOfTwoArraysII.java
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        List<Integer> list = new ArrayList<Integer>();
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(int a : nums1) {
+            map.put(a, map.getOrDefault(a, 0) + 1);
+        }
+        for(int a : nums2) {
+            if(map.containsKey(a) && map.get(a) > 0) {
+                list.add(a);
+                map.put(a, map.get(a) - 1);
+            }
+        }
+        int[] result = new int[list.size()];
+        for(int i = 0; i < list.size(); i++) {
+            result[i] = list.get(i);
+        }
+        return result;
+    }
+}
+
+
