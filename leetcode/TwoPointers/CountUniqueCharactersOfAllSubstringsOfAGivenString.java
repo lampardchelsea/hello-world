@@ -54,7 +54,6 @@ Instead of counting all unique characters and struggling with all possible subst
 we can count for every char in S, how many ways to be found as a unique char.
 We count and sum, and it will be out answer.
 
-
 Explanation
 index[26][2] record last two occurrence index for every upper characters.
 Initialise all values in index to -1.
@@ -68,3 +67,24 @@ Complexity
 One pass, time complexity O(N).
 Space complexity O(1).
 */
+class Solution {
+    public int uniqueLetterString(String s) {
+        int[][] index = new int[26][2];
+        for(int i = 0; i < 26; i++) {
+            Arrays.fill(index[i], -1);
+        }
+        int result = 0;
+        int mod = 1000000007;
+        int n = s.length();
+        for(int i = 0; i < n; i++) {
+            int c = s.charAt(i) - 'A';
+            result = (result + (i - index[c][1]) * (index[c][1] - index[c][0]) % mod) % mod;
+            index[c][0] = index[c][1];
+            index[c][1] = i;
+        }
+        for(int c = 0; c < 26; c++) {
+            result = (result + (n - index[c][1]) * (index[c][1] - index[c][0]) % mod) % mod;
+        }
+        return result;
+    }
+}
