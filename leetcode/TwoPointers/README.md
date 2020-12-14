@@ -48,3 +48,6 @@
 <p>3Sum With Multiplicity
 <p>1. [Same as 3 Sum style] (https://leetcode.com/problems/3sum-with-multiplicity/discuss/181080/Java-sorting-solution-O(N2))
 <p>2. [Two Pointers + HashMap] (https://leetcode.com/problems/3sum-with-multiplicity/discuss/181128/10-lines-Super-Super-Easy-Java-Solution)
+
+<p>Count Unique Characters of All Substrings of a Given String
+<p>1. [Let's think about how a character can be found as a unique character.] (https://leetcode.com/problems/count-unique-characters-of-all-substrings-of-a-given-string/discuss/128952/C%2B%2BJavaPython-One-pass-O(N))
