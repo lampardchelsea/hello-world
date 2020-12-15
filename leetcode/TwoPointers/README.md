@@ -60,4 +60,8 @@
 <p>2. [HashMap] (https://github.com/lampardchelsea/hello-world/blob/master/lintcode/LinkedList_Array/VideoExamples/IntersectionOfTwoArraysII.java)
 
 <p>Longest Word in Dictionary through Deleting
-<p>1. [Two Points] (https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/discuss/99588/Short-Java-Solutions-Sorting-Dictionary-and-Without-Sorting/103703)
+<p>1. [Two Pointers] (https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/discuss/99588/Short-Java-Solutions-Sorting-Dictionary-and-Without-Sorting/103703)
+
+<p>Remove Duplicates from Sorted Array
+<p>1. [Two Pointers] (https://github.com/lampardchelsea/hello-world/blob/master/lintcode/TwoPoints/VideoExamples/SameDirectionPoints/RemoveDuplicateNumbersInArray.java)
+
