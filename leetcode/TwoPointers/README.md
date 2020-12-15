@@ -65,3 +65,5 @@
 <p>Remove Duplicates from Sorted Array
 <p>1. [Two Pointers] (https://github.com/lampardchelsea/hello-world/blob/master/lintcode/TwoPoints/VideoExamples/SameDirectionPoints/RemoveDuplicateNumbersInArray.java)
 
+<p>Remove Duplicates from Sorted Array II
+<p>1. [Two Pointers] (https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/discuss/27976/3-6-easy-lines-C%2B%2B-Java-Python-Ruby)
