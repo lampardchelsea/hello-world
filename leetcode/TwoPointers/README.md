@@ -73,3 +73,6 @@
   
 <p>Remove All Adjacent Duplicates in String II
 <p>1. [Two Pointers] (https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/discuss/392933/JavaC%2B%2BPython-Two-Pointers-and-Stack-Solution)
+
+<p>Move Zeros
+<p>1. [Two Pointers] (https://leetcode.com/problems/move-zeroes/discuss/72011/Simple-O(N)-Java-Solution-Using-Insert-Index)
