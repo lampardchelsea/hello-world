@@ -54,3 +54,24 @@ java
         return new String(stack, 0, i);
     }
 */
+class Solution {
+    public String removeDuplicates(String s, int k) {
+        int n = s.length();
+        int[] count = new int[n];
+        char[] chars = s.toCharArray();
+        int i = 0;
+        for(int j = 0; j < n; j++) {
+            chars[i] = chars[j];
+            if(i > 0 && chars[i - 1] == chars[j]) {
+                count[i] = count[i - 1] + 1; 
+            } else {
+                count[i] = 1;
+            }
+            if(count[i] == k) {
+                i -= k;
+            }
+            i++;
+        }
+        return new String(chars, 0, i);
+    }
+}
