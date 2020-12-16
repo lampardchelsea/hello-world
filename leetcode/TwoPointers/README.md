@@ -76,3 +76,6 @@
 
 <p>Move Zeros
 <p>1. [Two Pointers] (https://leetcode.com/problems/move-zeroes/discuss/72011/Simple-O(N)-Java-Solution-Using-Insert-Index)
+
+<p>Remove Nth Node From End of List
+<p>1. [One Pass with two pointers + Two Pass with one pointer] (https://leetcode.com/problems/remove-nth-node-from-end-of-list/solution/)
