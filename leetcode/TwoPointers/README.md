@@ -67,3 +67,9 @@
 
 <p>Remove Duplicates from Sorted Array II
 <p>1. [Two Pointers] (https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/discuss/27976/3-6-easy-lines-C%2B%2B-Java-Python-Ruby)
+
+<p>Remove All Adjacent Duplicates in String
+<p>1. [Two Pointers] (https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/discuss/294893/JavaC%2B%2BPython-Two-Pointers-and-Stack-Solution)
+  
+<p>Remove All Adjacent Duplicates in String II
+<p>1. [Two Pointers] (https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/discuss/392933/JavaC%2B%2BPython-Two-Pointers-and-Stack-Solution)
