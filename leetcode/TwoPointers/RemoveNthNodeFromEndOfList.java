@@ -79,3 +79,32 @@ class Solution {
  * The second pointer will be pointing at the nnth node counting from the last. We relink the next pointer 
  * of the node referenced by the second pointer to point to the node's next next node.
 */
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode walker = dummy;
+        ListNode runner = dummy;
+        int steps = n + 1;
+        while(steps > 0) {
+            runner = runner.next;
+            steps--;
+        }
+        while(runner != null) {
+            walker = walker.next;
+            runner = runner.next;
+        }
+        walker.next = walker.next.next;
+        return dummy.next;
+    }
+}
