@@ -46,7 +46,9 @@ Proof
 Proving that at least one duplicate must exist in nums is simple application of the pigeonhole principle. Here, each number in 
 nums is a "pigeon" and each distinct number that can appear in nums is a "pigeonhole". Because there are n+1 numbers are n distinct 
 possible numbers, the pigeonhole principle implies that at least one of the numbers is duplicated.
+**/
 
+/**
 Approach 1: Sorting
 Intuition
 If the numbers are sorted, then any duplicate numbers will be adjacent in the sorted array.
@@ -79,6 +81,28 @@ class Solution {
             if(nums[i] == nums[i - 1]) {
                 return nums[i];
             }
+        }
+        return -1;
+    }
+}
+
+/**
+Approach 2: Set
+Intuition
+If we store each element as we iterate over the array, we can simply check each element as we iterate over the array.
+Algorithm
+In order to achieve linear time complexity, we need to be able to insert elements into a data structure (and look them up) 
+in constant time. A Set satisfies these constraints nicely, so we iterate over the array and insert each element into seen. 
+Before inserting it, we check whether it is already there. If it is, then we found our duplicate, so we return it.
+*/
+class Solution {
+    public int findDuplicate(int[] nums) {
+        Set<Integer> seen = new HashSet<Integer>();
+        for (int num : nums) {
+            if (seen.contains(num)) {
+                return num;
+            }
+            seen.add(num);
         }
         return -1;
     }
