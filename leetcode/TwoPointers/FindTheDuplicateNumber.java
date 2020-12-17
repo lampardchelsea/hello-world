@@ -94,6 +94,13 @@ Algorithm
 In order to achieve linear time complexity, we need to be able to insert elements into a data structure (and look them up) 
 in constant time. A Set satisfies these constraints nicely, so we iterate over the array and insert each element into seen. 
 Before inserting it, we check whether it is already there. If it is, then we found our duplicate, so we return it.
+Complexity Analysis
+Time complexity : O(n)
+Set in both Python and Java rely on underlying hash tables, so insertion and lookup have amortized constant time complexities. 
+The algorithm is therefore linear, as it consists of a for loop that performs constant work nn times.
+Space complexity : O(n)
+In the worst case, the duplicate element appears twice, with one of its appearances at array index n−1. In this case, 
+seen will contain n−1 distinct values, and will therefore occupy O(n) space.
 */
 class Solution {
     public int findDuplicate(int[] nums) {
@@ -108,3 +115,6 @@ class Solution {
     }
 }
 
+/**
+
+*/
