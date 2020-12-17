@@ -72,5 +72,15 @@ Space complexity : O(1) or O(n)
 Here, we sort nums in place, so the memory footprint is constant. If we cannot modify the input array, then we must allocate linear 
 space for a copy of nums and sort that instead.
 */
-
+class Solution {
+    public int findDuplicate(int[] nums) {
+        Arrays.sort(nums);
+        for(int i = 1; i < nums.length; i++) {
+            if(nums[i] == nums[i - 1]) {
+                return nums[i];
+            }
+        }
+        return -1;
+    }
+}
 
