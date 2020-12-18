@@ -82,3 +82,6 @@
 
 <p>Linked List Cycle II
 <p>1. [Two Pointers] (https://leetcode.com/problems/linked-list-cycle-ii/discuss/44774/Java-O(1)-space-solution-with-detailed-explanation.)
+
+<p>Container With Most Water
+<p>1. [Two Pointers + Yet another way to see what happens in the O(n) algorithm] (https://leetcode.com/problems/container-with-most-water/discuss/6099/Yet-another-way-to-see-what-happens-in-the-O(n)-algorithm)
