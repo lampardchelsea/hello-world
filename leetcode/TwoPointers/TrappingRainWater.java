@@ -106,3 +106,90 @@ class Solution {
         return sum;
     }
 }
+
+
+// Solution 3: Two Points
+/**
+ * Refer to
+ * http://www.cnblogs.com/grandyang/p/4402392.html
+ * 最后我们来看一种只需要遍历一次即可的解法，这个算法需要left和right两个指针分别指向数组的首尾位置，从两边向中间扫描，
+ * 在当前两指针确定的范围内，先比较两头找出较小值，如果较小值是left指向的值，则从左向右扫描，如果较小值是right指向的值，
+ * 则从右向左扫描，若遇到的值比当较小值小，则将差值存入结果，如遇到的值大，则重新确定新的窗口范围，以此类推直至left
+ * 和right指针重合
+ * 
+ * Refer to
+ * https://leetcode.com/articles/trapping-rain-water/
+ * Intuition As in Approach #2, instead of computing the left and right parts separately, 
+ * we may think of some way to do it in one iteration. From the figure in dynamic 
+ * programming approach, notice that as long as right_max[i]>left_max[i](from element 0 to 6), 
+ * the water trapped depends upon the left_max, and similar is the case when left_max[i]>right_max[i]
+ * (from element 8 to 11). So, we can say that if there is a larger bar at one end(say right), 
+ * we are assured that the water trapped would be dependent on height of bar in current 
+ * direction(from left to right). As soon as we find the bar at other end(right) is smaller, 
+ * we start iterating in opposite direction(from right to left). We must maintain left_max 
+ * and right_max during the iteration, but now we can do it in one iteration using 2 
+ * pointers, switching between the two.
+    Algorithm
+    Initialize left pointer to 0 and right pointer to size-1
+    While left<right, do:
+    If height[left] is smaller than height[right]
+    If height[left]>=left_max, update left_max
+    Else add left_max−height[left] to ans
+    Add 1 to left.
+    Else
+    If height[right]>=right_max, update right_max
+    Else add right_max−height[right] to ans
+    Subtract 1 from right.
+
+    Complexity analysis
+    Time complexity: O(n). Single iteration of O(n).
+    Space complexity: O(1) extra space. Only constant space required for left, right, left_max and right_max.
+    int trap(vector<int>& height)
+    {
+        int left = 0, right = height.size() - 1;
+        int ans = 0;
+        int left_max = 0, right_max = 0;
+        while (left < right) {
+            if (height[left] < height[right]) {
+                height[left] >= left_max ? (left_max = height[left]) : ans += (left_max - height[left]);
+                ++left;
+            }
+            else {
+                height[right] >= right_max ? (right_max = height[right]) : ans += (right_max - height[right]);
+                --right;
+            }
+        }
+        return ans;
+    }
+ */
+class Solution {
+    public int trap(int[] height) {
+        if(height == null || height.length == 0) {
+            return 0;
+        }
+        int size = height.length;
+        int sum = 0;
+        int left = 0;
+        int right = size - 1;
+        int left_max = height[left];
+        int right_max = height[right];
+        while(left < right) {
+            if(left_max < right_max) {
+                left++;
+                if(left_max > height[left]) {
+                    sum += left_max - height[left];
+                } else {
+                    left_max = height[left];
+                }
+            } else {
+                right--;
+                if(right_max > height[right]) {
+                    sum += right_max - height[right];
+                } else {
+                    right_max = height[right];
+                }
+            }
+        }
+        return sum;
+    }
+}
