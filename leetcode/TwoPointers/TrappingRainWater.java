@@ -68,6 +68,41 @@ class Solution {
 // Solution 2: DP
 // Refer to
 // https://leetcode.com/problems/trapping-rain-water/solution/
+// https://aaronice.gitbook.io/lintcode/two_pointers/trapping_rain_water
 /**
-
+Dynamic Programming
+对于每一个bar来说，能装水的容量取决于左右两侧bar的最大值。扫描两次，一次从左向右，记录对于每一个bar来说其左侧的bar的最大高度left[i]，
+一次从右向左，记录每一个bar右侧bar的最大高度right[i]。第三次扫描，则对于每一个bar，计算
+（1）左侧最大height和当前bar的height的差值（left[i] - heights[i]）
+（2）右侧最大height和当前bar的height的差值（right[i] - heights[i]），
+取（1），（2）中结果小的那个作为当前bar的蓄水量。最终求和得到总蓄水量。或者直接找到bari两侧最大height中最小的那个，
+再找与heights[i]的大于零的差值即可。
+The water each bar can trap depends on the maximum height on its left and right. Thus scan twice - from left to right, 
+and right to left and record the max height in each direction. The third time calculate the min difference between 
+left/right height and current bar height. Sum the trapped water to get the final result.
+简而言之：找左边最大和右边最大可以通过两个dp数组来存起来.
+dpLeft[i] = Math.max(dpLeft[i - 1], height[i]);
+dpRight[i] = Math.max(dpRight[i + 1], height[i]);
+Time: O(N), Space: O(2*N)
 */
+class Solution {
+    public int trap(int[] height) {
+        if(height == null || height.length == 0) {
+            return 0;
+        }
+        int size = height.length;
+        int sum = 0;
+        for(int i = 0; i < size; i++) {
+            int max_left = 0;
+            int max_right = 0;
+            for(int j = i; j >= 0; j--) {
+                max_left = Math.max(height[j], max_left);
+            }
+            for(int j = i; j < size; j++) {
+                max_right = Math.max(height[j], max_right);
+            }
+            sum += Math.min(max_left, max_right) - height[i];
+        }
+        return sum;
+    }
+}
