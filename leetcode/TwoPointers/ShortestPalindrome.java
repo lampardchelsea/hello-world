@@ -62,5 +62,44 @@ then we just need to reverse the suffix and add it to the front of string s.
 When looking for the longest palindrome, we start from the center and traverse to left and right, 
 and we need to think the length of the palindrome could be odd or even.
 */
-
+class Solution {
+    public String shortestPalindrome(String s) {
+        int cutPoint = 0;
+        int len = s.length();
+        if(len <= 1) {
+            return s;
+        }
+        // Set 'center' initial at most far away possible position
+        // (half of full length), if current 'center' not able to
+        // pull out a palindrome, then move 'center' towards beginning
+        // of string, untill we find a 'center' position for palindrome
+        for(int center = len / 2; center >= 0; center--) {
+            // Assume current center is good to build a palindrome as even length
+            if(isPalindromeFromCurrentCenter(s, center, 1)) {
+                cutPoint = 2 * center + 1;
+                break;
+            }
+            // Assume current center is good to build a palindrome as odd length
+            if(isPalindromeFromCurrentCenter(s, center, 0)) {
+                cutPoint = 2 * center;
+                break;
+            }
+        }
+        StringBuilder sb = new StringBuilder(s.substring(cutPoint + 1));
+        return sb.reverse().toString() + s;
+    }
+    
+    private boolean isPalindromeFromCurrentCenter(String s, int center, int shift) {
+        int i = center;
+        int j = center + shift;
+        while(i >= 0 && j < s.length()) {
+            if(s.charAt(i) != s.charAt(j)) {
+                break;
+            }
+            i--;
+            j++;
+        }
+        return i < 0;
+    }
+}
 
