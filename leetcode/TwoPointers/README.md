@@ -88,3 +88,6 @@
 
 <p>Trapping Rain Water
 <p>1. [Two Pointers] (https://leetcode.com/problems/trapping-rain-water/solution/)
+
+<p>Shortest Palindrome
+<p>1. [Two Pointers + Scan from center towards two ends] (https://leetcode.com/problems/shortest-palindrome/discuss/60230/Easy-Java-solution)
