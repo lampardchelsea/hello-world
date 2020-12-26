@@ -17,7 +17,7 @@ The length of the given array won't exceed 1000.
 The integers in the given array are in the range of [0, 1000]
 */
 
-// Solution 1: Two Pointers
+// Solution 1: Two Pointers scan from two ends + Sort Array + Triangle relation
 // Refer to
 // https://leetcode.com/problems/valid-triangle-number/discuss/104174/Java-O(n2)-Time-O(1)-Space
 class Solution {
