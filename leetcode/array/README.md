@@ -373,3 +373,6 @@ binary-search-java-code/29)
 <p>2. [My Calendar I] (https://leetcode.com/problems/my-calendar-i/solution/)  
   
 <p>Running Sum of 1d Array
+
+<p>Richest Customer Wealth
+  
