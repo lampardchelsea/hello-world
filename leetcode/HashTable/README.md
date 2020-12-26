@@ -221,3 +221,5 @@
 <p>2. [Similar to Skyline] (https://leetcode.com/problems/rectangle-area-ii/discuss/137941/Java-TreeMap-solution-inspired-by-Skyline-and-Meeting-Room)
 <p>3. [中文解释] (https://www.cnblogs.com/grandyang/p/11371256.html)
   
+<p>Number Of Good Pairs
+<p>1. [HashMap] (Count how many times each number appears. If a number appears n times, then n * (n – 1) // 2 good pairs can be made with this number.)
