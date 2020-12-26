@@ -85,3 +85,6 @@
 
 <p>Container With Most Water
 <p>1. [Two Pointers + Yet another way to see what happens in the O(n) algorithm] (https://leetcode.com/problems/container-with-most-water/discuss/6099/Yet-another-way-to-see-what-happens-in-the-O(n)-algorithm)
+
+<p>Trapping Rain Water
+<p>1. [Two Pointers] (https://leetcode.com/problems/trapping-rain-water/solution/)
