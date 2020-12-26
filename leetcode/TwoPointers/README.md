@@ -91,3 +91,6 @@
 
 <p>Shortest Palindrome
 <p>1. [Two Pointers + Scan from center towards two ends] (https://leetcode.com/problems/shortest-palindrome/discuss/60230/Easy-Java-solution)
+
+<p>Valid Triangle Number
+<p>1. [Two Pointers scan from two ends + Sort Array + Triangle relation] (https://leetcode.com/problems/valid-triangle-number/discuss/104174/Java-O(n2)-Time-O(1)-Space)
