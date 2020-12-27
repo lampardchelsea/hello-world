@@ -385,6 +385,7 @@ binary-search-java-code/29)
 <p>XOR Operation in an Array
 
 <p>Sum of All Odd Length Subarrays
-<p>1. [Brute Force O(N^3)] (https://helloacm.com/algorithms-to-sum-of-all-odd-length-subarrays/)
-<p>2. [PreSum O(N^2)] (https://helloacm.com/algorithms-to-sum-of-all-odd-length-subarrays/)
-<p>3. [A[i] contribution O(N)] (https://leetcode.com/problems/sum-of-all-odd-length-subarrays/discuss/854184/JavaC%2B%2BPython-O(N)-Time-O(1)-Space)
+<p>1. [Document from Stanford of 3 methods to calculate sum of all subarrays] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/Document/SubarraySums.pdf)
+<p>2. [Brute Force O(N^3)] (https://helloacm.com/algorithms-to-sum-of-all-odd-length-subarrays/)
+<p>3. [PreSum O(N^2)] (https://helloacm.com/algorithms-to-sum-of-all-odd-length-subarrays/)
+<p>4. [A[i] contribution O(N)] (https://leetcode.com/problems/sum-of-all-odd-length-subarrays/discuss/854184/JavaC%2B%2BPython-O(N)-Time-O(1)-Space)
