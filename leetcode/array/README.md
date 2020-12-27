@@ -389,3 +389,5 @@ binary-search-java-code/29)
 <p>2. [Brute Force O(N^3)] (https://helloacm.com/algorithms-to-sum-of-all-odd-length-subarrays/)
 <p>3. [PreSum O(N^2)] (https://helloacm.com/algorithms-to-sum-of-all-odd-length-subarrays/)
 <p>4. [A[i] contribution O(N)] (https://leetcode.com/problems/sum-of-all-odd-length-subarrays/discuss/854184/JavaC%2B%2BPython-O(N)-Time-O(1)-Space)
+
+<p>Count Good Triplets
