@@ -381,3 +381,5 @@ binary-search-java-code/29)
 <p>Decompress Run-Length Encoded List
 
 <p>Create Target Array in the Given Order
+
+<p>XOR Operation in an Array
