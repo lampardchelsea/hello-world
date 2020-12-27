@@ -223,3 +223,6 @@
   
 <p>Number Of Good Pairs
 <p>1. [HashMap] (Count how many times each number appears. If a number appears n times, then n * (n – 1) // 2 good pairs can be made with this number.)
+
+<p>High Five
+<p>1. [HashMap + Priority Queue] (http://buttercola.blogspot.com/2019/05/lintcode-613-high-five.html) 
