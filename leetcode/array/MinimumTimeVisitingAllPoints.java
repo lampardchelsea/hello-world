@@ -33,7 +33,42 @@ points[i].length == 2
 -1000 <= points[i][0], points[i][1] <= 1000
 */
 
-// Solution 1: Calculate minimum distance between two adjacent points
+// Solution 1: Intuitive calculate distance section by section
+// Refer to
+// https://leetcode.com/problems/minimum-time-visiting-all-points/discuss/436250/JavaPython-3-6-liner-and-1-liner-w-brief-explanation-and-analysis./571749
+/**
+Genius solution. I really loved this solution. Howeer, I found the explanation too terse and the intuition didn't make sense to me. 
+I found a stackoverflow answer (https://stackoverflow.com/questions/59077134/minimum-time-visiting-all-points-understanding) to 
+help a lot from a guy called Klaycon on stackoverflow who explained as follows:
+
+"Think about it: If the next node is +10x and -5y away, it's going to take exactly 10 steps, because you can only move 1 x at a 
+time and the difference in y is made up by diagonal moves during the process of overcoming the difference in x."
+
+So the next node is max(abs(dx),abs(dy)) away.
+
+This was way better than my initial solution of counting x_steps + y_steps + diagonal_steps. :S
+*/
+class Solution {
+    public int minTimeToVisitAllPoints(int[][] points) {
+        int result = 0;
+        for(int i = 1; i < points.length; i++) {
+            int x1 = points[i - 1][0];
+            int y1 = points[i - 1][1];
+            int x2 = points[i][0];
+            int y2 = points[i][1];
+            int x_delta = Math.abs(x1 - x2);
+            int y_delta = Math.abs(y1 - y2);
+            int diagonal_step = Math.min(x_delta, y_delta);
+            int x_step = x_delta - diagonal_step;
+            int y_step = y_delta - diagonal_step;
+            result += diagonal_step + x_step + y_step;
+        }
+        return result;
+    }
+}
+
+
+// Solution 2: Calculate minimum distance between two adjacent points
 // Refer to
 // https://leetcode.com/problems/minimum-time-visiting-all-points/discuss/436250/JavaPython-3-6-liner-and-1-liner-w-brief-explanation-and-analysis.
 /**
