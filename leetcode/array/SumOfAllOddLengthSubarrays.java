@@ -61,10 +61,46 @@ class Solution {
 }
 
 // Solution 2: PreSum O(N^2)
+// Style 1:
 // Refer to
 // https://helloacm.com/algorithms-to-sum-of-all-odd-length-subarrays/
 /**
 The time complexity is O(N^3) as we are using another inner loop to compute the sum. This can be improved by using an 
 accumulated sum, thus improving the solution to O(N^2).
 */
+class Solution {
+    public int sumOddLengthSubarrays(int[] arr) {
+        int n = arr.length;
+        int result = 0;
+        for(int i = 0; i < n; i++) {
+            int sum = 0;
+            for(int j = i; j < n; j++) {
+                sum += arr[j];
+                if((j - i + 1) % 2 == 1) {
+                    result += sum;
+                }
+            }
+        }
+        return result;
+    }
+}
 
+// Style 2:
+// Refer to
+// https://leetcode.com/problems/sum-of-all-odd-length-subarrays/discuss/854154/JavaPython-3-Prefix-Sum.
+class Solution {
+    public int sumOddLengthSubarrays(int[] arr) {
+        int n = arr.length;
+        int[] preSum = new int[n + 1];
+        for(int i = 0; i < n; i++) {
+            preSum[i + 1] = preSum[i] + arr[i]; 
+        }
+        int result = 0;
+        for(int i = 0; i < n; i++) {
+            for(int j = i + 1; j <= n; j += 2) {
+                result += preSum[j] - preSum[i];
+            }
+        }
+        return result;
+    }
+}
