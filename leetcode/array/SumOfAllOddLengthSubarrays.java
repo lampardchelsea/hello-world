@@ -36,6 +36,9 @@ Constraints:
 1 <= arr[i] <= 1000
 */
 
+// Refer to document
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/Document/SubarraySums.pdf
+
 // Solution 1: Brute Force O(N^3)
 // Refer to
 // https://helloacm.com/algorithms-to-sum-of-all-odd-length-subarrays/
