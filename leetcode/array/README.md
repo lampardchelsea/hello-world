@@ -391,3 +391,6 @@ binary-search-java-code/29)
 <p>4. [A[i] contribution O(N)] (https://leetcode.com/problems/sum-of-all-odd-length-subarrays/discuss/854184/JavaC%2B%2BPython-O(N)-Time-O(1)-Space)
 
 <p>Count Good Triplets
+
+<p>Find Numbers with Even Number of Digits
+<p>1. [Hard code with given constrain] (https://leetcode.com/problems/find-numbers-with-even-number-of-digits/discuss/459489/JAVA-solution-with-100-better-space-and-Time)
