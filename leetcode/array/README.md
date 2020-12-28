@@ -405,3 +405,5 @@ binary-search-java-code/29)
 <p>Matrix Diagonal Sum
 
 <p>Number of Students Doing Homework at a Given Time
+
+<p>Maximum Product of Two Elements in an Array
