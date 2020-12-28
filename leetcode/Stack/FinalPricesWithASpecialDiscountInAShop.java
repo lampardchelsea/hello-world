@@ -65,3 +65,45 @@ class Solution {
         return prices;
     }
 }
+
+// Solution 2: Stack store actual number but scan from right to left
+// Refer to
+// https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/discuss/685946/Java-O(n)-Mono-Stack-loop-from-end
+/**
+This is actuall a problem to find the first lower element ont the right side.
+Previously, should be at least a medium problem.
+But now, it will be easy have mono stack in mind if you solved similar problems before.
+
+	public int[] finalPrices(int[] ps) {
+        int n = ps.length, res[] = new int[n];
+        Stack<Integer> st = new Stack<>();
+        for (int i = n - 1; i >= 0; i--) {
+            while (!st.isEmpty() && ps[i] < st.peek()) st.pop();
+            res[i] = ps[i] - (st.isEmpty() ? 0 : st.peek());
+            st.push(ps[i]);
+        }
+        return res;
+    }
+*/
+class Solution {
+    public int[] finalPrices(int[] prices) {
+        int n = prices.length;
+        int[] result = new int[n];
+        Stack<Integer> stack = new Stack<Integer>();
+        // This is actual a problem to find the first lower element on the right side.
+        // We scan from the right towards left to find the first element no larger
+        // than next element, and store it at the peek of stack
+        for(int i = n - 1; i >= 0; i--) {
+            while(!stack.isEmpty() && stack.peek() > prices[i]) {
+                stack.pop();
+            }
+            // Check stack empty or not again, if empty means current prices[i]
+            // has no lower element on its right side, otherwise if stack not
+            // empty means there exist lower element on its right side, minus it
+            result[i] = prices[i] - (stack.isEmpty() ? 0 : stack.peek());
+            stack.push(prices[i]);
+        }
+        return result;
+    }
+}
+
