@@ -407,3 +407,6 @@ binary-search-java-code/29)
 <p>Number of Students Doing Homework at a Given Time
 
 <p>Maximum Product of Two Elements in an Array
+
+<p>Find N Unique Integers Sum up to Zero
+<p>1. [Find the rule] (https://leetcode.com/problems/find-n-unique-integers-sum-up-to-zero/discuss/465585/JavaC%2B%2BPython-Find-the-Rule)
