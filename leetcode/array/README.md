@@ -398,3 +398,6 @@ binary-search-java-code/29)
 <p>Minimum Time Visiting All Points
 <p>1. [Intuitive calculate distance section by section] (https://leetcode.com/problems/minimum-time-visiting-all-points/discuss/436250/JavaPython-3-6-liner-and-1-liner-w-brief-explanation-and-analysis./571749)
 <p>2. [Calculate minimum distance between two adjacent points] (https://leetcode.com/problems/minimum-time-visiting-all-points/discuss/436250/JavaPython-3-6-liner-and-1-liner-w-brief-explanation-and-analysis.)
+
+<p>Cells with Odd Values in a Matrix
+<p>1. [2 methods: time O(m * n + L)  and O(L) codes w/ comment and analysis.] (https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/discuss/425100/JavaPython-3-2-methods%3A-time-O(m-*-n-%2B-L)-and-O(L)-codes-w-comment-and-analysis.)
