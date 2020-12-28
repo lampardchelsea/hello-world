@@ -83,3 +83,21 @@ class Solution {
         return result;
     }
 }
+
+// Solution 2: Fill complementry from both sides
+// Refer to
+// https://leetcode.com/problems/find-n-unique-integers-sum-up-to-zero/discuss/463890/Simple-Java-%3A-Fill-from-both-sides
+class Solution {
+    public int[] sumZero(int n) {
+        int[] result = new int[n];
+        int i = 0;
+        int j = n - 1;
+        int val = 1;
+        while(i < j) {
+            result[i++] = val;
+            result[j--] = -val;
+            val++;
+        }
+        return result;
+    }
+}
