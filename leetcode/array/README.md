@@ -410,3 +410,4 @@ binary-search-java-code/29)
 
 <p>Find N Unique Integers Sum up to Zero
 <p>1. [Find the rule] (https://leetcode.com/problems/find-n-unique-integers-sum-up-to-zero/discuss/465585/JavaC%2B%2BPython-Find-the-Rule)
+<p>2. [Fill complementry from both sides] (https://leetcode.com/problems/find-n-unique-integers-sum-up-to-zero/discuss/463890/Simple-Java-%3A-Fill-from-both-sides)
