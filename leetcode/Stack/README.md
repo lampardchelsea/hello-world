@@ -102,3 +102,7 @@
 
 <p>Remove All Adjacent Duplicates In String
 <p>1. [Stack or two points] (https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/discuss/294964/Java-three-easy-iterative-codes-w-brief-explanation-and-analysis.)
+
+<p>Final Prices With a Special Discount in a Shop
+<p>1. [Stack only store index not number] (https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/discuss/685390/JavaC%2B%2BPython-Stack-One-Pass)
+<p>2. [Stack store actual number but scan from right to left] (https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/discuss/685946/Java-O(n)-Mono-Stack-loop-from-end)
