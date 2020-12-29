@@ -226,3 +226,6 @@
 
 <p>High Five
 <p>1. [HashMap + Priority Queue] (http://buttercola.blogspot.com/2019/05/lintcode-613-high-five.html) 
+
+<p>Check Array Formation Through Concatenation
+<p>1. [HashMap + Key as first element in each piece] (https://leetcode.com/problems/check-array-formation-through-concatenation/discuss/918408/Python-5-lines-hashmap/750498)
