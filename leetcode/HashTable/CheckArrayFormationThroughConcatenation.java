@@ -39,7 +39,7 @@ The integers in arr are distinct.
 The integers in pieces are distinct (i.e., If we flatten pieces in a 1D array, all the integers in this array are distinct).
 */
 
-// Solution 1: HashMap
+// Solution 1: HashMap + Key as first element in each piece
 // Refer to
 // https://leetcode.com/problems/check-array-formation-through-concatenation/discuss/918408/Python-5-lines-hashmap/750498
 class Solution {
