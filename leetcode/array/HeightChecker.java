@@ -51,3 +51,61 @@ class Solution {
         return count;
     }
 }
+
+// Solution 2: Counting Sort
+// Refer to
+// https://leetcode.com/problems/height-checker/discuss/300472/Java-0ms-O(n)-solution-no-need-to-sort
+/**
+Just count the frequency of each height (using HashMap or int[] as the height is promised to be within range[1, 100]) and use 2 pointers to make comparison:
+
+class Solution {
+    public int heightChecker(int[] heights) {
+        int[] heightToFreq = new int[101];
+        
+        for (int height : heights) {
+            heightToFreq[height]++;
+        }
+        
+        int result = 0;
+        int curHeight = 0;
+        
+        for (int i = 0; i < heights.length; i++) {
+            while (heightToFreq[curHeight] == 0) {
+                curHeight++;
+            }
+            
+            if (curHeight != heights[i]) {
+                result++;
+            }
+            heightToFreq[curHeight]--;
+        }
+        
+        return result;
+    }
+}
+*/
+
+// https://leetcode.com/problems/height-checker/discuss/299211/JavaPython-3-O(nlogn)-and-O(n)-codes.
+/**
+Java
+
+Count the heights to get the occurrence of each height;
+From 1 to 100, accumulate to get the occurrences of shorter than and equal of each height ( number of heights <= h);
+From the highest height to the shortest, compare one by one to get the number of mismatches.
+    public int heightChecker(int[] heights) {
+        int[] cnt = new int[101];
+        for (int h : heights) { 
+            ++cnt[h]; 
+        }
+        for (int i = 1; i <= 100; ++i) { 
+            cnt[i] += cnt[i - 1]; 
+        }
+        int ans = 0;
+        for (int i = heights.length - 1; i >= 0; --i) {
+            if (heights[--cnt[heights[i]]] != heights[i]) 
+                ++ans;
+        }   
+        return ans;
+    }
+Time & space: O(n), where n = heights.length.
+*/
