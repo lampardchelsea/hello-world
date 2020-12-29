@@ -87,8 +87,6 @@ class Solution {
 
 // https://leetcode.com/problems/height-checker/discuss/299211/JavaPython-3-O(nlogn)-and-O(n)-codes.
 /**
-Java
-
 Count the heights to get the occurrence of each height;
 From 1 to 100, accumulate to get the occurrences of shorter than and equal of each height ( number of heights <= h);
 From the highest height to the shortest, compare one by one to get the number of mismatches.
@@ -109,3 +107,26 @@ From the highest height to the shortest, compare one by one to get the number of
     }
 Time & space: O(n), where n = heights.length.
 */
+class Solution {
+    public int heightChecker(int[] heights) {
+        int[] count = new int[101];
+        for(int h : heights) {
+            count[h]++;
+        }
+        for(int i = 1; i <= 100; i++) {
+            count[i] += count[i - 1];
+        }
+        int result = 0;
+        for(int i = heights.length - 1; i >= 0; i--) {
+            // Count Sorting:
+            // Be careful, not 'count[heights[i]] - 1', since we also
+            // need to decrease count[heights[i]] itself by 1, not only
+            // calculate the index by -1
+            int index = --count[heights[i]];
+            if(heights[index] != heights[i]) {
+                result++;
+            }
+        }
+        return result;
+    }
+}
