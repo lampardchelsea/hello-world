@@ -411,3 +411,6 @@ binary-search-java-code/29)
 <p>Find N Unique Integers Sum up to Zero
 <p>1. [Find the rule] (https://leetcode.com/problems/find-n-unique-integers-sum-up-to-zero/discuss/465585/JavaC%2B%2BPython-Find-the-Rule)
 <p>2. [Fill complementry from both sides] (https://leetcode.com/problems/find-n-unique-integers-sum-up-to-zero/discuss/463890/Simple-Java-%3A-Fill-from-both-sides)
+
+<p>Replace Elements with Greatest Element on Right Side
+<p>1. [Scan from right to left] (https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/discuss/463227/JavaPython-3-Scan-from-right-to-left.)
