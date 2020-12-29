@@ -414,3 +414,6 @@ binary-search-java-code/29)
 
 <p>Replace Elements with Greatest Element on Right Side
 <p>1. [Scan from right to left] (https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/discuss/463227/JavaPython-3-Scan-from-right-to-left.)
+
+<p>Make Two Arrays Equal by Reversing Sub-arrays
+<p>1. [You can always swap to make another if the they are the same set of elements.] (https://leetcode.com/problems/make-two-arrays-equal-by-reversing-sub-arrays/discuss/661521/Java-O(n)-time-and-space)
