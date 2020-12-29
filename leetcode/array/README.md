@@ -420,3 +420,6 @@ binary-search-java-code/29)
 
 <p>Height Checker
 <p>1. [Count Sorting] (https://leetcode.com/problems/height-checker/discuss/299211/JavaPython-3-O(nlogn)-and-O(n)-codes.) 
+
+<p>Minimum Cost to Move Chips to The Same Position
+<p>1. [Count odd and even indices w/ brief explanation and analysis.] (https://leetcode.com/problems/minimum-cost-to-move-chips-to-the-same-position/discuss/398223/JavaPython-3-4-liner%3A-count-odd-and-even-indices-w-brief-explanation-and-analysis.)
