@@ -229,3 +229,6 @@
 
 <p>Check Array Formation Through Concatenation
 <p>1. [HashMap + Key as first element in each piece] (https://leetcode.com/problems/check-array-formation-through-concatenation/discuss/918408/Python-5-lines-hashmap/750498)
+
+<p>Can Make Arithmetic Progression From Sequence
+<p>1. [HashSet with O(N) solution] (https://leetcode.com/problems/can-make-arithmetic-progression-from-sequence/discuss/720253/JavaPython-3-O(n)-and-O(nlogn)-codes-w-brief-explanation-and-analysis.)  
