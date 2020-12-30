@@ -77,3 +77,54 @@ class Solution {
         return true;
     }
 }
+
+// Solution 2: Improved from O(N^2) to O(N) by replace check all element same on queue of break condition with shift_count
+// Refer to
+// https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/discuss/987495/Beginner-friendlyfaster-than-100.00c++easy-understanding/800322
+/**
+public int countStudents(int[] students, int[] sandwiches) {
+    Queue<Integer> q = new LinkedList<>();
+    int top = 0, count = 0;
+
+    for(int e : students)
+        q.add(e);
+
+    while(!q.isEmpty() && count != q.size()){// count keeps the track of students processed in continuous manner 
+        if(q.peek() == sandwiches[top]){//if student at front can eat the sandwich at top
+            count = 0;
+            top++;
+            q.poll();
+        }
+        else{
+            q.add(q.poll());//move the student to the rear
+            count++;
+        }
+    }
+    return q.size();
+}
+*/
+class Solution {
+    public int countStudents(int[] students, int[] sandwiches) {
+        Queue<Integer> q = new LinkedList<Integer>();
+        for(int student : students) {
+            q.offer(student);
+        }
+        int len = students.length;
+        int sandwich_idx = 0;
+        int shift_count = 0;
+        while(!q.isEmpty() && shift_count != q.size()) {
+            if(q.peek() != sandwiches[sandwich_idx]) {
+                q.offer(q.poll());
+                shift_count++;
+            } else {
+                // Reset shift_count to 0 means another round start,
+                // if shift_count increas to same as q's current size,
+                // that means all students have tried but not able to eat
+                shift_count = 0;
+                q.poll();
+                sandwich_idx++;
+            }
+        }
+        return q.size();
+    }
+}
