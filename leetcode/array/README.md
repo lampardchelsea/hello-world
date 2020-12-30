@@ -425,3 +425,5 @@ binary-search-java-code/29)
 <p>1. [Count odd and even indices w/ brief explanation and analysis.] (https://leetcode.com/problems/minimum-cost-to-move-chips-to-the-same-position/discuss/398223/JavaPython-3-4-liner%3A-count-odd-and-even-indices-w-brief-explanation-and-analysis.)
 
 <p>Lucky Numbers in a Matrix  
+
+<p>Average Salary Excluding the Minimum and Maximum Salary
