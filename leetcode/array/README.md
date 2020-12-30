@@ -427,3 +427,5 @@ binary-search-java-code/29)
 <p>Lucky Numbers in a Matrix  
 
 <p>Average Salary Excluding the Minimum and Maximum Salary
+
+<p>Largest Unique Number
