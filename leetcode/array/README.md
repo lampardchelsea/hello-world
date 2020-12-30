@@ -429,3 +429,5 @@ binary-search-java-code/29)
 <p>Average Salary Excluding the Minimum and Maximum Salary
 
 <p>Largest Unique Number
+
+<p>Available Captures for Rook
