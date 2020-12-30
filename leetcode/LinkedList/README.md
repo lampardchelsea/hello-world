@@ -130,3 +130,6 @@
 
 <p>Design Linked List
 <p>1. [Java Doubly Linked List solution] (https://leetcode.com/problems/design-linked-list/discuss/186459/Java-Doubly-Linked-List-solution-73ms)
+
+<p>Number of Students Unable to Eat Lunch
+<p>1. [Improved from O(N^2) to O(N) by replace check all element same on queue of break condition with shift_count] (https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/discuss/987495/Beginner-friendlyfaster-than-100.00c++easy-understanding/800322)
