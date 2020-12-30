@@ -38,3 +38,6 @@
 
 <p>Count Negative Numbers in a Sorted Matrix
 <p>1. [Binary sort since matrix has been sorted in non-increasing order] (https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/discuss/510249/JavaPython-3-2-similar-O(m-%2B-n)-codes-w-brief-explanation-and-analysis.)
+
+<p>The K Weakest Rows in a Matrix
+<p>1. [Heap + Binary Search] (https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix/discuss/496555/Java-Best-Solution-100-TimeSpace-Binary-Search-%2B-Heap)
