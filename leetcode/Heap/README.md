@@ -106,4 +106,5 @@
 <p>1. [[Java/C++/Python] Priority Queue] (https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/discuss/510263/JavaC++Python-Priority-Queue/451931)
 <p>2. [【Detailed analysis】Let me lead you to the solution step by step] (https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/discuss/510262/Detailed-analysisLet-me-lead-you-to-the-solution-step-by-step)  
   
-
+<p>Sort Array by Increasing Frequency
+<p>1. [Heap with custom sort + HashMap] (https://leetcode.com/problems/sort-array-by-increasing-frequency/discuss/917826/javaPython-3-Sort-frequency-followed-by-value./770054)
