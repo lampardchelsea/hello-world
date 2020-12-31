@@ -232,3 +232,6 @@
 
 <p>Can Make Arithmetic Progression From Sequence
 <p>1. [HashSet with O(N) solution] (https://leetcode.com/problems/can-make-arithmetic-progression-from-sequence/discuss/720253/JavaPython-3-O(n)-and-O(nlogn)-codes-w-brief-explanation-and-analysis.)  
+
+<p>Count Largest Group
+<p>1. [Promote HashMap which only store digits sum frequency similar to DP instead of actual numbers list] (https://leetcode.com/problems/count-largest-group/discuss/678377/Java-simple-HashMap)
