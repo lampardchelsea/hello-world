@@ -435,3 +435,6 @@ binary-search-java-code/29)
 <p>Three Consecutive Odds
 
 <p>Mean of Array After Removing Some Elements
+
+<p>Toeplitz Matrix
+<p>1. [Follow up with how to use buffer to process only able to store 1 row] (https://leetcode.com/problems/toeplitz-matrix/discuss/271388/Java-Solution-for-Follow-Up-1-and-2)
