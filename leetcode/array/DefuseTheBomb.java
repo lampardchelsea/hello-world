@@ -36,7 +36,7 @@ n == code.length
 -(n - 1) <= k <= n - 1
 */
 
-// Solution 1: Brute Froce
+// Solution 1: Brute Froce O(N^2)
 class Solution {
     public int[] decrypt(int[] code, int k) {
         int n = code.length;
