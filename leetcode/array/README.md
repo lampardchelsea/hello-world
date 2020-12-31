@@ -431,3 +431,5 @@ binary-search-java-code/29)
 <p>Largest Unique Number
 
 <p>Available Captures for Rook
+
+<p>Three Consecutive Odds
