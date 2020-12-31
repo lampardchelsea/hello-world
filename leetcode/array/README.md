@@ -433,3 +433,5 @@ binary-search-java-code/29)
 <p>Available Captures for Rook
 
 <p>Three Consecutive Odds
+
+<p>Mean of Array After Removing Some Elements
