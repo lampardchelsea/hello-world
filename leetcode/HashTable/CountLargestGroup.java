@@ -104,3 +104,32 @@ class Solution {
         return count;
     }
 }
+
+// Solution 3: Promote with not actual store digits sum and all number mapping to it, instead store digits sum and its frequency
+// Refer to
+// https://leetcode.com/problems/count-largest-group/discuss/678377/Java-simple-HashMap
+class Solution {
+    public int countLargestGroup(int n) {
+        // digits_sum store current number's digits sum
+        int[] digits_sum = new int[n + 1];
+        // We don't need to store actual numbers as list in map and then
+        // calculate list size for the frequency, we can directly store
+        // current number's digits sum and its frequency
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(int i = 1; i <= n; i++) {
+            digits_sum[i] = digits_sum[i / 10] + i % 10;
+            map.put(digits_sum[i], map.getOrDefault(digits_sum[i], 0) + 1);
+        }
+        int max_size = 0;
+        int count = 0;
+        for(int key : map.keySet()) {
+            if(max_size < map.get(key)) {
+                max_size = map.get(key);
+                count = 1;
+            } else if(max_size == map.get(key)) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
