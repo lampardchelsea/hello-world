@@ -445,3 +445,6 @@ binary-search-java-code/29)
 
 <p>Defuse the Bomb
 <p>1. [Sliding window with O(N)] (https://leetcode.com/problems/defuse-the-bomb/discuss/935398/JAVA-o(n)-100-time-and-space-short-and-concise-sliding-window)
+
+<p>Special Positions in a Binary Matrix
+<p>1. [Native ones collection based on rows and cols] (https://leetcode.com/problems/special-positions-in-a-binary-matrix/discuss/843953/Java-Simple-Loop)
