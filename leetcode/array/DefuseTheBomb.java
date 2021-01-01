@@ -91,3 +91,29 @@ class Solution {
     }
 }
 */
+class Solution {
+    public int[] decrypt(int[] code, int k) {
+        int n = code.length;
+        int[] result = new int[n];
+        if(k == 0) {
+            Arrays.fill(result, 0);
+        }
+        int start = 1;
+        int end = k;
+        if(k < 0) {
+            k = -k;
+            start = n - k;
+            end = n - 1;
+        }
+        int sum = 0;
+        for(int i = start; i <= end; i++) {
+            sum += code[i];
+        }
+        for(int i = 0; i < code.length; i++) {
+            result[i] = sum;
+            sum -= code[(start++) % n];
+            sum += code[(++end) % n];
+        }
+        return result;
+    }
+}
