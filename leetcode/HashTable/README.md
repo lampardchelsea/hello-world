@@ -235,3 +235,5 @@
 
 <p>Count Largest Group
 <p>1. [Promote HashMap which only store digits sum frequency similar to DP instead of actual numbers list] (https://leetcode.com/problems/count-largest-group/discuss/678377/Java-simple-HashMap)
+ 
+<p>Find Lucky Integer in an Array
