@@ -442,3 +442,6 @@ binary-search-java-code/29)
 <p>Fixed Point
   
 <p>Minimum Value to Get Positive Step by Step Sum
+
+<p>Defuse the Bomb
+<p>1. [Sliding window with O(N)] (https://leetcode.com/problems/defuse-the-bomb/discuss/935398/JAVA-o(n)-100-time-and-space-short-and-concise-sliding-window)
