@@ -94,3 +94,6 @@
 <p>Minimum Operations to Reduce X to Zero
 <p>1. [Not fixed length slidnig window + 1423. Maximum Points You Can Obtain from Cards] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/SlidingWindow/MaximumPointsYouCanObtainFromCards.java)
 <p>2. [Sliding window: Longest subarray sum to the target = sum(nums) - x.] (https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/discuss/936074/JavaPython-3-Sliding-window%3A-Longest-subarray-sum-to-the-target-sum(nums)-x.)
+
+<p>Defuse the Bomb
+<p>1. [Sliding window with O(N)] (https://leetcode.com/problems/defuse-the-bomb/discuss/935398/JAVA-o(n)-100-time-and-space-short-and-concise-sliding-window)
