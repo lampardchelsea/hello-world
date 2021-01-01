@@ -448,3 +448,5 @@ binary-search-java-code/29)
 
 <p>Special Positions in a Binary Matrix
 <p>1. [Native ones collection based on rows and cols] (https://leetcode.com/problems/special-positions-in-a-binary-matrix/discuss/843953/Java-Simple-Loop)
+
+<p>Transpose Matrix
