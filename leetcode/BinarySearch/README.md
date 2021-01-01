@@ -41,3 +41,6 @@
 
 <p>The K Weakest Rows in a Matrix
 <p>1. [Heap + Binary Search] (https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix/discuss/496555/Java-Best-Solution-100-TimeSpace-Binary-Search-%2B-Heap)
+
+<p>Special Array With X Elements Greater Than or Equal X
+<p>1. [Two Binary Search methods and detailed explanation] (https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x/discuss/882910/Java-Beats-100-Two-Binary-Search-methods-and-detailed-explanation)
