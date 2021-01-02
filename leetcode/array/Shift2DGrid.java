@@ -87,3 +87,23 @@ class Solution {
 }
 
 // Solution 2: 
+//
+/**
+Approach 2: Simulation, Recycling Same Array
+Intuition
+The previous approach created k new arrays. We can simplify it to do the movements in-place. To do this, 
+let's look at how an individual value moves around the grid. Looking at the movement of a single value is 
+a good strategy for getting started on 2D grid translation problems. The value we're looking at is the 
+yellow square. The numbers show the order in which it moved into each cell.
+The movement is a straightforward pattern. The value moves in "reading" order, and then when it gets to 
+the bottom right, it wraps around to the top left.
+We can simulate this wrapping in-place by repeatedly moving each value "forward" by one place.
+Algorithm
+
+For each step, we'll need to keep track of the current value we're moving forward. For Java, we'll need 
+to finish by copying the input into a 2D list. If you were writing this algorithm in your own Java code 
+and wanted it to be in-place, you would choose the same input and output type.
+*/
+
+
+
