@@ -107,6 +107,31 @@ and wanted it to be in-place, you would choose the same input and output type. S
 cell (position at matrix[rows - 1][cols - 1]) which shift to first cell (position at matrix[0][0]), and
 this process repeat k times.
 */
+class Solution {
+    public List<List<Integer>> shiftGrid(int[][] grid, int k) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+        for(int i = 0; i < k; i++) {
+            int prev = grid[rows - 1][cols - 1];
+            for(int j = 0; j < rows; j++) {
+                for(int l = 0; l < cols; l++) {
+                    int temp = grid[j][l];
+                    grid[j][l] = prev;
+                    prev = temp;
+                }
+            }
+        }
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        for(int[] row : grid) {
+            List<Integer> list = new ArrayList<Integer>();
+            for(int a : row) {
+                list.add(a);
+            }
+            result.add(list);
+        }
+        return result;
+    }
+}
 
 // Style 2: Shift k cells one time
 // https://leetcode.com/problems/shift-2d-grid/discuss/431102/JavaPython-3-2-simple-codes-using-mod-space-O(1).
@@ -130,4 +155,17 @@ the index of which is m * n - k % (m * n).
         return ans;
     }
 */
-
+class Solution {
+    public List<List<Integer>> shiftGrid(int[][] grid, int k) {
+        int m = grid.length, n = grid[0].length;
+        int start = m * n - k % (m * n);
+        LinkedList<List<Integer>> ans = new LinkedList<>();
+        for (int i = start; i < m * n + start; ++i) {
+            int j = i % (m * n), r = j / n, c = j % n;
+            if ((i - start) % n == 0)
+                ans.add(new ArrayList<>());
+            ans.peekLast().add(grid[r][c]);
+        }
+        return ans;
+    }
+}
