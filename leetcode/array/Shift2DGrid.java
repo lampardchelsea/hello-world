@@ -86,8 +86,9 @@ class Solution {
     }
 }
 
-// Solution 2: 
-//
+// Solution 2: ZigZag
+// Style 1: Shift one cell k times
+// https://leetcode.com/problems/shift-2d-grid/solution/
 /**
 Approach 2: Simulation, Recycling Same Array
 Intuition
@@ -98,12 +99,35 @@ yellow square. The numbers show the order in which it moved into each cell.
 The movement is a straightforward pattern. The value moves in "reading" order, and then when it gets to 
 the bottom right, it wraps around to the top left.
 We can simulate this wrapping in-place by repeatedly moving each value "forward" by one place.
-Algorithm
 
+Algorithm
 For each step, we'll need to keep track of the current value we're moving forward. For Java, we'll need 
 to finish by copying the input into a 2D list. If you were writing this algorithm in your own Java code 
-and wanted it to be in-place, you would choose the same input and output type.
+and wanted it to be in-place, you would choose the same input and output type. Shift start from the last
+cell (position at matrix[rows - 1][cols - 1]) which shift to first cell (position at matrix[0][0]), and
+this process repeat k times.
 */
 
+// Style 2: Shift k cells one time
+// https://leetcode.com/problems/shift-2d-grid/discuss/431102/JavaPython-3-2-simple-codes-using-mod-space-O(1).
+/**
+Number the cells from 0 to m * n - 1;
+In case k >= m * n, use k % (m * n) to avoid those whole cycles of m * n operations;
+Method 1: space O(1) - excluding return list
+Since shifting right will put the last k cells in grid on the first k cells, we start from the kth cells from last, 
+the index of which is m * n - k % (m * n).
 
+    public List<List<Integer>> shiftGrid(int[][] grid, int k) {
+        int m = grid.length, n = grid[0].length; 
+        int start = m * n - k % (m * n);
+        LinkedList<List<Integer>> ans = new LinkedList<>();
+        for (int i = start; i < m * n + start; ++i) {
+            int j = i % (m * n), r = j / n, c = j % n;
+            if ((i - start) % n == 0)
+                ans.add(new ArrayList<>());
+            ans.peekLast().add(grid[r][c]);
+        }
+        return ans;
+    }
+*/
 
