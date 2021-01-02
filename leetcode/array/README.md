@@ -450,3 +450,6 @@ binary-search-java-code/29)
 <p>1. [Native ones collection based on rows and cols] (https://leetcode.com/problems/special-positions-in-a-binary-matrix/discuss/843953/Java-Simple-Loop)
 
 <p>Transpose Matrix
+
+<p>Shift 2D Grid
+<p>1. [ZigZag shift k times each time current last cell in matrix move to the first cell] (https://leetcode.com/problems/shift-2d-grid/discuss/431102/JavaPython-3-2-simple-codes-using-mod-space-O(1).)
