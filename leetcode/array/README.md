@@ -456,3 +456,5 @@ binary-search-java-code/29)
 
 <p>Sum of Even Numbers After Queries
 <p>1. [odd / even analysis, time O(max(m, n))] (https://leetcode.com/problems/sum-of-even-numbers-after-queries/discuss/231099/JavaPython-3-odd-even-analysis-time-O(max(m-n)))
+
+<p>Find the Highest Altitude
