@@ -23,7 +23,7 @@ n == gain.length
 -100 <= gain[i] <= 100
 */
 
-// Solution 1:
+// Solution 1: With additional array
 class Solution {
     public int largestAltitude(int[] gain) {
         int len = gain.length;
@@ -37,5 +37,18 @@ class Solution {
             max = Math.max(ori[i], max);
         }
         return max;
+    }
+}
+
+// Solution 2: Without additional array
+class Solution {
+    public int largestAltitude(int[] gain) {
+        int cur = 0;
+        int max = -101;
+        for(int i = 0; i < gain.length; i++) {
+            cur += gain[i];
+            max = Math.max(cur, max);
+        }
+        return Math.max(0, max);
     }
 }
