@@ -28,7 +28,7 @@ Note:
 0 <= queries[i][1] < A.length
 */
 
-// Solution 1: Native Solution (TLE)
+// Solution 1: Native Solution (TLE 56/58)
 class Solution {
     public int[] sumEvenAfterQueries(int[] A, int[][] queries) {
         int len = queries.length;
