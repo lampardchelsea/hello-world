@@ -45,6 +45,37 @@ class Solution {
     }
 }
 
-// Solution 2:
-
-
+// Solution 2: [Java/Python 3] odd / even analysis, time O(max(m, n))
+// Refer to
+// https://leetcode.com/problems/sum-of-even-numbers-after-queries/discuss/231099/JavaPython-3-odd-even-analysis-time-O(max(m-n))
+/**
+Track sum of all even #s.
+There are 4 cases for odd / even property of A[k] and queries[i][0], where k = queries[i][1]:
+1). even and odd, lose an even item in A; sum need to deduct A[k];
+2). even and even, get a bigger even item in A; sum need to add queries[i][0](same as deduct A[k] first then add both);
+3). odd and odd, get a bigger even item in A; sum need to add both;
+4). odd and even, no influence on even items in A;
+*/
+class Solution {
+    public int[] sumEvenAfterQueries(int[] A, int[][] queries) {
+        int[] result = new int[queries.length];
+        int even_sum = 0;
+        for(int i = 0; i < A.length; i++) {
+            if(A[i] % 2 == 0) {
+                even_sum += A[i];
+            }
+        }
+        for(int i = 0; i < queries.length; i++) {
+            int idx = queries[i][1];
+            if(A[idx] % 2 == 0) {
+                even_sum -= A[idx];
+            }
+            A[idx] += queries[i][0];
+            if(A[idx] % 2 == 0) {
+                even_sum += A[idx];
+            }
+            result[i] = even_sum;
+        }
+        return result;
+    }
+}
