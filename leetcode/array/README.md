@@ -453,3 +453,6 @@ binary-search-java-code/29)
 
 <p>Shift 2D Grid
 <p>1. [ZigZag shift k times each time current last cell in matrix move to the first cell] (https://leetcode.com/problems/shift-2d-grid/discuss/431102/JavaPython-3-2-simple-codes-using-mod-space-O(1).)
+
+<p>Sum of Even Numbers After Queries
+<p>1. [odd / even analysis, time O(max(m, n))] (https://leetcode.com/problems/sum-of-even-numbers-after-queries/discuss/231099/JavaPython-3-odd-even-analysis-time-O(max(m-n)))
