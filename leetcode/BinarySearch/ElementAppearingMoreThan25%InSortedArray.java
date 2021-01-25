@@ -29,3 +29,40 @@ class Solution {
 }
 
 // Solution 2: Binary Search
+// Refer to
+// https://leetcode.com/problems/element-appearing-more-than-25-in-sorted-array/discuss/451286/Java-Binary-Search/509023
+// https://leetcode.com/problems/element-appearing-more-than-25-in-sorted-array/discuss/451286/Java-Binary-Search/406296
+// No need to search for the end, directly check if start + n/4 is the same element.
+class Solution {
+    public int findSpecialInteger(int[] arr) {
+        int len = arr.length;
+        int a1 = arr[len / 4];
+        int a2 = arr[len / 2];
+        int a3 = arr[len * 3 / 4];
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(a1);
+        list.add(a2);
+        list.add(a3);
+        for(int e : list) {
+            int first_idx = binarySearch(e, arr);
+            if(arr[first_idx + len / 4] == e) {
+                return e;
+            }
+        }
+        return -1;
+    }
+    
+    private int binarySearch(int e, int[] arr) {
+        int lo = 0;
+        int hi = arr.length - 1;
+        while(lo < hi) {
+            int mid = lo + (hi - lo) / 2;
+            if(arr[mid] < e) {
+                lo = mid + 1;
+            } else {
+                hi = mid;
+            }
+        }
+        return hi;
+    }
+}
