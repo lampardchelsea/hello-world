@@ -458,3 +458,6 @@ binary-search-java-code/29)
 <p>1. [odd / even analysis, time O(max(m, n))] (https://leetcode.com/problems/sum-of-even-numbers-after-queries/discuss/231099/JavaPython-3-odd-even-analysis-time-O(max(m-n)))
 
 <p>Find the Highest Altitude
+
+<p>Slowest Key
+<p>1. [No HashMap required] (https://leetcode.com/problems/slowest-key/discuss/909070/JAVA-Solution-O(n)-Explained)
