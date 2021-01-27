@@ -75,4 +75,28 @@ class Solution {
     }
 }
 
-// Solution 2:
+// Solution 2: Without HashMap
+// Refer to
+// https://leetcode.com/problems/slowest-key/discuss/909070/JAVA-Solution-O(n)-Explained
+/**
+Initialize the maxDifference and bestChar with the first character.
+Start iterating from 2nd character to nth character.
+Find the difference between every adjacent character (i and i-1th character)
+If the current difference is greater than maxDifference calculated so far. 
+Or the difference is same but the current character is greater than bestChar, update the difference and bestChar.
+Return the bestChar.
+*/
+class Solution {
+    public char slowestKey(int[] releaseTimes, String keysPressed) {
+        char cur_char = keysPressed.charAt(0);
+        int max_diff = releaseTimes[0];
+        for(int i = 1; i < releaseTimes.length; i++) {
+            int diff = releaseTimes[i] - releaseTimes[i - 1];
+            if(diff > max_diff || (diff == max_diff && keysPressed.charAt(i) > cur_char)) {
+                cur_char = keysPressed.charAt(i);
+                max_diff = diff;
+            }
+        }
+        return cur_char;
+    }
+}
