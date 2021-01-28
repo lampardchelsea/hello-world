@@ -241,3 +241,5 @@
 <p>Fair Candy Swap
 
 <p>Rank Transform of an Array
+<p>1. [Using TreeSet] (https://leetcode.com/problems/rank-transform-of-an-array/discuss/490843/Simple-Java-Solution)
+<p>2. [Not using TreeSet] (https://leetcode.com/problems/rank-transform-of-an-array/discuss/489753/JavaC%2B%2BPython-HashMap)
