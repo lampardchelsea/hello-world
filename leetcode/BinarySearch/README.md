@@ -44,3 +44,9 @@
 
 <p>Special Array With X Elements Greater Than or Equal X
 <p>1. [Two Binary Search methods and detailed explanation] (https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x/discuss/882910/Java-Beats-100-Two-Binary-Search-methods-and-detailed-explanation)
+
+<p>Check If a Number Is Majority Element in a Sorted Array
+<p>1. [Use binary search to find the first occurance of target. Make sure that first ovvurance index + n / 2 also points to target] (https://www.cnblogs.com/Dylan-Java-NYC/p/12076239.html)
+
+<p>Element Appearing More Than 25% In Sorted Array
+<p>1. [Same as Check If a Number Is Majority Element in a Sorted Array] (https://leetcode.com/problems/element-appearing-more-than-25-in-sorted-array/discuss/451286/Java-Binary-Search/509023)
