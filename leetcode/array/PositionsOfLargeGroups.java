@@ -69,4 +69,20 @@ class Solution {
 }
 
 // Solution 2: Promote Written
-
+// Refer to
+// https://leetcode.com/problems/positions-of-large-groups/discuss/128961/Java-Solution-Two-Pointers
+class Solution {
+    public List<List<Integer>> largeGroupPositions(String s) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        int prev = 0;
+        for(int i = 1; i <= s.length(); i++) {
+            if(i == s.length() || s.charAt(prev) != s.charAt(i)) {
+                if(i - prev >= 3) {
+                    result.add(Arrays.asList(prev, i - 1));
+                }
+                prev = i;
+            }
+        }
+        return result;
+    }
+}
