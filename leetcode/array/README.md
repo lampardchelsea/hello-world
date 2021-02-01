@@ -467,3 +467,6 @@ binary-search-java-code/29)
 
 <p>Find Winner on a Tic Tac Toe Game
 <p>1. [Beautiful code of take turn ship] (https://leetcode.com/problems/find-winner-on-a-tic-tac-toe-game/discuss/441319/JavaPython-3-Check-rows-columns-and-two-diagonals-w-brief-explanation-and-analysis./610247)
+
+<p>Positions of Large Groups
+<p>1. [Promote written] (https://leetcode.com/problems/positions-of-large-groups/discuss/128961/Java-Solution-Two-Pointers)
