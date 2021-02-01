@@ -461,3 +461,6 @@ binary-search-java-code/29)
 
 <p>Slowest Key
 <p>1. [No HashMap required] (https://leetcode.com/problems/slowest-key/discuss/909070/JAVA-Solution-O(n)-Explained)
+
+<p>Get Maximum in Generated Array
+<p>1. [Recursion] (https://leetcode.com/problems/get-maximum-in-generated-array/discuss/1018092/Java-Self-Explanatory-Clean-Code)
