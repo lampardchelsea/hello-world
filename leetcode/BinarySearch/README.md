@@ -50,3 +50,7 @@
 
 <p>Element Appearing More Than 25% In Sorted Array
 <p>1. [Same as Check If a Number Is Majority Element in a Sorted Array] (https://leetcode.com/problems/element-appearing-more-than-25-in-sorted-array/discuss/451286/Java-Binary-Search/509023)
+
+<p>Kth Missing Positive Number
+<p>1. [Binary Serach] (https://leetcode.com/problems/kth-missing-positive-number/discuss/779999/JavaC%2B%2BPython-O(logN))
+<p>2. [Binary Serach] (https://leetcode.com/problems/kth-missing-positive-number/discuss/1004535/Python-Two-solutions-O(n)-and-O(log-n)-explained)
