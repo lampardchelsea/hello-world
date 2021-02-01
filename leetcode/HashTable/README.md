@@ -243,3 +243,7 @@
 <p>Rank Transform of an Array
 <p>1. [Using TreeSet] (https://leetcode.com/problems/rank-transform-of-an-array/discuss/490843/Simple-Java-Solution)
 <p>2. [Not using TreeSet] (https://leetcode.com/problems/rank-transform-of-an-array/discuss/489753/JavaC%2B%2BPython-HashMap)
+
+<p>Maximum Number of Balls in a Box
+<p>1. [Since the range is 1 ~ 100_000, the biggest possible non-empty box number is 9 + 9 + 9 + 9 + 9 = 45, which corresponds to ball 99999] (https://leetcode.com/problems/maximum-number-of-balls-in-a-box/discuss/1042954/JavaPython-3-Two-codes-w-brief-explanation-and-analysis.)
+
