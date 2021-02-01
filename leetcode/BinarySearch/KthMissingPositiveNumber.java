@@ -39,3 +39,106 @@ class Solution {
         return n - 1;
     }
 }
+
+// Solution 2: Binary Search
+// Refer to
+// https://leetcode.com/problems/kth-missing-positive-number/discuss/779999/JavaC%2B%2BPython-O(logN)
+/**
+Explanation
+Assume the final result is x,
+And there are m number not missing in the range of [1, x].
+Binary search the m in range [0, A.size()].
+
+If there are m number not missing,
+that is A[0], A[1] .. A[m-1],
+the number of missing under A[m] - 1 is A[m] - 1 - m.
+
+If A[m] - 1 - m < k, m is too small, we update left = m.
+If A[m] - 1 - m >= k, m is big enough, we update right = m.
+
+Note that, we exit the while loop, l = r,
+which equals to the number of missing number used.
+So the Kth positive number will be l + k.
+
+
+Complexity
+Time O(logN)
+Space O(1)
+*/
+
+// https://leetcode.com/problems/kth-missing-positive-number/discuss/1004535/Python-Two-solutions-O(n)-and-O(log-n)-explained
+// https://leetcode.com/problems/kth-missing-positive-number/discuss/1004535/Python-Two-solutions-O(n)-and-O(log-n)-explained/813367
+/**
+I really like this problem, because you do not stop when you find linear solution, and you can do better! 
+What can be better, than linear solution? Usually it is solution with complexity O(log n). Now, we have two 
+good indicators, that we need to use binary search: sorted data and O(log n) complexity. Let us look for the 
+following example for more understanding:
+2, 3, 4, 7, 11, 12 and k = 5.
+We need to find place, of k-th missing positive number, so, let us create virtual list (virtual, because we 
+will not compute it full, but only elements we need):
+
+B = [2 - 1, 3 - 2, 4 - 3, 7 - 4, 11 - 5, 12 - 6] = [1, 1, 1, 3, 6, 6].
+
+What this list represents is how many missing numbers we have for each inex: for first number we have missing 
+number [1], for next two iterations also, when we add 7, we have 3 missing numbers: [1, 5, 6], when we add 11, 
+we have 6 missing numbers: [1, 5, 6, 8, 9, 10]. How we evalaute values of list B? Very easy, it is just A[i] - i - 1.
+
+What we need to find now in array B: first element, which is greater or equal than k. In our example, we have 
+[1, 1, 1, 3, 6, 6]. We will find it with binary search: this element have index end = 4. Finally, we need to 
+go back to original data, we have
+
+arr = [2, 3, 4, 7, 11, 12]
+B = [1, 1, 1, 3, 6, 6]
+
+So, what we now know that our answer is between numbers 7 and 11 and it is equal to arr[end] - (B[end] - k + 1), 
+where the second part is how many steps we need to make backward. Using B[end] = arr[end] - end - 1, we have end + k, 
+we need to return.
+
+Complexity: time complexity is O(log n), space is O(1).
+
+class Solution:
+    def findKthPositive(self, arr, k):
+        beg, end = 0, len(arr)
+        while beg < end:
+            mid = (beg + end) // 2
+            if arr[mid] - mid - 1 < k:
+                beg = mid + 1
+            else:
+                end = mid
+        return end + k
+
+I can't understand where arr[end] - (B[end] - k + 1) is coming from ?
+we are binary searching in virtual array for value which is greater than or equal to k.
+Lets say, we got the index as 'end'. Then, B[end] gives how many numbers are missing before arr[end]. 
+Lets say B[end] = M (M can be greater than or equal to k always becoz of binary search rule)
+Our goal is to find the k-th missing number. We know, there are M numbers missing before arr[idx] and M >= k.
+So, if we step back from arr[idx] by M - k + 1, we always get k-th missing number.
+
+Lets take the example above,
+arr = [2, 3, 4, 7, 11, 12]
+B = [1, 1, 1, 3, 6, 6]
+k = 5
+
+using binary search, end = 4
+arr[end] = 11
+B[end] = 6 => 6 numbers are missing before 11.
+But our goal is to find 5-th missing number.
+missing numbers are = [1, 5, 6, 8, 9, 13, ..]
+from 11, we have to take 2 steps back to get ans = 9.
+2 steps back = B[end] - k + 1
+*/
+class Solution {
+    public int findKthPositive(int[] arr, int k) {
+        int lo = 0;
+        int hi = arr.length;
+        while(lo < hi) {
+            int mid = lo + (hi - lo) / 2;
+            if(arr[mid] - 1 - mid < k) {
+                lo = mid + 1;
+            } else {
+                hi = mid;
+            }
+        }
+        return lo + k;
+    }
+}
