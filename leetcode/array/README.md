@@ -464,3 +464,6 @@ binary-search-java-code/29)
 
 <p>Get Maximum in Generated Array
 <p>1. [Recursion] (https://leetcode.com/problems/get-maximum-in-generated-array/discuss/1018092/Java-Self-Explanatory-Clean-Code)
+
+<p>Find Winner on a Tic Tac Toe Game
+<p>1. [Beautiful code of take turn ship] (https://leetcode.com/problems/find-winner-on-a-tic-tac-toe-game/discuss/441319/JavaPython-3-Check-rows-columns-and-two-diagonals-w-brief-explanation-and-analysis./610247)
