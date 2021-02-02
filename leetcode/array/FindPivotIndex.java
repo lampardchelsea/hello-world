@@ -69,3 +69,28 @@ class Solution {
         return -1;
     }
 }
+
+// Wrong Solution: we should not use sum / 2 == ... because / 2 will encounter issue when sum is odd number
+// Below still failed at [-1,-1,-1,-1,0,0], output 4, expected -1.
+class Solution {
+    public int pivotIndex(int[] nums) {
+        int sum = 0;
+        for(int n : nums) {
+            sum += n;
+        }
+        if(sum == nums[0]) {
+            return 0;
+        }
+        for(int i = 0; i < nums.length; i++) {
+            int half = 0;
+            for(int j = 0; j < i; j++) {
+                half += nums[j];
+                // (sum - nums[i]) % 2 == 0 test out by [-1,-1,-1,-1,-1,-1]
+                if(i != nums.length - 1 && (sum - nums[i]) % 2 == 0 && half == (sum - nums[i]) / 2) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+}
