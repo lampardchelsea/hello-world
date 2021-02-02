@@ -473,3 +473,6 @@ binary-search-java-code/29)
 
 <p>Binary Prefix Divisible By 5
 <p>1. [Modular to avoid stackoverflow] (https://leetcode.com/problems/binary-prefix-divisible-by-5/discuss/296249/Java-solution-with-best-explanation(don't-know-why-some-explanation-not-concise))
+
+<p>1-bit and 2-bit Characters
+<p>1. [Increment Pointer] (https://leetcode.com/problems/1-bit-and-2-bit-characters/solution/)
