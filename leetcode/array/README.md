@@ -476,3 +476,6 @@ binary-search-java-code/29)
 
 <p>1-bit and 2-bit Characters
 <p>1. [Increment Pointer] (https://leetcode.com/problems/1-bit-and-2-bit-characters/solution/)
+
+<p>Find Pivot Index
+<p>1. [Pre Sum] (https://leetcode.com/problems/find-pivot-index/solution/)
