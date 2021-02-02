@@ -470,3 +470,6 @@ binary-search-java-code/29)
 
 <p>Positions of Large Groups
 <p>1. [Promote written] (https://leetcode.com/problems/positions-of-large-groups/discuss/128961/Java-Solution-Two-Pointers)
+
+<p>Binary Prefix Divisible By 5
+<p>1. [Modular to avoid stackoverflow] (https://leetcode.com/problems/binary-prefix-divisible-by-5/discuss/296249/Java-solution-with-best-explanation(don't-know-why-some-explanation-not-concise))
