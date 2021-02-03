@@ -72,3 +72,74 @@ class Solution {
         return list;
     }
 }
+
+// Solution 2: Take K itself as a Carry
+// Refer to
+// https://leetcode.com/problems/add-to-array-form-of-integer/discuss/234488/JavaC%2B%2BPython-Take-K-itself-as-a-Carry
+/**
+Explanation
+Take K as a carry.
+Add it to the lowest digit,
+Update carry K,
+and keep going to higher digit.
+
+
+Complexity
+Insert will take O(1) time or O(N) time on shifting, depending on the data stucture.
+But in this problem K is at most 5 digit so this is restricted.
+So this part doesn't matter.
+
+The overall time complexity is O(N).
+For space I'll say O(1)
+
+Java
+
+    public List<Integer> addToArrayForm(int[] A, int K) {
+        List<Integer> res = new LinkedList<>();
+        for (int i = A.length - 1; i >= 0; --i) {
+            res.add(0, (A[i] + K) % 10);
+            K = (A[i] + K) / 10;
+        }
+        while (K > 0) {
+            res.add(0, K % 10);
+            K /= 10;
+        }
+        return res;
+    }
+*/
+class Solution {
+    public List<Integer> addToArrayForm(int[] A, int K) {
+        List<Integer> res = new LinkedList<>();
+        for (int i = A.length - 1; i >= 0; --i) {
+            res.add(0, (A[i] + K) % 10);
+            K = (A[i] + K) / 10;
+        }
+        while (K > 0) {
+            res.add(0, K % 10);
+            K /= 10;
+        }
+        return res;
+    }
+}
+
+// Solution 3: Don't use LinkedList, since its very slow, just reverse ArrayList
+// Refer to
+// https://leetcode.com/problems/add-to-array-form-of-integer/discuss/234488/JavaC++Python-Take-K-itself-as-a-Carry/236242
+/**
+LinkedList is very slow due to cache-inefficiency and takes more memory (for every element it creates a new node object) 
+so it would be better to just append at the end and then reverse the list.
+*/
+class Solution {
+    public List<Integer> addToArrayForm(int[] nums, int k) {
+        List<Integer> result = new ArrayList<>(nums.length + 1);
+        for (int i = nums.length - 1, carry = 0; i >= 0 || k > 0 || carry > 0; i--, k /= 10) {
+            int d1 = i >= 0 ? nums[i] : 0;
+            int d2 = k % 10;
+            int sum = d1 + d2 + carry;
+            result.add(sum % 10);
+            carry = sum / 10;
+        }
+        Collections.reverse(result);
+        return result;
+    }
+}
