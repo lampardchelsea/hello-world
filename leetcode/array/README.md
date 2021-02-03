@@ -482,3 +482,5 @@ binary-search-java-code/29)
 
 <p>Add to Array-Form of Integer
 <p>1. [Schoolbook Addition] (https://leetcode.com/problems/add-to-array-form-of-integer/solution/)
+<p>2. [Take K itself as a Carry] (https://leetcode.com/problems/add-to-array-form-of-integer/discuss/234488/JavaC%2B%2BPython-Take-K-itself-as-a-Carry)
+<p>3. [Don't use LinkedList, since its very slow, just reverse ArrayList] (https://leetcode.com/problems/add-to-array-form-of-integer/discuss/234488/JavaC++Python-Take-K-itself-as-a-Carry/236242)
