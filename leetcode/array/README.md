@@ -479,3 +479,6 @@ binary-search-java-code/29)
 
 <p>Find Pivot Index
 <p>1. [Pre Sum] (https://leetcode.com/problems/find-pivot-index/solution/)
+
+<p>Add to Array-Form of Integer
+<p>1. [Schoolbook Addition] (https://leetcode.com/problems/add-to-array-form-of-integer/solution/)
