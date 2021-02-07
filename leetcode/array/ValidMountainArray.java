@@ -54,4 +54,21 @@ Two people climb from left and from right separately.
 If they are climbing the same mountain,
 they will meet at the same point.
 */
-
+class Solution {
+    public boolean validMountainArray(int[] arr) {
+        if(arr.length <= 2) {
+            return false;
+        }
+        int i = 0;
+        int j = arr.length - 1;
+        while(i < arr.length - 1 && arr[i] < arr[i + 1]) {
+            i++;
+        }
+        while(j > 0 && arr[j] < arr[j - 1]) {
+            j--;
+        }
+        // i > 0 for [0,1,2,3,4,5,6,7,8,9]
+        // j < arr.length - 1 for [9,8,7,6,5,4,3,2,1,0]
+        return i > 0 && j < arr.length - 1 && i == j;
+    }
+}
