@@ -495,3 +495,7 @@ binary-search-java-code/29)
 <p>2. [Explain] (https://leetcode.com/problems/detect-pattern-of-length-m-repeated-k-or-more-times/discuss/819359/Java-Time-O(n)-Space-O(1)/677542)
 <p>3. [Straightforward Iteratively] (https://leetcode.com/problems/detect-pattern-of-length-m-repeated-k-or-more-times/discuss/819314/Java-Straightforward-Iteratively)
 <p>4. [With helper method] (https://leetcode.com/problems/detect-pattern-of-length-m-repeated-k-or-more-times/discuss/819397/Java-Iterative-Solution)  
+
+<p>Valid Mountain Array
+<p>1. [One person climb mountain] (https://leetcode.com/problems/valid-mountain-array/discuss/194900/C++JavaPython-Climb-Mountain/229316)
+<p>2. [Two people climb from left and from right separately] (https://leetcode.com/problems/valid-mountain-array/discuss/194900/C%2B%2BJavaPython-Climb-Mountain)
