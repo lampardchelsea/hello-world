@@ -499,3 +499,6 @@ binary-search-java-code/29)
 <p>Valid Mountain Array
 <p>1. [One person climb mountain] (https://leetcode.com/problems/valid-mountain-array/discuss/194900/C++JavaPython-Climb-Mountain/229316)
 <p>2. [Two people climb from left and from right separately] (https://leetcode.com/problems/valid-mountain-array/discuss/194900/C%2B%2BJavaPython-Climb-Mountain)
+
+<p>X of a Kind in a Deck of Cards
+<p>1. [Find GCD] (https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards/discuss/175845/C%2B%2BJavaPython-Greatest-Common-Divisor)
