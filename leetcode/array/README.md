@@ -484,3 +484,6 @@ binary-search-java-code/29)
 <p>1. [Schoolbook Addition] (https://leetcode.com/problems/add-to-array-form-of-integer/solution/)
 <p>2. [Take K itself as a Carry] (https://leetcode.com/problems/add-to-array-form-of-integer/discuss/234488/JavaC%2B%2BPython-Take-K-itself-as-a-Carry)
 <p>3. [Don't use LinkedList, since its very slow, just reverse ArrayList] (https://leetcode.com/problems/add-to-array-form-of-integer/discuss/234488/JavaC++Python-Take-K-itself-as-a-Carry/236242)
+
+<p>Check If It Is a Straight Line
+<p>1. [In order to avoid being divided by 0, use multiplication form] (https://leetcode.com/problems/check-if-it-is-a-straight-line/discuss/408984/JavaPython-3-check-slopes-short-code-w-explanation-and-analysis.)  
