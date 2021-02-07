@@ -505,3 +505,6 @@ binary-search-java-code/29)
 
 <p>Check If N and Its Double Exist
 <p>1. [Be careful about 0 * 2 = 0 case and [0,0] case] (https://leetcode.com/problems/check-if-n-and-its-double-exist/discuss/503441/JavaPython-3-HashSet-w-analysis.)
+
+<p>Dot Product of Two Sparse Vectors
+<p>1. [Two Pointers + HashTable] (https://walkccc.me/LeetCode/problems/1570/)
