@@ -487,3 +487,5 @@ binary-search-java-code/29)
 
 <p>Check If It Is a Straight Line
 <p>1. [In order to avoid being divided by 0, use multiplication form] (https://leetcode.com/problems/check-if-it-is-a-straight-line/discuss/408984/JavaPython-3-check-slopes-short-code-w-explanation-and-analysis.)  
+
+<p>Largest Number At Least Twice of Others
