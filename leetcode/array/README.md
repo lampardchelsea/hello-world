@@ -489,3 +489,9 @@ binary-search-java-code/29)
 <p>1. [In order to avoid being divided by 0, use multiplication form] (https://leetcode.com/problems/check-if-it-is-a-straight-line/discuss/408984/JavaPython-3-check-slopes-short-code-w-explanation-and-analysis.)  
 
 <p>Largest Number At Least Twice of Others
+
+<p>Detect Pattern of Length M Repeated K or More Times
+<p>1. [O(N) solution] (https://leetcode.com/problems/detect-pattern-of-length-m-repeated-k-or-more-times/discuss/819359/Java-Time-O(n)-Space-O(1)/677460)
+<p>2. [Explain] (https://leetcode.com/problems/detect-pattern-of-length-m-repeated-k-or-more-times/discuss/819359/Java-Time-O(n)-Space-O(1)/677542)
+<p>3. [Straightforward Iteratively] (https://leetcode.com/problems/detect-pattern-of-length-m-repeated-k-or-more-times/discuss/819314/Java-Straightforward-Iteratively)
+<p>4. [With helper method] (https://leetcode.com/problems/detect-pattern-of-length-m-repeated-k-or-more-times/discuss/819397/Java-Iterative-Solution)  
