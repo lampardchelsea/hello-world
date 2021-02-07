@@ -502,3 +502,6 @@ binary-search-java-code/29)
 
 <p>X of a Kind in a Deck of Cards
 <p>1. [Find GCD] (https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards/discuss/175845/C%2B%2BJavaPython-Greatest-Common-Divisor)
+
+<p>Check If N and Its Double Exist
+<p>1. [Be careful about 0 * 2 = 0 case and [0,0] case] (https://leetcode.com/problems/check-if-n-and-its-double-exist/discuss/503441/JavaPython-3-HashSet-w-analysis.)
