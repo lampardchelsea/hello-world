@@ -511,3 +511,4 @@ binary-search-java-code/29)
 <p>2. [Two Pointers + HashTable] (https://leetcode.com/discuss/interview-question/124823/dot-product-of-sparse-vector)
 
 <p>Subrectangle Queries
+<p>1. [Brute Force] (https://leetcode.com/problems/subrectangle-queries/discuss/685352/JavaPython-3-Two-methods%3A-change-input-and-not-w-brief-analysis.)
