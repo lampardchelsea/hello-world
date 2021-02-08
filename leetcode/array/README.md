@@ -509,3 +509,5 @@ binary-search-java-code/29)
 <p>Dot Product of Two Sparse Vectors
 <p>1. [Two Pointers + HashTable] (https://walkccc.me/LeetCode/problems/1570/)
 <p>2. [Two Pointers + HashTable] (https://leetcode.com/discuss/interview-question/124823/dot-product-of-sparse-vector)
+
+<p>Subrectangle Queries
