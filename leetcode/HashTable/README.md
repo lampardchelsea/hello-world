@@ -247,3 +247,5 @@
 <p>Maximum Number of Balls in a Box
 <p>1. [Since the range is 1 ~ 100_000, the biggest possible non-empty box number is 9 + 9 + 9 + 9 + 9 = 45, which corresponds to ball 99999] (https://leetcode.com/problems/maximum-number-of-balls-in-a-box/discuss/1042954/JavaPython-3-Two-codes-w-brief-explanation-and-analysis.)
 
+<p>Sort the Matrix Diagonally
+<p>1. [Each diagonal has different i - j, we can use i - j as key to identify each diagonal, and on same diagonal all elements have same i - j.] (https://leetcode.com/problems/sort-the-matrix-diagonally/discuss/489749/JavaPython-Straight-Forward)
