@@ -512,3 +512,6 @@ binary-search-java-code/29)
 
 <p>Subrectangle Queries
 <p>1. [Brute Force] (https://leetcode.com/problems/subrectangle-queries/discuss/685352/JavaPython-3-Two-methods%3A-change-input-and-not-w-brief-analysis.)
+
+<p>Count Number of Teams
+<p>1. [O(N^2)] (https://leetcode.com/problems/count-number-of-teams/discuss/555441/JavaC%2B%2B-100-O(N2)-Easy-To-Understand-With-Explanation)
