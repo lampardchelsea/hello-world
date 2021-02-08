@@ -133,3 +133,6 @@
 
 <p>Number of Students Unable to Eat Lunch
 <p>1. [Improved from O(N^2) to O(N) by replace check all element same on queue of break condition with shift_count] (https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/discuss/987495/Beginner-friendlyfaster-than-100.00c++easy-understanding/800322)
+
+<p>Queries on a Permutation With Key
+<p>1. [LinkedList indexOf + remove at index + addFirst] (https://leetcode.com/problems/queries-on-a-permutation-with-key/discuss/575017/Java-solution-using-LinkedList)
