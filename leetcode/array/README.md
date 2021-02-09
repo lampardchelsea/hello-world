@@ -520,3 +520,6 @@ binary-search-java-code/29)
 <p>1. [Use the Trick of XOR operation!!!] (https://leetcode.com/problems/count-triplets-that-can-form-two-arrays-of-equal-xor/discuss/623754/Java-Use-the-Trick-of-XOR-operation!!!)
 
 <p>Queens That Can Attack the King
+
+<p>Remove Sub-Folders from the Filesystem
+<p>1. [Sort and check if start with] (https://leetcode.com/problems/remove-sub-folders-from-the-filesystem/discuss/849776/Short-Java-Solution-O(nLogn)-with-O(1)-space-(Easy-to-understand))
