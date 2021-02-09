@@ -526,3 +526,6 @@ binary-search-java-code/29)
 
 <p>Bulb Switcher III
 <p>1. [Relation between index and right most bulb] (https://leetcode.com/problems/bulb-switcher-iii/discuss/532538/JavaC%2B%2BPython-Straight-Forward-O(1)-Space)
+
+<p>Find Kth Largest XOR Coordinate Value
+<p>1. [Use a 2D prefix sum to precalculate the xor-sum of the upper left submatrix] (https://leetcode.com/problems/find-kth-largest-xor-coordinate-value/discuss/1032010/Detailed-Explanation-or-C%2B%2B-Solution-or-Easy-Implementation)
