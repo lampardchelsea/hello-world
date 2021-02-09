@@ -40,7 +40,17 @@ n == matrix[i].length
 // https://leetcode.com/problems/find-kth-largest-xor-coordinate-value/discuss/1032010/Detailed-Explanation-or-C%2B%2B-Solution-or-Easy-Implementation
 /**
 Step 1: Change the matrix so that matrix[i][j] will contain the xor of all the numbers in the ith row upto jth column as shown below.
+
+a  b  c       a  a^b  a^b^c
+f  g  h  -->  f  f^g  f^g^h
+k  l  m       k  k^l  k^l^m
+
 Step 2: Change the above created matrix so that matrix[i][j] will contain the xor of all the numbers in the jth column upto ith row as shown below.
+
+a  a^b  a^b^c       a       a^b          a^b^c
+f  f^g  f^g^h  -->  a^f     a^b^f^g      a^b^c^f^g^h
+k  k^l  k^l^m       a^f^k   a^b^f^g^k^l  a^b^c^f^g^h^k^l^m
+
 Step 3: In the above created matrix matrix[i][j] contains the xor value of submatrix from (0,0) to (i,j). Hence we can use below two ways to find the kth largest value.
 (Similar Problem - [215] Kth Larges`t Element in an Array)
        1.  Sort all the values and find the kth largest from that.
