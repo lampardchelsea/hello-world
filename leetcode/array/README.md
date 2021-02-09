@@ -518,3 +518,5 @@ binary-search-java-code/29)
 
 <p>Count Triplets That Can Form Two Arrays of Equal XOR
 <p>1. [Use the Trick of XOR operation!!!] (https://leetcode.com/problems/count-triplets-that-can-form-two-arrays-of-equal-xor/discuss/623754/Java-Use-the-Trick-of-XOR-operation!!!)
+
+<p>Queens That Can Attack the King
