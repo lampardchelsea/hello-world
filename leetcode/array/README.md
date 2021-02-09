@@ -523,3 +523,6 @@ binary-search-java-code/29)
 
 <p>Remove Sub-Folders from the Filesystem
 <p>1. [Sort and check if start with] (https://leetcode.com/problems/remove-sub-folders-from-the-filesystem/discuss/849776/Short-Java-Solution-O(nLogn)-with-O(1)-space-(Easy-to-understand))
+
+<p>Bulb Switcher III
+<p>1. [Relation between index and right most bulb] (https://leetcode.com/problems/bulb-switcher-iii/discuss/532538/JavaC%2B%2BPython-Straight-Forward-O(1)-Space)
