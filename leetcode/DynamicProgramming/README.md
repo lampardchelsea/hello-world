@@ -186,3 +186,6 @@
 
 <p>Remove Boxes
 <p>1. [Java top-down and bottom-up DP solutions] (https://leetcode.com/problems/remove-boxes/discuss/101310/Java-top-down-and-bottom-up-DP-solutions)
+
+<p>Count Square Submatrices with All Ones
+<p>1. [The idea is to scan each cell in the matrix to update the placeholder result variable with the number of squares that can be formed from the currently looking cell (when it is the bottom right corner cell of the any possible square).] (https://leetcode.com/problems/count-square-submatrices-with-all-ones/discuss/643429/Python-DP-Solution-%2B-Thinking-Process-Diagrams-(O(mn)-runtime-O(1)-space))
