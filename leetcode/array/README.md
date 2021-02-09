@@ -515,3 +515,6 @@ binary-search-java-code/29)
 
 <p>Count Number of Teams
 <p>1. [O(N^2)] (https://leetcode.com/problems/count-number-of-teams/discuss/555441/JavaC%2B%2B-100-O(N2)-Easy-To-Understand-With-Explanation)
+
+<p>Count Triplets That Can Form Two Arrays of Equal XOR
+<p>1. [Use the Trick of XOR operation!!!] (https://leetcode.com/problems/count-triplets-that-can-form-two-arrays-of-equal-xor/discuss/623754/Java-Use-the-Trick-of-XOR-operation!!!)
