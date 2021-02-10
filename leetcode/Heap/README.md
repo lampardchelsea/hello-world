@@ -108,3 +108,6 @@
   
 <p>Sort Array by Increasing Frequency
 <p>1. [Heap with custom sort + HashMap] (https://leetcode.com/problems/sort-array-by-increasing-frequency/discuss/917826/javaPython-3-Sort-frequency-followed-by-value./770054)
+
+<p>Range Sum of Sorted Subarray Sums
+<p>1. [Use a min-heap to store the sums for subarrays] (https://shawnlyu.com/leetcode/leetcode1508-range-sum-of-sorted-subarray-sums/)
