@@ -54,3 +54,6 @@
 <p>Kth Missing Positive Number
 <p>1. [Binary Serach] (https://leetcode.com/problems/kth-missing-positive-number/discuss/779999/JavaC%2B%2BPython-O(logN))
 <p>2. [Binary Serach] (https://leetcode.com/problems/kth-missing-positive-number/discuss/1004535/Python-Two-solutions-O(n)-and-O(log-n)-explained)
+
+<p>Capacity To Ship Packages Within D Days
+<p>1. [FairWorkload from TopCoder need binary search] (https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/discuss/256729/JavaC++Python-Binary-Search/249951)
