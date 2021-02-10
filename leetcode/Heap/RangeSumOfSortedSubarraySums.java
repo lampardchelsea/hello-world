@@ -113,3 +113,33 @@ class Solution:
 */
 
 // https://leetcode.com/problems/range-sum-of-sorted-subarray-sums/discuss/730511/C++-priority_queue-solution/612996
+class Solution {
+    public int rangeSum(int[] nums, int n, int left, int right) {
+        PriorityQueue<Pair> minPQ = new PriorityQueue<Pair>(n, (p1, p2) -> Long.compare(p1.sum, p2.sum));
+        for(int i = 0; i < n; i++) {
+            minPQ.offer(new Pair(nums[i], i + 1));
+        }
+        int result = 0;
+        int mod = 1000000007;
+        for(int i = 1; i <= right; i++) {
+            Pair p = minPQ.poll();
+            if(i >= left) {
+                result = (int) ((result + p.sum) % mod);
+            }
+            if(p.index < n) {
+                p.sum += nums[p.index++];
+                minPQ.offer(p);
+            }
+        }
+        return result;
+    }
+}
+
+class Pair {
+    long sum;
+    int index;
+    public Pair(long sum, int index) {
+        this.sum = sum;
+        this.index = index;
+    }
+}
