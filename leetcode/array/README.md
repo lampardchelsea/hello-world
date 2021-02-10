@@ -532,3 +532,5 @@ binary-search-java-code/29)
 
 <p>Image Overlap
 <p>1. [Java most intuitive solution] (https://leetcode.com/problems/image-overlap/discuss/161851/Java-most-intuitive-solution)
+
+<p>Average Waiting Time
