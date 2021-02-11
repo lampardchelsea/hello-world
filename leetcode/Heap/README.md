@@ -111,3 +111,6 @@
 
 <p>Range Sum of Sorted Subarray Sums
 <p>1. [Use a min-heap to store the sums for subarrays] (https://shawnlyu.com/leetcode/leetcode1508-range-sum-of-sorted-subarray-sums/)
+
+<p>Filter Restaurants by Vegan-Friendly, Price and Distance
+<p>1. [Java 8 stream] (https://leetcode.com/problems/filter-restaurants-by-vegan-friendly-price-and-distance/discuss/490344/Java-one-liner)
