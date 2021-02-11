@@ -534,3 +534,7 @@ binary-search-java-code/29)
 <p>1. [Java most intuitive solution] (https://leetcode.com/problems/image-overlap/discuss/161851/Java-most-intuitive-solution)
 
 <p>Average Waiting Time
+
+<p>Maximum Sum of Two Non-Overlapping Subarrays
+<p>1. [preSum + slidingwindow] (https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/discuss/279221/JavaPython-3-two-easy-DP-codes-w-comment-time-O(n)-NO-change-of-input)
+<p>2. [Another style to construct preSum] (https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/discuss/278251/JavaC%2B%2BPython-O(N)Time-O(1)-Space)
