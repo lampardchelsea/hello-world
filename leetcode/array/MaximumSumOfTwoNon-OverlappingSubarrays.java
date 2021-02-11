@@ -63,7 +63,8 @@ class Solution {
     1. Scan the prefix sum array from index L + M, which is the first possible position;
     2. update the max value of the L-length subarray; then update max value of the sum of the both;
     3. we need to swap L and M to scan twice, since either subarray can occur before the other.
-    4.In private method, prefix sum difference p[i - M] - p[i - M - L] is L-length subarray from index i - M - L to i - M - 1, and p[i] - p[i - M] is M-length subarray from index i - M to i - 1.
+    4. In private method, prefix sum difference p[i - M] - p[i - M - L] is L-length subarray from index i - M - L to i - M - 1, 
+       and p[i] - p[i - M] is M-length subarray from index i - M to i - 1.
     */
     private int maxSum(int[] p, int L, int M) {
         int result = 0;
