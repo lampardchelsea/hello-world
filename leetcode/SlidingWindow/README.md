@@ -100,3 +100,8 @@
 
 <p>Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold
 <p>1. [Fixed length sliding window] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/SlidingWindow/GrumpyBookstoreOwner.java)
+
+<p>Longest Subarray of 1's After Deleting One Element
+<p>1. [Sliding Window, at most one 0] (https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/discuss/708112/JavaC%2B%2BPython-Sliding-Window-at-most-one-0)
+<p>2. [Max Consecutive Ones II] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/SlidingWindow/MaxConsecutiveOnesII.java)
+<p>3. [Explain] (https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/discuss/708483/Just-a-clever-sliding-window)
