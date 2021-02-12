@@ -189,3 +189,7 @@
 
 <p>Count Square Submatrices with All Ones
 <p>1. [The idea is to scan each cell in the matrix to update the placeholder result variable with the number of squares that can be formed from the currently looking cell (when it is the bottom right corner cell of the any possible square).] (https://leetcode.com/problems/count-square-submatrices-with-all-ones/discuss/643429/Python-DP-Solution-%2B-Thinking-Process-Diagrams-(O(mn)-runtime-O(1)-space))
+
+<p>Uncrossed Lines
+<p>1. [Best DP explain video: Uncrossed Lines | Dynamic programming | Leetcode #1035] (https://www.youtube.com/watch?v=duCx_62nMOA)
+<p>2. [DP, The Longest Common Subsequence] (https://leetcode.com/problems/uncrossed-lines/discuss/282842/JavaC%2B%2BPython-DP-The-Longest-Common-Subsequence)
