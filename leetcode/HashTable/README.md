@@ -259,3 +259,7 @@
 
 <p>Least Number of Unique Integers after K Removals
 <p>1. [Java Simple HashMap and Lambda Sort key by values] (https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals/discuss/686669/Java-Simple-HashMap-and-Lambda-Sort)
+
+<p>Divide Array in Sets of K Consecutive Numbers
+<p>Hand of Straights
+<p>1. [TreeMap + Greedy] (https://leetcode.com/problems/divide-array-in-sets-of-k-consecutive-numbers/discuss/457569/C++-Greedy/739545)
