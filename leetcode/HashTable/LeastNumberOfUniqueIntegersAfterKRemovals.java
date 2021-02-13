@@ -46,5 +46,39 @@ class Solution {
     }
 }
 
+// Wrong solution: We should not assume first n/k numbers means n/k groups start
+// Test out by
+// [12,12,2,11,22,20,11,13,3,21,1,13]
+// 3
+// 1,2,3
+// 11,12,13
+// 11,12,13
+// 20,21,22
+
+class Solution {
+    public boolean isPossibleDivide(int[] nums, int k) {
+        int n = nums.length;
+        if(n % k != 0) {
+            return false;
+        }
+        int groups = n / k;
+        Set<Integer> set = new HashSet<Integer>();
+        for(int num : nums) {
+            set.add(num);
+        }
+        // Find first smallest n/k numbers in the array
+        // then check from 'start' to 'start + k - 1' if exist in hashset
+        Arrays.sort(nums);
+        for(int i = 0; i < groups; i++) {
+            int start = nums[i];
+            for(int j = 0; j < k; j++) {
+                if(!set.contains(start + j)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
 
 
