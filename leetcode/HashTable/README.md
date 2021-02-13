@@ -256,3 +256,6 @@
 
 <p>Array Nesting
 <p>1. [HashSet visited elments in array O(N)] (https://leetcode.com/problems/array-nesting/discuss/102432/C%2B%2B-Java-Clean-Code-O(N))
+
+<p>Least Number of Unique Integers after K Removals
+<p>1. [Java Simple HashMap and Lambda Sort key by values] (https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals/discuss/686669/Java-Simple-HashMap-and-Lambda-Sort)
