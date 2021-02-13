@@ -263,3 +263,6 @@
 <p>Divide Array in Sets of K Consecutive Numbers
 <p>Hand of Straights
 <p>1. [TreeMap + Greedy] (https://leetcode.com/problems/divide-array-in-sets-of-k-consecutive-numbers/discuss/457569/C++-Greedy/739545)
+
+<p>Tuple with Same Product
+<p>1. [Freq map + pair combination] (https://leetcode.com/problems/tuple-with-same-product/discuss/1020600/JAVA-Simple-Solution-with-HashMap-(7-lines))
