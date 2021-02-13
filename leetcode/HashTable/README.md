@@ -253,3 +253,6 @@
 <p>Sum of Unique Elements
 
 <p>Reduce Array Size to The Half
+
+<p>Array Nesting
+<p>1. [HashSet visited elments in array O(N)] (https://leetcode.com/problems/array-nesting/discuss/102432/C%2B%2B-Java-Clean-Code-O(N))
