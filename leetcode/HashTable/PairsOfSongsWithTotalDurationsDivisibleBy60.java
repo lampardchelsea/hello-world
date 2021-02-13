@@ -62,6 +62,37 @@ for 0 has combination as 3 * (3 - 1) / 2 = 3
 Case 3:
 Input: time = [15,63,451,213,37,209,343,319]
 Null Pointer Exception check
+
+Note: Why we have to set frequency to 0 after calculate the combination ?
+Because we cannot remove key when traveling the map keyset, such as:
+for(int k : map.keySet()) {
+    ....
+    map.remove(k);
+}
+You cannot do this, it will throw map keyset concurrentmodificationexception
+
+Another example:
+Refer to
+https://stackoverflow.com/a/11723228/6706875
+The problem is in these lines
+
+for (BigDecimal bigDecimal : transactionLogMap.keySet()) {
+    if(!inScopeActiveRegionIdSet.contains(bigDecimal)) {
+        transactionLogMap.remove(bigDecimal);
+    }
+}
+
+You are iterating through the transactionLogMap whilst also directly modifying the underlying Collection when 
+you call transactionLogMap.remove, which is not allowed because the enhanced for loop cannot see those changes.
+
+The correct solution is to use the Iterator:
+Iterator<BigDecimal> it = transactionLogMap.keySet().iterator();//changed for syntax correctness
+while (it.hasNext()) {
+    BigDecimal bigDecimal = it.next();
+    if(!inScopeActiveRegionIdSet.contains(bigDecimal)) {
+        it.remove();
+    }
+}
 */
 class Solution {
     public int numPairsDivisibleBy60(int[] time) {
