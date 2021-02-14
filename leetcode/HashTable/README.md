@@ -272,3 +272,6 @@
 <p>2. [Divide Array in Sets of K Consecutive Numbers] (Similar way as how to use map)
 <p>3. [I am getting java.util.ConcurrentModificationException thrown while using HashMap] (https://stackoverflow.com/a/11723228/6706875)
 <p>4. [O(n) code w/ comment, similar to Two Sum] (https://leetcode.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/discuss/256726/JavaPython-3-O(n)-code-w-comment-similar-to-Two-Sum)
+
+<p>Rank Teams by Votes
+<p>1. [Java, O(26n+(26^2 * log26)), Sort by high rank vote to low rank vote] (https://leetcode.com/problems/rank-teams-by-votes/discuss/524853/Java-O(26n%2B(262-*-log26))-Sort-by-high-rank-vote-to-low-rank-vote)
