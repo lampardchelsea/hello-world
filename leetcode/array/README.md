@@ -544,3 +544,8 @@ binary-search-java-code/29)
 
 <p>RLE Iterator
 <p>1. [index without store actual array] (https://leetcode.com/problems/rle-iterator/discuss/168286/JavaPython-3-straightforward-code-with-comment-O(n)-time-and-O(1)-extra-space)  
+
+<p>Corporate Flight Bookings
+<p>1. [Sweep line] (https://leetcode.com/problems/corporate-flight-bookings/discuss/328856/JavaC%2B%2BPython-Sweep-Line)
+<p>2. [Cumulative sum] (https://leetcode.com/problems/corporate-flight-bookings/discuss/328871/C%2B%2BJava-with-picture-O(n))
+<p>3. [Explain in detail] (https://leetcode.com/problems/corporate-flight-bookings/discuss/331192/Easy-Python-O(n)-Let's-step-through-the-algorithm)
