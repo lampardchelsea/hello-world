@@ -193,3 +193,6 @@
 <p>Uncrossed Lines
 <p>1. [Best DP explain video: Uncrossed Lines | Dynamic programming | Leetcode #1035] (https://www.youtube.com/watch?v=duCx_62nMOA)
 <p>2. [DP, The Longest Common Subsequence] (https://leetcode.com/problems/uncrossed-lines/discuss/282842/JavaC%2B%2BPython-DP-The-Longest-Common-Subsequence)
+
+<p>Best Sightseeing Pair
+<p>1. [Divide the score into 2 parts - A[i]+i and A[j]-j. For each j value, we will check if the sum of maximum A[i]+i value found so far and current A[j]-j is greater than the res.] (https://leetcode.com/problems/best-sightseeing-pair/discuss/260909/JavaPython-Descriptive-solution.O(N)-Time-or-O(1)-Space.-Very-similar-to-Kadence-Algo!)
