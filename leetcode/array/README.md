@@ -541,3 +541,6 @@ binary-search-java-code/29)
 
 <p>Max Chunks To Make Sorted
 <p>1. [Find index match current subarray's maximum number count] (https://leetcode.com/problems/max-chunks-to-make-sorted/discuss/113528/Simple-Java-O(n)-Solution-with-detailed-explanation/181573)
+
+<p>RLE Iterator
+<p>1. [index without store actual array] (https://leetcode.com/problems/rle-iterator/discuss/168286/JavaPython-3-straightforward-code-with-comment-O(n)-time-and-O(1)-extra-space)  
