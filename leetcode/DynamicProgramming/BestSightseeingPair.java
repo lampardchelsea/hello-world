@@ -36,10 +36,13 @@ Also, keep updating the max_so_far at each step
 */
 class Solution {
     public int maxScoreSightseeingPair(int[] A) {
-        int max_so_far = A[0] + 0;
+        // Intitialize maximum so far value of A[i] + i (A[0] + 0)
+        int max_so_far = A[0];
         int result = 0;
         for(int k = 1; k < A.length; k++) {
+            // Update result if a higher value of max_so_far + A[k] - k is found
             result = Math.max(result, max_so_far + A[k] - k);
+            // Update maximum so far when scanning the array
             max_so_far = Math.max(max_so_far, A[k] + k);
         }
         return result;
