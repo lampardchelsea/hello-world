@@ -57,3 +57,7 @@
 
 <p>Capacity To Ship Packages Within D Days
 <p>1. [FairWorkload from TopCoder need binary search] (https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/discuss/256729/JavaC++Python-Binary-Search/249951)
+
+<p>Maximum Side Length of a Square with Sum Less than or Equal to Threshold
+<p>1. [2D preSum + Binary Search] (https://leetcode.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/discuss/451871/Java-sum%2Bbinary-O(m*n*log(min(mn)))-or-sum%2Bsliding-window-O(m*n))
+<p>2. [2D Prefix Sum (Explanation with Diagram)] (https://leetcode.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/discuss/698422/Python-Prefix-Sum-(Explanation-with-Diagram))
