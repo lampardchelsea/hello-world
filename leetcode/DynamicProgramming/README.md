@@ -196,3 +196,7 @@
 
 <p>Best Sightseeing Pair
 <p>1. [Divide the score into 2 parts - A[i]+i and A[j]-j. For each j value, we will check if the sum of maximum A[i]+i value found so far and current A[j]-j is greater than the res.] (https://leetcode.com/problems/best-sightseeing-pair/discuss/260909/JavaPython-Descriptive-solution.O(N)-Time-or-O(1)-Space.-Very-similar-to-Kadence-Algo!)
+
+<p>Flip String to Monotone Increasing
+<p>1. [DP style 1] (https://leetcode.com/problems/flip-string-to-monotone-increasing/discuss/186797/Java-DP-solution)
+<p>2. [DP style 2] (https://leetcode.com/problems/flip-string-to-monotone-increasing/discuss/189751/C%2B%2B-one-pass-DP-solution-0ms-O(n)-or-O(1)-one-line-with-explaination.)
