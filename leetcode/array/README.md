@@ -549,3 +549,6 @@ binary-search-java-code/29)
 <p>1. [Sweep line] (https://leetcode.com/problems/corporate-flight-bookings/discuss/328856/JavaC%2B%2BPython-Sweep-Line)
 <p>2. [Cumulative sum] (https://leetcode.com/problems/corporate-flight-bookings/discuss/328871/C%2B%2BJava-with-picture-O(n))
 <p>3. [Explain in detail] (https://leetcode.com/problems/corporate-flight-bookings/discuss/331192/Easy-Python-O(n)-Let's-step-through-the-algorithm)
+
+<p>Last Moment Before All Ants Fall Out of a Plank
+<p>1. [Ants Keep Walking, O(N)] (https://leetcode.com/problems/last-moment-before-all-ants-fall-out-of-a-plank/discuss/720189/JavaC%2B%2BPython-Ants-Keep-Walking-O(N))
