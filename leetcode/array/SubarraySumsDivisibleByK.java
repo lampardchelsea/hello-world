@@ -88,6 +88,9 @@ class Solution {
         int count = 0;
         int sum = 0;
         for(int a : A) {
+	    // If sum A[i:j] = sum A[0:j] - sum[0:i-1] has the same remainder against K
+	    // If subarray start at 0 and end at index i and j has same remainder against K, then subarray from index i to j
+	    // must be multiply of K since subarray sum from i to j modula K is 0.
             sum = (sum + a) % K;
             // Always keep use positive reminder to align all scanning intermediate result
 	    // E.g [-4,-1,5,5] and K = 2 --> you will encounter when scanning (-4 - 1) % 2 = -1
