@@ -556,3 +556,9 @@ binary-search-java-code/29)
 <p>Maximum Side Length of a Square with Sum Less than or Equal to Threshold
 <p>1. [2D preSum + Binary Search] (https://leetcode.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/discuss/451871/Java-sum%2Bbinary-O(m*n*log(min(mn)))-or-sum%2Bsliding-window-O(m*n))
 <p>2. [2D Prefix Sum (Explanation with Diagram)] (https://leetcode.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/discuss/698422/Python-Prefix-Sum-(Explanation-with-Diagram))
+
+<p>Subarray Sums Divisible by K
+<p>1. [Exactly same way to handle the problem Subarray Sum Equals K] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/SubarraySumEqualsK.java)
+<p>2. [Best Explain on why sum = (sum + a) % K, why map.put(0, 1), why keep use positive reminder] (https://leetcode.com/problems/subarray-sums-divisible-by-k/discuss/413234/DETAILED-WHITEBOARD!-BEATS-100-(Do-you-really-want-to-understand-ItBest Explain on why map.put(0, 1), why keep use positive reminder))
+<p>3. [preSum + HashMap] (https://leetcode.com/problems/subarray-sums-divisible-by-k/discuss/217980/Java-O(N)-with-HashMap-and-prefix-Sum)
+<p>4. [Math behind modula] (https://leetcode.com/problems/continuous-subarray-sum/discuss/150330/Math-behind-the-solutions)
