@@ -45,9 +45,9 @@ public boolean checkSubarraySum(int[] nums, int k) {
 
 // https://leetcode.com/problems/continuous-subarray-sum/discuss/99499/Java-O(n)-time-O(k)-space/242302
 /**
-/** Key point: if we can find any two subarray of prefix sum have same mod value, then their difference MUST be
- * divisible by k. So we can use a map to store mod value of each prefix sum in map, with its index. Then check
- * if map contains the same mod value with size > 2 when we have new mod value in every iteration */
+Key point: if we can find any two subarray of prefix sum have same mod value, then their difference MUST be
+divisible by k. So we can use a map to store mod value of each prefix sum in map, with its index. Then check
+if map contains the same mod value with size > 2 when we have new mod value in every iteration
 public boolean checkSubarraySum(int[] nums, int k) {
     if (nums.length < 2) {
         return false;
