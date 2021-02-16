@@ -563,3 +563,9 @@ binary-search-java-code/29)
 <p>3. [preSum + HashMap] (https://leetcode.com/problems/subarray-sums-divisible-by-k/discuss/217980/Java-O(N)-with-HashMap-and-prefix-Sum)
 <p>4. [Math behind modula] (https://leetcode.com/problems/continuous-subarray-sum/discuss/150330/Math-behind-the-solutions)
 <p>5. [Save as document] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/Document/Subarray_Sums_Divisible_by_K_preSum_HashMap_Explain.docx)
+
+<p>Continuous Subarray Sum
+<p>1. [Same modula strategy as 974. Subarray Sums Divisible by K] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/SubarraySumsDivisibleByK.java)
+<p>2. [Map store index instead of count for sum] (https://leetcode.com/problems/continuous-subarray-sum/discuss/99499/Java-O(n)-time-O(k)-space)
+<p>3. [Why we store index ?] (https://leetcode.com/problems/continuous-subarray-sum/discuss/99499/Java-O(n)-time-O(k)-space/242302)
+<p>4. [A lot of corner case: so many traps here : k can be 0, element of the array can be 0, and also a single element is not allowed, at least two continuous elements] (https://leetcode.com/problems/continuous-subarray-sum/discuss/99503/Need-to-pay-attention-to-a-lot-of-corner-cases...)
