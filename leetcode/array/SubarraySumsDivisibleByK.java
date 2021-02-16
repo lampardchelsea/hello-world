@@ -20,6 +20,7 @@ Note:
 
 // https://leetcode.com/problems/subarray-sums-divisible-by-k/discuss/413234/DETAILED-WHITEBOARD!-BEATS-100-(Do-you-really-want-to-understand-It)
 ---> // Save as document on https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/Document/Subarray_Sums_Divisible_by_K_preSum_HashMap_Explain.docx
+
 // https://leetcode.com/problems/subarray-sums-divisible-by-k/discuss/217980/Java-O(N)-with-HashMap-and-prefix-Sum
 /**
 class Solution {
