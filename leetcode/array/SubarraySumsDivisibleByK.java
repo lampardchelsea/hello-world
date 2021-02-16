@@ -79,12 +79,21 @@ mod = 5, 7, 8, 5 <-- at here we found it
 class Solution {
     public int subarraysDivByK(int[] A, int K) {
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-        map.put(0, 1); // Need to save a preSum 0 frequency as 1
+	// Need to save a preSum 0 frequency as 1
+	// Consider this case. It's my first time meeting a remainder that equals zero. But wait, doesn't that mean that 
+	// my subarray's sum is Divisible by K? If freq[0]!=1 then my counter wouldn't increment the first time I met a 
+	// remainder=0. Therefore I need freq[0]=1 in order for my counter to consider the first subarray with a remainder 
+	// that equals to zero.
+        map.put(0, 1);
         int count = 0;
         int sum = 0;
         for(int a : A) {
             sum = (sum + a) % K;
             // Always keep use positive reminder to align all scanning intermediate result
+	    // E.g [-4,-1,5,5] and K = 2 --> you will encounter when scanning (-4 - 1) % 2 = -1
+	    // but (-4 - 1 + 5 + 5) % 2 = 1, if we dont' convert -1 to (-1 + 2 = 1) then
+	    // will calculate out wrong difference as 1 - (-1) = 2 not 0 and miss combination 
+	    // as last two 5 as (5 + 5) which % 2 actually = 0.
             if(sum < 0) {
                 sum += K;
             }
