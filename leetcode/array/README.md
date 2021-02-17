@@ -569,3 +569,7 @@ binary-search-java-code/29)
 <p>2. [Map store index instead of count for sum] (https://leetcode.com/problems/continuous-subarray-sum/discuss/99499/Java-O(n)-time-O(k)-space)
 <p>3. [Why we store index ?] (https://leetcode.com/problems/continuous-subarray-sum/discuss/99499/Java-O(n)-time-O(k)-space/242302)
 <p>4. [A lot of corner case: so many traps here : k can be 0, element of the array can be 0, and also a single element is not allowed, at least two continuous elements] (https://leetcode.com/problems/continuous-subarray-sum/discuss/99503/Need-to-pay-attention-to-a-lot-of-corner-cases...)
+
+<p>Make Sum Divisible by P
+<p>1. [Same as 974. Subarray Sums Divisible by K and 523. Continuous Subarray Sum] (https://leetcode.com/problems/make-sum-divisible-by-p/discuss/854174/C%2B%2BJava-O(n))
+<p>2. [Math behind modula calculation] (https://leetcode.com/problems/make-sum-divisible-by-p/discuss/854174/C++Java-O(n)/704882)
