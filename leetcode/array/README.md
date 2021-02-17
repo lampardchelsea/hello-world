@@ -573,3 +573,6 @@ binary-search-java-code/29)
 <p>Make Sum Divisible by P
 <p>1. [Same as 974. Subarray Sums Divisible by K and 523. Continuous Subarray Sum] (https://leetcode.com/problems/make-sum-divisible-by-p/discuss/854174/C%2B%2BJava-O(n))
 <p>2. [Math behind modula calculation] (https://leetcode.com/problems/make-sum-divisible-by-p/discuss/854174/C++Java-O(n)/704882)
+
+<p>Minimum Domino Rotations For Equal Row
+<p>1. [There are 4 possible cases] (https://leetcode.com/problems/minimum-domino-rotations-for-equal-row/discuss/252802/Thinking-Process)
