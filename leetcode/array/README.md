@@ -576,3 +576,7 @@ binary-search-java-code/29)
 
 <p>Minimum Domino Rotations For Equal Row
 <p>1. [There are 4 possible cases] (https://leetcode.com/problems/minimum-domino-rotations-for-equal-row/discuss/252802/Thinking-Process)
+
+<p>Previous Permutation With One Swap
+<p>1. [Similar to find previous permutation] (https://leetcode.com/problems/previous-permutation-with-one-swap/discuss/299244/Similar-to-find-previous-permutation-written-in-Java)
+<p>2. [How to find real closest permuatation and skip the duplicates] (https://leetcode.com/problems/previous-permutation-with-one-swap/discuss/303188/C%2B%2B-O(N)-solution-with-example-with-explanation)  
