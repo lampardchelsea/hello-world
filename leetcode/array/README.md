@@ -580,3 +580,6 @@ binary-search-java-code/29)
 <p>Previous Permutation With One Swap
 <p>1. [Similar to find previous permutation] (https://leetcode.com/problems/previous-permutation-with-one-swap/discuss/299244/Similar-to-find-previous-permutation-written-in-Java)
 <p>2. [How to find real closest permuatation and skip the duplicates] (https://leetcode.com/problems/previous-permutation-with-one-swap/discuss/303188/C%2B%2B-O(N)-solution-with-example-with-explanation)  
+
+<p>Minimum Difference Between Largest and Smallest Value in Three Moves
+<p>1. [Sort array + 3 min / 3 max four relations] (https://leetcode.com/problems/minimum-difference-between-largest-and-smallest-value-in-three-moves/discuss/730567/JavaC%2B%2BPython-Straight-Forward)  
