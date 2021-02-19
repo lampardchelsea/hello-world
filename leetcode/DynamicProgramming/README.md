@@ -200,3 +200,7 @@
 <p>Flip String to Monotone Increasing
 <p>1. [DP style 1] (https://leetcode.com/problems/flip-string-to-monotone-increasing/discuss/186797/Java-DP-solution)
 <p>2. [DP style 2] (https://leetcode.com/problems/flip-string-to-monotone-increasing/discuss/189751/C%2B%2B-one-pass-DP-solution-0ms-O(n)-or-O(1)-one-line-with-explaination.)
+
+<p>Length of Longest Fibonacci Subsequence
+<p>1. [2D DP style 1: dp[a, b] represents the length of fibo sequence ends up with (a, b)] (https://leetcode.com/problems/length-of-longest-fibonacci-subsequence/discuss/152343/C%2B%2BJavaPython-Check-Pair)
+<p>2. [2D DP style 2: dp[a, b] represents the length of fibo sequence start with (a, b)] (https://leetcode.com/problems/length-of-longest-fibonacci-subsequence/discuss/152332/Java-clean-DP-O(n2)-time-O(n2)-space/377212)
