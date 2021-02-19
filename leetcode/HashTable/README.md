@@ -275,3 +275,6 @@
 
 <p>Rank Teams by Votes
 <p>1. [Java, O(26n+(26^2 * log26)), Sort by high rank vote to low rank vote] (https://leetcode.com/problems/rank-teams-by-votes/discuss/524853/Java-O(26n%2B(262-*-log26))-Sort-by-high-rank-vote-to-low-rank-vote)
+
+<p>Length of Longest Fibonacci Subsequence
+<p>1. [HashMap] (https://leetcode.com/problems/length-of-longest-fibonacci-subsequence/discuss/152343/C%2B%2BJavaPython-Check-Pair)
