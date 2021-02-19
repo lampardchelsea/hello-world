@@ -18,7 +18,7 @@ L, R  and A[i] will be an integer in the range [0, 10^9].
 The length of A will be in the range of [1, 50000].
 */
 
-// Solution 1: Sliding Window
+// Solution 1: Not fixed length sliding Window
 // Refer to
 // https://leetcode.com/problems/number-of-subarrays-with-bounded-maximum/discuss/117595/Short-Java-O(n)-Solution
 // https://leetcode.com/problems/number-of-subarrays-with-bounded-maximum/discuss/117595/Short-Java-O(n)-Solution/117576
