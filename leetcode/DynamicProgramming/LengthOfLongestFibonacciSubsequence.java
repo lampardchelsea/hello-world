@@ -26,7 +26,7 @@ Constraints:
 1 <= arr[i] < arr[i + 1] <= 109
 */
 
-// Solution 1: DP
+// Solution 1: 2D DP
 // Style 1: dp[a, b] represents the length of fibo sequence ends up with (a, b)
 // Refer to
 // https://leetcode.com/problems/length-of-longest-fibonacci-subsequence/discuss/152343/C%2B%2BJavaPython-Check-Pair
