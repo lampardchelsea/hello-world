@@ -105,3 +105,6 @@
 <p>1. [Sliding Window, at most one 0] (https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/discuss/708112/JavaC%2B%2BPython-Sliding-Window-at-most-one-0)
 <p>2. [Max Consecutive Ones II] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/SlidingWindow/MaxConsecutiveOnesII.java)
 <p>3. [Explain] (https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/discuss/708483/Just-a-clever-sliding-window)
+
+<p>Number of Subarrays with Bounded Maximum
+<p>1. [Not fixed length sliding window] (https://leetcode.com/problems/number-of-subarrays-with-bounded-maximum/discuss/117595/Short-Java-O(n)-Solution/117414)
