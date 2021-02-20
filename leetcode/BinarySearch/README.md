@@ -64,3 +64,7 @@
 
 <p>Minimum Number of Days to Make m Bouquets
 <p>1. [Binary Search] (https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/discuss/686316/JavaC%2B%2BPython-Binary-Search)
+
+<p>Find First and Last Position of Element in Sorted Array
+<p>1. [Last Position Of Target] (https://github.com/lampardchelsea/hello-world/blob/master/lintcode/BinarySearch/VideoExamples/LastPositionOfTarget.java)
+<p>2. [First Position Of Target] (https://github.com/lampardchelsea/hello-world/blob/master/lintcode/BinarySearch/VideoExamples/FirstPositionOfTarget.java)
