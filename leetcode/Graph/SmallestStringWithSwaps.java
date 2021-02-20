@@ -40,7 +40,7 @@ s only contains lower case English letters.
 // Solution 1: Union-find + PriorityQueue
 // Refer to
 // https://leetcode.com/problems/smallest-string-with-swaps/discuss/388257/C%2B%2B-with-picture-union-find
-// --> Save as doc: 
+// --> Save as doc: https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/Documents/Smallest_String_With_Swaps.docx
 // https://leetcode.com/problems/smallest-string-with-swaps/discuss/388055/Java-Union-find-%2B-PriorityQueue.-Easy-to-understand.
 /**
 Problem abstract: Sort the characters within each connected group.
