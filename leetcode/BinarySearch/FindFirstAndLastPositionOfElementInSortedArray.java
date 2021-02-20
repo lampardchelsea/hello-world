@@ -100,9 +100,9 @@ class Solution {
                 // item is the last one matching target, and we
                 // minus 1, will cause time out exception
                 // check lesson2_A for example
-                start = mid + 1;
+                start = mid + 1; // follow template we can use 'start = mid' here
             } else if(nums[mid] > target) {
-                end = mid - 1;
+                end = mid - 1; // follow template we can use 'end = mid' here
             }
         }
         // Check on 'end' first for requirement
