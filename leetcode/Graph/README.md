@@ -159,3 +159,8 @@ Need to find Prim example also
   
 <p>Min Cost to Repair Edges
 <p>1. [Kruskal + Union Find] (https://leetcode.com/discuss/interview-question/357310/Amazon-or-OA-2019-or-Min-Cost-to-Repair-Edges/405367)
+
+<p>Smallest String With Swaps
+<p>1. [Union Find + PQ] (// https://leetcode.com/problems/smallest-string-with-swaps/discuss/388257/C%2B%2B-with-picture-union-find)
+<p>2. [Save as doc] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Graph/Documents/Smallest_String_With_Swaps.docx)
+<ph3. [Union Find + PQ]1]ttps://leetcode.com/problems/smallest-string-with-swaps/discuss/388055/Java-Union-find-%2B-PriorityQueue.-Easy-to-understand.))
