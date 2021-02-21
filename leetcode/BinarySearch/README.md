@@ -68,3 +68,8 @@
 <p>Find First and Last Position of Element in Sorted Array
 <p>1. [Last Position Of Target] (https://github.com/lampardchelsea/hello-world/blob/master/lintcode/BinarySearch/VideoExamples/LastPositionOfTarget.java)
 <p>2. [First Position Of Target] (https://github.com/lampardchelsea/hello-world/blob/master/lintcode/BinarySearch/VideoExamples/FirstPositionOfTarget.java)
+
+<p>Magnetic Force Between Two Balls
+<p>1. [How to find last in binary search] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/BinarySearch/FindFirstAndLastPositionOfElementInSortedArray.java)
+<p>2. [How to find last possible distance that guarantee to put in all balls in binary search] (https://leetcode.com/problems/magnetic-force-between-two-balls/discuss/794066/Simple-Explanation)
+<p>3. [Implement with code] (https://leetcode.com/problems/magnetic-force-between-two-balls/discuss/794066/Simple-Explanation/658189)  
