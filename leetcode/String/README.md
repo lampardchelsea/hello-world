@@ -304,3 +304,6 @@
 <p>Palindrome Number
 <p>1. [Convert int to String] (https://leetcode.com/problems/palindrome-number/solution/)
 <p>2. [No convert] (https://leetcode.com/problems/palindrome-number/discuss/5127/9-line-accepted-Java-code-without-the-need-of-handling-overflow/5915) 
+
+<p>Minimum Changes To Make Alternating Binary String
+<p>1. [res V.S. n - res] (https://leetcode.com/problems/minimum-changes-to-make-alternating-binary-string/discuss/1064511/JavaC%2B%2BPython-Easy-and-Concise)
