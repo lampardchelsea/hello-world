@@ -583,3 +583,6 @@ binary-search-java-code/29)
 
 <p>Minimum Difference Between Largest and Smallest Value in Three Moves
 <p>1. [Sort array + 3 min / 3 max four relations] (https://leetcode.com/problems/minimum-difference-between-largest-and-smallest-value-in-three-moves/discuss/730567/JavaC%2B%2BPython-Straight-Forward)  
+
+<p>Maximum Width Ramp
+<p>1. [Two arrays] (https://leetcode.com/problems/maximum-width-ramp/discuss/209582/O(n)-time-O(n)-space-using-two-array)
