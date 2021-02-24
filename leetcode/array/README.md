@@ -589,3 +589,6 @@ binary-search-java-code/29)
 
 <p>Minimum Increment to Make Array Unique
 <p>1. [Sort array] (https://leetcode.com/problems/minimum-increment-to-make-array-unique/discuss/197687/JavaC%2B%2BPython-Straight-Forward)
+
+<p>Advantage Shuffle
+<p>1. [Greedy with maxPQ] (https://leetcode.com/problems/advantage-shuffle/discuss/149822/JAVA-Greedy-6-lines-with-Explanation)
