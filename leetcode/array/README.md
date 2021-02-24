@@ -586,3 +586,6 @@ binary-search-java-code/29)
 
 <p>Maximum Width Ramp
 <p>1. [Two arrays] (https://leetcode.com/problems/maximum-width-ramp/discuss/209582/O(n)-time-O(n)-space-using-two-array)
+
+<p>Minimum Increment to Make Array Unique
+<p>1. [Sort array] (https://leetcode.com/problems/minimum-increment-to-make-array-unique/discuss/197687/JavaC%2B%2BPython-Straight-Forward)
