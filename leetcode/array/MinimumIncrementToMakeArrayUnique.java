@@ -71,7 +71,7 @@ class Solution {
         int prev = A[0];
         for(int i = 1; i < A.length; i++) {
             int expect = prev + 1;
-            if(A[i] <= expect) {
+            if(A[i] < expect) {
                 result += expect - A[i];
             }
             prev = Math.max(expect, A[i]);
