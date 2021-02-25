@@ -136,3 +136,6 @@
 
 <p>Queries on a Permutation With Key
 <p>1. [LinkedList indexOf + remove at index + addFirst] (https://leetcode.com/problems/queries-on-a-permutation-with-key/discuss/575017/Java-solution-using-LinkedList)
+
+<p>Find the Winner of an Array Game
+<p>1. [Use LinkedList to simulate the process + remove / add element first / last + store index to identify if first element updated or kept]
