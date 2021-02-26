@@ -28,7 +28,7 @@ Notice
 // Solution 1 to 4 Brute Force to PreSum
 // Refer to
 // https://xiaoguan.gitbooks.io/leetcode/content/LeetCode/548-split-array-with-equal-sum-medium.html
-// 
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/HashTable/Document/Split_Array_with_Equal_Sum.docx
 
 // Solution 5: PreSum + HashSet
 // Refer to
