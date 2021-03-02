@@ -39,13 +39,13 @@ e.g
 1 1 1 2
 ----------------------------------------------------------------
 From top left to bottom right as a diagonal, we have 6 diagonals
-diagonal formula -> row index - col index
-         diag 1:    0 - 0, 1 - 1, 2 - 2 == key as 0
-         diag 2:    0 - 1, 1 - 2, 2 - 3 == key as -1
-         diag 3:    0 - 2, 1 - 3        == key as -2
-         diag 4:    0 - 3               == key as -3
-         diag 5:    1 - 0, 2 - 1        == key as 1
-         diag 6:    2 - 0               == key as 2
+same diagonal formula -> row index - col index
+diag 1: 0 - 0, 1 - 1, 2 - 2 == key as 0
+diag 2: 0 - 1, 1 - 2, 2 - 3 == key as -1
+diag 3: 0 - 2, 1 - 3        == key as -2
+diag 4: 0 - 3               == key as -3
+diag 5: 1 - 0, 2 - 1        == key as 1
+diag 6: 2 - 0               == key as 2
 ----------------------------------------------------------------
 
 Complexity
