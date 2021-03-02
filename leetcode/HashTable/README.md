@@ -278,3 +278,8 @@
 
 <p>Length of Longest Fibonacci Subsequence
 <p>1. [HashMap] (https://leetcode.com/problems/length-of-longest-fibonacci-subsequence/discuss/152343/C%2B%2BJavaPython-Check-Pair)
+  
+<p>Diagonal Traverse II
+<p>1. [In a 2D matrix, elements in the same sub-diagonal have same sum of their indices as i + j] (https://leetcode.com/problems/diagonal-traverse-ii/discuss/597741/Clean-Simple-Easiest-Explanation-with-a-picture-and-code-with-comments)
+<p>2. [Implement] (https://leetcode.com/problems/diagonal-traverse-ii/discuss/597698/JavaC++-HashMap-with-Picture-Clean-code-O(N)/518155)
+<p>3. [Sort the Matrix Diagonally in the same diagonal have same difference of their indices as i - j] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/HashTable/SortTheMatrixDiagonally.java)
