@@ -50,6 +50,8 @@ sub-diag 7: 3 + 3                == key as 6
 -----------------------------------------
 */
 
+// Keep in document
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/HashTable/Document/Diagonal_Traverse_II_Explain.docx
 // https://leetcode.com/problems/diagonal-traverse-ii/discuss/597741/Clean-Simple-Easiest-Explanation-with-a-picture-and-code-with-comments
 // https://leetcode.com/problems/diagonal-traverse-ii/discuss/597698/JavaC%2B%2B-HashMap-with-Picture-Clean-code-O(N)
 // https://leetcode.com/problems/diagonal-traverse-ii/discuss/597698/JavaC++-HashMap-with-Picture-Clean-code-O(N)/518155
