@@ -594,4 +594,4 @@ binary-search-java-code/29)
 <p>1. [Greedy with maxPQ] (https://leetcode.com/problems/advantage-shuffle/discuss/149822/JAVA-Greedy-6-lines-with-Explanation)
 
 <p>Partition Array into Disjoint Intervals
-<p>1. [Next Array] (https://leetcode.com/problems/partition-array-into-disjoint-intervals/solution/)
+<p>1. [Next Array + leftMax array + rightMin array] (https://leetcode.com/problems/partition-array-into-disjoint-intervals/solution/)
