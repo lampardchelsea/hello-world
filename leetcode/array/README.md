@@ -595,3 +595,6 @@ binary-search-java-code/29)
 
 <p>Partition Array into Disjoint Intervals
 <p>1. [Next Array + leftMax array + rightMin array] (https://leetcode.com/problems/partition-array-into-disjoint-intervals/solution/)
+
+<p>Maximize Distance to Closest Person
+<p>2. [Next Array] (https://leetcode.com/problems/maximize-distance-to-closest-person/solution/)
