@@ -125,5 +125,75 @@ def findBestValue(self, arr: List[int], target: int) -> int:
     else:
         return left - 1
 */
+class Solution {
+    public int findBestValue(int[] arr, int target) {
+        int lo = 1;
+        int hi = 0;
+        int sum = 0;
+        for(int a : arr) {
+            sum += a;
+            hi = Math.max(hi, a);
+        }
+        if(sum <= target) {
+            return hi;
+        }
+        while(lo < hi) {
+            sum = 0;
+            int mid = lo + (hi - lo) / 2;
+            for(int a : arr) {
+                sum += a > mid ? mid : a;
+            }
+            if(sum == target) {
+                hi = mid;
+            } else if(sum > target) {
+                hi = mid;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        int s1 = 0;
+        int s2 = 0;
+        for(int a : arr) {
+            s1 += a > lo ? lo : a;
+            s2 += a > lo - 1 ? lo - 1: a;
+        }
+        return (Math.abs(s2 - target) <= Math.abs(s1 - target)) ? lo - 1: lo;
+    }
+}
 
-
+// Wrong answer: Failed on last test case
+class Solution {
+    public int findBestValue(int[] arr, int target) {
+        int lo = 1;
+        int hi = 0;
+        int sum = 0;
+        for(int a : arr) {
+            sum += a;
+            hi = Math.max(hi, a);
+        }
+        if(sum <= target) {
+            return hi;
+        }
+        while(lo + 1 < hi) {
+            sum = 0;
+            int mid = lo + (hi - lo) / 2;
+            for(int a : arr) {
+                sum += a > mid ? mid : a;
+            }
+            if(sum == target) {
+                hi = mid;
+            } else if(sum > target) {
+                hi = mid;
+            } else {
+                lo = mid;
+            }
+        }
+        int s1 = 0;
+        int s2 = 0;
+        for(int a : arr) {
+            s1 += a > hi ? hi : a;
+            s2 += a > lo ? lo : a;
+        }
+        return (Math.abs(s2 - target) <= Math.abs(s1 - target)) ? lo : hi;
+    }
+}
