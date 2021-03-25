@@ -598,3 +598,6 @@ binary-search-java-code/29)
 
 <p>Maximize Distance to Closest Person
 <p>2. [Next Array] (https://leetcode.com/problems/maximize-distance-to-closest-person/solution/)
+
+<p>Maximum Swap
+<p>1. [Greedy as scan to find available larger digit] (https://leetcode.com/problems/maximum-swap/discuss/107068/Java-simple-solution-O(n)-time)
