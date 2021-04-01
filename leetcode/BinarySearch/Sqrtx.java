@@ -46,3 +46,50 @@ def mySqrt(x: int) -> int:
             left = mid + 1
     return left - 1  # `left` is the minimum k value, `k - 1` is the answer
 */
+
+// Solution 2: Binary Search Solution: Time complexity = O(lg(x)) = O(32)=O(1)
+// Refer to
+// https://leetcode.com/problems/sqrtx/discuss/25198/3-JAVA-solutions-with-explanation
+/**
+The three solutions are as the follows, solution1 and solution3 are pretty straight forward.
+
+ Look for the critical point: i * i <= x && (i+1)(i+1) > x
+ 
+A little trick is using i <= x / i for comparison, instead of i * i <= x, to avoid exceeding integer upper limit.
+
+Solution1 - Binary Search Solution: Time complexity = O(lg(x)) = O(32)=O(1)
+public int mySqrt(int x) {
+	if (x == 0) return 0;
+	int start = 1, end = x;
+	while (start < end) { 
+		int mid = start + (end - start) / 2;
+		if (mid <= x / mid && (mid + 1) > x / (mid + 1))// Found the result
+			return mid; 
+		else if (mid > x / mid)// Keep checking the left part
+			end = mid;
+		else
+			start = mid + 1;// Keep checking the right part
+	}
+	return start;
+}
+*/
+class Solution {
+    public int mySqrt(int x) {
+        if(x == 0) {
+            return 0;
+        }
+        int lo = 1;
+        int hi = x;
+        while(lo < hi) {
+            int mid = lo + (hi - lo) / 2;
+            if(mid <= x / mid && (mid + 1) > x / (mid + 1)) {
+                return mid;
+            } else if(mid > x / mid) {
+                hi = mid;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        return lo;
+    }
+}
