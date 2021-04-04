@@ -61,4 +61,20 @@ class Solution:
                 left = mid + 1
         return left
 */
-
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int lo = 0;
+        int hi = nums.length; // we might need to inseart at the end
+        while(lo < hi) { // breaks if lo == hi
+            int mid = lo + (hi - lo) / 2; // always gives the lower mid
+            // try to find the first index which value on that index 
+            // larger or equal to target
+            if(nums[mid] >= target) {
+                hi = mid; // it might be possible to insert @ mid
+            } else {
+                lo = mid + 1; // no way mid is a valid option
+            }
+        }
+        return lo;
+    }
+}
