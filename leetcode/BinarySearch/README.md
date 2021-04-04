@@ -81,3 +81,6 @@
 <p>Sqrt(x)
 <p>1. [Template] (https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems)
 <p>2. [A little trick is using i <= x / i for comparison, instead of i * i <= x, to avoid exceeding integer upper limit.] (https://leetcode.com/problems/sqrtx/discuss/25198/3-JAVA-solutions-with-explanation)
+  
+<p>Search Insert Position
+<p>1. [Template] (https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems)
