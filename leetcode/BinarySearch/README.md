@@ -85,3 +85,7 @@
 <p>Search Insert Position
 <p>1. [Template] (https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems)
 <p>2. [Binary Serach 101] (https://leetcode.com/problems/search-insert-position/discuss/423166/Binary-Search-101)
+
+<p>Split Array Largest Sum
+<p>1. [Template] (https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems)
+<p>2. [1011. Capacity To Ship Packages Within D Days] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/BinarySearch/CapacityToShipPackagesWithinDDays.java)
