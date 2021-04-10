@@ -68,6 +68,12 @@ def minEatingSpeed(piles: List[int], H: int) -> int:
             left = mid + 1
     return left
 */
+
+// How to round up the result of integer division?
+// https://stackoverflow.com/questions/17944/how-to-round-up-the-result-of-integer-division
+/**
+int pageCount = (records + recordsPerPage - 1) / recordsPerPage;
+*/
 class Solution {
     public int minEatingSpeed(int[] piles, int h) {
         int lo = 1;
