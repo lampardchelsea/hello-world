@@ -89,3 +89,7 @@
 <p>Split Array Largest Sum
 <p>1. [Template] (https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems)
 <p>2. [1011. Capacity To Ship Packages Within D Days] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/BinarySearch/CapacityToShipPackagesWithinDDays.java)
+
+<p>Koko Eating Bananas
+<p>1. [Template] (https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems)
+<p>2. [How to round up the result of integer division?] (https://stackoverflow.com/questions/17944/how-to-round-up-the-result-of-integer-division)
