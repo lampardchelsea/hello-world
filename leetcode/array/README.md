@@ -604,3 +604,5 @@ binary-search-java-code/29)
 
 <p>Global and Local Inversions
 <p>1. [Tricky way] (https://leetcode.com/problems/global-and-local-inversions/discuss/113644/C%2B%2BJavaPython-Easy-and-Concise-Solution)
+
+<p>Count Items Matching a Rule
