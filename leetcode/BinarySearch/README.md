@@ -93,3 +93,7 @@
 <p>Koko Eating Bananas
 <p>1. [Template] (https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems)
 <p>2. [How to round up the result of integer division?] (https://stackoverflow.com/questions/17944/how-to-round-up-the-result-of-integer-division)
+
+<p>Kth Smallest Number in Multiplication Table
+<p>1. [Template] (https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems)
+<p>2. [Binary Search] (https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/solution/)
