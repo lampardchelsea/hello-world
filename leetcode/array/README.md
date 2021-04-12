@@ -601,3 +601,6 @@ binary-search-java-code/29)
 
 <p>Maximum Swap
 <p>1. [Greedy as scan to find available larger digit] (https://leetcode.com/problems/maximum-swap/discuss/107068/Java-simple-solution-O(n)-time)
+
+<p>Global and Local Inversions
+<p>1. [Tricky way] (https://leetcode.com/problems/global-and-local-inversions/discuss/113644/C%2B%2BJavaPython-Easy-and-Concise-Solution)
