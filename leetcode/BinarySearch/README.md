@@ -103,3 +103,7 @@
 
 <p>Find the Smallest Divisor Given a Threshold
 <p>1. [Template] (https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems)
+
+<p>Ugly Number III
+<p>1. [Template] (https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems)
+<p>2. [Java version] (https://leetcode.com/problems/ugly-number-iii/discuss/387582/1ms-Java-Binary-Search)
