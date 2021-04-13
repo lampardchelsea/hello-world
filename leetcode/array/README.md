@@ -609,3 +609,6 @@ binary-search-java-code/29)
   
 <p>Find Nearest Point That Has the Same X or Y Coordinate
 <p>1. [dx * dy == 0 is great] (https://leetcode.com/problems/find-nearest-point-that-has-the-same-x-or-y-coordinate/discuss/1096346/JavaPython-3-Straight-forward-codes.)
+
+<p>Check if Array Is Sorted and Rotated
+<p>1. [The case of a > b can happen at most once (last and first element also connected)] (https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/discuss/1053508/JavaC%2B%2BPython-Easy-and-Concise)
