@@ -606,3 +606,6 @@ binary-search-java-code/29)
 <p>1. [Tricky way] (https://leetcode.com/problems/global-and-local-inversions/discuss/113644/C%2B%2BJavaPython-Easy-and-Concise-Solution)
 
 <p>Count Items Matching a Rule
+  
+<p>Find Nearest Point That Has the Same X or Y Coordinate
+<p>1. [dx * dy == 0 is great] (https://leetcode.com/problems/find-nearest-point-that-has-the-same-x-or-y-coordinate/discuss/1096346/JavaPython-3-Straight-forward-codes.)
