@@ -283,3 +283,7 @@
 <p>1. [In a 2D matrix, elements in the same sub-diagonal have same sum of their indices as i + j] (https://leetcode.com/problems/diagonal-traverse-ii/discuss/597741/Clean-Simple-Easiest-Explanation-with-a-picture-and-code-with-comments)
 <p>2. [Implement] (https://leetcode.com/problems/diagonal-traverse-ii/discuss/597698/JavaC++-HashMap-with-Picture-Clean-code-O(N)/518155)
 <p>3. [Sort the Matrix Diagonally in the same diagonal have same difference of their indices as i - j] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/HashTable/SortTheMatrixDiagonally.java)
+
+<p>Check If Array Pairs Are Divisible by k
+<p>1. [HashMap + Complementary Remainder Style 1] (https://leetcode.com/problems/check-if-array-pairs-are-divisible-by-k/discuss/709691/Java-7ms-Simple-Solution)
+<p>2. [HashMap + Complementary Remainder Style 2] (https://leetcode.com/problems/check-if-array-pairs-are-divisible-by-k/discuss/709379/Easy-Java-solution-with-explanation-similar-to-Two-Sum)
