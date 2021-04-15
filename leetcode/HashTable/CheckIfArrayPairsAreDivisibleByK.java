@@ -38,6 +38,28 @@ n is even.
 1 <= k <= 105
 */
 
+// Mod in Java produces negative numbers ?
+// https://stackoverflow.com/questions/5385024/mod-in-java-produces-negative-numbers
+/**
+Q:When I calculate int i = -1 % 2 I get -1 in Java. In Python, I get 1 as the result of -1 % 2. 
+  What do I have to do to get the same behavior in Java with the modulo function?
+
+A:
+The problem here is that in Python the % operator returns the modulus and in Java it returns the remainder. 
+These functions give the same values for positive arguments, but the modulus always returns positive results 
+for negative input, whereas the remainder may give negative results. There's some more information about it 
+in this question.
+
+You can find the positive value by doing this:
+
+int i = (((-1 % 2) + 2) % 2)
+or this:
+
+int i = -1 % 2;
+if (i<0) i += 2;
+(obviously -1 or 2 can be whatever you want the numerator or denominator to be)
+*/
+
 // Solution 1: HashMap + Complementary Remainder
 // Style 1
 // Refer to
