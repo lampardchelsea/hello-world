@@ -287,3 +287,4 @@
 <p>Check If Array Pairs Are Divisible by k
 <p>1. [HashMap + Complementary Remainder Style 1] (https://leetcode.com/problems/check-if-array-pairs-are-divisible-by-k/discuss/709691/Java-7ms-Simple-Solution)
 <p>2. [HashMap + Complementary Remainder Style 2] (https://leetcode.com/problems/check-if-array-pairs-are-divisible-by-k/discuss/709379/Easy-Java-solution-with-explanation-similar-to-Two-Sum)
+<p>3. [Mod in Java produces negative numbers ?] (https://stackoverflow.com/questions/5385024/mod-in-java-produces-negative-numbers)
