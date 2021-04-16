@@ -288,3 +288,7 @@
 <p>1. [HashMap + Complementary Remainder Style 1] (https://leetcode.com/problems/check-if-array-pairs-are-divisible-by-k/discuss/709691/Java-7ms-Simple-Solution)
 <p>2. [HashMap + Complementary Remainder Style 2] (https://leetcode.com/problems/check-if-array-pairs-are-divisible-by-k/discuss/709379/Easy-Java-solution-with-explanation-similar-to-Two-Sum)
 <p>3. [Mod in Java produces negative numbers ?] (https://stackoverflow.com/questions/5385024/mod-in-java-produces-negative-numbers)
+
+<p>Count Nice Pairs in an Array
+<p>1. [Add mod and long to avoid stackoverflow for integer] (https://leetcode.com/problems/count-nice-pairs-in-an-array/discuss/1140487/Count-Frequency-of-difference-of-number-and-its-reverse-or-Easy-Hashmap-Explained/896131)
+<p>2. [Build freq map for num[i] - rev(num[i]) = num[j] - rev(num[j])] (https://leetcode.com/problems/count-nice-pairs-in-an-array/discuss/1140487/Count-Frequency-of-difference-of-number-and-its-reverse-or-Easy-Hashmap-Explained)
