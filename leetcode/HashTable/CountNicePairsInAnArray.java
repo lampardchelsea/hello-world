@@ -25,7 +25,7 @@ Constraints:
 0 <= nums[i] <= 109
 */
 
-// Solution 1:
+// Solution 1: num[i] - rev(num[i]) = num[j] - rev(num[j])
 // Refer to
 // https://leetcode.com/problems/count-nice-pairs-in-an-array/discuss/1140487/Count-Frequency-of-difference-of-number-and-its-reverse-or-Easy-Hashmap-Explained
 /**
@@ -62,6 +62,7 @@ Space Complexity : O(N)
 Fun Fact : All the numbers have the difference between the original number and its reverse as a multiple of 9.
 */
 
+// Add mod and long to avoid stackoverflow for integer
 // https://leetcode.com/problems/count-nice-pairs-in-an-array/discuss/1140487/Count-Frequency-of-difference-of-number-and-its-reverse-or-Easy-Hashmap-Explained/896131
 /**
 public int countNicePairs(int[] nums) {
