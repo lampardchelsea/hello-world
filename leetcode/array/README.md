@@ -618,3 +618,6 @@ binary-search-java-code/29)
 <p>2. [Prefix production + Special handle when encounter add 0 as restore list] (https://leetcode.com/problems/product-of-the-last-k-numbers/discuss/510219/Java-Maintain-a-Prefix-Product-(Handle-the-case-when-Element-is-0))
 
 <p>Minimum Operations to Make the Array Increasing
+
+<p>Number of Sub-arrays With Odd Sum
+<p>1. [Depends on presum odd and even] (https://leetcode.com/problems/number-of-sub-arrays-with-odd-sum/discuss/754706/C%2B%2BJava-O(n))
