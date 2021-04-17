@@ -616,3 +616,5 @@ binary-search-java-code/29)
 <p>Product of the Last K Numbers
 <p>1. [Java, prefix product, beats 100%, explained] (https://leetcode.com/problems/product-of-the-last-k-numbers/discuss/512354/Java-prefix-product-beats-100-explained)
 <p>2. [Prefix production + Special handle when encounter add 0 as restore list] (https://leetcode.com/problems/product-of-the-last-k-numbers/discuss/510219/Java-Maintain-a-Prefix-Product-(Handle-the-case-when-Element-is-0))
+
+<p>Minimum Operations to Make the Array Increasing
