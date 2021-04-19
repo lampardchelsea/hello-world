@@ -108,3 +108,6 @@
 
 <p>Number of Subarrays with Bounded Maximum
 <p>1. [Not fixed length sliding window] (https://leetcode.com/problems/number-of-subarrays-with-bounded-maximum/discuss/117595/Short-Java-O(n)-Solution/117414)
+
+<p>Shortest Subarray to be Removed to Make Array Sorted
+<p>1. [Not fixed length sliding window] (https://leetcode.com/problems/shortest-subarray-to-be-removed-to-make-array-sorted/discuss/830480/C%2B%2B-O(N)-Sliding-window-Explanation-with-Illustrations)
