@@ -26,6 +26,8 @@ Constraints:
 Follow up: Can you solve it in O(n) time complexity?
 */
 
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/Document/Shortest_Unsorted_Continuous_Subarray.docx
+
 // Solution 1: Using sort
 // Refer to
 // https://leetcode.com/problems/shortest-unsorted-continuous-subarray/solution
