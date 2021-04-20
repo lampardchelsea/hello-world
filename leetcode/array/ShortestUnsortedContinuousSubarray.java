@@ -27,6 +27,17 @@ Follow up: Can you solve it in O(n) time complexity?
 */
 
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/Document/Shortest_Unsorted_Continuous_Subarray.docx
+/**
+And this question cannot implement same sliding window logic from 1574. Shortest Subarray to be Removed to Make Array Sorted
+Example:
+Input
+[2,6,4,8,10,9,15]
+Output
+3   --> only need to remove [4,8,10] to make it monotonically increasing as logic from 1574. Shortest Subarray to be Removed to Make Array Sorted
+Expected
+5   --> have to sort [6,4,8,10,9] to make it monotonically increasing as logic required here
+*/
+
 
 // Solution 1: Using sort
 // Refer to
