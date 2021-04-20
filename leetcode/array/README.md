@@ -621,3 +621,6 @@ binary-search-java-code/29)
 
 <p>Number of Sub-arrays With Odd Sum
 <p>1. [Depends on presum odd and even] (https://leetcode.com/problems/number-of-sub-arrays-with-odd-sum/discuss/754706/C%2B%2BJava-O(n))
+
+<p>Shortest Unsorted Continuous Subarray
+<p>1. [Sort or stack to get correct position by comparing] (https://leetcode.com/problems/shortest-unsorted-continuous-subarray/solution/)
