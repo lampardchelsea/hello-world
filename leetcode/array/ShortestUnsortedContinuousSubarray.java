@@ -97,9 +97,24 @@ We can look at the figure below for reference. We can observe that the slopes di
 also observe that the point b needs to lie just after index 0 marking the left boundary and the point aa needs to lie just 
 before index 7 marking the right boundary of the unsorted subarray.
 */
-
-
-
-
-
-
+class Solution {
+    public int findUnsortedSubarray(int[] nums) {
+        Stack<Integer> stack = new Stack<Integer>();
+        int left = nums.length;
+        int right = 0;
+        for(int i = 0; i < nums.length; i++) {
+            while(!stack.isEmpty() && nums[stack.peek()] > nums[i]) {
+                left = Math.min(left, stack.pop());
+            }
+            stack.push(i);
+        }
+        stack.clear();
+        for(int i = nums.length - 1; i >= 0; i--) {
+            while(!stack.isEmpty() && nums[stack.peek()] < nums[i]) {
+                right = Math.max(right, stack.pop());
+            }
+            stack.push(i);
+        }
+        return right - left > 0 ? right - left + 1 : 0;
+    }
+}
