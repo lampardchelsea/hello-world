@@ -292,3 +292,6 @@
 <p>Count Nice Pairs in an Array
 <p>1. [Add mod and long to avoid stackoverflow for integer] (https://leetcode.com/problems/count-nice-pairs-in-an-array/discuss/1140487/Count-Frequency-of-difference-of-number-and-its-reverse-or-Easy-Hashmap-Explained/896131)
 <p>2. [Build freq map for num[i] - rev(num[i]) = num[j] - rev(num[j])] (https://leetcode.com/problems/count-nice-pairs-in-an-array/discuss/1140487/Count-Frequency-of-difference-of-number-and-its-reverse-or-Easy-Hashmap-Explained)
+
+<p>Snapshot Array
+<p>1. [Java, list and map, explained] (https://leetcode.com/problems/snapshot-array/discuss/454280/Java-list-and-map-explained-clean-beats-95)
