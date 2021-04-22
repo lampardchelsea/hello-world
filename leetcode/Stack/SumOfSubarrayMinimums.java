@@ -23,6 +23,7 @@ Constraints:
 
 // Solution 1: Stack + PLE (previous less element) + NLE (next less element)
 // Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Stack/Document/PLE_NLE_Monotonous_Increase_Stack.docx
 // https://leetcode.com/problems/sum-of-subarray-minimums/discuss/178876/stack-solution-with-very-detailed-explanation-step-by-step
 /**
 Before diving into the solution, we first introduce a very important stack type, which is called monotone stack .
