@@ -106,3 +106,6 @@
 <p>Final Prices With a Special Discount in a Shop
 <p>1. [Stack only store index not number] (https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/discuss/685390/JavaC%2B%2BPython-Stack-One-Pass)
 <p>2. [Stack store actual number but scan from right to left] (https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/discuss/685946/Java-O(n)-Mono-Stack-loop-from-end)
+
+<p>Sum of Subarray Minimums
+<p>1. [Stack + PLE(previous less element) + NLE(next less element)] (https://leetcode.com/problems/sum-of-subarray-minimums/discuss/178876/stack-solution-with-very-detailed-explanation-step-by-step)
