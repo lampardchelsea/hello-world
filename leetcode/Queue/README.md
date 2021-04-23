@@ -18,3 +18,7 @@
 <p>1. [Youtube Solution] (https://www.youtube.com/watch?v=tEGSN17jP4A)
 <p>2. [Use Queue] (https://discuss.leetcode.com/topic/44251/java-easy-to-understand-solution)
 <p>3. [Use slide window] (https://discuss.leetcode.com/topic/44108/java-o-1-time-solution)
+
+<p>Find the Winner of the Circular Game
+<p>1. [Shift person to tail to expose dead person at head] (https://leetcode.com/problems/find-the-winner-of-the-circular-game/discuss/1152460/JAVA-Queue-self-explanatory/904775)
+<p>2. [Josephus problem] (https://leetcode.com/problems/find-the-winner-of-the-circular-game/discuss/1152705/JavaC%2B%2BPython-4-lines-O(n)-time-O(1)-space)
