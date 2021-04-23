@@ -307,3 +307,5 @@
 
 <p>Minimum Changes To Make Alternating Binary String
 <p>1. [res V.S. n - res] (https://leetcode.com/problems/minimum-changes-to-make-alternating-binary-string/discuss/1064511/JavaC%2B%2BPython-Easy-and-Concise)
+
+<p>Remove Vowels from a String
