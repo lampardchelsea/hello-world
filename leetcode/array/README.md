@@ -627,3 +627,6 @@ binary-search-java-code/29)
 <p>Shortest Unsorted Continuous Subarray
 <p>1. [Sort or stack to get correct position by comparing] (https://leetcode.com/problems/shortest-unsorted-continuous-subarray/solution/)
 <p>2. [From brutal force to stack] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/Document/Shortest_Unsorted_Continuous_Subarray.docx)
+
+<p>Pour Water
+<p>1. [Simulate] (https://aaronice.gitbook.io/lintcode/array/pour-water)
