@@ -309,3 +309,6 @@
 <p>1. [res V.S. n - res] (https://leetcode.com/problems/minimum-changes-to-make-alternating-binary-string/discuss/1064511/JavaC%2B%2BPython-Easy-and-Concise)
 
 <p>Remove Vowels from a String
+  
+<p>Check if the Sentence Is Pangram
+<p>1. [Bitwise] (https://leetcode.com/problems/check-if-the-sentence-is-pangram/discuss/1164135/Simple-solution-no-setmap/910583)
