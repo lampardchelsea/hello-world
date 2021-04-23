@@ -540,7 +540,9 @@ binary-search-java-code/29)
 <p>2. [Another style to construct preSum] (https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/discuss/278251/JavaC%2B%2BPython-O(N)Time-O(1)-Space)
 
 <p>Max Chunks To Make Sorted
+<p>Max Chunks To Make Sorted II
 <p>1. [Find index match current subarray's maximum number count] (https://leetcode.com/problems/max-chunks-to-make-sorted/discuss/113528/Simple-Java-O(n)-Solution-with-detailed-explanation/181573)
+<p>2. [Compare left max with right min] (https://leetcode.com/problems/max-chunks-to-make-sorted-ii/discuss/113462/Java-solution-left-max-and-right-min.)
 
 <p>RLE Iterator
 <p>1. [index without store actual array] (https://leetcode.com/problems/rle-iterator/discuss/168286/JavaPython-3-straightforward-code-with-comment-O(n)-time-and-O(1)-extra-space)  
