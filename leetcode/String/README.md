@@ -315,3 +315,6 @@
 
 <p>Single Row Keyboard
 <p>1. [Record previous character position] (https://codedestine.com/single-row-keyboard-string-problem/)
+
+<p>Goal Parser Interpretation
+<p>1. [StringBuilder/list join] (https://leetcode.com/problems/goal-parser-interpretation/discuss/961358/JavaPython-3-StringBuilderlist-join)
