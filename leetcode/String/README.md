@@ -312,3 +312,6 @@
   
 <p>Check if the Sentence Is Pangram
 <p>1. [Bitwise] (https://leetcode.com/problems/check-if-the-sentence-is-pangram/discuss/1164135/Simple-solution-no-setmap/910583)
+
+<p>Single Row Keyboard
+<p>1. [Record previous character position] (https://codedestine.com/single-row-keyboard-string-problem/)
