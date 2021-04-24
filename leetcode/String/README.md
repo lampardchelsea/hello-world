@@ -318,3 +318,6 @@
 
 <p>Goal Parser Interpretation
 <p>1. [StringBuilder/list join] (https://leetcode.com/problems/goal-parser-interpretation/discuss/961358/JavaPython-3-StringBuilderlist-join)
+
+<p>Split a String in Balanced Strings
+<p>1. [Balance counter] (https://leetcode.com/problems/split-a-string-in-balanced-strings/discuss/403836/C%2B%2BJavaPython-Easy-Solution)
