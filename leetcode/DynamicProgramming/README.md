@@ -204,3 +204,13 @@
 <p>Length of Longest Fibonacci Subsequence
 <p>1. [2D DP style 1: dp[a, b] represents the length of fibo sequence ends up with (a, b)] (https://leetcode.com/problems/length-of-longest-fibonacci-subsequence/discuss/152343/C%2B%2BJavaPython-Check-Pair)
 <p>2. [2D DP style 2: dp[a, b] represents the length of fibo sequence start with (a, b)] (https://leetcode.com/problems/length-of-longest-fibonacci-subsequence/discuss/152332/Java-clean-DP-O(n2)-time-O(n2)-space/377212)
+  
+<p>Maximum Subarray
+<p>1. [DP Solution with O(n) extra space] (https://discuss.leetcode.com/topic/6413/dp-solution-some-thoughts)
+<p>2. [DP Solution with O(1) extra space] (https://discuss.leetcode.com/topic/6413/dp-solution-some-thoughts/13)
+<p>3. [Divide and conquer] (http://www.cnblogs.com/grandyang/p/4377150.html)
+  
+<p>Maximum Sum Circular Subarray
+<p>1. [Refer to DP solution from 53. Maximum Subarray] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/MaximumSubarray.java)
+<p>2. [One pass with maximum and sum - minimum] (https://leetcode.com/problems/maximum-sum-circular-subarray/discuss/178422/One-Pass)
+<p>3. [Doc] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/Document/Maximum_Sum_Circular_Subarray.docx)
