@@ -321,3 +321,6 @@
 
 <p>Split a String in Balanced Strings
 <p>1. [Balance counter] (https://leetcode.com/problems/split-a-string-in-balanced-strings/discuss/403836/C%2B%2BJavaPython-Easy-Solution)
+
+<p>Maximum Nesting Depth of the Parentheses
+<p>1. [Only need to count open parentheses] (https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/discuss/888949/JavaC%2B%2BPython-Parentheses-Problem-Foundation)
