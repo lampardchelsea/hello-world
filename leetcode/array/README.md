@@ -630,3 +630,8 @@ binary-search-java-code/29)
 
 <p>Pour Water
 <p>1. [Simulate] (https://aaronice.gitbook.io/lintcode/array/pour-water)
+
+<p>Maximum Sum Circular Subarray 
+<p>1. [Refer to DP solution from 53. Maximum Subarray] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/MaximumSubarray.java)
+<p>2. [One pass with maximum and sum - minimum] (https://leetcode.com/problems/maximum-sum-circular-subarray/discuss/178422/One-Pass)
+<p>3. [Doc] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/Document/Maximum_Sum_Circular_Subarray.docx)
