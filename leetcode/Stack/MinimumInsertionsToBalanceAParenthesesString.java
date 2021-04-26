@@ -151,7 +151,82 @@ class Solution {
     }
 }
 
+// Solution 2:
+// Refer to
+// https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/discuss/780199/JavaC%2B%2BPython-Straight-Forward-One-Pass
+/**
+Intuition
+Similar to 921. Minimum Add to Make Parentheses Valid.
+Just need to pay attention:
+left parenthesis '(' must have a corresponding two consecutive right parenthesis '))'.
 
+
+Explanation
+res represents the number of left/right parentheses already added.
+right represents the number of right parentheses needed.
+
+1) case )
+If we meet a right parentheses , right--.
+If right < 0, we need to add a left parentheses before it.
+Then we update right += 2 and res++
+This part is easy and normal.
+
+2) case (
+If we meet a left parentheses,
+we check if we have odd number ')' before.
+If we right, we have odd ')' before,
+but we want right parentheses in paires.
+So add one ')' here, then update right--; res++;.
+Note that this part is not necessary if two consecutive right parenthesis not required.
+
+Because we have ), we update right += 2.
+
+
+Dry run
+All by @himanshusingh11:
+
+Example 1: Consider ((()(,n= 5 ,i=0,1...4
+i=0, we have ( it means we need two right parenthesis (they are in pair) so.. right+=2 => res =0, right =2
+i=1, again we have ( it means we need two right parenthesis (they are in pair) so.. right+=2 => res =0, right =4
+i=2, again we have ( it means we need two right parenthesis (they are in pair) so.. right+=2 => res =0, right =6
+i=3, we have ) we subtract one from right. so.. right-- => res =0, right =5
+i=4, we have ( but here right is odd so we need to make it even with right-- and increment res++ => res =1, right =4. 
+     Also, as we have got a left parenthesis then we need two right parenthesis (they are in pair) so.. right+=2 => res =1, right =6
+
+finally ans is res + right => 1 +6 == 7
+
+Example 2: ((()
+Similarly, we can see when we have right<0 then we increment res by one & add 2 to right as they should be in pairs..
+
+Complexity
+Time O(N)
+Space O(1)
+
+Java:
+
+    public int minInsertions(String s) {
+        int res = 0, right = 0;
+        for (int i = 0; i < s.length(); ++i) {
+            if (s.charAt(i) == '(') {
+                if (right % 2 > 0) {
+                    right--;
+                    res++;
+                }
+                right += 2;
+            } else {
+                right--;
+                if (right < 0) {
+                    right += 2;
+                    res++;
+                }
+            }
+        }
+        return right + res;
+    }
+*/
+
+
+// =======================================================================================================================================
 // Wrong Solution 1:
 /**
 Test out by: "(()))(()))()())))", expected 4, result 1
