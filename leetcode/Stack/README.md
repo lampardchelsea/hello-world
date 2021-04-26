@@ -109,3 +109,7 @@
 
 <p>Sum of Subarray Minimums
 <p>1. [Stack + PLE(previous less element) + NLE(next less element)] (https://leetcode.com/problems/sum-of-subarray-minimums/discuss/178876/stack-solution-with-very-detailed-explanation-step-by-step)
+  
+<p>Minimum Insertions to Balance a Parentheses String
+<p>1. [Simple O(n) stack solution with detailed explanation] (https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/discuss/779928/Simple-O(n)-stack-solution-with-detailed-explanation)
+<p>2. [Straight Forward One Pass] (https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/discuss/780199/JavaC%2B%2BPython-Straight-Forward-One-Pass)
