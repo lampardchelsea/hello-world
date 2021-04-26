@@ -48,6 +48,7 @@ s consists of '(' and ')' only.
 // Refer to
 // https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
 // The only difference is only need to build "()" not "())" with consecutive "))", the similar solution as only need integer stack is below:
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Stack/MinimumAddToMakeParenthesesValid.java
 class Solution {
     public int minAddToMakeValid(String S) {
         int count = 0;
