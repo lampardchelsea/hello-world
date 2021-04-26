@@ -44,6 +44,41 @@ Constraints:
 s consists of '(' and ')' only.
 */
 
+// This problem is similar to 921. Minimum Add to Make Parentheses Valid
+// Refer to
+// https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
+// The only difference is only need to build "()" not "())" with consecutive "))", the similar solution as only need integer stack is below:
+class Solution {
+    public int minAddToMakeValid(String S) {
+        int count = 0;
+        Stack<Integer> stack = new Stack<Integer>();
+        for(char c: S.toCharArray()) {
+            if(c == '(') {
+                // A '(' in any condition: empty stack, peek as '(' or ')'
+                // will require a ')' to close it, push 1 on stack
+                stack.push(1);
+            } else {
+                if(stack.isEmpty() || stack.peek() == 0) {
+                    // If stack is empty or peek as 0 and we have ')' on hand, 
+                    // it means we need one '(' to close it, increase count 
+                    // and push 0 on stack for identify ')' on stack peek
+                    count++;
+                    stack.push(0);
+                } else if(stack.peek() == 1) {
+                    // If stack peek is 1 means one previous '(' pending for
+                    // a ')' to close and now we have one ')' in hand, then
+                    // use it and pop out the 1
+                    stack.pop();
+                }
+            }
+        }
+        while(!stack.isEmpty()) {
+            count += stack.pop();
+        }
+        return count;
+    }
+}
+
 // Solution 1: Stack simulation
 // Refer to
 // https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/discuss/779928/Simple-O(n)-stack-solution-with-detailed-explanation
