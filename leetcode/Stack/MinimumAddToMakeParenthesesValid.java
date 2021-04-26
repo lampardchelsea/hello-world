@@ -32,7 +32,7 @@ S.length <= 1000
 S only consists of '(' and ')' characters.
 */
 
-// Solution 1: Stack simulation
+// Solution 1: Integer stack simulation
 // Refer to
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Stack/MinimumInsertionsToBalanceAParenthesesString.java
 class Solution {
@@ -61,6 +61,37 @@ class Solution {
         }
         while(!stack.isEmpty()) {
             count += stack.pop();
+        }
+        return count;
+    }
+}
+
+// Solution 2: Character stack simulation
+class Solution {
+    public int minAddToMakeValid(String S) {
+        int count = 0;
+        Stack<Character> stack = new Stack<Character>();
+        for(char c: S.toCharArray()) {
+            if(c == '(') {
+                // A '(' in any condition: empty stack, peek as '(' or ')'
+                // will require a ')' to close it, push '(' on stack
+                stack.push('(');
+                count++;
+            } else {
+                if(stack.isEmpty() || stack.peek() == ')') {
+                    // If stack is empty or peek as ')' and we have ')' on hand, 
+                    // it means we need one '(' to close it, increase count 
+                    // and push ')' on stack
+                    count++;
+                    stack.push(')');
+                } else if(stack.peek() == '(') {
+                    // If stack peek is 1 means one previous '(' pending for
+                    // a ')' to close and now we have one ')' in hand, then
+                    // use it and pop out '(', decrease count also
+                    stack.pop();
+                    count--;
+                }
+            }
         }
         return count;
     }
