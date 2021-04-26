@@ -113,3 +113,4 @@
 <p>Minimum Insertions to Balance a Parentheses String
 <p>1. [Simple O(n) stack solution with detailed explanation] (https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/discuss/779928/Simple-O(n)-stack-solution-with-detailed-explanation)
 <p>2. [Straight Forward One Pass] (https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/discuss/780199/JavaC%2B%2BPython-Straight-Forward-One-Pass)
+<p>3. [How output of "(()))(()))()())))" is 4 and not 1] (https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/discuss/780043/How-output-of-%22(()))(()))()())))%22-is-4-and-not-1)
