@@ -230,6 +230,28 @@ Java:
 // Wrong Solution 1:
 /**
 Test out by: "(()))(()))()())))", expected 4, result 1
+
+Refer to
+How output of "(()))(()))()())))" is 4 and not 1 ?
+https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/discuss/780043/How-output-of-%22(()))(()))()())))%22-is-4-and-not-1
+Q1: For test case "(()))(()))()())))" expected is 4
+but consider steps
+(()))(()))()()))) => Removing all ()) => ()()()))
+()()())) => Removing ()) => ()())
+()()) => Removing ()) => ()
+() => insert ) => ()) => ""
+
+A1: You need to have consecutive "))" to match parenthesis.
+
+Q2: Please explain your statement using "( ( ( ) ) ) ) ) )"
+its expected output is : 0
+but according to your logic it is : 6
+
+A2: Closing parentheses should be consecutive to each other, not to an opening parenthesis.
+( ( ( ) ) ) ) ) ) -> ( ( ) ) ) ) -> ( ) ) - here we have 3 valid groups of ( ) ), in each group closing parentheses )) go together, one right after another. 
+But an opening one ( can be at any position as long as it is before the closing ones. 
+
+------------------------------------------------------------------------------
 Wrong order
 (()))(()))()())))
 (
@@ -269,7 +291,7 @@ Correct order
 (   )(   )()(
 (   )(   )()()
 (   )(   )()()) -> ()()(
------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 (   )(   )(   )) -> ()()
 (   )(   )      ) correct answer => not able to remove "())" since "))" not consecutive
 */
