@@ -92,3 +92,87 @@ class Solution {
         return sb.toString();
     }
 }
+
+// Solution 2: Integer stack simulation (O(n) time complexity)
+// Refer to
+// https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/discuss/419402/JavaC%2B%2B-Stack
+/**
+Intuition
+To make the string valid with minimum removals, we need to get rid of all parentheses that do not have a matching pair.
+
+Push char index into the stack when we see '('.
+
+Pop from the stack when we see ')'.
+
+If the stack is empty, then we have ')' without the pair, and it needs to be removed.
+In the end, the stack will contain indexes of '(' without the pair, if any. We need to remove all of them too.
+
+Update: check out the new approach 2 that collects indexes of all mismatched parentheses, and removes them right-to-left.
+
+Approach 1: Stack and Placeholder
+We mark removed parentheses with '*', and erase all of them in the end.
+
+Java
+
+public String minRemoveToMakeValid(String s) {
+  StringBuilder sb = new StringBuilder(s);
+  Stack<Integer> st = new Stack<>();
+  for (int i = 0; i < sb.length(); ++i) {
+    if (sb.charAt(i) == '(') st.add(i);
+    if (sb.charAt(i) == ')') {
+      if (!st.empty()) st.pop();
+      else sb.setCharAt(i, '*');
+    }
+  }
+  while (!st.empty())
+    sb.setCharAt(st.pop(), '*');
+  return sb.toString().replaceAll("\\*", "");
+}
+*/
+class Solution {
+    public String minRemoveToMakeValid(String s) {
+        int n = s.length();
+        Stack<Integer> stack = new Stack<Integer>();
+        Set<Integer> set = new HashSet<Integer>();
+        for(int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            if(c == '(') {
+                stack.push(i);
+            } else if(c == ')') {
+                if(!stack.isEmpty()) {
+                    // Find valid '(' on stack to build "()"
+                    // with current ')', pop out '(', then
+                    // index for '(' left on stack 
+                    stack.pop();
+                } else {
+                    // Since no valid '(' on stack, ignore ')'
+                    // and store ')' index in set
+                    set.add(i);
+                }
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        // Why we need to reversely scan the array ?
+        // Because stack store redundant '(' indexes reversely,
+        // if scan from 0 to n - 1, stack.peek() will always not
+        // able to match i, because order reversed
+        // Test out by: "))(("
+        for(int i = n - 1; i >= 0; i--) {
+            char c = s.charAt(i);
+            if(c == '(') {
+                if(!stack.isEmpty() && stack.peek() == i) {
+                    stack.pop();
+                } else {
+                    sb.insert(0, '(');
+                }
+            } else if(c == ')') {
+                if(!set.contains(i)) {
+                    sb.insert(0, ')');
+                }
+            } else {
+                sb.insert(0, c);
+            }
+        }
+        return sb.toString();
+    }
+}
