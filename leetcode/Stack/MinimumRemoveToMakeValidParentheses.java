@@ -129,6 +129,7 @@ public String minRemoveToMakeValid(String s) {
   return sb.toString().replaceAll("\\*", "");
 }
 */
+// Style 1: With set help to identify redundant ')'
 class Solution {
     public String minRemoveToMakeValid(String s) {
         int n = s.length();
@@ -174,5 +175,38 @@ class Solution {
             }
         }
         return sb.toString();
+    }
+}
+
+// Style 2: Without set help to identify redundant ')'
+class Solution {
+    public String minRemoveToMakeValid(String s) {
+        int n = s.length();
+        Stack<Integer> stack = new Stack<Integer>();
+        // Create StringBuilder with original string
+        StringBuilder sb = new StringBuilder(s);
+        for(int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            if(c == '(') {
+                stack.push(i);
+            } else if(c == ')') {
+                if(!stack.isEmpty()) {
+                    // Find valid '(' on stack to build "()"
+                    // with current ')', pop out '(', then
+                    // index for '(' left on stack 
+                    stack.pop();
+                } else {
+                    // Since no valid '(' on stack, ignore ')'
+                    // use StringBuilder directly, mask as '*'
+                    sb.setCharAt(i, '*');
+                }
+            }
+        }
+        // Update all recorded redundant '(' and mask same as '*'
+        while(!stack.isEmpty()) {
+            sb.setCharAt(stack.pop(), '*');
+        }
+        // Remove all '*' placeholder and left result string
+        return sb.toString().replaceAll("\\*", "");
     }
 }
