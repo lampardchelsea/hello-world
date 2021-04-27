@@ -122,10 +122,12 @@ class Solution {
                 while(!stack.isEmpty() && stack.peek() != '(') {
                     q.add(stack.pop());
                 }
-                // If '(' left, remove it from stack
-                if(!stack.isEmpty()) {
+                // If '(' left, remove it from stack, actually since problem guaranteed that all parentheses are balanced.
+                // so no need to check if stack is empty or not, since when we see a ')', there must be a '(' match for it
+                // and now it must left on stack, just need to pop it out.
+                //if(!stack.isEmpty()) {
                     stack.pop();
-                }
+                //}
                 while(!q.isEmpty()) {
                     stack.push(q.remove());
                 }
