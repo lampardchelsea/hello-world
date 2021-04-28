@@ -324,3 +324,7 @@
 
 <p>Maximum Nesting Depth of the Parentheses
 <p>1. [Only need to count open parentheses] (https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/discuss/888949/JavaC%2B%2BPython-Parentheses-Problem-Foundation)
+
+<p>Remove Outermost Parentheses
+<p>1. [Primitive string will have equal number of opened and closed paranthesis style 1] (https://leetcode.com/problems/remove-outermost-parentheses/discuss/270022/JavaC%2B%2BPython-Count-Opened-Parenthesis)
+<p>2. [Primitive string will have equal number of opened and closed paranthesis style 2] (https://leetcode.com/problems/remove-outermost-parentheses/discuss/270566/My-Java-3ms-Straight-Forward-Solution-or-Beats-100)
