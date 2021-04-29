@@ -43,8 +43,36 @@ class Solution {
     }
 }
 
-// Solution 2:
-
-
-
-
+// Solution 2: Java using count pointers, no String concatenation
+// Refer to
+// https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/discuss/944525/Java-using-count-pointers-no-String-concatenation-2ms-memory-100
+// https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/discuss/944525/Java-using-count-pointers-no-String-concatenation-2ms-memory-100/777166
+class Solution {
+    public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+        int w1 = 0;
+        int w2 = 0;
+        int c1 = 0;
+        int c2 = 0;
+        while(w1 < word1.length && w2 < word2.length) {
+            while(c1 < word1[w1].length() && c2 < word2[w2].length()) {
+                if(word1[w1].charAt(c1) != word2[w2].charAt(c2)) {
+                    return false;
+                }
+                c1++;
+                c2++;
+            }
+            if(c1 == word1[w1].length()) {
+                w1++;
+                c1 = 0;
+            }
+            if(c2 == word2[w2].length()) {
+                w2++;
+                c2 = 0;
+            }
+        }
+        // Cannot directly return true, test out by
+        // word1 = ["abc","d","defg"]
+        // word2 = ["abcddef"]
+        return w1 == word1.length && w2 == word2.length;
+    }
+}
