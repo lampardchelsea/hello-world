@@ -297,3 +297,5 @@
 <p>1. [Java, list and map, explained] (https://leetcode.com/problems/snapshot-array/discuss/454280/Java-list-and-map-explained-clean-beats-95)
   
 <p>Maximum Number of Balloons
+  
+<p>Count the Number of Consistent Strings
