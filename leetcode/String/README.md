@@ -328,3 +328,6 @@
 <p>Remove Outermost Parentheses
 <p>1. [Primitive string will have equal number of opened and closed paranthesis style 1] (https://leetcode.com/problems/remove-outermost-parentheses/discuss/270022/JavaC%2B%2BPython-Count-Opened-Parenthesis)
 <p>2. [Primitive string will have equal number of opened and closed paranthesis style 2] (https://leetcode.com/problems/remove-outermost-parentheses/discuss/270566/My-Java-3ms-Straight-Forward-Solution-or-Beats-100)
+
+<p>Check If Two String Arrays are Equivalent
+<p>1. [Java using count pointers, no String concatenation] (https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/discuss/944525/Java-using-count-pointers-no-String-concatenation-2ms-memory-100/777166)
