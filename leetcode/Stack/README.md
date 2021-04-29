@@ -119,3 +119,7 @@
 
 <p>Minimum Remove to Make Valid Parentheses
 <p>1. [Integer stack simulation (O(n) time complexity)] (https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/discuss/419402/JavaC%2B%2B-Stack)
+
+<p>Score of Parentheses
+<p>1. [Pop score, calculate and push score back] (https://leetcode.com/problems/score-of-parentheses/discuss/197544/Java-Basic-Stack-Based-Solution-O(n)-time-O(n)-space)
+<p>2. [Pop score, calculate and push score back 2] (https://leetcode.com/problems/score-of-parentheses/discuss/141777/C%2B%2BJavaPython-O(1)-Space)
