@@ -123,3 +123,6 @@
 <p>Score of Parentheses
 <p>1. [Pop score, calculate and push score back] (https://leetcode.com/problems/score-of-parentheses/discuss/197544/Java-Basic-Stack-Based-Solution-O(n)-time-O(n)-space)
 <p>2. [Pop score, calculate and push score back 2] (https://leetcode.com/problems/score-of-parentheses/discuss/141777/C%2B%2BJavaPython-O(1)-Space)
+
+<p>Valid Parenthesis String
+<p>1. [Two stacks and use star stack to specificlly handle the '*'] (https://leetcode.com/problems/valid-parenthesis-string/discuss/107572/Java-using-2-stacks.-O(n)-space-and-time-complexity.)
