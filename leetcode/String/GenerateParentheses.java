@@ -99,7 +99,8 @@ class Solution {
         if(open > 0) {
             helper(result, open - 1, close, temp + "(");
         }
-        // Has more right Parenthesis
+        // Has more right Parenthesis, hence we can put ")" to construct "()" only
+        // if normal limitation as 'if(close > 0)' may result as ")("
         if(close > open) {
             helper(result, open, close - 1, temp + ")");
         }
