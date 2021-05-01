@@ -292,3 +292,6 @@
 <p>Letter Case Permutation
 <p>1. [Java Easy BFS / DFS solution with explanation] (https://leetcode.com/problems/letter-case-permutation/discuss/115485/Java-Easy-BFS-DFS-solution-with-explanation)
 <p>2. [Java detailed explanation of DFS/Backtracking solution] (https://leetcode.com/problems/letter-case-permutation/discuss/255071/Java-detailed-explanation-of-DFSBacktracking-solution)
+
+<p>Generate Parentheses
+<p>1. [The explain for why we need if(open > close) {...} ?] (https://leetcode.com/problems/generate-parentheses/discuss/10100/Easy-to-understand-Java-backtracking-solution/10980)
