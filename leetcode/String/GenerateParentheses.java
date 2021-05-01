@@ -45,6 +45,43 @@
  * 
 */
 
+// The explain for why we need if(open > close) {...} ?
+/**
+https://leetcode.com/problems/generate-parentheses/discuss/10100/Easy-to-understand-Java-backtracking-solution/10980
+I would like to share my understanding about this algorithm. Hope will make people easier to understand the beauty of this code.
+
+The goal is to print a string of "(" ,")" in certain order. The length of string is 2n. The constraints are that "("s need to match ")"s.
+Without constraints, we just simply print out "(" or ")" until length hits n. So the base case will be length == 2 n, recursive case is 
+print out "(" and ")". The code will look like
+
+//base case
+if(string length == 2*n) {
+add(string);
+return;
+}
+//recursive case
+add a "("
+add a ")"
+
+Let’s add in constraints now. We need to interpret the meanings of constraints. First, the first character should be "(". 
+Second, at each step, you can either print "(" or ")", but print ")" only when there are more "("s than ")"s to make sure we only construct "()". 
+Stop printing out "(" when the number of "(" s hit n. The first actually merges into the second condition.
+
+The code will be:
+//base case
+if(string length == 2*n) {
+add(string);
+return;
+}
+//recursive case
+if(number of "("s < n){
+add a "("
+}
+if(number of "("s > number of ")"s){
+add a ")"
+}
+*/
+
 // Solution 1: Style 1
 // https://leetcode.com/problems/generate-parentheses/discuss/10098/Java-DFS-way-solution/10940
 class Solution {
