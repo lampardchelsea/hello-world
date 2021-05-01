@@ -126,3 +126,7 @@
 
 <p>Valid Parenthesis String
 <p>1. [Two stacks and use star stack to specificlly handle the '*'] (https://leetcode.com/problems/valid-parenthesis-string/discuss/107572/Java-using-2-stacks.-O(n)-space-and-time-complexity.)
+
+<p>Longest Valid Parentheses
+<p>1. [Stack + len[i] is the length of longest valid substring which ends at the ith element of s] (https://leetcode.com/problems/longest-valid-parentheses/discuss/269017/java-7ms-solution-with-stack)
+<p>2. [Stack by initial push on -1] (https://leetcode.com/problems/longest-valid-parentheses/solution/)
