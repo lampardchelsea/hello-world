@@ -141,9 +141,34 @@ class Solution {
 =====================================================================================================================================
 */
 
-// Video explain
+// Video explain: Monotone Stack
 // Refer to
 // https://www.youtube.com/watch?v=abMfdlnCW5c
+/**
+If given array as [15,13,5,3,15], we should NOT sort the array
+idea: make sure always use smallest integers to get product
+e.g for [15,13,5,3,15], the initial smallest integers are 5 and 3, we can use Monotone Stack to get the smallest integers in one pass
+
+use Stack: if currentVal >= stack.peek(), we should make sure stack.peek() multiply the smallest value
+
+Final tree build to guarantee always smallset integers get product first
+
+              N1
+            /    \
+           N2     15
+         /   \
+       15     N3
+            /   \
+           13    N4
+               /   \
+              5     3
+
+So the actual procedure for above stack is:
+  3 * 5     ------> N4
++ 5 * 13    ------> N3
+* 13 * 15   ------> N2
++ 15 * 15   ------> N1
+*/
 
 class Solution {
     public int mctFromLeafValues(int[] arr) {
