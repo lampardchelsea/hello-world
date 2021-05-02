@@ -331,3 +331,5 @@
 
 <p>Check If Two String Arrays are Equivalent
 <p>1. [Java using count pointers, no String concatenation] (https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/discuss/944525/Java-using-count-pointers-no-String-concatenation-2ms-memory-100/777166)
+  
+<p>Replace All Digits with Characters
