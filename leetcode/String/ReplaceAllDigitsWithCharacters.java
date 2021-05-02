@@ -41,7 +41,8 @@ class Solution {
         }
         for(int i = 0; i + 1 < n; i += 2) {
             char c = s.charAt(i);
-            char next = (char)(c + Integer.parseInt(String.valueOf(s.charAt(i + 1))));
+            //char next = (char)(c + Integer.parseInt(String.valueOf(s.charAt(i + 1))));
+            char next = (char)(c + s.charAt(i + 1) - '0');
             sb.append(c).append(next);
         }
         // Test out by "a1b2c3d4e" for odd length, last char need to add on
