@@ -1,6 +1,5 @@
 
-Good Parentheses Questions
----------------------------------------------------------------------
+**Good Parentheses Questions**
 20. Valid Parentheses
 22. Generate Parentheses
 32. Longest Valid Parentheses
@@ -14,9 +13,7 @@ Good Parentheses Questions
 1111. Maximum Nesting Depth of Two Valid Parentheses Strings
 1249. Minimum Remove to Make Valid Parentheses
 1541. Minimum Insertions to Balance a Parentheses String
----------------------------------------------------------------------
 
----------------------------------------------------------------------
 **Other good stack problem**
 1130. Minimum Cost Tree From Leaf Values
 907. Sum of Subarray Minimums
