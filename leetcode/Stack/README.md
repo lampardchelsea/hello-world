@@ -130,3 +130,9 @@
 <p>Longest Valid Parentheses
 <p>1. [Stack + len[i] is the length of longest valid substring which ends at the ith element of s] (https://leetcode.com/problems/longest-valid-parentheses/discuss/269017/java-7ms-solution-with-stack)
 <p>2. [Stack by initial push on -1] (https://leetcode.com/problems/longest-valid-parentheses/solution/)
+
+<p>Minimum Cost Tree From Leaf Values
+<p>1. [Monopoly stack 1] (https://www.acwing.com/solution/LeetCode/content/3996/)
+<p>2. [Monopoly stack 2] (https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/discuss/339959/One-Pass-O(N)-Time-and-Space/)
+<p>3. [Monopoly stack 3] (https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/discuss/929961/Java-solution-using-Stack-Time-O(n)-space-O(n))
+<p>4. [Video example] (https://www.youtube.com/watch?v=abMfdlnCW5c)
