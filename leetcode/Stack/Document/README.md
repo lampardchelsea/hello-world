@@ -15,6 +15,8 @@ Good Parentheses Questions
 1249. Minimum Remove to Make Valid Parentheses
 1541. Minimum Insertions to Balance a Parentheses String
 ---------------------------------------------------------------------
+
+
 **Other good stack problem**
 1130. Minimum Cost Tree From Leaf Values
 907. Sum of Subarray Minimums
@@ -23,3 +25,4 @@ Good Parentheses Questions
 496. Next Greater Element I
 84. Largest Rectangle in Histogram
 42. Trapping Rain Water
+
