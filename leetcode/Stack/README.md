@@ -139,3 +139,6 @@
 
 <p>Online Stock Span
 <p>1. [Monotonic stack with extra counter added to sum up previous non-larger counts] (https://leetcode.com/problems/online-stock-span/discuss/640358/JAVA-Solution-With-visualization-and-easy-explained!)
+
+<p>Build an Array With Stack Operations
+<p>1. [Use two pointers to simulate stack push and pop] (https://leetcode.com/problems/build-an-array-with-stack-operations/discuss/624278/Java-Simple-Check/768804)
