@@ -55,7 +55,7 @@ class StockSpanner {
     }
 }
 
-// Solution 2: Monotonic Stack
+// Solution 2: Monotonic stack with extra counter added to sum up previous non-larger counts
 // Refer to
 // https://leetcode.com/problems/online-stock-span/discuss/640358/JAVA-Solution-With-visualization-and-easy-explained!
 /**
