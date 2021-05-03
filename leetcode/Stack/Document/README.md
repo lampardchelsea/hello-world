@@ -1,5 +1,6 @@
 
 **Good Parentheses Questions**
+-----------------------------------------------------------
 <p>20. Valid Parentheses
 <p>22. Generate Parentheses
 <p>32. Longest Valid Parentheses
