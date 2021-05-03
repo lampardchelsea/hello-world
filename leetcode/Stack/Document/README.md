@@ -23,4 +23,15 @@
 <p>496. Next Greater Element I
 <p>84. Largest Rectangle in Histogram
 <p>42. Trapping Rain Water
+  
+**Monotonic stack problem**
+----------------------------------------------------------
+<p>https://leetcode.com/problems/daily-temperatures/
+<p>https://leetcode.com/problems/shortest-unsorted-continuous-subarray/
+<p>https://leetcode.com/problems/next-greater-element-i/
+<p>https://leetcode.com/problems/next-greater-element-ii/
+<p>https://leetcode.com/problems/online-stock-span/
+<p>https://leetcode.com/problems/132-pattern/
+<p>https://leetcode.com/problems/sum-of-subarray-minimums/
+<p>https://leetcode.com/problems/largest-rectangle-in-histogram/
 
