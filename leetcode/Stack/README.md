@@ -132,7 +132,10 @@
 <p>2. [Stack by initial push on -1] (https://leetcode.com/problems/longest-valid-parentheses/solution/)
 
 <p>Minimum Cost Tree From Leaf Values
-<p>1. [Monopoly stack 1] (https://www.acwing.com/solution/LeetCode/content/3996/)
-<p>2. [Monopoly stack 2] (https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/discuss/339959/One-Pass-O(N)-Time-and-Space/)
-<p>3. [Monopoly stack 3] (https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/discuss/929961/Java-solution-using-Stack-Time-O(n)-space-O(n))
+<p>1. [Monotonic stack 1] (https://www.acwing.com/solution/LeetCode/content/3996/)
+<p>2. [Monotonic stack 2] (https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/discuss/339959/One-Pass-O(N)-Time-and-Space/)
+<p>3. [Monotonic stack 3] (https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/discuss/929961/Java-solution-using-Stack-Time-O(n)-space-O(n))
 <p>4. [Video example] (https://www.youtube.com/watch?v=abMfdlnCW5c)
+
+<p>Online Stock Span
+<p>1. [Monotonic stack] (https://leetcode.com/problems/online-stock-span/discuss/640358/JAVA-Solution-With-visualization-and-easy-explained!)
