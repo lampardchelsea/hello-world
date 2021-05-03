@@ -138,4 +138,4 @@
 <p>4. [Video example] (https://www.youtube.com/watch?v=abMfdlnCW5c)
 
 <p>Online Stock Span
-<p>1. [Monotonic stack] (https://leetcode.com/problems/online-stock-span/discuss/640358/JAVA-Solution-With-visualization-and-easy-explained!)
+<p>1. [Monotonic stack with extra counter added to sum up previous non-larger counts] (https://leetcode.com/problems/online-stock-span/discuss/640358/JAVA-Solution-With-visualization-and-easy-explained!)
