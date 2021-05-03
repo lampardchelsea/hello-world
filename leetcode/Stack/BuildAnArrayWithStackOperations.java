@@ -38,7 +38,7 @@ Constraints:
 target is strictly increasing.
 */
 
-// Solution 1:
+// Solution 1: Use two pointers to simulate stack push and pop
 // Refer to
 // https://leetcode.com/problems/build-an-array-with-stack-operations/discuss/624278/Java-Simple-Check
 // https://leetcode.com/problems/build-an-array-with-stack-operations/discuss/624278/Java-Simple-Check/768804
