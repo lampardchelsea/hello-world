@@ -19,7 +19,7 @@ import java.util.Stack;
  */
 public class RemoveDuplicateLetters {
 public String removeDuplicateLetters(String s) {
-		// Build dictionary
+        // Build dictionary
         int[] dict = new int[26];
         char[] ch = s.toCharArray();
         for(char c : ch) {
