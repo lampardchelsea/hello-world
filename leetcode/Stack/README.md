@@ -150,3 +150,7 @@
 
 <p>Make The String Great
 <p>1. [Recursive remove] (https://leetcode.com/problems/make-the-string-great/discuss/781446/very-easy-java-recursive-solution)
+
+<p>Find the Most Competitive Subsequence
+<p>1. [Similar to Smallest Subsequence of Distinct Characters] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Stack/SmallestSubsequenceOfDistinctCharacters.java)
+<p>2. [Monotonical Stack] (https://leetcode.com/problems/find-the-most-competitive-subsequence/discuss/952786/JavaC%2B%2BPython-One-Pass-Stack-Solution)
