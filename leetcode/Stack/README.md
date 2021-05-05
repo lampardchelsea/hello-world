@@ -72,6 +72,7 @@
 <p>2. [Inorder Tree Traversal without Recursion] (http://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion/)
 
 <p>Remove Duplicate Letters
+<p>Smallest Subsequence of Distinct Characters
 <p>1. [Java solution using Stack with comments] (https://discuss.leetcode.com/topic/32259/java-solution-using-stack-with-comments)
 
 <p>Flatten Nested List Iterator
