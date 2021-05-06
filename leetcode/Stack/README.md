@@ -158,3 +158,5 @@
 <p>Validate Stack Sequences
 <p>1. [Simulation try to pop out as soon as possible 1] (https://leetcode.com/problems/validate-stack-sequences/solution/)
 <p>2. [Simulation try to pop out as soon as possible 2] (https://leetcode.com/problems/validate-stack-sequences/discuss/197685/C%2B%2BJavaPython-Simulation-O(1)-Space)
+
+<p>Design a Stack With Increment Operation
