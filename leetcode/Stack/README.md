@@ -154,3 +154,7 @@
 <p>Find the Most Competitive Subsequence
 <p>1. [Similar to Smallest Subsequence of Distinct Characters] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/Stack/SmallestSubsequenceOfDistinctCharacters.java)
 <p>2. [Monotonical Stack] (https://leetcode.com/problems/find-the-most-competitive-subsequence/discuss/952786/JavaC%2B%2BPython-One-Pass-Stack-Solution)
+
+<p>Validate Stack Sequences
+<p>1. [Simulation try to pop out as soon as possible 1] (https://leetcode.com/problems/validate-stack-sequences/solution/)
+<p>2. [Simulation try to pop out as soon as possible 2] (https://leetcode.com/problems/validate-stack-sequences/discuss/197685/C%2B%2BJavaPython-Simulation-O(1)-Space)
