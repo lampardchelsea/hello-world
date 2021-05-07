@@ -163,3 +163,4 @@
 
 <p>Maximum Frequency Stack
 <p>1. [Freq map + Freq stack map] (https://leetcode.com/problems/maximum-frequency-stack/discuss/163410/C%2B%2BJavaPython-O(1))
+<p>2. [MaxPQ + HashMap] (https://leetcode.com/problems/maximum-frequency-stack/discuss/163416/Java-Priority-Queue-easy-understand/278547) 
