@@ -134,3 +134,66 @@ class FreqStack {
  * obj.push(val);
  * int param_2 = obj.pop();
  */
+
+
+// Intuitive Solution: MaxPQ + HashMap
+// Refer to
+// https://leetcode.com/problems/maximum-frequency-stack/discuss/163416/Java-Priority-Queue-easy-understand/278547
+/**
+My shorter version and hopefully easier to understand.
+
+    int index; //used to deal with frequency tie. might overflow, but question says we will only have 10^4 push operations
+    Map<Integer, Integer> map = new HashMap<>(); //val->freq
+    PriorityQueue<int[]> pq; //val, freq, index
+
+    public FreqStack() {
+        index = 0;
+        pq = new PriorityQueue<>((a,b)->(a[1]!=b[1]?b[1]-a[1]:b[2]-a[2])); //dealing with tie
+    }
+    
+    //O(logn)
+    public void push(int x) {
+        map.put(x, map.getOrDefault(x, 0)+1);
+        pq.offer(new int[]{x, map.get(x), index++});
+    }
+    
+    //O(1)
+    public int pop() {
+        int x = pq.poll()[0];
+        map.put(x, map.get(x)-1); 
+        if(map.get(x)==0) map.remove(x);
+        return x;
+    }
+*/
+class FreqStack {
+    // Used to deal with frequency tie. might overflow, since when pop we will
+    // not decrease the index to make sure not overwrite previous value on
+    // same index when index increase first then decrease back, and question says 
+    // we will only have 10^4 push operations
+    int index; 
+    Map<Integer, Integer> map; // {val -> freq}
+    PriorityQueue<int[]> maxPQ; // {val, freq, index}
+    public FreqStack() {
+        index = 0;
+        map = new HashMap<Integer, Integer>();
+        maxPQ = new PriorityQueue<int[]>((a, b) -> (a[1] != b[1] ? b[1] - a[1] : b[2] - a[2])); // dealing with tie
+    }
+    
+    public void push(int val) {
+        map.put(val, map.getOrDefault(val, 0) + 1);
+        maxPQ.offer(new int[] {val, map.get(val), index++});
+    }
+    
+    public int pop() {
+        int x = maxPQ.poll()[0];
+        map.put(x, map.get(x) - 1);
+        return x;
+    }
+}
+
+/**
+ * Your FreqStack object will be instantiated and called as such:
+ * FreqStack obj = new FreqStack();
+ * obj.push(val);
+ * int param_2 = obj.pop();
+ */
