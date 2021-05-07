@@ -160,3 +160,6 @@
 <p>2. [Simulation try to pop out as soon as possible 2] (https://leetcode.com/problems/validate-stack-sequences/discuss/197685/C%2B%2BJavaPython-Simulation-O(1)-Space)
 
 <p>Design a Stack With Increment Operation
+
+<p>Maximum Frequency Stack
+<p>1. [Freq map + Freq stack map] (https://leetcode.com/problems/maximum-frequency-stack/discuss/163410/C%2B%2BJavaPython-O(1))
