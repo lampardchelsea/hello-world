@@ -304,3 +304,10 @@
   
 <p>Determine if String Halves Are Alike
 <p>1. [One Pass] (https://leetcode.com/problems/determine-if-string-halves-are-alike/discuss/988203/JavaPython-3-Use-Set-to-check-equality./800277)
+
+<p>Longest Well-Performing Interval
+<p>1. [525. Contiguous Array] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/HashTable/ContiguousArray.java)
+<p>2. [560. Subarray Sum Equals K] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/SubarraySumEqualsK.java)
+<p>3. [HashMap + Presum 1] (https://leetcode.com/problems/longest-well-performing-interval/discuss/334565/JavaC%2B%2BPython-O(N)-Solution-Life-needs-996-and-669)
+<p>4. [HashMap + Presum 2] (https://leetcode.com/problems/longest-well-performing-interval/discuss/334635/Java-HashMap-O(n)-solution-with-explanation-similar-to-lc525)
+<p>5. [Two tricky for why sum - 1 and why store only 1st time for sum happen ?] (https://leetcode.com/problems/longest-well-performing-interval/discuss/334635/Java-HashMap-O(n)-solution-with-explanation-similar-to-lc525/311518)
