@@ -140,6 +140,8 @@
 <p>1. [Easy Java O(n) Solution, PreSum + HashMap] (https://discuss.leetcode.com/topic/79906/easy-java-o-n-solution-presum-hashmap)
 <p>2. [Contiguous Array 邻近数组] (http://www.cnblogs.com/grandyang/p/6529857.html)
 <p>3. [LC325: Maximum Size Subarray Sum Equals K] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/HashTable/MaximumSizeSubarraySumEqualsK.java)
+<p>4. [LC560: Subarray Sum Equals K] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/SubarraySumEqualsK.java)
+<p>5. [LC1124. Longest Well-Performing Interval] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/HashTable/LongestWellPerformingInterval.java)
 
 <p>H Index
 <p>1. [My O(n) time solution use Java] (https://discuss.leetcode.com/topic/23307/my-o-n-time-solution-use-java)
