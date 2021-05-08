@@ -29,6 +29,12 @@
  *
  * Similar idea on LC325: MaximumSizeSubarraySumEqualsK.java
  * https://github.com/lampardchelsea/hello-world/blob/master/leetcode/HashTable/MaximumSizeSubarraySumEqualsK.java
+ * 
+ * Similar idea on LC560: Subarray Sum Equals K
+ * https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/SubarraySumEqualsK.java
+ *
+ * Similar idea on LC1124. Longest Well-Performing Interval
+ * https://github.com/lampardchelsea/hello-world/blob/master/leetcode/HashTable/LongestWellPerformingInterval.java
 */
 public class Solution {
     public int findMaxLength(int[] nums) {
