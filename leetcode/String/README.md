@@ -333,3 +333,8 @@
 <p>1. [Java using count pointers, no String concatenation] (https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/discuss/944525/Java-using-count-pointers-no-String-concatenation-2ms-memory-100/777166)
   
 <p>Replace All Digits with Characters
+
+<p>Decoded String at Index
+<p>1. [Wrong answer: Stack with tricky to push empty string initially for organize the pop out previous string logic first]
+<p>2. [Calculate decode string size then scan backwards 1] (https://leetcode.com/problems/decoded-string-at-index/discuss/156747/JavaC%2B%2BPython-O(N)-Time-O(1)-Space)
+<p>3. [Calculate decode string size then scan backwards 2] (https://leetcode.com/problems/decoded-string-at-index/discuss/980084/Simple-java-solution0ms100-fastero(n)-time)
