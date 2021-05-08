@@ -117,6 +117,20 @@ class Solution {
         
         return maxLen;
     }
+
+Yes the algorithm makes sense and its actually clever. There are two things I want to clarify for anybody who wants.
+https://leetcode.com/problems/longest-well-performing-interval/discuss/334635/Java-HashMap-O(n)-solution-with-explanation-similar-to-lc525/311518
+
+a) Why should we consider map.get(sum-1) ? not sum - 2 or sum - 3..? because the interval would be the longest when the difference 
+between number of tiring days and number of non-tiring days is 1 and not 2 or 3 because we might miss some non-tiring days if we 
+consider 2, 3. etc. Get as many non-tiring days until you get the difference to 1 - this would ensure you get the longest interval.
+
+b) Why should you put in the map only the first occurrence of sum? Because consider this use case...
+N -> non-tiring
+T -> tiring
+NNNNTT
+at the last T - > sum is -2, if you look for key -3 , you want to get the one at which sum is -3 at N and not at last-before T!
+Again this makes sure that the interval is the longest.
 }
 */
 class Solution {
