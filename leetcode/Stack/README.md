@@ -167,3 +167,6 @@
 
 <p>Evaluate Reverse Polish Notation
 <p>1. [What is Reverse Polish notation ?] (https://en.wikipedia.org/wiki/Reverse_Polish_notation)
+
+<p>Asteroid Collision
+<p>1. [Category as always push positive, handle negative in different situation, similar to open / close brackets handling] (https://leetcode.com/problems/asteroid-collision/discuss/193403/Java-easy-to-understand-solution)  
