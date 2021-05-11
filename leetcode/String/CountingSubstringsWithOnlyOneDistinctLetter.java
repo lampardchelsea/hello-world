@@ -24,6 +24,29 @@ S[i] consists of only lowercase English letters.
 */
 
 // Solution 1: Two Pointers
+// Refer to
+// https://helloacm.com/counting-substrings-with-only-one-distinct-letter-with-different-algorithms/
+/**
+O(N) WITH MATH FORMULAS: COMBINATIONS
+Given n-size string with unique letter only, there are n*(n+1)/2 different substrings. For example:
+“a”: 1 = 1 “a”
+“aa”: 3 = 2 “a” + 1 + “aa”
+“aaa”: 6 = 3 “a”, + 2 “aa”, + 1 “aaa”
+class Solution {
+public:
+    int countLetters(string S) {
+        int ans = 0;
+        int i = 0, j = 0, l = S.size();
+        while (i < l) {
+            while ((j < l) && (S[j] == S[i])) j ++;
+            int n = j - i;
+            ans += (n * (n + 1) / 2);
+            i = j;
+        }
+        return ans;
+    }
+};
+*/
 class Solution {
     public int countLetters(String S) {
         int n = S.length();
@@ -62,5 +85,26 @@ class Solution {
         int tmp = stack.size();
         result += tmp * (tmp + 1) / 2;
         return result;
+    }
+}
+
+// Solution 3: One Pointer
+// Refer to
+// https://alex8080.com/2019/10/30/1180-Count-Substrings-with-Only-One-Distinct-Letter/
+class Solution {
+    public int countLetters(String S) {
+        if (S == null || S.length() == 0) return 0;
+        int count = 1;
+        int sum = 0;
+        for (int i = 0; i < S.length() - 1; i++) {
+            if (S.charAt(i) != S.charAt(i+1)) {
+                sum += count * (count + 1) / 2;
+                count = 1;
+            } else { 
+                count++;
+            }
+        }
+        sum += count * (count + 1) / 2; // add last substring
+        return sum;
     }
 }
