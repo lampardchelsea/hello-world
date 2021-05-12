@@ -346,3 +346,6 @@
 <p>Count Substrings with Only One Distinct Letter
 <p>1. [Two Pointer OR Stack] (https://helloacm.com/counting-substrings-with-only-one-distinct-letter-with-different-algorithms/)
 <p>2. [One Pointer] (https://alex8080.com/2019/10/30/1180-Count-Substrings-with-Only-One-Distinct-Letter/)
+
+<p>Decrypt String from Alphabet to Integer Mapping
+<p>1. [Check chars[i + 2] == '#' ?] (https://leetcode.com/problems/decrypt-string-from-alphabet-to-integer-mapping/discuss/470686/Check-i-+-2/420776)
