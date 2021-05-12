@@ -315,3 +315,6 @@
 <p>5. [Two tricky for why sum - 1 and why store only 1st time for sum happen ?] (https://leetcode.com/problems/longest-well-performing-interval/discuss/334635/Java-HashMap-O(n)-solution-with-explanation-similar-to-lc525/311518)
 
 <p>Increasing Decreasing String
+
+<p>Destination City
+<p>1. [Java tricky 4 lines using one set] (https://leetcode.com/problems/destination-city/discuss/609868/Java-tricky-4-lines-using-one-set)
