@@ -32,6 +32,7 @@ s[i] only contains digits letters ('0'-'9') and '#' letter.
 s will be valid string such that mapping is always possible
 */
 
+// Solution: Check [i + 2]
 class Solution {
     public String freqAlphabets(String s) {
         StringBuilder sb = new StringBuilder();
@@ -54,3 +55,44 @@ class Solution {
         return sb.toString();
     }
 }
+
+// Better style
+// Refer to
+// https://leetcode.com/problems/decrypt-string-from-alphabet-to-integer-mapping/discuss/470686/Check-i-%2B-2
+/**
+We can simply check whehter '#' character appears at position i + 2 to determine which decription rule to apply.
+
+string freqAlphabets(string s) {
+  string res;
+  for (int i = 0; i < s.size(); ++i) {
+    if (i < s.size() - 2 && s[i + 2] == '#') {
+      res += 'j' + (s[i] - '1') * 10 + s[i + 1] - '0';
+      i += 2;
+    }
+    else res += 'a' + (s[i] - '1');
+  }
+  return res;
+}
+*/
+class Solution {
+    public String freqAlphabets(String s) {
+        StringBuilder sb = new StringBuilder();
+        int n = s.length();
+        int i = 0;
+        for(i = 0; i < n - 2; i++) {
+            if(s.charAt(i + 2) != '#') {
+                sb.append((char)('a' + s.charAt(i) - '1'));
+            } else {
+                int m = (s.charAt(i) - '0') * 10 + s.charAt(i + 1) - '0';
+                sb.append((char)('j' + m - 10));
+                i += 2;
+            }
+        }
+        while(i < n) {
+            sb.append((char)('a' + s.charAt(i) - '1'));
+            i++;
+        }
+        return sb.toString();
+    }
+}
+
