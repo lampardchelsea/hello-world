@@ -352,3 +352,5 @@
 
 <p>Generate a String With Characters That Have Odd Counts
 <p>1. [One line] (https://leetcode.com/problems/generate-a-string-with-characters-that-have-odd-counts/discuss/532520/JavaC%2B%2BPython-One-Lines)
+
+<p>Merge Strings Alternately
