@@ -354,3 +354,6 @@
 <p>1. [One line] (https://leetcode.com/problems/generate-a-string-with-characters-that-have-odd-counts/discuss/532520/JavaC%2B%2BPython-One-Lines)
 
 <p>Merge Strings Alternately
+  
+<p>Output Contest Matches
+<p>1. [Simulation + temporary list looply update] (https://massivealgorithms.blogspot.com/2017/04/leetcode-544-output-contest-matches.html)
