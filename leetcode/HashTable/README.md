@@ -320,3 +320,6 @@
 <p>1. [Java tricky 4 lines using one set] (https://leetcode.com/problems/destination-city/discuss/609868/Java-tricky-4-lines-using-one-set)
 
 <p>Minimum Number of Steps to Make Two Strings Anagram
+
+<p>Find and Replace Pattern
+<p>1. [Two map to hold one on one mapping] (https://leetcode.com/problems/find-and-replace-pattern/solution/)
