@@ -357,3 +357,6 @@
   
 <p>Output Contest Matches
 <p>1. [Simulation + temporary list looply update] (https://massivealgorithms.blogspot.com/2017/04/leetcode-544-output-contest-matches.html)
+
+<p>Bulb Switcher IV
+<p>1. [Flip is a must when current status of the bulbs and target status are not same.] (https://leetcode.com/problems/bulb-switcher-iv/discuss/755939/C%2B%2B-Python-Java%3A-Readable-easy-code-with-explanation-and-code-comments)
