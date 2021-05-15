@@ -360,3 +360,6 @@
 
 <p>Bulb Switcher IV
 <p>1. [Flip is a must when current status of the bulbs and target status are not same.] (https://leetcode.com/problems/bulb-switcher-iv/discuss/755939/C%2B%2B-Python-Java%3A-Readable-easy-code-with-explanation-and-code-comments)
+
+<p>Complex Number Multiplication
+<p>1. [Tokenizing Error: java.util.regex.PatternSyntaxException, dangling metacharacter '*'] (https://stackoverflow.com/questions/917822/tokenizing-error-java-util-regex-patternsyntaxexception-dangling-metacharacter)
