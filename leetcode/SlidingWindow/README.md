@@ -111,3 +111,6 @@
 
 <p>Shortest Subarray to be Removed to Make Array Sorted
 <p>1. [Not fixed length sliding window] (https://leetcode.com/problems/shortest-subarray-to-be-removed-to-make-array-sorted/discuss/830480/C%2B%2B-O(N)-Sliding-window-Explanation-with-Illustrations)
+
+<p>Number of Good Ways to Split a String
+<p>1. [Sliding Window + Count the unique character at the same pass, only increase count when that character first record in map] (https://leetcode.com/problems/number-of-good-ways-to-split-a-string/discuss/754678/C%2B%2BJava-Sliding-Window)
