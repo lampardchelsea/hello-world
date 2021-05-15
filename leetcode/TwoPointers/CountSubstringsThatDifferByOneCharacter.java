@@ -153,3 +153,35 @@ class Solution {
         return count;
     }
 }
+
+// Solution 3: DP
+// Refer to
+// https://leetcode.com/problems/count-substrings-that-differ-by-one-character/discuss/917701/C%2B%2BJavaPython3-O(n-3)-greater-O(n-2)
+/**
+Approach 3: Process Missmatches + DP
+This is the same as approach 2 above, but we use DP to precompute sizes of a matching substring ending at position [i][j] (dpl), 
+and starting from position [i][j] (dpr).
+C++
+
+int countSubstrings(string &s, string &t) {
+    int res = 0;
+    int dpl[101][101] = {}, dpr[101][101] = {};
+    for (int i = 1; i <= s.size(); ++i)
+        for (int j = 1; j <= t.size(); ++j)
+            if (s[i - 1] == t[j - 1])
+                dpl[i][j] = 1 + dpl[i - 1][j - 1];
+    for (int i = s.size(); i > 0; --i)
+        for (int j = t.size(); j > 0; --j)
+            if (s[i - 1] == t[j - 1])
+                dpr[i - 1][j - 1] = 1 + dpr[i][j];
+    for (int i = 0; i < s.size(); ++i)
+        for (int j = 0; j < t.size(); ++j)
+            if (s[i] != t[j])
+                res += (dpl[i][j] + 1) * (dpr[i + 1][j + 1] + 1);
+    return res;
+}
+Complexity Analysis
+
+Time: O(n ^ 2), we have two nested loops to precompute sizes, and count substrings.
+Memory: O(n ^ 2) for the memoisation.
+*/
