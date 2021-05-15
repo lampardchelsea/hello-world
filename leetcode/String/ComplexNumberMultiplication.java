@@ -23,6 +23,17 @@ num1 and num2 are valid complex numbers.
 */
 
 // Solution 1: Split by "\\+" and sepcial handle of 0 in real and imaginary part
+// Refer to
+// https://stackoverflow.com/questions/917822/tokenizing-error-java-util-regex-patternsyntaxexception-dangling-metacharacter
+/**
+I had similar problem with regex = "?". It happens for all special characters that have some meaning in a regex. 
+So you need to have "\\" as a prefix to your regex.
+String [] separado = line.split("\\*");
+
+Other test cases help to sort out logic:
+Input: num1 = "1+-1i", num2 = "0+0i"
+Input: num1 = "1+0i", num2 = "1+0i"
+*/
 class Solution {
     public String complexNumberMultiply(String num1, String num2) {
         String[] one = num1.split("\\+");
