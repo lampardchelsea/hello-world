@@ -327,3 +327,5 @@
 <p>Check If a String Can Break Another String
 <p>1. [Brutal Force to find all permutation and compare (TLE)]
 <p>2. [Freq map + travel backwards to find potential character not able to cover] (https://leetcode.com/problems/check-if-a-string-can-break-another-string/discuss/1085537/O(n)-clean-with-explanation)
+
+<p>Custom Sort String
