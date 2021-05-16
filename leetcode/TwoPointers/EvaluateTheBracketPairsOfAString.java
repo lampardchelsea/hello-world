@@ -64,17 +64,27 @@ class Solution {
         int j = 0;
         for(int i = 0; i < n; i++) {
             char c = s.charAt(i);
+            // Find ')' then delete backwards till '('
             if(c == ')') {
+                // Record ')' position, after remove (...) directly skip section
+                // by repointing to ')' next position
                 j = i;
+                // Skip ')' to check actual characters before ')'
                 i--;
                 while(s.charAt(i) != '(') {
+                    // Store the target string section to replace
                     tmp.insert(0, s.charAt(i));
                     sb.setLength(sb.length() - 1);
                     i--;
                 }
+                // Remove '('
                 sb.setLength(sb.length() - 1);
+                // Replace target string section with mapping string or "?" as default
                 sb.append(map.getOrDefault(tmp.toString(), "?"));
+                // Clear target string for next round
                 tmp.setLength(0);
+                // Repointing to ')' position, then together with next round i++
+                // to move to ')' next position
                 i = j;
             } else {
             	sb.append(c);
