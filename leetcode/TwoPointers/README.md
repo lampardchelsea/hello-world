@@ -100,3 +100,7 @@
 <p>2. [C++/Java/Python3 O(n ^ 3) => O(n ^ 2)] (https://leetcode.com/problems/count-substrings-that-differ-by-one-character/discuss/918183/Java-3ms-or-easy-to-understand-code)
 <p>3. [Same trick as 828] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/TwoPointers/Document/Count_Substrings_That_Differ_by_One_Character.docx)
 <p>4. [Graph example to show how the trick it is] (https://leetcode.com/problems/count-substrings-that-differ-by-one-character/discuss/917701/C%2B%2BJavaPython3-O(n-3)-greater-O(n-2))
+
+<p>Evaluate the Bracket Pairs of a String
+<p>1. [Find ')' first then delete backwards till '(']
+<p>2. [Find '(' first then delete forwards till ')'] (https://leetcode.com/problems/evaluate-the-bracket-pairs-of-a-string/discuss/1130604/Simple-Solution-using-Hashmap-w-explanation-or-Linear-Complexity)
