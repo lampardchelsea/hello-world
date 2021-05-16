@@ -93,3 +93,58 @@ class Solution {
         return sb.toString();
     }
 }
+
+// Solution 2: Find '(' first then delete forwards till ')'
+// Refer to
+// https://leetcode.com/problems/evaluate-the-bracket-pairs-of-a-string/discuss/1130604/Simple-Solution-using-Hashmap-w-explanation-or-Linear-Complexity
+/**
+There isn't much to this problem. We just need to realize that we can simple map each key from knowledge with its 
+corresponding value to make the task of finding the key-value pair into amortized O(1) time complexity.
+
+After this, we just need to iterate over the string s, find the bracket pairs and map the word inside it to either 
+its corresponding value (if it exists) or ?.
+
+string evaluate(string s, vector<vector<string>>& knowledge) {
+	unordered_map<string, string> mp;   // stores key-val pair from knowledge
+	for(auto& pair : knowledge) mp[pair[0]] = pair[1];
+	int n = size(s); string ans = "";
+	for(int i = 0; i < n; i++)
+		if(s[i] == '('){                
+			string key = "";			
+			while(++i < n && s[i] != ')') key += s[i];   // finding the word inside bracket pair
+			ans += (mp.count(key) ? mp[key] : "?");      // if key is found, append corresponding value else append ?
+		}
+		else ans += s[i];  // for rest of the string, keep it as it is
+	
+	return ans;
+}
+
+Time Complexity : O(N + M), where N is the length of string and M is the number of pairs in knowledge
+Space Complexity : O(N + M)
+*/
+class Solution {
+    public String evaluate(String s, List<List<String>> knowledge) {
+        Map<String, String> map = new HashMap<String, String>();
+        for(List<String> a : knowledge) {
+            map.put(a.get(0), a.get(1));
+        }
+        StringBuilder sb = new StringBuilder();
+        StringBuilder tmp = new StringBuilder();
+        int n = s.length();
+        for(int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            if(c == '(') {
+                i++;
+                while(s.charAt(i) != ')') {
+                    tmp.append(s.charAt(i));
+                    i++;
+                }
+                sb.append(map.getOrDefault(tmp.toString(), "?"));
+                tmp.setLength(0);
+            } else {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
+}
