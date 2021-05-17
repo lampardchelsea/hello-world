@@ -114,3 +114,6 @@
 
 <p>Number of Good Ways to Split a String
 <p>1. [Sliding Window + Count the unique character at the same pass, only increase count when that character first record in map] (https://leetcode.com/problems/number-of-good-ways-to-split-a-string/discuss/754678/C%2B%2BJava-Sliding-Window)
+
+<p>Longest Substring Of All Vowels in Order
+<p>1. [Not fixed length sliding window] (https://leetcode.com/problems/longest-substring-of-all-vowels-in-order/discuss/1175134/JavaPython-3-Sliding-window-codes-w-brief-explanation-and-analysis.)
