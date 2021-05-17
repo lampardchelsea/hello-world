@@ -32,7 +32,7 @@ Constraints:
 word consists of characters 'a', 'e', 'i', 'o', and 'u'.
 */
 
-// Solution 1: Sliding Window
+// Solution 1: Not fixed length sliding window
 // Refer to
 // https://leetcode.com/problems/longest-substring-of-all-vowels-in-order/discuss/1175134/JavaPython-3-Sliding-window-codes-w-brief-explanation-and-analysis.
 /**
