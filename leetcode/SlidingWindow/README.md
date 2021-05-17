@@ -117,3 +117,7 @@
 
 <p>Longest Substring Of All Vowels in Order
 <p>1. [Not fixed length sliding window] (https://leetcode.com/problems/longest-substring-of-all-vowels-in-order/discuss/1175134/JavaPython-3-Sliding-window-codes-w-brief-explanation-and-analysis.)
+
+<p>Number of Substrings Containing All Three Characters
+<p>1. [Not fixed length sliding window style 1] (https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/discuss/516977/JavaC%2B%2BPython-Easy-and-Concise)
+<p>1. [Not fixed length sliding window style 2] (https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/discuss/516973/JavaPython-3-Sliding-Window-O(n)-O(1)-code-w-explanation-and-analysis.) 
