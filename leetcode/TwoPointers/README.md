@@ -104,3 +104,7 @@
 <p>Evaluate the Bracket Pairs of a String
 <p>1. [Find ')' first then delete backwards till '(']
 <p>2. [Find '(' first then delete forwards till ')'] (https://leetcode.com/problems/evaluate-the-bracket-pairs-of-a-string/discuss/1130604/Simple-Solution-using-Hashmap-w-explanation-or-Linear-Complexity)
+
+<p>Minimum Adjacent Swaps to Reach the Kth Smallest Number
+<p>1. [Next permutation] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/NextPermutation.java)
+<p>2. [Swap only with adjacent digit] (https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/discuss/1186818/C%2B%2B-Detailed-explanation-using-next_permutation)
