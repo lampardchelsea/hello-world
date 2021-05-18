@@ -365,3 +365,8 @@
 <p>1. [Tokenizing Error: java.util.regex.PatternSyntaxException, dangling metacharacter '*'] (https://stackoverflow.com/questions/917822/tokenizing-error-java-util-regex-patternsyntaxexception-dangling-metacharacter)
 
 <p>Sorting the Sentence
+
+<p>Rearrange Words in a Sentence
+<p>1. [Java system sort uses merge sort for object and as we know, merge sort is STABLE. So, if the comparator gives 0, it will maintain the original order.] (https://leetcode.com/problems/rearrange-words-in-a-sentence/discuss/636286/Java-4-line)
+<p>2. [Stability in sorting algorithms] (https://www.geeksforgeeks.org/stability-in-sorting-algorithms/#:~:text=A%20sorting%20algorithm%20is%20said,input%20array%20to%20be%20sorted.&text=Informally%2C%20stability%20means%20that%20equivalent,their%20relative%20positions%2C%20after%20sorting.)
+<p>3. [Customized comparator] (https://stackoverflow.com/questions/2784514/sort-arraylist-of-custom-objects-by-property)
