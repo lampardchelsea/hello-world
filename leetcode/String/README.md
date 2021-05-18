@@ -373,3 +373,4 @@
 
 <p>Print Words Vertically
 <p>1. [Remove the trailing space for each string] (https://leetcode.com/problems/print-words-vertically/discuss/484322/JavaPython-3-Straight-forward-codes-w-brief-explanation-and-analysis.)
+<p>2. [How many tailing spaces for current string needed based on the max length of string after it]
