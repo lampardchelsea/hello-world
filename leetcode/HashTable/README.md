@@ -329,3 +329,7 @@
 <p>2. [Freq map + travel backwards to find potential character not able to cover] (https://leetcode.com/problems/check-if-a-string-can-break-another-string/discuss/1085537/O(n)-clean-with-explanation)
 
 <p>Custom Sort String
+
+<p>Design Log Storage System
+<p>1. [Mapping granularity with timestamp indexes style 1] (https://www.cnblogs.com/grandyang/p/7224525.html)
+<p>2. [Mapping granularity with timestamp indexes style 2] (https://massivealgorithms.blogspot.com/2017/07/leetcode-635-design-log-storage-system.html)
