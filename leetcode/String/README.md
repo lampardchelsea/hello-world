@@ -374,3 +374,6 @@
 <p>Print Words Vertically
 <p>1. [Remove the trailing space for each string] (https://leetcode.com/problems/print-words-vertically/discuss/484322/JavaPython-3-Straight-forward-codes-w-brief-explanation-and-analysis.)
 <p>2. [How many tailing spaces for current string needed based on the max length of string after it]
+
+<p>Binary String With Substrings Representing 1 To N
+<p>1. [The reason is simply for every i < N/2, the binary string of 2*i will contain binary string of i. Thus we don't need to check for i < N/2] (https://leetcode.com/problems/binary-string-with-substrings-representing-1-to-n/discuss/260847/JavaC++Python-O(S)/252984)
