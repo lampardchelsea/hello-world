@@ -333,3 +333,5 @@
 <p>Design Log Storage System
 <p>1. [Mapping granularity with timestamp indexes style 1] (https://www.cnblogs.com/grandyang/p/7224525.html)
 <p>2. [Mapping granularity with timestamp indexes style 2] (https://massivealgorithms.blogspot.com/2017/07/leetcode-635-design-log-storage-system.html)
+
+<p>Robot Return to Origin
