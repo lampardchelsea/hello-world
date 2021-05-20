@@ -34,6 +34,7 @@ The characters of name and typed are lowercase letters.
 
 // Similar problem: 
 // 1023. Camelcase Matching
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/TwoPointers/CamelcaseMatching.java
 
 // Solution 1: Two Pointers
 // Refer to
