@@ -377,3 +377,6 @@
 
 <p>Binary String With Substrings Representing 1 To N
 <p>1. [The reason is simply for every i < N/2, the binary string of 2*i will contain binary string of i. Thus we don't need to check for i < N/2] (https://leetcode.com/problems/binary-string-with-substrings-representing-1-to-n/discuss/260847/JavaC++Python-O(S)/252984)
+
+<p>Find Kth Bit in Nth Binary String
+<p>1. [Tricky way] (https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/discuss/781181/JavaC%2B%2BPython-Iterative-Solutions)
