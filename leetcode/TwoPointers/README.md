@@ -108,3 +108,9 @@
 <p>Minimum Adjacent Swaps to Reach the Kth Smallest Number
 <p>1. [Next permutation] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/NextPermutation.java)
 <p>2. [Swap only with adjacent digit] (https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/discuss/1186818/C%2B%2B-Detailed-explanation-using-next_permutation)
+
+<p>Long Pressed Name
+<p>Camelcase Matching
+<p>1. [Two Pointers to find if one string is a subsequence of another] (https://leetcode.com/problems/camelcase-matching/discuss/270006/Java-Easy-Two-Pointers)
+<p>2. [Given two strings, find if first string is a subsequence of second] (https://www.geeksforgeeks.org/given-two-strings-find-first-string-subsequence-second/)
+  
