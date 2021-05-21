@@ -380,3 +380,8 @@
 
 <p>Find Kth Bit in Nth Binary String
 <p>1. [Tricky way] (https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/discuss/781181/JavaC%2B%2BPython-Iterative-Solutions)
+
+<p>Ambiguous Coordinates
+<p>1. [Handling heading and tailing 0s style 1] (https://leetcode.com/problems/ambiguous-coordinates/discuss/123851/C%2B%2BJavaPython-Solution-with-Explanation)
+<p>2. [Handling heading and tailing 0s style 2] (https://leetcode.com/problems/ambiguous-coordinates/discuss/123875/Really-clear-Java-code)
+  
