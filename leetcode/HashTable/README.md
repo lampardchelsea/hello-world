@@ -335,3 +335,6 @@
 <p>2. [Mapping granularity with timestamp indexes style 2] (https://massivealgorithms.blogspot.com/2017/07/leetcode-635-design-log-storage-system.html)
 
 <p>Robot Return to Origin
+
+<p>Check If a String Contains All Binary Codes of Size K  
+<p>1. [Using sliding window to traverse all possible binary codes of size k, put them into a set, then check if its size is 2 ^ k.] (https://leetcode.com/problems/check-if-a-string-contains-all-binary-codes-of-size-k/discuss/660546/JavaPython-3-4-and-1-liners-clean-codes-using-set-w-brief-explanation-and-analysis.)  
