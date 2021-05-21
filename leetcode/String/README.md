@@ -385,3 +385,5 @@
 <p>1. [Handling heading and tailing 0s style 1] (https://leetcode.com/problems/ambiguous-coordinates/discuss/123851/C%2B%2BJavaPython-Solution-with-Explanation)
 <p>2. [Handling heading and tailing 0s style 2] (https://leetcode.com/problems/ambiguous-coordinates/discuss/123875/Really-clear-Java-code)
   
+<p>Check If Word Is Valid After Substitutions
+<p>1. [Greedy replace] (https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/discuss/247643/Java-3-lines-solution)
