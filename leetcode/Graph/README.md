@@ -166,4 +166,4 @@ Need to find Prim example also
 <ph3. [Union Find + PQ]1]ttps://leetcode.com/problems/smallest-string-with-swaps/discuss/388055/Java-Union-find-%2B-PriorityQueue.-Easy-to-understand.))
 
 <p>People Whose List of Favorite Companies Is Not a Subset of Another List
-<p>1. [Union Find] (https://leetcode.com/problems/people-whose-list-of-favorite-companies-is-not-a-subset-of-another-list/discuss/636294/Java-Union-Find-37-ms-beat-100-with-detailed-explanation)
+<p>1. [Union Find + union function change to check isSubSet] (https://leetcode.com/problems/people-whose-list-of-favorite-companies-is-not-a-subset-of-another-list/discuss/636294/Java-Union-Find-37-ms-beat-100-with-detailed-explanation)
