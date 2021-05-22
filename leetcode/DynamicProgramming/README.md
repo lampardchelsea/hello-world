@@ -198,9 +198,12 @@
 <p>1. [Divide the score into 2 parts - A[i]+i and A[j]-j. For each j value, we will check if the sum of maximum A[i]+i value found so far and current A[j]-j is greater than the res.] (https://leetcode.com/problems/best-sightseeing-pair/discuss/260909/JavaPython-Descriptive-solution.O(N)-Time-or-O(1)-Space.-Very-similar-to-Kadence-Algo!)
 
 <p>Flip String to Monotone Increasing
+<p>Minimum Deletions to Make String Balanced
 <p>1. [DP style 1] (https://leetcode.com/problems/flip-string-to-monotone-increasing/discuss/186797/Java-DP-solution)
 <p>2. [DP style 2] (https://leetcode.com/problems/flip-string-to-monotone-increasing/discuss/189751/C%2B%2B-one-pass-DP-solution-0ms-O(n)-or-O(1)-one-line-with-explaination.)
-
+<p>3. [926. Flip String to Monotone Increasing] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/FlipStringToMonotoneIncreasing.java)
+<p>4. [DP same way] (https://leetcode.com/problems/minimum-deletions-to-make-string-balanced/discuss/935701/DP-solution-beats-100-with-explanation)
+  
 <p>Length of Longest Fibonacci Subsequence
 <p>1. [2D DP style 1: dp[a, b] represents the length of fibo sequence ends up with (a, b)] (https://leetcode.com/problems/length-of-longest-fibonacci-subsequence/discuss/152343/C%2B%2BJavaPython-Check-Pair)
 <p>2. [2D DP style 2: dp[a, b] represents the length of fibo sequence start with (a, b)] (https://leetcode.com/problems/length-of-longest-fibonacci-subsequence/discuss/152332/Java-clean-DP-O(n2)-time-O(n2)-space/377212)
@@ -215,6 +218,4 @@
 <p>2. [One pass with maximum and sum - minimum] (https://leetcode.com/problems/maximum-sum-circular-subarray/discuss/178422/One-Pass)
 <p>3. [Doc] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/Document/Maximum_Sum_Circular_Subarray.docx)
 
-<p>Minimum Deletions to Make String Balanced
-<p>1. [926. Flip String to Monotone Increasing] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/FlipStringToMonotoneIncreasing.java)
-<p>2. [DP same way] (https://leetcode.com/problems/minimum-deletions-to-make-string-balanced/discuss/935701/DP-solution-beats-100-with-explanation)
+
