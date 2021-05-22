@@ -78,6 +78,12 @@ List#containsAll is dramatically worse than Set#containsAll. The former ends up 
 does N traversal with hash code look ups.
 A simple optimization to dramatically improve runtime (using List with union find barely avoids TLE!) is to preprocess 
 input as List<Set> which should cut runtime down from ~1800 ms to ~50 ms.
+
+The complexity is still O(n^2)?
+https://leetcode.com/problems/people-whose-list-of-favorite-companies-is-not-a-subset-of-another-list/discuss/636294/Java-Union-Find-37-ms-beat-100-with-detailed-explanation/548887
+for (int i=0; i<l; i++)
+for (int j=i+1; j<l; j++)
+I think Bruce method is also O(n^2)
 */
 class Solution {
     public List<Integer> peopleIndexes(List<List<String>> favoriteCompanies) {
