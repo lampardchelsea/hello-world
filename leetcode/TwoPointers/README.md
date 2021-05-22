@@ -114,3 +114,6 @@
 <p>1. [Two Pointers to find if one string is a subsequence of another] (https://leetcode.com/problems/camelcase-matching/discuss/270006/Java-Easy-Two-Pointers)
 <p>2. [Given two strings, find if first string is a subsequence of second] (https://www.geeksforgeeks.org/given-two-strings-find-first-string-subsequence-second/)
   
+<p>HTML Entity Parser
+<p>1. [Find '&' first then scan forwards till ';', but need to skip all continuous heading '&' and start only at the last one]
+<p>2. [Evaluate the Bracket Pairs of a String] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/TwoPointers/EvaluateTheBracketPairsOfAString.java)
