@@ -214,3 +214,7 @@
 <p>1. [Refer to DP solution from 53. Maximum Subarray] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/MaximumSubarray.java)
 <p>2. [One pass with maximum and sum - minimum] (https://leetcode.com/problems/maximum-sum-circular-subarray/discuss/178422/One-Pass)
 <p>3. [Doc] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/array/Document/Maximum_Sum_Circular_Subarray.docx)
+
+<p>Minimum Deletions to Make String Balanced
+<p>1. [926. Flip String to Monotone Increasing] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/FlipStringToMonotoneIncreasing.java)
+<p>2. [DP same way] (https://leetcode.com/problems/minimum-deletions-to-make-string-balanced/discuss/935701/DP-solution-beats-100-with-explanation)
