@@ -387,3 +387,6 @@
   
 <p>Check If Word Is Valid After Substitutions
 <p>1. [Greedy replace] (https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/discuss/247643/Java-3-lines-solution)
+
+<p>Find And Replace in String
+<p>1. [Scan from left to right] (https://leetcode.com/problems/find-and-replace-in-string/discuss/455922/Java-or-Beats-100-or-Simple-one-pass-solution-left-to-right)
