@@ -121,3 +121,6 @@
 <p>Number of Substrings Containing All Three Characters
 <p>1. [Not fixed length sliding window style 1] (https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/discuss/516977/JavaC%2B%2BPython-Easy-and-Concise)
 <p>1. [Not fixed length sliding window style 2] (https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/discuss/516973/JavaPython-3-Sliding-Window-O(n)-O(1)-code-w-explanation-and-analysis.) 
+
+<p>Maximum Number of Occurrences of a Substring  
+<p>1. [Why we don't need to consider maxSize ?] (https://leetcode.com/problems/maximum-number-of-occurrences-of-a-substring/discuss/457577/C%2B%2B-Greedy-approach-%2B-Sliding-window-O(n).)
