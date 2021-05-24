@@ -393,3 +393,7 @@
 
 <p>Break a Palindrome
 <p>1. [replace a non 'a' character to 'a', otherwise repalce the last character to 'b'] (https://leetcode.com/problems/break-a-palindrome/discuss/489774/JavaC%2B%2BPython-Easy-and-Concise)
+
+<p>Number of Steps to Reduce a Number in Binary Representation to One
+<p>1. [Scan from right to left except first digit and handle carry style 1] (https://leetcode.com/problems/number-of-steps-to-reduce-a-number-in-binary-representation-to-one/discuss/564287/C%2B%2BJava-O(n))
+<p>2. [Scan from right to left except first digit and handle carry style 2] (https://leetcode.com/problems/number-of-steps-to-reduce-a-number-in-binary-representation-to-one/discuss/1184352/JavaPython-Clean-and-Concise-Clear-Explanation-O(N))
