@@ -346,3 +346,9 @@
 
 <p>Reorganize String
 <p>1. [Find the letter with largest occurence, put the letter into even index numbe (0, 2, 4 ...) char array, put the rest into the array] (https://leetcode.com/problems/reorganize-string/discuss/232469/Java-No-Sort-O(N)-0ms-beat-100)  
+
+<p>Minimum Number of Frogs Croaking
+<p>1. [Graph explain] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/HashTable/Document/Minimum_Number_of_Frogs_Croaking.docx)
+<p>2. [Speical use of freq map style 1] (https://leetcode.com/problems/minimum-number-of-frogs-croaking/discuss/586653/C%2B%2B-Python-Java-Lucid-code-with-documened-comments-%2B-Visualization)
+<p>3. [Speical use of freq map style 2] (https://leetcode.com/problems/minimum-number-of-frogs-croaking/discuss/586543/C%2B%2BJava-with-picture-simulation
+  
