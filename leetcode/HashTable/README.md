@@ -343,3 +343,6 @@
 <p>1. [Normal freq map but TLE]
 <p>2. [count the most frequent char of words in B] (https://leetcode.com/problems/word-subsets/discuss/175854/JavaC%2B%2BPython-Straight-Forward)
 <p>3. [Using Java outer label to directly break out to outer for loop] (https://stackoverflow.com/questions/3821827/loop-in-java-code-what-is-this-and-why-does-it-compile)
+
+<p>Reorganize String
+<p>1. [Find the letter with largest occurence, put the letter into even index numbe (0, 2, 4 ...) char array, put the rest into the array] (https://leetcode.com/problems/reorganize-string/discuss/232469/Java-No-Sort-O(N)-0ms-beat-100)  
