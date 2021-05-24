@@ -390,3 +390,6 @@
 
 <p>Find And Replace in String
 <p>1. [Scan from left to right] (https://leetcode.com/problems/find-and-replace-in-string/discuss/455922/Java-or-Beats-100-or-Simple-one-pass-solution-left-to-right)
+
+<p>Break a Palindrome
+<p>1. [replace a non 'a' character to 'a', otherwise repalce the last character to 'b'] (https://leetcode.com/problems/break-a-palindrome/discuss/489774/JavaC%2B%2BPython-Easy-and-Concise)
