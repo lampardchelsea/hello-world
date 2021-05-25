@@ -25,7 +25,7 @@ Company
 Google
 */
 
-// Solution 1: Simulation
+// Solution 1: Simulation for next minute as 24 * 60 mins total
 // Refer to
 // https://aaronice.gitbook.io/lintcode/string/next-closest-time
 /**
