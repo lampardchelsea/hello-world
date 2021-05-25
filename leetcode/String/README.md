@@ -397,3 +397,6 @@
 <p>Number of Steps to Reduce a Number in Binary Representation to One
 <p>1. [Scan from right to left except first digit and handle carry style 1] (https://leetcode.com/problems/number-of-steps-to-reduce-a-number-in-binary-representation-to-one/discuss/564287/C%2B%2BJava-O(n))
 <p>2. [Scan from right to left except first digit and handle carry style 2] (https://leetcode.com/problems/number-of-steps-to-reduce-a-number-in-binary-representation-to-one/discuss/1184352/JavaPython-Clean-and-Concise-Clear-Explanation-O(N))
+
+<p>Next Closest Time
+<p>1. [Simulation for next minute as 24 * 60 mins total] (https://aaronice.gitbook.io/lintcode/string/next-closest-time)
