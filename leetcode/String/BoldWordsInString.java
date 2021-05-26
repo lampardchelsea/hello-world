@@ -33,6 +33,32 @@ Company
 Google
 */
 
+// Exactly same question for 616. Add Bold Tag in String
+// Refer to
+/**
+Description
+Given a string s and a list of strings dict, you need to add a closed pair of bold tag and to wrap the substrings 
+in s that exist in dict. If two such substrings overlap, you need to wrap them together by only one pair of closed 
+bold tag. Also, if two substrings wrapped by bold tags are consecutive, you need to combine them.
+
+The given dict won't contain duplicates, and its length won't exceed 100. All strings entered have a length in the range [1,1000].
+
+Example
+Input: 
+s = "abcxyz123"
+dict = ["abc","123"]
+Output:
+"<b>abc</b>xyz<b>123</b>"
+Input: 
+s = "aaabbcc"
+dict = ["aaa","aab","bc"]
+Output:
+"<b>aaabbc</b>c"
+Tags
+Company
+Google
+*/
+
 // Solution 1: Boolean flag set on all positions then scan again to append <b> or </b> based on flag
 // Refer to
 // https://www.cnblogs.com/grandyang/p/8531642.html
