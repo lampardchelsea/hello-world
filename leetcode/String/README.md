@@ -402,4 +402,5 @@
 <p>1. [Simulation for next minute as 24 * 60 mins total] (https://aaronice.gitbook.io/lintcode/string/next-closest-time)
 
 <p>Bold Words in String
-<p>1. [Boolean flag set on all positions then scan again to append <b> or </b> based on flag] (https://www.cnblogs.com/grandyang/p/8531642.html)
+<p>Add Bold Tag in String
+<p>1. [Boolean flag set on all positions then scan again to append <b> or </b> based on flag] (https://www.cnblogs.com/grandyang/p/8531642.html)  
