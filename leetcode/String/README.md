@@ -404,3 +404,6 @@
 <p>Bold Words in String
 <p>Add Bold Tag in String
 <p>1. [Boolean flag set on all positions then scan again to append <b> or </b> based on flag] (https://www.cnblogs.com/grandyang/p/8531642.html)  
+
+<p>Count Number of Homogenous Substrings
+<p>1. [Scan all chars in one pass] (https://leetcode.com/problems/count-number-of-homogenous-substrings/discuss/1064530/JavaC%2B%2BPython-Straight-Forward)
