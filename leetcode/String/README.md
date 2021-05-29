@@ -411,3 +411,6 @@
 <p>Max Difference You Can Get From Changing an Integer
 <p>1. [Greedy] (https://leetcode.com/problems/max-difference-you-can-get-from-changing-an-integer/discuss/608804/Python-Clean-greedy-solution-with-explanation)
 <p>2. [Java version] (https://leetcode.com/problems/max-difference-you-can-get-from-changing-an-integer/discuss/608804/Python-Clean-greedy-solution-with-explanation/534721)
+
+<p>Sentence Similarity III  
+<p>1. [Scan from two end, and switch longer / shorter sentence] (https://leetcode.com/problems/sentence-similarity-iii/discuss/1140793/Java-Simple-and-easy-to-understand-solution-5-ms-faster-than-100.00-clean-code-with-comments)  
