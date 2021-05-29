@@ -70,11 +70,11 @@ Java
     }
 */
 class Solution {
-    int mod = 1000000007;
-    int result = 0;
-    int count = 0;
-    char cur = '*';
     public int countHomogenous(String s) {
+        int mod = 1000000007;
+        int result = 0;
+        int count = 0;
+        char cur = '*';
         for(int i = 0; i < s.length(); i++) {
             count = cur == s.charAt(i) ? count + 1 : 1;
             cur = s.charAt(i);
