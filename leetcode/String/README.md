@@ -406,7 +406,9 @@
 <p>1. [Boolean flag set on all positions then scan again to append <b> or </b> based on flag] (https://www.cnblogs.com/grandyang/p/8531642.html)  
 
 <p>Count Number of Homogenous Substrings
+<p>Number of Substrings With Only 1s
 <p>1. [Scan all chars in one pass] (https://leetcode.com/problems/count-number-of-homogenous-substrings/discuss/1064530/JavaC%2B%2BPython-Straight-Forward)
+<p>2. [For each new element, there will be more count substring,] (https://leetcode.com/problems/number-of-substrings-with-only-1s/discuss/731580/JavaC%2B%2BPython-Count)
 
 <p>Max Difference You Can Get From Changing an Integer
 <p>1. [Greedy] (https://leetcode.com/problems/max-difference-you-can-get-from-changing-an-integer/discuss/608804/Python-Clean-greedy-solution-with-explanation)
