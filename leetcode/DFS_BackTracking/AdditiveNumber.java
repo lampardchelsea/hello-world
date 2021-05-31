@@ -78,3 +78,66 @@ public boolean isAdditiveNumber(String num) {
     }
 
 }
+
+// Solution 2: Exactly same as 842. Split Array into Fibonacci Sequence
+// Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/SplitArrayIntoFibonacciSequence.java
+// https://leetcode.com/problems/additive-number/discuss/139895/Logical-Thinking-with-Clear-Java-Code
+/**
+The thinking process is almost the same to 842. Split Array into Fibonacci Sequence as below:
+https://leetcode.com/problems/split-array-into-fibonacci-sequence/discuss/139690/Logical-Thinking-with-Clear-Java-Code
+To handle overflow for very large input integers, we use String to represent the result of addition.
+The complete code in Java is as below:
+
+    public boolean isAdditiveNumber(String num) {
+        return isAdditiveNumberFrom(0, num, new ArrayList<>());
+    }
+
+    private boolean isAdditiveNumberFrom(int curIdx, String num, List<String> result) {
+        if (curIdx == num.length() && result.size() >= 3) {
+            return true;
+        }
+        for (int i = curIdx; i <= num.length() - 1; i++) {
+            if (i != curIdx && num.charAt(curIdx) == '0') {
+                break;
+            }
+            String curNum = num.substring(curIdx, i + 1);
+            if (result.size() <= 1 || curNum.equals(
+                    String.valueOf(
+                            Long.parseLong(result.get(result.size() - 1)) + Long.parseLong(result.get(result.size() - 2)))
+            )) {
+                result.add(curNum);
+                if (isAdditiveNumberFrom(i + 1, num, result)) {
+                    return true;
+                }
+                result.remove(result.size() - 1);
+            }
+        }
+        return false;
+    }
+*/
+class Solution {
+    public boolean isAdditiveNumber(String num) {
+        return helper(0, new ArrayList<String>(), num);
+    }
+    
+    private boolean helper(int curIndex, List<String> result, String num) {
+        if(curIndex == num.length() && result.size() >= 3) {
+            return true;
+        }
+        for(int i = curIndex; i < num.length(); i++) {
+            if(num.charAt(curIndex) == '0' && i > curIndex) {
+                break;
+            }
+            String curNum = num.substring(curIndex, i + 1);
+            if(result.size() <= 1 || curNum.equals(String.valueOf(Long.valueOf(result.get(result.size() - 2)) + Long.valueOf(result.get(result.size() - 1))))) {
+                result.add(curNum);
+                if(helper(i + 1, result, num)) {
+                    return true;
+                }
+                result.remove(result.size() - 1);
+            }
+        }
+        return false;
+    }
+}
