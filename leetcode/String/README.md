@@ -416,3 +416,8 @@
 
 <p>Sentence Similarity III  
 <p>1. [Scan from two end, and switch longer / shorter sentence] (https://leetcode.com/problems/sentence-similarity-iii/discuss/1140793/Java-Simple-and-easy-to-understand-solution-5-ms-faster-than-100.00-clean-code-with-comments)  
+
+<p>Number of Ways to Split a String
+<p>1. [Multiplication of the ways of 1st and 2nd cuts w/ explanation and analysis.] (https://leetcode.com/problems/number-of-ways-to-split-a-string/discuss/830455/JavaPython-3-Multiplication-of-the-ways-of-1st-and-2nd-cuts-w-explanation-and-analysis.)
+<p>2. [Document] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/String/Document/Number_of_Ways_to_Split_a_String.docx)
+<p>3. [Split Array With Equal Sum] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/HashTable/SplitArrayWithEqualSum.java)
