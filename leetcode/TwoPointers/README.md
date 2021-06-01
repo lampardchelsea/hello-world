@@ -117,3 +117,7 @@
 <p>HTML Entity Parser
 <p>1. [Find '&' first then scan forwards till ';', but need to skip all continuous heading '&' and start only at the last one]
 <p>2. [Evaluate the Bracket Pairs of a String] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/TwoPointers/EvaluateTheBracketPairsOfAString.java)
+
+<p>Split Two Strings to Make Palindrome
+<p>1. [Scan till different from two strings, then scan till different on either of one string] (https://leetcode.com/problems/split-two-strings-to-make-palindrome/discuss/888985/Java-clean-O(n)-with-explanations)
+  
