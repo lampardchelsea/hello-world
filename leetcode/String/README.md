@@ -421,3 +421,7 @@
 <p>1. [Multiplication of the ways of 1st and 2nd cuts w/ explanation and analysis.] (https://leetcode.com/problems/number-of-ways-to-split-a-string/discuss/830455/JavaPython-3-Multiplication-of-the-ways-of-1st-and-2nd-cuts-w-explanation-and-analysis.)
 <p>2. [Document] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/String/Document/Number_of_Ways_to_Split_a_String.docx)
 <p>3. [Split Array With Equal Sum] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/HashTable/SplitArrayWithEqualSum.java)
+
+<p>Repeated String Match
+<p>1. [Don't forget append one more a to handle rotation case] (https://leetcode.com/problems/repeated-string-match/discuss/108086/Java-Solution-Just-keep-building-(OJ-Missing-Test-Cases))
+  
