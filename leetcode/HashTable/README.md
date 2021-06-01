@@ -355,3 +355,6 @@
 <p>Alert Using Same Key-Card Three or More Times in a One Hour Period
 <p>1. [HashMap/dict + Sliding scan 3-consecutive-elements window style 1] (https://leetcode.com/problems/alert-using-same-key-card-three-or-more-times-in-a-one-hour-period/discuss/876864/JavaPython-3-HashMapdict-%2B-Sliding-Window.)
 <p>2. [HashMap/dict + Sliding scan 3-consecutive-elements window style 2] (https://leetcode.com/problems/alert-using-same-key-card-three-or-more-times-in-a-one-hour-period/discuss/877222/Java-Simple-Hash-ArrayList)
+
+<p>Change Minimum Characters to Satisfy One of Three Conditions  
+<p>1. [Find the Boundary Letter for two cases] (https://leetcode.com/problems/change-minimum-characters-to-satisfy-one-of-three-conditions/discuss/1032042/Java-Detailed-Explanation-Find-the-Boundary-Letter)  
