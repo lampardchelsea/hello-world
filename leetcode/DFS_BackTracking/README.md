@@ -99,6 +99,7 @@
 
 <p>Additive Number
 <p>Split Array into Fibonacci Sequence
+<p>Splitting a String Into Descending Consecutive Values
 <p>1. [Java Recursive and Iterative Solutions] (https://discuss.leetcode.com/topic/29856/java-recursive-and-iterative-solutions)
 <p>2. [Youtube Solution] (https://www.youtube.com/watch?v=LziJZT2uRwc)
 <p>3. [Exactly same as 306. Additive Number] (https://leetcode.com/problems/split-array-into-fibonacci-sequence/discuss/139690/Logical-Thinking-with-Clear-Java-Code)
