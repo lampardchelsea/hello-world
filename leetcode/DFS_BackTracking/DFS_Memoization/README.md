@@ -27,3 +27,4 @@
 <p>Count Different Palindromic Subsequences
 <p>1. [DFS + Memo] (https://www.cnblogs.com/grandyang/p/7942040.html)
 <p>2. [Java Solution using memoization] (https://leetcode.com/problems/count-different-palindromic-subsequences/discuss/109509/Accepted-Java-Solution-using-memoization)
+<p>3. [516. Longest Palindromic Subsequence] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/LongestPalindromicSubsequence.java)
