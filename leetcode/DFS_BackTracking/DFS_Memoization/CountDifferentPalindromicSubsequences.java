@@ -26,6 +26,10 @@ s[i] is either 'a', 'b', 'c', or 'd'.
 */
 
 // Solution 1: DFS + memo
+// Similar strategy as 516. Longest Palindromic Subsequence
+// Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/LongestPalindromicSubsequence.java
+
 // Refer to
 // https://www.cnblogs.com/grandyang/p/7942040.html
 /**
