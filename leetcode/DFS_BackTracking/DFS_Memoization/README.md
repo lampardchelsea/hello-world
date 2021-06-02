@@ -23,3 +23,7 @@
 <p>Concatenated Words
 <p>1. [[Java] DFS + Memoization - Clean code] (https://leetcode.com/problems/concatenated-words/discuss/541520/Java-DFS-%2B-Memoization-Clean-code)
 <p>2. [Word Break] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DFS_BackTracking/DFS_Memoization/WordBreak.java)
+
+<p>Count Different Palindromic Subsequences
+<p>1. [DFS + Memo] (https://www.cnblogs.com/grandyang/p/7942040.html)
+<p>2. [Java Solution using memoization] (https://leetcode.com/problems/count-different-palindromic-subsequences/discuss/109509/Accepted-Java-Solution-using-memoization)
