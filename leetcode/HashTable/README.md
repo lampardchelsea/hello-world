@@ -358,3 +358,7 @@
 
 <p>Change Minimum Characters to Satisfy One of Three Conditions  
 <p>1. [Find the Boundary Letter for two cases] (https://leetcode.com/problems/change-minimum-characters-to-satisfy-one-of-three-conditions/discuss/1032042/Java-Detailed-Explanation-Find-the-Boundary-Letter)  
+
+<p>Find the Longest Substring Containing Vowels in Even Counts
+<p>1. [HashMap + Bitwise record state for "aeiou"] (https://leetcode.com/problems/find-the-longest-substring-containing-vowels-in-even-counts/discuss/531840/JavaC%2B%2BPython-One-Pass)
+<p>2. [Explain for cur ^= 1 << ("aeiou".indexOf(s.charAt(i)) + 1 ) >> 1] (https://leetcode.com/problems/find-the-longest-substring-containing-vowels-in-even-counts/discuss/531840/JavaC++Python-One-Pass/467679)
