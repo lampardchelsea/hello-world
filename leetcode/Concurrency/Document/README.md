@@ -1,5 +1,9 @@
 
 # Leetcode Concurrency issues
+## Topics
+### The Basics
+
+
 
 # Useful links for specific questions
 <p>1. [How to/best practices to write a thread safe code?] (https://leetcode.com/discuss/interview-question/operating-system/124639/how-tobest-practices-to-write-a-thread-safe-code)
