@@ -1,7 +1,24 @@
 
 # Leetcode Concurrency issues
 ## Topics
-### The Basics
+### 1. The Basics
+Introduction
+Program vs Process vs Thread
+Concurrency vs Parallelism
+Cooperative Multitasking vs Preemptive Multitasking
+Synchronous vs Asynchronous
+I/O Bound vs CPU Bound
+Throughput vs Latency
+Critical Sections & Race Conditions
+Deadlocks, Liveness & Reentrant Locks
+Mutex vs Semaphore
+Mutex vs Monitor
+Java's Monitor & Hoare vs Mesa Monitors
+Semaphore vs Monitor
+Amdahl's Law
+Moore's Law
+
+### 2. Multithreading in Java
 
 
 
