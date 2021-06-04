@@ -30,6 +30,9 @@ s consists only of digits.
 
 // Solution 1: Same way as 1371. Find the Longest Substring Containing Vowels in Even Counts.
 // Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/HashTable/FindTheLongestSubstringContainingVowelsInEvenCounts.java
+
+// Refer to
 // https://leetcode.com/problems/find-longest-awesome-substring/discuss/785213/Example-Input-%223242415%22-Explanation-with-BitMask
 /**
 Definition of Awesomeness
