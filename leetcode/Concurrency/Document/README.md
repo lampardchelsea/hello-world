@@ -29,7 +29,49 @@
 <p>Spurious Wakeups
 <p>Miscellaneous Topics
 
+### 3. Java Memory Model
+<p>Java Memory Model
+<p>Reordering Effects
+<p>The happens-before Relationship
+  
+### 4. Interview Practice Problems
+<p>Blocking Queue | Bounded Buffer | Consumer Producer
+<p>Rate Limiting Using Token Bucket Filter
+<p>Thread Safe Deferred Callback
+<p>Implementing Semaphore
+<p>ReadWrite Lock
+<p>Unisex Bathroom Problem
+<p>Implementing a Barrier
+<p>Uber Ride Problem
+<p>Dining Philosophers
+<p>Barber Shop
+<p>Superman Problem
+<p>Multithreaded Merge Sort
+<p>Asynchronous to Synchronous Problem
+<p>Epilogue
 
+### 5. Bonus Questions
+<p>Ordered Printing
+<p>Printing Foo Bar n Times
+<p>Printing Number Series (Zero, Even, Odd)
+<p>Build a Molecule
+<p>Fizz Buzz Problem
+ 
+### 7. Java Thread Basics
+<p>Setting-up Threads
+<p>Basic Thread Handling
+<p>Executor Framework
+<p>Executor Implementations
+<p>Thread Pools
+<p>Types of Thread Pools
+<p>An Example: Timer vs ScheduledThreadPool
+<p>Callable Interface
+<p>Future Interface
+<p>CompletionService Interface
+<p>ThreadLocal
+<p>CountDownLatch
+<p>CyclicBarrier
+<p>Concurrent Collections
 
 # Useful links for specific questions
 <p>1. [How to/best practices to write a thread safe code?] (https://leetcode.com/discuss/interview-question/operating-system/124639/how-tobest-practices-to-write-a-thread-safe-code)
