@@ -425,3 +425,5 @@
 <p>Repeated String Match
 <p>1. [Don't forget append one more a to handle rotation case] (https://leetcode.com/problems/repeated-string-match/discuss/108086/Java-Solution-Just-keep-building-(OJ-Missing-Test-Cases))
   
+<p>Stamping The Sequence
+<p>1. [Greedy replace character into asterid] (https://leetcode.com/problems/stamping-the-sequence/discuss/201546/12ms-Java-Solution-Beats-100)
