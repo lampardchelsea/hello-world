@@ -427,3 +427,6 @@
   
 <p>Stamping The Sequence
 <p>1. [Greedy replace character into asterid] (https://leetcode.com/problems/stamping-the-sequence/discuss/201546/12ms-Java-Solution-Beats-100)
+
+<p>Check If String Is Transformable With Substring Sort Operations
+<p>1. [No smaller digit should on its left] (https://leetcode.com/problems/check-if-string-is-transformable-with-substring-sort-operations/discuss/843917/C%2B%2BJavaPython-O(n))
