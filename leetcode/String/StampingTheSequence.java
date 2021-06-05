@@ -140,6 +140,7 @@ class Solution {
         return resArray;
     }
     
+    // To check whether, starting at the given index 'p', 'target' can be replaced by 'stamp'
     private boolean canReplace(char[] T, int p, char[] S) {
         for(int i = 0; i < S.length; i++) {
             if(T[i + p] != '*' && T[i + p] != S[i]) {
@@ -149,6 +150,7 @@ class Solution {
         return true;
     }
     
+    // To replace characters into '*', starting at the given index 'p',
     private int doReplace(char[] T, int p, int len, int count) {
         for(int i = 0; i < len; i++) {
             if(T[i + p] != '*') {
