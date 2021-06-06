@@ -365,3 +365,6 @@
 <p>2. [Explain for cur ^= 1 << ("aeiou".indexOf(s.charAt(i)) + 1 ) >> 1] (https://leetcode.com/problems/find-the-longest-substring-containing-vowels-in-even-counts/discuss/531840/JavaC++Python-One-Pass/467679)
 <p>3. [Same way as 1371. Find the Longest Substring Containing Vowels in Even Counts.] (https://leetcode.com/problems/find-longest-awesome-substring/discuss/785213/Example-Input-%223242415%22-Explanation-with-BitMask)
 <p>4. [HashMap + Bitwise record state for "0123456789"] (https://leetcode.com/problems/find-longest-awesome-substring/discuss/779919/JavaC%2B%2BPython-Prefix-%2B-BitMask)
+
+<p>Groups of Special-Equivalent Strings  
+<p>1. [Find odd and even position freq map and build string signature] (https://leetcode.com/problems/groups-of-special-equivalent-strings/discuss/163413/Java-Concise-Set-Solution)  
