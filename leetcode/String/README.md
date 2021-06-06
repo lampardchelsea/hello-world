@@ -434,3 +434,5 @@
 <p>Check if Word Equals Summation of Two Words
 
 <p>Substrings of Size Three with Distinct Characters
+
+<p>Goat Latin
