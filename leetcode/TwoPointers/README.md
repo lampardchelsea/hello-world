@@ -121,3 +121,5 @@
 <p>Split Two Strings to Make Palindrome
 <p>1. [Scan till different from two strings, then scan till different on either of one string] (https://leetcode.com/problems/split-two-strings-to-make-palindrome/discuss/888985/Java-clean-O(n)-with-explanations)
   
+<p>Remove Palindromic Subsequences
+<p>1. [Use the Trick : the input string only consists of letters 'a' and 'b'!!] (https://leetcode.com/problems/remove-palindromic-subsequences/discuss/490352/Java-Use-the-Trick-%3A-the-input-string-only-consists-of-letters-'a'-and-'b'!!)
