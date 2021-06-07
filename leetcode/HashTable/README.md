@@ -370,3 +370,5 @@
 <p>1. [Find odd and even position freq map and build string signature] (https://leetcode.com/problems/groups-of-special-equivalent-strings/discuss/163413/Java-Concise-Set-Solution)  
 
 <p>String Matching in an Array
+<p>1. [Brute Force] (https://leetcode.com/problems/longest-nice-substring/discuss/1075274/Java-Solution-with-Set-comment-explanation)
+<p>2. [Divide and Conquer] (https://leetcode.com/problems/longest-nice-substring/discuss/1074589/JavaStraightforward-Divide-and-Conquer)
