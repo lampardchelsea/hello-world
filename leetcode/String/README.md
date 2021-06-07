@@ -442,3 +442,5 @@
 <p>Reformat Phone Number
 
 <p>Consecutive Characters
+
+<p>Reformat Date
