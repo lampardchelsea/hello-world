@@ -368,3 +368,5 @@
 
 <p>Groups of Special-Equivalent Strings  
 <p>1. [Find odd and even position freq map and build string signature] (https://leetcode.com/problems/groups-of-special-equivalent-strings/discuss/163413/Java-Concise-Set-Solution)  
+
+<p>String Matching in an Array
