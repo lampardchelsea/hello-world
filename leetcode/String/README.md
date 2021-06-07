@@ -448,3 +448,6 @@
 <p>Longest Uncommon Subsequence I
 
 <p>Largest Substring Between Two Equal Characters
+
+<p>Maximum Score After Splitting a String
+<p>1. [PreSum ones and zeros] (https://leetcode.com/problems/maximum-score-after-splitting-a-string/discuss/597716/Java-5-Liner-(One-Pass))
