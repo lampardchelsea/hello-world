@@ -64,6 +64,10 @@ class Solution {
         int three_groups = 0;
         int two_groups = 0;
         int len = sb.length();
+        // Different handling to get how many three / two digits group by checking mod of 3
+        // 1. If mod 3 == 1 means we have to re-organize last 4 digits (3 + 1) into (2 + 2), we have two two digits group
+        // 2. If mod 3 == 2 means we only have one two digits group
+        // 3. If mod 3 == 0 means no two digits group need
         if(len % 3 == 1) {
             three_groups = (len - 4) / 3;
             two_groups = 2;
