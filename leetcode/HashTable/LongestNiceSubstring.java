@@ -102,3 +102,103 @@ class Solution {
         return true;
     }
 }
+
+// Solution 2: Divide and Conquer
+// Refer to
+// https://leetcode.com/problems/longest-nice-substring/discuss/1074589/JavaStraightforward-Divide-and-Conquer
+/**
+class Solution {
+    public String longestNiceSubstring(String s) {
+        if (s.length() < 2) return "";
+        char[] arr = s.toCharArray();
+        Set<Character> set = new HashSet<>();
+        for (char c: arr) set.add(c);
+        for (int i = 0; i < arr.length; i++) {
+            char c = arr[i];
+            if (set.contains(Character.toUpperCase(c)) && set.contains(Character.toLowerCase(c))) continue;
+            String sub1 = longestNiceSubstring(s.substring(0, i));
+            String sub2 = longestNiceSubstring(s.substring(i+1));
+            return sub1.length() >= sub2.length() ? sub1 : sub2;
+        }
+        return s; 
+    }
+}
+
+I think the time complexity is O(nlogn), please correct me if wrong!
+
+1st round, we have 1 string of length n
+2nd round, 2 strings with sum length of n
+3rd round, 4 strings with sum length of n
+...
+So, there could be logn rounds in total, and overall complexity is O(nlogn)
+As @lenchen1112 pointed out, the # of rounds is bound to 26, so this should be O(n)
+*/
+
+// https://leetcode.com/problems/longest-nice-substring/discuss/1074677/This-is-a-good-problem-but-it's-bad-to-use-small-constraint-and-mark-it-as-an-easy-problem
+/**
+This is typically a divide and conquer problem, and can be solve with the time complexity O(N)
+
+But in the contest, many people just use brute force and solve it using O(N^2). This method can save them a lot of time, 
+and get better standing. And in the practise, many people just get accepted using brute force and move on.
+
+However, this is not good for them because in the real interview, the interviewer will not satisfy if you only present him 
+or her brute force method. It can only waste him or her good chance to practise divide and conquer method.
+
+So, please add some large test cases 1<=n<=10^5, and mark this problem an medium problem.
+
+Here is my O(N) solution, for each s, we try to find the location of any character for appear only in either uppercase or 
+lowercase, and split the string by these characters. Then for each splited substring, do the same thing, until it can not 
+be splited. return the longest substring with first appearance.
+
+(As some people point out, this is actually NlgN because of the sorting part)
+
+        def getsplit(subs):
+            if len(subs)<2: return ""
+            lcase = [[] for i in range(26)]
+            ucase = [[] for i in range(26)]
+			
+			#lcase is the lowercase and ucase is the upper case
+			
+            for i in range(len(subs)):
+                if ord(subs[i])-97>=0:  lcase[ord(subs[i])-97].append(i)
+                else: ucase[ord(subs[i])-65].append(i)        
+            part = [-1,len(subs)]
+			
+			# part is the index which  letter only appear in either upper case or lower case, and we append -1 and the length of substring for convenience 
+                
+            for k in range(26):
+                if len(ucase[k])*len(lcase[k])==0 and len(ucase[k]) + len(lcase[k])>0:
+                    for ele in ucase[k]+lcase[k]:
+                        part.append(ele)              
+						
+            if len(part)==2: return subs         
+            part = sorted(part)
+            output = ""      
+            for i in range(len(part)-1):
+                newsub = subs[ (part[i]+1):part[i+1]]
+                temp = getsplit(newsub)
+                if len(temp)>len(output):
+                    output = temp  
+            return output
+        
+        return getsplit(s)
+
+updated: Since this is an OA problem, no need to add more test cases. It would be better if problem maker add a follow up 
+below this problem: Can you solve it in O(n) time?
+*/
+class Solution {
+    public String longestNiceSubstring(String s) {
+        if (s.length() < 2) return "";
+        char[] arr = s.toCharArray();
+        Set<Character> set = new HashSet<>();
+        for (char c: arr) set.add(c);
+        for (int i = 0; i < arr.length; i++) {
+            char c = arr[i];
+            if (set.contains(Character.toUpperCase(c)) && set.contains(Character.toLowerCase(c))) continue;
+            String sub1 = longestNiceSubstring(s.substring(0, i));
+            String sub2 = longestNiceSubstring(s.substring(i+1));
+            return sub1.length() >= sub2.length() ? sub1 : sub2;
+        }
+        return s; 
+    }
+}
