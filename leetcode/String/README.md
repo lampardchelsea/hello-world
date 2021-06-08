@@ -451,3 +451,6 @@
 
 <p>Maximum Score After Splitting a String
 <p>1. [PreSum ones and zeros] (https://leetcode.com/problems/maximum-score-after-splitting-a-string/discuss/597716/Java-5-Liner-(One-Pass))
+
+<p>Rotated Digits
+<p>1. [Improved efficiency by skipping numbers include 3, 4, 7 digits] (https://leetcode.com/problems/rotated-digits/discuss/116547/Easily-Understood-Java-Solution/116844)
