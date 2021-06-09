@@ -461,3 +461,6 @@
 
 <p>Reorder Data in Log Files
 <p>1. [Customize sort] (https://leetcode.com/problems/reorder-data-in-log-files/discuss/193872/Java-Nothing-Fancy-15-lines-2ms-all-clear./337530)
+
+<p>Replace All ?'s to Avoid Consecutive Repeating Characters
+<p>1. [We do not need more than 3 letters to build a non-repeating character sequence.] (https://leetcode.com/problems/replace-all-s-to-avoid-consecutive-repeating-characters/discuss/831483/Java-Simple-O(n)-loop)
