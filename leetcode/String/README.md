@@ -456,3 +456,5 @@
 <p>1. [Improved efficiency by skipping numbers include 3, 4, 7 digits] (https://leetcode.com/problems/rotated-digits/discuss/116547/Easily-Understood-Java-Solution/116844)
 
 <p>Thousand Separator
+
+<p>Reformat The String
