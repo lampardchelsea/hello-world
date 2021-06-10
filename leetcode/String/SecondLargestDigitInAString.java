@@ -20,6 +20,7 @@ Constraints:
 s consists of only lowercase English letters and/or digits.
 */
 
+// Solution 1: Additional 'max > val' check to avoid duplicate value set as second max
 class Solution {
     public int secondHighest(String s) {
         int max = -1;
