@@ -467,3 +467,5 @@
 
 <p>Second Largest Digit in a String
 <p>1. [Additional 'max > val' check to avoid duplicate value set as second max] (https://leetcode.com/problems/second-largest-digit-in-a-string/discuss/1118774/JavaPython-3-Time-O(n)-space-O(1)-code.)
+
+<p>Check if One String Swap Can Make Strings Equal
