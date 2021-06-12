@@ -475,3 +475,6 @@
 <p>Latest Time by Replacing Hidden Digits
 
 <p>Maximum Repeating Substring
+
+<p>Number of Different Integers in a String
+<p>1. [Remove leading zeros but consider all digits zero must return as zero] (https://stackoverflow.com/questions/2800739/how-to-remove-leading-zeros-from-alphanumeric-text)
