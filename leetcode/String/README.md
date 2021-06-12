@@ -469,6 +469,8 @@
 <p>1. [Additional 'max > val' check to avoid duplicate value set as second max] (https://leetcode.com/problems/second-largest-digit-in-a-string/discuss/1118774/JavaPython-3-Time-O(n)-space-O(1)-code.)
 
 <p>Check if One String Swap Can Make Strings Equal
+<p>Buddy Strings
+<p>1. [Three cases] (https://leetcode.com/problems/buddy-strings/discuss/141780/Easy-Understood)
 
 <p>Rearrange Spaces Between Words
 
