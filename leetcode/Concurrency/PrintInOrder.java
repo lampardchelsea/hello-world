@@ -49,6 +49,19 @@ A thread can take marbles (up until it's empty) or put many marbles (out of thin
 elegant, run2.acquire() makes second sleep while run2 hasn't been released by first , 
 run3.acquire() makes third sleep while run3 has not been released by second.
 */
+
+// Difference between Semaphore initialized with 1 and 0 ?
+// https://stackoverflow.com/questions/25563640/difference-between-semaphore-initialized-with-1-and-0
+/**
+The argument to the Semaphore instance is the number of "permits" that are available. It can be any integer, not just 0 or 1.
+For semZero all acquire() calls will block and tryAcquire() calls will return false, until you do a release()
+For semOne the first acquire() calls will succeed and the rest will block until the first one releases.
+The class is well documented here.
+Parameters: permits - the initial number of permits available. This value may be negative, in which case releases 
+must occur before any acquires will be granted.
+@ETHER none. If it's 0 then you need to release it 1st before anyone can acquire it
+*/
+
 import java.util.concurrent.*;
 
 class Foo {
