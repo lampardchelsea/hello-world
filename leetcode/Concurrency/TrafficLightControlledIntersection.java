@@ -74,38 +74,23 @@ https://leetcode.ca/2019-06-01-1279-Traffic-Light-Controlled-Intersection/
 
 // Solution 1: Keyword synchronized for signal variable for thread control.
 // Refer to
-// https://leetcode.ca/2019-06-01-1279-Traffic-Light-Controlled-Intersection/
-public class Traffic_Light_Controlled_Intersection {
-
-    class TrafficLight {
-
-        // Signal maintains the road which is green at the moment
-        private final Signal signal;
-
-        public TrafficLight() {
-            signal = new Signal();
-        }
-
-        public void carArrived(
-            int carId,           // ID of the car
-            int roadId,          // ID of the road the car travels on. Can be 1 (road A) or 2 (road B)
-            int direction,       // Direction of the car
-            Runnable turnGreen,  // Use turnGreen.run() to turn light to green on current road
-            Runnable crossCar    // Use crossCar.run() to make car cross the intersection
-        ) {
-            synchronized (signal) {
-                if (signal.greenRoadA != roadId) {
-                    turnGreen.run();
-                    signal.greenRoadA = roadId;
-                }
-                crossCar.run();
+// http://leetcode.libaoj.in/traffic-light-controlled-intersection.html
+class TrafficLight {
+    private int canPassRoad = 1;
+    public TrafficLight() {}
+    public void carArrived(
+        int carId,           // ID of the car
+        int roadId,          // ID of the road the car travels on. Can be 1 (road A) or 2 (road B)
+        int direction,       // Direction of the car
+        Runnable turnGreen,  // Use turnGreen.run() to turn light to green on current road
+        Runnable crossCar   // Use crossCar.run() to make car cross the intersection 
+    ) {
+        synchronized (this) {
+            if (canPassRoad != roadId) {
+                canPassRoad = roadId;
+                turnGreen.run();
             }
-        }
-
-        class Signal {
-
-            // 1 corresponds to the Road A
-            int greenRoadA = 1;
+            crossCar.run();
         }
     }
 }
