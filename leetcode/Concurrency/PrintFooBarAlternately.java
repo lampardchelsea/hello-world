@@ -112,8 +112,58 @@ class FooBar {
 // Solution 2: Synchronized wait and notify solution
 // Refer to
 // https://leetcode.com/problems/print-foobar-alternately/discuss/338725/Fast-Java-solution-with-good-explanation.
-/**
+class FooBar {
+    private int n;
+    // Set value to true so we can assure that foo() will be called first
+    private boolean printfoo = true;
+    public FooBar(int n) {
+        this.n = n;
+    }
 
-*/
+    public void foo(Runnable printFoo) throws InterruptedException {
+        
+        for (int i = 0; i < n; i++) {
+            synchronized(this) {
+                // If the first thread is here, that means it's already acquired
+                // this object's lock, so the second thread (or any other) gets
+                // blocked until the lock is released.
+                while(!printfoo) {
+                    // If wait() is called, the first thread releases the lock
+                    // (VERY IMPORTANT) and waits until the other thread calls
+                    // notifyAll() inside the bar() method. That guarantees our
+                    // code won't deadlock.
+                    wait();
+                }
+                // printFoo.run() outputs "foo". Do not change or remove this line.
+                printFoo.run();
+                // Here we set printFoo to false in order to assure that if the
+                // thread scheduler chooses this thread again, it will stop on the
+                // while loop and wait for the second one.
+                printfoo = false;
+                // When notifyAll() is called, the second thread will get out of
+                // the while loop inside bar() and continue its job (to print "bar")
+                notifyAll();
+            }
+        	
+        }
+    }
 
+    // The whole process is the same with the bar method
+    public void bar(Runnable printBar) throws InterruptedException {
+        
+        for (int i = 0; i < n; i++) {
+            synchronized(this) {
+                while(printfoo) {
+                    wait();
+                }
+                // printBar.run() outputs "bar". Do not change or remove this line.
+                printBar.run();
+                printfoo = true;
+                // Wake up the first thread
+                notifyAll();
+            }
+        }
+        // lock is released
+    }
+}
 
