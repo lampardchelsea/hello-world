@@ -109,7 +109,7 @@ class FooBar {
     }
 }
 
-// Solution 2: Synchronized wait and notify solution
+// Solution 2: Synchronized wait() and notify() solution
 // Refer to
 // https://leetcode.com/problems/print-foobar-alternately/discuss/338725/Fast-Java-solution-with-good-explanation.
 class FooBar {
