@@ -78,7 +78,51 @@ class ZeroEvenOdd {
 // Solution 2: Synchronized with wait() and notify()
 // Refer to
 // https://leetcode.com/problems/print-zero-even-odd/discuss/338141/JavaPython-3-Two-clean-codes-either-language.
+class ZeroEvenOdd {
+    private int n;
+    private int sem = 0;
+    public ZeroEvenOdd(int n) {
+        this.n = n;
+    }
 
+    // printNumber.accept(x) outputs "x", where x is an integer.
+    public synchronized void zero(IntConsumer printNumber) throws InterruptedException {
+        for(int i = 0; i < n; i++) {
+            while(sem != 0) {
+                wait();
+            }
+            printNumber.accept(0);
+            if(i % 2 == 0) {
+                sem = 1;
+            } else {
+                sem = 2;
+            }
+            notifyAll();
+        }
+    }
+
+    public synchronized void even(IntConsumer printNumber) throws InterruptedException {
+        for(int i = 2; i <= n; i += 2) {
+            while(sem != 2) {
+                wait();
+            }
+            printNumber.accept(i);
+            sem = 0;
+            notifyAll();
+        }
+    }
+
+    public synchronized void odd(IntConsumer printNumber) throws InterruptedException {
+        for(int i = 1; i <= n; i += 2) {
+            while(sem != 1) {
+                wait();
+            }
+            printNumber.accept(i);
+            sem = 0;
+            notifyAll();
+        }
+    }
+}
 
 
 
