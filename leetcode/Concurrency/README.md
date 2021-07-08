@@ -8,4 +8,8 @@
 <p>Print FooBar Alternately
 <p>1. [Synchronized wait() and notify() solution] (https://leetcode.com/problems/print-foobar-alternately/discuss/338725/Fast-Java-solution-with-good-explanation.)
 <p>2. [Difference between Semaphore initialized with 1 and 0] (https://stackoverflow.com/questions/25563640/difference-between-semaphore-initialized-with-1-and-0)
-<p>3. [Semaphore(0) and Semaphore(1)] (https://leetcode.com/problems/print-foobar-alternately/discuss/333542/Java-Semaphore-solution/827572)
+<p>3. [Semaphore(0) and Semaphore(1) solution] (https://leetcode.com/problems/print-foobar-alternately/discuss/333542/Java-Semaphore-solution/827572)
+
+<p>Print Zero Even Odd
+<p>1. [Semaphore(0) and Semaphore(1) solution] (https://leetcode.com/problems/print-zero-even-odd/discuss/332943/Java-Basic-semaphore-solution-4ms-35.8MB-Updated/380377)
+<p>2. [Synchronized wait() and notify() solution] (https://leetcode.com/problems/print-zero-even-odd/discuss/338141/JavaPython-3-Two-clean-codes-either-language.)
