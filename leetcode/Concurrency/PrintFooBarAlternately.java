@@ -86,7 +86,7 @@ class FooBar {
     // required 1 permit based on 'semZero.release()' which inside 'foo()' method, which
     // guarantees 'bar' only print after 'foo'
     Semaphore semZero = new Semaphore(0);
-    // Prepare 1 permit for unblock 'semOne.acquire()' in order to print 'foo' first
+    // Prepare 1 permit for not block 'semOne.acquire()' inside 'foo()' method, in order to print 'foo' first
     Semaphore semOne = new Semaphore(1);
     public FooBar(int n) {
         this.n = n;
