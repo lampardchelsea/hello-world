@@ -190,3 +190,7 @@ class H2O {
         }
     }
 }
+
+// Solution 2: Semaphore(0) and Semaphore(1)
+// Refer to
+// 
