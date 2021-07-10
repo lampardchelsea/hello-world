@@ -82,7 +82,11 @@ must occur before any acquires will be granted.
 
 class FooBar {
     private int n;
+    // Since no permit prepared, 'semZero.acquire()' will be blocked first, it will only get
+    // required 1 permit based on 'semZero.release()' which inside 'foo()' method, which
+    // guarantees 'bar' only print after 'foo'
     Semaphore semZero = new Semaphore(0);
+    // Prepare 1 permit for unblock 'semOne.acquire()' in order to print 'foo' first
     Semaphore semOne = new Semaphore(1);
     public FooBar(int n) {
         this.n = n;
