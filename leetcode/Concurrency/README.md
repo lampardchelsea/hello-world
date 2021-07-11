@@ -13,3 +13,8 @@
 <p>Print Zero Even Odd
 <p>1. [Semaphore(0) and Semaphore(1) solution] (https://leetcode.com/problems/print-zero-even-odd/discuss/332943/Java-Basic-semaphore-solution-4ms-35.8MB-Updated/380377)
 <p>2. [Synchronized wait() and notify() solution] (https://leetcode.com/problems/print-zero-even-odd/discuss/338141/JavaPython-3-Two-clean-codes-either-language.)
+
+<p>Building H2O
+<p>1. [Semaphore(0) and Semaphore(2) solution] (https://leetcode.com/problems/building-h2o/discuss/334135/Very-simple-Java-solution-using-2-semaphores)
+<p>2. [Why turn on 'fairness' as 'true' ?] (https://leetcode.com/problems/building-h2o/discuss/334135/Very-simple-Java-solution-using-2-semaphores/305440)
+<p>3. [Synchronized wait() and notify() solution] (https://leetcode.com/problems/building-h2o/discuss/897529/Java-Solution)
