@@ -226,4 +226,79 @@ class H2O {
 
 // Solution 2: Semaphore(0) and Semaphore(1)
 // Refer to
-// 
+// https://leetcode.com/problems/building-h2o/discuss/334135/Very-simple-Java-solution-using-2-semaphores
+
+// Why turn on 'fairness' as 'true' ?
+// https://leetcode.com/problems/building-h2o/discuss/334135/Very-simple-Java-solution-using-2-semaphores/305440
+/**
+bolyuba
+Q:
+I think this solution will print correctly, but might relase O threads in wrong sequence. Example, if threads arrive as 
+O1, O2, H1, H2, H3, H4 we should release O1 together with H1 and H2. Both O1 and O2 are locked at o.acquire(2), o.release(); 
+was called twice (H1 and H2), scheduled can select either O1 or O2 to run I think.
+
+The Problem has this part "You must guarantee that all the threads from one molecule bond before any other threads from the 
+next molecule do", which can be read as prohibiting to swap threads between molecules
+
+jainrishabh
+A:
+"Both O1 and O2 are locked at o.acquire(2)".
+This is wrong. o.acquire(2) will happen only when o.release() has been called twice. You see my h semaphore has been initialized 
+with 2. This means that my program will start by acquiring lock on h two times, thus releasing o twice. Then o.acquire(2) will 
+be called and then h.release(2) will be called. This process will be repeated.
+
+bolyuba
+Q:
+@jainrishabh "lock" was a typo, should have been "blocked". Let's say following happens:
+
+a thread (O1) calls method oxygen(Runnable releaseOxygen). It will call o.acquire(2) and will block
+another thread (O2, it belongs to second molecule) calls method oxygen(Runnable releaseOxygen). It will call o.acquire(2) and will block
+at this point we have both threads O1 and O2 blocked waiting for semaphor o to release 2 permits
+a thread (H1.a) calls method hydrogen(Runnable releaseHydrogen), it calls h.acquire() without any issues, calls releaseHydrogen.run() 
+and then calls o.release()
+another thread (H1.b) calls method hydrogen(Runnable releaseHydrogen), it calls h.acquire() without any issues, calls releaseHydrogen.run() 
+and then calls o.release() at this point we printed 'HH' and now semaphore o has 2 permits.
+The issue I am describing is that scheduler can wake up either O1 or O2, since both of them are waiting for 2 permits. If scheduler wakes 
+up thread O1, we are fine. If it wakes up O2 we endup printing O, but this violates the problem statment, i.e. O2 finishes before O1.
+
+jainrishabh
+A:
+@bolyuba thanks for explaining in detail. As per my understanding, I think we just have to group two H threads with one O thread, 
+doesn't matter which if the thread O2 finishes before O1. We are not synchronizing H threads among themselves and O threads among 
+themselves. Our task is to synchronize H threads with O threads. Again, this is what I have understood from the question.
+
+user8122
+@bolyuba You can set fair to true, e.g. private static Semaphore h = new Semaphore(2, true); in order to give permits in the order requested, no?
+*/
+class H2O {
+    Semaphore h;
+    Semaphore o;
+    public H2O() {
+        // Prepare 2 permit for not block 'h.acquire()' inside 'hydrogen()' method, in order to print 'H' first
+        h = new Semaphore(2, true);
+        // Since no permit prepared, 'o.acquire()' will be blocked first, it will only get
+        // required 2 permits based on 'h.release(2)' which inside 'oxygen()' method, which
+        // guarantees 'O' only print after 'H'
+        o = new Semaphore(0, true);
+    }
+
+    public void hydrogen(Runnable releaseHydrogen) throws InterruptedException {
+        // Consume 1 permit
+        h.acquire();
+        // releaseHydrogen.run() outputs "H". Do not change or remove this line.
+        releaseHydrogen.run();
+        // Provide 1 permit to tell oxygen thread to output an O
+        // since required 2 permits to actual output O, if only
+        // 1 permit provided (only 1 H thread done) won't print O
+        o.release();
+    }
+
+    public void oxygen(Runnable releaseOxygen) throws InterruptedException {
+        // Consume 2 permit
+        o.acquire(2);
+        // releaseOxygen.run() outputs "O". Do not change or remove this line.
+        releaseOxygen.run();
+        // Provide 2 permits to tell 2 hydrogen threads to output an H.
+        h.release(2);
+    }
+}
