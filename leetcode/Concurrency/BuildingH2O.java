@@ -224,7 +224,7 @@ class H2O {
     }
 }
 
-// Solution 2: Semaphore(0) and Semaphore(1)
+// Solution 2: Semaphore(0) and Semaphore(2)
 // Refer to
 // https://leetcode.com/problems/building-h2o/discuss/334135/Very-simple-Java-solution-using-2-semaphores
 
