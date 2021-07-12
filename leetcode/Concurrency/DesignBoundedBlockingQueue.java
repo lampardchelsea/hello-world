@@ -200,11 +200,101 @@ class BoundedBlockingQueue {
 
 // Solution 1: Synchronized with wait() and notify() NOT on whole class object but separately created mutex object
 // Refer to
+// https://www.daimajiaoliu.com/daima/476295287100400
 // https://blog.csdn.net/zhangpeterx/article/details/104250099
 // 最容易想到的方法是使用锁，确保同时只有一个线程访问数据，可以使用synchronized关键字。
+class BoundedBlockingQueue {
+    private final Queue queue;
+    private final Object mutex = new Object();
+    private int capacity;
+    
+    public BoundedBlockingQueue(int capacity) {
+        queue = new LinkedList<Integer>();
+        this.capacity = capacity;
+    }
+    
+    public void enqueue(int element) throws InterruptedException {
+        synchronized(mutex) {
+            while(size() >= capacity) {
+                mutex.wait();
+            }
+            queue.add(element);
+            mutex.notifyAll();
+        }
+    }
+    
+    public int dequeue() throws InterruptedException {
+        int result;
+        synchronized(mutex) {
+            while(size() <= 0) {
+                mutex.wait();
+            }
+            result = (int) mutex.remove();
+            mutex.notifyAll();
+        }
+        return result;
+    }
 
+    public int size() {
+        return queue.size();
+    }
+}
 
-// Solution 2: Semaphore(capacity) with Semaphore(0)
+// Solution 2: Synchronized with wait() and notify() NOT on whole class object but separately lock on queue
+// Refer to
+// https://leetcode.jp/leetcode-1188-design-bounded-blocking-queue-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/
+/**
+解题思路分析：
+这是一道多线程题目，我首先想到了使用Semaphore来做线程管理，后来又仔细读了题目之后发现，题目要求不能使用现有的方法来实现，
+也就是说我们需要自己来实现类似Semaphore的线程管理。
+
+看下解题时需要考虑到的核心思想。队列Queue是有数量上限要求的，在达到数量上限之后，我们无法再向Queue中添加元素，所有待添加
+元素应该等待另一个线程删除Queue中元素之后才能再次添加。反过来，当Queue中元素个数为0时，待删除的操作也需要等待，直到其他线
+程有元素添加进来。
+
+我们可以实时监控Queue的元素个数，在执行插入操作时，如果Queue中元素个数已经达到上限，我们需要阻塞当前线程，直到队列中元素个
+数小于上限。同理，执行删除操作时，我们也要实时监控元素个数是否为0，如果队列为空，我们需要阻塞当前线程。
+*/
+class BoundedBlockingQueue {
+    Queue<Integer> q = new LinkedList<>(); // 队列Queue
+    public BoundedBlockingQueue(int capacity) {
+        size = capacity; // 队列上限
+    }
+
+    public void enqueue(int element) throws InterruptedException {
+        synchronized(q){ // 保证Queue不会同时被多个线程操作
+            // 如果已经达到存储上限，阻塞当前线程
+            while(q.size()==size){
+                q.wait();
+            }
+            // 将元素添加至队列
+            q.offer(element);
+            // 通知所有线程队列已经被更新
+            q.notifyAll();
+        }
+    }
+
+    public int dequeue() throws InterruptedException {
+        synchronized(q){ // 保证Queue不会同时被多个线程操作
+            // 如果队列为空，阻塞当前线程
+            while(q.size()==0){
+                q.wait();
+            }
+            // 删除队列一个元素
+            int num = q.poll();
+            // 通知所有线程队列已经被更新
+            q.notifyAll();
+            // 返回删除元素
+            return num;
+        }
+    }
+
+    public int size() {
+        return q.size();
+    }
+}
+
+// Solution 3: Semaphore(capacity) with Semaphore(0)
 // Refer to
 // https://code.dennyzhang.com/design-bounded-blocking-queue
 
