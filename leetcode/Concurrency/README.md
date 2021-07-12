@@ -18,3 +18,10 @@
 <p>1. [Semaphore(0) and Semaphore(2) solution] (https://leetcode.com/problems/building-h2o/discuss/334135/Very-simple-Java-solution-using-2-semaphores)
 <p>2. [Why turn on 'fairness' as 'true' ?] (https://leetcode.com/problems/building-h2o/discuss/334135/Very-simple-Java-solution-using-2-semaphores/305440)
 <p>3. [Synchronized wait() and notify() solution] (https://leetcode.com/problems/building-h2o/discuss/897529/Java-Solution)
+
+<p>Design Bounded Blocking Queue
+<p>1. [Why we have to separately create an object (similar to mutex) and use synchronized key word on it rather than synchronized ?] (https://stackoverflow.com/questions/44963842/synchronized-block-will-lock-the-whole-object-or-the-method-alone)
+<p>2. [Synchronized block will lock the whole object or the method alone?] (https://stackoverflow.com/a/44964544/6706875)
+<p>3. [Solution with already implemented blocking queue in Java] (https://blog.csdn.net/zhangpeterx/article/details/104250099)
+<p>4. [Synchronized with wait() and notify() NOT on whole class object but separately lock on queue] (https://leetcode.jp/leetcode-1188-design-bounded-blocking-queue-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/)
+<p>5. [Semaphore(capacity) with Semaphore(0)] (https://leetcode.jp/leetcode-1188-design-bounded-blocking-queue-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/)
