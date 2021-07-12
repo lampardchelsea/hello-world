@@ -297,4 +297,32 @@ class BoundedBlockingQueue {
 // Solution 3: Semaphore(capacity) with Semaphore(0)
 // Refer to
 // https://code.dennyzhang.com/design-bounded-blocking-queue
+// https://leetcode.jp/leetcode-1188-design-bounded-blocking-queue-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/
+class BoundedBlockingQueue {
+    Semaphore se;
+    Semaphore sd;
+    int size;
+    Queue<Integer> q = new LinkedList<>();
+    public BoundedBlockingQueue(int capacity) {
+        size = capacity;
+        se = new Semaphore(size);
+        sd = new Semaphore(0);
+    }
 
+    public void enqueue(int element) throws InterruptedException {
+        se.acquire();
+        q.offer(element);
+        sd.release();
+    }
+
+    public int dequeue() throws InterruptedException {
+        sd.acquire();
+        int num = q.poll();
+        se.release();
+        return num;
+    }
+
+    public int size() {
+        return q.size();
+    }
+}
