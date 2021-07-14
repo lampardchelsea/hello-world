@@ -25,3 +25,15 @@
 <p>3. [Solution with already implemented blocking queue in Java] (https://blog.csdn.net/zhangpeterx/article/details/104250099)
 <p>4. [Synchronized with wait() and notify() NOT on whole class object but separately lock on queue] (https://leetcode.jp/leetcode-1188-design-bounded-blocking-queue-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/)
 <p>5. [Semaphore(capacity) with Semaphore(0)] (https://leetcode.jp/leetcode-1188-design-bounded-blocking-queue-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/)
+
+<p>Fizz Buzz Multithreaded
+<p>1. [Synchronized with wait() and notify() style 1] (https://leetcode.com/problems/fizz-buzz-multithreaded/discuss/385395/Java-using-synchronized-with-short-explanation.)
+<p>2. [Synchronized with wait() and notify() style 2] (https://leetcode.com/problems/fizz-buzz-multithreaded/discuss/890801/Java-Solution-with-Locks)
+<p>3. [Synchronized with wait() and notify() best style: Other 3 threads are consumer when 1 thread is a producer] (https://leetcode.com/problems/fizz-buzz-multithreaded/discuss/398076/Intuitive-Java-Solution-With-Explanation)
+<p>4. [Basically, we have one doubt on why we need to add additional check for if(counter > n) again ?] (https://stackoverflow.com/questions/62786471/writing-a-test-case-for-multi-threaded-fizzbuzz)
+<p>5. [For understaing 'stepping' and 'suspended' refer to below] (https://stackoverflow.com/questions/11474769/trying-to-understand-why-a-thread-could-be-blocked-in-eclipse)
+<p>6. [Why should wait() always be called inside a loop ?] (https://stackoverflow.com/questions/1038007/why-should-wait-always-be-called-inside-a-loop)
+<p>7. [Pattern: Other 3 threads are consumer when 1 thread is a producer] (https://docs.oracle.com/javase/tutorial/essential/concurrency/guardmeth.html)
+<p>8. [Ecplise_debug_stepping_suspended] (https://stackoverflow.com/questions/11474769/trying-to-understand-why-a-thread-could-be-blocked-in-eclipse)
+<p>9. [Thread with Lambda expression] (https://stackoverflow.com/questions/31416784/thread-with-lambda-expression)
+<p>10. [Writing a test case for Multi-threaded FizzBuzz] (https://stackoverflow.com/questions/62786471/writing-a-test-case-for-multi-threaded-fizzbuzz)
