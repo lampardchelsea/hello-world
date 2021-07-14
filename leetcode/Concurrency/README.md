@@ -35,5 +35,6 @@
 <p>6. [Why should wait() always be called inside a loop ?] (https://stackoverflow.com/questions/1038007/why-should-wait-always-be-called-inside-a-loop)
 <p>7. [Pattern: Other 3 threads are consumer when 1 thread is a producer] (https://docs.oracle.com/javase/tutorial/essential/concurrency/guardmeth.html)
 <p>8. [Ecplise_debug_stepping_suspended] (https://stackoverflow.com/questions/11474769/trying-to-understand-why-a-thread-could-be-blocked-in-eclipse)
-<p>9. [Thread with Lambda expression] (https://stackoverflow.com/questions/31416784/thread-with-lambda-expression)
-<p>10. [Writing a test case for Multi-threaded FizzBuzz] (https://stackoverflow.com/questions/62786471/writing-a-test-case-for-multi-threaded-fizzbuzz)
+<p>9. [Thread with Lambda expression 1] (https://www.codejava.net/java-core/the-java-language/java-8-lambda-runnable-example)
+<p>10. [Thread with Lambda expression 2] (https://stackoverflow.com/questions/31416784/thread-with-lambda-expression)
+<p>11. [Writing a test case for Multi-threaded FizzBuzz] (https://stackoverflow.com/questions/62786471/writing-a-test-case-for-multi-threaded-fizzbuzz)
