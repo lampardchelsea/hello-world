@@ -553,7 +553,7 @@ class FizzBuzz {
     }
 }
 
-// OR equal to below format
+// OR equal to below format (1. Change synchronized place 2. Change outside while loop to remove un-necessary check)
 class FizzBuzz {
     private int n;
     private int counter = 1;
