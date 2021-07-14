@@ -359,6 +359,7 @@ as while(counter <= n) {...} we already guarantee counter <= n, right ?
    }
 */
 
+// Most important points:
 // Also we find out the outside while(counter <= n) loop has no actual use, just while(true) is fine, but the insider 
 // while(counter <= n && ...) loop is critical, and the additional if(counter > n) break is also critical to block
 // print out additional element when current thread is waked up from wait() from other threads notifyAll(), there is
@@ -438,6 +439,8 @@ Edit: Added some more samples. The wait can be interrupted. It throws Interrupte
 to wrap the wait in a try-catch. Depending on your business needs, you can exit or suppress the exception and 
 continue waiting.
 */
+
+// Pattern: Other 3 threads are consumer when 1 thread is a producer (https://docs.oracle.com/javase/tutorial/essential/concurrency/guardmeth.html)
 class FizzBuzz {
     private int n;
     private int counter = 1;
@@ -451,6 +454,11 @@ class FizzBuzz {
             while(counter <= n && (counter % 3 != 0 || counter % 5 == 0)){ // we can add breakpoint here for debugging
                 wait();
             }
+	    // The additional if(counter > n) break is also critical to block print out additional element when current 
+            // thread is waked up from wait() from other threads notifyAll(), there is a chance for counter > n 
+            // since counter++ happen on other thread but deliver into current thread, which will skip outside 
+            // while(counter <= n) or inside while(counter <= n && ...) loop when break out wait() method, this can be
+            // observed by tracking Eclipse debug with above demo main method
             if(counter > n) break;
             printFizz.run();
             ++counter;
