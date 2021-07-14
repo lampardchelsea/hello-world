@@ -451,6 +451,18 @@ class FizzBuzz {
     // printFizz.run() outputs "fizz".
     public synchronized void fizz(Runnable printFizz) throws InterruptedException {
         while(counter <= n){ // can be changed to while(true)
+            /**
+                Based on below template for wait() section
+                synchronized(lockObject) { 
+                    while(!condition) { 
+                        lockObject.wait();
+                    }
+                    //take the action here;
+                }
+                For fizz() method definition: "Fizz" if i is divisible by 3 and not 5
+                the condition in inside while loop should be reversed (!) as i is not divisible by 3 or divisible by 5
+		to create a block wait() section
+            */
             while(counter <= n && (counter % 3 != 0 || counter % 5 == 0)){ // we can add breakpoint here for debugging
                 wait();
             }
