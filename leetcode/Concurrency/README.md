@@ -38,3 +38,6 @@
 <p>9. [Thread with Lambda expression 1] (https://www.codejava.net/java-core/the-java-language/java-8-lambda-runnable-example)
 <p>10. [Thread with Lambda expression 2] (https://stackoverflow.com/questions/31416784/thread-with-lambda-expression)
 <p>11. [Writing a test case for Multi-threaded FizzBuzz] (https://stackoverflow.com/questions/62786471/writing-a-test-case-for-multi-threaded-fizzbuzz)
+<p>12. [Semaphore(1) and Semaphore(0)] (https://leetcode.com/problems/fizz-buzz-multithreaded/discuss/955782/Java-'s-semaphore-solution's-explaination-for-most-multithread-problem)
+<p>13. [Below solution is actually same as above, but missing VERY CRITICAL check in fizz() and buzz()] (https://distinguisheddeveloper.wordpress.com/2020/09/20/leetcode-concurrency-fizz-buzz-multithreaded-solution/)
+<p>14. [Why do we need to use for loop inside fizz()?] (https://leetcode.com/problems/fizz-buzz-multithreaded/discuss/463603/Semaphores-Only)
