@@ -633,3 +633,202 @@ class FizzBuzz {
         }
     }
 }
+
+// Solution 2: Semaphore(1) and Semaphore(0)
+// Refer to
+// https://leetcode.com/problems/fizz-buzz-multithreaded/discuss/955782/Java-'s-semaphore-solution's-explaination-for-most-multithread-problem
+/**
+Overall, a semaphore is a kind of token counter controlled by us (developer).
+
+Each time, when a thread runs acquire() method, it acuqires , and then, immediately consumes that permit token, 
+which allows the thread to run but also decrease its permit token by one.
+
+By contrast, if a thread calls its release() method,it will release a permit token, and then can be acquired by others later.
+
+In conclusion, acquire() makes a decrement of token held by us (developer) and release() makes an increment, 
+once a thread acquire, it can run.
+
+Hope it can help.
+
+import java.util.concurrent.Semaphore;
+class FizzBuzz {
+    private int n;
+    private Semaphore s1,s3,s5,s15;
+    public FizzBuzz(int n) {
+        this.n = n;
+        s1=new Semaphore(1);
+        s3=new Semaphore(0);
+        s5=new Semaphore(0);
+        s15=new Semaphore(0);
+    }
+
+    // printFizz.run() outputs "fizz".
+    public void fizz(Runnable printFizz) throws InterruptedException {
+        for(int i=3;i<=n;i+=3){
+            if(i%5==0) continue;
+            s3.acquire();
+            printFizz.run();
+            s1.release();
+        }
+    }
+
+    // printBuzz.run() outputs "buzz".
+    public void buzz(Runnable printBuzz) throws InterruptedException {
+        for(int i=5;i<=n;i+=5){
+            if(i%3==0) continue;
+            s5.acquire();
+            printBuzz.run();
+            s1.release();
+        }        
+    }
+
+    // printFizzBuzz.run() outputs "fizzbuzz".
+    public void fizzbuzz(Runnable printFizzBuzz) throws InterruptedException {
+        for(int i=15;i<=n;i+=15){
+            s15.acquire();
+            printFizzBuzz.run();
+            s1.release();
+        }         
+    }
+
+    // printNumber.accept(x) outputs "x", where x is an integer.
+    public void number(IntConsumer printNumber) throws InterruptedException {
+        for(int i=1;i<=n;i+=1){
+            s1.acquire();
+            if(i%15==0){
+                s15.release();
+            }else if(i%5==0){
+                s5.release();
+            }else if(i%3==0){
+                s3.release();
+            }else{
+                printNumber.accept(i);
+                s1.release();
+            }
+        }          
+    }
+}
+*/
+
+// Below solution is actually same as above, but missing VERY CRITICAL check in fizz() and buzz()
+// as if(i%5==0) continue; and if(i%3==0) continue; which can be test out by input = 20
+// https://distinguisheddeveloper.wordpress.com/2020/09/20/leetcode-concurrency-fizz-buzz-multithreaded-solution/
+/**
+Explanation
+On initialization of class FizzBuzz, we create and initialize 4 semaphores as mentioned below
+num – initialized with permit of 1.
+fizz – initialized with permit of 0.
+buzz – initialized with permit of 0.
+fizzbuzz – initiated with permit of 0.
+We also declar instance variablenumberinitialized to 1.
+Steps 3 to 6 will be iterated in loop till n number.
+num has permit of 1, hence, one thread will get access to semaphore num.one of the below scenarios can happen here,
+if number % 15 is 0, do fizzbuzz.release() which means one thread waiting at fizzbuzz.acquire() ( post acquire permit will be 0 ) 
+will get access print FizzBuzz and execute num.release().
+Else if number % 5 is 0, do buzz.release() which means one thread waiting at buzz.acquire() will get access print Buzz and then execute num.release().
+Else if number % 3 is 0, do fizz.release() which means one thread waiting at fizz.acquire() will get access print Fizz and then execute num.release().
+Else, we need to print the number and release permit of num.
+Increment the number.
+Continue above steps till number is less than equal to n.
+
+Lets take an example, n = 15
+num – initialized with permit of 1.
+fizz – initialized with permit of 0.
+buzz – initialized with permit of 0.
+fizzbuzz – initiated with permit of 0.
+number= 1.
+
+1. number= 1, Only one thread will get access to num(permit set to 0). All other threads will wait at other semaphores cause permit is 0.
+2. Control goes to 3.1 condition mentioned above and print 1 and do num.release() (permit set to 1). number++ increments number to 2
+3. Same above steps# 1 and 2 for number = 2.
+4. number = 3, we do num.aquire() that means no other thread can access number. and as number% 3 is true, we execute fizz.release() , 
+one thread will get access to fizz.acquire() and print fizz. execute num.release() again. number++.
+5. number = 4, same steps as 1 and 2
+6. number = 5, we do num.aquire(). and as number% 5 is true, we execute buzz.release() , one thread will get access to buzz.acquire() 
+and print buzz. execute num.release() again. number++.
+7. number = 6, step same as # 4.
+8. number = 7, 8, same as step # 1and 2.
+9. number = 9, same as step #4.
+10. number = 10, same as step #5.
+11. number = 11, same as step # 1and 2.
+12. number = 12, same as step # 4
+13. number = 13, 14, same as step # 1 and 2.
+14. number = 15, we do num.aquire(). and as number% 15 is true, we execute fizzbuzz.release() , one thread will get access to fizzbuzz.acquire() 
+and print fizzbuzz. execute num.release() again. number++.
+15. As number is greater than n we come out of while loop.
+*/
+
+// Why do we need to use for loop inside fizz()?
+// https://leetcode.com/problems/fizz-buzz-multithreaded/discuss/463603/Semaphores-Only
+/**
+Each method is only invoked ONCE.
+Without a loop, we will only ever get one fizz.
+We need to coordinate between the methods so that fizz is printed for every number divisible by 3 in the specified range 1..n.(as per requirement)
+That is why the for loop is necessary and why loop in fizz only increments in multiples of 3.
+*/
+
+class FizzBuzz {
+    private int n;
+    private int number = 1;
+    private Semaphore num = new Semaphore(1);
+    private Semaphore fizz = new Semaphore(0);
+    private Semaphore buzz = new Semaphore(0);
+    private Semaphore fizzbuzz = new Semaphore(0);
+    
+    public FizzBuzz(int n) {
+        this.n = n;
+    }
+
+    // printFizz.run() outputs "fizz".
+    public void fizz(Runnable printFizz) throws InterruptedException {
+        for(int i = 3; i <= n; i += 3) {
+	    // Critical check to not encounter TLE
+            if(i % 5 == 0) {
+                continue;
+            }
+            fizz.acquire();
+            printFizz.run();
+            num.release();
+        }
+    }
+
+    // printBuzz.run() outputs "buzz".
+    public void buzz(Runnable printBuzz) throws InterruptedException {
+        for(int i = 5; i <= n; i += 5) {
+	    // Critical check to not encounter TLE
+            if(i % 3 == 0) {
+                continue;
+            }
+            buzz.acquire();
+            printBuzz.run();
+            num.release();
+        }
+    }
+
+    // printFizzBuzz.run() outputs "fizzbuzz".
+    public void fizzbuzz(Runnable printFizzBuzz) throws InterruptedException {
+        for(int i = 15; i <= n; i += 15) {
+            fizzbuzz.acquire();
+            printFizzBuzz.run();
+            num.release();
+        }
+    }
+
+    // printNumber.accept(x) outputs "x", where x is an integer.
+    public void number(IntConsumer printNumber) throws InterruptedException {
+        while(number <= n) {
+            num.acquire();
+            if(number % 15 == 0) {
+                fizzbuzz.release();
+            } else if(number % 5 == 0) {
+                buzz.release();
+            } else if(number % 3 == 0) {
+                fizz.release();
+            } else {
+                printNumber.accept(number);
+                num.release();
+            }
+            number++;
+        }
+    }
+}
