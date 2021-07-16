@@ -41,3 +41,6 @@
 <p>12. [Semaphore(1) and Semaphore(0)] (https://leetcode.com/problems/fizz-buzz-multithreaded/discuss/955782/Java-'s-semaphore-solution's-explaination-for-most-multithread-problem)
 <p>13. [Below solution is actually same as above, but missing VERY CRITICAL check in fizz() and buzz()] (https://distinguisheddeveloper.wordpress.com/2020/09/20/leetcode-concurrency-fizz-buzz-multithreaded-solution/)
 <p>14. [Why do we need to use for loop inside fizz()?] (https://leetcode.com/problems/fizz-buzz-multithreaded/discuss/463603/Semaphores-Only)
+
+<p>The Dining Philosophers
+<p>1. [Semaphore(4) and Reentrant lock] (https://leetcode.com/problems/the-dining-philosophers/discuss/407358/Semaphore-%2B-mutex)
