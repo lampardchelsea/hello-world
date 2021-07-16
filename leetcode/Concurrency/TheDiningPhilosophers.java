@@ -44,6 +44,57 @@ Constraints:
 1 <= n <= 60
 */
 
+// Refer to
+// https://www.tutorialspoint.com/dining-philosophers-problem-dpp
+/**
+The dining philosophers problem states that there are 5 philosophers sharing a circular table and they eat and think alternatively. 
+There is a bowl of rice for each of the philosophers and 5 chopsticks. A philosopher needs both their right and left chopstick to eat. 
+A hungry philosopher may only eat if there are both chopsticks available.Otherwise a philosopher puts down their chopstick and 
+begin thinking again.
+
+The dining philosopher is a classic synchronization problem as it demonstrates a large class of concurrency control problems.
+
+Solution of Dining Philosophers Problem
+A solution of the Dining Philosophers Problem is to use a semaphore to represent a chopstick. A chopstick can be picked up by 
+executing a wait operation on the semaphore and released by executing a signal semaphore.
+
+The structure of the chopstick is shown below −
+
+semaphore chopstick [5];
+Initially the elements of the chopstick are initialized to 1 as the chopsticks are on the table and not picked up by a philosopher.
+
+The structure of a random philosopher i is given as follows −
+
+do {
+   wait( chopstick[i] );
+   wait( chopstick[ (i+1) % 5] );
+   . .
+   . EATING THE RICE
+   .
+   signal( chopstick[i] );
+   signal( chopstick[ (i+1) % 5] );
+   .
+   . THINKING
+   .
+} while(1);
+
+In the above structure, first wait operation is performed on chopstick[i] and chopstick[ (i+1) % 5]. This means that the philosopher i 
+has picked up the chopsticks on his sides. Then the eating function is performed.
+
+After that, signal operation is performed on chopstick[i] and chopstick[ (i+1) % 5]. This means that the philosopher i has eaten and 
+put down the chopsticks on his sides. Then the philosopher goes back to thinking.
+
+Difficulty with the solution
+The above solution makes sure that no two neighboring philosophers can eat at the same time. But this solution can lead to a deadlock. 
+This may happen if all the philosophers pick their left chopstick simultaneously. Then none of them can eat and deadlock occurs.
+
+Some of the ways to avoid deadlock are as follows −
+1. There should be at most four philosophers on the table.
+2. An even philosopher should pick the right chopstick and then the left chopstick while an odd philosopher should pick the left chopstick 
+and then the right chopstick.
+3. A philosopher should only be allowed to pick their chopstick if both are available at the same time.
+*/
+
 // Solution 1: Semaphore(4) and Reentrant lock
 // Refer to
 // https://leetcode.com/problems/the-dining-philosophers/discuss/407358/Semaphore-%2B-mutex
