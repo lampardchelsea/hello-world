@@ -144,3 +144,116 @@ class DiningPhilosophers {
         semaphore.release();
     }
 }
+
+// Solution 2: Pure Semaphore() no Lock()
+// Refer to
+// https://leetcode.com/problems/the-dining-philosophers/discuss/411689/Java-Simple-Semaphore-Solution-beats-100
+
+// Semaphore acquire() and release() must be in the same code block
+/**
+Below wrong version will throw out Line 32: error: unreported exception InterruptedException; must be caught or 
+declared to be thrown [in DiningPhilosophers.java]
+        forks[id].acquire();
+
+The reason, we should not split acquire() and release() for same Semaphore object but in two independent functions:
+    public void pickFork(int id, Runnable pick) {
+        forks[id].acquire();
+        pick.run();
+    }
+    
+    public void putFork(int id, Runnable put) {
+        put.run();
+        forks[id].release();
+    }
+
+The correct way is make sure acquire() and release() for same Semaphore object in the same code block:
+        int leftFork = philosopher;
+        int rightFork = (philosopher + 4) % 5;
+        forks[leftFork].acquire();
+        forks[rightFork].acquire();
+        pickLeftFork.run();
+        pickRightFork.run();
+        eat.run();
+        putLeftFork.run();
+        putRightFork.run();
+        forks[leftFork].release();
+        forks[rightFork].release();
+*/
+class DiningPhilosophers {
+    private Semaphore[] forks = new Semaphore[5];
+    private Semaphore semaphore = new Semaphore(4);
+
+    public DiningPhilosophers() {
+        for(int i = 0; i < 5; i++) {
+            forks[i] = new Semaphore(1);
+        }
+    }
+    
+    public void pickFork(int id, Runnable pick) {
+        forks[id].acquire();
+        pick.run();
+    }
+    
+    public void putFork(int id, Runnable put) {
+        put.run();
+        forks[id].release();
+    }
+    
+    // call the run() method of any runnable to execute its code
+    public void wantsToEat(int philosopher,
+                           Runnable pickLeftFork,
+                           Runnable pickRightFork,
+                           Runnable eat,
+                           Runnable putLeftFork,
+                           Runnable putRightFork) throws InterruptedException {
+        int leftFork = philosopher;
+        int rightFork = (philosopher + 4) % 5;
+        
+        semaphore.acquire();
+        
+        pickFork(leftFork, pickLeftFork);
+        pickFork(rightFork, pickRightFork);
+        eat.run();
+        putFork(leftFork, putLeftFork);
+        putFork(rightFork, putRightFork);
+        
+        semaphore.release();
+    }
+}
+
+// Correct way
+class DiningPhilosophers {
+    private Semaphore[] forks = new Semaphore[5];
+    private Semaphore semaphore = new Semaphore(2);
+
+    public DiningPhilosophers() {
+        for(int i = 0; i < 5; i++) {
+            forks[i] = new Semaphore(1);
+        }
+    }
+
+    // call the run() method of any runnable to execute its code
+    public void wantsToEat(int philosopher,
+                           Runnable pickLeftFork,
+                           Runnable pickRightFork,
+                           Runnable eat,
+                           Runnable putLeftFork,
+                           Runnable putRightFork) throws InterruptedException {
+        int leftFork = philosopher;
+        int rightFork = (philosopher + 4) % 5;
+        
+        semaphore.acquire();
+
+        forks[leftFork].acquire();
+        forks[rightFork].acquire();
+        pickLeftFork.run();
+        pickRightFork.run();
+        eat.run();
+        putLeftFork.run();
+        putRightFork.run();
+        forks[leftFork].release();
+        forks[rightFork].release();
+ 
+        semaphore.release();
+    }
+}
