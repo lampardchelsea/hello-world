@@ -155,7 +155,8 @@ Below wrong version will throw out Line 32: error: unreported exception Interrup
 declared to be thrown [in DiningPhilosophers.java]
         forks[id].acquire();
 
-The reason, we should not split acquire() and release() for same Semaphore object but in two independent functions:
+The reason, for acquire(), if not in the same code block of  release() for same Semaphore object then need to add
+try catch exception handle around it:
     public void pickFork(int id, Runnable pick) {
         forks[id].acquire();
         pick.run();
@@ -220,9 +221,26 @@ The correct way is make sure acquire() and release() for same Semaphore object i
         putRightFork.run();
         forks[leftFork].release();
         forks[rightFork].release();
+
+OR
+
+    public void pickFork(int id, Runnable pick) {
+        try {
+            forks[id].acquire();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        pick.run();
+    }
+    
+    public void putFork(int id, Runnable put) {
+        put.run();
+        forks[id].release();
+    }
 */
 
 // Correct way
+// Style 1:
 class DiningPhilosophers {
     private Semaphore[] forks = new Semaphore[5];
     private Semaphore semaphore = new Semaphore(2);
@@ -255,6 +273,53 @@ class DiningPhilosophers {
         forks[leftFork].release();
         forks[rightFork].release();
  
+        semaphore.release();
+    }
+}
+
+// Style 2:
+class DiningPhilosophers {
+    private Semaphore[] forks = new Semaphore[5];
+    private Semaphore semaphore = new Semaphore(4);
+
+    public DiningPhilosophers() {
+        for(int i = 0; i < 5; i++) {
+            forks[i] = new Semaphore(1);
+        }
+    }
+    
+    public void pickFork(int id, Runnable pick) {
+        try {
+            forks[id].acquire();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        pick.run();
+    }
+    
+    public void putFork(int id, Runnable put) {
+        put.run();
+        forks[id].release();
+    }
+    
+    // call the run() method of any runnable to execute its code
+    public void wantsToEat(int philosopher,
+                           Runnable pickLeftFork,
+                           Runnable pickRightFork,
+                           Runnable eat,
+                           Runnable putLeftFork,
+                           Runnable putRightFork) throws InterruptedException {
+        int leftFork = philosopher;
+        int rightFork = (philosopher + 4) % 5;
+        
+        semaphore.acquire();
+        
+        pickFork(leftFork, pickLeftFork);
+        pickFork(rightFork, pickRightFork);
+        eat.run();
+        putFork(leftFork, putLeftFork);
+        putFork(rightFork, putRightFork);
+        
         semaphore.release();
     }
 }
