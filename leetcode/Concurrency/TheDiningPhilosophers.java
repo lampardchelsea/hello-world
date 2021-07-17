@@ -166,19 +166,6 @@ The reason, we should not split acquire() and release() for same Semaphore objec
         forks[id].release();
     }
 
-The correct way is make sure acquire() and release() for same Semaphore object in the same code block:
-        int leftFork = philosopher;
-        int rightFork = (philosopher + 4) % 5;
-        forks[leftFork].acquire();
-        forks[rightFork].acquire();
-        pickLeftFork.run();
-        pickRightFork.run();
-        eat.run();
-        putLeftFork.run();
-        putRightFork.run();
-        forks[leftFork].release();
-        forks[rightFork].release();
-*/
 class DiningPhilosophers {
     private Semaphore[] forks = new Semaphore[5];
     private Semaphore semaphore = new Semaphore(4);
@@ -220,6 +207,20 @@ class DiningPhilosophers {
         semaphore.release();
     }
 }
+
+The correct way is make sure acquire() and release() for same Semaphore object in the same code block:
+        int leftFork = philosopher;
+        int rightFork = (philosopher + 4) % 5;
+        forks[leftFork].acquire();
+        forks[rightFork].acquire();
+        pickLeftFork.run();
+        pickRightFork.run();
+        eat.run();
+        putLeftFork.run();
+        putRightFork.run();
+        forks[leftFork].release();
+        forks[rightFork].release();
+*/
 
 // Correct way
 class DiningPhilosophers {
