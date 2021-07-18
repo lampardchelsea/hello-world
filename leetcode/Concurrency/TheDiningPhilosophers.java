@@ -223,6 +223,7 @@ The correct way is make sure acquire() and release() for same Semaphore object i
         forks[rightFork].release();
 
 OR
+properly handle InterruptedException introdced by Semaphore.acquire() method
 
     public void pickFork(int id, Runnable pick) {
         try {
