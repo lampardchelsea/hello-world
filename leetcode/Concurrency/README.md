@@ -44,3 +44,9 @@
 
 <p>The Dining Philosophers
 <p>1. [Semaphore(4) and Reentrant lock] (https://leetcode.com/problems/the-dining-philosophers/discuss/407358/Semaphore-%2B-mutex)
+<p>2. [Pure Semaphore] (https://leetcode.com/problems/the-dining-philosophers/discuss/411689/Java-Simple-Semaphore-Solution-beats-100)
+<p>3. [Binary Semaphore vs a ReentrantLock] (https://stackoverflow.com/questions/17683575/binary-semaphore-vs-a-reentrantlock)
+<p>4. [CS170 Lecture notes -- Dining Philosophers] (https://sites.cs.ucsb.edu/~rich/class/cs170/notes/DiningPhil/)
+<p>5. [Test with client] (https://codereview.stackexchange.com/questions/25989/dining-philosophers-problem-solution-with-java-reentrantlock)
+<p>6. [How the Philosophers Can Deadlock] (https://docs.oracle.com/cd/E19205-01/820-0619/gepit/index.html)
+<p>7. [Properly handle InterruptedException introdced by Semaphore.acquire() method] (https://stackoverflow.com/questions/12104978/need-to-semaphore-relase-if-semaphore-acquire-gets-interruptedexception)
