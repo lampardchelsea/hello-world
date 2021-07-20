@@ -82,7 +82,7 @@ See:  https://en.wikipedia.org/wiki/Hostname#Restrictions_on_valid_hostnames
 You may assume there’re no duplicates in url library.
 */
 
-// Solution 1: BFS
+// Solution 1: BFS + Synchronized wait() and notifyAll()
 // Refer to
 // https://www.webarchitects.io/dropbox-interview-question-multi-threaded-web-crawler/
 /**
