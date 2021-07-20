@@ -281,6 +281,72 @@ public class WebCrawler {
 // Refer to
 // https://leetcode.jp/leetcode-1242-web-crawler-multithreaded-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/
 /**
+这本是一道dfs题目，但要使用多线程来解决。可以理解为dfs的多线程升级版。标准的dfs解法可以参照 LEETCODE 1236. Web Crawler 解题思路分析
+这篇文章。普通做dfs深度优先搜索时，我们需要通过一个起点，不停的dfs递归调用搜索到所有节点，本题也不例外，dfs是核心思路，不同的是，我们
+需要将dfs方法内的代码放到线程中，在做dfs递归操作时，不是递归调用本身，而是需要再开启一个新的线程而已。
 
+需要注意的一点是，多线程不同于单线程，在我们开启一个线程后，主线程并不会等待子线程执行结束再返回结果，因此我们应该想到，在返回结果之前，
+必须等待所有子线程执行结束，否则我们无法得到所有结果。等待子线程结束的方法很多，在java中最为简单的便是使用Thread.join()方法，这样主线
+程会被挂起，当join的子线程执行完毕之后，主线程才会继续向下执行。
 */
-
+import java.net.URI;
+class Solution {
+   public List<String> crawl(String startUrl, HtmlParser htmlParser) {
+        // 取得startUrl的域名
+        String host = URI.create(startUrl).getHost();
+        // 新建一个线程，爬取startUrl中的所有链接
+        Crawler crawler = new Crawler(startUrl, host, htmlParser);
+        // 初始化线程的返回结果
+        crawler.res = new ArrayList<>();
+        // 开启线程（相当于从起点开始dfs）
+        crawler.start();
+        // 等待线程执行结束
+        Crawler.joinThread(crawler);
+        // 返回线程的执行结果
+        return crawler.res;
+    }
+}
+// 爬虫线程（相当于原始的dfs方法）
+class Crawler extends Thread {
+    String startUrl; // 当前url
+    String hostname; // 域名
+    HtmlParser htmlParser; // 爬虫接口
+    // 返回结果
+    public static volatile List<String> res = new ArrayList<>();
+    // 初始化线程
+    public Crawler(String startUrl, String hostname, HtmlParser htmlParser){
+        this.startUrl = startUrl;
+        this.hostname = hostname;
+        this.htmlParser = htmlParser;
+    }
+    @Override 
+    public void run(){
+        // 获得当前url的域名
+        String host=URI.create(startUrl).getHost();
+        // 如果当前域名不属于目标网站，或者当前域名已经爬过，略过
+        if(!host.equals(hostname) || res.contains(startUrl)){
+            return;
+        }
+        // 将当前url加入结果集
+        res.add(startUrl);
+        // 记录当前url页面包含的链接
+        // 每个链接启动一个新的线程继续dfs
+        List<Thread> threads = new ArrayList<>();
+        for(String s: htmlParser.getUrls(startUrl)){
+            Crawler crawler = new Crawler(s, hostname, htmlParser);
+            crawler.start();
+            threads.add(crawler);
+        }
+        // 等待每个子线程执行结束后，再结束当前线程
+        for(Thread t: threads){
+            joinThread(t);
+        }
+    }
+    
+    public static void joinThread(Thread thread){
+        try{
+            thread.join();
+        } catch(InterruptedException e){
+        }
+    }
+}
