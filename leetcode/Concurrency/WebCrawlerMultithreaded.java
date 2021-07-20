@@ -352,7 +352,7 @@ class Crawler extends Thread {
     }
 }
 
-// Style 2: Explicit lock on storage datastructure ConcurrentHashMap
+// Style 2: DFS explicit lock on storage datastructure ConcurrentHashMap
 // Refer to
 // https://www.youtube.com/watch?v=SFWNZxdFUaI
 class Solution {
@@ -388,6 +388,64 @@ class Solution {
         try{
             t.join();
         } catch(InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+// Style 3: DFS explicit lock on storage datastructure implement Runnable
+// Refer to
+// https://www.youtube.com/watch?v=h9t7Mz6s9b4
+class Solution {
+    public List<String> crawl(String startUrl, HtmlParser htmlParser) {
+        String hostname = startUrl.split("/")[2];
+        Crawler crawler = new Crawler(startUrl, hostname, htmlParser);
+        crawler.result = new HashSet<String>();
+        Thread thread = new Thread(crawler);
+        thread.start();
+        crawler.join(thread);
+        return new ArrayList<String>(crawler.result);
+    }
+}
+
+class Crawler implements Runnable {
+    String startUrl;
+    String hostname;
+    HtmlParser htmlParser;
+    static volatile Set<String> results = new HashSet<String>();
+
+    public Crawler(String startUrl, String hostname, HtmlParser htmlParser) {
+        this.startUrl = startUrl;
+        this.hostname = hostname;
+        this.htmlParser = htmlParser;
+    }
+
+    @Override
+    public void run() {
+        if(!startUrl.contains(hostname) || results.contains(startUrl)) {
+            return;
+        }
+        addUrl(results, startUrl);
+        List<Thread> threads = new ArrayList<Thread>();
+        for(String url : htmlParser.getUrls(startUrl)) {
+            Crawler crawler = new Crawler(url, hostname, htmlParser);
+            Thread thread = new Thread(crawler);
+            thread.start();
+            threads.add(thread);
+        }
+        for(Thread t : threads) {
+            join(t);
+        }
+    }
+
+    public static synchronized void addUrl(Set<String> results, String url) {
+        results.add(url);
+    }
+
+    public void join(Thread t) {
+        try{
+            t.join();
+        } catch(Exception e) {
             e.printStackTrace();
         }
     }
