@@ -352,6 +352,43 @@ class Crawler extends Thread {
     }
 }
 
-// Style 2: Explicit lock on storage datastructure
+// Style 2: Explicit lock on storage datastructure ConcurrentHashMap
 // Refer to
-// https://www.youtube.com/watch?v=dej0rq-9Xjc
+// https://www.youtube.com/watch?v=SFWNZxdFUaI
+class Solution {
+    ConcurrentHashMap<String, Integer> urls;
+    String hostname;
+    HtmlParser htmlParser;
+
+    public List<String> crawl(String startUrl, HtmlParser htmlParser) {
+        this.urls = new ConcurrentHashMap<String, Integer>();
+        this.hostname = startUrl.split("/")[2];
+        this.htmlParser = htmlParser;
+        crawl(startUrl);
+        return new ArrayList<String>(urls.keySet());
+    }
+
+    private void crawl(String url) {
+        if(!url.contains(hostname) || urls.containsKey(url)) {
+            return;
+        }
+        urls.put(url, 1);
+        List<Thread> threads = new ArrayList<Thread>();
+        for(String u : htmlParser.getUrls(url)) {
+            Thread thread = new Thread(() -> crawl(u));
+            threads.add(thread);
+            thread.start();
+        }
+        for(Thread t : threads) {
+            join(t);
+        }
+    }
+
+    private void join(Thread t) {
+        try{
+            t.join();
+        } catch(InterruptedException e) {
+           	e.printStackTrace();
+        }
+    }
+}
