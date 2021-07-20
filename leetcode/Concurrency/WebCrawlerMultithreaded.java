@@ -278,6 +278,7 @@ public class WebCrawler {
 }
 
 // Solution 2: DFS
+// Style 1: No explicit lock ? I have some doubt on this, since no guarantee on any storage datastructure
 // Refer to
 // https://leetcode.jp/leetcode-1242-web-crawler-multithreaded-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/
 /**
@@ -350,3 +351,7 @@ class Crawler extends Thread {
         }
     }
 }
+
+// Style 2: Explicit lock on storage datastructure
+// Refer to
+// https://www.youtube.com/watch?v=dej0rq-9Xjc
