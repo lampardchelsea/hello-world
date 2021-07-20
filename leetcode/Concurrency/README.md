@@ -50,3 +50,7 @@
 <p>5. [Test with client] (https://codereview.stackexchange.com/questions/25989/dining-philosophers-problem-solution-with-java-reentrantlock)
 <p>6. [How the Philosophers Can Deadlock] (https://docs.oracle.com/cd/E19205-01/820-0619/gepit/index.html)
 <p>7. [Properly handle InterruptedException introdced by Semaphore.acquire() method] (https://stackoverflow.com/questions/12104978/need-to-semaphore-relase-if-semaphore-acquire-gets-interruptedexception)
+
+<p>Web Crawler Multithreaded
+<p>1. [BFS + Synchronized wait() and notifyAll()] (https://www.webarchitects.io/dropbox-interview-question-multi-threaded-web-crawler/)
+<p>2. [DFS] (https://leetcode.jp/leetcode-1242-web-crawler-multithreaded-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/)
