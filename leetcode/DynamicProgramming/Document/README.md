@@ -1,6 +1,7 @@
 http://www.mathcs.emory.edu/~cheung/Courses/323/Syllabus/DynProg/
 
-#Basic knapsack vs. Unbounded knapsack problem vs. complete knapsack problem
+Basic knapsack vs. Unbounded knapsack problem vs. complete knapsack problem
+
 Have N Kinds of items and a maximum weightW Backpack. Firsti The weight of this item isw[i], The value isv[i]. 
 Solve which items are loaded into the backpack so that the total weight of these items does not exceed the 
 capacity of the backpack, and the total value is the largest.
