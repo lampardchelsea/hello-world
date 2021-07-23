@@ -32,13 +32,10 @@ array here which is different from classical knapsack where we used 2D array. He
 number of items never changes. We always have all items available.
 
 We can recursively compute dp[] using below formula
-
+i is capacity of knapsack
 dp[i] = 0
-dp[i] = max(dp[i], dp[i-wt[j]] + val[j] 
-                   where j varies from 0 
-                   to n-1 such that:
-                   wt[j] <= i
-
+dp[i] = max(dp[i], dp[i-wt[j]] + val[j]) 
+                   where j varies from 0 to n-1 such that: wt[j] <= i
 result = d[W]
 */
 
@@ -49,11 +46,9 @@ result = d[W]
 // value with a knapsack of weight target and 
 // multiple instances allowed. 
 class Solution {
-    // Returns the maximum value with knapsack 
-    // of target capacity 
+    // Returns the maximum value with knapsack of target capacity 
     private int unboundedKnapsack(int target, int n, int[] val, int[] weight) {
-        // dp[i] is going to store maximum value 
-        // with knapsack capacity i. 
+        // dp[i] is going to store maximum value with knapsack capacity i. 
         int dp[] = new int[target + 1];
         // Fill dp[] using above recursive formula 
         for (int i = 0; i <= target; i++) {
