@@ -12,7 +12,7 @@ You can see that if you point them out in the matrix, it will be like:
 			  j
 	. . . . . . . . . . . . 
 	. . . . . . . . . . . .  
-	. . ? . . ? . . . . . .  ?(left): dp[i - 1][j - nums[i], ?(right): dp[i - 1][j]
+	. . ? . . ? . . . . . .  ?(left): dp[i - 1][j - nums[i]], ?(right): dp[i - 1][j]
 i	. . . . . # . . . . . .  # dp[i][j]
 	. . . . . . . . . . . . 
 	. . . . . . . . . . . . 
