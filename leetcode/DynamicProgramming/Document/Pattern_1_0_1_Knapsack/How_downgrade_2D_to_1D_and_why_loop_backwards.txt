@@ -40,7 +40,7 @@ i	. . . . . # . . . . . .  # dp[i][j]
 	. . . . . . . . . . . . 
 	. . . . . . . . . . . . 
  
-Thus if you merge array1 and array2 to a single array array, if you update array backwards, 
+Thus if you merge array1 and array2 to a single array, if you update array backwards, 
 all dependencies are not touched!
 
     (n represents new value, i.e. updated)
