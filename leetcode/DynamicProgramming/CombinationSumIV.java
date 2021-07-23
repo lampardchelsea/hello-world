@@ -1,4 +1,4 @@
-// Unbounded backpack DP
+// Unbounded Knapsack
 
 /**
  * Refer to
