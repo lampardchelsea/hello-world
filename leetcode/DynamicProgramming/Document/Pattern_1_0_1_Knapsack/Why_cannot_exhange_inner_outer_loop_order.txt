@@ -199,7 +199,7 @@ Whereas in this implementation (above one) we are computing value of dp[w] for a
 jumping on processing item with index = (i + 1). So, here every time we calculate dp[w = j] that becomes the final result for 
 the sub-problem: "calculate the maximum value that the knapsack can carry when maximum knapsack capacity is weight j and the 
 items array is weights[0...current_item_index] which is a subset of the item array given in the original problem". So here when 
-when we are computing dp[w = j] for item with index = i, we are computing dp[j] for items array weights[0...i] and not for the 
+we are computing dp[w = j] for item with index = i, we are computing dp[j] for items array weights[0...i] and not for the 
 entire array. We get the dp[w = j] for the entire item array weights[0...(n - 1)] only in the last iteration when i = (n - 1).
 
 Try to understand the difference between the above two implementations really well as we would need them in soving various problem. 
