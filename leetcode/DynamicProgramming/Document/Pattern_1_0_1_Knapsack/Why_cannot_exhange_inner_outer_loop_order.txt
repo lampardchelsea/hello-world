@@ -149,7 +149,7 @@ Output : 100
 
 There are many ways to fill knapsack.
 1) 2 instances of 500 unit weight item.
-2)1 instance of 500 unit weight item and 50 instances of 10 unit weight items.
+2) 1 instance of 500 unit weight item and 50 instances of 10 unit weight items.
 3) 100 instances of 10 unit weight item.
 
 Important to note, for most problems the order in which we need to take the outer for loop and inner for loop won't matter, 
