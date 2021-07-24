@@ -126,3 +126,82 @@ public class Solution {
         return dp[target];
     }
 }
+
+
+========================================================================================================================================
+
+Another explain:
+Refer to
+https://www.thealgorists.com/Algo/DynamicProgramming/UnboundedKnapsack
+
+Problem:
+Unbounded Knapsack Problem:
+Given a Knapsack of weight limit W and a set of n items with certain value vali and weight wti, Suppose I have 
+infinite copies of all of the items. What’s the most valuable way to fill the knapsack maintaining the maximum 
+weight constraint of the knapsack ?
+
+Examples:
+Input :
+W = 1000
+val[] = {1, 30}
+wt[] = {10, 500}
+Output : 100
+
+There are many ways to fill knapsack.
+1) 2 instances of 500 unit weight item.
+2)1 instance of 500 unit weight item and 50 instances of 10 unit weight items.
+3) 100 instances of 10 unit weight item.
+
+Important to note, for most problems the order in which we need to take the outer for loop and inner for loop won't matter, 
+but in some problems having the correct order would be of immense importance. For the problem statement given in this chapter, 
+below two implementation would give the same correct result:
+
+#1.
+for(int w = 0; w <= W; w++){ 
+    for(int j = 0; j < n; j++){
+        dp[w] = ....
+        ....
+    }
+}
+
+#2.
+for(int i = 0; i < n; i++){ 
+    for(int w = 0; w <= W; w++){
+        dp[w] = ....
+        ....
+    }
+}
+
+It is very important to understand the difference between the above two implementations:
+
+for(int w = 0; w <= W; w++){ 
+    for(int j = 0; j < n; j++){
+        dp[w] = ....
+        ....
+    }
+}
+
+The above implementation means that you are computing value of dp[w = i] for all the items i.e, weights[0...(n - 1)], 
+before jumping on calculating value of dp[w = (i + 1)]. So, here every time we are done with each iteration of calculate 
+dp[w = i] for coin_index = 0 to (n - 1), the value we get for dp[w = i] after the iteration becomes the final value 
+of dp[w = i] of the sub-problem: "calculate maximum VALUE that the knapsack can carry when maximum knapsack capacity is 
+weight i and the items array is weights[0...(n - 1)] where the original items array is also weights[0...(n - 1)], original 
+given knapsack capacity W where W >= i, and the original final target is T where i <= T".
+
+for(int i = 0; i < n; i++){ 
+    for(int w = 0; w <= W; w++){
+        dp[w] = ....
+        ....
+    }
+}
+
+Whereas in this implementation (above one) we are computing value of dp[w] for all w = 0 to W for item with index = i before 
+jumping on processing item with index = (i + 1). So, here every time we calculate dp[w = j] that becomes the final result for 
+the sub-problem: "calculate the maximum value that the knapsack can carry when maximum knapsack capacity is weight j and the 
+items array is weights[0...current_item_index] which is a subset of the item array given in the original problem". So here when 
+when we are computing dp[w = j] for item with index = i, we are computing dp[j] for items array weights[0...i] and not for the 
+entire array. We get the dp[w = j] for the entire item array weights[0...(n - 1)] only in the last iteration when i = (n - 1).
+
+Try to understand the difference between the above two implementations really well as we would need them in soving various problem. 
+In most simple problems it won't matter which implementation we go with, but for some no-so-trivial problems the order of the outer 
+loop and inner loop would matter, as we would see in Coin Change: Total no. of Combinations Possible.
