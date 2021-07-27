@@ -31,8 +31,9 @@ each of the subarrays.
 Let the input array be boxes with length n. Define T(i, j) as the maximum points one can get by removing boxes of the subarray 
 boxes[i, j] (both inclusive). The original problem is identified as T(0, n - 1) and the termination condition is as follows:
 
-T(i, i - 1) = 0: no boxes so no points.
-T(i, i) = 1: only one box left so the maximum point is 1.
+(1) T(i, i - 1) = 0: no boxes so no points.
+(2) T(i, i) = 1: only one box left so the maximum point is 1.
+
 Next let's try to work out the recurrence relation for T(i, j). Take the first box boxes[i](i.e., the box at index i) as an example. 
 What are the possible ways of removing it? (Note: we can also look at the last box and the analyses turn out to be the same.)
 
