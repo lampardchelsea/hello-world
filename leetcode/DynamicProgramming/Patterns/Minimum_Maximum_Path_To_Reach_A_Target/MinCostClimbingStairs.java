@@ -1,3 +1,5 @@
+// Also see Document/Pattern_3_Fibonacci_Number
+
 /**
  * Refer to
  * https://leetcode.com/problems/min-cost-climbing-stairs/description/
