@@ -131,3 +131,75 @@ public int minCostClimbingStairs(int[] cost) {
 }
 -------------------------------------------------------------------------------
 */
+
+// Solution 1: Native DFS
+class Solution {
+    public int minCostClimbingStairs(int[] cost) {
+        int n = cost.length;
+        return Math.min(helper(cost, n - 1), helper(cost, n - 2));
+    }
+    
+    private int helper(int[] cost, int n) {
+        if(n < 0) {
+            return 0;
+        }
+        if(n <= 1) {
+            return cost[n];
+        }
+        return cost[n] + Math.min(helper(cost, n - 1), helper(cost, n - 2));
+    }
+}
+
+// Solution 2: Top-Down DP memoization
+class Solution {
+    public int minCostClimbingStairs(int[] cost) {
+        int n = cost.length;
+        int[] dp = new int[n];
+        return Math.min(helper(cost, n - 1, dp), helper(cost, n - 2, dp));
+    }
+    
+    private int helper(int[] cost, int n, int[] dp) {
+        if(n < 0) {
+            return 0;
+        }
+        if(n <= 1) {
+            return cost[n];
+        }
+        if(dp[n] != 0) {
+            return dp[n];
+        }
+        dp[n] = cost[n] + Math.min(helper(cost, n - 1, dp), helper(cost, n - 2, dp));
+        return dp[n];
+    }
+}
+
+// Solution 3: Bottom-Up DP
+class Solution {
+    public int minCostClimbingStairs(int[] cost) {
+        int n = cost.length;
+        int[] dp = new int[n];
+        dp[0] = cost[0];
+        dp[1] = cost[1];
+        for(int i = 2; i < n; i++) {
+            dp[i] = cost[i] + Math.min(dp[i - 1], dp[i - 2]);
+        }
+        return Math.min(dp[n - 1], dp[n - 2]);
+    }
+}
+
+// Solution 4: Further optimization of Bottom-Up DP
+class Solution {
+    public int minCostClimbingStairs(int[] cost) {
+        int n = cost.length;
+        int[] dp = new int[n];
+        int a = cost[0];
+        int b = cost[1];
+        int c = 0;
+        for(int i = 2; i < n; i++) {
+            c = cost[i] + Math.min(a, b);
+            a = b;
+            b = c;
+        }
+        return Math.min(a, b);
+    }
+}
