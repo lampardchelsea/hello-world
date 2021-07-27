@@ -1,6 +1,6 @@
 # Leetcode dynamic programming patterns: Minimum (Maximum) Path to Reach a Target
 
-=============================================================================================
+=================================================================================
 Minimum (Maximum) Path to Reach a Target
 Problem list: https://leetcode.com/list/55ac4kuc
 
@@ -97,7 +97,7 @@ for (int j = 1; j <= amount; ++j) {
 
 871. Minimum Number of Refueling Stops Hard
 
-=============================================================================================
+=================================================================================
 
 
 <p>Min Cost Climbing Stairs
