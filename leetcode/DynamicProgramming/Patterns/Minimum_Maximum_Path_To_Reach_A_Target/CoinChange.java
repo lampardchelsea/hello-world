@@ -137,3 +137,25 @@ class Solution {
         return min;
     }
 }
+
+// Solution 2: Top Down DP Memoization
+// Refer to
+// https://leetcode.com/problems/coin-change/discuss/141064/Unbounded-Knapsack
+/**
+This problem follows the Unbounded Knapsack pattern.
+
+A brute-force solution could be to try all combinations of the given coins to select the ones that sum up to amount with minimum coins.
+
+There are overlapped subproblems, e.g.
+
+amount = 10, coins = [1, 2, 5]
+
+select 2:
+10 - 2 = 8
+
+select 1, select 1:
+10 - 1 - 1 = 8
+
+both cases become to get the fewest number of coins that you need to make up 8
+We can use memoization to overcome the overlapping sub-problems.
+*/
