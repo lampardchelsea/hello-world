@@ -107,3 +107,152 @@ return dp[target]
 */
 
 // Solution 1: Native DFS(TLE)
+class Solution {
+    public int minPathSum(int[][] grid) {
+        if(grid == null || grid.length == 0) {
+            return 0;
+        }
+        return helper(grid, 0, 0);
+    }
+    
+    private int helper(int[][] grid, int i, int j) {
+        int r = grid.length;
+        int c = grid[0].length;
+        if(i == r || j == c) {
+            return Integer.MAX_VALUE;
+        }
+        if(i == r - 1 && j == c - 1) {
+            return grid[i][j];
+        }
+        int down = helper(grid, i + 1, j);
+        int right = helper(grid, i, j + 1);
+        return Math.min(down, right) + grid[i][j];
+    }
+}
+
+// Solution 2: Top Down DP Memoization
+/**
+Previous version
+// Refer to
+// https://loveforprogramming.quora.com/Backtracking-Memoization-Dynamic-Programming
+// https://leetcode.com/problems/minimum-path-sum/discuss/23493/My-Java-solution-using-DP-with-memorization-(beats-about-98-submissions)/273665
+// Runtime: 1 ms, faster than 99.80% of Java online submissions for Minimum Path Sum.
+// Memory Usage: 35.4 MB, less than 100.00% of Java online submissions for Minimum Path Sum.
+class Solution {
+    public int minPathSum(int[][] grid) {
+        if(grid == null || grid.length == 0) {
+            return 0;
+        }
+        int m = grid.length;
+        int n = grid[0].length;
+        // Initial memo to store already computed back tracking
+        // path value on each corresponding position =>
+        // Each cell in memo mapping to cell in given grid and
+        // store the minimum path sum calculated backwards from
+        // bottom right corner cell to this cell
+        int[][] memo = new int[m][n];
+        return helper(grid, 0, 0, memo);
+    }
+    
+    private int helper(int[][] grid, int i, int j, int[][] memo) {
+        if(i < grid.length && j < grid[0].length) {
+            if(i == grid.length - 1 && j == grid[0].length - 1) {
+                // Store current cell value in memo if we reach
+                // to bottom right and return it
+                memo[i][j] = grid[i][j];
+                return memo[i][j];
+            }
+            // Consult memo in case we have already calculated routes
+            // for a particular cell, if the result not as initial as
+            // 0, return it, otherwise use the usual recursion on
+            // bottom and right direction
+            if(memo[i][j] != 0) {
+                return memo[i][j];
+            }
+            int bottom = helper(grid, i + 1, j, memo);
+            int right = helper(grid, i, j + 1, memo);
+            // Take the minimum value for a cell on a decision tree
+            int min = Math.min(bottom, right);
+            // Add cell value to the minimum value from left or right child
+            memo[i][j] = min + grid[i][j];
+            return memo[i][j];
+        }
+        return Integer.MAX_VALUE;
+    }
+}
+*/
+class Solution {
+    public int minPathSum(int[][] grid) {
+        if(grid == null || grid.length == 0) {
+            return 0;
+        }
+        Integer[][] memo = new Integer[grid.length][grid[0].length];
+        return helper(grid, 0, 0, memo);
+    }
+    
+    private int helper(int[][] grid, int i, int j, Integer[][] memo) {
+        int r = grid.length;
+        int c = grid[0].length;
+        if(i == r || j == c) {
+            return Integer.MAX_VALUE;
+        }
+        if(i == r - 1 && j == c - 1) {
+            return grid[i][j];
+        }
+        if(memo[i][j] != null) {
+            return memo[i][j];
+        }
+        int down = helper(grid, i + 1, j, memo);
+        int right = helper(grid, i, j + 1, memo);
+        memo[i][j] = Math.min(down, right) + grid[i][j];
+        return memo[i][j];
+    }
+}
+
+// Solution 3: Bottom Up DP
+class Solution {
+    public int minPathSum(int[][] grid) {
+        if(grid == null || grid.length == 0) {
+            return 0;
+        }
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][] dp = new int[m][n];
+        dp[0][0] = grid[0][0];
+        for(int i = 1; i < m; i++) {
+            dp[i][0] = dp[i - 1][0] + grid[i][0];
+        }
+        for(int i = 1; i < n; i++) {
+            dp[0][i] = dp[0][i - 1] + grid[0][i];
+        }
+        for(int i = 1; i < m; i++) {
+            for(int j = 1; j < n; j++) {
+                dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
+            }
+        }
+        return dp[m - 1][n - 1];
+    }
+}
+
+// Solution 4: Bottom Up DP without extra space
+class Solution {
+    public int minPathSum(int[][] grid) {
+        if(grid == null || grid.length == 0) {
+            return 0;
+        }
+        int m = grid.length;
+        int n = grid[0].length;
+        for(int i = 1; i < m; i++) {
+            grid[i][0] = grid[i - 1][0] + grid[i][0];
+        }
+        for(int i = 1; i < n; i++) {
+            grid[0][i] = grid[0][i - 1] + grid[0][i];
+        }
+        for(int i = 1; i < m; i++) {
+            for(int j = 1; j < n; j++) {
+                grid[i][j] = Math.min(grid[i - 1][j], grid[i][j - 1]) + grid[i][j];
+            }
+        }
+        return grid[m - 1][n - 1];
+    }
+}
