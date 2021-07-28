@@ -299,3 +299,7 @@
 
 <p>Generate Parentheses
 <p>1. [The explain for why we need if(open > close) {...} ?] (https://leetcode.com/problems/generate-parentheses/discuss/10100/Easy-to-understand-Java-backtracking-solution/10980)
+
+<p>Combination Sum
+<p>1. [Best picture explain] (https://leetcode.com/problems/combination-sum/discuss/815714/DFSrecursion-solution-with-illustration-to-understand-the-process)
+<p>2. [Classic DFS] (https://segmentfault.com/a/1190000003743112)
