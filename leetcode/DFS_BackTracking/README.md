@@ -302,4 +302,4 @@
 
 <p>Combination Sum
 <p>1. [Best picture explain] (https://leetcode.com/problems/combination-sum/discuss/815714/DFSrecursion-solution-with-illustration-to-understand-the-process)
-<p>2. [Classic DFS] (https://segmentfault.com/a/1190000003743112)
+<p>2. [Classic backtracking to find all possibilities] (https://segmentfault.com/a/1190000003743112)
