@@ -436,3 +436,40 @@ for (int j = 1; j <= amount; ++j) {
    }
 }
 */
+
+// Style 1: Additional check for 'dp[i - coins[j]] != Integer.MAX_VALUE' required since (Integer.MAX_VALUE + 1) will cause a problem
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int[] dp = new int[amount + 1];
+        // Initialize as Integer.MAX_VALUE need additional check later
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0;
+        for(int i = 1; i <= amount; i++) {
+            for(int j = 0; j < coins.length; j++) {
+                // Additional check to avoid overflow
+                if(coins[j] <= i && dp[i - coins[j]] != Integer.MAX_VALUE) {
+                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+                }
+            }
+        }
+        return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];
+    }
+}
+
+// Style 2: Since at most we only need (amount + 1) coins to make up 'amount', instead of initialize as Integer.MAX_VALUE, we can initialize as (ammount + 1)
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int[] dp = new int[amount + 1];
+        // Initialize as amount + 1 no need additional check later
+        Arrays.fill(dp, amount + 1);
+        dp[0] = 0;
+        for(int i = 1; i <= amount; i++) {
+            for(int j = 0; j < coins.length; j++) {
+                if(coins[j] <= i) {
+                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+                }
+            }
+        }
+        return dp[amount] > amount ? -1 : dp[amount];
+    }
+}
