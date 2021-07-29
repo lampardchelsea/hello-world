@@ -63,12 +63,6 @@
 <p>1. [Official Article] (https://leetcode.com/articles/nim-game/)
 <p>2. [中文解释] (http://www.cnblogs.com/grandyang/p/4873248.html)
 
-<p>Coin Change
-<p>1. [Official Article] (https://leetcode.com/articles/coin-change/)
-<p>2. [中文解释] (http://www.cnblogs.com/grandyang/p/5138186.html)
-<p>3. [Coin Change Problem] (http://romanenco.com/coin-change-problem)
-<p>4. [Stack Overflow Issue] (https://discuss.leetcode.com/topic/32475/c-o-n-amount-time-o-amount-space-dp-solution/22?page=2)
-
 <p>Coin Change II
 <p>1. [Knapsack problem - Java solution with thinking process O(nm) Time and O(m) Space] (https://discuss.leetcode.com/topic/79071/knapsack-problem-java-solution-with-thinking-process-o-nm-time-and-o-m-space)
 <p>2. [Can you please explain the difference between Combination Sum IV] (https://discuss.leetcode.com/topic/79071/knapsack-problem-java-solution-with-thinking-process-o-nm-time-and-o-m-space/7)
