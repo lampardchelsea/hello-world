@@ -12,3 +12,8 @@
 <p>2. [中文解释] (http://www.cnblogs.com/grandyang/p/5138186.html)
 <p>3. [Coin Change Problem] (http://romanenco.com/coin-change-problem)
 <p>4. [Stack Overflow Issue] (https://discuss.leetcode.com/topic/32475/c-o-n-amount-time-o-amount-space-dp-solution/22?page=2)
+
+<p>Minimum Falling Path Sum
+<p>1. [Native DFS] (https://leetcode.com/problems/minimum-falling-path-sum/discuss/201812/Recursive-with-memoization-3ms-beats-%22100%22)
+<p>2. [Top Down DP Memoization] (https://leetcode.com/problems/minimum-falling-path-sum/discuss/201812/Recursive-with-memoization-3ms-beats-%22100%22)
+<p>3. [Bottom Up DP] (https://leetcode.com/problems/minimum-falling-path-sum/discuss/776004/Easy-Java-Solution-using-DP)
