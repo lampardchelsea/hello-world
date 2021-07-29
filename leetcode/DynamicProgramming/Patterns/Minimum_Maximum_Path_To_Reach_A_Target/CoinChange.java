@@ -139,15 +139,166 @@ class Solution {
 }
 
 // Solution 2: Top Down DP Memoization
+// Previous work history
+/**
+// Solution 2: DFS + Memoization
+// Wrong solution with 'i' on recursive
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        // key = amount, value = number of coins
+        //Map<Integer, Integer> map = new HashMap<Integer, Integer>(); 
+        int[] memo = new int[amount];
+        int result = helper(coins, amount, 0, memo);
+        return result == Integer.MAX_VALUE ? -1 : result;
+    }
+    
+    private int helper(int[] coins, int amount, int index, int[] memo) {
+        // Complete, be careful, its return 0 not 1
+        if(amount == 0) {
+            return 0;
+        }
+        // Invalid
+        if(amount < 0) {
+           return -1; 
+        }
+        if(memo[amount - 1] != 0) {
+            return memo[amount - 1];
+        }
+        int min = Integer.MAX_VALUE;
+        for(int i = index; i < coins.length; i++) {
+            int temp = helper(coins, amount - coins[i], i, memo);
+            if(temp >= 0 && temp < min) {
+                min = temp + 1;
+            }
+        }
+        memo[amount - 1] = (min == Integer.MAX_VALUE) ? -1 : min;
+        return min;
+    }
+}
+
+// Right Solutoin
+// It should be 'index' on the recursive to make it right
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int[] memo = new int[amount];
+        int result = helper(coins, amount, 0, memo);
+        return result == Integer.MAX_VALUE ? -1 : result;
+    }
+    
+    private int helper(int[] coins, int amount, int index, int[] memo) {
+        // Complete, be careful, its return 0 not 1
+        if(amount == 0) {
+            return 0;
+        }
+        // Invalid
+        if(amount < 0) {
+           return -1; 
+        }
+        if(memo[amount - 1] != 0) {
+            return memo[amount - 1];
+        }
+        int min = Integer.MAX_VALUE;
+        for(int i = index; i < coins.length; i++) {
+            // Recursive strategy same as Combination Sum IV
+            // as we can duplicately use the same number
+            // so not i + 1 and also not i as we need to revert
+            // back to use previous used denominations
+            // int temp = helper(coins, amount - coins[i], i, map);
+            int temp = helper(coins, amount - coins[i], index, memo);
+            if(temp >= 0 && temp < min) {
+                min = temp + 1;
+            }
+        }
+        memo[amount - 1] = (min == Integer.MAX_VALUE) ? -1 : min;
+        return min;
+    }
+}
+
+
+// And if you want to print all combinations (including the minimum length one), need to remove the 'memo'
+// since it will quickly return and not print all matching condition result, and use the same strategy
+// from Permutations https://leetcode.com/problems/permutations/
+// e.g
+// given {1,2,5}, 5 will have 8 combinations
+// [[1, 1, 1, 1, 1], [1, 1, 1, 2], [1, 1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [2, 1, 1, 1], [2, 1, 2], [2, 2, 1], [5]]
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        List<List<Integer>> list = new ArrayList<List<Integer>>();
+        int result = helper(coins, amount, 0, new ArrayList<Integer>(), list);
+        return result == Integer.MAX_VALUE ? -1 : result;
+    }
+    
+    private int helper(int[] coins, int amount, int index, List<Integer> list, List<List<Integer>> combinations) {
+        // Complete, be careful, its return 0 not 1
+        if(amount == 0) {
+        	combinations.add(new ArrayList<Integer>(list));
+            return 0;
+        }
+        // Invalid
+        if(amount < 0) {
+           return -1; 
+        }
+        int min = Integer.MAX_VALUE;
+        for(int i = index; i < coins.length; i++) {
+        	list.add(coins[i]);
+            int temp = helper(coins, amount - coins[i], index, list, combinations);
+            if(temp >= 0 && temp < min) {
+                min = temp + 1;
+            }
+            list.remove(list.size() - 1);
+        }
+        return min;
+    }
+}
+
+
+// And even we shift the storage from array to HashMap (also no need amount - 1 since that's only required when initialize
+// an array with length as 'amount' (new int[amount]) rather than array length as amount + 1 (new int[amount + 1]))
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        // key = amount, value = number of coins
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>(); 
+        //int[] memo = new int[amount];
+        int result = helper(coins, amount, 0, map);
+        return result == Integer.MAX_VALUE ? -1 : result;
+    }
+    
+    private int helper(int[] coins, int amount, int index, Map<Integer, Integer> map) {
+        // Complete, be careful, its return 0 not 1
+        if(amount == 0) {
+            return 0;
+        }
+        // Invalid
+        if(amount < 0) {
+           return -1; 
+        }
+        if(map.containsKey(amount)) {
+            return map.get(amount);
+        }
+        // if(memo[amount - 1] != 0) {
+        //     return memo[amount - 1];
+        // }
+        int min = Integer.MAX_VALUE;
+        for(int i = index; i < coins.length; i++) {
+            int temp = helper(coins, amount - coins[i], index, map);
+            if(temp >= 0 && temp < min) {
+                min = temp + 1;
+            }
+        }
+        int temp = (min == Integer.MAX_VALUE ? -1 : min);
+        map.put(amount, temp);
+        //memo[amount - 1] = (min == Integer.MAX_VALUE) ? -1 : min;
+        return min;
+    }
+}
+*/
+
 // Refer to
 // https://leetcode.com/problems/coin-change/discuss/141064/Unbounded-Knapsack
 /**
 This problem follows the Unbounded Knapsack pattern.
-
 A brute-force solution could be to try all combinations of the given coins to select the ones that sum up to amount with minimum coins.
-
 There are overlapped subproblems, e.g.
-
 amount = 10, coins = [1, 2, 5]
 
 select 2:
@@ -225,3 +376,4 @@ class Solution {
         return min;
     }
 }
+
