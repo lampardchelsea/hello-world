@@ -447,6 +447,10 @@ class Solution {
         for(int i = 1; i <= amount; i++) {
             for(int j = 0; j < coins.length; j++) {
                 // Additional check to avoid overflow
+                // https://discuss.leetcode.com/topic/32475/c-o-n-amount-time-o-amount-space-dp-solution/22?page=2
+                // check on possible overflow problem (Integer.MAX_VALUE + 1 = Integer.MIN_VALUE)
+                // e.g coins = {2}, amount = 3 -> if not adding 'dp[i - coin] != Integer.MAX_VALUE'
+                // will cause output = -2147483648 which expected to be -1
                 if(coins[j] <= i && dp[i - coins[j]] != Integer.MAX_VALUE) {
                     dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
                 }
@@ -465,11 +469,15 @@ class Solution {
         dp[0] = 0;
         for(int i = 1; i <= amount; i++) {
             for(int j = 0; j < coins.length; j++) {
+                // No additional check needed
                 if(coins[j] <= i) {
                     dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
                 }
             }
         }
-        return dp[amount] > amount ? -1 : dp[amount];
+        // For 'return dp[amount] == amount + 1 ? -1 : dp[amount];' we use condition as == instead of >
+        // dp[amount] == amount + 1 -> instead of dp[amount] > amount, since the largest possible value
+        // for dp[amount] is always amount + 1, and this improve the runtime a lot.
+        return dp[amount] == amount + 1 ? -1 : dp[amount];
     }
 }
