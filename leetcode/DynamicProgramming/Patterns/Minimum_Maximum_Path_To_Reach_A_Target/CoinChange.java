@@ -159,3 +159,69 @@ select 1, select 1:
 both cases become to get the fewest number of coins that you need to make up 8
 We can use memoization to overcome the overlapping sub-problems.
 */
+// Style 1:
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        // If not create as int[amount + 1] need to shift back 1 index
+        // to map dp[amount - 1] to value calculate out from dfs, since
+        // index start from 0 but amount start from 1
+        int[] dp = new int[amount];
+        int result = helper(coins, amount, 0, dp);
+        return result == Integer.MAX_VALUE ? -1 : result;
+    }
+    
+    private int helper(int[] coins, int remain, int index, int[] dp) {
+        if(remain < 0) {
+            return -1;
+        }
+        if(remain == 0) {
+            return 0;
+        }
+        if(dp[remain - 1] != 0) {
+            return dp[remain - 1];
+        }
+        int min = Integer.MAX_VALUE;
+        for(int i = index; i < coins.length; i++) {
+            int tmp = helper(coins, remain - coins[i], index, dp);
+            if(tmp >= 0 && tmp < min) {
+                min = tmp + 1;
+            }
+        }
+        dp[remain - 1] = min;
+        return min;
+    }
+}
+
+// Style 2:
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        // '+1' for make the array easy to use, e.g dp[amount] is easy
+        // to assign value rather than dp[amount - 1]
+        // Also use 'Integer' instead of 'int' is easy to check when
+        // comes to 'dp[remain] != null'
+        Integer[] dp = new Integer[amount + 1];
+        int result = helper(coins, amount, 0, dp);
+        return result == Integer.MAX_VALUE ? -1 : result;
+    }
+    
+    private int helper(int[] coins, int remain, int index, Integer[] dp) {
+        if(remain < 0) {
+            return -1;
+        }
+        if(remain == 0) {
+            return 0;
+        }
+        if(dp[remain] != null) {
+            return dp[remain];
+        }
+        int min = Integer.MAX_VALUE;
+        for(int i = index; i < coins.length; i++) {
+            int tmp = helper(coins, remain - coins[i], index, dp);
+            if(tmp >= 0 && tmp < min) {
+                min = tmp + 1;
+            }
+        }
+        dp[remain] = min;
+        return min;
+    }
+}
