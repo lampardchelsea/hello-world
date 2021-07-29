@@ -187,3 +187,33 @@ class Solution {
         return memo[row][col];
     }
 }
+
+// Solution 3: Bottom Up DP
+// Refer to
+// https://leetcode.com/problems/minimum-falling-path-sum/discuss/776004/Easy-Java-Solution-using-DP
+class Solution {
+    public int minFallingPathSum(int[][] matrix) {
+        int r = matrix.length;
+        int c = matrix[0].length;
+        int[][] dp = new int[r][c];
+        for(int i = 0; i < c; i++) {
+            dp[0][i] = matrix[0][i];
+        }
+        for(int i = 1; i < r; i++) {
+            for(int j = 0; j < c; j++) {
+                if(j == 0) {
+                    dp[i][j] = Math.min(dp[i - 1][j], dp[i - 1][j + 1]) + matrix[i][j];
+                } else if(j == c - 1) {
+                    dp[i][j] = Math.min(dp[i - 1][j], dp[i - 1][j - 1]) + matrix[i][j];
+                } else {
+                    dp[i][j] = Math.min(dp[i - 1][j], Math.min(dp[i - 1][j + 1], dp[i - 1][j - 1])) + matrix[i][j];
+                }
+            }
+        }
+        int min = Integer.MAX_VALUE;
+        for(int i = 0; i < c; i++) {
+            min = Math.min(min, dp[r - 1][i]);
+        }
+        return min;
+    }
+}
