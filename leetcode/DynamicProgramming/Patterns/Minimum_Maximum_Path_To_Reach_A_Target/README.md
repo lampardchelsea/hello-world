@@ -17,3 +17,8 @@
 <p>1. [Native DFS] (https://leetcode.com/problems/minimum-falling-path-sum/discuss/201812/Recursive-with-memoization-3ms-beats-%22100%22)
 <p>2. [Top Down DP Memoization] (https://leetcode.com/problems/minimum-falling-path-sum/discuss/201812/Recursive-with-memoization-3ms-beats-%22100%22)
 <p>3. [Bottom Up DP] (https://leetcode.com/problems/minimum-falling-path-sum/discuss/776004/Easy-Java-Solution-using-DP)
+
+<p>Minimum Cost For Tickets
+<p>1. [Native DFS + Top Down DP Memoization] (https://leetcode.com/problems/minimum-cost-for-tickets/discuss/227321/Top-down-DP-Logical-Thinking)
+<p>2. [Bottom Up DP 1] (https://leetcode.com/problems/minimum-cost-for-tickets/discuss/504403/DP-it's-not-easy-as-you-thought)
+<p>3. [Bottom Up DP 2] (https://leetcode.com/problems/minimum-cost-for-tickets/discuss/227130/Java-DP-Solution-with-detailed-comment-and-explanation)
