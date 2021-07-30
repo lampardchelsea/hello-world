@@ -231,3 +231,25 @@ For a 30-day ticket ending on day i, dp[i] = dp[i - 30] + cost[2]
     return dp[lastDay];
 }
 */
+class Solution {
+    public int mincostTickets(int[] days, int[] costs) {
+        int totalDays = days[days.length - 1];
+        int[] dp = new int[totalDays + 1];
+        boolean[] travelDays = new boolean[totalDays + 1];
+        for(int day : days) {
+            travelDays[day] = true;
+        }
+        for(int i = 1; i <= totalDays; i++) {
+            if(!travelDays[i]) {
+                dp[i] = dp[i - 1];
+                continue;
+            }
+            dp[i] = costs[0] + dp[i - 1];
+            int j = (i >= 7) ? i - 7 : 0;
+            dp[i] = Math.min(dp[i], costs[1] + dp[j]);
+            int k = (i >= 30) ? i - 30 : 0;
+            dp[i] = Math.min(dp[i], costs[2] + dp[k]);
+        }
+        return dp[totalDays];
+    }
+}
