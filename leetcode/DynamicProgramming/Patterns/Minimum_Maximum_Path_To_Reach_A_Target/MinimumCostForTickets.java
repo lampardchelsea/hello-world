@@ -151,3 +151,83 @@ class Solution {
         return newDayIndex;
     }
 }
+
+// Solution 3: Bottom Up DP
+// Refer to
+// https://leetcode.com/problems/minimum-cost-for-tickets/discuss/504403/DP-it's-not-easy-as-you-thought
+/**
+dp[n] is the minimum cost to cover all days from day 1 until day n.
+
+If day n is not one of our days, then we don't have to worry. The cost is the same as the cost to cover all days to day n-1 => dp[n] = dp[n-1]
+If day n is one of our days, then we will check if buying a pass before can help us minimize the cost.
+For example, buying a week-pass a week ago can cost: dp[n-7] + costs[1]
+buying a month-pass a month ago can cost: dp[n-30] + cost[2]
+There is a confusion here what if n-7 or n-30 is not one of our days ?? It doesn't matter at all. What we care is we prefer not buy at day n, 
+but rather buy at the moment before day n.
+
+days: 1,2,3,x,x(n-7),x,x,x,x,9,x,11,12(n),13
+In this example, n-7 is not our days, we would rather buy a week-pass from day 9, than buy a week-pass on day 12. Note that dp[3] = dp[n-7] = dp[9]
+
+private int dp_bottom_up(int[] days, int[] costs) {
+    Set<Integer> set = new HashSet<>();
+    for (int day : days) set.add(day);
+
+    int lastDay = days[days.length-1], dp[] = new int[lastDay+1];
+    for (int i = 1; i <= lastDay; i++) {
+        if (!set.contains(i)) {
+            dp[i] = dp[i-1];
+        }
+        else {
+            dp[i] = dp[i-1]+costs[0];
+
+            int j = (i >= 7) ? i-7 : 0;
+            dp[i] = Math.min(dp[i], dp[j] + costs[1]);
+
+            j = (i >= 30) ? i-30 : 0;
+            dp[i] = Math.min(dp[i], dp[j] + costs[2]);
+        }
+    }
+
+    return dp[lastDay];
+}
+*/
+
+// Refer to
+// https://leetcode.com/problems/minimum-cost-for-tickets/discuss/227130/Java-DP-Solution-with-detailed-comment-and-explanation
+/**
+dp[i] means up to i-th day the minimum cost of the tickets. The size of the dp array depends on the last travel day, 
+so we don't need an array length to be 365.
+
+We do need a boolean array to mark the travel days, the reason is if it is not a travel day we don't need a ticket. 
+However, if it is a travel day, we consider three scenarios (with three types of tickects):
+
+If a 1-day ticket on day i, dp[i] = dp[i - 1] + cost[0]
+If a 7-day ticket ending on day i, dp[i] = min(dp[i - 7], dp[i - 6] ... dp[i - 1]) + cost[1]
+If a 30-day ticket ending on day i, dp[i] = min(dp[i - 30], dp[i - 29] ... dp[i - 1]) + cost[2]
+
+But since the value of dp array is increasing, therefore:
+For a 7-day ticket ending on day i, dp[i] = dp[i - 7] + cost[1]
+For a 30-day ticket ending on day i, dp[i] = dp[i - 30] + cost[2]
+
+ public int mincostTickets(int[] days, int[] costs) {
+    // length up to the last travel + 1 day is good enough (no need for 365)
+    int lastDay = days[days.length - 1]; 
+    // dp[i] means up to i-th day the minimum cost of the tickets
+    int[] dp = new int[lastDay + 1]; 
+    boolean[] isTravelDays = new boolean[lastDay + 1];
+    // mark the travel days
+    for(int day : days) isTravelDays[day] = true;
+    
+    for(int i = 1; i <= lastDay; i++) {
+        if(!isTravelDays[i]) { // no need to buy ticket if it is not a travel day
+            dp[i] = dp[i - 1];
+            continue;
+        }
+        // select which type of ticket to buy
+        dp[i] = costs[0] + dp[i - 1]; // 1-day
+        dp[i] = Math.min(costs[1] + dp[Math.max(i - 7, 0)], dp[i]); // 7-day
+        dp[i] = Math.min(costs[2] + dp[Math.max(i - 30, 0)], dp[i]); // 30-day
+    }
+    return dp[lastDay];
+}
+*/
