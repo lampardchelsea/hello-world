@@ -108,6 +108,7 @@ class Solution {
         return Math.min(dayPassCost, Math.min(weekPassCost, monthPassCost));
     }
     
+    // Skip till newDayIndex day (in days array) as we are buying day/week/month pass
     private int getNewDayIndex(int dayIndex, int[] days, int duration) {
         int endDay = days[dayIndex] + duration - 1;
         int newDayIndex = dayIndex;
