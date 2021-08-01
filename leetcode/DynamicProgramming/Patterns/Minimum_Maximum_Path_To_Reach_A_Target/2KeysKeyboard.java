@@ -233,3 +233,48 @@ class Solution {
 }
 
 // Solution 3: Bottom Up DP
+// Refer to
+// https://leetcode.com/problems/2-keys-keyboard/discuss/105899/Java-DP-Solution
+// https://leetcode.com/problems/2-keys-keyboard/discuss/105899/Java-DP-Solution/120412
+/**
+Elegant solution.
+Allow me to explain what is being done here.
+As per the keyboard operations:
+to get AA from A we need 2 additional steps (copy-all and then paste)
+to get AAA from A we need 3 additional steps (copy-all, then paste, then again paste)
+
+For generating AAAA we need 2 additional steps from AA.
+however, to get AAAAAAAA, the most optimal way would be from AAAA, with 2 additional steps (copy-all then paste)
+Essentially, we find the next smaller length sequence (than the one under consideration) which can be copied and 
+then pasted over multiple times to generate the desired sequence. The moment we find a length that divides our 
+required sequence length perfectly, then we don't need to check for any smaller length sequences.
+
+// if sequence of length 'j' can be pasted multiple times to get length 'i' sequence
+if (i % j == 0) {
+    // we just need to paste sequence j (i/j - 1) times, hence additional (i/j) times since we need to copy it first as well.
+    // we don't need checking any smaller length sequences 
+    dp[i] = dp[j] + (i/j);
+    break;
+}
+*/
+class Solution {
+    public int minSteps(int n) {
+        int[] dp = new int[n + 1];
+        for(int i = 2; i <= n; i++) {
+            dp[i] = i;
+            for(int j = i - 1; j > 1; j--) {
+                // if sequence of length 'j' can be pasted multiple times 
+                // to get length 'i' sequence
+                if(i % j == 0) {
+                    // we just need to paste sequence j (i/j - 1) times, 
+                    // hence additional (i/j) times since we need to copy 
+                    // it first as well. we don't need checking any smaller 
+                    // length sequences 
+                    dp[i] = dp[j] + (i / j);
+                    break;
+                }
+            }
+        }
+        return dp[n];
+    }
+}
