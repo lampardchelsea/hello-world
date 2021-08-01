@@ -20,9 +20,6 @@
 <P>1. [Java with explanation, easy to understand] (https://discuss.leetcode.com/topic/102976/java-with-explanation-easy-to-understand)
 <P>2. [[Java/C++] Simple dp solution with explanation] (https://discuss.leetcode.com/topic/103020/java-c-simple-dp-solution-with-explanation)
 
-<p>Perfect Square
-<p>1. [An easy understanding DP solution in Java] (https://discuss.leetcode.com/topic/26400/an-easy-understanding-dp-solution-in-java)
-
 <p>Largest Divisible Subset
 <p>1. [中文解释1] (http://www.cnblogs.com/grandyang/p/5625209.html)
 <p>2. [中文解释2] (http://blog.csdn.net/yeqiuzs/article/details/51773890)
