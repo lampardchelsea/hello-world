@@ -189,6 +189,87 @@ class Solution {
     }
 }
 
+// For Style 3 try to uniform the helper similar to Style 2 by removing 'step' inside helper method
+// Refer to
+// https://leetcode.com/problems/2-keys-keyboard/discuss/866150/C%2B%2B-Simple-Recursion-with-explanation-or-5-lines
+/**
+Intially I couldn't even think how this could be a DP problem. So classic way, Recursion -> DP with overlapping subproblems. 
+But once I drew the recursion tree, got complete clarity and discovered the hidden variable i.e, the size of clipboard.
+
+Simplied thinking :
+On the screen, there is A. You need to generate 'n' A ie if n = 10, AAAAAAAAAA. You can either copy all the As on screen or 
+just paste a combination of A that was last copied into clipboard.
+
+Intuition :
+Cost of copy all the As on Screen(basically double the number of A's or 2X) = 1 (cost of moving all A's to clipboard) + 1 
+(cost of coping call the A's from clipboard to screen)
+Cost of copy from Clipboard = 1 (cost of coping call the A's from clipboard to screen)
+
+There are two choices ie two costs to pick from:
+
+Copy existing a into clipboard and paste clipboard into Screen at cost = 2. If picked the screen char count doubles and the 
+clipboard size is equal to current screen size.
+Paste into Screen at cost = 1. Everytime copied from clipboard, screen gets increased by additional clipboard.length. 
+Remember, size of clipboard depends on what was last copied.
+So pick between the most optimal choice, here, minimum of both the choices.
+
+Obviously there are overlapping subproblems in it. It is not the most optimal way to solve it. But because the constraint 
+is <= 1000, the solution is a accepted.
+
+// Elaborated code
+class Solution {
+public:
+    int shortCopy(int n, int screen, int clip){
+        if(screen == n)
+            return 0;
+        if(screen > n)
+            return 1002;
+	    // At max, we need 1000 operations in worst case.
+		// So pick number greater than that.(not INT_MAX will overflow)
+        return min(
+            2 + shortCopy(n, 2*screen, screen),
+            1 + shortCopy(n, screen + clip, clip)
+        );
+    }
+
+    int minSteps(int n) {
+        if(n == 1) return 0;
+        return shortCopy(n, 1, 1) + 1;
+		// Initial clipboard size is 1 because first pick is
+		// always copying A into clipbored. Both the choices include
+		// copying into the clipboard, so without coping first A, no operation can be made
+    }
+};
+*/
+class Solution {
+    public int minSteps(int n) {
+        if(n == 1) {
+            return 0;
+        }
+        // Initial clipboard size is 1 because first pick is 
+        // always copying A into clipbored. Both the choices include 
+        // copying into the clipboard, so without coping first A, 
+        // no operation can be made, and it need 1 step, so plus 1
+        return helper(n, 1, 1) + 1;
+    }
+    
+    private int helper(int n, int curAOnNotepad, int curACopied) {
+        if(curAOnNotepad == n) {
+            return 0;
+        }
+        if(curAOnNotepad > n) {
+            return n + 1;
+        }
+        int steps = n;
+        // Copy and paste
+        steps = Math.min(steps, helper(n, curAOnNotepad * 2, curAOnNotepad) + 2);
+        // Paste only
+        steps = Math.min(steps, helper(n, curAOnNotepad + curACopied, curACopied) + 1);
+        return steps;
+    }
+}
+
+
 // Solution 2: Top Down DP Memoization (Only able to based on Solution 1 Style 2 because in 
 // Style 3 curAOnNotepad * 2 will cause index out of boundary exception)
 // Refer to
