@@ -8,7 +8,106 @@
    return 2 because 13 = 4 + 9.
 */
 
-// Solution 1: Bottom Up DP
+// DFS Solution but not able to apply memoization and also TLE
+class Solution {
+    public int numSquares(int n) {
+        return helper(n, n, 0);
+    }
+    
+    private int helper(int n, int cur, int step) {
+        if(cur == 0) {
+            return step;
+        }
+        if(cur < 0) {
+            return Integer.MAX_VALUE;
+        }
+        int min = n + 1;
+        for(int i = 1; i * i <= cur; i++) {
+            min = Math.min(min, helper(n, cur - i * i, step + 1));
+        }
+        return min;
+    }
+}
+
+// Solution 1: Native DFS (TLE)
+// Refer to
+// https://leetcode.com/problems/perfect-squares/discuss/1173545/Java-or-All-3-Solutions%3A-Recursive-Memoized-and-DP
+class Solution {
+    public int numSquares(int n) {
+        return helper(n);
+    }
+    
+    private int helper(int cur) {
+        if(cur < 0) {
+            return Integer.MAX_VALUE;
+        }
+        if(cur == 0) {
+            return 0;
+        }
+        int min = cur + 1;
+        for(int i = 1; i * i <= cur; i++) {
+            min = Math.min(min, helper(cur - i * i) + 1);
+        }
+        return min;
+    }
+}
+
+// Solution 2: Top Down DP Memoization
+// Refer to
+// https://leetcode.com/problems/perfect-squares/discuss/1173545/Java-or-All-3-Solutions%3A-Recursive-Memoized-and-DP
+// Style 1:
+class Solution {
+    public int numSquares(int n) {
+        int[] memo = new int[n + 1];
+        return helper(n, memo);
+    }
+    
+    private int helper(int cur, int[] memo) {
+        if(cur < 0) {
+            return Integer.MAX_VALUE;
+        }
+        if(cur == 0) {
+            return 0;
+        }
+        if(memo[cur] > 0) {
+            return memo[cur];
+        }
+        int min = cur + 1;
+        for(int i = 1; i * i <= cur; i++) {
+            min = Math.min(min, helper(cur - i * i, memo));
+        }
+        memo[cur] = min + 1;
+        return min + 1;
+    }
+}
+
+// Style 2:
+class Solution {
+    public int numSquares(int n) {
+        int[] memo = new int[n + 1];
+        return helper(n, memo);
+    }
+    
+    private int helper(int cur, int[] memo) {
+        if(memo[cur] > 0) {
+            return memo[cur];
+        }
+        if(cur < 0) {
+            return Integer.MAX_VALUE;
+        }
+        if(cur == 0) {
+            return 0;
+        }
+        int min = cur + 1;
+        for(int i = 1; i * i <= cur; i++) {
+            min = Math.min(min, helper(cur - i * i, memo) + 1);
+        }
+        memo[cur] = min;
+        return min;
+    }
+}
+
+// Solution 3: Bottom Up DP
 // Refer to
 // https://leetcode.com/problems/perfect-squares/discuss/71495/An-easy-understanding-DP-solution-in-Java/73784
 /**
