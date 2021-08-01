@@ -22,3 +22,10 @@
 <p>1. [Native DFS + Top Down DP Memoization] (https://leetcode.com/problems/minimum-cost-for-tickets/discuss/227321/Top-down-DP-Logical-Thinking)
 <p>2. [Bottom Up DP 1] (https://leetcode.com/problems/minimum-cost-for-tickets/discuss/504403/DP-it's-not-easy-as-you-thought)
 <p>3. [Bottom Up DP 2] (https://leetcode.com/problems/minimum-cost-for-tickets/discuss/227130/Java-DP-Solution-with-detailed-comment-and-explanation)
+
+<p>2 Keys Keyboard
+<p>1. [Native DFS Style 1: Not very intuitive to understand, especially for Base case 3: Avoid a sequence with consecutive copies] (https://leetcode.com/problems/2-keys-keyboard/discuss/105979/Java-recursive-solution-with-explanation)
+<p>2. [Native DFS Style 2: Style 2: Initialize current number of A copied to clipboard == 0 with two intuitive check] (https://leetcode.com/problems/2-keys-keyboard/discuss/462741/Java-or-Tidy-DFS-Solution)
+<p>3. [Native DFS Style 3: Style 3: Initialize current number of A copied to clipboard == 1 and step == 1 without any additional check] (https://leetcode.com/problems/2-keys-keyboard/discuss/562030/C-recursive-DP-solution)
+<p>4. [Top Down DP Memoization (Only able to based on Solution 1 Style 2 because in Style 3 curAOnNotepad * 2 will cause index out of boundary exception)] (https://leetcode.com/problems/2-keys-keyboard/discuss/521405/Java-Dp-Top-Down)
+<p>5. [Bottom Up DP] (https://leetcode.com/problems/2-keys-keyboard/discuss/105899/Java-DP-Solution/120412)
