@@ -29,3 +29,6 @@
 <p>3. [Native DFS Style 3: Style 3: Initialize current number of A copied to clipboard == 1 and step == 1 without any additional check] (https://leetcode.com/problems/2-keys-keyboard/discuss/562030/C-recursive-DP-solution)
 <p>4. [Top Down DP Memoization (Only able to based on Solution 1 Style 2 because in Style 3 curAOnNotepad * 2 will cause index out of boundary exception)] (https://leetcode.com/problems/2-keys-keyboard/discuss/521405/Java-Dp-Top-Down)
 <p>5. [Bottom Up DP] (https://leetcode.com/problems/2-keys-keyboard/discuss/105899/Java-DP-Solution/120412)
+
+<p>Perfect Square
+<p>1. [An easy understanding DP solution in Java] (https://discuss.leetcode.com/topic/26400/an-easy-understanding-dp-solution-in-java)
