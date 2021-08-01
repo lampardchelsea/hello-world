@@ -188,3 +188,48 @@ class Solution {
         return Math.min(copyAndPaste, paste);
     }
 }
+
+// Solution 2: Top Down DP Memoization (Only able to based on Solution 1 Style 2 because in 
+// Style 3 curAOnNotepad * 2 will cause index out of boundary exception)
+// Refer to
+// https://leetcode.com/problems/2-keys-keyboard/discuss/521405/Java-Dp-Top-Down
+class Solution {
+    public int minSteps(int n) {
+        Integer[][] memo = new Integer[n + 1][n + 1];
+        return helper(n, 1, 0, memo);
+    }
+    
+    private int helper(int n, int curAOnNotepad, int curACopied, Integer[][] memo) {
+        // If A on notepad equal to n no further step needed
+        if(curAOnNotepad == n) {
+            return 0;
+        }
+        // If A on notepad larger than n, invalid solution return 
+        // potential maximum value (1 time copy and n time paste to
+        // create n + 1's A [+ 1 is the original one A on notepad] 
+        // on notepad which 1 more A than actual needed) in case of 
+        // try to find minimum
+        if(curAOnNotepad > n) {
+            return n + 1;
+        }
+        // Must behind if(curAOnNotepad > n) check, otherwise out of boundary exception
+        if(memo[curAOnNotepad][curACopied] != null) {
+            return memo[curAOnNotepad][curACopied];
+        }
+        // Setup a maximum needed option (1 copy and n - 1 times paste need)
+        int steps = n;
+        // Avoid infinite copying when notepad(curAOnNotepad) and 
+        // clipboard(curACopied) has same number of A
+        if(curAOnNotepad != curACopied) {
+            steps = Math.min(steps, helper(n, curAOnNotepad, curAOnNotepad, memo) + 1);
+        }
+        // Avoid infinite pasting by don't paste with nothing copied
+        if(curACopied != 0) {
+            steps = Math.min(steps, helper(n, curAOnNotepad + curACopied, curACopied, memo) + 1);
+        }
+        memo[curAOnNotepad][curACopied] = steps;
+        return steps;
+    }
+}
+
+// Solution 3: Bottom Up DP
