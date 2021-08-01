@@ -32,3 +32,5 @@
 
 <p>Perfect Square
 <p>1. [An easy understanding DP solution in Java] (https://discuss.leetcode.com/topic/26400/an-easy-understanding-dp-solution-in-java)
+<p>2. [Native DFS + Top Down DP Memoization] (https://leetcode.com/problems/perfect-squares/discuss/1173545/Java-or-All-3-Solutions%3A-Recursive-Memoized-and-DP)
+<p>3. [Bottom Up DP] (https://leetcode.com/problems/perfect-squares/discuss/71495/An-easy-understanding-DP-solution-in-Java/73784)
