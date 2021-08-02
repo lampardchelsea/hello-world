@@ -35,3 +35,11 @@
 <p>1. [An easy understanding DP solution in Java] (https://discuss.leetcode.com/topic/26400/an-easy-understanding-dp-solution-in-java)
 <p>2. [Native DFS + Top Down DP Memoization] (https://leetcode.com/problems/perfect-squares/discuss/1173545/Java-or-All-3-Solutions%3A-Recursive-Memoized-and-DP)
 <p>3. [Bottom Up DP] (https://leetcode.com/problems/perfect-squares/discuss/71495/An-easy-understanding-DP-solution-in-Java/73784)
+
+<p>Last Stone Weight II
+<p>1. [Intuition and 1D-DP] (https://leetcode.com/problems/last-stone-weight-ii/discuss/294888/JavaC%2B%2BPython-Easy-Knapsacks-DP)
+<p>2. [Why we can use DP ?] (https://leetcode.com/problems/last-stone-weight-ii/discuss/295325/Why-DP-is-applicable-here/277732)
+<p>3. [Wrong answer exchange the inner / outer for loop] (https://leetcode.com/problems/last-stone-weight-ii/discuss/295759/Java-DP-solution-with-explanation/332902)
+<p>4. [Same as 494. Target Sum and 2D-DP] (https://leetcode.com/problems/last-stone-weight-ii/discuss/295167/Java-beat-100-with-nice-explanation)
+<p>5. [Top Down 2D-DP] (https://leetcode.com/problems/last-stone-weight-ii/discuss/295167/Java-beat-100-with-nice-explanation)
+<p>6. [How to convert it from 2D-DP into 1D-DP] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Pattern_1_0_1_Knapsack/How_downgrade_2D_to_1D_and_why_loop_backwards.txt)
