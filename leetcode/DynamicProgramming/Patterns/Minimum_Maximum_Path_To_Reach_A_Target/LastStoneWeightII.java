@@ -24,7 +24,6 @@ Note:
 // Solution 1: Top Down DP Memoization (0-1 Knapsack 2D-DP)
 // Template refer to
 // http://www.mathcs.emory.edu/~cheung/Courses/253/Syllabus/DynProg/knapsack3.html
-// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Pattern_1_0_1_Knapsack/How_downgrade_2D_to_1D_and_why_loop_backwards.txt
 // https://leetcode.com/problems/partition-equal-subset-sum/discuss/90592/01-knapsack-detailed-explanation
 
 // Wny diff = S - 2 * S2  ==> minimize diff equals to  maximize S2 ?
@@ -172,3 +171,9 @@ class Solution {
         return 0;
     }
 }
+
+// Since only relate to previous row, we can able to make it 1D
+// Refer to
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Pattern_1_0_1_Knapsack/How_downgrade_2D_to_1D_and_why_loop_backwards.txt
+
+
