@@ -175,5 +175,30 @@ class Solution {
 // Since only relate to previous row, we can able to make it 1D
 // Refer to
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Pattern_1_0_1_Knapsack/How_downgrade_2D_to_1D_and_why_loop_backwards.txt
-
-
+class Solution {
+    public int lastStoneWeightII(int[] stones) {
+        int n = stones.length;
+        int sum = 0;
+        for(int stone : stones) {
+            sum += stone;
+        }
+        // Initialize only as 1D-DP
+        boolean[] dp = new boolean[sum / 2 + 1];
+        dp[0] = true;
+        for(int i = 0; i < n; i++) {
+            // Reverse the loop order
+            for(int j = sum / 2; j >= stones[i]; j--) {
+                // Only depends on previous status as dp[j - stones[i]]
+                if(dp[j - stones[i]]) {
+                    dp[j] = true;
+                }
+            }
+        }
+        for(int i = sum / 2; i >= 0; i--) {
+            if(dp[i]) {
+                return sum - 2 * i;
+            }
+        }
+        return 0;
+    }
+}
