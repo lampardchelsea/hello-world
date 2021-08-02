@@ -1,8 +1,8 @@
 /**
- Explaination of why we can degrade 2D to 1D array and why we need loop backwards
- Refer to
- https://leetcode.com/problems/partition-equal-subset-sum/discuss/90592/01-knapsack-detailed-explanation
- 0/1 knapsack detailed explanation
+Explaination of why we can degrade 2D to 1D array and why we need loop backwards
+Refer to
+https://leetcode.com/problems/partition-equal-subset-sum/discuss/90592/01-knapsack-detailed-explanation
+0/1 knapsack detailed explanation
 This problem is essentially let us to find whether there are several numbers in a set which are able to sum to 
 a specific value (in this problem, the value is sum/2).
 
@@ -93,7 +93,7 @@ public boolean canPartition(int[] nums) {
  
  
  
- https://leetcode.com/problems/partition-equal-subset-sum/discuss/90592/01-knapsack-detailed-explanation/241664
+https://leetcode.com/problems/partition-equal-subset-sum/discuss/90592/01-knapsack-detailed-explanation/241664
 Yes, the magic is observation from the induction rule/recurrence relation!
 For this problem, the induction rule:
 If not picking nums[i - 1], then dp[i][j] = dp[i-1][j]
