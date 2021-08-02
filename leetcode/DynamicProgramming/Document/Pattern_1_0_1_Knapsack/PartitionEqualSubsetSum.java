@@ -227,4 +227,73 @@ class Solution {
 
 // Solution 4: Bottom Up DP (1D-DP)
 // Refer to
-// 
+// https://leetcode.com/problems/partition-equal-subset-sum/discuss/90627/Java-Solution-similar-to-backpack-problem-Easy-to-understand
+// Style 1:
+class Solution {
+    public boolean canPartition(int[] nums) {
+        int sum = 0;
+        for(int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+        }
+        // Caution: Do not forget check sum must be even
+        if(sum % 2 == 1) {
+            return false;
+        }
+        int target = sum / 2;
+        int len = nums.length;
+        boolean[] dp = new boolean[target + 1];
+        dp[0] = true;
+        /**
+         Note 1: Why we can downgrade 2D array DP to 1D array DP ?
+         Refer to
+         https://leetcode.com/problems/partition-equal-subset-sum/discuss/90592/01-knapsack-detailed-explanation/188673
+         In my understanding the transition to 1d solution can 
+         happen here because 2d solution always depends on values 
+         from row above and it doesn't depend on other rows.
+         As a result, we can only fill up one array on every 
+         iteration over 'nums' and then reuse it on the next 
+         iteration (as if we would be moving to next row in 2d table).
+         
+         Note 2: Why the inner loop can not start from j = 1 ?
+         Refer to
+         https://leetcode.com/problems/partition-equal-subset-sum/discuss/90592/01-knapsack-detailed-explanation/140416
+         Because dp[j] = dp[j] || dp[j - nums[i - 1]] uses smaller index value dp[j - nums[i]].
+         When the current iteration begins, the values in dp[] are the result of previous iteration.
+         Current iteration's result should only depend on the values of previous iteration.
+         If you iterate from j = 1, then dp[j - nums[i - 1]] will be overwritten before you use it, 
+         which is wrong. You can avoid this problem by iterating from j = target
+        */
+        for(int i = 1; i <= nums.length; i++) {
+            for(int j = target; j >= 1; j--) {
+                if(j >= nums[i - 1]) {
+                    dp[j] = dp[j] || dp[j - nums[i - 1]];
+                }
+            }
+        }
+        return dp[target];
+    }
+}
+
+// Style 2:
+class Solution {
+    public boolean canPartition(int[] nums) {
+        int n = nums.length;
+        int sum = 0;
+        for(int num : nums) {
+            sum += num;
+        }
+        if(sum % 2 != 0) {
+            return false;
+        }
+        boolean[] dp = new boolean[sum / 2 + 1];
+        dp[0] = true;
+        for(int i = 1; i <= n; i++) {
+            for(int j = sum / 2; j >= 1; j--) {
+                if(j >= nums[i - 1] && dp[j - nums[i - 1]]) {
+                    dp[j] = true;
+                }
+            }
+        }
+        return dp[sum / 2];
+    }
+}
