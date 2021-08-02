@@ -141,12 +141,6 @@
 <p>Longest String Chain
 <p>1. [Longest Increasing Subsequence] (https://leetcode.com/problems/longest-increasing-subsequence/)
 <p>2. [Same way] (https://leetcode.com/problems/longest-string-chain/discuss/294890/C++JavaPython-DP-Solution/277492)
-
-<p>Last Stone Weight II
-<p>1. [Intuition and 1D-DP] (https://leetcode.com/problems/last-stone-weight-ii/discuss/294888/JavaC%2B%2BPython-Easy-Knapsacks-DP)
-<p>2. [Why we can use DP ?] (https://leetcode.com/problems/last-stone-weight-ii/discuss/295325/Why-DP-is-applicable-here/277732)
-<p>3. [Wrong answer exchange the inner / outer for loop] (https://leetcode.com/problems/last-stone-weight-ii/discuss/295759/Java-DP-solution-with-explanation/332902)
-<p>4. [Same as 494. Target Sum and 2D-DP] (https://leetcode.com/problems/last-stone-weight-ii/discuss/295167/Java-beat-100-with-nice-explanation)
   
 <p>Longest Common Subsequence
 <p>1. [2D-DP] (https://leetcode.com/problems/longest-common-subsequence/discuss/351689/Java-Two-DP-codes-of-O(mn)-and-O(min(m-n))-spaces-w-picture-and-analysis)
