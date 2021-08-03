@@ -30,7 +30,8 @@ Follow up: Could you do this using only O(n) extra space, where n is the total n
 */
 
 // Solution 1: Native DFS (TLE)
-// Style 1: Start from level = 0 (Top most root node)
+// Style 1: Start from level = 0 (Top most root node), since only 1 root node value, should be added as same
+// to both left and right paths
 class Solution {
     public int minimumTotal(List<List<Integer>> triangle) {
         return helper(triangle, 0, 0);
@@ -47,12 +48,29 @@ class Solution {
     }
 }
 
-// Style 2: Start from level = 1 (2nd level if exist)
+// Style 2: Start from level = 1 (2nd level if exist), since not like root node only 1 
+// value, now have 2 values start with, need to respectively add left value OR right value
 // Refer to
 // https://leetcode.com/problems/triangle/discuss/705169/JAVA-Simple-recursive-1ms
-
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        return helper(triangle, 1, 0) + triangle.get(0).get(0);
+    }
+    
+    private int helper(List<List<Integer>> triangle, int row, int pos) {
+        if(row == triangle.size()) {
+            return 0;
+        }
+        int left_val = triangle.get(row).get(pos);
+        int right_val = triangle.get(row).get(pos + 1);
+        int left = helper(triangle, row + 1, pos) + left_val;
+        int right = helper(triangle, row + 1, pos + 1) + right_val;
+        return Math.min(left, right);
+    }
+}
 
 // Solution 2: Top Down DP Memoization (2D-DP)
+// Style 1:
 // Refer to
 // https://leetcode.com/problems/triangle/discuss/705169/JAVA-Simple-recursive-1ms
 /**
@@ -84,3 +102,30 @@ class Solution {
         return memo[row][pos];
     }
 }
+
+// Style 2:
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        Integer[][] memo = new Integer[triangle.size()][triangle.size()];
+        return helper(triangle, 1, 0, memo) + triangle.get(0).get(0);
+    }
+    
+    private int helper(List<List<Integer>> triangle, int row, int pos, Integer[][] memo) {
+        if(row == triangle.size()) {
+            return 0;
+        }
+        if(memo[row][pos] != null) {
+            return memo[row][pos];
+        }
+        int left_val = triangle.get(row).get(pos);
+        int right_val = triangle.get(row).get(pos + 1);
+        int left = helper(triangle, row + 1, pos, memo) + left_val;
+        int right = helper(triangle, row + 1, pos + 1, memo) + right_val;
+        memo[row][pos] = Math.min(left, right);
+        return memo[row][pos];
+    }
+}
+
+// Solution 3: Bottom Up DP
+// Refer to
+// 
