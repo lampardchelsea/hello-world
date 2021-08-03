@@ -28,3 +28,57 @@ triangle[i].length == triangle[i - 1].length + 1
 
 Follow up: Could you do this using only O(n) extra space, where n is the total number of rows in the triangle?
 */
+
+// Solution 1: Native DFS (TLE)
+// Style 1:
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        return helper(triangle, 0, 0);
+    }
+    
+    private int helper(List<List<Integer>> triangle, int row, int pos) {
+        if(row == triangle.size()) {
+            return 0;
+        }
+        int val = triangle.get(row).get(pos);
+        int left = helper(triangle, row + 1, pos) + val;
+        int right = helper(triangle, row + 1, pos + 1) + val;
+        return Math.min(left, right);
+    }
+}
+
+// Style 2:
+
+
+// Solution 2: Top Down DP Memoization (2D-DP)
+// Refer to
+// https://leetcode.com/problems/triangle/discuss/705169/JAVA-Simple-recursive-1ms
+/**
+Taking the example given in question, we can see the indices have a pattern to follow, at each level its left and 
+right child are previous_index, previous_index+1, this can be understood in seconds once u jot it down on paper.
+
+Finally, you can think of it as a tree and find the path with minium value, the only important fact being that two 
+or more nodes at the same level will encounter same children on the next node which would mean multiple computations 
+so you can just save those results to be used again next time without going through the whole recursive process again.
+*/
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        Integer[][] memo = new Integer[triangle.size()][triangle.size()];
+        return helper(triangle, 0, 0, memo);
+    }
+    
+    private int helper(List<List<Integer>> triangle, int row, int pos, Integer[][] memo) {
+        if(row == triangle.size()) {
+            return 0;
+        }
+        if(memo[row][pos] != null) {
+            return memo[row][pos];
+        }
+        int val = triangle.get(row).get(pos);
+        // At each level its left and right child are previous_index, previous_index + 1
+        int left = helper(triangle, row + 1, pos, memo) + val;
+        int right = helper(triangle, row + 1, pos + 1, memo) + val;
+        memo[row][pos] = Math.min(left, right);
+        return memo[row][pos];
+    }
+}
