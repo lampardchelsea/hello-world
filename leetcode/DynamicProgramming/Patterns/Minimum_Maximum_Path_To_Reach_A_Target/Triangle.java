@@ -30,7 +30,7 @@ Follow up: Could you do this using only O(n) extra space, where n is the total n
 */
 
 // Solution 1: Native DFS (TLE)
-// Style 1:
+// Style 1: Start from level = 0 (Top most root node)
 class Solution {
     public int minimumTotal(List<List<Integer>> triangle) {
         return helper(triangle, 0, 0);
@@ -47,7 +47,9 @@ class Solution {
     }
 }
 
-// Style 2:
+// Style 2: Start from level = 1 (2nd level if exist)
+// Refer to
+// https://leetcode.com/problems/triangle/discuss/705169/JAVA-Simple-recursive-1ms
 
 
 // Solution 2: Top Down DP Memoization (2D-DP)
