@@ -126,6 +126,64 @@ class Solution {
     }
 }
 
-// Solution 3: Bottom Up DP
+// Solution 3: Bottom Up DP (2D-DP -> N * N)
 // Refer to
-// 
+// https://leetcode.com/problems/triangle/discuss/38730/DP-Solution-for-Triangle/36543
+/**
+This problem is quite well-formed in my opinion. The triangle has a tree-like structure, which would lead people to think about 
+traversal algorithms such as DFS. However, if you look closely, you would notice that the adjacent nodes always share a 'branch'. 
+In other word, there are overlapping subproblems. Also, suppose x and y are 'children' of k. Once minimum paths from x and y to 
+the bottom are known, the minimum path starting from k can be decided in O(1), that is optimal substructure. Therefore, dynamic 
+programming would be the best solution to this problem in terms of time complexity.
+
+What I like about this problem even more is that the difference between 'top-down' and 'bottom-up' DP can be 'literally' pictured 
+in the input triangle. For 'top-down' DP, starting from the node on the very top, we recursively find the minimum path sum of each 
+node. When a path sum is calculated, we store it in an array (memoization); the next time we need to calculate the path sum of the 
+same node, just retrieve it from the array. However, you will need a cache that is at least the same size as the input triangle 
+itself to store the pathsum, which takes O(N^2) space. With some clever thinking, it might be possible to release some of the 
+memory that will never be used after a particular point, but the order of the nodes being processed is not straightforwardly seen 
+in a recursive solution, so deciding which part of the cache to discard can be a hard job.
+
+'Bottom-up' DP, on the other hand, is very straightforward: we start from the nodes on the bottom row; the min pathsums for these 
+nodes are the values of the nodes themselves. From there, the min pathsum at the ith node on the kth row would be the lesser of the 
+pathsums of its two children plus the value of itself, i.e.:
+
+minpath[k][i] = min( minpath[k+1][i], minpath[k+1][i+1]) + triangle[k][i];
+*/
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        int rowNum = triangle.size();
+        int colNum = triangle.get(rowNum - 1).size();
+        int[][] dp = new int[rowNum][colNum];
+        for(int i = 0; i < colNum; i++) {
+            dp[rowNum - 1][i] = triangle.get(rowNum - 1).get(i);
+        }
+        for(int row = rowNum - 2; row >= 0; row--) {
+            for(int col = 0; col < triangle.get(row).size(); col++) {
+                dp[row][col] = triangle.get(row).get(col) + Math.min(dp[row + 1][col], dp[row + 1][col + 1]);
+            }
+        }
+        return dp[0][0];
+    }
+}
+
+// Solution 4: Bottom Up DP (2D-DP 2 * N)
+// Refer to
+// https://leetcode.com/problems/triangle/discuss/159686/Java-Recursive-greaterTop-Down-greater-Bottom-up-greater-Bottom-Up-%2B-Optimal-Space
+/**
+Optimize Space from (n * n) to (2 * n): 
+You can see that dp[i][j] only depends on previous(lower row, more close to leaf) row, we 
+can optimize the space by only using 2 rows instead of the matrix. Let's say dp and dp1.
+Every time you finish updating dp1, dp have previous value, you can copy dp1 to dp as the 
+previous row value need update to new row value.
+
+   2
+  3 4
+ 6 5 7
+4 1 8 3
+                                                     dp = dp1                          dp = dp1                              dp = dp1
+dp: [0, 0, 0, 0] -> [4, 1, 8, 3] -> [4, 1, 8, 3]  -> [7, 6, 10, 0] -> [7, 6, 10, 0] -> [9, 10, 10, 0] -> [9, 10, 10, 0]   -> [11, 10, 10, 0]
+dp1:[0, 0, 0, 0] -> [0, 0, 0, 0] -> [7, 6, 10, 0] -> [7, 6, 10, 0] -> [9, 10, 10, 0] -> [9, 10, 10, 0] -> [11, 10, 10, 0] -> [11, 10, 10, 0]
+*/
+
+
