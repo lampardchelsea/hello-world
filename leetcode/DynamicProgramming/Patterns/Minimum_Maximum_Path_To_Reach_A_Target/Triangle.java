@@ -167,7 +167,7 @@ class Solution {
     }
 }
 
-// Solution 4: Bottom Up DP (2D-DP 2 * N)
+// Solution 4: Bottom Up DP (1D-DP Optimize Space from (n * n) to (2 * n))
 // Refer to
 // https://leetcode.com/problems/triangle/discuss/159686/Java-Recursive-greaterTop-Down-greater-Bottom-up-greater-Bottom-Up-%2B-Optimal-Space
 /**
@@ -185,5 +185,62 @@ previous row value need update to new row value.
 dp: [0, 0, 0, 0] -> [4, 1, 8, 3] -> [4, 1, 8, 3]  -> [7, 6, 10, 0] -> [7, 6, 10, 0] -> [9, 10, 10, 0] -> [9, 10, 10, 0]   -> [11, 10, 10, 0]
 dp1:[0, 0, 0, 0] -> [0, 0, 0, 0] -> [7, 6, 10, 0] -> [7, 6, 10, 0] -> [9, 10, 10, 0] -> [9, 10, 10, 0] -> [11, 10, 10, 0] -> [11, 10, 10, 0]
 */
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        int rowNum = triangle.size();
+        int colNum = triangle.get(rowNum - 1).size();
+        int[] dp = new int[colNum];
+        int[] dp1 = new int[colNum];
+        for(int i = 0; i < colNum; i++) {
+            dp[i] = triangle.get(rowNum - 1).get(i);
+        }
+        for(int row = rowNum - 2; row >= 0; row--) {
+            for(int col = 0; col < triangle.get(row).size(); col++) {
+                dp1[col] = triangle.get(row).get(col) + Math.min(dp[col], dp[col + 1]);
+            }
+            dp = dp1;
+        }
+        return dp[0];
+    }
+}
 
+// Solution 5: Bottom Up DP (1D-DP Optimize Space from (2 * n) to n)
+// Refer to
+// https://leetcode.com/problems/triangle/discuss/38730/DP-Solution-for-Triangle
+// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Pattern_1_0_1_Knapsack/How_downgrade_2D_to_1D_and_why_loop_backwards.txt
+/**
+Think about why no need reverse for inner for-loop, is that because previous re-assign dp[i] will not affect later dp[i] need to re-assign ?
+You can also see that, the column indices of dp[row + 1][col + 1] and dp[row][col] are >= col. 
+The conclusion you can get is: the elements of previous (lower row more close to leaf) row 
+whose column index is < col(i.e. dp[row + 1][0 : col - 1]) will not affect the update of 
+dp[row][col] since we will not touch them:
 
+new dp[0] defined by dp[0], dp[1] --> safe to update dp[0] 
+(e.g initialized dp[] = {4,1,8,3}, dp[0] = 4, dp[1] = 1, new dp[0] = min(4, 1) + 6 = 7, now dp[] = {7,1,8,3})
+new dp[1] defined by dp[1], dp[2] --> try to update dp[1], even we have new dp[0], it not affect new dp[1], safe to update dp[1] 
+(e.g in the same loop for which previous update for dp[0] from 4 to 7, currently dp[0] = 7, dp[1] = 1, dp[2] = 8, new dp[1] = min(1, 8) + 5 = 6, 
+it not use new dp[0] = 7 to define the new dp[1], so safe to update dp[1] from 1 to 6)
+
+   2
+  3 4
+ 6 5 7
+4 1 8 3
+
+dp: [0, 0, 0, 0] -> [4, 1, 8, 3]  -> [7, 6, 10, 3] -> [9, 10, 10, 3] -> [11, 10, 10, 3]
+*/
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        int rowNum = triangle.size();
+        int colNum = triangle.get(rowNum - 1).size();
+        int[] dp = new int[colNum];
+        for(int i = 0; i < colNum; i++) {
+            dp[i] = triangle.get(rowNum - 1).get(i);
+        }
+        for(int row = rowNum - 2; row >= 0; row--) {
+            for(int col = 0; col < triangle.get(row).size(); col++) {
+                dp[col] = triangle.get(row).get(col) + Math.min(dp[col], dp[col + 1]);
+            }
+        }
+        return dp[0];
+    }
+}
