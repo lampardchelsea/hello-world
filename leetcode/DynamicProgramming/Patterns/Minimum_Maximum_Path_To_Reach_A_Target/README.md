@@ -43,3 +43,10 @@
 <p>4. [Same as 494. Target Sum and 2D-DP] (https://leetcode.com/problems/last-stone-weight-ii/discuss/295167/Java-beat-100-with-nice-explanation)
 <p>5. [Top Down 2D-DP] (https://leetcode.com/problems/last-stone-weight-ii/discuss/295167/Java-beat-100-with-nice-explanation)
 <p>6. [How to convert it from 2D-DP into 1D-DP] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Pattern_1_0_1_Knapsack/How_downgrade_2D_to_1D_and_why_loop_backwards.txt)
+
+<p>Triangle
+<p>1. [Native DFS (TLE) and DFS Top Down Memoization] (https://leetcode.com/problems/triangle/discuss/705169/JAVA-Simple-recursive-1ms)
+<p>2. [Bottom Up DP (2D-DP -> N * N)] (https://leetcode.com/problems/triangle/discuss/38730/DP-Solution-for-Triangle/36543)
+<p>3. [Bottom Up DP (1D-DP Optimize Space from (n * n) to (2 * n))] (https://leetcode.com/problems/triangle/discuss/159686/Java-Recursive-greaterTop-Down-greater-Bottom-up-greater-Bottom-Up-%2B-Optimal-Space)
+<p>4. [Bottom Up DP (1D-DP Optimize Space from (2 * n) to n)] (https://leetcode.com/problems/triangle/discuss/38730/DP-Solution-for-Triangle)
+<p>5. [How to convert it from 2D-DP into 1D-DP] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Pattern_1_0_1_Knapsack/How_downgrade_2D_to_1D_and_why_loop_backwards.txt)
