@@ -338,6 +338,7 @@ class Solution {
             // Why we need to loop backwards when down-grade 3D DP to 2D DP
             // Refer to
             // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Pattern_1_0_1_Knapsack/EqualSubsetSumPartition.java
+	    // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Pattern_1_0_1_Knapsack/How_downgrade_2D_to_1D_and_why_loop_backwards.txt
             for(int j = m; j >= 0; j--) {
                 for(int k = n; k >= 0; k--) {
                     if(j >= zeros && k >= ones) {
