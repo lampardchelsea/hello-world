@@ -169,7 +169,7 @@ This modification can be seen in the final version below.
   }
 */
 
-// Style 1: Use 3D array
+// Style 1: Use 3D Integer array and check NULL or not
 class Solution {
     public int findMaxForm(String[] strs, int m, int n) {
         Integer[][][] memo = new Integer[strs.length + 1][m + 1][n + 1];
@@ -204,7 +204,41 @@ class Solution {
     }
 }
 
-// Style 2: Use Map 
+// Style 2: Use 3D int array and check > 0 or not
+class Solution {
+    public int findMaxForm(String[] strs, int m, int n) {
+        int[][][] memo = new int[m + 1][n + 1][strs.length + 1];
+        return helper(strs, m, n, 0, memo);
+    }
+    
+    private int helper(String[] strs, int m, int n, int index, int[][][] memo) {
+        if(index == strs.length) {
+            return 0;
+        }
+        if(memo[m][n][index] > 0) {
+            return memo[m][n][index];
+        }
+        String str = strs[index];
+        int zeros = 0;
+        int ones = 0;
+        for(int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) == '1') {
+                ones++;
+            } else {
+                zeros++;
+            }
+        }
+        int choose = 0;
+        if(m >= zeros && n >= ones) {
+            choose = helper(strs, m - zeros, n - ones, index + 1, memo) + 1;
+        }
+        int notChoose = helper(strs, m, n, index + 1, memo);
+        memo[m][n][index] = Math.max(choose, notChoose);
+        return memo[m][n][index];
+    }
+}
+
+// Style 3: Use Map 
 class Solution {
     public int findMaxForm(String[] strs, int m, int n) {
         Map<String, Integer> memo = new HashMap<String, Integer>();
