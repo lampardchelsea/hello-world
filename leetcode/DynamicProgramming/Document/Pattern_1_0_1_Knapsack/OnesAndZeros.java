@@ -123,7 +123,8 @@ them whenever we need them.
 findMaxFormStartingWith(strs, m, n, begin) is called by 4 parameters. The string array is provided for practical purposes. 
 It can be simply left out by declaring a private field for the class. The actual parameters are the remaining 0s (m), 1s (n) 
 and current string index begin. I preferred to create a 3D integer array to store and retrieve the results of subproblems. 
-Each dimension represents the respective values of the parameters.
+Each dimension represents the respective values of the parameters.We can create a three dimensional array, in which dp[i][j][k] 
+means the maximum number of strings we can get from the first i argument strs using limited j number of '0's and k number of '1's.
 
   private int[][][] dpTable;
 
