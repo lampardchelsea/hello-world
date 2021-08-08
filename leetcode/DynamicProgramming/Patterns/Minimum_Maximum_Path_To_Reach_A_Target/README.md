@@ -50,3 +50,9 @@
 <p>3. [Bottom Up DP (1D-DP Optimize Space from (n * n) to (2 * n))] (https://leetcode.com/problems/triangle/discuss/159686/Java-Recursive-greaterTop-Down-greater-Bottom-up-greater-Bottom-Up-%2B-Optimal-Space)
 <p>4. [Bottom Up DP (1D-DP Optimize Space from (2 * n) to n)] (https://leetcode.com/problems/triangle/discuss/38730/DP-Solution-for-Triangle)
 <p>5. [How to convert it from 2D-DP into 1D-DP] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Pattern_1_0_1_Knapsack/How_downgrade_2D_to_1D_and_why_loop_backwards.txt)
+
+<p>Maximal Square
+<p>1. [Artical of 2 Ways: Brute Force + DP] (https://leetcode.com/articles/maximal-square/)
+<p>2. [中文解释] (http://www.cnblogs.com/grandyang/p/4550604.html)
+<p>3. [Native DFS (TLE) and DFS Top Down Memoization] (https://leetcode.com/problems/maximal-square/discuss/955685/Java-Recursive-(TLE)-greater-Memoization-greater-2D-Bottom-Up-greater-1D-Bottom-Up)
+<p>4. [Best graph explain for 2D-DP array setup --> [Python] Thinking Process Diagrams - DP Approach] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Maximal_Square_DP_graph_explain.docx)
