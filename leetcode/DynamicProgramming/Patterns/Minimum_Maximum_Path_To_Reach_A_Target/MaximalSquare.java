@@ -159,6 +159,31 @@ class Solution {
 // https://leetcode.com/problems/maximal-square/discuss/600149/Python-Thinking-Process-Diagrams-DP-Approach
 // Save document into
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Maximal_Square_DP_graph_explain.docx
+// Style 1: Initialize as int[][] dp = new int[rows + 1][cols + 1]
+class Solution {
+    public int maximalSquare(char[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int max = 0;
+        // Additional row and column in dp to facilitate computing 
+        // dp cells for first row and first column in matrix
+        int[][] dp = new int[rows + 1][cols + 1];
+        // Since when rows = 0 or cols = 0 no square will 
+        // be available no need to initialize for i = 0
+        // and j = 0, just initialize from i = 1 and j = 1
+        for(int i = 1; i <= rows; i++) {
+            for(int j = 1; j <= cols; j++) {
+                if(matrix[i - 1][j - 1] == '1') {
+                    dp[i][j] = Math.min(dp[i - 1][j - 1], Math.min(dp[i - 1][j], dp[i][j - 1])) + 1;
+                    max = Math.max(max, dp[i][j]);
+                }
+            }
+        }
+        return max * max;
+    }
+}
+
+// Style 2: Initialize as int[][] dp = new int[rows][cols]
 class Solution {
     /**
      * Refer to
