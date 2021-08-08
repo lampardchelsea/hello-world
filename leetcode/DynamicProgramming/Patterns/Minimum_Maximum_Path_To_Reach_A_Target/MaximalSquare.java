@@ -358,6 +358,8 @@ public class MaximalSquareBottomUp2DApproach {
     }
 }
 
+Above 2D-DP envolve into 1D-DP below
+
 public class MaximalSquareBottomUp1DApproach {
     public int maximalSquare(char[][] matrix) {
         if (matrix.length == 0) return 0;
