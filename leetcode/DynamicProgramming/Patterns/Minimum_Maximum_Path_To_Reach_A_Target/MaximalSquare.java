@@ -332,59 +332,52 @@ public:
 };
 */
 
-// Refer to
-// https://leetcode.com/problems/maximal-square/discuss/955685/Java-Recursive-(TLE)-greater-Memoization-greater-2D-Bottom-Up-greater-1D-Bottom-Up
-/**
-public class MaximalSquareBottomUp2DApproach {
+// Here is a java version of last two methods (O(N) space and O(MN) time)
+// https://leetcode.com/problems/maximal-square/discuss/61803/C++-space-optimized-DP/63347
+class Solution {
     public int maximalSquare(char[][] matrix) {
-        if (matrix.length == 0) return 0;
-
-        int m = matrix.length, n = matrix[0].length, maxLength = 0;
-        int[][] length = new int[m + 1][n + 1];
-
-        for (int r = m - 1; r >= 0; r--) {
-            for (int c = n - 1; c >= 0; c--) {
-                if (matrix[r][c] == '0') continue;
-
-                length[r][c] = Math.min(
-                    length[r + 1][c + 1], Math.min(length[r + 1][c], length[r][c + 1])
-                ) + 1;
-
-                maxLength = Math.max(maxLength, length[r][c]);
-            }
-        }
-
-        return maxLength * maxLength;
-    }
-}
-
-Above 2D-DP envolve into 1D-DP below
-
-public class MaximalSquareBottomUp1DApproach {
-    public int maximalSquare(char[][] matrix) {
-        if (matrix.length == 0) return 0;
-
-        int m = matrix.length, n = matrix[0].length, maxLength = 0;
-        int[] length = new int[n + 1];
-
-        for (int r = m - 1; r >= 0; r--) {
-            int prev = 0;
-
-            for (int c = n - 1; c >= 0; c--) {
-                if (matrix[r][c] == '0') {
-                    prev = length[c];
-                    length[c] = 0;
-                    continue;
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int max = 0;
+        int[] prev = new int[cols + 1];
+        int[] curr = new int[cols + 1];
+        for(int i = 1; i <= rows; i++) {
+            for(int j = 1; j <= cols; j++) {
+                if(matrix[i - 1][j - 1] == '1') {
+                    curr[j] = Math.min(prev[j], Math.min(prev[j - 1], curr[j - 1])) + 1;
+                    max = Math.max(max, curr[j]);
+                } else {
+                    curr[j] = 0;
                 }
-
-                int cur = length[c];
-                length[c] = Math.min(prev, Math.min(length[c], length[c + 1])) + 1;
-                prev = cur;
-                maxLength = Math.max(maxLength, length[c]);
             }
+            prev = Arrays.copyOf(curr, curr.length);
+            Arrays.fill(curr, 0);
         }
-
-        return maxLength * maxLength;
+        return max * max;
     }
 }
-*/
+
+// Best one:
+class Solution {
+    public int maximalSquare(char[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int max = 0;
+        int temp = 0;
+        int upperLeft = 0;
+        int[] curr = new int[cols + 1];
+        for(int i = 1; i <= rows; i++) {
+            for(int j = 1; j <= cols; j++) {
+                temp = curr[j];
+                if(matrix[i - 1][j - 1] == '1') {
+                    curr[j] = Math.min(curr[j], Math.min(upperLeft, curr[j - 1])) + 1;
+                    max = Math.max(max, curr[j]);
+                } else {
+                    curr[j] = 0;
+                }
+                upperLeft = temp;
+            }
+        }
+        return max * max;
+    }
+}
