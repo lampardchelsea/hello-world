@@ -56,3 +56,4 @@
 <p>2. [中文解释] (http://www.cnblogs.com/grandyang/p/4550604.html)
 <p>3. [Native DFS (TLE) and DFS Top Down Memoization] (https://leetcode.com/problems/maximal-square/discuss/955685/Java-Recursive-(TLE)-greater-Memoization-greater-2D-Bottom-Up-greater-1D-Bottom-Up)
 <p>4. [Best graph explain for 2D-DP array setup --> [Python] Thinking Process Diagrams - DP Approach] (https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Maximal_Square_DP_graph_explain.docx)
+<p>5. [N * N to 2 * N to N] (https://leetcode.com/problems/maximal-square/discuss/61803/C++-space-optimized-DP/63347)
