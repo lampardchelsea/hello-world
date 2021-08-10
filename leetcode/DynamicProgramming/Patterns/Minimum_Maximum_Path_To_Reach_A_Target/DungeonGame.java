@@ -260,3 +260,38 @@ int calculateMinimumHP(vector<vector<int> > &dungeon) {
     由于最下面一行和最右面一列比较特殊，只有一种逆推方法，所以我们要先单独处理一下。
     最右下角那个节点没有待逆推的节点，所以我们假设其逆推节点的血量为1。
 */
+class Solution {
+    public int calculateMinimumHP(int[][] dungeon) {
+        if(dungeon == null || dungeon.length == 0 || dungeon[0].length == 0) {
+            return 0;
+        }
+        // state
+        int m = dungeon.length;
+        int n = dungeon[0].length;
+        // dp[i][j] represent knight's health at position (i,j)
+        // dungeon[i][j] represent decreased health at position (i,j)
+        int[][] dp = new int[m][n];
+        // intialize
+        // princess position
+        dp[m - 1][n - 1] = Math.max(1, 1 - dungeon[m - 1][n - 1]);
+        // last row
+        for(int i = n - 2; i >= 0; i--) {
+            dp[m - 1][i] = Math.max(dp[m - 1][i + 1] - dungeon[m - 1][i], 1);
+        }
+        // last column
+        for(int i = m - 2; i >= 0; i--) {
+            dp[i][n - 1] = Math.max(dp[i + 1][n - 1] - dungeon[i][n - 1], 1);
+        }
+        // function
+        // for every position reversely deduct from bottom-up and right-left
+        for(int i = m - 2; i >= 0; i--) {
+            for(int j = n - 2; j >= 0; j--) {
+                // if both bottom-up and right-left case exist, try to find
+                // minimum one between them as it require less health
+                dp[i][j] = Math.max(Math.min(dp[i + 1][j] - dungeon[i][j], dp[i][j + 1] - dungeon[i][j]), 1);
+            }
+        }
+        // answer
+        return dp[0][0];
+    }
+}
