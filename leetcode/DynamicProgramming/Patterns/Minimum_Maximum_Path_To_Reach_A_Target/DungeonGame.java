@@ -182,3 +182,60 @@ int getVal(vector<vector<int>> &mat, vector<vector<int>> &dp , int i=0, int j=0)
         return getVal(dungeon, dp);     
     }
 */
+class Solution {
+    public int calculateMinimumHP(int[][] dungeon) {
+        int rows = dungeon.length;
+        int cols = dungeon[0].length;
+        Integer[][] memo = new Integer[rows][cols];
+        return helper(dungeon, 0, 0, memo);
+    }
+    
+    private int helper(int[][] dungeon, int x, int y, Integer[][] memo) {
+        if(x >= dungeon.length || y >= dungeon[0].length) {
+            return Integer.MAX_VALUE;
+        }
+        if(x == dungeon.length - 1 && y == dungeon[0].length - 1) {
+            return dungeon[x][y] <= 0 ? 1 + (-dungeon[x][y]) : 1;
+        }
+        if(memo[x][y] != null) {
+            return memo[x][y];
+        }
+        int rightward = helper(dungeon, x + 1, y, memo);
+        int downward = helper(dungeon, x, y + 1, memo);
+        int min = Math.min(rightward, downward) - dungeon[x][y];
+        memo[x][y] = (min <= 0) ? 1 : min;
+        return memo[x][y];
+    }
+}
+
+// Solution 3: Bottom Up DP (2D-DP)
+// Refer to
+// https://leetcode.com/problems/dungeon-game/discuss/745340/post-Dedicated-to-beginners-of-DP-or-have-no-clue-how-to-start
+/**
+so now you know the recursive solution , you have also tried memoization, so try coming up with bottomUp solution yourself, 
+HINT : as you might have observed final destination is the last cell, so why dont we start with the bottom cell itself. 
+then work all the way up to first cell.
+
+Step 5: You know the base casses , you know the sub problems so try coming up with bottom up solution yourself ( hint in above paragraph )
+
+int calculateMinimumHP(vector<vector<int> > &dungeon) {
+
+        int n = dungeon.size();
+        int m = dungeon[0].size();
+
+        vector<vector<int> > dp(n + 1, vector<int>(m + 1, 1e9+5));
+        dp[n][m - 1] = 1;
+        dp[n - 1][m] = 1;
+        
+        for (int i = n - 1; i >= 0; i--) 
+        {
+            for (int j = m - 1; j >= 0; j--) 
+            {
+                int need = min(dp[i + 1][j], dp[i][j + 1]) - dungeon[i][j];                
+                // store this value
+                dp[i][j] = need <= 0 ? 1 : need;
+            }
+        }
+        return dp[0][0];
+    }
+*/
