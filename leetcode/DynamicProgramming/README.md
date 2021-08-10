@@ -26,9 +26,6 @@
 <p>3. [Classic DP solution similar to LIS, O(n^2)] (https://discuss.leetcode.com/topic/49652/classic-dp-solution-similar-to-lis-o-n-2)
 <p>4. [C++ Solution with Explanations] (https://discuss.leetcode.com/topic/49456/c-solution-with-explanations)
 
-<p>Dungeon Game
-<p>1. [中文解释] (https://segmentfault.com/a/1190000003884349)
-
 <p>Longest Increasing Subsequence
 <p>1. [Template] (https://www.jiuzhang.com/solution/longest-increasing-subsequence/)
 <p>2. [中文解释] (https://segmentfault.com/a/1190000003819886)
