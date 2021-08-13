@@ -40,7 +40,7 @@ Constraints:
 1 <= fueli < 109
 */
 
-// Solution 1: Native DFS (TLE)
+// Solution 1: Native DFS with for loops subset implementation (TLE)
 // Refer to
 // https://leetcode.com/problems/minimum-number-of-refueling-stops/discuss/613853/Python-5-solutions-gradually-optimizing-from-Naive-DFS-to-O(n)-space-DP
 /**
@@ -94,7 +94,7 @@ class Solution {
     }
 }
 
-// Solution 2: Top Down DP Memoization (Memory Limit Exceeded)
+// Solution 2: DFS with for loops subset implementation + memorization (Memory Limit Exceeded)
 // Refer to
 // https://leetcode.com/problems/minimum-number-of-refueling-stops/discuss/613853/Python-5-solutions-gradually-optimizing-from-Naive-DFS-to-O(n)-space-DP
 /**
@@ -234,7 +234,63 @@ class Solution {
     }
 }
 
-// Solution 3: Top Down DP Memoization (DFS taken/not taken subset implementation + memorization / 0-1 Knapsack)
+// Solution 3: DFS taken/not taken subset implementation / 0-1 Knapsack (TLE, 114 / 198 test cases passed)
+// Refer to
+// https://leetcode.com/problems/minimum-number-of-refueling-stops/discuss/613853/Python-5-solutions-gradually-optimizing-from-Naive-DFS-to-O(n)-space-DP
+/**
+# 3) DFS taken/not taken subset implementation + memorization
+        self.full_target = target
+        mem = dict()
+        def dfs(curFuel, start, target):
+            if curFuel >= target:
+                return 0
+            
+            if start == len(stations):
+                return sys.maxsize
+            
+            if (curFuel, start, target) in mem:
+                return mem[(curFuel, start, target)]
+            
+            dis, fuel = stations[start][0] - (self.full_target - target), stations[start][1]
+            taken, not_taken = sys.maxsize, sys.maxsize
+            if curFuel - dis >= 0:
+                taken = dfs(curFuel - dis + fuel, start + 1, target - dis) + 1
+                not_taken = dfs(curFuel - dis, start + 1, target - dis)
+                
+            mem[(curFuel, start, target)] = min(taken, not_taken)
+            return mem[(curFuel, start, target)]
+        
+        stops = dfs(startFuel, 0, target)
+        return stops if stops != sys.maxsize else -1
+*/
+class Solution {
+    public int minRefuelStops(int target, int startFuel, int[][] stations) {
+        int stops = stations.length + 1;
+        stops = helper(startFuel, 0, target, target, stations);
+        return stops != stations.length + 1 ? stops : -1;
+    }
+    
+    public int helper(int curFuel, int start, int remain, int original_target, int[][] stations) {
+        if(curFuel >= remain) {
+            return 0;
+        }
+        if(start == stations.length) {
+            return stations.length + 1;
+        }
+        int passed_distance = original_target - remain;
+        int distance_to_ith_station = stations[start][0] - passed_distance;
+        int fuel = stations[start][1];
+        int taken = stations.length + 1;
+        int not_taken = stations.length + 1;
+        if(curFuel - distance_to_ith_station >= 0) {
+            taken = helper(curFuel - distance_to_ith_station + fuel, start + 1, remain - distance_to_ith_station, original_target, stations) + 1;
+            not_taken = helper(curFuel - distance_to_ith_station, start + 1, remain - distance_to_ith_station, original_target, stations);
+        }
+        return Math.min(taken, not_taken);
+    }
+}
+
+// Solution 4: Top Down DP Memoization (DFS taken/not taken subset implementation + memorization / 0-1 Knapsack)
 // Refer to
 // https://leetcode.com/problems/minimum-number-of-refueling-stops/discuss/613853/Python-5-solutions-gradually-optimizing-from-Naive-DFS-to-O(n)-space-DP
 /**
