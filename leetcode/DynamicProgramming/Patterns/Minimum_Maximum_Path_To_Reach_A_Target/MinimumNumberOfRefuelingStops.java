@@ -234,7 +234,7 @@ class Solution {
     }
 }
 
-// Solution 3: Top Down DP Memoization (DFS taken/not taken subset implementation + memorization)
+// Solution 3: Top Down DP Memoization (DFS taken/not taken subset implementation + memorization / 0-1 Knapsack)
 // Refer to
 // https://leetcode.com/problems/minimum-number-of-refueling-stops/discuss/613853/Python-5-solutions-gradually-optimizing-from-Naive-DFS-to-O(n)-space-DP
 /**
