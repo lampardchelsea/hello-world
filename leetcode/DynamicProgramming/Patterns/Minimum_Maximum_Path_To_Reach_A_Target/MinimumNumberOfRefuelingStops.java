@@ -280,7 +280,9 @@ class Solution {
         int passed_distance = original_target - remain;
         int distance_to_ith_station = stations[start][0] - passed_distance;
         int fuel = stations[start][1];
+        // The minimum stops needed if take the 'start' indexed gas station to refuel
         int taken = stations.length + 1;
+        // The minimum stops needed if not take the 'start' indexed gas station to refuel
         int not_taken = stations.length + 1;
         if(curFuel - distance_to_ith_station >= 0) {
             taken = helper(curFuel - distance_to_ith_station + fuel, start + 1, remain - distance_to_ith_station, original_target, stations) + 1;
