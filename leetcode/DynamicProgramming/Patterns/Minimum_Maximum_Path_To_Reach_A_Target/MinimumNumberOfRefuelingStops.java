@@ -94,4 +94,172 @@ class Solution {
     }
 }
 
-// Solution 2: 
+// Solution 2: Top Down DP Memoization (Memory Limit Exceeded)
+// Refer to
+// https://leetcode.com/problems/minimum-number-of-refueling-stops/discuss/613853/Python-5-solutions-gradually-optimizing-from-Naive-DFS-to-O(n)-space-DP
+/**
+# 2) DFS with for loops subset implementation + memorization
+        self.full_target = target
+        mem = dict()
+        def dfs(curFuel, start, target):
+            if curFuel >= target:
+                return 0
+            
+            if (curFuel, start, target) in mem:
+                return mem[(curFuel, start, target)]
+            
+            rst = sys.maxsize
+            for i in xrange(start, len(stations)):
+                dis, fuel = stations[i][0] - (self.full_target - target), stations[i][1]
+                if curFuel - dis >= 0:
+                    rst = min(rst, dfs(curFuel - dis + fuel, i + 1, target - dis) + 1)
+            mem[(curFuel, start, target)] = rst
+            return mem[(curFuel, start, target)]
+        
+        stops = dfs(startFuel, 0, target)
+        return stops if stops != sys.maxsize else -1
+*/
+
+// https://leetcode.com/problems/minimum-number-of-refueling-stops/discuss/149958/Does-anyone-have-a-Top-Down-DP-version-of-this
+/**
+I got the recursive solution, but I am getting memory limit exceeded whenever I try to memoize.
+
+class Solution {
+    
+    int N;
+    int [][] stations;
+    Map<Integer, Integer> map = new HashMap<>();
+    int [][] memo;
+    
+    public int minRefuelStops(int target, int startFuel, int[][] stations) {
+        this.N = stations.length;
+        this.stations = stations;
+        for(int i = 0; i < stations.length; ++i){
+            int [] s = stations[i];
+            map.put(s[0], i);
+        }
+        map.put(0, -1);
+        memo = new int[stations.length + 1][10000000 + 1];
+        for(int [] arr : memo) Arrays.fill(arr, -1);
+        
+        int sol = helper(0, startFuel, target);
+        return (sol >= N + 1) ? -1 : sol;
+    }
+    
+    public int helper(int station, int fuel, int target){
+        if(memo[station][fuel] != -1) return memo[station][fuel];
+        if(station + fuel >= target) return 0;
+        if(fuel <= 0) return N + 1;
+        int cur = N + 1;
+        for(int i = map.get(station) + 1; i < stations.length; ++i){
+            int [] current = stations[i];
+            if(fuel - (current[0] - station) < 0) continue;
+            cur = Math.min(cur, 1 + helper(current[0], fuel - (current[0] - station) + current[1], target));
+        }
+        memo[station][fuel] = cur;
+        return cur;
+    }
+}
+This does not work I am getting memory and time limit exceeded. Does anyone have an idea how to fix this?
+*/
+// Style 1: memo[i][j] means minimum stops needed for i liters fuel at jth station
+// Memory Limit Exceeded when input as [1, 1], 0 test case passed
+class Solution {
+    public int minRefuelStops(int target, int startFuel, int[][] stations) {
+        // Need to memoize tuple of (current fuel, position of station) 
+        // since these two values keep changing during you recursive calls
+        // 1 <= target, startFuel <= 10^9 --> need (target + 1)
+        // 1 <= fueli < 10^9 --> need (10^9)
+        // memo[i][j] means minimum stops needed for i liters fuel at jth station
+        Integer[][] memo = new Integer[1000000000][target + 1];
+        int stops = stations.length + 1;
+        stops = helper(startFuel, 0, target, target, stations, memo);
+        return stops != stations.length + 1 ? stops : -1;
+    }
+    
+    public int helper(int curFuel, int start, int remain, int original_target, int[][] stations, Integer[][] memo) {
+        if(curFuel >= remain) {
+            return 0;
+        }
+        if(memo[curFuel][start] != null) {
+            return memo[curFuel][start];
+        } 
+        int min_stops = stations.length + 1;
+        for(int i = start; i < stations.length; i++) {
+            int passed_distance = original_target - remain;
+            int distance_to_ith_station = stations[i][0] - passed_distance;
+            int fuel = stations[i][1];
+            if(curFuel - distance_to_ith_station >= 0) {
+                min_stops = Math.min(min_stops, helper(curFuel - distance_to_ith_station + fuel, i + 1, remain - distance_to_ith_station, original_target, stations, memo) + 1);
+            }
+        }
+        memo[curFuel][start] = min_stops;
+        return memo[curFuel][start];
+    }
+}
+
+// Style 2: memo[i][j] means minimum stops needed for ith station with j miles remain
+// Memory Limit Exceeded when input as [1000000000, 1000000000], 14/198 test case passed
+class Solution {
+    public int minRefuelStops(int target, int startFuel, int[][] stations) {
+        // Need to memoize tuple of (position of station, remain distance to target) 
+        // since these two values keep changing during you recursive calls
+        // 1 <= target, startFuel <= 10^9 --> need (target + 1)
+        // remain is same as target range
+        // memo[i][j] means minimum stops needed for ith station with j miles remain
+        Integer[][] memo = new Integer[target + 1][target + 1];
+        int stops = stations.length + 1;
+        stops = helper(startFuel, 0, target, target, stations, memo);
+        return stops != stations.length + 1 ? stops : -1;
+    }
+    
+    public int helper(int curFuel, int start, int remain, int original_target, int[][] stations, Integer[][] memo) {
+        if(curFuel >= remain) {
+            return 0;
+        }
+        if(memo[start][remain] != null) {
+            return memo[start][remain];
+        } 
+        int min_stops = stations.length + 1;
+        for(int i = start; i < stations.length; i++) {
+            int passed_distance = original_target - remain;
+            int distance_to_ith_station = stations[i][0] - passed_distance;
+            int fuel = stations[i][1];
+            if(curFuel - distance_to_ith_station >= 0) {
+                min_stops = Math.min(min_stops, helper(curFuel - distance_to_ith_station + fuel, i + 1, remain - distance_to_ith_station, original_target, stations, memo) + 1);
+            }
+        }
+        memo[start][remain] = min_stops;
+        return memo[start][remain];
+    }
+}
+
+// Solution 3: Top Down DP Memoization (DFS taken/not taken subset implementation + memorization)
+// Refer to
+// https://leetcode.com/problems/minimum-number-of-refueling-stops/discuss/613853/Python-5-solutions-gradually-optimizing-from-Naive-DFS-to-O(n)-space-DP
+/**
+# 3) DFS taken/not taken subset implementation + memorization
+        self.full_target = target
+        mem = dict()
+        def dfs(curFuel, start, target):
+            if curFuel >= target:
+                return 0
+            
+            if start == len(stations):
+                return sys.maxsize
+            
+            if (curFuel, start, target) in mem:
+                return mem[(curFuel, start, target)]
+            
+            dis, fuel = stations[start][0] - (self.full_target - target), stations[start][1]
+            taken, not_taken = sys.maxsize, sys.maxsize
+            if curFuel - dis >= 0:
+                taken = dfs(curFuel - dis + fuel, start + 1, target - dis) + 1
+                not_taken = dfs(curFuel - dis, start + 1, target - dis)
+                
+            mem[(curFuel, start, target)] = min(taken, not_taken)
+            return mem[(curFuel, start, target)]
+        
+        stops = dfs(startFuel, 0, target)
+        return stops if stops != sys.maxsize else -1
+*/
