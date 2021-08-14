@@ -292,7 +292,7 @@ class Solution {
     }
 }
 
-// Solution 4: Top Down DP Memoization (DFS taken/not taken subset implementation + memorization / 0-1 Knapsack)
+// Solution 4: DFS taken/not taken subset implementation + memorization / 0-1 Knapsack / Top Down DP Memoization (TLE 103/198)
 // Refer to
 // https://leetcode.com/problems/minimum-number-of-refueling-stops/discuss/613853/Python-5-solutions-gradually-optimizing-from-Naive-DFS-to-O(n)-space-DP
 /**
@@ -321,3 +321,42 @@ class Solution {
         stops = dfs(startFuel, 0, target)
         return stops if stops != sys.maxsize else -1
 */
+class Solution {
+    public int minRefuelStops(int target, int startFuel, int[][] stations) {
+        // Use Map and key set up as 'curFuel + "_" + start' is because traditional
+        // way to create memo is hard to setup dimension size, especially for current
+        // fuel, the fuel as given condition is 1 <= fueli < 10^9, which means dimension
+        // size at least 10^9, which is easy to get Memory Limit Exceeded
+        // So store two recursively changing keys 'curFuel' and 'start' as a String
+        // combination is most practical way, but even this way encounter TLE for 103/198
+        Map<String, Integer> memo = new HashMap<String, Integer>();
+        int stops = stations.length + 1;
+        stops = helper(startFuel, 0, target, target, stations, memo);
+        return stops != stations.length + 1 ? stops : -1;
+    }
+    
+    public int helper(int curFuel, int start, int remain, int original_target, int[][] stations, Map<String, Integer> memo) {
+        if(curFuel >= remain) {
+            return 0;
+        }
+        if(start == stations.length) {
+            return stations.length + 1;
+        }
+        String key = curFuel + "_" + start;
+        if(memo.containsKey(key)) {
+            return memo.get(key);
+        }
+        int passed_distance = original_target - remain;
+        int distance_to_ith_station = stations[start][0] - passed_distance;
+        int fuel = stations[start][1];
+        int taken = stations.length + 1;
+        int not_taken = stations.length + 1;
+        if(curFuel - distance_to_ith_station >= 0) {
+            taken = helper(curFuel - distance_to_ith_station + fuel, start + 1, remain - distance_to_ith_station, original_target, stations, memo) + 1;
+            not_taken = helper(curFuel - distance_to_ith_station, start + 1, remain - distance_to_ith_station, original_target, stations, memo);
+        }
+        int result = Math.min(taken, not_taken);
+        memo.put(key, result);
+        return result;
+    }
+}
