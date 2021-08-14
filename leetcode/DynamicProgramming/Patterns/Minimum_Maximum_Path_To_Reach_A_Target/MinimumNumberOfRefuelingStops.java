@@ -360,3 +360,32 @@ class Solution {
         return result;
     }
 }
+
+// Solution 5: Bottom Up DP: reversed 0-1 knapsack (2D-DP)
+// Refer to
+// https://leetcode.com/problems/minimum-number-of-refueling-stops/discuss/613853/Python-5-solutions-gradually-optimizing-from-Naive-DFS-to-O(n)-space-DP
+/**
+# 4) DP: reversed 0-1 knapsack. 
+        # Original 0-1 knapsack: maximum value given # of bags limitation: dp[i][j] = bool -- former i bags, j VALUE can be constructed or not 
+        # Reversed 0-1 knapsack: minimum # of bags used to reach a given value dp[i][j] = value -- former i bags, j # OF BAGS being picked, what is the maximum value
+        
+        if startFuel >= target:
+            return 0
+        
+        n = len(stations)
+        # dp[i][j]: in former i stations, pick j stations to fuel, how far it can mostly reach
+        dp = [[0] * (n + 1) for _ in xrange(n + 1)]
+        for i in range(n + 1):
+            dp[i][0] = startFuel
+            
+        rst = sys.maxsize
+        for i in range(1, n + 1):
+            # for j in range(i, 0, -1): ... both works, as long as the i - 1 row has finished, updating i row from left to right/right to left doesn't matter 
+            for j in range(1, i + 1):  # j <= i because in former i stations, at most i stations can be picked
+                dp[i][j] = max(dp[i][j], dp[i - 1][j])
+                if dp[i - 1][j - 1] >= stations[i - 1][0]:
+                    dp[i][j] = max(dp[i][j], dp[i - 1][j - 1] + stations[i - 1][1])
+                if dp[i][j] >= target:
+                    rst = min(rst, j)
+        return rst if rst != sys.maxsize else -1
+*/
