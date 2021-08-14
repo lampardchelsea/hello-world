@@ -389,3 +389,71 @@ class Solution {
                     rst = min(rst, j)
         return rst if rst != sys.maxsize else -1
 */
+class Solution {
+    public int minRefuelStops(int target, int startFuel, int[][] stations) {
+        // Base case: test out by input 1,1,[]
+        if(startFuel >= target) {
+            return 0;
+        }
+        int n = stations.length;
+        // dp[i][j]: in former i stations, pick j stations to fuel, 
+        // how far it can mostly reach
+        int[][] dp = new int[n + 1][n + 1];
+        // Initialize no matter given how many former i stations, pick up 0
+        // station to fuel, the farest position able to reach equal to startFuel
+        for(int i = 0; i <= n; i++) {
+            dp[i][0] = startFuel;
+        }
+        // Maximum potential stops will be only n, initalize n + 1 the effect same
+        // as Integer.MAX_VALUE
+        int stops = n + 1;
+        for(int i = 1; i <= n; i++) {
+            // For j in range(i, 0, -1): ... both works, as long as the i - 1 row has 
+            // finished, updating i row from left to right/right to left doesn't matter 
+            // j <= i because in former i stations, at most i stations can be picked
+            for(int j = 1; j <= i; j++) {
+                // Not take ith station to refuel, which means in previous (i - 1)
+                // stations need to pick up j stations to refuel, so how far (i - 1)
+                // stations can reach can compare with former i stations to find max
+                dp[i][j] = Math.max(dp[i][j], dp[i - 1][j]);
+                // Take ith station to refuel, which means in previous (i - 1) stations
+                // need to pick up (j - 1) stations to refuel, the pre-requistion is
+                // to make sure we able to reach ith station {stations[i - 1] is the ith
+                // station represent in array, and stations[i - 1][0] indicates that 
+                // ith station miles east of the starting position} based on previous
+                // status (how far it can reach) stored in dp[i - 1][j - 1]
+                if(dp[i - 1][j - 1] >= stations[i - 1][0]) {
+                    dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - 1] + stations[i - 1][1]);
+                }
+                if(dp[i][j] >= target) {
+                    stops = Math.min(stops, j);
+                }
+            }
+        }
+        return stops != (n + 1) ? stops : -1;
+    }
+}
+
+// Solution 6: Bottom Up DP: reversed 0-1 knapsack (1D-DP)
+// Refer to
+// https://leetcode.com/problems/minimum-number-of-refueling-stops/discuss/613853/Python-5-solutions-gradually-optimizing-from-Naive-DFS-to-O(n)-space-DP
+/**
+		# 5) DP, space optimized
+        if startFuel >= target:
+            return 0
+        
+        n = len(stations)
+        # dp[j]: in former i stations, pick j stations to fuel, how far it can mostly reach
+        dp = [startFuel] + [0] * n
+        rst = sys.maxsize
+        for i in range(1, n + 1):
+            # since dp[i][j] relates to dp[i - 1][j] and dp[i - 1][j - 1],
+            # if updating the compressed 1-d dp array left -> right, dp[j - 1] is updated before dp[j] with row i's dp[i][j - 1] value, which replaced the target value dp[i - 1][j - 1]
+            # if updating the compressed 1-d dp array right -> left, dp[j - 1] hasn't been udpated when calculating dp[j], which remains the target value dp[i - 1][j - 1]
+            for j in range(i, 0, -1): 
+                if dp[j - 1] >= stations[i - 1][0]:
+                    dp[j] = max(dp[j], dp[j - 1] + stations[i - 1][1])
+                if dp[j] >= target:
+                    rst = min(rst, j)
+        return rst if rst != sys.maxsize else -1
+*/
