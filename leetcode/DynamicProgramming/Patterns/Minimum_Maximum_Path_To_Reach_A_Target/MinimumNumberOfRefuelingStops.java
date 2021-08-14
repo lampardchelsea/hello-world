@@ -438,7 +438,7 @@ class Solution {
 // Refer to
 // https://leetcode.com/problems/minimum-number-of-refueling-stops/discuss/613853/Python-5-solutions-gradually-optimizing-from-Naive-DFS-to-O(n)-space-DP
 /**
-		# 5) DP, space optimized
+        # 5) DP, space optimized
         if startFuel >= target:
             return 0
         
