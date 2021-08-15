@@ -361,6 +361,29 @@ class Solution {
     }
 }
 
+// How to define what dp[i][j] represents ? Why we choose it store maximum distance instead of minimum number of stops ?
+// Refer to
+// https://leetcode.com/problems/minimum-number-of-refueling-stops/discuss/613853/Python-5-solutions-gradually-optimizing-from-Naive-DFS-to-O(n)-space-DP/645219
+/**
+Q: 
+dp[i][j] - "minimum number of refueling stops needed from first i stations to reach distance j"
+Could you share code based on this approach? I was trying but got stuck.
+
+A: 
+"For knapsack problems, when the value amount is too large or there is a limitation on value to reach, 
+ consider to build a dp[i][j] with former i bags, pick j of them instead of the regular way dp[i][j] 
+ with former i bags, value j can be constructed or not."
+
+We can build the 2D DP in multiple ways
+dp[i][j] - "minimum number of refueling stops needed from first i stations to reach distance j"
+dp[i][j] - "maximum distance which can be reached by refueling 'i' times using some stations from [0,j]" (we can swap i with j)
+
+We can build the DP solution using both interpretations. 
+The first one is worse since its O(number_of_stations * target).
+The solution built using 1 gives TLE. Hence, it is better to use solution 2.
+*/
+
+
 // Solution 5: Bottom Up DP: reversed 0-1 knapsack (2D-DP)
 // Refer to
 // https://leetcode.com/problems/minimum-number-of-refueling-stops/discuss/613853/Python-5-solutions-gradually-optimizing-from-Naive-DFS-to-O(n)-space-DP
@@ -457,3 +480,33 @@ class Solution {
                     rst = min(rst, j)
         return rst if rst != sys.maxsize else -1
 */
+class Solution {
+    public int minRefuelStops(int target, int startFuel, int[][] stations) {
+        if(startFuel >= target) {
+            return 0;
+        }
+        int n = stations.length;
+        // dp[j]: in former i stations, pick j stations to fuel, how far it can mostly reach
+        int[] dp = new int[n + 1];
+        dp[0] = startFuel;
+        int stops = n + 1;
+        for(int i = 1; i <= n; i++) {
+            for(int j = i; j >= 1; j--) {
+                // Since dp[i][j] relates to dp[i - 1][j] and dp[i - 1][j - 1], 
+                // if updating the compressed 1-d dp array left -> right, 
+                // dp[j - 1] is updated before dp[j] with row i's dp[i][j - 1] 
+                // value, which replaced the target value dp[i - 1][j - 1]
+                // if updating the compressed 1-d dp array right -> left, 
+                // dp[j - 1] hasn't been udpated when calculating dp[j], 
+                // which remains the target value dp[i - 1][j - 1]
+                if(dp[j - 1] >= stations[i - 1][0]) {
+                    dp[j] = Math.max(dp[j], dp[j - 1] + stations[i - 1][1]);
+                }
+                if(dp[j] >= target) {
+                    stops = Math.min(stops, j);
+                }
+            }
+        }
+        return stops != (n + 1) ? stops : -1;
+    }
+}
