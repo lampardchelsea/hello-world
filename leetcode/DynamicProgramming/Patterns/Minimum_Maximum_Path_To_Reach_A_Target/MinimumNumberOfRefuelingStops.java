@@ -461,7 +461,11 @@ class Solution {
 // Refer to
 // https://leetcode.com/problems/minimum-number-of-refueling-stops/discuss/613853/Python-5-solutions-gradually-optimizing-from-Naive-DFS-to-O(n)-space-DP
 /**
-        # 5) DP, space optimized
+        # 5) DP, space optimized 
+        --> In DP theory, for Bottom Up DP, the previous status should not be updated anymore and should be fixed value after it initialized, 
+            otherwise later status will have no foundation / basement to calculate, because if previous status change, and all later status
+            which calculated from fixed formula and previous status will come out as all need to update, which means unstable
+            
         if startFuel >= target:
             return 0
         
