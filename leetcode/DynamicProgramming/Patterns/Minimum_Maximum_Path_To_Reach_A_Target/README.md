@@ -61,3 +61,6 @@
 <p>Dungeon Game
 <p>1. [中文解释] (https://segmentfault.com/a/1190000003884349)
 <p>2. [Native DFS (TLE) and DFS Top Down Memoization DP and Bottom Up DP] (https://leetcode.com/problems/dungeon-game/discuss/745340/post-Dedicated-to-beginners-of-DP-or-have-no-clue-how-to-start)
+
+<p>Minimum Number of Refueling Stops
+<p>1. [Native DFS -> DFS Memo -> Bottom Up DP 2D -> Bottom Up DP 1D] (https://leetcode.com/problems/minimum-number-of-refueling-stops/discuss/613853/Python-5-solutions-gradually-optimizing-from-Naive-DFS-to-O(n)-space-DP)
