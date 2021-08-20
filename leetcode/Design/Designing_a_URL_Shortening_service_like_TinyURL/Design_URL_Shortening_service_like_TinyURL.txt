@@ -117,3 +117,62 @@ However, when using incremental IDs, insertion can be much easier – just go to
 You can connect with me here: https://www.linkedin.com/in/shashi-bhushan-kumar-709a05b5/
 References: http://blog.gainlo.co/index.php/2016/03/08/system-design-interview-question-create-tinyurl-system/
 https://www.geeksforgeeks.org/how-to-design-a-tiny-url-or-url-shortener/
+
+======================================================================================
+Refer to Java style:
+https://leetcode.com/problems/encode-and-decode-tinyurl/discuss/254145/Java-Solutions
+
+Assign Unique Integer Id and Convert it to base-62
+
+A better idea is to assign a unique integer id to each long URL representation and convert this integer id to its base-62 representation.
+
+A URL character can be one of the following
+
+Lower case alphabet [a to z], total 26 characters
+Upper case alphabet [A to Z], total 26 characters
+Digit [0 to 9], total 10 characters
+So there are total 26 + 26 + 10 = 62 possible characters and hence the task is to convert a decimal number to base 62 number.
+
+To get the original long URL, we need to get URL stored in the Map.
+
+Time complexity: O(log n) for encode() method and O(1) for decode() method. To covert decimal integer id n to its base-62 representation will take O(log62(n)) time.
+Space complexity: O(m) - where m is the number of entries in the HashMap. i.e., the number of shortURLs generated so far.
+
+class Codec
+{
+	static final String BASE_HOST = "http://tinyurl.com/";
+	static final Map<String, String> shortToLongMap = new HashMap<>();
+    static final Map<String, String> longToShortMap = new HashMap<>();
+    static int counter = 0;
+
+    // Encodes a URL to a shortened URL.
+    public String encode(String longUrl)
+	{
+        if(longToShortMap.containsKey(longUrl))
+            return longToShortMap.get(longUrl);
+        
+        String shortUrl = BASE_HOST + convertDecimalToBase62(counter++);
+        shortToLongMap.put(shortUrl, longUrl);
+        longToShortMap.put(longUrl, shortUrl);
+        return shortUrl;
+    }
+
+    // Decodes a shortened URL to its original URL.
+    public String decode(String shortUrl)
+	{
+        return shortToLongMap.get(shortUrl);
+    }
+    
+    private String convertDecimalToBase62(int n)
+    {
+        final char[] BASE62 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
+        StringBuilder sb = new StringBuilder();
+        
+		while(n > 0)
+		{
+            sb.append(BASE62[n % 62]);
+            n /= 62;
+        }
+        return sb.reverse().toString();
+    }
+}
