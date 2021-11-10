@@ -90,7 +90,80 @@ public class LRUCache {
     }
 }
 
+// Solution 2: Reverse to Solution 1, store least recent used node at tail.prev, most recent used node at head.next
+class LRUCache {
+    private class Node {
+        int key;
+        int val;
+        Node prev;
+        Node next;
+        
+        public Node(int k, int v) {
+            this.key = k;
+            this.val = v;
+            this.prev = null;
+            this.next = null;
+        }
+    }
+    
+    Node head = new Node(-1, -1);
+    Node tail = new Node(-1, -1);
+    Map<Integer, Node> map = new HashMap<Integer, Node>();
+    int capacity;
+    
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
+        head.next = tail;
+        tail.prev = head;
+    }
+    
+    // Store least recent used node at tail.prev, most recent used node at head.next
+    public int get(int key) {
+        if(!map.containsKey(key)) {
+            return -1;
+        }
+        // Remove node from current position and relocate it to head.next
+        // No order change
+        Node cur = map.get(key);
+        cur.prev.next = cur.next;
+        cur.next.prev = cur.prev;
+        move_to_head(cur);
+        return cur.val;
+    }
+    
+    private void move_to_head(Node cur) {
+        cur.next = head.next;
+        head.next.prev = cur;
+        head.next = cur;
+        cur.prev = head;
+    }
+    
+    public void put(int key, int value) {
+        if(get(key) != -1) {
+            map.get(key).val = value;
+            return;
+        }
+        // Remove the least recent used node at tail.prev, also remove from map
+        if(map.size() == capacity) {
+            map.remove(tail.prev.key);
+            // No order change
+            tail.prev = tail.prev.prev;
+            tail.prev.next = tail;
+        }
+        Node insert = new Node(key, value);
+        map.put(key, insert);
+        move_to_head(insert);
+    }
+}
 
-// Solution 2: HashMap + SingleLinkedList
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
+
+
+// Solution 3: HashMap + SingleLinkedList
 
 
