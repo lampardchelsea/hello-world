@@ -310,3 +310,90 @@ public class Twitter {
  * obj.follow(followerId,followeeId);
  * obj.unfollow(followerId,followeeId);
  */
+
+
+// New attempt: 1. Use standard PQ 2. Use putIfAbsent to replace containsKey + create new logic 3. Hashset for following twittee for removing duplicates
+class Twitter {
+    Map<Integer, List<Tweet>> userTweetList;
+    // Map<Integer, List<Integer>> userRelationList;
+    // change to set in case of no duplicate following
+    // Input: ["Twitter","postTweet","follow","follow","getNewsFeed"]
+    //        [[],[2,5],[1,2],[1,2],[1]]
+    // Output: [null,null,null,null,[5,5]]
+    // Expected: [null,null,null,null,[5]]
+    Map<Integer, Set<Integer>> userRelationList; 
+    int timestamp;
+    
+    private class Tweet {
+        int timestamp;
+        int tweetid;
+        public Tweet(int timestamp, int tweetid) {
+            this.timestamp = timestamp;
+            this.tweetid = tweetid;
+        }
+    }
+    
+    public Twitter() {
+        timestamp = 0;
+        userTweetList = new HashMap<Integer, List<Tweet>>();
+        userRelationList = new HashMap<Integer, Set<Integer>>();
+    }
+    
+    public void postTweet(int userId, int tweetId) {
+        timestamp++;
+        Tweet tweet = new Tweet(timestamp, tweetId);
+        userTweetList.putIfAbsent(userId, new ArrayList<Tweet>());
+        //if(!userTweetList.containsKey(userId)) {
+        //   userTweetList.put(userId, new ArrayList<Tweet>());
+        //}
+        userTweetList.get(userId).add(tweet);
+    }
+    
+    public List<Integer> getNewsFeed(int userId) {
+        List<Integer> result = new ArrayList<Integer>();
+        List<Tweet> tmp = new ArrayList<Tweet>();
+        if(userTweetList.get(userId) != null && userTweetList.get(userId).size() > 0) {
+            tmp.addAll(userTweetList.get(userId));
+        }
+        if(userRelationList.get(userId) != null && userRelationList.get(userId).size() > 0) {
+            for(int followeeId : userRelationList.get(userId)) {
+                if(userTweetList.get(followeeId) != null && userTweetList.get(followeeId).size() > 0) {
+                    tmp.addAll(userTweetList.get(followeeId));
+                }
+            }
+        }
+        PriorityQueue<Tweet> maxPQ = new PriorityQueue<Tweet>((a, b) -> (b.timestamp - a.timestamp));
+        for(Tweet t : tmp) {
+            maxPQ.offer(t);
+        }
+        for(int i = 0; i < 10; i++) {
+            if(maxPQ.peek() != null) {
+                result.add(maxPQ.poll().tweetid);
+            }
+        }
+        return result;
+    }
+    
+    public void follow(int followerId, int followeeId) {
+        //if(!userRelationList.containsKey(followerId)) {
+        //    userRelationList.put(followerId, new HashSet<Integer>());
+        //}
+        userRelationList.putIfAbsent(followerId, new HashSet<Integer>());
+        userRelationList.get(followerId).add(followeeId);
+    }
+    
+    public void unfollow(int followerId, int followeeId) {
+        if(userRelationList.containsKey(followerId)) {
+            userRelationList.get(followerId).remove(Integer.valueOf(followeeId));
+        }
+    }
+}
+
+/**
+ * Your Twitter object will be instantiated and called as such:
+ * Twitter obj = new Twitter();
+ * obj.postTweet(userId,tweetId);
+ * List<Integer> param_2 = obj.getNewsFeed(userId);
+ * obj.follow(followerId,followeeId);
+ * obj.unfollow(followerId,followeeId);
+ */
