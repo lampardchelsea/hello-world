@@ -98,6 +98,11 @@ public class WordBreakII {
         for(int end = start + 1; end <= s.length(); end++) {
             if(wordDict.contains(s.substring(start, end))) {
                 List<String> list = dfs(s, wordDict, end);
+                // The 'list' here will only have one element inside, which is the pending construction string 
+                // (initial as empty string ""), so the loop will happen only once, but in case to concatenate 
+                // new term onto existing string, we have to identify if existing string is the empty string which 
+                // we deliberately setup to mark you reach the end of string or its not empty string anymore since 
+                // you have concatenate term(s) on that pending construction string already.
                 for(String temp : list) {
                     rest.add(s.substring(start, end) + (temp.equals("") ? "" : " ") + temp);
                 }
