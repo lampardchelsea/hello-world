@@ -1,6 +1,5 @@
-1. When DFS need backtracking ?
+1. When DFS need backtracking ?  https://stackoverflow.com/questions/2709030/explain-bfs-and-dfs-in-terms-of-backtracking/3156208#3156208
 
-https://stackoverflow.com/questions/2709030/explain-bfs-and-dfs-in-terms-of-backtracking/3156208#3156208
 The confusion comes in because backtracking is something that happens during search, but it also refers to a specific problem-solving technique where a lot of backtracking is done. Such programs are called backtrackers.
 
 Picture driving into a neighborhood, always taking the first turn you see (let's assume there are no loops) until you hit a dead end, at which point you drive back to the intersection of the next unvisited street. This the "first" kind of backtracking, and it's roughly equivalent to colloquial usage of the word.
