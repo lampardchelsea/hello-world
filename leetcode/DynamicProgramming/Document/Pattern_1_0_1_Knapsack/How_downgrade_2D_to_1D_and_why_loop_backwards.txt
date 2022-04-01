@@ -1,5 +1,24 @@
 /**
 Explaination of why we can degrade 2D to 1D array and why we need loop backwards
+
+https://leetcode.com/problems/partition-equal-subset-sum/
+Given a non-empty array nums containing only positive integers, find if the array can be partitioned into two 
+subsets such that the sum of elements in both subsets is equal.
+
+Example 1:
+Input: nums = [1,5,11,5]
+Output: true
+Explanation: The array can be partitioned as [1, 5, 5] and [11].
+
+Example 2:
+Input: nums = [1,2,3,5]
+Output: false
+Explanation: The array cannot be partitioned into equal sum subsets.
+
+Constraints:
+1 <= nums.length <= 200
+1 <= nums[i] <= 100
+
 Refer to
 https://leetcode.com/problems/partition-equal-subset-sum/discuss/90592/01-knapsack-detailed-explanation
 0/1 knapsack detailed explanation
@@ -149,6 +168,35 @@ you can optimize the space.
 */
 
 // Let's see one good example about revolution from N * N to 2 * N to N
+/**
+https://leetcode.com/problems/triangle/
+Given a triangle array, return the minimum path sum from top to bottom.
+
+For each step, you may move to an adjacent number of the row below. More formally, if you are on index i 
+on the current row, you may move to either index i or index i + 1 on the next row.
+
+Example 1:
+Input: triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
+Output: 11
+Explanation: The triangle looks like:
+   2
+  3 4
+ 6 5 7
+4 1 8 3
+The minimum path sum from top to bottom is 2 + 3 + 5 + 1 = 11 (underlined above).
+
+Example 2:
+Input: triangle = [[-10]]
+Output: -10
+
+Constraints:
+1 <= triangle.length <= 200
+triangle[0].length == 1
+triangle[i].length == triangle[i - 1].length + 1
+-104 <= triangle[i][j] <= 104
+*/
+
+
 // Solution 1: Bottom Up DP (2D-DP -> N * N)
 // Refer to
 // https://leetcode.com/problems/triangle/discuss/38730/DP-Solution-for-Triangle/36543
