@@ -115,7 +115,7 @@ public boolean canPartition(int[] nums) {
 https://leetcode.com/problems/partition-equal-subset-sum/discuss/90592/01-knapsack-detailed-explanation/241664
 Yes, the magic is observation from the induction rule/recurrence relation!
 For this problem, the induction rule:
-If not picking nums[i - 1], then dp[i][j] = dp[i-1][j]
+If not picking nums[i - 1], then dp[i][j] = dp[i - 1][j]
 if picking nums[i - 1], then dp[i][j] = dp[i - 1][j - nums[i - 1]]
 You can see that if you point them out in the matrix, it will be like:
 
