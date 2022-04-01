@@ -196,8 +196,42 @@ triangle[i].length == triangle[i - 1].length + 1
 -104 <= triangle[i][j] <= 104
 */
 
+// Solution 1: Native Recursive
+// Refer to
+// https://leetcode.com/problems/triangle/discuss/159686/Java-Recursive-greaterTop-Down-greater-Bottom-up-greater-Bottom-Up-%2B-Optimal-Space
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+       if(triangle == null || triangle.size() == 0) return 0;
+       return dfs(0, 0, triangle);
+    }
 
-// Solution 1: Bottom Up DP (2D-DP -> N * N)
+    private int dfs(int row, int pos, List<List<Integer>> triangle) {
+        // Out of bounds so just return sum previous value must be leaf node
+        if(row + 1 >= triangle.size()) return triangle.get(row).get(pos);     
+        return triangle.get(row).get(pos) + Math.min(dfs(row + 1, pos, triangle), dfs(row + 1, pos + 1, triangle));
+    }
+}
+
+// Solution 2: Top Down DP (2D-DP -> N * N)
+// Refer to
+// https://leetcode.com/problems/triangle/discuss/159686/Java-Recursive-greaterTop-Down-greater-Bottom-up-greater-Bottom-Up-%2B-Optimal-Space
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+       if(triangle == null || triangle.size() == 0) return 0;
+       Integer[][] cache = new Integer[triangle.size()][triangle.size()];
+       return dfs(0, 0, triangle, cache);
+    }
+
+    private int dfs(int row, int pos, List<List<Integer>> triangle,  Integer[][] cache) {
+        // Out of bounds so just return sum previous value must be leaf node
+        if(row+1 >= triangle.size()) return triangle.get(row).get(pos);
+        if(cache[row][pos] != null) return cache[row][pos];
+        cache[row][pos] = triangle.get(row).get(pos) + Math.min(dfs(row + 1, pos, triangle, cache), dfs(row + 1, pos + 1, triangle, cache));
+        return cache[row][pos];
+   }
+}
+
+// Solution 3: Bottom Up DP (2D-DP -> N * N)
 // Refer to
 // https://leetcode.com/problems/triangle/discuss/38730/DP-Solution-for-Triangle/36543
 /**
@@ -235,7 +269,7 @@ class Solution {
     }
 }
 
-// Solution 2: Bottom Up DP (1D-DP Optimize Space from (n * n) to (2 * n))
+// Solution 4: Bottom Up DP (1D-DP Optimize Space from (n * n) to (2 * n))
 // Refer to
 // https://leetcode.com/problems/triangle/discuss/159686/Java-Recursive-greaterTop-Down-greater-Bottom-up-greater-Bottom-Up-%2B-Optimal-Space
 /**
@@ -271,7 +305,7 @@ class Solution {
     }
 }
 
-// Solution 3: Bottom Up DP (1D-DP Optimize Space from (2 * n) to n)
+// Solution 5: Bottom Up DP (1D-DP Optimize Space from (2 * n) to n)
 // Refer to
 // https://leetcode.com/problems/triangle/discuss/38730/DP-Solution-for-Triangle
 // https://github.com/lampardchelsea/hello-world/blob/master/leetcode/DynamicProgramming/Document/Pattern_1_0_1_Knapsack/How_downgrade_2D_to_1D_and_why_loop_backwards.txt
