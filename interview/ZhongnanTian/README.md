@@ -6,4 +6,4 @@ https://www.1point3acres.com/bbs/thread-678970-1-1.html
 
 3. 简历修改
 https://www.fiverr.com/boomsa
-jobscan
+jobscan -> https://www.jobscan.co/
