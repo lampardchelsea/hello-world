@@ -3,3 +3,7 @@ https://www.educative.io/courses/grokking-the-coding-interview?utm_term=grokking
 
 2. 胖头龙的咸鱼刷题笔记-算法篇
 https://www.1point3acres.com/bbs/thread-678970-1-1.html
+
+3. 简历修改
+https://www.fiverr.com/boomsa
+jobscan
