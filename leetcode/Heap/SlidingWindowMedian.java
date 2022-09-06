@@ -148,6 +148,7 @@ public class SlidingWindowMedian {
             minPQ.add(num);
         }
         // Re-balance
+        // Always keep (minPQ size = maxPQ size) OR (minPQ size = maxPQ size + 1)
         if(minPQ.size() > maxPQ.size() + 1) {
             maxPQ.add(minPQ.poll());
         } else if(maxPQ.size() >= minPQ.size() + 1) {
@@ -162,6 +163,7 @@ public class SlidingWindowMedian {
             minPQ.remove(num);
         }
         // Re-balance
+        // Always keep (minPQ size = maxPQ size) OR (minPQ size = maxPQ size + 1)
         if(minPQ.size() > maxPQ.size() + 1) {
             maxPQ.add(minPQ.poll());
         } else if(maxPQ.size() >= minPQ.size() + 1) {
