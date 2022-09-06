@@ -50,7 +50,7 @@ import java.util.PriorityQueue;
  */
 public class SlidingWindowMedian {
 	// minPQ store larger half of input (>= median)
-    // maxPQ store smaller half of input (strictly < median)
+        // maxPQ store smaller half of input (strictly < median)
 	PriorityQueue<Integer> minPQ;
 	PriorityQueue<Integer> maxPQ;
 	public SlidingWindowMedian(int k) {
@@ -177,10 +177,10 @@ public class SlidingWindowMedian {
         if(minPQ.size() == maxPQ.size()) {
             return ((double)minPQ.peek() + (double)maxPQ.peek()) / 2.0;
         } else {
-            // Based on set up, minPQ store ones smaller or equal to median
-            // maxPQ store ones larger than median, it means minPQ always
-            // has chance size larger than maxPQ, and always only larger
-            // as 1 with help of re-balance strategy in add() method
+            // Based on set up, minPQ store ones larger or equal to median
+            // maxPQ store ones less than median, it means minPQ always
+            // has chance maintain a size larger than maxPQ, and always
+            // only larger as 1 with help of re-balance strategy in add() method
             return (double)minPQ.peek();
         }
     }
