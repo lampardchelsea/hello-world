@@ -195,3 +195,45 @@ public class SlidingWindowMedian {
     	}
     }
 }
+
+
+// Note: What is median of array ?
+// Refer to
+// https://www.tutorialspoint.com/program-for-mean-and-median-of-an-unsorted-array-in-cplusplus#:~:text=If%20an%20array%20is%20sorted,average%20of%20two%20middle%20elements.
+/**
+For calculating the mean
+Mean is calculated for finding out the average. We can use the given formula to find out the mean
+
+Mean = (sum of all the elements of an array) / (total number of elements
+
+For calculating the median
+If an array is sorted, median is the middle element of an array in case of odd number of elements in an array and 
+when number of elements in an array is even than it will be an average of two middle elements.
+
+If the array is not sorted first task is to sort the array and then only the given logic can be applied
+
+If n is odd
+
+1, 2, 3, 4, 5
+Median = 3
+If n is even
+
+1, 2, 4, 5
+Median = (2 + 4) / 2 = 3
+Input
+
+arr[] = {3,5,2,1,7,8}
+Output
+
+Mean is : 4.33333
+Median is : 4
+Input
+
+arr[] = {1, 3, 4, 2, 6, 5, 8, 7}
+Output
+
+Mean is: 4.5
+Median is: 4.5
+*/
+
+
