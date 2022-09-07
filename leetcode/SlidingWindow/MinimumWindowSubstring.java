@@ -149,4 +149,69 @@ class Solution {
     }
 }
 
+Attempt 1: 2022-09-07(60min)
 
+class Solution {      
+    public String minWindow(String s, String t) { 
+        int[] freq = new int[256]; 
+        char[] t_chars = t.toCharArray(); 
+        for(char c : t_chars) { 
+            freq[c]++; 
+        } 
+        // 'count' to identify if all chars in String t matched 
+        int count = t.length(); 
+        // 'minLen' to record cadidate minimum window length 
+        int minLen = Integer.MAX_VALUE; 
+        // 'minStart' to record start position of final result substring 
+        int minStart = 0; 
+        // 'i' indicate left end index, 'j' indicate right end index 
+        int i = 0; 
+        // Use below String s and t with comments to explain count strategy, e.g 
+        // s=CCABBAC 
+        // t=AA 
+        for(int j = 0; j < s.length(); j++) { 
+            char c = s.charAt(j); 
+            // freq[c] always decrease, only when freq[c] initial value > 0 decrease count, 
+            // if char c in String s not belong to String t, freq[c] will be negative by 
+            // decreasing 1 
+            // Take s=CCABBAC, t=AA, first/second char 'C' in s not belong to String t,  
+            // freq['C'] will be the example decreasing from 0 to -2 in two iterations, 
+            // freq['A'] is different since it belongs to String t, will drop from 2 to 0 
+            if(freq[c] > 0) { 
+                count--; 
+            } 
+            freq[c]--; 
+            // When find a candidate window try to shrink left end as much as possible 
+            // Take s=CCABBAC, t=AA, when 'j'=5, 'count' first drop from 2 to 0, initially 
+            // when 'j'=5, 'i' still 0, we can attempt to increase 'i' to short the window 
+            while(count == 0) { 
+                if(minLen > j - i + 1) { 
+                    minLen = j - i + 1; 
+                    minStart = i; 
+                } 
+                // Prepare to shrink left end 
+                char c1 = s.charAt(i); 
+                // freq[c1] always increase, but only when its value > 0 increase 
+                // 'count', because if char c1 in String s not belongs to String t,  
+                // even keep freq[c1] increasing, the final value will stop at 0 
+                // as same as its initial value, only if c1 belongs to Stringt,  
+                // freq[c1] initial value is positive, keep increasing will make  
+                // it positive again, so we can use freq[c1] > 0 to identify chars  
+                // in String s and belong to String t, increase 'count' to break out  
+                // the while loop which cease the shrink 
+                // Take s=CCABBAC, t=AA, when 'j'=5, c1='C', freq['C']=-2 initially, 
+                // we keep shrinking i in while loop from 0 to 2, freq['C'] back to 0, 
+                // now c1 becomes 'A' and it belongs to String t, freq['A'] change  
+                // from 0 to 1 which increase 'count' and break out while loop to  
+                // cease shrink at 'i'=2 
+                freq[c1]++; 
+                if(freq[c1] > 0) { 
+                    count++; 
+                } 
+                // Shrink one index each time 
+                i++; 
+            } 
+        } 
+        return minLen == Integer.MAX_VALUE ? "" : s.substring(minStart, minStart + minLen); 
+    } 
+}
