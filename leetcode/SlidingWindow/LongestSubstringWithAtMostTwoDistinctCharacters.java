@@ -142,3 +142,43 @@ public class Solution {
         return maxLen;
     }
 }
+
+Attempt 1: 2022-09-07(30min)
+public class Solution {
+    /**
+     * @param s: A string
+     * @param k: An integer
+     * @return: An integer
+     */
+    public int lengthOfLongestSubstringKDistinct(String s, int k) {
+        // write your code here
+        Map<Character, Integer> freq = new HashMap<Character, Integer>();
+        int maxLen = Integer.MIN_VALUE;
+        // 'i' is left end index, 'j' is right end index
+        int i = 0;
+        int len = s.length();
+        // Before over k distinct characters try to expand right end as much as possible
+        for(int j = 0; j < len; j++) {
+            char c = s.charAt(j);
+            freq.put(c, freq.getOrDefault(c, 0) + 1);
+            int size = freq.size();
+            // When distinct character number > k, start shrink left end, use while loop
+            // in case current string section (left end indicate by 'i') start with same
+            // character, e.g "bbeceba" start with two 'b's when j = 3, k = 2 and i = 0,
+            // currently substring indicated as "bbec", we have to remove two 'b' to match 
+            // k = 2, while loop run two times to increase i from 0 to 2, which means 
+            // truncate two 'b's and keep "ec", distinct characters drop back from 3 to 2
+            while(size > k) {
+                char c1 = s.charAt(i);
+                freq.put(c1, freq.get(c1) - 1);
+                if(freq.get(c1) == 0) {
+                    freq.remove(c1);
+                    size--;
+                }
+                i++;
+            }
+            maxLen = Math.max(maxLen, j - i + 1);
+        }
+        return maxLen == Integer.MIN_VALUE ? 0 : maxLen;
+    }
+}
