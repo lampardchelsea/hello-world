@@ -238,4 +238,82 @@ Mean is: 4.5
 Median is: 4.5
 */
 
+Attempt 1: 2022-09-07 (30min)
 
+class Solution { 
+    // 'maxPQ' store the strictly smaller half of input than median,  
+    // (a, b) -> (b - a) won't work, have to use (a, b) -> b.compareTo(a) 
+    PriorityQueue<Integer> maxPQ = new PriorityQueue<Integer>((a, b) -> b.compareTo(a)); 
+    // 'minPQ' store the equal or larger half of input than median 
+    PriorityQueue<Integer> minPQ = new PriorityQueue<Integer>(); 
+    public double[] medianSlidingWindow(int[] nums, int k) { 
+        int len = nums.length; 
+        double[] result = new double[len - k + 1]; 
+        for(int i = 0; i < len; i++) { 
+            add(nums[i]); 
+            // When start to get k numbers window, remove the oldest one on window 
+            // to prepare for next round 
+            if(i >= k - 1) { 
+                result[i - k + 1] = getMedian(); 
+                remove(nums[i - k + 1]); 
+            } 
+        } 
+        return result; 
+    } 
+     
+    private double getMedian() { 
+        // Initial case since both PQs empty 
+        if(maxPQ.size() == 0 && minPQ.size() == 0) { 
+            return 0; 
+        } 
+        // If size tie between both PQs, the two peek elements together are 
+        // representing the middle two elements of sorted original input array, 
+        // the median is the mean of two elements 
+        if(maxPQ.size() == minPQ.size()) { 
+            return ((double)maxPQ.peek() + (double)minPQ.peek()) / 2.0; 
+        } else { 
+            // Since 'minPQ' stores equal or larger elements than median and 'maxPQ' 
+            // stores strictly smaller elements than median, the 'minPQ' will always 
+            // have a chance to get one more element than 'maxPQ', especially when 
+            // input has odd number elements, the one stored on 'minPQ' peek is 
+            // the median, in another word, it stands at center position of a sorted 
+            // array since two PQs naturally store and sort half of input array 
+            return (double)minPQ.peek(); 
+        }     
+    } 
+     
+    private void add(int num) { 
+        if(num < getMedian()) { 
+            maxPQ.add(num); 
+        } else { 
+            minPQ.add(num); 
+        } 
+        // Re-balance to always keeping (minPQ size = maxPQ size) OR  
+        // (minPQ size = maxPQ size + 1) 
+        // Note: As designed initially maxPQ take only strictly smaller half 
+        // input, minPQ can take equal/larger half input, it allows minPQ naturally  
+        // has one more element than maxPQ, but if minPQ has two more elements  
+        // than maxPQ, we have to balance it by shift the peek element on minPQ  
+        // to maxPQ, then minPQ size = maxPQ size, if maxPQ has one more element  
+        // than minPQ, we also have to balance it by shift the peek element on  
+        // maxPQ to minPQ, then minPQ size = maxPQ size + 1 
+        if(minPQ.size() > maxPQ.size() + 1) { 
+            maxPQ.add(minPQ.poll()); 
+        } else if(maxPQ.size() >= minPQ.size() + 1) { 
+            minPQ.add(maxPQ.poll()); 
+        } 
+    } 
+     
+    private void remove(int num) { 
+        if(num < getMedian()) { 
+            maxPQ.remove(num); 
+        } else { 
+            minPQ.remove(num); 
+        } 
+        if(minPQ.size() > maxPQ.size() + 1) { 
+            maxPQ.add(minPQ.poll()); 
+        } else if(maxPQ.size() >= minPQ.size() + 1) { 
+            minPQ.add(maxPQ.poll()); 
+        }         
+    } 
+}
