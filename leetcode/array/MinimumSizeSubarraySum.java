@@ -267,3 +267,34 @@ class Solution {
         return result == Integer.MAX_VALUE ? 0 : result;
     }
 }
+
+
+Attempt 1: 2022-09-07 (10min)
+
+class Solution { 
+    public int minSubArrayLen(int target, int[] nums) { 
+        int minLen = Integer.MAX_VALUE; 
+        int len = nums.length; 
+        int i = 0; 
+        int sum = 0; 
+        for(int j = 0; j < len; j++) { 
+            sum += nums[j]; 
+            // Keep shrink left end 
+            while(sum >= target) { 
+                minLen = Math.min(minLen, j - i + 1); 
+                sum -= nums[i]; 
+                i++; 
+            } 
+        } 
+        return minLen == Integer.MAX_VALUE ? 0 : minLen; 
+    } 
+}
+
+Time Complexity: O(n)
+
+For those trying to figure out how is it O(n):
+Here we have defined 2 index i & j,
+In case of O(n^2) for each outer loop, inner loop runs some n or m number of times to make it O(nm), that means, 
+as soon as the outer loop finishes one iteration, inner loop resets itself.
+In case of O(n2), as in this case, we are not resetting the inner inner variable i, it's just incrementing each time. 
+It is like 2 loops one after another and both runs n number of time.
