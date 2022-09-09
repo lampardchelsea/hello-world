@@ -148,4 +148,4 @@ Here we have defined 2 index i & j,
 In case of O(n^2) for each outer loop, inner loop runs some n or m number of times to make it O(nm), that means, as soon as the 
 outer loop finishes one iteration, inner loop resets itself.  
 In case of O(n2), as in this case, we are not resetting the inner inner variable i, it's just incrementing each time. It is like 
-    2 loops one after another and both runs n number of time.
+2 loops one after another and both runs n number of time.
