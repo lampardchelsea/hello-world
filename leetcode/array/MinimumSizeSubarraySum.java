@@ -299,3 +299,78 @@ In case of O(n^2) for each outer loop, inner loop runs some n or m number of tim
 as soon as the outer loop finishes one iteration, inner loop resets itself.
 In case of O(n2), as in this case, we are not resetting the inner inner variable i, it's just incrementing each time. 
 It is like 2 loops one after another and both runs n number of time.
+=======================================================================================================================    
+    
+Follow up: 
+Time complexity O(n log(n))solution, Prefix Sum + Binary Search
+
+Attempt 1:2022-09-09 (360min, too long for understanding binary search template)
+
+class Solution { 
+    public int minSubArrayLen(int s, int[] nums) { 
+        int len = nums.length; 
+        int[] preSum = new int[len + 1]; 
+        //preSum[0] = 0; 
+        for(int i = 1; i <= len; i++) { 
+            preSum[i] = nums[i - 1] + preSum[i - 1]; 
+        } 
+        // 根据模板第一种情况，给定一个升序排列的数组，我们将preSum中满足 x ≥ target 的 
+        // 第一个元素定义为「下界」在加入无法找到就返回-1这种情况以后类型更接近模板第三种情况： 
+        // 查找指定值第一次出现的位置，修正为查找满足 x ≥ target 的第一个元素，如果因为下标 
+        // 越界或仍在界内却依然 x < target, 则判定为不存在，返回-1。 
+        // e.g 
+        // nums = {2,3,1,2,4,3}, s = 7 
+        // preSum = {0,2,5,6,8,12,15} 
+        // i = 0, target = 7, binarySearch(0,6,7,preSum) -> low_bound = 4, minLen = 4(low_bound - i = 4 - 0 = 4, mapping nums subarray = {2,3,1,2}) 
+        // i = 1, target = 9, binarySearch(1,6,9,preSum) -> low_bound = 5, minLen = 4(low_bound - i = 5 - 1 = 4, mapping nums subarray = {3,1,2,4}) 
+        // i = 2, target = 12, binarySearch(2,6,12,preSum) -> low_bound = 5, minLen = 3(low_bound - i = 5 - 2 = 3, mapping nums subarray = {1,2,4}) 
+        // i = 3, target = 13, binarySearch(3,6,13,preSum) -> low_bound = 6, minLen = 3(low_bound - i = 6 - 3 = 3, mapping nums subarray = {2,4,3}) 
+        // i = 4, target = 15, binarySearch(4,6,15,preSum) -> low_bound = 6, minLen = 2(low_bound - i = 6 - 4 = 2, mapping nums subarray = {4,3}) ==> answer 
+        // i = 5, target = 19, binarySearch(5,6,19,preSum) -> low_bound = NA, minLen = NA 
+        int minLen = Integer.MAX_VALUE; 
+        for(int i = 0; i <= len; i++) { 
+            int target = preSum[i] + s; 
+            int low_bound = binarySearch(i, len, target, preSum); 
+            if(low_bound != -1) { 
+                minLen = Math.min(minLen, low_bound - i); 
+            } 
+        } 
+        return minLen == Integer.MAX_VALUE ? 0 : minLen; 
+    } 
+     
+    // Binary Search template refer to 
+    // https://imageslr.com/2020/03/15/binary-search.html 
+    private int binarySearch(int lo, int hi, int target, int[] preSum) { 
+        while(lo <= hi) { 
+            int mid = lo + (hi - lo) / 2; 
+            if(preSum[mid] >= target) { 
+                hi = mid - 1; 
+            } else { 
+                lo = mid + 1; 
+            } 
+        } 
+        // Important: In case we could not find target in preSum return -1 
+        // Test out when i = 5, target = 19, binarySearch(5,6,19,preSum), 
+        // 'lo' increase from 5 to 7 and index out of boundary, no valid  
+        // range between 'lo' and 'hi' (actually 'lo' is already over 
+        // 'hi') and still not able to find preSum[mid] >= target. 
+        // we can ignore the second condition as 'preSum[lo] < target' since 
+        // first condition as 'lo >= preSum.length' automatically means 'lo' 
+        // go through all indexes and no 'preSum[lo] < target' found 
+        // if(lo >= preSum.length || preSum[lo] < target) 
+        if(lo >= preSum.length) { 
+            return -1; 
+        } 
+        return lo; 
+    } 
+}
+
+Space Complexity: O(n)
+Time Complexity: O(nlogn)
+
+Note: Why we can use binary search ?
+https://leetcode.com/problems/minimum-size-subarray-sum/discuss/59103/Two-AC-solutions-in-Java-with-time-complexity-of-N-and-NLogN-with-explanation
+As to NLogN solution, logN immediately reminds you of binary search. In this case, you cannot sort as the current order actually matters. 
+How does one get an ordered array then? Since all elements are positive, the cumulative sum must be strictly increasing. 
+Then, a subarray sum can expressed as the difference between two cumulative sum. Hence, given a start index for the cumulative sum array, 
+the other end index can be searched using binary search.
