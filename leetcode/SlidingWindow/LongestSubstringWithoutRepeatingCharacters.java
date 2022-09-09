@@ -149,3 +149,56 @@ In case of O(n^2) for each outer loop, inner loop runs some n or m number of tim
 outer loop finishes one iteration, inner loop resets itself.  
 In case of O(n2), as in this case, we are not resetting the inner inner variable i, it's just incrementing each time. It is like 
 2 loops one after another and both runs n number of time.
+
+    
+Solution 2 (180min, too long for recollecting how to truncate duplicate characters by tracking left end pointer without removing 
+actual map key character like Solution 1)
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int len = s.length();
+        // Map store different content -> {key, value} => {character, position} not {character, frequency}
+        Map<Character, Integer> char_index_map = new HashMap<Character, Integer>();
+        int maxLen = Integer.MIN_VALUE;
+        // 'i' means left end pointer, 'j' means right end pointer
+        int i = 0;
+        for(int j = 0; j < len; j++) {
+            char c = s.charAt(j);
+            // Once we've landed on a character we've seen before, 
+            // we want to move the left pointer of our window to the 
+            // index after the "LAST" occurrence of that character.
+            // e.g "abba" 
+            // Initially left end pointer i = 0, right end pointer j keep
+            // moving to right, when j = 2, find second 'b', since 
+            // we have seen 'b' when j = 1, 'b' is a duplicate character,
+            // to remove duplication, we can move the left pointer of our 
+            // window as i = 0 to the index after the "LAST" occurrence 
+            // of 'b', which means update i from 0 to 2 ('LAST' occurrence 
+            // index = 1, plus 1 to skip it to next index, then 1 + 1 = 2), 
+            // when j = 3, find second 'a', since we have seen 'a' when 
+            // j = 0, 'a' is another duplicate character, we can move 
+            // the left pointer i from 2 back to 1 (0 + 1 = 1) ?? 
+            // That's the issue, when current left end pointer i's index
+            // is larger than what it suppose to be, that means current 
+            // duplicate character (e.g 'a' here) already truncated during 
+            // previous index update for other duplicate character 
+            // (e.g 'b' here), we just need to keep current position to 
+            // avoid left end pointer drop back.
+            // In simple, we don't need to move back left end pointer i
+            // index from 2 to 1 for duplicate 'a' because the first 'a'
+            // already truncated when handling duplicate 'b' by updating
+            // i from 0 to 2 (The index = 0 and index = 1 two characters
+            // "ab" has been removed, remain substring as "ba", actually 
+            // no duplicate 'a' when we see the second 'a')
+            if(char_index_map.containsKey(c)) {
+                i = Math.max(i, char_index_map.get(c) + 1);
+            }
+            char_index_map.put(c, j);
+            maxLen = Math.max(maxLen, j - i + 1);
+        }
+        return maxLen == Integer.MIN_VALUE ? 0 : maxLen;
+    }
+}
+
+Space Complexity: O(n)
+Time Complexity: O(n)
