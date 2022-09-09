@@ -101,3 +101,51 @@ class Solution {
     }
 }
 
+
+Attempt 1: 2022-09-09
+
+Solution 1 (10min)
+
+class Solution { 
+    public int lengthOfLongestSubstring(String s) { 
+        int len = s.length(); 
+        Map<Character, Integer> freq = new HashMap<Character, Integer>(); 
+        int maxLen = Integer.MIN_VALUE; 
+        // 'i' means left end pointer, 'j' means right end pointer 
+        int i = 0; 
+        for(int j = 0; j < len; j++) { 
+            char c = s.charAt(j); 
+            freq.put(c, freq.getOrDefault(c, 0) + 1); 
+            int size = freq.size(); 
+            // When map size less than substring length means repeating characters exist 
+            // To resolve repeating character requires shrink subtring by moving left end 
+            // pointer to right 
+            while(size < j - i + 1) { 
+                // Remove 'c1' and update its frequency on map 
+                char c1 = s.charAt(i); 
+                freq.put(c1, freq.get(c1) - 1); 
+                // If 'c1' frequency drop to 0 means not exist on current substring, remove 
+                // 'c1' from map key, update map size 
+                if(freq.get(c1) == 0) { 
+                    freq.remove(c1); 
+                    size--; 
+                } 
+                // Shrink left end pointer one position 
+                i++; 
+            } 
+            maxLen = Math.max(maxLen, j - i + 1); 
+        } 
+        return maxLen == Integer.MIN_VALUE ? 0 : maxLen; 
+    } 
+}
+
+Space Complexity: O(n)
+Time Complexity: O(n)
+
+https://leetcode.com/problems/minimum-size-subarray-sum/discuss/59078/Accepted-clean-Java-O(n)-solution-(two-pointers)/924580 
+For those trying to figure out how is it O(n): 
+Here we have defined 2 index i & j, 
+In case of O(n^2) for each outer loop, inner loop runs some n or m number of times to make it O(nm), that means, as soon as the 
+outer loop finishes one iteration, inner loop resets itself.  
+In case of O(n2), as in this case, we are not resetting the inner inner variable i, it's just incrementing each time. It is like 
+    2 loops one after another and both runs n number of time.
