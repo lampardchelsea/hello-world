@@ -218,3 +218,42 @@ class Solution {
 }
 
 
+Attempt 1: 2022-09-10 (30min, no update of 'maxRepeat' when substring shrinks is tricky)
+class Solution { 
+    // Equal to find longest substring has 
+    // (length of substring - max frequency char in substring) <= k 
+    public int characterReplacement(String s, int k) { 
+        int maxLen = 0; 
+        // 'i' is left end pointer, 'j' is right end pointer 
+        int i = 0; 
+        int len = s.length(); 
+        // s consists of only uppercase English letters 
+        int[] freq = new int[26]; 
+        int maxRepeat = 0; 
+        for(int j = 0; j < len; j++) { 
+            char c = s.charAt(j); 
+            freq[c - 'A']++; 
+            maxRepeat = Math.max(maxRepeat, freq[c - 'A']); 
+            // When (length of substring - max frequency char in substring) > k 
+            // we start to shrink the left end 
+            while(j - i + 1 - maxRepeat > k) { 
+                char c1 = s.charAt(i); 
+                freq[c1 - 'A']--; 
+                // Below 'maxRepeat' update is not necessary, because when  
+                // the sliding window shrinks, the frequency counts array  
+                // won't get larger. So basically 'maxRepeat' never be updated  
+                // in this loop. The only potential update for 'maxRepeat' is 
+                // when substring expand on right end 
+                //for(int m = 0; m < 26; m++) { 
+                //    maxRepeat = Math.max(maxRepeat, freq[c1 - 'A']); 
+                //} 
+                i++; 
+            } 
+            maxLen = Math.max(maxLen, j - i + 1); 
+        } 
+        return maxLen; 
+    } 
+}
+
+Space Complexity: O(n) 
+Time Complexity: O(n)
