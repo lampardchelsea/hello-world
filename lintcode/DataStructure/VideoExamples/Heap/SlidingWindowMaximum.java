@@ -146,3 +146,59 @@ public class SlidingWindowMaximum {
 		}
 	}
 }
+
+
+
+Solution 2 (360min, too long since not familiar with Monotonic Deque and have difficulty to come up with store index only)
+
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        int len = nums.length;
+        // Use deque to store index (store index also store value by the way)
+        // Sinec deque can add or remove element from either end, we can
+        // leverage this attribute to simulate the natural scanning order(from
+        // left to right) to add or remove nums' indexes from left to right, 
+        // which means always try to remove old indexes from deque's left end(
+        // front end) by using removeFirst() / peekFirst() methods, and always 
+        // try to add new indexes on deque's right end(rear end) by using
+        // addLast() / peekLast() methods.
+        // Java Deque:
+        // https://jenkov.com/tutorials/java-collections/deque.html
+        Deque<Integer> deque = new LinkedList<Integer>();
+        int[] result = new int[len - k + 1];
+        for(int i = 0; i < len; i++) {
+            // Remove index(represent corresponding number) out of range k
+            // from deque's left end(front end)
+            if(!deque.isEmpty() && deque.peekFirst() == i - k) {
+                deque.removeFirst();
+            }
+            // Add new index(represent corresponding number) onto deque's
+            // right end(rear end), but since it requires O(n) time complexity,
+            // we could not implement additional sort algorithem or use auto 
+            // sort data structure like Priority Queue which is O(nlogn), finally 
+            // comes to Montonic Deque which guarantee O(n)
+            // Before add a new index onto deque's rear end, we have to compare new
+            // element's value(nums[i]) against all previous rear end elements' 
+            // values(nums[deque.peekLast()]), if previous rear end elements' 
+            // values less than new element value, we have to looply remove them 
+            // till find a larger or equal element to maintain a strictly decreasing
+            // order of elements' values on monotonic deque from left to right(front 
+            // to rear)
+            // In short, the elements(indexes represented) stored on deque must
+            // monotonically decrease from left to right, e.g 1st > 2nd > 3rd...
+            // and we can easily find the maximum element value at the left end(front
+            // end) of deque by using nums[deque.peekFirst()]
+            while(!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
+                deque.removeLast();
+            }
+            deque.addLast(i);
+            if(i >= k - 1) {
+                result[i - k + 1] = nums[deque.peekFirst()];
+            }
+        }
+        return result;
+    }
+}
+
+Space Complexity: O(n)
+Time Complexity: O(n)
