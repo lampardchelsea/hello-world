@@ -99,3 +99,46 @@ public class SubstringWithConcatenationOfAllWords {
 	}
 }
 
+Attempt 1: 2022-09-11 
+
+Solution 1 (30min, intuitive solution by using map.equals comparison, but Time Complexity: O(s_len * num_of_words * word_len) sub-optimal)
+
+class Solution { 
+    public List<Integer> findSubstring(String s, String[] words) { 
+        Map<String, Integer> freq = new HashMap<String, Integer>(); 
+        for(String word : words) { 
+            freq.put(word, freq.getOrDefault(word, 0) + 1); 
+        } 
+        int wordLen = words[0].length(); 
+        int wordNum = words.length; 
+        int len = s.length(); 
+        List<Integer> result = new ArrayList<Integer>(); 
+        for(int i = 0; i <= len - wordLen * wordNum; i++) { 
+            String sub = s.substring(i, i + wordLen * wordNum); 
+            if(isValid(sub, freq, wordLen)) { 
+                result.add(i); 
+            } 
+        } 
+        return result; 
+    } 
+     
+    private boolean isValid(String sub, Map<String, Integer> freq, int wordLen) { 
+        Map<String, Integer> subFreq = new HashMap<String, Integer>(); 
+        int subLen = sub.length(); 
+        for(int i = 0; i < subLen; i += wordLen) { 
+            String subWord = sub.substring(i, i + wordLen); 
+            subFreq.put(subWord, subFreq.getOrDefault(subWord, 0) + 1); 
+        } 
+        return subFreq.equals(freq); 
+    } 
+}
+
+Space Complexity: O(num_of_words + word_len)
+Time Complexity: O(s_len * num_of_words * word_len) sub-optimal
+
+Refer to
+https://leetcode.com/problems/substring-with-concatenation-of-all-words/discuss/13658/Easy-Two-Map-Solution-(C++Java)/299685
+https://leetcode.com/problems/substring-with-concatenation-of-all-words/discuss/13658/Easy-Two-Map-Solution-(C++Java)/398675
+HashMap.contains is O(word_len) as it uses equals method internally which is character by character comparison. 
+So O(s_len * num_of_words * word_len) is correct. 
+Space complexity is O(num_of_words + word_len) due to HashMap(words) and substring method(creates a new copy of sub array)
