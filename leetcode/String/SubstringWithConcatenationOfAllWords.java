@@ -281,3 +281,100 @@ s="barfoothefoobarman"
 oba|rfo|o
 =====================================
 For the late 2 secanrio we can use outside for loop to do the same
+
+
+
+Solution 3 (20min, the MOST intuitive solution and use same template as not fixed length sliding window, 
+	    literally it is a fixed length sliding window problem, since we know in the end the candidate 
+	    window size should be same as wordLen * wordNum (words from input array), but practically when 
+	    we create sliding window it is more similar to not fxied length sliding window, since we always 
+	    try to expand right end pointer when not find a window and shrink left end pointer when encounter 
+	    extra frequency words)
+
+class Solution {
+    // We can treat a word in words like a single character, then the problem
+    // more close to a traditional not fixed length sliding window style, before
+    // we find a candidate window exactly match same given characters(words)
+    // permutation, the right end pointer keep moving forward, when encounter 
+    // extra frequency characters(words) we shrink the left end pointer till
+    // remove extra frequency characters(words) from the candidate window
+    public List<Integer> findSubstring(String s, String[] words) {
+        Map<String, Integer> freqMap = new HashMap<String, Integer>();
+        for(String word : words) {
+            freqMap.put(word, freqMap.getOrDefault(word, 0) + 1);
+        }
+        List<Integer> result = new ArrayList<Integer>();
+        int len = s.length();
+        int wordLen = words[0].length();
+        // Gategory into 'wordLen' kinds of starting position
+        for(int m = 0; m < wordLen; m++) {
+            // 'i' is left end pointer, 'j' is right end pointer
+            // s[i,j) presents the sliding window to find the required substring
+            int i = m;
+            // 'count' is how many words in current window
+            int count = 0;
+            Map<String, Integer> currFreqMap = new HashMap<String, Integer>(); 
+            for(int j = m; j <= len - wordLen; j += wordLen) {
+                String sub = s.substring(j, j + wordLen);
+                currFreqMap.put(sub, currFreqMap.getOrDefault(sub, 0) + 1);
+                count++;
+                // Remove extra frequency characters(words) from the current window
+                // by shrink left end pointer, each shrink step length is a word length,
+                // during shrink we have to update current frequency and words count
+                while(currFreqMap.getOrDefault(sub, 0) > freqMap.getOrDefault(sub, 0)) {
+                    String leftMost = s.substring(i, i + wordLen);
+                    currFreqMap.put(leftMost, currFreqMap.get(leftMost) - 1);
+                    i += wordLen;
+                    count--;
+                }
+                // Find one solution when count of words in current window match total words
+                if(count == words.length) {
+                    result.add(i);
+                }
+            }
+        }
+        return result;
+    }
+}
+
+Space Complexity: O(num_of_words + word_len) 
+Time Complexity: O(s_len * num_of_words)
+
+Refer to
+https://leetcode.com/problems/substring-with-concatenation-of-all-words/discuss/13656/An-O(N)-solution-with-detailed-explanation/204718
+the idea to apply sliding window to this question is cool. post a more sliding window like code
+
+    // sliding window
+    public List<Integer> findSubstring(String s, String[] words) {
+        List<Integer> ans = new ArrayList<>();
+        if (words.length == 0) return ans;
+
+        Map<String, Integer> cnt = new HashMap<>();
+        for (String w : words) cnt.put(w, 1 + cnt.getOrDefault(w, 0));
+
+        final int wl = words[0].length();
+        for (int i = 0; i < wl; i++) { // run sliding window wl times
+            int l = i;
+            int r = i; // s[l,r) contains only words
+            Map<String, Integer> window = new HashMap<>();
+            int windowCnt = 0;
+
+            while (r + wl <= s.length()) {
+                final String w = s.substring(r, r + wl);
+                r += wl;
+                window.put(w, 1 + window.getOrDefault(w, 0));
+                windowCnt++;
+
+                while (window.getOrDefault(w, 0) > cnt.getOrDefault(w, 0)) {
+                    final String leadingWord = s.substring(l, l + wl);
+                    window.put(leadingWord, window.get(leadingWord) - 1);
+                    l = l + wl;
+                    windowCnt--;
+                }
+
+                if (windowCnt == words.length) ans.add(l);
+            }
+        }
+
+        return ans;
+    }
