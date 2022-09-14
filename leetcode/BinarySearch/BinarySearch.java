@@ -272,8 +272,8 @@ function lowerBound(nums, target) {
         // 这里的比较运算符与题目要求一致
         if (nums[mid] == target) {
             return mid;
-        } else if () {
-            right = mid + 1;
+        } else if (nums[mid] > target) { 
+            right = mid - 1; 
         } else {
             left = mid + 1;
         }
