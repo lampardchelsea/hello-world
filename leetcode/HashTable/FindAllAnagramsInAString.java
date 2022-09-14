@@ -141,5 +141,65 @@ public class FindAllAnagramsOfAString {
 
 
 
+Attempt 1: 2022-09-14 (5min)
 
+class Solution { 
+    public List<Integer> findAnagrams(String s, String p) { 
+        List<Integer> result = new ArrayList<Integer>(); 
+        // Create frequency table based on p 
+        int[] freq = new int[26]; 
+        int p_len = p.length(); 
+        int s_len = s.length(); 
+        for(int i = 0; i < p_len; i++) { 
+            // Increase character count on frequency table 
+            freq[p.charAt(i) - 'a']++; 
+        } 
+        // 'i' is left end pointer, 'j' is right end pointer  
+        int i = 0; 
+        for(int j = 0; j < s_len; j++) { 
+            // Decrease character count on frequency table, a reverse   
+            // operation rather than frequency table creation, because   
+            // we want to identify if same character count has difference   
+            // between s and p inside current sliding window  
+            freq[s.charAt(j) - 'a']--; 
+            // When a character count becomes negative means we find a difference  
+            // between s and p, attempt to balance count again (make the character  
+            // count = 0 again), only way is shinrking the left end pointer 'i'  
+            while(freq[s.charAt(j) - 'a'] < 0) { 
+                freq[s.charAt(i) - 'a']++; 
+                i++; 
+            } 
+            // If substring length of sliding window identified by (j - i + 1)  
+            // equal to string p length, we find a solution  
+            if(j - i + 1 == p_len) { 
+                result.add(i); 
+            } 
+        } 
+        return result; 
+    } 
+}
+
+Space Complexity: O(n)  
+Time Complexity: O(n)
+
+Refer to
+https://leetcode.com/problems/permutation-in-string/discuss/102598/Sliding-Window-in-Java-very-similar-to-Find-All-Anagrams-in-a-String
+https://leetcode.com/problems/permutation-in-string/discuss/102590/8-lines-slide-window-solution-in-Java/383847
+
+public boolean checkInclusion(String s1, String s2) { 
+    int[] counts = new int[26]; 
+    for (char c: s1.toCharArray()) counts[c-'a']++; 
+    int i = 0, j = 0; 
+    while(j < s2.length()) { 
+        char c = s2.charAt(j++); 
+        counts[c-'a']--; 
+        while(counts[c-'a'] < 0) { 
+            char c2 = s2.charAt(i++); 
+            counts[c2-'a']++; 
+        } 
+        if (j-i == s1.length()) return true; 
+    } 
+    return false; 
+}
+```
 
