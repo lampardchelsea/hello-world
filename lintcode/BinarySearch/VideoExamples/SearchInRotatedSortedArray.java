@@ -102,3 +102,48 @@ public class SearchInRotatedSortedArray {
     
 }
 
+
+Attempt 1:2022-09-15 (180min, too long to come up with find monotonic interval first and then check if 'target' inside this monotonic interval)
+
+class Solution { 
+    public int search(int[] nums, int target) { 
+        int lo = 0; 
+        int hi = nums.length - 1; 
+        while(lo <= hi) { 
+            int mid = lo + (hi - lo) / 2; 
+            if(nums[mid] == target) { 
+                return mid; 
+            } 
+            // If left interval of mid index as nums[lo, mid) is monotonically increasing,  
+            // means the pivot point is on the right interval of mid index as mid(mid, hi] 
+            if(nums[mid] >= nums[lo]) { 
+                // If 'target' is on left monotonic interval, remove right interval by 
+                // using 'hi = mid - 1', otherwise 'target' is on right interval, even  
+                // right interval is not monotonically increasing interval for now,  
+                // we still should remove left interval by using 'lo = mid + 1' because  
+                // left interval won't involve in further calculation since 'target' on  
+                // right interval, the further calculation will recursively use  
+                // 'nums[mid] >= nums[lo]' to find monotonic sub-interval based on  
+                // current right interval 
+                if(nums[mid] >= target && target >= nums[lo]) { 
+                    hi = mid - 1; 
+                } else { 
+                    lo = mid + 1; 
+                } 
+            // If right interval of mid index as nums(mid, hi] is monotonically increasing, 
+            // means the pivot point is on the left interval of mid index as mid[lo, mid) 
+            } else { 
+                if(nums[mid] <= target && target <= nums[hi]) { 
+                    lo = mid + 1; 
+                } else { 
+                    hi = mid - 1; 
+                } 
+            } 
+        } 
+        return -1; 
+    } 
+}
+
+Space Complexity: O(1) 
+Time Complexity: O(logn)
+
