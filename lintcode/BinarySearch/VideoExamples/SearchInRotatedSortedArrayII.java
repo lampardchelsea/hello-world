@@ -94,3 +94,78 @@ public class Solution {
         return false;
     }
 }
+
+
+
+
+
+Attempt 1:2022-09-15 (180min, too long to come up with how to break out the deadlock when duplicates happen and cause target happen on both left, right interval)
+
+class Solution { 
+    public boolean search(int[] nums, int target) { 
+        int lo = 0;  
+        int hi = nums.length - 1;  
+        while(lo <= hi) {  
+            int mid = lo + (hi - lo) / 2;  
+            if(nums[mid] == target) {  
+                return true;  
+            } 
+            // A bit change by separating mus[mid] >= nums[lo] into two cases: 
+            // Case 1.mus[mid] > nums[lo] and Case 2.mus[mid] == nums[lo] 
+            // Case 1:remained original work 
+            // Case 2:specifically for dupllicate elements 
+            // The duplicate numbers impact which side (left or right interval) we should 
+            // continue search, because if no duplicate numbers, when deal with nums[mid]  
+            // and 'target', the comparison will only result into one side, because all  
+            // the values are unique, 'target' will only occur once at either left or  
+            // right interval, but if have duplicate numbers, 'target' may have multiple 
+            // occurrences, e.g in [1,1,3] and [1,3,1,1], in both cases we have  
+            // nums[mid] == nums[lo], but target = 3 can happen on both left interval  
+            // (e.g [1,3,1,1]) and right interval (e.g [1,1,3]), to break the deadlock  
+            // there is a simple way, just looply increase the 'lo' pointer ('lo++') until 
+            // nums[mid] != nums[lo], the purpose behind, because to break the deadlock  
+            // and find a potential binary search applicable interval, we have no option  
+            // but to move to next search space iteratively 
+             
+            // If left interval of mid index as nums[lo, mid) is monotonically increasing,   
+            // means the pivot point is on the right interval of mid index as mid(mid, hi] 
+            if(nums[mid] > nums[lo]) {  
+                // If 'target' is on left monotonic interval, remove right interval by  
+                // using 'hi = mid - 1', otherwise 'target' is on right interval, even   
+                // right interval is not monotonically increasing interval for now,   
+                // we still should remove left interval by using 'lo = mid + 1' because   
+                // left interval won't involve in further calculation since 'target' on   
+                // right interval, the further calculation will recursively use   
+                // 'nums[mid] >= nums[lo]' to find monotonic sub-interval based on 
+                // current right interval 
+                if(nums[mid] >= target && target >= nums[lo]) {  
+                    hi = mid - 1; 
+                } else {  
+                    lo = mid + 1; 
+                }  
+            // If right interval of mid index as nums(mid, hi] is monotonically increasing,  
+            // means the pivot point is on the left interval of mid index as mid[lo, mid)  
+            } else if(nums[mid] < nums[lo]) {  
+                if(nums[mid] <= target && target <= nums[hi]) {  
+                    lo = mid + 1;  
+                } else {  
+                    hi = mid - 1;  
+                }  
+            } else { 
+                // Duplicate caused deadlock break out by increase lower boundary iteratively 
+                // to find a potential new interval applicable for binary search, O(N) time  
+                // complexity in this case 
+                lo++; 
+            } 
+        }  
+        return false; 
+    } 
+}
+
+Space Complexity: O(1)  
+Time Complexity: O(N) worst case, O(logN) best case, where N is the length of the input array.
+Worst case: This happens when all the elements are the same and we search for some different element. At each step, we will only be able to reduce the search space by 1 since arr[mid] equals arr[start] and it's not possible to decide the relative position of target from arr[mid]. Example: [1, 1, 1, 1, 1, 1, 1], target = 2. 
+Best case: This happens when all the elements are distinct. At each step, we will be able to divide our search space into half just like a normal binary search.
+This also answers the following follow-up question: 
+Would this (having duplicate elements) affect the run-time complexity? How and why? 
+As we can see, by having duplicate elements in the array, we often miss the opportunity to apply binary search in certain search spaces. Hence, we get O(N) worst case (with duplicates) vs O(logN) best case complexity (without duplicates).
