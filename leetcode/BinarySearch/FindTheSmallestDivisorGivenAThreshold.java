@@ -94,3 +94,73 @@ class Solution {
 }
 
 
+
+Attempt 1: 2022-09-07 (10min, problem convert to find the first 'lo' match the requirement, means find the lower boundary of 'lo', use the template directly)
+
+```
+class Solution { 
+    public int smallestDivisor(int[] nums, int threshold) { 
+        int hi = 0; 
+        for(int num : nums) { 
+            hi = Math.max(hi, num); 
+        } 
+        int lo = 1; 
+        while(lo <= hi) { 
+            int mid = lo + (hi - lo) / 2; 
+            // If sum of division's result larger than threashold means  
+            // 'mid' (divisor) still smaller than requirement, need to 
+            // increase 'lo', the problem convert to find the first 'lo' 
+            // match the requirement, means find the lower boundary of 'lo' 
+            if(sumOfDivision(nums, mid) > threshold) { 
+                lo = mid + 1; 
+            } else { 
+                hi = mid - 1; 
+            } 
+        } 
+        return lo; 
+    } 
+     
+    private int sumOfDivision(int[] nums, int divisor) { 
+        int count = 0; 
+        for(int num : nums) { 
+            count += (num - 1) / divisor + 1; 
+        } 
+        return count; 
+    } 
+}
+
+Space Complexity: O(1) 
+Time Complexity: O(nlogn)
+```
+
+Refer to
+https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/discuss/1001055/JAVA-oror-Binary-Search
+```
+class Solution {
+    public int smallestDivisor(int[] nums, int threshold) {
+        int left = 1, right = 1000000;
+        
+        while(left <= right){
+            int mid = left+(right-left)/2;
+            long sum = getDivSum(nums, mid);
+            if(sum > threshold){
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        
+        return left;
+    }
+    
+    private long getDivSum(int[] nums, int divisor){
+        long sum = 0;
+        for(int num: nums){
+            sum += (num-1)/divisor+1; //ceil of (num/divisor)
+        }
+        
+        return sum;
+    }
+}
+```
+
