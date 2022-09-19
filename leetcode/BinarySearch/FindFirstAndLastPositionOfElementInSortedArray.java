@@ -117,3 +117,53 @@ class Solution {
     }
 }
 
+
+
+
+
+
+Attempt 1: 2022-09-18 (5 min, same as L704 by using Find Target First/Last Occurrence)
+
+```
+class Solution { 
+    public int[] searchRange(int[] nums, int target) { 
+        int starting_pos = findStartingPos(nums, target); 
+        int ending_pos = findEndingPos(nums, target); 
+        return new int[] {starting_pos, ending_pos}; 
+    } 
+     
+    private int findStartingPos(int[] nums, int target) { 
+        int lo = 0; 
+        int hi = nums.length - 1; 
+        while(lo <= hi) { 
+            int mid = lo + (hi - lo) / 2; 
+            if(nums[mid] >= target) { 
+                hi = mid - 1; 
+            } else { 
+                lo = mid + 1; 
+            } 
+        } 
+        if(lo >= nums.length || nums[lo] != target) { 
+            return -1; 
+        } 
+        return lo; 
+    } 
+     
+    private int findEndingPos(int[] nums, int target) { 
+        int lo = 0; 
+        int hi = nums.length - 1; 
+        while(lo <= hi) { 
+            int mid = lo + (hi - lo) / 2; 
+            if(nums[mid] > target) { 
+                hi = mid - 1; 
+            } else { 
+                lo = mid + 1; 
+            } 
+        } 
+        if(hi < 0 || nums[hi] != target) { 
+            return -1; 
+        } 
+        return hi;         
+    } 
+}
+```
