@@ -100,3 +100,111 @@ class Solution {
         return count;
     }
 }
+
+
+
+
+
+Attempt 1: 2022-09-14 (30min, difficult on how to integrate into Find Lower Boundary template and handle overflow of integer max value limitation)
+
+```
+class Solution { 
+    public int minEatingSpeed(int[] piles, int h) { 
+        int lo = 1; 
+        int hi = 0; 
+        for(int pile : piles) { 
+            hi = Math.max(hi, pile); 
+        } 
+        while(lo <= hi) { 
+            int mid = lo + (hi - lo) / 2; 
+            // Tricky point to integrate the condition judgement into a single  
+            // boolean function which following the nums[mid] >= target style 
+            // e.g 'h' as the target nested into the function is a breakthrough 
+            if(countHours(mid, piles, h)) { 
+                hi = mid - 1; 
+            } else { 
+                lo = mid + 1; 
+            } 
+        } 
+        return lo; 
+    } 
+     
+    private boolean countHours(int k, int[] piles, int h) { 
+        int count = 0; 
+        for(int pile : piles) { 
+            //count += (pile - 1) / k + 1; 
+            // Test out by new added testing case: 
+            // piles=[805306368,805306368,805306368], h=1000000000 
+            // Since 805306368 * 3 > Integer.MAX_VALUE, we cannot 
+            // simply sum it up with plain adding, needs Math.ceil 
+            // to work with cased double value (double type will 
+            // by pass the Integer.MAX_VALUE limitation) 
+            count += Math.ceil(pile * 1.0 / k); 
+        } 
+        // Set '<=' exactly for if KoKo's eating hours 'count' less  
+        // than threshold 'h', KoKo still safe, we can continue relax  
+        // 'count', which means we can pick a smaller 'k', and 'k' is 
+        // value assigned by 'mid', 'mid' is derive by 'hi', eventually 
+        // means we can shrink 'hi' to 'mid - 1', and perfectly match 
+        // "Find Lower Boundary" template 
+        // if(nums[mid] >= target) { 
+        //      hi = mid - 1; 
+        //  } else { 
+        //      lo = mid + 1; 
+        //  } 
+        return count <= h; 
+    } 
+}
+
+Space Complexity: O(1)       
+Time Complexity: O(nlogn) 
+where n is no of piles & n is range of K (left to right)
+```
+
+Refer to
+https://leetcode.com/problems/koko-eating-bananas/discuss/152506/Binary-Search-Java-Python-with-Explanations
+Each hour, Koko chooses some pile of bananas, and eats K bananas from that pile.
+
+There is a limited value range of K: [lo, hi].There is a K' value, such that K(for any K >= K') can enable her to eat all the bananas within H hours: [K', hi].We are asked to find K'.
+
+Given a linear searching space [lo, hi], [mi, hi] (lo <= mi) satisfy a property, we can use Binary Searc to get mi.
+
+Initially, we know that K belongs to [1, the largest element in piles[]]. And we follow the pattern of lower-bound Binary Search except that if (K == target) is replaced with if (canEatAll(piles, K, H)).
+
+```
+ public int minEatingSpeed(int[] piles, int H) {
+        int lo = 1, hi = getMaxPile(piles);
+        
+        // Binary search to find the smallest valid K.
+        while (lo <= hi) {
+            int K = lo + ((hi - lo) >> 1);
+            if (canEatAll(piles, K, H)) {
+                hi = K - 1;
+            } else {
+                lo = K + 1;
+            }
+        }
+        
+        return lo;
+    }
+    
+    private boolean canEatAll(int[] piles, int K, int H) {
+        int countHour = 0; // Hours take to eat all bananas at speed K.
+        
+        for (int pile : piles) {
+            countHour += pile / K;
+            if (pile % K != 0)
+                countHour++;
+        }
+        return countHour <= H;
+    }
+    
+    private int getMaxPile(int[] piles) {
+        int maxPile = Integer.MIN_VALUE;
+        for (int pile : piles) {
+            maxPile = Math.max(pile, maxPile);
+        }
+        return maxPile;
+    }
+```
+
