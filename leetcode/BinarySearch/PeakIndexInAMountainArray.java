@@ -48,3 +48,63 @@ class Solution {
         return start;
     }
 }
+
+
+
+Attempt 1: 2022-09-20 
+
+Solution 1: Binary Search solution (10min, even no specific target, but still able to use template similar to Find Target Occurrence, just change the condition as nums[mid] == target to nums[mid] > nums[mid - 1] && nums[mid] > nums[mid + 1])
+
+```
+class Solution { 
+    public int peakIndexInMountainArray(int[] arr) { 
+        int len = arr.length; 
+        if(len == 0) { 
+            return 0; 
+        } 
+        if(arr[0] > arr[1]) { 
+            return 0; 
+        } 
+        if(arr[len - 2] < arr[len - 1]) { 
+            return arr[len - 1]; 
+        } 
+        int lo = 1; 
+        int hi = len - 2; 
+        while(lo <= hi) { 
+            int mid = lo + (hi - lo) / 2; 
+            if(arr[mid] > arr[mid - 1] && arr[mid] > arr[mid + 1]) { 
+                return mid; 
+            } else if(arr[mid] < arr[mid - 1]) { 
+                hi = mid - 1; 
+            } else { 
+                lo = mid + 1; 
+            } 
+        } 
+        return -1; 
+    } 
+}
+
+Space Complexity: O(1)       
+Time Complexity: O(logn)
+```
+
+Solution 2: Linear Scan solution (10 min)
+
+```
+class Solution { 
+    public int peakIndexInMountainArray(int[] arr) { 
+        int len = arr.length; 
+        int result = 0; 
+        for(int i = 0; i < len - 1; i++) { 
+            if(arr[i] > arr[i + 1]) { 
+                return i; 
+            } 
+        } 
+        return len - 1; 
+    } 
+}
+
+Space Complexity: O(1)      
+Time Complexity: O(n)
+```
+
