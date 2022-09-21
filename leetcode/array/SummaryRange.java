@@ -58,3 +58,70 @@ public class SummaryRange {
     	}
     }
 }
+
+
+
+
+Attempt 1: 2022-09-21 (30min, too long to figure out corner case:  1. Only one element return directly 2. Set j <= len instead of j < len 3. Differ on continuous section and single element section)
+
+```
+class Solution { 
+    public List<String> summaryRanges(int[] nums) { 
+        List<String> result = new ArrayList<String>(); 
+        int len = nums.length; 
+        // Only one element we must directly return, otherwise duplicate calculate 
+        // e.g If not return will calculate '-1' again 
+        // Input: [-1] 
+        // Output: ["-1","-1"] 
+        // Expected: ["-1"] 
+        if(len == 1) { 
+            result.add(nums[0] + ""); 
+            return result; 
+        } 
+        // 'i' to record each section start element index, 'j' to keep check next 
+        // element 
+        int i = 0; 
+        // Set 'j <= len' rather than 'j < len' to make sure include last element, 
+        // e.g  
+        // if input as nums={0,1,2,4,5,7} and not include 'j == len' in for loop, 
+        // will miss last element '7' 
+        // ------------------- 
+        // Round 1:  
+        // i=0,j=1 -> nums[1]=nums[0]+1 -> j++ -> j=2 -> nums[2]=nums[1]+1 -> j++ -> j=3 ->  nums[3]!=nums[2]+1 -> while loop end 
+        // j-i=3-0=3!=1 -> result.add(nums[0]+"->"+nums[3-1]) -> "0->2" 
+        // i=j=3 
+        // outside for loop increase j -> j++ -> j=4 
+        // ------------------- 
+        // Round 2: 
+        // i=3,j=4 -> nums[4]=nums[3]+1 -> j++ -> j=5 -> nums[5]!=nums[4]+1 -> while loop end 
+        // j-i=5-3=2!=1 -> result.add(nums[3]+"->"+nums[5-1]) -> "4->5" 
+        // i=j=5 
+        // outside for loop increase j -> j++ -> j=6 
+        // ------------------- 
+        // Round 3: 
+        // j=6 > len -> outside for loop end, not able to collect last element "7" 
+        // ------------------- 
+        for(int j = 1; j <= len; j++) { 
+            // Add 'j < len' in while loop condition to make sure nums[j] not out  
+            // of boundary when 'j == len' 
+            while(j < len && nums[j] == nums[j - 1] + 1) { 
+                j++; 
+            } 
+            // If no continuous element (section start element index and end element 
+            // index is only 1 means a single element find) then record single element 
+            // If continuous element find, record with "->" 
+            if(j - i == 1) { 
+                result.add(nums[i] + ""); 
+            } else { 
+                result.add(nums[i] + "->" + nums[j - 1]); 
+            } 
+            i = j; 
+        } 
+        return result; 
+    } 
+}
+
+Space Complexity: O(1)       
+Time Complexity: O(n)
+```
+
