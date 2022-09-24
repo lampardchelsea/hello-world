@@ -296,3 +296,6 @@ Interestingly, binary search works beyond sorted arrays. You can use binary sear
   
 注意是否越界！
 
+Why mid = lo + (hi - lo) / 2 rather than mid = (hi + lo) / 2 ?
+https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/discuss/48808/My-pretty-simple-code-to-solve-it/48853
+This is a famous bug in binary search. if the size of array are too large, equal or larger than the upper bound of int type, hi + lo may cause an overflow and become a negative number. It's ok to write (hi + lo) / 2 here, leetcode will not give you a very large array to test. But we'd better know this. For a detailed information or history of this bug, you could search "binary search bug" on google.
