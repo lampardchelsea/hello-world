@@ -420,6 +420,11 @@ class Solution {
         return result;
     }
 }
+
+Time Complexity:O(n^k−1), or O(n^2) for 3Sum. We have k - 2 loops, and twoSum is O(n).
+Note that for k > 2, sorting the array does not change the overall time complexity.  
+Space Complexity:O(n). We need O(k) space for the recursion. k can be the same as nn in the worst case for the generalized algorithm. 
+Note that, for the purpose of complexity analysis, we ignore the memory required for the output.
 ```
 
 Two Pointers solution refer to:
