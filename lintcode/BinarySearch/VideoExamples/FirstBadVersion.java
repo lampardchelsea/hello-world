@@ -105,7 +105,7 @@ public class Solution extends VersionControl {
 }
 ```
 
-How while(lo <= hi) work with hi = mid - 1 and lo = mid + 1 ?
+How while(lo <= hi) work with hi = mid - 1 and lo = mid + 1 to find first bad version ?
 ```
 Template:
 while lo <= hi:  
@@ -135,7 +135,7 @@ isBadVersion(2)=F -> lo=mid+1=3 (lo=mid+1 means skip 'mid')
 Now lo > hi while loop end, lo is the first position for isBadVersion return 'T', no check required for non-existing answer return -1 case, because the problem guaranteed there must be a 'T' exist   in the input, not all 'F', return lo for first position
 ```
 
-Solution 2: Binary Search Find Target First Occurrence (template based on while(lo < hi), refer to )
+Solution 2: Binary Search Find Target First Occurrence (template based on while(lo < hi)
 ```
 /* The isBadVersion API is defined in the parent class VersionControl. 
       boolean isBadVersion(int version); */ 
@@ -177,7 +177,7 @@ public int firstBadVersionLeft(int n) {
 }
 ```
 
-How while(lo < hi) work with hi = mid and lo = mid + 1 ?
+How while(lo < hi) work with hi = mid and lo = mid + 1 to find first bad version ?
 ```
 Template:
 while lo <  hi:  
@@ -207,7 +207,150 @@ Conclusion
 https://leetcode.com/problems/first-bad-version/discuss/71296/O(lgN)-simple-Java-solution/166412
 I think when termination condition is left < right, you need to set hi = mid - 1, lo = mid; when it's left <= right, you need to set lo = mid + 1 & hi = mid - 1
 
+Solution 3: Binary Search Find Target First Occurrence (template based on while(lo + 1 < hi)
+```
 
+```
 
+---
+Follow Up: Find Last Bad Version ?
 
+Solution 1. while(lo <= hi) template
+```
+/* The isBadVersion API is defined in the parent class VersionControl.  
+      boolean isBadVersion(int version); */  
+public class Solution extends VersionControl {  
+    public int lastBadVersion(int n) {  
+        int lo = 1;  
+        int hi = n;  
+        while(lo <= hi) {  
+            int mid = lo + (hi - lo) / 2;  
+            if(isBadVersion(mid)) {
+                // Discard left half of 'mid' since we pursue last bad version position
+                lo = mid + 1;  
+            } else {  
+                hi = mid - 1;
+            }  
+        }  
+        // No check required for non-existing answer return -1 case, because the problem  
+        // guaranteed there must be a 'T' exist in the input, not all 'F' 
+        //if(!isBadVersion(lo)) {  
+        //    return -1;  
+        //}  
+        return hi;
+    }  
+}
 
+Space Complexity: O(1)         
+Time Complexity: O(logn)
+```
+
+Refer to 
+L34.Find First and Last Position of Element in Sorted Array template 1
+```
+    private int findEndingPos(int[] nums, int target) {  
+        int lo = 0;  
+        int hi = nums.length - 1;  
+        while(lo <= hi) {  
+            int mid = lo + (hi - lo) / 2;  
+            if(nums[mid] > target) {  
+                hi = mid - 1;  
+            } else {  
+                lo = mid + 1;  
+            }  
+        }  
+        if(hi < 0 || nums[hi] != target) {  
+            return -1;  
+        }  
+        return hi;          
+    }
+```
+
+How while(lo <= hi) work with hi = mid - 1 and lo = mid + 1 to find last bad version ?
+```
+e.g  
+isBadVersion result -> FFTTTT 
+index start from 1  -> 123456 
+Find right most 'T' 
+while(lo <= hi) -> ending condition lo > hi, means no interval between ...hi|lo... 
+Round 1: 
+lo=1,hi=6 -> mid=3 
+isBadVersion(3)=T -> lo=mid+1=4 (lo=mid+1 means skip 'mid') 
+Round 2: 
+lo=4,hi=6 -> mid=5 
+isBadVersion(5)=T -> lo=mid+1=6 (lo=mid+1 means skip 'mid') 
+Round 3: 
+lo=6,hi=6 -> mid=6 
+isBadVersion(6)=T -> lo=mid+1=7 (lo=mid+1 means skip 'mid')  
+Now lo > hi while loop end, hi is the last position for isBadVersion return 'T', no check required for non-existing answer return -1 case, because the problem guaranteed there must be a 'T' exist   in the input, not all 'F', return hi for last position
+```
+
+Solution 2. while(lo < hi) template
+```
+/* The isBadVersion API is defined in the parent class VersionControl. 
+      boolean isBadVersion(int version); */ 
+public class Solution extends VersionControl { 
+    public int firstBadVersion(int n) { 
+        int lo = 1; 
+        int hi = n; 
+        while(lo < hi) { 
+            int mid = lo + (hi - lo) / 2 + 1; 
+            if(isBadVersion(mid)) { 
+                lo = mid; 
+            } else { 
+                hi = mid - 1; 
+            } 
+        } 
+        return hi; 
+    } 
+}
+
+Space Complexity: O(1)          
+Time Complexity: O(logn)
+```
+
+Refer to
+https://leetcode.com/problems/first-bad-version/discuss/71386/An-clear-way-to-use-binary-search
+It is obvious that the version would looks like the following:
+FFTTTT (The first two are correct version, the rest are bad ones)
+To find the right most F we need to notice that since we are looking for the first bad version not the last correct version, we need to return the (position when the binary search stop) + 1
+```
+public int firstBadVersion(int n) { 
+	if (isBadVersion(1)) { 
+		return 1; 
+	} 
+	int i = 1; 
+	int j = n; 
+	while (i < j) { 
+		int mid = i + (j - i) / 2 + 1; 
+		if (!isBadVersion(mid)) { 
+			i = mid; 
+		} else { 
+			j = mid - 1; 
+		} 
+	}
+        // To find the right most F we need to notice that since we are looking for the first bad version 
+        // not the last correct version, we need to return the (position when the binary search stop) + 1
+	return j + 1; 
+}
+```
+
+How while(lo < hi) work with hi = mid  and lo = mid + 1 to find last bad version ?
+```
+e.g  
+isBadVersion result -> FFTTTT 
+index start from 1  -> 123456 
+Find right most 'T' 
+while(lo < hi) -> ending condition lo == hi, means lo and hi overlap at same position ... hi ... 
+                                                                                          lo 
+Round 1: 
+lo=1,hi=6 -> mid=lo+(hi-lo)/2+1=1+(6-1)/2+1=4 
+isBadVersion(4)=T -> lo=mid=4 (lo=mid means include 'mid') 
+Round 2: 
+lo=4,hi=6 -> mid=lo+(hi-lo)/2+1=4+(6-4)/2+1=6 
+isBadVersion(6)=T -> lo=mid=6 (lo=mid means include 'mid') 
+Now lo == hi while loop end, and hi can equal to mid, which means include the final answer, return either hi or lo is fine
+```
+
+Solution 3: while(lo + 1 < hi) template
+Not suitable for this template because isBadVersion(mid) as an interactive method provide by platform, not response as inequality, but for while(lo + 1 < hi) template to find the last occurrence of target requires explicit inequality equation such as nums[mid] > target and nums[mid] < target
