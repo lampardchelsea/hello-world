@@ -98,7 +98,7 @@ public class Solution extends VersionControl {
 
 Attempt 1: 2022-10-01
 
-Solution 1: Binary Search Find Target First Occurrence (template based on while(lo <= hi), refer to L704.Binary Search)
+Solution 1: 10min, Binary Search Find Target First Occurrence (template based on while(lo <= hi), refer to L704.Binary Search)
 ```
 /* The isBadVersion API is defined in the parent class VersionControl. 
       boolean isBadVersion(int version); */ 
@@ -177,7 +177,7 @@ isBadVersion(2)=F -> lo=mid+1=3 (lo=mid+1 means skip 'mid')
 Now lo > hi while loop end, lo is the first position for isBadVersion return 'T', no check required for non-existing answer return -1 case, because the problem guaranteed there must be a 'T' exist   in the input, not all 'F', return lo for first position
 ```
 
-Solution 2: Binary Search Find Target First Occurrence (template based on while(lo < hi)
+Solution 2:  10min, Binary Search Find Target First Occurrence (template based on while(lo < hi)
 ```
 /* The isBadVersion API is defined in the parent class VersionControl. 
       boolean isBadVersion(int version); */ 
@@ -251,7 +251,30 @@ I think when termination condition is left < right, you need to set hi = mid - 1
 
 Solution 3: Binary Search Find Target First Occurrence (template based on while(lo + 1 < hi)
 ```
+/* The isBadVersion API is defined in the parent class VersionControl.
+      boolean isBadVersion(int version); */
 
+public class Solution extends VersionControl {
+    public int firstBadVersion(int n) {
+        int lo = 1;
+        int hi = n;
+        while(lo + 1 < hi) {
+            int mid = lo + (hi - lo) / 2;
+            if(isBadVersion(mid)) {
+                hi = mid;
+            } else {
+                lo = mid;
+            }
+        }
+        if(isBadVersion(lo)) {
+            return lo;
+        }
+        return hi;
+    }
+}
+
+Space Complexity: O(1)         
+Time Complexity: O(logn)
 ```
 
 ---
