@@ -289,6 +289,7 @@ However, the terminate condition on longer works this time. Consider the followi
 
 Now A[mid] = 5, then according to rule 2, we set i = mid. This practically does nothing because i is already equal to mid. As a result, the search range is not moved at all!
 
+Right Biased Trick
 The solution is by using a small trick: instead of calculating mid as mid = (i + j)/2, we now do:
 ```
 mid = (i+j)/2+1
