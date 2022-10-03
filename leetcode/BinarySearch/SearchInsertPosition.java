@@ -118,7 +118,41 @@ Time Complexity: O(logn)
 ```
 
 ---
-Solution 2: 60min, too long to get the trick on setting hi = len rather than hi = len - 1, follow L34.Find First and Last Position of Element in Sorted Array Solution 2 while(lo < hi) template
+Solution 2: 10min, refer to L34.Find First and Last Position of Element in Sorted Array Solution 2 while(lo < hi) Right Biased template
+```
+class Solution { 
+    // Convert problem into find the most recent value position smaller 
+    // or equal to target 
+    // 1. If find the value equal to target, return position 
+    // 2. If not find, return most recent smaller value's position plus 1 
+    public int searchInsert(int[] nums, int target) { 
+        int len = nums.length; 
+        int lo = 0; 
+        int hi = len - 1; 
+        while(lo < hi) {
+            // Since insert always happen after element, use right biased
+            int mid = lo + (hi - lo) / 2 + 1; 
+            if(nums[mid] == target) { 
+                return mid; 
+            } else if(nums[mid] > target) { 
+                hi = mid - 1; 
+            } else { 
+                lo = mid; 
+            } 
+        } 
+        if(nums[lo] < target) { 
+            return lo + 1; 
+        } 
+        return lo; 
+    } 
+}
+
+Space Complexity: O(1)          
+Time Complexity: O(logn)
+```
+
+---
+Solution 3: 60min, too long to get the trick on setting hi = len rather than hi = len - 1, follow L34.Find First and Last Position of Element in Sorted Array Solution 2 while(lo < hi) template
 ```
 class Solution { 
     // Convert problem into find the most recent value position smaller 
@@ -199,11 +233,9 @@ public int searchInsert(int[] nums, int target) {
 首先，一定要注意，数组剩下偶数个元素的时候，中点取的是左端点。例如 1 2 3 4，中点取的是 2。正因为如此，我们更新 start 的时候不是直接取 mid ，而是 mid + 1。因为剩下两个元素的时候，mid 和 start 是相同的，如果不进行加 1 会陷入死循环。
 然后上边的算法，返回最终值的时候，我们进行了一个 if 的判断，那么能不能避免呢。
 
-
-
 我们开始更新 start 的时候，是 mid + 1，如果剩两个元素，例如 2 4，target = 6 的话，此时 mid = 0，start = mid + 1 = 1，我们返回 start + 1 = 2。如果 mid 是右端点，那么 mid = 1，start = mid + 1 = 2，这样就可以直接返回 start 了，不需要在返回的时候加 1 了
 
-怎么做到呢？最最开始的时候我们取 end 的时候是 end = nums.length - 1。如果我们改成 end = nums.length，这样每次取元素的时候，如果和之前对比，取到的就是右端点了。这样的话，最后返回的时候就不需要多加 1 了。
+怎么做到呢？最最开始的时候我们取 end 的时候是 end = nums.length - 1。如果我们改成 end = nums.length，这样每次取元素的时候，如果和之前对比，取到的就是右端点了。这样的话，最后返回的时候就不需要多加 1 了。选用 end = nums.length 的效果类似于 Solution 2 中的 Right Biased ==> int mid = lo + (hi - lo) / 2 + 1; 
 ```
 public int searchInsert(int[] nums, int target) { 
     int start = 0; 
@@ -226,7 +258,7 @@ public int searchInsert(int[] nums, int target) {
 ```
 
 ---
-Solution 3: 60min, no template based while(lo < hi), intuitive solution, not  able to follow the template from L34.Find First and Last Position of Element in Sorted Array Solution 2 
+Solution 4: 60min, intuitive solution no template based, not follow the template from L34.Find First and Last Position of Element in Sorted Array Solution 2
 ```
 class Solution { 
     // Convert problem into find the most recent value position smaller 
@@ -282,7 +314,6 @@ I want to give my explanation below:
 4. if A[m] < target, then the insertion position should be at least at m + 1, because it can be even larger, i.e. to the right of m + 1(including m + 1), we set l = m + 1;
 5. if A[m] > target, the insertion position should be at most m, because it can even smaller. So we would set r = m. 
 An example:
-
 ```
 target: 6 and m = 7
 1 	5 	7 	9
@@ -344,5 +375,3 @@ class Solution {
 	} 
 }
 ```
-
-
