@@ -107,3 +107,35 @@ public class Sqrtx {
 		System.out.print(result);
 	}
 }
+
+
+
+
+Attempt 1: 2022-10-4 (5min, while(lo <= hi) Find Upper Boundary template)
+```
+class Solution { 
+    // Find Upper Boundary template 
+    public int mySqrt(int x) { 
+        if(x == 1) { 
+            return 1; 
+        } 
+        int lo = 1; 
+        // Square root of x is always lesser than or equal to x / 2 
+        int hi = x / 2; 
+        while(lo <= hi) { 
+            int mid = lo + (hi - lo) / 2; 
+            // mid > x/mid instead of mid * mid > x in case of  
+            // mid * mid may exceed Integer.MAX_VALUE limitation 
+            if(mid > x / mid) { 
+                hi = mid - 1; 
+            } else { 
+                lo = mid + 1; 
+            } 
+        } 
+        return hi; 
+    } 
+}
+
+Space Complexity: O(1)         
+Time Complexity: O(logn)
+```
