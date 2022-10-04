@@ -168,7 +168,6 @@ The problem is interesting and good. Unfortunately the test cases is terrible. T
 Complexity
 
 Time O(log(N - K)) to binary research and find result. 
-
 Space O(K) to create the returned list.
 
 Style 1:
@@ -252,6 +251,7 @@ An example is [...3,3,4,7...], k = 3, x = 5, if the range is [3, 3, 4], compare 
 https://leetcode.com/problems/find-k-closest-elements/discuss/106426/JavaC++Python-Binary-Search-O(log(N-K)-+-K)/884078
 If x - A[mid] > A[mid + k] - x, it means A[mid + 1] ~ A[mid + k] is better than A[mid] ~ A[mid + k - 1]
 This means we compare below 2 windows to decided which window is 'better'. The only difference between these 2 windows are element A[mid] and A[mid + k], so we only need check who is closer to x, so its window would be 'better', i.e. all elements are closer to x compared to all elements in the other window.
+Because you are comparing these two set: <A[mid] ~ A[mid + k - 1]> vs. <A[mid + 1] ~ A[mid + k]>. The only two different numbers in these two sets are A[mid] and A[mid + k].
 ```
 A[mid], A[mid + 1], ..., A[mid + k - 1]
         A[mid + 1], ..., A[mid + k - 1], A[mid + k]
