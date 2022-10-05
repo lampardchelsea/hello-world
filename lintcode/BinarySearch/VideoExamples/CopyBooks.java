@@ -85,122 +85,196 @@ https://yeqiuquan.blogspot.com/2017/03/lintcode-437-copy-books.html
 
 
 ```
-public class Solution {
-    /**
-     * @param pages: an array of integers
-     * @param k: an integer
-     * @return: an integer
-     */
-    public int copyBooks(int[] pages, int k) {
-        // write your code here
-        
-        if (pages == null || pages.length == 0) {
-            return 0;
+public class Solution { 
+    /** 
+     * @param pages: an array of integers 
+     * @param k: an integer 
+     * @return: an integer 
+     */ 
+    public int copyBooks(int[] pages, int k) { 
+        // write your code here 
+         
+        if (pages == null || pages.length == 0) { 
+            return 0; 
+        } 
+         
+        int start = 0; 
+        int end = 0; 
+        for (int i = 0; i < pages.length; i++) { 
+            end += pages[i]; 
+            start = Math.max(start, pages[i]); 
+        } 
+         
+        while (start + 1 < end) { 
+            int mid = start + (end - start) / 2; 
+            if (people(pages, mid) > k) { 
+                start = mid; 
+            } 
+            else { 
+                end = mid; 
+            } 
+        } 
+         
+        if (people(pages, start) <= k) { 
+            return start; 
+        } 
+        return end; 
+         
+    } 
+     
+    public int people(int[] pages, int minTime) { 
+        if (pages.length == 0) { 
+            return 0; 
         }
-        
-        int start = 0;
-        int end = 0;
-        for (int i = 0; i < pages.length; i++) {
-            end += pages[i];
-            start = Math.max(start, pages[i]);
-        }
-        
-        while (start + 1 < end) {
-            int mid = start + (end - start) / 2;
-            if (people(pages, mid) > k) {
-                start = mid;
-            }
-            else {
-                end = mid;
-            }
-        }
-        
-        if (people(pages, start) <= k) {
-            return start;
-        }
-        return end;
-        
-    }
-    
-    public int people(int[] pages, int minTime) {
-        if (pages.length == 0) {
-            return 0;
-        }
-        
-        int sum = 0;
+        int sum = 0; 
+        int people = 1; 
+        for (int i = 0; i < pages.length; i++) { 
+            if (sum + pages[i] > minTime) { 
+                people++; 
+                sum = 0; 
+            } 
+            sum += pages[i]; 
+        } 
+         
+        return people; 
+    } 
+}
+```
+
+Wrong  Solution caused by wrong calculation on people needed:
+1.至少有一个人copy，所以count从1开始
+2. Must pre-check the 'sum + page > minTimeNeeded', then 'sum += page', reverse order will lead wrong calculation on 'people' 
+```
+For wrong function peopleNeeded() analysis:
+    private boolean peopleNeeded(int[] pages, int minTime, int k) {
+        // 至少有一个人copy，所以count从1开始
         int people = 1;
-        for (int i = 0; i < pages.length; i++) {
-            if (sum + pages[i] > minTime) {
+        int sum = 0;
+        for(int page : pages) {
+            sum += page;
+            if(sum > minTime) {
                 people++;
                 sum = 0;
             }
-            sum += pages[i];
         }
-        
-        return people;
+        return people <= k;
     }
-}
+------------------------------
+pages={3,2,4}
+k=2
+------------------------------
+Round 1:
+lo=4,hi=9
+mid=6 -> minTimeNeeded=6 -> peopleNeeded(pages,6,2)
+-> people=2 <= k=2 -> hi=mid-1=5
+------------------------------
+Round 2:
+lo=4,hi=5
+mid=4 -> minTimeNeeded=4 -> peopleNeeded(pages,4,2)
+-> people=2 <= k=2 -> hi=mid-1=3
+lo > hi while loop end
+Note: It is already wrong here since 2 people cannot finish {3,2,4} in 4 minutes
+
+
+
+
+===========================================
+For correct function peopleNeeded() analysis:
+    private boolean peopleNeeded(int[] pages, int minTime, int k) {
+        // 至少有一个人copy，所以count从1开始
+        int people = 1;
+        int sum = 0;
+        for(int page : pages) {
+            if(sum + page > minTime) {
+                people++;
+                sum = 0;
+            }
+            sum += page;
+        }
+        return people <= k;
+    }
+------------------------------
+pages={3,2,4}
+k=2
+------------------------------
+Round 1:
+lo=4,hi=9
+mid=6 -> minTimeNeeded=6 -> peopleNeeded(pages,6,2)
+-> people=2 <= k=2 -> hi=mid-1=5
+------------------------------
+Round 2:
+lo=4,hi=5
+mid=4 -> minTimeNeeded=4 -> peopleNeeded(pages,4,2)
+-> people=3 > k=2 -> lo=mid+1=5
+------------------------------
+Round 3:
+lo=5,hi=5
+mid=5 -> minTimeNeeded=5 -> peopleNeeded(pages,5,2)
+-> people=2 <= k=2 -> hi=mid-1=4
+lo > hi while loop end
 ```
 
 Refer to
 https://www.lintcode.com/problem/copy-books/solution/17469
 非常值得总结的二分答案的题目思路就是，对于 完成时间 进行二分查找，找到第一个 不多于K个人能在给定的完成时间里完成 复印len(pages)本书 这一任务的 完成时间
 完成时间的lower bound: max(pages), 理解为一共有len(pages)个人，每个人只复印一本书
+
 完成时间的upper bound: sum(pages), 理解为只有一个人要独自复印所有的书
+
 ```
-class Solution:
-    """
-    @param pages: an array of integers
-    @param k: An integer
-    @return: an integer
-    """
-    def copyBooks(self, pages, k):
-        # write your code here
-        
-        if not pages:
-            
-            return 0 
-            
-        start = max(pages)
-        end = sum(pages)
-        
-        while start + 1 < end:
-            
-            mid = start + (end - start) // 2 
-            
-            if self.can_complete(pages, k, mid):
-                
-                end = mid 
-                
-            else:
-                
-                start = mid 
-                
-        if self.can_complete(pages, k, start):
-            
-            return start 
-            
-        # Since even if there is only one person,
-        # he or she can copy all books, just return end.
-        return end 
-        
-    def can_complete(self, pages, k, tl):
-        
-        num = 1 
-        
-        pageSum = 0
-        
-        for page in pages:
-            
-            if pageSum + page <= tl:
-                
-                pageSum += page 
-                
-            else:
-                
-                num += 1 
-                pageSum = page 
-                
+class Solution: 
+    """ 
+    @param pages: an array of integers 
+    @param k: An integer 
+    @return: an integer 
+    """ 
+    def copyBooks(self, pages, k): 
+        # write your code here 
+         
+        if not pages: 
+             
+            return 0  
+             
+        start = max(pages) 
+        end = sum(pages) 
+         
+        while start + 1 < end: 
+             
+            mid = start + (end - start) // 2  
+             
+            if self.can_complete(pages, k, mid): 
+                 
+                end = mid  
+                 
+            else: 
+                 
+                start = mid  
+                 
+        if self.can_complete(pages, k, start): 
+             
+            return start  
+             
+        # Since even if there is only one person, 
+        # he or she can copy all books, just return end. 
+        return end  
+         
+    def can_complete(self, pages, k, tl): 
+         
+        num = 1  
+         
+        pageSum = 0 
+         
+        for page in pages: 
+             
+            if pageSum + page <= tl: 
+                 
+                pageSum += page  
+                 
+            else: 
+                 
+                num += 1  
+                pageSum = page  
+                 
         return num <= k
 ```
 
