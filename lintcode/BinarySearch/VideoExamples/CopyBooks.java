@@ -76,7 +76,7 @@ public class Solution {
 }
 
 Space Complexity: O(1)           
-Time Complexity: O(nlogn)
+Time Complexity: O(nlogn) n:书本数目, m:总页数
 ```
 
 Refer to
