@@ -76,7 +76,7 @@ public class Solution {
 }
 
 Space Complexity: O(1)           
-Time Complexity: O(nlogn) n:书本数目, m:总页数
+Time Complexity: O(nlogm) n:书本数目, m:总页数
 ```
 
 Refer to
@@ -145,72 +145,71 @@ Wrong  Solution caused by wrong calculation on people needed:
 1.至少有一个人copy，所以count从1开始
 2. Must pre-check the 'sum + page > minTimeNeeded', then 'sum += page', reverse order will lead wrong calculation on 'people' 
 ```
-For wrong function peopleNeeded() analysis:
-    private boolean peopleNeeded(int[] pages, int minTime, int k) {
-        // 至少有一个人copy，所以count从1开始
-        int people = 1;
-        int sum = 0;
-        for(int page : pages) {
-            sum += page;
-            if(sum > minTime) {
-                people++;
-                sum = 0;
-            }
-        }
-        return people <= k;
-    }
-------------------------------
-pages={3,2,4}
-k=2
-------------------------------
-Round 1:
-lo=4,hi=9
-mid=6 -> minTimeNeeded=6 -> peopleNeeded(pages,6,2)
--> people=2 <= k=2 -> hi=mid-1=5
-------------------------------
-Round 2:
-lo=4,hi=5
-mid=4 -> minTimeNeeded=4 -> peopleNeeded(pages,4,2)
--> people=2 <= k=2 -> hi=mid-1=3
-lo > hi while loop end
-Note: It is already wrong here since 2 people cannot finish {3,2,4} in 4 minutes
+For wrong function peopleNeeded() analysis: 
+    private boolean peopleNeeded(int[] pages, int minTime, int k) { 
+        // 至少有一个人copy，所以count从1开始 
+        int people = 1; 
+        int sum = 0; 
+        for(int page : pages) { 
+            sum += page; 
+            if(sum > minTime) { 
+                people++; 
+                sum = 0; 
+            } 
+        } 
+        return people <= k; 
+    } 
+------------------------------ 
+pages={3,2,4} 
+k=2 
+------------------------------ 
+Round 1: 
+lo=4,hi=9 
+mid=6 -> minTimeNeeded=6 -> peopleNeeded(pages,6,2) 
+-> people=2 <= k=2 -> hi=mid-1=5 
+------------------------------ 
+Round 2: 
+lo=4,hi=5 
+mid=4 -> minTimeNeeded=4 -> peopleNeeded(pages,4,2) 
+-> people=2 <= k=2 -> hi=mid-1=3 
+lo > hi while loop end 
+Note: It is already wrong here since 2 people cannot finish {3,2,4} in 4 minutes 
 
 
 
-
-===========================================
-For correct function peopleNeeded() analysis:
-    private boolean peopleNeeded(int[] pages, int minTime, int k) {
-        // 至少有一个人copy，所以count从1开始
-        int people = 1;
-        int sum = 0;
-        for(int page : pages) {
-            if(sum + page > minTime) {
-                people++;
-                sum = 0;
-            }
-            sum += page;
-        }
-        return people <= k;
-    }
-------------------------------
-pages={3,2,4}
-k=2
-------------------------------
-Round 1:
-lo=4,hi=9
-mid=6 -> minTimeNeeded=6 -> peopleNeeded(pages,6,2)
--> people=2 <= k=2 -> hi=mid-1=5
-------------------------------
-Round 2:
-lo=4,hi=5
-mid=4 -> minTimeNeeded=4 -> peopleNeeded(pages,4,2)
--> people=3 > k=2 -> lo=mid+1=5
-------------------------------
-Round 3:
-lo=5,hi=5
-mid=5 -> minTimeNeeded=5 -> peopleNeeded(pages,5,2)
--> people=2 <= k=2 -> hi=mid-1=4
+=========================================== 
+For correct function peopleNeeded() analysis: 
+    private boolean peopleNeeded(int[] pages, int minTime, int k) { 
+        // 至少有一个人copy，所以count从1开始 
+        int people = 1; 
+        int sum = 0; 
+        for(int page : pages) { 
+            if(sum + page > minTime) { 
+                people++; 
+                sum = 0; 
+            } 
+            sum += page; 
+        } 
+        return people <= k; 
+    } 
+------------------------------ 
+pages={3,2,4} 
+k=2 
+------------------------------ 
+Round 1: 
+lo=4,hi=9 
+mid=6 -> minTimeNeeded=6 -> peopleNeeded(pages,6,2) 
+-> people=2 <= k=2 -> hi=mid-1=5 
+------------------------------ 
+Round 2: 
+lo=4,hi=5 
+mid=4 -> minTimeNeeded=4 -> peopleNeeded(pages,4,2) 
+-> people=3 > k=2 -> lo=mid+1=5 
+------------------------------ 
+Round 3: 
+lo=5,hi=5 
+mid=5 -> minTimeNeeded=5 -> peopleNeeded(pages,5,2) 
+-> people=2 <= k=2 -> hi=mid-1=4 
 lo > hi while loop end
 ```
 
@@ -279,4 +278,248 @@ class Solution:
 ```
 
 ---
-Solution 2: DP 
+Solution 2 (360min, too long to come up with dp[i][j] = k definition and dp equation)
+```
+public class Solution { 
+    /** 
+     * @param pages: an array of integers 
+     * @param k: An integer 
+     * @return: an integer 
+     */ 
+    public int copyBooks(int[] pages, int k) { 
+        int len = pages.length; 
+        int[] preSum = new int[len + 1]; 
+        for(int i = 1; i <= len; i++) { 
+            preSum[i] = preSum[i - 1] + pages[i - 1]; 
+        } 
+        int[][] dp = new int[k + 1][len + 1]; 
+        dp[0][0] = 0; 
+        // 如果i本书给0个人去抄，一辈子都抄不完 
+        for(int i = 1; i <= len; i++) { 
+            dp[0][i] = Integer.MAX_VALUE; 
+        } 
+        // 如果0本书给i个人去抄写，花费0的时间 
+        for(int i = 1; i <= k; i++) { 
+            dp[i][0] = 0; 
+        } 
+        for(int i = 1; i <= k; i++) { // 枚举人从 1 到 k (一共k个人) 
+            for(int j = 1; j <= len; j++) { // 枚举书从 1 到 n (一共n本书) 
+                dp[i][j] = Integer.MAX_VALUE; 
+                for(int pre = 0; pre < j; pre++) { 
+                    // 最后一个人抄剩下(pre, pre+1..., j)本书所需时间preSum[j] - preSum[pre],  
+                    // 对比前i-1个人抄(0, 1, 2..., pre)本书的所需时间dp[i - 1][pre], 两者取最大值 
+                    int cost = preSum[j] - preSum[pre]; 
+                    int curMaxCost = Math.max(cost, dp[i - 1][pre]); 
+                    // 更新当前最小值 
+                    dp[i][j] = Math.min(dp[i][j], curMaxCost); 
+                } 
+            } 
+        } 
+        return dp[k][len]; 
+    } 
+}
+
+Space Complexity: O(1)          
+Time Complexity: O(n^3)
+```
+
+Step by step analysis how state equation works
+```
+初始化 
+pages={3,2,4} k=2 
+dp=[k+1][pages.length+1]=[3][4] // dp[i][j] -> i个copier，抄完j本书需要最短时间 
+0,0,0,0 
+0,0,0,0 
+0,0,0,0 
+----------------------------------------------------------- 
+边界初始化 
+if 0 copier, 无穷大时间, if 0 本书，不管几个copier耗时都是0 
+0,INF,INF,INF 
+0,  0,  0,  0 
+0,  0,  0,  0 
+----------------------------------------------------------- 
+枚举分析具体情况，找到递归方程 
+pages={3,2,4} k=2 
+1个copier抄完1本书 
+dp[1][1]=pages[0]=3 
+1个copier抄完2本书 
+dp[1][2]=pages[0]+pages[1]=3+2=5 
+1个copier抄完3本书 
+dp[1][3]=pages[0]+pages[1]+pages[2]=3+2+4=9 
+2个copier抄完1本书 
+dp[2][1]=pages[0]=3 
+2个copier抄完2本书 
+dp[2][2]=Math.max(pages[0],pages[1])=3 
+2个copier抄完3本书 
+dp[2][3]=Math.max(pages[0]+pages[1],pages[2])=5 
+0,INF,INF,INF 
+0,  3,  5,  9 
+0,  3,  3,  5 
+----------------------------------------------------------- 
+根据dp[1][3],dp[2][3]的累加模式发现类似preSum 
+Define a preSum array based on pages={3,2,4} 
+int[] preSum = new int[len + 1]=new int[4] 
+for(int i = 1; i < 4; i++) { 
+    preSum[i] = preSum[i - 1] + pages[i - 1]; 
+} 
+==> preSum={0,3,5,9} 
+for(int i = 1; i <= k; i++) { // 枚举人从 1 到 k (一共k个人) 
+    for(int j = 1; j <= n; j++) { // 枚举书从 1 到 n (一共n本书) 
+        dp[i][j] = Integer.MAX_VALUE; 
+        for(int pre = 0; pre < j; pre++) { 
+             // 最后一个人抄剩下(pre, pre+1..., j)本书所需时间preSum[j] - preSum[pre], 对比前i-1个人  
+抄(0, 1, 2..., pre)本书的所需时间dp[i - 1][pre], 两者取最大值 
+             int cost = preSum[j] - preSum[pre]; 
+             int curMaxCost = Math.max(cost, dp[i - 1][pre]); 
+             dp[i][j] = Math.min(dp[i][j], curMaxCost); 
+        } 
+    } 
+} 
+----------------------------------------------------------- 
+preSum={0,3,5,9} 
+0,INF,INF,INF 
+0,  0,  0,  0 
+0,  0,  0,  0 
+----------------------------------------------------------- 
+Round 1: 
+i=1 
+j=1 -> dp[1][1]=INF 
+0,INF,INF,INF 
+0,INF,  0,  0 
+0,  0,  0,  0 
+pre=0 -> cost=preSum[1]-preSum[0]=3-0=3,curMaxCost=Math.max(3,dp[1-1][0])=Math.max(3,0)=3, 最后一个人  
+抄剩下1本书所需时间preSum[1]-preSum[0]=3, 对比前1-1=0个人抄0本书的所需时间dp[1-1][0]=0, 两者取最大值3   
+-> 再刷新当前最小记录dp[1][1]=Math.min(INF,3)=3, 1个人抄完1本书最少需要3分钟 
+0,INF,INF,INF 
+0,  3,  0,  0 
+0,  0,  0,  0 
+----------------------------------------------------------- 
+Round 2: 
+i=1 
+j=2 -> dp[1][2]=INF 
+0,INF,INF,INF 
+0,  3,INF,  0 
+0,  0,  0,  0 
+pre=0 -> cost=preSum[2]-preSum[0]=5-0=5,curMaxCost=Math.max(5,dp[1-1][0])=Math.max(5,0)=5, 最后一个人  
+抄剩下2本书所需时间preSum[2]-preSum[0]=5, 对比前1-1=0个人抄0本书的所需时间dp[1-1][0]=0, 两者取最大值5   
+-> 再刷新当前最小记录dp[1][2]=Math.min(INF,5)=5, 1个人抄完2本书最少需要5分钟 
+pre=1 -> cost=preSum[2]-preSum[1]=5-3=2,curMaxCost=Math.max(2,dp[1-1][1])=Math.max(2,INF)=INF, 最后一  
+个人抄剩下1本书所需时间preSum[2]-preSum[1]=2, 对比前1-1=0个人抄1本书的所需时间dp[1-1][1]=INF, 两者取  
+最大值INF -> 再刷新当前最小记录dp[1][2]=Math.min(5,INF)=5, 1个人抄完2本书最少需要5分钟(因为前一本没人  
+抄,在前一本没人炒的情况下1个人抄后一本的可能性为0,总耗时时间继承于1个人抄完2本书最少需要5分钟) 
+0,INF,INF,INF 
+0,  3,  5,  0 
+0,  0,  0,  0 
+----------------------------------------------------------- 
+Round 3: 
+i=1 
+j=3 -> dp[1][3]=INF 
+0,INF,INF,INF 
+0,  3,  5,INF 
+0,  0,  0,  0 
+pre=0 -> cost=preSum[3]-preSum[0]=9-0=9,curMaxCost=Math.max(9,dp[1-1][0])=Math.max(9,0)=9, 最后一个人  
+抄剩下3本书所需时间preSum[3]-preSum[0]=9, 对比前1-1=0个人抄0本书的所需时间dp[1-1][0]=0, 两者取最大值9   
+-> 再刷新当前最小记录dp[1][3]=Math.min(INF,9)=9, 1个人抄完3本书最少需要9分钟 
+pre=1 -> cost=preSum[3]-preSum[1]=9-3=6,curMaxCost=Math.max(6,dp[1-1][1])=Math.max(6,INF)=INF, 最后一  
+个人抄剩下2本书所需时间preSum[3]-preSum[1]=6, 对比前1-1=0个人抄1本书的所需时间dp[1-1][1]=INF, 两者取  
+最大值INF -> 再刷新当前最小记录dp[1][3]=Math.min(9,INF)=9, 1个人抄完2本书最少需要9分钟(因为前一本没人  
+抄,在前一本没人炒的情况下1个人抄后两本的可能性为0,总耗时时间继承于1个人抄完3本书最少需要9分钟) 
+pre=2 -> cost=preSum[3]-preSum[2]=9-5=4,curMaxCost=Math.max(4,dp[1-1][2])=Math.max(4,INF)=INF, 最后一  
+个人抄剩下1本书所需时间preSum[3]-preSum[2]=4, 对比前1-1=0个人抄2本书的所需时间dp[1-1][2]=INF, 两者取  
+最大值INF -> 再刷新当前最小记录dp[1][3]=Math.min(9,INF)=9, 1个人抄完1本书最少需要9分钟(因为前两本没人  
+抄,在前两本没人炒的情况下1个人抄后一本的可能性为0,总耗时时间继承于1个人抄完3本书最少需要9分钟) 
+0,INF,INF,INF 
+0,  3,  5,  9 
+0,  0,  0,  0 
+----------------------------------------------------------- 
+Round 4: 
+i=2 
+j=1 -> dp[2][1]=INF 
+0,INF,INF,INF 
+0,  3,  5,  9 
+0,INF,  0,  0 
+pre=0 -> cost=preSum[1]-preSum[0]=3-0=3,curMaxCost=Math.max(3,dp[2-1][0])=Math.max(3,0)=3, 最后一个人  
+抄剩下1本书所需时间preSum0[1]-preSum[0]=3, 对比前2-1=1个人抄0本书的所需时间dp[2-1][0]=0, 两者取最大值  
+3 -> 再刷新当前最小记录dp[2][1]=Math.min(INF,3)=3, 2个人抄完1本书最少需要3分钟 
+0,INF,INF,INF 
+0,  3,  5,  9 
+0,  3,  0,  0 
+----------------------------------------------------------- 
+Round 5: 
+i=2 
+j=2 -> dp[2][2]=INF 
+0,INF,INF,INF 
+0,  3,  5,  9 
+0,  3,INF,  0 
+pre=0 -> cost=preSum[2]-preSum[0]=5-0=5,curMaxCost=Math.max(5,dp[2-1][0])=Math.max(5,0)=5, 最后一个人  
+抄剩下2本书所需时间preSum0[2]-preSum[0]=5, 对比前2-1=1个人抄0本书的所需时间dp[2-1][0]=0, 两者取最大值  
+5 -> 再刷新当前最小记录dp[2][2]=Math.min(INF,5)=5, 2个人抄完2本书最少需要5分钟 
+pre=1 -> cost=preSum[2]-preSum[1]=5-3=2,curMaxCost=Math.max(2,dp[2-1][1])=Math.max(2,3)=3, 最后一个人  
+抄剩下1本书所需时间preSum0[2]-preSum[1]=2, 对比前2-1=1个人抄1本书的所需时间dp[2-1][1]=3, 两者取最大值  
+3 -> 再刷新当前最小记录dp[2][2]=Math.min(5,3)=3, 2个人抄完2本书最少需要3分钟 
+0,INF,INF,INF 
+0,  3,  5,  9 
+0,  3,  3,  0 
+----------------------------------------------------------- 
+Round 6: 
+i=2 
+j=3 -> dp[2][3]=INF 
+0,INF,INF,INF 
+0,  3,  5,  9 
+0,  3,  3,INF 
+pre=0 -> cost=preSum[3]-preSum[0]=9-0=9,curMaxCost=Math.max(9,dp[2-1][0])=Math.max(9,0)=9, 最后一个人  
+抄剩下3本书所需时间preSum0[3]-preSum[0]=9, 对比前2-1=1个人抄0本书的所需时间dp[2-1][0]=0, 两者取最大值  
+9 -> 再刷新当前最小记录dp[2][2]=Math.min(INF,9)=9, 2个人抄完3本书最少需要9分钟 
+pre=1 -> cost=preSum[3]-preSum[1]=9-3=6,curMaxCost=Math.max(6,dp[2-1][1])=Math.max(9,3)=6, 最后一个人  
+抄剩下2本书所需时间preSum0[3]-preSum[1]=6, 对比前2-1=1个人抄1本书的所需时间dp[2-1][1]=3, 两者取最大值  
+6 -> 再刷新当前最小记录dp[2][2]=Math.min(9,6)=6, 2个人抄完3本书最少需要6分钟 
+pre=2 -> cost=preSum[3]-preSum[2]=9-5=4,curMaxCost=Math.max(4,dp[2-1][2])=Math.max(4,5)=5, 最后一个人  
+抄剩下1本书所需时间preSum0[3]-preSum[2]=4, 对比前2-1=1个人抄2本书的所需时间dp[2-1][2]=5, 两者取最大值  
+5 -> 再刷新当前最小记录dp[2][2]=Math.min(6,5)=5, 2个人抄完3本书最少需要5分钟 
+0,INF,INF,INF 
+0,  3,  5,  9 
+0,  3,  3,  5 
+----------------------------------------------------------- 
+dp[k][n]=dp[2][3]=5 -> 2个人抄完3本书最少需要5分钟
+```
+
+Refer to
+https://www.lintcode.com/problem/437/solution/17324
+https://www.lintcode.com/problem/437/solution/64218
+```
+public class Solution { 
+    /** 
+     * @param pages: an array of integers 
+     * @param k: An integer 
+     * @return: an integer 
+     */ 
+    public int copyBooks(int[] pages, int k) { 
+       int n = pages.length; 
+        int[] preSum = new int[n+1]; 
+        for (int i = 1; i <= n ; i++) { 
+            preSum[i] = preSum[i-1] + pages[i-1]; 
+        } 
+        //dp state: 前i本书分给j个人去 抄写，最好需要多少时间。 
+        int[][] dp = new int[n+1][k+1]; 
+        dp[0][0] = 0; 
+        for (int i = 1; i <= n; i++) {//i本书给 0个人去抄，一辈子都抄不完。 
+            dp[i][0] = Integer.MAX_VALUE; 
+        } 
+        for (int j = 1; j <= k ; j++) { 
+            dp[0][j] = 0;//0本书给 j 个人去抄写，花费0的时间。 
+        } 
+        for (int i = 1; i <= n ; i++) { 
+            for (int j = 1; j <= k ; j++) { 
+                dp[i][j] = Integer.MAX_VALUE; 
+                for (int pre = 0; pre < i; pre++) { 
+                    int cost = preSum[i] - preSum[pre];//最后一个人抄的时间。 
+                    //最后一个人花费 cost， 前j-1个人（0，1，2。。。pre)本书的 cost，两者取最大值。 
+                    int curMaxCost = Math.max(dp[pre][j-1], cost); 
+                    dp[i][j] = Math.min(dp[i][j], curMaxCost); 
+                } 
+            } 
+        } 
+        return dp[n][k]; 
+    } 
+}
+```
