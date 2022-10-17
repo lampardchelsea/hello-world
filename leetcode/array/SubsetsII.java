@@ -179,7 +179,7 @@ Space complexity: O(N). We are using O(N) space to maintain curr, and are modify
 
 Solution 2: Backtracking style 2 (720min, too long to sort out why local variable to skip duplicate elements is mandatory)
 
-Correct solution with local variable 'i' to skip duplicate elements on particular "Not pick" branch
+Correct solution 2.1 with local variable 'i' to skip duplicate elements on particular "Not pick" branch
 ```
 class Solution { 
     public List<List<Integer>> subsetsWithDup(int[] nums) { 
@@ -216,7 +216,7 @@ The recursive function is called 2^n times. Because we have 2 choices at each it
 We need to create a copy of the current set because we reuse the original one to build all the valid subsets. This copy costs O(n) and it is performed at each call of the recursive function, which is called 2^n times as mentioned in above. So total time complexity is O(n x 2^n).
 ```
 
-Progress of correct solution
+Progress of correct solution 2.1
 ```
 Round 1: 
 nums={1,2,2,3},result={},tmp={},index=0 
@@ -368,7 +368,7 @@ result={{}{3}{2}{2,3}{2,2}{2,2,3}{1}{1,3}{1,2}{1,2,3}{1,2,2}}
 result={{}{3}{2}{2,3}{2,2}{2,2,3}{1}{1,3}{1,2}{1,2,3}{1,2,2}{1,2,2,3}}
 ```
 
-Correct solution recursion step by step picture
+Correct solution 2.1 recursion step by step picture
 ```
 Start from index=1 (level 2) "Not pick first 2 branch" also will not pick second 2, local variable 'i' helps skip happen only on "Not pick first 2 branch" and not impact "Pick first 2 branch"
 
@@ -400,6 +400,61 @@ If not skip both 2 in "Not pick first 2 branch", what will happen ?
 ```
 We can see duplicate subsets generated as {2}{2,3}{1,2}{1,2,3} based on second 2 (index=2), which not happen in correct solution because we skip second 2 in "Not pick first 2" branch  
 ---
+Correct solution 2.2 with local variable 'i' to skip duplicate elements on particular "Not pick" branch
+```
+class Solution { 
+    public List<List<Integer>> subsetsWithDup(int[] nums) {  
+        List<List<Integer>> result = new ArrayList<List<Integer>>();  
+        Arrays.sort(nums);  
+        helper(nums, result, new ArrayList<Integer>(), 0);  
+        return result;  
+    }  
+      
+    private void helper(int[] nums, List<List<Integer>> result, List<Integer> tmp, int index) {  
+        if(index >= nums.length) {  
+            result.add(new ArrayList<Integer>(tmp));  
+            return;  
+        } 
+        // Not pick  
+        // Not add, then we will not add all the following same element, just jump to the index where nums[index] is a different value 
+        int i = index;  
+        while(i < nums.length && nums[i] == nums[index]) {  
+            i++;  
+        } 
+        // Be careful, the next "Not pick" recursion start from 'i' not 'i + 1', 
+        // because nums[i] is the first element different than nums[index] not 
+        // nums[i + 1] 
+        // Compare to below style  
+        // while(i + 1 < nums.length && nums[i] == nums[i + 1]) {i++;} 
+        // helper(nums, result, tmp, i + 1) 
+        helper(nums, result, tmp, i);  
+        // Pick  
+        tmp.add(nums[index]);  
+        helper(nums, result, tmp, index + 1);  
+        tmp.remove(tmp.size() - 1);  
+    }  
+}
+```
+
+Different styles to skip duplicate elements in correct solution 2.1 and 2.2?
+```
+e.g 
+For sorted array nums={1,2,2,2,5}, index=1, all duplicate '2' stored continuously in array 
+------------------------------------- 
+For 
+int i = index; 
+while(i < nums.length && nums[i] == nums[index]) {i++;} 
+helper(nums, result, tmp, i); 
+=> while loop ending when i=4, nums[4]=5 != nums[1]=2, not pick up branch skip all duplicate 2 and start from 5 requires pass i(=4) to next recursion 
+------------------------------------- 
+For 
+int i = index; 
+while(i + 1 < nums.length && nums[i] == nums[i + 1]) {i++;} 
+helper(nums, result, tmp, i + 1); 
+=> while loop ending when i=3, nums[3]=2 != nums[4]=5, not pick up branch skip all duplicate 2 and start from 5 requires pass i + 1(=4) to next recursion 
+```
+
+---
 Wrong solution without local variable 'i' to skip duplicate elements
 ```
 class Solution { 
@@ -428,7 +483,7 @@ class Solution {
 }
 ```
 
-Progress of correct solution
+Progress of wrong solution
 ```
 Round 1: 
 nums={1,2,2,3},result={},tmp={},index=0 
