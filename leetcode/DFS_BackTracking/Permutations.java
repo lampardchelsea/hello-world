@@ -153,6 +153,32 @@ class Solution {
         } 
     } 
 }
+
+Refer to
+https://leetcode.com/problems/permutations-ii/discuss/18594/Really-easy-Java-solution-much-easier-than-the-solutions-with-very-high-vote/121098
+The worst-case time complexity is O(n! * n). 
+For any recursive function, the time complexity is O(branches^depth) * amount of work at each node in the recursive call tree. However, in this case, we have n*(n-1)*(n*2)*(n-3)*...*1 branches at each level = n!, so the total recursive calls is O(n!) 
+We do n-amount of work in each node of the recursive call tree, (a) the for-loop and (b) at each leaf when we add n elements to an ArrayList. So this is a total of O(n) additional work per node. 
+Therefore, the upper-bound time complexity is O(n! * n).
+
+Refer to
+https://leetcode.com/problems/permutations/discuss/1527929/Java-or-TC%3A-O(N*N!)-or-SC%3A-O(N)-or-Recursive-Backtracking-and-Iterative-Solutions
+Time Complexity: O(N * N!). Number of permutations = P(N,N) = N!. 
+Each permutation takes O(N) to construct 
+T(n) = n*T(n-1) + O(n) 
+T(n-1) = (n-1)*T(n-2) + O(n-1) 
+... 
+T(2) = (2)*T(1) + O(2) 
+T(1) = O(N) -> To convert the nums array to ArrayList. 
+Above equations can be added together to get: 
+ T(n) = n + n*(n-1) + n*(n-1)*(n-2) + ... + (n....2) + (n....1) * n 
+      = P(n,1) + P(n,2) + P(n,3) + ... + P(n,n-1) + n*P(n,n) 
+      = (P(n,1) + ... + P(n,n)) + (n-1)*P(n,n) 
+      = Floor(e*n! - 1) + (n-1)*n! 
+      = O(N * N!)
+
+Space Complexity: O(N). Recursion stack.  
+N = Length of input array.
 ```
 
 For Backtracking style 1 Tree Structure Analysis
@@ -234,6 +260,31 @@ class Solution {
         } 
     } 
 }
+
+Refer to 
+https://leetcode.com/problems/permutations-ii/discuss/18594/Really-easy-Java-solution-much-easier-than-the-solutions-with-very-high-vote/121098 
+The worst-case time complexity is O(n! * n). 
+For any recursive function, the time complexity is O(branches^depth) * amount of work at each node in the recursive call tree. However, in this case, we have n*(n-1)*(n*2)*(n-3)*...*1 branches at each level = n!, so the total recursive calls is O(n!) 
+We do n-amount of work in each node of the recursive call tree, (a) the for-loop and (b) at each leaf when we add n elements to an ArrayList. So this is a total of O(n) additional work per node. 
+Therefore, the upper-bound time complexity is O(n! * n).
+
+Refer to 
+https://leetcode.com/problems/permutations/discuss/1527929/Java-or-TC%3A-O(N*N!)-or-SC%3A-O(N)-or-Recursive-Backtracking-and-Iterative-Solutions 
+Time Complexity: O(N * N!). Number of permutations = P(N,N) = N!.  
+Each permutation takes O(N) to construct  
+T(n) = n*T(n-1) + O(n)  
+T(n-1) = (n-1)*T(n-2) + O(n-1)  
+...  
+T(2) = (2)*T(1) + O(2)  
+T(1) = O(N) -> To convert the nums array to ArrayList.  
+Above equations can be added together to get:  
+ T(n) = n + n*(n-1) + n*(n-1)*(n-2) + ... + (n....2) + (n....1) * n  
+      = P(n,1) + P(n,2) + P(n,3) + ... + P(n,n-1) + n*P(n,n)  
+      = (P(n,1) + ... + P(n,n)) + (n-1)*P(n,n)  
+      = Floor(e*n! - 1) + (n-1)*n!  
+      = O(N * N!) 
+Space Complexity: O(N). Recursion stack.   
+N = Length of input array.
 ```
 
 Refer to
@@ -287,3 +338,37 @@ If we exhausted the current branch, currResult.size() == nums.length, we will ba
 
 ---
 No "Not pick" and "Pick" branch available for this problem yet
+---
+Mathematical proof that time complexity is O(e * n!) NOT O(n * n!)
+https://leetcode.com/problems/permutations/discuss/2074177/Mathematical-proof-that-time-complexity-is-O
+I have seen a lot of answers here that simply state the time complexity is O(n*n!) but the justification isn't too well explained. Here I show a better approximation for the time complexity is actually O(e*n!).
+
+First we must visualize the recursion tree (see other answers for recursive solution), the tree below shows the recursion for n=4. On the first layer of the tree we have n possible options to choose from, so we make n function calls and have n nodes in our tree. Now we have n partial permutations built up so far and have n-1 numbers to choose from, so the next layer in our tree will have n*(n-1) nodes. The layer after this will have n*(n-1)*(n-2) nodes and so on and so forth. Until we have n! leaf nodes at the bottom of our tree. At this point it is obvious to see O(n*n!) is an over estimate for the time complexity of this algorithm, as it implies each layer (there are n in total) has n! nodes.
+
+We know the time complexity of a recursive algorithm is the number of nodes in its recursion tree multiplied by the cost of computation at each node. At each node in our tree we either call the dfs function recursively (non-leaf nodes) or add to the results array, both of these operations are O(1), hence the time complexity is equal to the number of nodes in the recursion tree.
+
+Now for the magic, if we sum up the nodes in each layer of the recursion tree we get to the expression:
+O(n) = 1 + n + n*(n-1) + n*(n-1)*(n-2) + ... + n!
+
+If we reverse the order of terms in this series and factor out n! we get:
+O(n) = n!(1/1! + 1/2! + 1/3! + ... + 1/n!)
+
+Notice the second term is the series representation of e, so we have:
+O(n) = e * n!
+
+
+Here are some calculations for n = 1-10, of actual nodes in recursion tree (calculating the first summation expression in a while loop) vs. e*n! vs. n*n!:
+
+```
+n    actual    e*n!      n*n! 
+1    1         2         1 
+2    4         5         4 
+3    15        16        18 
+4    64        65        96 
+5    325       326       600 
+6    1956      1957      4320 
+7    13699     13700     35280 
+8    109600    109601    322560 
+9    986409    986410    3265920 
+10   9864100   9864101   36288000
+```
