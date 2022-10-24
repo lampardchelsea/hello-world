@@ -88,7 +88,7 @@ public class BinaryTreeInorderTraversal {
 	       }
                root = stack.pop();
 	       result.add(root.val);	    
-	       root = root.left;	    
+	       root = root.right;	    
 	    }		
 	    return result;	
 	}
