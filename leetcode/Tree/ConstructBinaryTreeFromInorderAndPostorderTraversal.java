@@ -160,7 +160,7 @@ Constraints:
 ---
 Attempt 1: 2022-10-27
 
-Solution 1:  Recursive traversal (10min)
+Solution 1:  Recursive traversal / Divide and Conquer (10min)
 ```
 /** 
  * Definition for a binary tree node. 
@@ -210,7 +210,7 @@ class Solution {
 }
 ```
 
-Solution 2: Recursive traversal (10 min, promote with map to find root index in O(1))
+Solution 2: Recursive traversal / Divide and Conquer (10 min, promote with map to find root index in O(1))
 ```
 /** 
  * Definition for a binary tree node. 
