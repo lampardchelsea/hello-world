@@ -436,7 +436,15 @@ class Solution {
 }
 ```
 
-Monotonic Stack status update step by step
+Monotonic Stack (nodes on stack strictly obtain decreasing index in inorder array) status update step by step
+
+
+What is Monotonic Stack ?
+
+A monotonic stack is a stack whose elements are monotonically increasing or decreasing. If the top elements of the stack are less than bottom elements , then it is called decreasing stack , else If the top elements of the stack is greater than the bottom elements , then it is called increasing stack.
+
+
+
 ```
 Iterate on 'preorder' because we can obtain 'root' first 
 Stack status: maintain monotonic increasing from top(stack peek) to bottom based on node value's index in preorder
@@ -517,22 +525,25 @@ preorder = [3,9,20,15,7]
 inorder  = [9,3,15,20,7]
 -----------------------------------------------------------------------------------------------
 Iterate on 'preorder' because we can obtain 'root' first 
-Stack status: 
+Stack status: Make sure all nodes stored on stack have strict decreasing on node value's index in inorder array
                                                     === 
                                                      9  push 9 
              ===                                    ---     
 push root ->  3  -> check inorder index of 9(=0) ->  3  -> check inorder index of 20(=3) 
              ===    compare with inorder index      ===    compare with inorder index 
-                    of 3(=1), its smaller                  of 9(=0), 3(=1), its larger 
+                    of 3(=1), its smaller, push            of 9(=0), 3(=1), its larger,
+                                                           first pop then push
               3                                      3 
                                                     /  
                                                    9 
+
   ===                                                          ==== 
    9  pop 9                                                     15  push 15 
   ---          ====                                            ---- 
 -> 3  pop 3 ->  20  push 20 -> check inorder index of 15(=2) -> 20 -> check inorder index of 7(=4) 
   ===          ====            compare with inorder index      ====   compare with inorder index 
-                               of 20(=3), its smaller                 of 15(=2), 20(=3), its larger 
+                               of 20(=3), its smaller, push           of 15(=2), 20(=3), its larger,
+                                                                      first pop then push
   (last popped out 3 as most recent partent for 20) 
                  3                                               3 
                 / \                                             / \ 
