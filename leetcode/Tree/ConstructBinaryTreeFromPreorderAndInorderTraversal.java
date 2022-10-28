@@ -190,7 +190,7 @@ Constraints:
 ---
 Attempt 1: 2022-10-26
 
-Solution 1:  Recursive traversal (720min, too long to figure out 'rootIndexInPreorder' is necessary and also need 'rootIndexInInorder' to find left and right subtree size)
+Solution 1:  Recursive traversal / Divide and Conquer (720min, too long to figure out 'rootIndexInPreorder' is necessary and also need 'rootIndexInInorder' to find left and right subtree size)
 ```
 /** 
  * Definition for a binary tree node. 
@@ -272,7 +272,7 @@ class Solution {
 }
 ```
 
-Solution 2: Recursive traversal (10 min, promote with map to find root index in O(1))
+Solution 2: Recursive traversal / Divide and Conquer (10 min, promote with map to find root index in O(1))
 ```
 /** 
  * Definition for a binary tree node. 
