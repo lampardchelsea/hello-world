@@ -305,3 +305,159 @@ public class Solution {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://leetcode.com/problems/factor-combinations/
+
+Numbers can be regarded as product of its factors. For example,
+```
+8 = 2 x 2 x 2;
+  = 2 x 4.
+```
+
+Write a function that takes an integer n and return all possible combinations of its factors.
+
+You may assume that n is always positive.
+Factors should be greater than 1 and less than n.
+
+Example1
+```
+Input: 12
+Output: 
+[
+  [2, 6],
+  [2, 2, 3],
+  [3, 4]
+]
+Explanation:
+2*6 = 12
+2*2*3 = 12
+3*4 = 12
+```
+
+Example2
+```
+Input: 32
+Output: 
+[
+  [2, 16],
+  [2, 2, 8],
+  [2, 2, 2, 4],
+  [2, 2, 2, 2, 2],
+  [2, 4, 4],
+  [4, 8]
+]
+Explanation:
+2*16=32
+2*2*8=32
+2*2*2*4=32
+2*2*2*2*2=32
+2*4*4=32
+4*8=32
+```
+
+---
+Attempt 1: 2022-10-31
+
+TLE Solution, caused by not tight enough on factors range limitation on next recursion
+```
+public class Solution {
+    /**
+     * @param n: a integer
+     * @return: return a 2D array
+     *          we will sort your return value in output
+     */
+    public List<List<Integer>> getFactors(int n) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        helper(n, result, new ArrayList<Integer>(), 1);
+        return result;
+    }
+
+    private void helper(int n, List<List<Integer>> result, List<Integer> tmp, int product) {
+        if(product == n) {
+            result.add(new ArrayList<Integer>(tmp));
+            return;
+        }
+        if(product > n) {
+            return;
+        }
+        // Start from 2 and no more than half of n is the range 
+        for(int i = 2; i <= n / 2; i++) {
+            // Condition 1: if mod not equal to 0 skip this factor
+            // Condition 2: if coming factor strictly smaller than existing last element on 'tmp' 
+            // skip this factor otherwise it will create duplicate combinations             
+            if(n % i != 0 || tmp.size() > 0 && i < tmp.get(tmp.size() - 1)) {
+                continue;
+            }
+            tmp.add(i);
+            // 'product' is primitive type variable, not like 'tmp' object, NO backtrack needed in
+            // recursion, when next recursion level finished and return to current recursion level,
+            // 'product' value will auto restore
+            //product *= i; 
+            helper(n, result, tmp, product * i); 
+            //product /= i; 
+            tmp.remove(tmp.size() - 1);
+        }
+    }
+}
+```
+
+Solution 1:  Recursive traversal with gradually tighter limitation on factors range on next recursion (30min)
+```
+public class Solution {
+    /**
+     * @param n: a integer
+     * @return: return a 2D array
+     *          we will sort your return value in output
+     */
+    public List<List<Integer>> getFactors(int n) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        helper(n, result, new ArrayList<Integer>(), n, 2);
+        return result;
+    }
+
+    private void helper(int n, List<List<Integer>> result, List<Integer> tmp, int product, int start) {
+        if(product == 1) {
+            // Filter out 'product' itself 
+            if(tmp.size() > 1) {
+                result.add(new ArrayList<Integer>(tmp));
+            }
+            return;
+        }
+        if(product < 1) {
+            return;
+        }
+        for(int i = start; i <= product; i++) {           
+            if(product % i != 0) {
+                continue;
+            }
+            tmp.add(i);
+            // Next recursion factors range limit will update from current [start, product] to [i, product / i]
+            // e.g n = 12, 1st recursion scan between [2, 12], 2nd recursion scan between [2, 6], 3rd recursion
+            // scan between [2, 3], 4th recursion is [3, 3], the range limit gradually become tighter
+
+            helper(n, result, tmp, product / i, i);
+            tmp.remove(tmp.size() - 1);
+        }
+    }
+}
+```
