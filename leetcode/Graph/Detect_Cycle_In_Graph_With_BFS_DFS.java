@@ -1,3 +1,14 @@
+Why cycle detection algorithm differs in directed and undirected graphs ?
+https://codeforces.com/blog/entry/91377
+
+Because having a cycle in a directed and an undirected graph isn't the same thing.
+Suppose you have a 2-vertex undirected graph represented with the following adjacency list:
+- neighbors[0] = {1}
+- neighbors[1] = {0}
+
+This graph doesn't have a cycle. It's just an edge.
+Now interpret the same adjacency list as a directed graph. Now there is a cycle 0→1→0
+
 /**
  Refer to
  1. Detect Cycle in a Directed Graph using BFS
