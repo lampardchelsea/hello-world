@@ -178,3 +178,120 @@ class Solution {
     }
 }
 
+Solution 2:  Tarjan's Algorithm (10min)
+```
+class Solution { 
+    public List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) { 
+        List<List<Integer>> result = new ArrayList<List<Integer>>(); 
+        // Build undirected graph 
+        Map<Integer, List<Integer>> graph = new HashMap<Integer, List<Integer>>(); 
+        for(int i = 0; i < n; i++) { 
+            graph.put(i, new ArrayList<Integer>()); 
+        } 
+        for(List<Integer> connection : connections) { 
+            int from = connection.get(0); 
+            int to = connection.get(1); 
+            graph.get(from).add(to); 
+            graph.get(to).add(from); 
+        } 
+        // Track node's id 
+        int[] ids = new int[n]; 
+        // Track node's low link (default value is the index) 
+        int[] lowlinks = new int[n]; 
+        // Track if visit node or not 
+        boolean[] visited = new boolean[n]; 
+        // Since this is a connected graph, we don't have to loop over all nodes, start with node 0 
+        //for(int i = 0; i < n; i++) { 
+        //    if(!visited[i]) { 
+        //        helper(result, graph, ids, lowlinks, visited, -1, i, 0); 
+        //    } 
+        //} 
+        helper(result, graph, ids, lowlinks, visited, -1, 0, 0); 
+        return result; 
+    } 
+     
+    private void helper(List<List<Integer>> result, Map<Integer, List<Integer>> graph, int[] ids, int[] lowlinks, boolean[] visited, int parent_node, int cur_node, int node_id) { 
+        ids[cur_node] = node_id; 
+        lowlinks[cur_node] = node_id; 
+        visited[cur_node] = true; 
+        //node_id += 1; 
+        for(int next_node : graph.get(cur_node)) { 
+            // If encounter parent again, skip 
+            if(next_node == parent_node) { 
+                continue; 
+            } 
+            if(!visited[next_node]) { 
+                helper(result, graph, ids, lowlinks, visited, cur_node, next_node, node_id + 1); 
+                lowlinks[cur_node] = Math.min(lowlinks[cur_node], lowlinks[next_node]); 
+                // Find the bridge(critical connection) 
+                if(ids[cur_node] < lowlinks[next_node]) { 
+                    List<Integer> bridge = new ArrayList<Integer>(); 
+                    bridge.add(cur_node); 
+                    bridge.add(next_node); 
+                    result.add(bridge); 
+                } 
+            // next_node is already visited, cur_node & next_node forms a cycle 
+            // which means tried to visit an already visited node, which may have 
+            // a lower id than the current low link value 
+            } else { 
+                lowlinks[cur_node] = Math.min(lowlinks[cur_node], ids[next_node]); 
+            } 
+        } 
+    } 
+}
+```
+
+Refer to
+https://leetcode.com/problems/critical-connections-in-a-network/discuss/382632/Java-implementation-of-Tarjan-Algorithm-with-explanation
+https://leetcode.com/problems/critical-connections-in-a-network/discuss/382632/Java-implementation-of-Tarjan-Algorithm-with-explanation/510175
+```
+ public List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) { 
+        List<List<Integer>> result = new ArrayList<>(); 
+        List<List<Integer>> graph = buildGraph(n, connections); 
+        int ids[] = new int[n]; 
+        int lowlink[] = new int[n]; 
+        boolean visited[] = new boolean[n]; 
+        for (int i = 0; i < n; i++) { 
+            if (!visited[i]) 
+                dfs(graph, ids, lowlink, visited, result, i, -1, 0); 
+        } 
+        return result; 
+    } 
+    private void dfs(List<List<Integer>> graph, int[] ids, int[] lowlink, boolean[] visited, List<List<Integer>> result, int u, int parent, int time) { 
+        ids[u] = time; 
+        lowlink[u] = time; 
+        visited[u] = true; 
+        for (int v : graph.get(u)) { 
+            if (v == parent)//if vertex is parent, skip 
+                continue; 
+            if (!visited[v]) { 
+                dfs(graph, ids, lowlink, visited, result, v, u, time + 1); 
+                lowlink[u] = Math.min(lowlink[u], lowlink[v]); 
+                if (ids[u] < lowlink[v]) { //critical connections or bridges 
+                    List<Integer> bridge = new ArrayList<>(); 
+                    bridge.add(u); 
+                    bridge.add(v); 
+                    result.add(bridge); 
+                } 
+            } else { // v is already traversed. u & v forms a cycle. 
+                lowlink[u] = Math.min(lowlink[u], ids[v]); 
+            } 
+        } 
+    } 
+    private List<List<Integer>> buildGraph(int n, List<List<Integer>> connections) { 
+        List<List<Integer>> graph = new ArrayList<>(); 
+        for (int i = 0; i < n; i++) {//add vertices 
+            graph.add(new ArrayList<>()); 
+        } 
+        for (List<Integer> edge : connections) { //add edges 
+            int from = edge.get(0); 
+            int to = edge.get(1); 
+            graph.get(from).add(to); 
+            graph.get(to).add(from); 
+        } 
+        return graph; 
+    }
+```
+
+Video explain for Tarjan's Algorithm
+https://www.youtube.com/watch?v=aZXi1unBdJA
