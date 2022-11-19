@@ -131,3 +131,149 @@ public class Solution {
       return true; 
    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://leetcode.com/problems/symmetric-tree/
+
+Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
+
+Example 1:
+
+
+```
+Input: root = [1,2,2,3,4,4,3]
+Output: true
+```
+
+Example 2:
+
+
+```
+Input: root = [1,2,2,null,3,null,3]
+Output: false
+```
+ 
+Constraints:
+- The number of nodes in the tree is in the range [1, 1000].
+- -100 <= Node.val <= 100
+ 
+Follow up: Could you solve it both recursively and iteratively?
+---
+Attempt 1: 2022-11-18
+
+Solution 1:  Divide and Conquer (10min)
+```
+/** 
+ * Definition for a binary tree node. 
+ * public class TreeNode { 
+ *     int val; 
+ *     TreeNode left; 
+ *     TreeNode right; 
+ *     TreeNode() {} 
+ *     TreeNode(int val) { this.val = val; } 
+ *     TreeNode(int val, TreeNode left, TreeNode right) { 
+ *         this.val = val; 
+ *         this.left = left; 
+ *         this.right = right; 
+ *     } 
+ * } 
+ */ 
+class Solution { 
+    public boolean isSymmetric(TreeNode root) { 
+        return helper(root, root); 
+    } 
+     
+    private boolean helper(TreeNode x, TreeNode y) { 
+        // Base case 
+        if(x == null && y == null) { 
+            return true; 
+        } 
+        if(x == null || y == null) { 
+            return false; 
+        } 
+        if(x.val != y.val) { 
+            return false; 
+        } 
+        // Divide 
+        boolean left = helper(x.left, y.right); 
+        boolean right = helper(x.right, y.left); 
+        // Conquer 
+        return left && right; 
+    } 
+}
+
+Time Complexity: O(n)   
+Space Complexity: O(n)
+```
+
+Solution 2:  Iterative traversal  with Queue (10min)
+```
+/** 
+ * Definition for a binary tree node. 
+ * public class TreeNode { 
+ *     int val; 
+ *     TreeNode left; 
+ *     TreeNode right; 
+ *     TreeNode() {} 
+ *     TreeNode(int val) { this.val = val; } 
+ *     TreeNode(int val, TreeNode left, TreeNode right) { 
+ *         this.val = val; 
+ *         this.left = left; 
+ *         this.right = right; 
+ *     } 
+ * } 
+ */ 
+class Solution { 
+    public boolean isSymmetric(TreeNode root) { 
+        Queue<TreeNode> q = new LinkedList<TreeNode>(); 
+        q.offer(root); 
+        q.offer(root); 
+        while(!q.isEmpty()) { 
+            TreeNode left = q.poll(); 
+            TreeNode right = q.poll(); 
+            if(left == null && right == null) { 
+                continue; 
+            } 
+            if(left == null || right == null) { 
+                return false; 
+            } 
+            if(left.val != right.val) { 
+                return false; 
+            } 
+            q.offer(left.left); 
+            q.offer(right.right); 
+            q.offer(left.right); 
+            q.offer(right.left); 
+        } 
+        return true; 
+    } 
+}
+
+Time Complexity: O(n)   
+Space Complexity: O(n)
+```
+
