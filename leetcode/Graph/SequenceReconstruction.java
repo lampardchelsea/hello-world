@@ -124,9 +124,6 @@ The overall time complexity of this basic algorithm is O(n+m). The O(n) comes fr
 Although there is no way to calculate how many times the inner loop will be executed on any one iteration of the outer loop, it will only be executed once for each successor of each member, which means that the total number of times that it will be executed is the total number of successors of all the members -- or the total number of relations.
  
 Space Complexity: O(n+m)
-
-
-
 Space complexity is also O(n+m). The O(n) component comes from the predecessor count information stored for each member, and the maximum length of the auxiliary queue. The O(m) comes from storing the successors for each member; once again, the total number of successors is the number of relations, so O(m).
 ```
 
@@ -316,9 +313,6 @@ The overall time complexity of this basic algorithm is O(n+m). The O(n) comes fr
 Although there is no way to calculate how many times the inner loop will be executed on any one iteration of the outer loop, it will only be executed once for each successor of each member, which means that the total number of times that it will be executed is the total number of successors of all the members -- or the total number of relations.
  
 Space Complexity: O(n+m)
-
-
-
 Space complexity is also O(n+m). The O(n) component comes from the predecessor count information stored for each member, and the maximum length of the auxiliary queue. The O(m) comes from storing the successors for each member; once again, the total number of successors is the number of relations, so O(m).
 ```
 
