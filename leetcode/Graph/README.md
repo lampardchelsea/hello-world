@@ -167,3 +167,12 @@ Need to find Prim example also
 
 <p>People Whose List of Favorite Companies Is Not a Subset of Another List
 <p>1. [Union Find + union function change to check isSubSet] (https://leetcode.com/problems/people-whose-list-of-favorite-companies-is-not-a-subset-of-another-list/discuss/636294/Java-Union-Find-37-ms-beat-100-with-detailed-explanation)
+
+
+Graph For Beginners [Problems | Pattern | Sample Solutions]
+https://leetcode.com/discuss/general-discussion/655708/graph-for-beginners-problems-pattern-sample-solutions/
+
+Important Graph Algorithm Notes for Interview
+https://leetcode.com/discuss/general-discussion/1122034/important-graph-algorithm-notes-for-interview
+
+
