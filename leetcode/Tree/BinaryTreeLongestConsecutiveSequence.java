@@ -41,7 +41,7 @@ Attempt 1: 2022-12-28
 
 Solution 1: Recursive traversal with global variable and update on the fly during each recursion (30min)
 
-Style 1
+Style 1: Intuitive way
 ```
 class TreeSolution { 
     private class TreeNode { 
@@ -118,8 +118,8 @@ class TreeSolution {
     } 
 }
 
-Complexity Analysis   
-Time Complexity: O(N). Where N is the number of nodes in the binary tree. In the worst case we might be visiting all the nodes of the binary tree.   
+Complexity Analysis    
+Time Complexity: O(N). Where N is the number of nodes in the binary tree. In the worst case we might be visiting all the nodes of the binary tree.    
 Space Complexity: O(N). This is because the maximum amount of space utilized by the recursion stack would be N since the height of a skewed binary tree could be N.
 ```
 
@@ -149,7 +149,7 @@ public:
 };
 ```
 
-Style 2
+Style 2: Strick follow the Recursive traversal style (so called Top Down DFS, 遍历法132: 1.base case -> 3.进行当前层的处理计算 -> 2.递归成为更小的问题)
 ```
 class TreeSolution { 
     private class TreeNode { 
@@ -220,8 +220,8 @@ class TreeSolution {
     } 
 }
 
-Complexity Analysis   
-Time Complexity: O(N). Where N is the number of nodes in the binary tree. In the worst case we might be visiting all the nodes of the binary tree.   
+Complexity Analysis    
+Time Complexity: O(N). Where N is the number of nodes in the binary tree. In the worst case we might be visiting all the nodes of the binary tree.    
 Space Complexity: O(N). This is because the maximum amount of space utilized by the recursion stack would be N since the height of a skewed binary tree could be N.
 ```
 
@@ -253,7 +253,7 @@ Solution 2: Divide and Conquer with global variable (30min)
 
 The style is exactly same as L124/P9.7.Binary Tree Maximum Path Sum
 
-Style  1: Count current root node (+ 1) later in conquer step
+Style  1: Count current root node (+ 1) later in conquer step, strictly follow the Divide and Conquer style (so called Bottom Up DFS, 分治法123: 1.base case -> 2.递归成为更小的问题 -> 3.进行当前层的处理计算)
 ```
 class TreeSolution { 
     private class TreeNode { 
@@ -310,6 +310,8 @@ class TreeSolution {
         // Divide 
         int leftCount = helper(root.left); 
         int rightCount = helper(root.right); 
+        // Process (node under processing is on bottom level resepect 
+        // to current recursion, that's why so called Bottom Up)
         if(root.left != null && root.left.val != root.val + 1) { 
             leftCount = 0; 
         } 
@@ -322,8 +324,8 @@ class TreeSolution {
     } 
 }
 
-Complexity Analysis   
-Time Complexity: O(N). Where N is the number of nodes in the binary tree. In the worst case we might be visiting all the nodes of the binary tree.   
+Complexity Analysis    
+Time Complexity: O(N). Where N is the number of nodes in the binary tree. In the worst case we might be visiting all the nodes of the binary tree.    
 Space Complexity: O(N). This is because the maximum amount of space utilized by the recursion stack would be N since the height of a skewed binary tree could be N.
 ```
 
@@ -356,7 +358,7 @@ https://eugenejw.github.io/2017/08/leetcode-298
 }
 ```
 
-Style  2: Count current root node (+ 1) first in divide step
+Style  2: Count current root node (+ 1) first in divide step, strictly follow the Divide and Conquer style (so called Bottom Up DFS, 分治法123: 1.base case -> 2.递归成为更小的问题 -> 3.进行当前层的处理计算)
 ```
 class TreeSolution { 
     private class TreeNode { 
@@ -413,6 +415,8 @@ class TreeSolution {
         // Divide (plus current root node in divide step) 
         int leftCount = helper(root.left) + 1; 
         int rightCount = helper(root.right) + 1; 
+        // Process (node under processing is on bottom level resepect  
+        // to current recursion, that's why so called Bottom Up)
         if(root.left != null && root.left.val != root.val + 1) { 
             leftCount = 1; 
         } 
@@ -425,8 +429,8 @@ class TreeSolution {
     } 
 }
 
-Complexity Analysis   
-Time Complexity: O(N). Where N is the number of nodes in the binary tree. In the worst case we might be visiting all the nodes of the binary tree.   
+Complexity Analysis    
+Time Complexity: O(N). Where N is the number of nodes in the binary tree. In the worst case we might be visiting all the nodes of the binary tree.    
 Space Complexity: O(N). This is because the maximum amount of space utilized by the recursion stack would be N since the height of a skewed binary tree could be N.
 ```
 
