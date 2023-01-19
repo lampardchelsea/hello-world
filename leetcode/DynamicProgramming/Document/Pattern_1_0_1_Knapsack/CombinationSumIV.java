@@ -245,9 +245,9 @@ dp[i][j] = dp[i][j] + dp[i - nums[j - 1]][j]
 dp[4][1] = d[4][1] + dp[4 - nums[1 - 1]][1] = dp[4][1] + dp[3][1] = 2
 
 What's the difference ?
-For correct answer dp[i - nums[j - 1]][nums.length] = dp[3][3] = 4
-because we try to get target = 4 by only using first element as 1 but based on
-previously calculated all permutations for target = 3 "by using all elements",
+For correct answer dp[4][1] = d[4][1] + dp[4 - nums[1 - 1]][3] = dp[4][1] + dp[3][3] = 4
+because we try to get target = 4 by only using first element as 1(dp[4][1]) but based on
+previously calculated all permutations for target = 3(dp[3][3]) "by using all elements",
 the critical part is "by using all elements", under this case, only last column 
 value for target = 3 means "using all elements"
 
