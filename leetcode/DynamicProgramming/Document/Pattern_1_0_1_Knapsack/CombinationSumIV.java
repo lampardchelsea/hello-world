@@ -262,13 +262,14 @@ now by using only first element as 1 to get target 4, it will be also 4 ways as 
 Note: 
 If we extend as "using only first two elements as 1 and 2 to get target 4", it will be 6 ways as below
 3rd row all 4 ways plus first element as 1 have 4 ways (detail above)
-2nd row all 2 ways plus second element as 2
+2nd row all 2 ways plus second element as 2 have 2 ways (detail above)
 11 + 2, 2 + 2
 => 112, 22
 
 If we extend as "using all three elements as 1, 2 and 3 to get target 4", it will be 7 ways as below
-3rd row all 4 ways plus first element as 1 have 4 ways (detail above)
-2nd row all 2 ways plus second element as 2 (detail above)
+3rd row all 4 ways plus first element as 1 have 4 ways (detail above) 
+2nd row all 2 ways plus second element as 2 have 2 ways (detail above) 
+1st row all 1 way plus third element as 3 have 1 way (detail above)
 1 + 3
 => 13
 
