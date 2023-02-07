@@ -125,3 +125,82 @@ class Solution {
         return new String(result);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution {
+    public String reorganizeString(String s) {
+        Map<Character, Integer> map = new HashMap<Character, Integer>();
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+        int maxFreq = 0;
+        char maxChar = '*';
+        for(Map.Entry<Character, Integer> entry : map.entrySet()) {
+            if(entry.getValue() > maxFreq) {
+                maxFreq = entry.getValue();
+                maxChar = entry.getKey();
+            }
+        }
+        // If maximum characater frequency over half, not possible
+        // and "+1" is important especially for odd length string
+        if(maxFreq > (s.length() + 1) / 2) {
+            return "";
+        }
+        char[] result = new char[s.length()];
+        int index = 0;
+        while(maxFreq > 0) {
+            result[index] = maxChar;
+            index += 2;
+            maxFreq--;
+        }
+        // Remove the maxChar from map since all used to fill in 'result' already
+        map.remove(maxChar);
+        /**
+        Consider this example: "aaabbbcdd", we will construct the string in this way:
+        a _ a _ a _ _ _ _ // fill in "a" at position 0, 2, 4
+        a b a _ a _ b _ b // fill in "b" at position 6, 8, 1
+        a b a c a _ b _ b // fill in "c" at position 3
+        a b a c a d b d b // fill in "d" at position 5, 7
+        */
+        // Fill all empty buckets with remain chars as key in map
+        for(char c : map.keySet()) {
+            while(map.get(c) > 0) {
+                // When reach the end come back to fill in again all empty buckets 
+                if(index >= s.length()) {
+                    index = 1;
+                }
+                result[index] = c;
+                index += 2;
+                map.put(c, map.get(c) - 1);
+            }
+        }
+        return new String(result);
+    }
+}
