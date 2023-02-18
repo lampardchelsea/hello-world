@@ -268,8 +268,7 @@ Test out by 2 cases:
         } 
         return slow;
 ```
-But in L148 use another style (fast.next != null && fast.next.next != null) because the purpose is find second half start node instead of actual middle node, 'slow' NOT directly point to it, requires 'slow.next'
-Test out by 2 cases:
+But in L148 use another style (fast.next != null && fast.next.next != null) because the purpose is cut the list into two halves, the cutting point is after the end of first half and before the start of second half,  instead of find actual middle node, 'slow' should point to last node of first half, in future we can cut list into two halves by reserve head of second half as 'ListNode secondHalf = slow.next' and cut list by removing connection between two sub-lists as 'slow.next=null'Test out by 2 cases:
 1.{1,2,3,4,5} -> slow = 2, slow.next = 3, second half start node = 3
 2.{1,2,3,4,5,6} -> slow = 3, slow.next = 4, second half start node = 4
 ```
