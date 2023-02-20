@@ -193,6 +193,11 @@ class Solution {
         ListNode oddIter = head;
         ListNode evenHead = head.next;
         ListNode evenIter = evenHead;
+	// The condition different than L138.Copy List with Random Pointer because
+        // in L138 we guaranteed the list must be even number nodes exist because
+        // we do a deep copy based on original linked list, the problem in L328 is
+        // it may have odd number of nodes, which require check both 'evenIter' and
+        // 'evenIter.next' both as NOT null
         while(evenIter != null && evenIter.next != null) {
             oddIter.next = evenIter.next;
             oddIter = oddIter.next;
