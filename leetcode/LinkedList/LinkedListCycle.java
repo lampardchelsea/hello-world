@@ -130,7 +130,7 @@ Follow up: Can you solve it using O(1) (i.e. constant) memory?
 ---
 Attempt 1: 2023-02-19
 
-Solution 1:  (30 min)
+Solution 1: Fast and Slow pointer (30 min)
 ```
 /** 
  * Definition for singly-linked list. 
