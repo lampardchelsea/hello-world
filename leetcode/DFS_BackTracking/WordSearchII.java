@@ -1275,3 +1275,31 @@ class TrieNode {
     String word;
 }
 ```
+
+Time Complexity analysis:
+https://leetcode.com/problems/word-search-ii/solutions/59780/java-15ms-easiest-solution-100-00/comments/161749
+```
+Naive way is to search for every word in the dictionary directly by DFS all cells for every word. 
+The time complexity will be O(m * n * l * wl) where 
+n is board.length, 
+m is board[0].length, 
+l is words.length 
+wl is the average of length of words in 'words'.
+
+
+
+With a Trie to check multiple words at the same time when DFS from a certain cell,
+Time: O(m * n * wl) = max(O(l * wl), O(m * n * l * wl)) where
+O(l * wl) - Build the trie
+O(m * n * l * wl) - In the worst case where all words start with different chracters, and there is 
+a word starting with a character in the cell board[m - 1][n - 1], we have O(m * n * l * wl). However, 
+if there are words starting with same characters and paths sharing cells, Trie can check multiple 
+words when DFS from a certain cell, rather than check only one word when DFS from a certain cell like the naive way.
+
+
+
+Space: O(l * wl) = max(O(wl), O(l * wl)) where
+O(wl) - The recursive stack can grow at most to wl layers. 
+O(l * wl) - In the worst case when all words start with different characters, the trie has l * wl nodes. Also, since each 
+word is stored in a leaf node, all the leaf nodes require l * wl memory.
+```
