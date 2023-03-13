@@ -985,3 +985,133 @@ Time Complexity : O(N), for iterating over nums once
 Space Complexity : O(1), only constant extra space is being used.
 
 PS: I have tried running Solution - IV and this solution multiple times and this solution, despite being O(1) shows higher memory usage(28.8 MB on average vs 28 MB used by solution - IV) by LC consistently. If anyone can figure out the reason behind this, I will be happy to hear it out🙂
+
+Refer to
+https://leetcode.com/problems/maximum-subarray/solutions/1595097/java-kadane-s-algorithm-explanation-using-image/
+Intution: Start traversing your array keep each element in the sum and every time keep the max of currSum and prevSum.
+But the catch here is that if at any point sum becomes negative then no point keeping it because 0 is obviously greater than negative, so just make your sum 0.
+
+
+```
+class Solution { 
+    public int maxSubArray(int[] nums) { 
+        int n = nums.length; 
+        int max = Integer.MIN_VALUE, sum = 0; 
+         
+        for(int i=0;i<n;i++){ 
+            sum += nums[i]; 
+            max = Math.max(sum,max); 
+             
+            if(sum<0) sum = 0; 
+        } 
+         
+        return max; 
+    } 
+}
+```
+
+Follow up:
+Now here in this question you can see that you can also be asked some more things like :
+- Length of the max subarray
+- Elements of the max subarray
+- Start and End index of max subarray
+
+This is very important concept from interview point so try to get the ans of above mentioned point and have confidence on this algorithm.
+```
+class Solution {
+    public int maxSubArray(int[] nums) {
+        // Replace dp[i] with 'sum'
+        int sum = nums[0];
+        int max = nums[0];
+        // The final start and end position of the maximum sum subarray
+        int start = 0;
+        int end = 0;
+        // The temporary start position
+        int s = 0;
+        for(int i = 1; i < nums.length; i++) {
+            //sum = sum < 0 ? nums[i] : sum + nums[i];
+            if(sum < 0) {
+                // Have to reset 'start' with temporary 's'
+                s = i; 
+                sum = nums[i];
+            } else {
+                // Find a larger subarray
+                start = s;
+                end = i;
+                sum += nums[i];
+            }
+            max = Math.max(max, sum);
+        }
+        System.out.println("Maximum subarray get at start index = " + start + " end index = " + end);
+        return max;
+    }
+}
+=====================================================================================================
+No need the temporary start position 's'
+class Solution {
+    public int maxSubArray(int[] nums) {
+        // Replace dp[i] with 'sum'
+        int sum = nums[0];
+        int max = nums[0];
+        // The final start and end position of the maximum sum subarray
+        int start = 0;
+        int end = 0;
+        // The temporary start position
+        //int s = 0;
+        for(int i = 1; i < nums.length; i++) {
+            //sum = sum < 0 ? nums[i] : sum + nums[i];
+            if(sum < 0) {
+                // Have to reset 'start' with temporary 's'
+                //s = i; 
+                start = i; 
+                sum = nums[i];
+            } else {
+                // Find a larger subarray
+                //start = s;
+                end = i;
+                sum += nums[i];
+            }
+            max = Math.max(max, sum);
+        }
+        System.out.println("Maximum subarray get at start index = " + start + " end index = " + end);
+        return max;
+    }
+}
+
+```
+
+Refer to
+https://leetcode.com/problems/maximum-subarray/solutions/1595097/java-kadane-s-algorithm-explanation-using-image/comments/1195076
+```
+//And also print that subarray
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int n = nums.size();
+        
+        int maxi = nums[0];
+        int start = 0, end = 0; // the final start and end position of the maximum sum subarray
+        
+        int sum = 0;
+        int s = 0, // the temporary start position
+        
+        for(int i=0;i<n;i++){
+            
+            sum += nums[i]; 
+            if(sum > maxi){
+                maxi = sum;
+                start = s;
+                end = i;
+            }
+ 
+            if(sum < 0){
+                sum = 0;
+                s = i+1;
+            }   
+        }
+        
+        cout<<"Maximum Sum Subarray from nums["<<start<<"] = "<<nums[start]<<" till nums["<<end<<"] = "<<nums[end]<<endl;     
+        return maxi; 
+    }
+};
+```
