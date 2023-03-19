@@ -294,8 +294,7 @@ Then return ans
 ---
 Solution 2: Decreasing Monotonic Stack(30 min)
 
-Decreasing Monotonic Stack definition: All the elements in the stack are in decreasing order from bottom to top. The determine of "decreasing monotonic stack" here is based on "in process status" and the actual value based on stored 'index' on stack, NOT the "final storage status" of stack or the 'index' itself on stack. 
-
+Decreasing Monotonic Stack definition: All the elements in the stack are in decreasing order from bottom to top. The determine of "decreasing monotonic stack" here is based on "in process status",  NOT the "final storage status" of stack. 
 Store number not index on Stack
 ```
 class Solution { 
