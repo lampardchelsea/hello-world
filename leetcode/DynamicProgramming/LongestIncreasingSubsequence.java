@@ -558,6 +558,8 @@ class Solution {
                     result = Math.max(result, dp[i]); 
                 } 
             } 
+	    // Or update global maximum here
+	    //result = Math.max(result, dp[i]); 
         } 
         return result; 
     } 
