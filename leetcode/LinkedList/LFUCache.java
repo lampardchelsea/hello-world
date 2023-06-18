@@ -535,3 +535,9 @@ public class LFUCache {
     }
 }
 ```
+
+
+The removing node logic difference between LRU and LFU:
+1. In LRU solution, the Double Linked List is built on whole structure, we shift most recent used node always to the tail of list (method: moveToTail), and keep the least recent used node always at the head of list, so each time to pop out least recent used node just pop out the node after dummy head in O(1) time, the removing is happening on whole structure level
+
+2. In LFU solution, the Double Linked List is built on different frequency, not the whole structure, and use a map <key = frequency, value = Double Linked List of nodes> to identify and access different frequency node groups in O(1) time, to track a least frequency used node, we will use a global variable to record minimum frequency, but in case in put method may remove the least recent used node, now it will not happen on whole strcuture level, only happen on a frequency level, so to pop out a least recent used node we have to first find the least frequency used Double Linked List by using the maintained golbal variable of minimum frequency to access least frequency used Double Linked List in O(1) time, then find the least recent used node on this list, the node will either at the head or tail based on strategy when store it, if do the same as LRU solution by using method: moveToTail for most recent used node, then it will keep the least recent used node as next node after dummy head, just pop it in O(1) time is fine, if not do the same as LRU solution, then the least recent used node will always as prev node before dummy tail, and the most recent used node will always as next node after dummy head
