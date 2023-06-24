@@ -303,7 +303,8 @@ class NumArray {
                 //     / \         ==>       / \
                 //    l ... r               l ... r
                 // l is not right child of P. Then parent P contains sum of range which
-                // lies in [l,r]. Add P to sum and set l to point to the parent of P
+                // lies in [l,r]. Add P to sum which implement by setting l to point to 
+                // the parent of P
                 left /= 2;
             }
             // Check if r is left child of its parent P
@@ -323,7 +324,8 @@ class NumArray {
                 //           / \    ==>                 / \
                 //        l ... r                    l ... r
                 // r is not left child of P. Then parent P contains sum of range which
-                // lies in [l,r]. Add P to sum and set r to point to the parent of P
+                // lies in [l,r]. Add P to sum which implement by setting r to point to 
+                // the parent of P
                 right /= 2;
             }
         }
@@ -1265,4 +1267,5 @@ public class NumArray {
 // numArray.update(1, 10);
 // numArray.sumRange(1, 2);
 ```
+
 
