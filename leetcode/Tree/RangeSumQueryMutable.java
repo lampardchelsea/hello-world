@@ -545,8 +545,8 @@ class NumArray {
             return 0;
         }
         // Segment completely inside range
-        // Basement:                    --- left --- right ---
-        // Variable: --------------- lo ---------------------- hi -------------
+        // Basement:               --- left ------------ right ---
+        // Variable: ---------------------- lo ------ hi ----------------------
         if(lo >= left && hi <= right) {
             return tree[treeIndex];
         }
@@ -1267,5 +1267,3 @@ public class NumArray {
 // numArray.update(1, 10);
 // numArray.sumRange(1, 2);
 ```
-
-
