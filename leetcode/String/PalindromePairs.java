@@ -344,6 +344,20 @@ class Solution {
         return true;
     }
 }
+
+Time Complexity:
+Assume average length of word is k, n = number of words in the list, then the time complexity is: O(n*k^2) because of this for loop
+ for(int i = 0; i < words.length; i++){
+        String cur = words[i];
+        for(int cut = 1; cut < cur.length(); cut++){
+            if(isPalindrome(cur.substring(0, cut))){
+                ...
+            }
+            if(isPalindrome(cur.substring(cut))){
+                ...
+            }
+        }
+    }
 ```
 
 Refer to
