@@ -1,202 +1,3 @@
-/**
- Refer to
- https://leetcode.com/problems/distinct-subsequences/
- Given a string S and a string T, count the number of distinct subsequences of S which equals T.
-
-A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) 
-of the characters without disturbing the relative positions of the remaining characters. (ie, "ACE" is a 
-subsequence of "ABCDE" while "AEC" is not).
-
-Example 1:
-Input: S = "rabbbit", T = "rabbit"
-Output: 3
-Explanation:
-As shown below, there are 3 ways you can generate "rabbit" from S.
-(The caret symbol ^ means the chosen letters)
-
-rabbbit
-^^^^ ^^
-rabbbit
-^^ ^^^^
-rabbbit
-^^^ ^^^
-
-Example 2:
-Input: S = "babgbag", T = "bag"
-Output: 5
-Explanation:
-As shown below, there are 5 ways you can generate "bag" from S.
-(The caret symbol ^ means the chosen letters)
-
-babgbag
-^^ ^
-babgbag
-^^    ^
-babgbag
-^    ^^
-babgbag
-  ^  ^^
-babgbag
-    ^^^
-*/
-
-// Solution 1: DP
-// Refer to
-// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/String/DistinctSubsequences.java
-/**
- * https://segmentfault.com/a/1190000003481216
- * 动态规划法
- * 复杂度
- * 时间 O(NM) 空间 O(NM)
- * 思路
- * 这题的思路和EditDistance有些相似，我们需要一个二维数组dp(i)(j)来记录长度为i的字串在长度为j的母串中出现的次数，这里长度都是从头算起的，
- * 而且遍历时，保持子串长度相同，先递增母串长度，母串最长时再增加一点子串长度重头开始计算母串。
- * 首先我们先要初始化矩阵，当子串长度为0时，所有次数都是1，当母串长度为0时，所有次数都是0.当母串子串都是0长度时，次数是1（因为都是空，相等）。
- * 接着，如果子串的最后一个字母和母串的最后一个字母不同，说明新加的母串字母没有产生新的可能性，可以沿用该子串在较短母串的出现次数，所以
- * dp(i)(j) = dp(i)(j-1)。如果子串的最后一个字母和母串的最后一个字母相同，说明新加的母串字母带来了新的可能性，我们不仅算上dp(i)(j-1)，
- * 也要算上新的可能性。那么如何计算新的可能性呢，其实就是在既没有最后这个母串字母也没有最后这个子串字母时，子串出现的次数，我们相当于为所有
- * 这些可能性都添加一个新的可能。所以，这时dp(i)(j) = dp(i)(j-1) + dp(i-1)(j-1)。下图是以rabbbit和rabbit为例的矩阵示意图。计算元素值时，
- * 当末尾字母一样，实际上是左方数字加左上方数字，当不一样时，就是左方的数字
-*/
-// For below solution just switch x-axis and y-axis
-class Solution {
-    public int numDistinct(String s, String t) {
-        int m = s.length() + 1;
-        int n = t.length() + 1;
-        int[][] dp = new int[m][n];
-        dp[0][0] = 1;
-        for(int i = 1; i < m; i++) {
-            dp[i][0] = 1;
-        }
-        for(int i = 1; i < n; i++) {
-            dp[0][i] = 0;
-        }
-        for(int i = 1; i < m; i++) {
-            for(int j = 1; j < n; j++) {
-                if(s.charAt(i - 1) == t.charAt(j - 1)) {
-                    dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j];
-                } else {
-                    dp[i][j] = dp[i - 1][j];
-                }
-            }
-        }
-        return dp[m - 1][n - 1];
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 https://leetcode.com/problems/distinct-subsequences/
 
 Given two strings s and t, return the number of distinct subsequences ofswhich equalst.
@@ -542,8 +343,6 @@ S 中的每个字母就是两种可能选他或者不选他。我们用递归的
 - S[0] == T[0]，需要知道两种情况
 	- 从 S 中选择当前的字母，此时 S 跳过这个字母, T 也跳过一个字母。
 	  去求 S[1，S_len - 1] 中能选出多少个 T[1，T_len - 1]，个数记为 n1
-
-
 	- S 不选当前的字母，此时S跳过这个字母，T 不跳过字母。
 	  去求S[1，S_len - 1] 中能选出多少个 T[0，T_len - 1]，个数记为 n2
 
@@ -551,7 +350,6 @@ S 中的每个字母就是两种可能选他或者不选他。我们用递归的
 - S[0] ！= T[0]
   S 只能不选当前的字母，此时S跳过这个字母， T 不跳过字母。
   去求S[1，S_len - 1] 中能选出多少个 T[0，T_len - 1]，个数记为 n1
-
 
 也就是说如果求 S[0，S_len - 1] 中能选出多少个 T[0，T_len - 1]，个数记为 n。转换为数学式就是
 ```
@@ -1334,6 +1132,7 @@ class Solution {
 第四步：基于2D DP的空间优化1D DP(逆向版本)：
 
 优化为2 rows
+Style 1: Pre-initialize dp along with dpPrev initialize for loop before major for loop since dp[t_len] always same value in this problem (if dp[t_len] not always same value cannot pre-initialize dp)
 ```
 class Solution {
     public int numDistinct(String s, String t) {
@@ -1349,6 +1148,8 @@ class Solution {
         //    dp[i][t_len] = 1; 
         //}
         // -> 去掉row维度后初始化状态进化为只需要设定剩下column维度的第一个数即dp[t_len]为1，等价于t是空串时dp[i][t_len] = 1
+        // -> Pre-initialize dp[t_len] along with dpPrev since dp[t_len] always same value as 1, otherwise must only
+        // assign value to dp[t_len] in each for loop iteration
         dp[t_len] = 1;
         dpPrev[t_len] = 1;
         // 倒着进行，s 每次增加一个字母
@@ -1382,26 +1183,22 @@ class Solution {
         
          t r a b b i t ''
        s 
-       r   3 3 3 3 1 1 1   -> equal i = 7 dp array 
-       a   0 3 3 3 1 1 1   -> equal i = 6 dp array 
-       b   0 0 3 3 1 1 1   -> equal i = 5 dp array 
-       b   0 0 1 2 1 1 1   -> equal i = 4 dp array 
-       b   0 0 0 1 1 1 1   -> equal i = 3 dp array 
-       i   0 0 0 0 1 1 1   -> equal i = 2 dp array 
-       t   0 0 0 0 0 1 1   -> equal i = 1 dp array 
+       r   3 3 3 3 1 1 1   -> equal j = 0 dp array 
+       a   0 3 3 3 1 1 1   -> equal j = 1 dp array 
+       b   0 0 3 3 1 1 1   -> equal j = 2 dp array 
+       b   0 0 1 2 1 1 1   -> equal j = 3 dp array 
+       b   0 0 0 1 1 1 1   -> equal j = 4 dp array 
+       i   0 0 0 0 1 1 1   -> equal j = 5 dp array 
+       t   0 0 0 0 0 1 1   -> equal j = 6 dp array 
       ''   0 0 0 0 0 0 1   -> equal initial
-
-
-
 
 外层循环为row维度，逐行填充，用2 rows array取代原先2D DP array
 for(int j = s_len - 1; j >= 0; j--)
-
 Initial:
-    dp = [0, 0, 0, 0, 0, 0, 1]
+    dp = [0, 0, 0, 0, 0, 0, 1] -> Pre-initialize dp[t_len] along with dpPrev since dp[t_len] always same value as 1, otherwise must only assign value to dp[t_len] in each for loop iteration
 dpPrev = [0, 0, 0, 0, 0, 0, 1]
 ================================
-i = 1 -> 
+j = 6 -> 
 before dpPrev = dp.clone()
     dp = [0, 0, 0, 0, 0, 1, 1]
 dpPrev = [0, 0, 0, 0, 0, 0, 1]
@@ -1410,7 +1207,7 @@ after dpPrev = dp.clone()
     dp = [0, 0, 0, 0, 0, 1, 1]
 dpPrev = [0, 0, 0, 0, 0, 1, 1]
 ================================
-i = 2 -> 
+j = 5 -> 
 before dpPrev = dp.clone()
     dp = [0, 0, 0, 0, 1, 1, 1]
 dpPrev = [0, 0, 0, 0, 0, 1, 1]
@@ -1419,7 +1216,7 @@ after dpPrev = dp.clone()
     dp = [0, 0, 0, 0, 1, 1, 1]
 dpPrev = [0, 0, 0, 0, 1, 1, 1]
 ================================
-i = 3 -> 
+j = 4 -> 
 before dpPrev = dp.clone()
     dp = [0, 0, 0, 1, 1, 1, 1]
 dpPrev = [0, 0, 0, 0, 1, 1, 1]
@@ -1428,7 +1225,7 @@ after dpPrev = dp.clone()
     dp = [0, 0, 0, 1, 1, 1, 1]
 dpPrev = [0, 0, 0, 1, 1, 1, 1]
 ================================
-i = 4 -> 
+j = 3 -> 
 before dpPrev = dp.clone()
     dp = [0, 0, 1, 2, 1, 1, 1]
 dpPrev = [0, 0, 0, 1, 1, 1, 1]
@@ -1437,7 +1234,7 @@ after dpPrev = dp.clone()
     dp = [0, 0, 1, 2, 1, 1, 1]
 dpPrev = [0, 0, 1, 2, 1, 1, 1]
 ================================
-i = 5 -> 
+j = 2 -> 
 before dpPrev = dp.clone()
     dp = [0, 0, 3, 3, 1, 1, 1]
 dpPrev = [0, 0, 1, 2, 1, 1, 1]
@@ -1446,7 +1243,7 @@ after dpPrev = dp.clone()
     dp = [0, 0, 3, 3, 1, 1, 1]
 dpPrev = [0, 0, 3, 3, 1, 1, 1]
 ================================
-i = 6 -> 
+j = 1 -> 
 before dpPrev = dp.clone()
     dp = [0, 3, 3, 3, 1, 1, 1]
 dpPrev = [0, 0, 3, 3, 1, 1, 1]
@@ -1455,7 +1252,7 @@ after dpPrev = dp.clone()
     dp = [0, 3, 3, 3, 1, 1, 1]
 dpPrev = [0, 3, 3, 3, 1, 1, 1]
 ================================
-i = 7 -> 
+j = 0 -> 
 before dpPrev = dp.clone()
     dp = [3, 3, 3, 3, 1, 1, 1]
 dpPrev = [0, 3, 3, 3, 1, 1, 1]
@@ -1466,6 +1263,281 @@ dpPrev = [3, 3, 3, 3, 1, 1, 1]
 ================================
 Finally either return dp[0] or dpPrev[0] is same
 ```
+
+Style 2: dp along with dpPrev initialize in major for loop (more general way, since we cannot guarantee dp[t_len] always same value, refer to L72. Edit Distance)
+First is wrong way if we miss the dp[t_len] initialize in each for loop iteration
+```
+class Solution {
+    public int numDistinct(String s, String t) {
+        int s_len = s.length();
+        int t_len = t.length();
+        // 原2D DP数组中的定义：s是row维度, t是column维度
+        //int[][] dp = new int[s_len + 1][t_len + 1];
+        // -> 现在只保留了column维度，因为本质上是row的维度上"上一行只依赖于下一行"，在原2D数组中上一行是dp[i]，下一行是dp[i + 1]，现在由于去掉了row维度，dp[i][j]平行替换为dp[j]，dp[i + 1][j]平行替换为dpPrev[j]
+        int[] dp = new int[t_len + 1];
+        int[] dpPrev = new int[t_len + 1];
+        // 当t为空串时，所有的s对应于 1，即2D DP数组中最后一列全部为1，dp[i][t_len] = 1
+        //for(int i = 0; i <= s_len; i++) {
+        //    dp[i][t_len] = 1; 
+        //}
+        // -> 去掉row维度后初始化状态进化为只需要设定剩下column维度的第一个数即dp[t_len]为1，等价于t是空串时dp[i][t_len] = 1
+        //dp[t_len] = 1; --> remove from here and suppose to relocate into major for loop then initialize in each for loop iteration 
+
+        dpPrev[t_len] = 1;
+        // 倒着进行，s 每次增加一个字母
+        // -> 外层循环依旧为row维度，而且dpPrev/dp在row维度的反复替换也在外层循环发生，为了维持row维度的替换，外层循环必须使用row维度
+        for(int j = s_len - 1; j >= 0; j--) {
+            //dp[t_len] = 1; --> comment out to show what will happen if we miss the initialize for dp[t_len] in each iteration
+            // 倒着进行，t 每次增加一个字母
+            for(int i = t_len - 1; i >= 0; i--) {
+                // 如果当前字母相等
+                if(t.charAt(i) == s.charAt(j)) {
+                    // 对应于两种情况，选择当前字母和不选择当前字母
+                    //dp[j][i] = dp[j + 1][i + 1] + dp[j + 1][i];
+                    // -> 现在由于去掉了row维度，dp[j][i]平行替换为dp[i]，dp[j + 1][i + 1]和dp[j + 1][i]平行替换为dpPrev[i + 1]和dpPrev[i]
+                    dp[i] = dpPrev[i + 1] + dpPrev[i];
+                // 如果当前字母不相等
+                } else {
+                    //dp[j][i] = dp[j + 1][i];
+                    dp[i] = dpPrev[i];
+                }
+            }
+            // -> 每次循环中dp是承接新计算结果的数组，为了腾出空间承接下一次循环的新计算结果，也为了让dpPrev更新为新的当前行计算结果，在每次循环结束的时候必须把计算结果从dp转存到dpPrev中
+            dpPrev = dp.clone();
+        }
+        return dpPrev[0];
+    }
+}
+
+=======================================================================================================
+Wrong result below:
+e.g
+s = "babgbag", t = "bag"
+
+           0 1 2 3
+         t b a g '' -> i
+       s   
+    0  b   4 2 1 0 -> equal j = 0 dp array
+    1  a   2 2 1 0 -> equal j = 1 dp array
+    2  b   2 1 1 0 -> equal j = 2 dp array
+    3  g   1 1 1 0 -> equal j = 3 dp array
+    4  b   1 1 1 0 -> equal j = 4 dp array
+    5  a   0 1 1 0 -> equal j = 5 dp array
+    6  g   0 0 1 0 -> equal j = 6 dp array
+    7 ''   0 0 0 1 -> equal initial
+    -> j
+
+外层循环为row维度，逐行填充，用2 rows array取代原先2D DP array
+for(int j = s_len - 1; j >= 0; j--)
+Initial:
+dp -> no initialize for dp inside dpPrev initialize for loop
+dpPrev = [0, 0, 0, 1]
+================================
+j = 6 -> 
+before dpPrev = dp.clone()
+    dp = [0, 0, 1, 0] -> No initialize of last element dp[t_len] = 1 in each round
+dpPrev = [0, 0, 0, 1]
+--------------------------------
+after dpPrev = dp.clone()
+    dp = [0, 0, 1, 0]
+dpPrev = [0, 0, 1, 0]
+================================
+j = 5 -> 
+before dpPrev = dp.clone()
+    dp = [0, 1, 1, 0] -> No initialize of last element dp[t_len] = 1 in each round
+dpPrev = [0, 0, 1, 0]
+--------------------------------
+after dpPrev = dp.clone()
+    dp = [0, 1, 1, 0]
+dpPrev = [0, 1, 1, 0]
+================================
+j = 4 -> 
+before dpPrev = dp.clone()
+    dp = [1, 1, 1, 0] -> No initialize of last element dp[t_len] = 1 in each round
+dpPrev = [0, 1, 1, 0]
+--------------------------------
+after dpPrev = dp.clone()
+    dp = [1, 1, 1, 0]
+dpPrev = [1, 1, 1, 0]
+================================
+j = 3 -> 
+before dpPrev = dp.clone()
+    dp = [1, 1, 1, 0] -> No initialize of last element dp[t_len] = 1 in each round
+dpPrev = [1, 1, 1, 0]
+--------------------------------
+after dpPrev = dp.clone()
+    dp = [1, 1, 1, 0]
+dpPrev = [1, 1, 1, 0]
+================================
+j = 2 -> 
+before dpPrev = dp.clone()
+    dp = [2, 1, 1, 0] -> No initialize of last element dp[t_len] = 1 in each round
+dpPrev = [1, 1, 1, 0]
+--------------------------------
+after dpPrev = dp.clone()
+    dp = [2, 1, 1, 0]
+dpPrev = [2, 1, 1, 0]
+================================
+j = 1 -> 
+before dpPrev = dp.clone()
+    dp = [2, 2, 1, 0] -> No initialize of last element dp[t_len] = 1 in each round
+dpPrev = [2, 1, 1, 0]
+--------------------------------
+after dpPrev = dp.clone()
+    dp = [2, 2, 1, 0]
+dpPrev = [2, 2, 1, 0]
+================================
+j = 0 -> 
+before dpPrev = dp.clone()
+    dp = [4, 2, 1, 0] -> No initialize of last element dp[t_len] = 1 in each round
+dpPrev = [2, 2, 1, 0]
+--------------------------------
+after dpPrev = dp.clone()
+    dp = [4, 2, 1, 0]
+dpPrev = [4, 2, 1, 0]
+================================
+Finally either return dp[0] or dpPrev[0] is same
+```
+
+Then we add back the dp[t_len] initialize in each for loop iteration as correct way
+```
+class Solution {
+    public int numDistinct(String s, String t) {
+        int s_len = s.length();
+        int t_len = t.length();
+        // 原2D DP数组中的定义：s是row维度, t是column维度
+        //int[][] dp = new int[s_len + 1][t_len + 1];
+        // -> 现在只保留了column维度，因为本质上是row的维度上"上一行只依赖于下一行"，在原2D数组中上一行是dp[i]，下一行是dp[i + 1]，现在由于去掉了row维度，dp[i][j]平行替换为dp[j]，dp[i + 1][j]平行替换为dpPrev[j]
+        int[] dp = new int[t_len + 1];
+        int[] dpPrev = new int[t_len + 1];
+        // 当t为空串时，所有的s对应于 1，即2D DP数组中最后一列全部为1，dp[i][t_len] = 1
+        //for(int i = 0; i <= s_len; i++) {
+        //    dp[i][t_len] = 1; 
+        //}
+        // -> 去掉row维度后初始化状态进化为只需要设定剩下column维度的第一个数即dp[t_len]为1，等价于t是空串时dp[i][t_len] = 1
+        //dp[t_len] = 1; --> remove from here and suppose to relocate into major for loop then initialize in each for loop iteration 
+
+        dpPrev[t_len] = 1;
+        // 倒着进行，s 每次增加一个字母
+        // -> 外层循环依旧为row维度，而且dpPrev/dp在row维度的反复替换也在外层循环发生，为了维持row维度的替换，外层循环必须使用row维度
+        for(int j = s_len - 1; j >= 0; j--) {
+            // Correct way to initialize dp[t_len] in each iteration 
+            dp[t_len] = 1;
+            // 倒着进行，t 每次增加一个字母
+            for(int i = t_len - 1; i >= 0; i--) {
+                // 如果当前字母相等
+                if(t.charAt(i) == s.charAt(j)) {
+                    // 对应于两种情况，选择当前字母和不选择当前字母
+                    //dp[j][i] = dp[j + 1][i + 1] + dp[j + 1][i];
+                    // -> 现在由于去掉了row维度，dp[j][i]平行替换为dp[i]，dp[j + 1][i + 1]和dp[j + 1][i]平行替换为dpPrev[i + 1]和dpPrev[i]
+                    dp[i] = dpPrev[i + 1] + dpPrev[i];
+                // 如果当前字母不相等
+                } else {
+                    //dp[j][i] = dp[j + 1][i];
+                    dp[i] = dpPrev[i];
+                }
+            }
+            // -> 每次循环中dp是承接新计算结果的数组，为了腾出空间承接下一次循环的新计算结果，也为了让dpPrev更新为新的当前行计算结果，在每次循环结束的时候必须把计算结果从dp转存到dpPrev中
+            dpPrev = dp.clone();
+        }
+        return dpPrev[0];
+    }
+}
+
+
+
+=======================================================================================================
+Correct result below:
+e.g
+s = "babgbag", t = "bag"
+
+           0 1 2 3
+         t b a g '' -> i
+       s   
+    0  b   5 3 2 1 -> equal j = 0 dp array
+    1  a   2 3 2 1 -> equal j = 1 dp array
+    2  b   2 1 2 1 -> equal j = 2 dp array
+    3  g   1 1 2 1 -> equal j = 3 dp array
+    4  b   1 1 1 1 -> equal j = 4 dp array
+    5  a   0 1 1 1 -> equal j = 5 dp array
+    6  g   0 0 1 1 -> equal j = 6 dp array
+    7 ''   0 0 0 1 -> equal initial
+    -> j
+
+外层循环为row维度，逐行填充，用2 rows array取代原先2D DP array
+for(int j = s_len - 1; j >= 0; j--)
+Initial:
+dp -> no initialize for dp inside dpPrev initialize for loop
+OR we can initialize dp along with dpPrev initialize for loop then no need
+initialize dp[t_len] = 1 in each round later in for loop
+dpPrev = [0, 0, 0, 1]
+================================
+j = 6 -> 
+before dpPrev = dp.clone()
+    dp = [0, 0, 1, 1] -> Initialize of last element dp[t_len] = 1 in each round
+dpPrev = [0, 0, 0, 1]
+--------------------------------
+after dpPrev = dp.clone()
+    dp = [0, 0, 1, 1]
+dpPrev = [0, 0, 1, 1]
+================================
+j = 5 -> 
+before dpPrev = dp.clone()
+    dp = [0, 1, 1, 1] -> Initialize of last element dp[t_len] = 1 in each round
+dpPrev = [0, 0, 1, 1]
+--------------------------------
+after dpPrev = dp.clone()
+    dp = [0, 1, 1, 1]
+dpPrev = [0, 1, 1, 1]
+================================
+j = 4 -> 
+before dpPrev = dp.clone()
+    dp = [1, 1, 1, 1] -> Initialize of last element dp[t_len] = 1 in each round
+dpPrev = [0, 1, 1, 1]
+--------------------------------
+after dpPrev = dp.clone()
+    dp = [1, 1, 1, 1]
+dpPrev = [1, 1, 1, 1]
+================================
+j = 3 -> 
+before dpPrev = dp.clone()
+    dp = [1, 1, 2, 1] -> Initialize of last element dp[t_len] = 1 in each round
+dpPrev = [1, 1, 1, 1]
+--------------------------------
+after dpPrev = dp.clone()
+    dp = [1, 1, 2, 1]
+dpPrev = [1, 1, 2, 1]
+================================
+j = 2 -> 
+before dpPrev = dp.clone()
+    dp = [2, 1, 2, 1] -> Initialize of last element dp[t_len] = 1 in each round
+dpPrev = [1, 1, 2, 1]
+--------------------------------
+after dpPrev = dp.clone()
+    dp = [2, 1, 2, 1]
+dpPrev = [2, 1, 2, 1]
+================================
+j = 1 -> 
+before dpPrev = dp.clone()
+    dp = [2, 3, 2, 1] -> Initialize of last element dp[t_len] = 1 in each round
+dpPrev = [2, 1, 2, 1]
+--------------------------------
+after dpPrev = dp.clone()
+    dp = [2, 3, 2, 1]
+dpPrev = [2, 3, 2, 1]
+================================
+j = 0 -> 
+before dpPrev = dp.clone()
+    dp = [5, 3, 2, 1] -> Initialize of last element dp[t_len] = 1 in each round
+dpPrev = [2, 3, 2, 1]
+--------------------------------
+after dpPrev = dp.clone()
+    dp = [5, 3, 2, 1]
+dpPrev = [5, 3, 2, 1]
+================================
+Finally either return dp[0] or dpPrev[0] is same
+```
+
 
 进一步优化为1 row
 ```
