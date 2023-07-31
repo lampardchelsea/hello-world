@@ -415,6 +415,7 @@ If we exhausted the current branch, currResult.size() == nums.length, we will ba
 
 ---
 No "Not pick" and "Pick" branch available for this problem yet
+Because in L46. we have to use all numbers in the given array, not like L77. we just pick k out of n numbers, so there is no chance for a number in L46 to 'Not pick', hence no "Not pick" and "Pick" strategy here
 ---
 Mathematical proof that time complexity is O(e * n!) NOT O(n * n!)
 https://leetcode.com/problems/permutations/discuss/2074177/Mathematical-proof-that-time-complexity-is-O
