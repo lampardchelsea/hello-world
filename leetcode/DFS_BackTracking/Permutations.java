@@ -280,6 +280,7 @@ class Solution {
 
 ---
 Solution 2: Backtracking style 2 (10min, instead of contains() method check, use boolean[] visited array)
+Note: Like mentioned in Solution 1, not use boolean[] visited array, just use tmp.contains() to filter out already added element into tmp list is not robust since its totally based on given condition as "All the integers of nums are unique.", the style 1 and style 2 will have big deviation when comes to a duplicate existing input such as {1,1,2}, for style 1, since tmp.contains() logic exist, after 1st '1' on tmp, it won't proceed for 2nd '1', the final result of all permutations is empty list {}, but for style 2, since boolean[] visited used, different indexed element will be individually judged, not based on previous element condition, so final result will be [[1, 1, 2], [1, 2, 1], [1, 1, 2], [1, 2, 1], [2, 1, 1], [2, 1, 1]], but its also something wrong, since duplicate not handling well, which resolved by L47.
 ```
 class Solution { 
     public List<List<Integer>> permute(int[] nums) { 
