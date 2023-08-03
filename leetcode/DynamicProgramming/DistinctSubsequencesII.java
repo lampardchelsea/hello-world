@@ -466,7 +466,7 @@ level 1 set now contains {a,b}
 6
 ```
 
-如果想打印所有distinct subequence怎么办？
+如果想打印所有distinct subequence怎么办？(参见L90/P11.2.Subsets II的处理方法)
 想通过for循环风格而非pick，not pick风格（参见L77. Combination中的两种递归方法）就打印出所有sequence有一定难度，然而受到L77的backtracking for循环模板的影响，并按照如下L77过程图的提示: 本质上要打印所有index下的状态[], [1], [2], [3], [1,2], [1,3], [2,3], [1,2,3], 而非只打印最终index=3状态下的[1,2,3]
 
 发现只要打破只在index >= arr.length的时候才将记录递归结果的tmp加载到结果result中的制约就可以记录任意长度(从0到arr.length)的组合，那么解决方案就自然而然的出现了，即引入在index < arr.length状态下也把tmp加载到结果result中但是不返回而是继续进行当前层计算的逻辑
