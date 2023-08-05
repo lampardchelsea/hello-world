@@ -434,3 +434,162 @@ By using the median of medians algorithm, we can improve to a worst-case scenari
 This approach is way out of scope for an interview, and practically it isn't even worth implementing because there is a large constant factor. As stated above, the random pivot approach will yield a linear runtime with mathematical certainty, so in all practical scenarios, it is sufficient.
 
 The median of medians approach should only be appreciated for its theoretical beauty. Those who are interested can read more using the link above.
+
+Solution 4: Counting Sort (30 min)
+
+Note: 
+Build  a index shift frame to avoid negative index issue since bucket build closely relate to number value itself, if that's a negative index, we have to add shift variable to 'make it up' to non-negative index
+e.g if nums[i] = -10000, when build bucket we cannot directly use -10000 as bucket index, just add 10000 as a make up to correct the bucket index to non-negative
+Also need to avoid index out of boundary issue, bucket[num - min + shift] will break when num - min + shift > boundary, in this case just remove '-min' and change to bucket[num + shift] is fine, which already resolve negative index issue and never over come the pre-defined boundary
+```
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        int min = 10001;
+        int max = -10001;
+        for(int num : nums) {
+            //if(num < min_num) {
+            //    min_num = num;
+            //} else if(num >= max_num) {
+            //    max_num = num;
+            //}
+            min = Math.min(min, num);
+            max = Math.max(max, num);
+        }
+        // Based on given input range -10^4 <= nums[i] <= 10^4,
+        // to avoid negative index issue introduce make up shift
+        // as 10000, then total range shift 10000 to right, plus
+        // 1 more to make it never out of range, then new range
+        // -10^4 + 10000 <= bucket index <= 10^4 + 10000, which
+        // means new int[20001]
+        int[] buckets = new int[20001];
+        for(int num : nums) {
+            //buckets[num - min + 10000]++;
+            // --> will error out when num - min > 10001
+            // the framework cannot build by num - min + 10000
+            // + 10000 already resolve the negative index issue
+            // since for given condition -10^4 <= nums[i],
+            // any input will be non-negative index when + 10000
+            // just remove '- min' to avoid index out of range
+            //  => buckets[num + 10000]++ as new shift structure
+            buckets[num + 10000]++;
+        }
+        // Scan backwards to find kth largest,
+        // start with index = (max + 10000)
+        // e.g nums = [3,2,1,5,6,4], k = 2
+        // min = 1, max = 6, buckets[10001 ~ 10006] = 1
+        // scan start with i = 6 + 10000 = 10006
+        // k = 2 > 0 enter while loop round 1:
+        // result = i => 10006
+        // k -= buckets[i--] = 2 - buckets[10006] = 2 - 1 = 1
+        // i-- = 10006 - 1 = 10005
+        // k = 1 > 0 enter while loop round 2:
+        // result = i => 10005
+        // k -= buckets[i--] = 1 - buckets[10005] = 1 - 1 = 0
+        // i-- = 10005 - 1 = 10004
+        // k = 0 skip while loop
+        // result - 10000 = 10005 - 10000 = 5
+        // ------------------------------------
+        // e.g nums = [99,99], k = 1
+        // min = 99, max = 99, buckets[10099] = 2
+        // scan start with i = 99 + 10000 = 10099
+        // k = 1 > 0 enter while loop round 1:
+        // result = i => 10099
+        // k -= buckets[i--] = 1 - buckets[10099] = 1 - 2 = -1
+        // i-- = 10099 - 1 = 10098
+        // k = -1 skip while loop
+        // result - 10000 = 10099 - 10000 = 99
+        int result = 0;
+        int i = max + 10000;
+        while(k > 0) {
+            result = i;
+            k -= buckets[i--];
+        }
+        return result - 10000;
+    }
+}
+```
+
+Refer to
+https://leetcode.com/problems/kth-largest-element-in-an-array/editorial/
+
+Approach 4: Counting Sort
+
+Intuition
+Counting sort is a non-comparison sorting algorithm. It can be used to sort an array of positive integers.
+
+In this approach, we will sort the input using a slightly modified counting sort, and then return the kth element from the end (just like in the first approach).
+
+Here is how we will sort the array:
+1. First, find the maxValue in the array. Create an array count with size maxValue + 1.
+2. Iterate over the array and find the frequency of each element. For each element num, increment count[num].
+3. Now we know the frequency of each element. Each index of count represents a number. Create a new array sortedArr and iterate over count. For each index num, add count[num] copies of num to sortedArr. Because we iterate over the indices in sorted order, we will also add elements to sortedArr in sorted order.
+
+The following animation demonstrates this process:
+
+
+
+
+
+
+
+
+
+
+There is one problem: as we are associating indices with numbers, this algorithm will not work if negative numbers are in the input. The constraints state that negative numbers can be in the input, so we need to account for this.
+
+Let's also find minValue, the minimum value in the array. Instead of count having a size of maxValue + 1, we will make it have a size of maxValue - minValue + 1 (if minValue < 0, then this will appropriately increase the size of count).
+
+Now, we can just apply an offset of minValue when mapping numbers to indices and vice-versa. When we populate count, given a num we will increment count[num - minValue]. count[num] will represent the frequency of num + minValue.
+
+
+One more small optimization
+Since we don't actually need to sort the array but only need to return the kth largest value, we will iterate over the indices of counting reverse order (get the larger numbers first). At each number, we will decrement k(or a variable we initialize as remain = k to avoid modifying the input) by the frequency. If remain <= 0, we can return the current number. With this optimization, we don't need to create sorted Arr, saving us O(n) space.
+
+Algorithm
+1. Find the maxValue and minValue of nums.
+2. Create count, an array of size maxValue - minValue + 1.
+3. Iterate over nums. For each num, increment count[num - minValue].
+4. Set remain = k and iterate over the indices of count backward. For each index num:
+	- Subtract the frequency of num from remain: remain -= count[num].
+	- If remain <= 0, return the number that the current index represents: num + minValue.
+5. The code should never reach this point. Return any value.
+
+Implementation
+```
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        int minValue = Integer.MAX_VALUE;
+        int maxValue = Integer.MIN_VALUE;
+        
+        for (int num: nums) {
+            minValue = Math.min(minValue, num);
+            maxValue = Math.max(maxValue, num);
+        }
+        
+        int[] count = new int[maxValue - minValue + 1];
+        for (int num: nums) {
+            count[num - minValue]++;
+        }
+        
+        int remain = k;
+        for (int num = count.length - 1; num >= 0; num--) {
+            remain -= count[num];
+            if (remain <= 0) {
+                return num + minValue;
+            }
+        }
+        
+        return -1;
+    }
+}
+```
+
+Complexity Analysis
+Given n as the length of nums and m as maxValue - minValue,
+- Time complexity: O(n+m)
+  We first find maxValue and minValue, which costs O(n).
+  Next, we initialize count, which costs O(m).
+  Next, we populate count, which costs O(n).
+  Finally, we iterate over the indices of count, which costs up to O(m).
+- Space complexity: O(m)
+  We create an array count with size O(m).
