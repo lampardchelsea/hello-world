@@ -37,7 +37,7 @@ Note:
 ---
 Attempt 1: 2023-08-16
 
-Solution 1: (360min)
+Solution 1: Hash Table + Node structure + Design (360min)
 ```
 public class FileSystem {
     class Node {
