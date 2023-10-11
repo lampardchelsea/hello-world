@@ -779,7 +779,8 @@ class Solution {
         while(!q.isEmpty()) {
             int curIdx = q.poll();
             for(int i = curIdx + 1; i <= s.length(); i++) {
-                if(set.contains(s.substring(curIdx, i))) {
+                // Filter out already visited index
+                if(!visited.contains(i) && set.contains(s.substring(curIdx, i))) {
                     if(i == s.length()) {
                         return true;
                     }
