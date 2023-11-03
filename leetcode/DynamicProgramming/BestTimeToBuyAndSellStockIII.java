@@ -294,15 +294,14 @@ Solution 5:  One Pass (60 min)
 ```
 public class Solution {
     public int maxProfit(int[] prices) {
-        int hold1 = Integer.MIN_VALUE, hold2 = Integer.MIN_VALUE;
-        int release1 = 0, release2 = 0;
-        for(int i:prices){                              // Assume we only have 0 money at first
-            release2 = Math.max(release2, hold2+i);     // The maximum if we've just sold 2nd stock so far.
-            hold2    = Math.max(hold2,    release1-i);  // The maximum if we've just buy  2nd stock so far.
-            release1 = Math.max(release1, hold1+i);     // The maximum if we've just sold 1nd stock so far.
-            hold1    = Math.max(hold1,    -i);          // The maximum if we've just buy  1st stock so far. 
+        int buy1 = Integer.MIN_VALUE, sell1 = 0, buy2 = Integer.MIN_VALUE, sell2 = 0;
+        for (int price : prices) {
+            buy1 = Math.max(buy1, -price);
+            sell1 = Math.max(sell1, buy1 + price);
+            buy2 = Math.max(buy2, sell1 - price);
+            sell2 = Math.max(sell2, buy2 + price);
         }
-        return release2; ///Since release1 is initiated as 0, so release2 will always higher than release1.
+        return sell2;
     }
 }
 
