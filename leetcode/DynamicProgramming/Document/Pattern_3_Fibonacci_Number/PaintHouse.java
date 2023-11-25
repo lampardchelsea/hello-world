@@ -118,9 +118,229 @@ Explanation: Paint house 0 into blue, paint house 1 into green, paint house 2 in
 ---
 Attempt 1: 2023-11-24
 
-Solution 1: DP + Fibonacci (10 min)
+Solution 1: Native DFS (30 min)
 
-Style 1: Since only 3 colors means 2nd dimension of dp array as 3, start with 3 different colors make 3 different branches
+Style 1: 顶[0,0],[0,1],[0,2]，底[n - 1,0],[n - 1,1],[n - 1,2](实际上是[n,0],[n,1],[n,2]，因为界条件退出递归的是i == n)
+```
+class Solution {
+    public int minCost(int[][] costs) {
+        if(costs.length == 0 || costs[0].length == 0) {
+            return 0;
+        }
+        return Math.min(Math.min(helper(costs, 0, 0), helper(costs, 0, 1)), helper(costs, 0, 2));
+    }
+
+    private int helper(int[][] costs, int i, int color) {
+        if(i == costs.length) {
+            return 0;
+        }
+        int minCost = 0;
+        if(color == 0) {
+            minCost = costs[i][color] + Math.min(helper(costs, i + 1, 1), helper(costs, i + 1, 2));
+        } else if(color == 1) {
+            minCost = costs[i][color] + Math.min(helper(costs, i + 1, 0), helper(costs, i + 1, 2));
+        } else if(color == 2) {
+            minCost = costs[i][color] + Math.min(helper(costs, i + 1, 0), helper(costs, i + 1, 1));
+        }
+        return minCost;
+    }
+}
+```
+
+Style 2: 顶[n - 1,0],[n - 1,1],[n - 1,2]，底[0,0],[0,1],[0,2](实际上是[-1,0],[-1,1],[-1,2]，因为边界条件退出递归的是i < 0)
+```
+class Solution {
+    public int minCost(int[][] costs) {
+        if(costs.length == 0 || costs[0].length == 0) {
+            return 0;
+        }
+        int n = costs.length;
+        return Math.min(Math.min(helper(costs, n - 1, 0), helper(costs, n - 1, 1)), helper(costs, n - 1, 2));
+    }
+
+    private int helper(int[][] costs, int i, int color) {
+        if(i < 0) {
+            return 0;
+        }
+        int minCost = 0;
+        if(color == 0) {
+            minCost = costs[i][color] + Math.min(helper(costs, i - 1, 1), helper(costs, i - 1, 2));
+        } else if(color == 1) {
+            minCost = costs[i][color] + Math.min(helper(costs, i - 1, 0), helper(costs, i - 1, 2));
+        } else if(color == 2) {
+            minCost = costs[i][color] + Math.min(helper(costs, i - 1, 0), helper(costs, i - 1, 1));
+        }
+        return minCost;
+    }
+}
+```
+
+Style 3: 基于Style 1的more general的写法
+```
+class Solution {
+    public int minCost(int[][] costs) {
+        if(costs.length == 0 || costs[0].length == 0) {
+            return 0;
+        }
+        return Math.min(Math.min(helper(costs, 0, 0), helper(costs, 0, 1)), helper(costs, 0, 2));
+    }
+
+    private int helper(int[][] costs, int i, int color) {
+        if(i == costs.length) {
+            return 0;
+        }
+        return costs[i][color] + Math.min(helper(costs, i + 1, (color + 1) % 3), helper(costs, i + 1, (color + 2) % 3));
+    }
+}
+```
+
+---
+Solution 2: DFS + Memoization (30 min)
+
+Style 1: 
+```
+class Solution {
+    public int minCost(int[][] costs) {
+        if(costs.length == 0 || costs[0].length == 0) {
+            return 0;
+        }
+        Integer[][] memo = new Integer[costs.length + 1][3];
+        return Math.min(Math.min(helper(costs, 0, 0, memo), helper(costs, 0, 1, memo)), helper(costs, 0, 2, memo));
+    }
+
+    private int helper(int[][] costs, int i, int color, Integer[][] memo) {
+        if(i == costs.length) {
+            return 0;
+        }
+        if(memo[i][color] != null) {
+            return memo[i][color];
+        }
+        int minCost = 0;
+        if(color == 0) {
+            minCost = costs[i][color] + Math.min(helper(costs, i + 1, 1, memo), helper(costs, i + 1, 2, memo));
+        } else if(color == 1) {
+            minCost = costs[i][color] + Math.min(helper(costs, i + 1, 0, memo), helper(costs, i + 1, 2, memo));
+        } else if(color == 2) {
+            minCost = costs[i][color] + Math.min(helper(costs, i + 1, 0, memo), helper(costs, i + 1, 1, memo));
+        }
+        return memo[i][color] = minCost;
+    }
+}
+```
+
+Style 2: 
+```
+class Solution {
+    public int minCost(int[][] costs) {
+        if(costs.length == 0 || costs[0].length == 0) {
+            return 0;
+        }
+        Integer[][] memo = new Integer[costs.length + 1][3];
+        int n = costs.length;
+        return Math.min(Math.min(helper(costs, n - 1, 0, memo), helper(costs, n - 1, 1, memo)), helper(costs, n - 1, 2, memo));
+    }
+
+    private int helper(int[][] costs, int i, int color, Integer[][] memo) {
+        if(i < 0) {
+            return 0;
+        }
+        if(memo[i][color] != null) {
+            return memo[i][color];
+        }
+        int minCost = 0;
+        if(color == 0) {
+            minCost = costs[i][color] + Math.min(helper(costs, i - 1, 1, memo), helper(costs, i - 1, 2, memo));
+        } else if(color == 1) {
+            minCost = costs[i][color] + Math.min(helper(costs, i - 1, 0, memo), helper(costs, i - 1, 2, memo));
+        } else if(color == 2) {
+            minCost = costs[i][color] + Math.min(helper(costs, i - 1, 0, memo), helper(costs, i - 1, 1, memo));
+        }
+        return memo[i][color] = minCost;
+    }
+}
+```
+
+Style 3: 基于Style 1的more general的写法
+```
+class Solution {
+    public int minCost(int[][] costs) {
+        if(costs.length == 0 || costs[0].length == 0) {
+            return 0;
+        }
+        Integer[][] memo = new Integer[costs.length + 1][3];
+        return Math.min(Math.min(helper(costs, 0, 0, memo), helper(costs, 0, 1, memo)), helper(costs, 0, 2, memo));
+    }
+
+    private int helper(int[][] costs, int i, int color, Integer[][] memo) {
+        if(i == costs.length) {
+            return 0;
+        }
+        if(memo[i][color] != null) {
+            return memo[i][color];
+        }
+        return memo[i][color] = costs[i][color] + Math.min(helper(costs, i + 1, (color + 1) % 3, memo), helper(costs, i + 1, (color + 2) % 3, memo));
+    }
+}
+```
+
+Refer to
+https://wentao-shao.gitbook.io/leetcode/dynamic-programming/1.position/256.paint-house
+Approach #1 DFS With Memoization
+```
+class Solution {
+  public int minCost(int[][] costs) {
+    if (costs == null || costs.length == 0)   return 0;
+        int[][] memo = new int[costs.length][costs[0].length];
+    return Math.min(dfs(0, 0, costs, memo),
+                   Math.min(dfs(0, 1, costs, memo), dfs(0, 2, costs, memo)));
+  }
+  private int dfs(int n, int color, int[][] costs, int[][] memo) {
+    if (memo[n][color] > 0) {
+      return memo[n][color];
+    }
+    int totalCosts = costs[n][color];
+    if (n == costs.length - 1) {
+    } else if (color == 0) {
+        totalCosts += Math.min(dfs(n + 1, 1, costs, memo), dfs(n + 1, 2, costs, memo));
+    } else if (color == 1) {
+        totalCosts += Math.min(dfs(n + 1, 0, costs, memo), dfs(n + 1, 2, costs, memo));
+    } else if (color == 2) {
+        totalCosts += Math.min(dfs(n + 1, 0, costs, memo), dfs(n + 1, 1, costs, memo));
+    }
+    memo[n][color] = totalCosts;
+    return totalCosts;
+  }
+}
+```
+
+---
+Solution 2: DP + Fibonacci (30 min)
+
+Style 1: 匹配顶[0,0],[0,1],[0,2]，底[n-1,0],[n-1,1],[n-1,2]的Native DFS
+Since only 3 colors means 2nd dimension of dp array as 3, start with 3 different colors make 3 different branches
+```
+class Solution {
+    public int minCost(int[][] costs) {
+        if(costs.length == 0 || costs[0].length == 0) {
+            return 0;
+        }
+        int n = costs.length;
+        int[][] dp = new int[n][3];
+        dp[n - 1][0] = costs[n - 1][0];
+        dp[n - 1][1] = costs[n - 1][1];
+        dp[n - 1][2] = costs[n - 1][2];
+        for(int i = n - 2; i >= 0; i--) {
+            dp[i][0] += costs[i][0] + Math.min(dp[i + 1][1], dp[i + 1][2]);
+            dp[i][1] += costs[i][1] + Math.min(dp[i + 1][0], dp[i + 1][2]);
+            dp[i][2] += costs[i][2] + Math.min(dp[i + 1][0], dp[i + 1][1]);
+        }
+        return Math.min(Math.min(dp[0][0], dp[0][1]), dp[0][2]);
+    }
+}
+```
+
+Style 2: 匹配顶[n - 1,0],[n - 1,1],[n - 1,2]，底[-1,0],[-1,1],[-1,2]的Native DFS
+Since only 3 colors means 2nd dimension of dp array as 3, start with 3 different colors make 3 different branches
 ```
 class Solution {
     public int minCost(int[][] costs) {
@@ -129,10 +349,13 @@ class Solution {
         }
         int n = costs.length;
         int[][] dp = new int[n + 1][3];
+        dp[0][0] = costs[0][0];
+        dp[0][1] = costs[0][1];
+        dp[0][2] = costs[0][2];
         for(int i = 1; i < n; i++) {
-            dp[i][0] += Math.min(dp[i - 1][1], dp[i - 1][2]);
-            dp[i][1] += Math.min(dp[i - 1][0], dp[i - 1][2]);
-            dp[i][2] += Math.min(dp[i - 1][0], dp[i - 1][1]);
+            dp[i][0] += costs[i][0] + Math.min(dp[i - 1][1], dp[i - 1][2]);
+            dp[i][1] += costs[i][1] + Math.min(dp[i - 1][0], dp[i - 1][2]);
+            dp[i][2] += costs[i][2] + Math.min(dp[i - 1][0], dp[i - 1][1]);
         }
         return Math.min(Math.min(dp[n - 1][0], dp[n - 1][1]), dp[n - 1][2]);
     }
@@ -142,7 +365,7 @@ Time Complexity: O(N)
 Space Complexity: O(N*3)
 ```
 
-Style 2: More general
+Style 3: 基于Style 1的more general的写法
 ```
 class Solution {
     public int minCost(int[][] costs) {
@@ -162,6 +385,29 @@ class Solution {
 
 Time Complexity: O(N)
 Space Complexity: O(N*3)
+```
+
+Refer to
+https://wentao-shao.gitbook.io/leetcode/dynamic-programming/1.position/256.paint-house
+Approach #2 Dynamic Programming
+```
+class Solution {
+  public int minCost(int[][] costs) {
+    if (costs == null || costs.length == 0)    return 0;
+    int n = costs.length;
+    int[][] dp = new int[n][3];
+    dp[0][0] = costs[0][0];
+    dp[0][1] = costs[0][1];
+    dp[0][2] = costs[0][2];
+    for (int i = 1; i < n; i++) {
+      dp[i][0] = Math.min(dp[i-1][1], dp[i-1][2]) + costs[i][0];
+      dp[i][1] = Math.min(dp[i-1][0], dp[i-1][2]) + costs[i][1];
+      dp[i][2] = Math.min(dp[i-1][0], dp[i-1][1]) + costs[i][2];
+    }
+    return Math.min(dp[n-1][0], 
+                   Math.min(dp[n-1][1], dp[n-1][2]));
+  }
+}
 ```
 
 Refer to
