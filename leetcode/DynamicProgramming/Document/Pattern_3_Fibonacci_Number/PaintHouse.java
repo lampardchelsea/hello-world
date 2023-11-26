@@ -129,7 +129,6 @@ class Solution {
         }
         return Math.min(Math.min(helper(costs, 0, 0), helper(costs, 0, 1)), helper(costs, 0, 2));
     }
-
     private int helper(int[][] costs, int i, int color) {
         if(i == costs.length) {
             return 0;
@@ -157,7 +156,6 @@ class Solution {
         int n = costs.length;
         return Math.min(Math.min(helper(costs, n - 1, 0), helper(costs, n - 1, 1)), helper(costs, n - 1, 2));
     }
-
     private int helper(int[][] costs, int i, int color) {
         if(i < 0) {
             return 0;
@@ -184,7 +182,6 @@ class Solution {
         }
         return Math.min(Math.min(helper(costs, 0, 0), helper(costs, 0, 1)), helper(costs, 0, 2));
     }
-
     private int helper(int[][] costs, int i, int color) {
         if(i == costs.length) {
             return 0;
@@ -207,7 +204,6 @@ class Solution {
         Integer[][] memo = new Integer[costs.length + 1][3];
         return Math.min(Math.min(helper(costs, 0, 0, memo), helper(costs, 0, 1, memo)), helper(costs, 0, 2, memo));
     }
-
     private int helper(int[][] costs, int i, int color, Integer[][] memo) {
         if(i == costs.length) {
             return 0;
@@ -239,7 +235,6 @@ class Solution {
         int n = costs.length;
         return Math.min(Math.min(helper(costs, n - 1, 0, memo), helper(costs, n - 1, 1, memo)), helper(costs, n - 1, 2, memo));
     }
-
     private int helper(int[][] costs, int i, int color, Integer[][] memo) {
         if(i < 0) {
             return 0;
@@ -270,7 +265,6 @@ class Solution {
         Integer[][] memo = new Integer[costs.length + 1][3];
         return Math.min(Math.min(helper(costs, 0, 0, memo), helper(costs, 0, 1, memo)), helper(costs, 0, 2, memo));
     }
-
     private int helper(int[][] costs, int i, int color, Integer[][] memo) {
         if(i == costs.length) {
             return 0;
@@ -373,13 +367,28 @@ class Solution {
             return 0;
         }
         int n = costs.length;
-        int[][] dp = new int[n + 1][3];
-        for(int i = 1; i < n; i++) {
-            for(int j = 0; j < 3; j++) {
-                dp[i][j] += Math.min(dp[i - 1][(j + 1) % 3], dp[i - 1][(j + 2) % 3]);
+        //int k = costs[0].length;
+        int[][] dp = new int[n][3];
+        // Initialize dp with house 0
+        for(int color = 0; color < 3; color++) {
+            dp[0][color] = costs[0][color];
+        }
+        // Build dp with house 1 to n - 1
+        for(int house = 1; house < n; house++) {
+            for(int color = 0; color < 3; color++) {
+                int minVal = Integer.MAX_VALUE;
+                for(int delta = 1; delta < 3; delta++) {
+                    minVal = Math.min(minVal, dp[house - 1][(color + delta) % 3]);
+                }
+                dp[house][color] += costs[house][color] + minVal;
             }
         }
-        return Math.min(Math.min(dp[n - 1][0], dp[n - 1][1]), dp[n - 1][2]);
+        // Find minimum val among all potential final status
+        int result = Integer.MAX_VALUE;
+        for(int color = 0; color < 3; color++) {
+            result = Math.min(result, dp[n - 1][color]);
+        }
+        return result;
     }
 }
 
