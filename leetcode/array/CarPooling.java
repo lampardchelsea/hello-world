@@ -147,56 +147,6 @@ class Solution {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 https://leetcode.com/problems/car-pooling/description/
 
 There is a car with capacity empty seats. The vehicle only drives east (i.e., it cannot turn around and drive west).
@@ -275,8 +225,41 @@ https://leetcode.com/problems/car-pooling/solutions/1670052/c-2-approaches-prior
 
 
 https://leetcode.com/problems/car-pooling/solutions/317887/java-python-3-clean-codes-w-explanation-and-brief-analysis/ 
+Method 1: PriorityQueue/heapqJavause sort and PriorityQueue
 
+1. Sort the trips array by start location;
+2. Use a PriorityQueue to store the trips, order by ending location.
+3. Loop through the trips array, for each start location, keep polling out the arrays with correpoinding end location <= current start location, for each polled out array, add the corresponding passengers to capacity; deduct passengers at current start location from capacity, if capacity < 0, return false.
+4. Repeat 3 till end, if never encounter false, return true.
+---
+Please refer to @lcgt's excellent explanation as follows:
 
+We first sort trips by start location, because that’s how the question is framed - we go in one direction and cannot turn back. That’s how we must iterate through the trips array.Next we turn our attention to capacity -= trip[0] first. This is because pq will be empty initially empty anyway. Capacity goes down as long as a passenger gets in. That is straightforward. If capacity were ever to go below 0, we return false, that is also straightforward.
+
+We put the whole trip’s information into the priority queue... why? Because we will eventually need the numPassengers and endLocation. Now that we have put our first trip into the PQ, we look at our next trip.
+
+Now we have two possible scenarios:
+1. Our next trip’s start location were to be less than the end location of the trip we just stored (with lowest / nearest end location trips at the top of the heap / front of the queue). Skip the while block. Since we need to pick up more passengers, we once again decrease our capacity.
+2. Our next trip’s start location is greater than or equal to the trip’s end location that we just stored previously. We let out some passengers, and therefore we can increase our capacity again.
+
+The PQ is like the “car” (maybe more like a big bus) in some sense, because it stores passengers such that the ones who will get off soon should sit near the front. The bus receives information about its next trip to make, and if the next trip’s start location is beyond what the current passengers destinations, those current passengers get off.
+```
+    public boolean carPooling(int[][] trips, int capacity) {
+        Arrays.sort(trips, Comparator.comparing(trip -> trip[1]));
+        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparing(trip -> trip[2]));
+        for (int[] trip : trips) {
+            while (!pq.isEmpty() && trip[1] >= pq.peek()[2]) // any passengers need to get off?
+                capacity += pq.poll()[0]; // more capacity as passengers out.
+            capacity -= trip[0]; // less capacity as passengers in.
+            if (capacity < 0) return false; // not enough capacity.
+            pq.offer(trip); // put into PriorityQueue the infomation at current location.
+        }
+        return true;
+    }
+```
+Analysis:
+Time: O(nlogn), 
+space: O(n), n = trips.length.
 ---
 Solution 2: Sweep Line (30 min)
 ```
