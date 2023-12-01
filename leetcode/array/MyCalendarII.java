@@ -314,6 +314,7 @@ Complexity Analysis
 - Space Complexity: O(N), the size of the calendar
 ---
 Solution 2: Sweep Line + TreeMap (30 min)
+注意：Sweep Line + TreeMap就是用自动排序的TreeMap结构代替了L253/P5.5.Meeting Rooms II中的开一个巨大数组包含所有可能的time slot的方式，其后的通过map.put()找delta，通过count += val找running sum都是必须的，所以time slot -> delta -> occupied(presum)三步走过程和L253一模一样，只是数据结构从单纯的array变成了TreeMap
 ```
 class MyCalendarTwo {
     TreeMap<Integer, Integer> list;
