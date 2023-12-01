@@ -510,3 +510,44 @@ The space complexity of the code is mainly dictated by the storage requirements 
 - With no events booked, the space complexity is O(1) as only an empty SortedDict is maintained.
 - As events are added, the space complexity grows linearly with the number of non-overlapping events stored. Therefore, in the worst-case scenario, where the calendar has n non-overlapping events, the space complexity would be O(n).
 Overall, the space complexity of the MyCalendar data structure is O(n) where n is the number of non-overlapping events booked in the calendar.
+
+
+Solution 3: Sweep Line + TreeMap (10 min, refer L731. My Calendar II)
+```
+class MyCalendar {
+    TreeMap<Integer, Integer> list;
+    public MyCalendar() {
+        list = new TreeMap<>();
+    }
+    
+    public boolean book(int start, int end) {
+        // Increase the counter at the start time
+        list.put(start, list.getOrDefault(start, 0) + 1);
+        // Decrease the counter at the end time
+        list.put(end, list.getOrDefault(end, 0) - 1);
+        int count = 0;
+        for(int val : list.values()) {
+            // Increment the count of active events
+            count += val;
+            // If at any point there are more than 1 active event, this booking overlaps with another event
+            if(count >= 2) {
+                // The booking is not possible, so revert the changes
+                list.put(start, list.get(start) - 1);
+                list.put(end, list.get(end) + 1);
+                if(list.get(start) == 0) {
+                    list.remove(start);
+                }
+                return false;
+            }
+        }
+        return true;
+    }
+}
+/**
+ * Your MyCalendar object will be instantiated and called as such:
+ * MyCalendar obj = new MyCalendar();
+ * boolean param_1 = obj.book(start,end);
+ */
+```
+
+The same way from https://algo.monster/liteproblems/731  
