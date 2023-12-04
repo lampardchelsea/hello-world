@@ -30,7 +30,9 @@ Attempt 1: 2023-12-03
 
 Solution 1: Sweep Line (10 min)
 
-Same as L253/P5.5.Meeting Rooms II Sweep Line strategy
+Same as L253/P5.5.Meeting Rooms II Sweep Line strategy, and a bit different than L2848.Points That Intersect With Cars for 'end' handling, because here we define:
+The population of some year x is the number of people alive during that year. The ith person is counted in year x's population if x is in the inclusive range [birthi, deathi - 1]. Note that the person is not counted in the year that they die.
+In L2848 the range is inclusive till 'end' index itself, mapping to here means [birthi, deathi] not [birthi, deathi - 1], the person is counted in the year that they die.
 ```
 class Solution {
     public int maximumPopulation(int[][] logs) {
@@ -38,6 +40,9 @@ class Solution {
         int[] timeline = new int[101];
         for(int[] log : logs) {
             timeline[log[0] - 1950]++;
+            // No need L2848 way to handle by log[1] + 1 to include
+            // the 'end' index value, since definition saying:
+            // The person is not counted in the year that they die.
             timeline[log[1] - 1950]--;
         }
         int count = 0;
@@ -70,13 +75,16 @@ What will this do ?
 
 For the case [1950, 1961], let's look at how the array will look like
 
+
 But this is not the desired result ?
 
 To get the answer, After iterating through all the queries, take prefix sum of the array(year)This is how the array will look like
 
+
 You can see that the Prefix Sum row will give the desired result as we have incremented the values of array from index 1950 to 1960.
 
 Let's try for the test case, logs = [[1950,1961],[1960,1965],[1963,1970]] for a better understanding
+
 
 Looking at the Prefix Sum, we can clearly see that the maximum value is 2 and its first occurence is at 1960. Hence, 1960 is the answer.
 ```
@@ -96,7 +104,6 @@ class Solution {
         int maxNum = year[1950], maxYear = 1950;
         
 		// O(100) -> 2050 - 1950 = 100
-
         for(int i = 1951; i < year.length; i++){
             year[i] += year[i - 1];  // Generating Prefix Sum
             
