@@ -256,3 +256,143 @@ class Solution {
     }
 }
 ```
+
+---
+Solution 3: Sweep Line + TreeMap (60 min)
+```
+class Solution {
+    public List<Integer> minAvailableDuration(int[][] slots1, int[][] slots2, int duration) {
+        TreeMap<Integer, Integer> timeline = new TreeMap<>();
+        for(int[] slot : slots1) {
+            timeline.put(slot[0], timeline.getOrDefault(slot[0], 0) + 1);
+            timeline.put(slot[1] + 1, timeline.getOrDefault(slot[1] + 1, 0) - 1);
+        }
+        for(int[] slot : slots2) {
+            timeline.put(slot[0], timeline.getOrDefault(slot[0], 0) + 1);
+            timeline.put(slot[1] + 1, timeline.getOrDefault(slot[1] + 1, 0) - 1);
+        }
+        // 'count' is the running presum, timeline.values() are all deltas
+        int count = 0;
+        int candidate_start = -1;
+        for(Map.Entry<Integer, Integer> e : timeline.entrySet()) {
+            int prev_count = count;
+            count += e.getValue();
+            // A candidate start timestamp found, record for further loop usage
+            if(count == 2) {
+                candidate_start = e.getKey();
+            }
+            // If we already have a candidate start timestamp and in current loop
+            // (loop based on timestamp, current loop means a timestamp happen after
+            // previous recorded candidate start timestamp) we find a decline on
+            // running presum (count), it means two people intersection end timestamp
+            // happen, so if previous recorded candidate start timestamp plus required
+            // duration less than current timestamp (decline) means we found a satisfied
+            // time range {candidate start timestamp, candidate start timestamp + duration}
+            if(candidate_start != -1 && count < prev_count) {
+                if(e.getKey() - candidate_start >= duration) {
+                    return Arrays.asList(candidate_start, candidate_start + duration);
+                } else {
+                    candidate_start = -1;
+                }
+            }
+        }
+        return new ArrayList<>();
+    }
+}
+
+Time Complexity: O(MlogM + NlogN), TreeMap put() method time complexity is O(logN) in worst case
+In a TreeMap, the key/value entries are stored in a Red-Black tree, and in order to find if a key is contained in the tree, you have to traverse it from the root, down some path, until reaching the required key or reaching a leaf.
+
+A tree containing n elements has an O(log n) height, and therefore that's the time it would take to search for a key.
+Space Complexity: O(M + N)
+```
+
+Step by step explain:
+```
+
+e.g
+int[][] slots1 = {{10,50},{60,120},{140,210}};
+int[][] slots2 = {{0,15},{25,50},{60,70},{80,100}};
+duration = 8
+
+Since {start, end} inclusive, for 'end' need 'end + 1' to mark '-1'
+
+
+delta (treemap.values())
+
+1   1  -1   1  -2   2  -1   1   -1   -1    1   -1
+                    *  
+*   *       *       *       *              *
+0  10  16  25  51  60  71  80  101  121  140  211
+        *       *       *        *    *         *
+                *
+
+
+
+presum (count)
+
+1   2   1   2   0   2   1   2    1    0    1    0
+    *       *       *       *
+*   *   *   *       *   *   *    *         *     
+0  10  16  25  51  60  71  80  101  121  140  211
+    ^       ^
+   1st     2nd
+  
+1st candidate: 10 + 8 > next decline timestamp 16, failed
+2nd candidate: 25 + 8 < next decline timestamp 51, satisfy
+ 
+
+Only when presum (count) == 2 means slots1 & slots2 (two people) 
+have intersection the first candidate is 10, we try 10 + 8 = 18 
+the minimum timestamp can satisfy the duration requirement, but 
+we find at 16 the presum (count) is 1, which already start decline
+means slots1 & slots2 (two people) will not have intersection start
+from 16, so first candidate 10 failed, the second candidate is 25,
+we try 25 + 8 = 33 the minimum timestamp can satisfy the duration 
+requirement, and we find next timestamp 51 have presum (count) is
+0, which start decline, but since 33 < 51, which means the decline
+at 51 won't impact slots1 & slots2 (two people)'s intersection, so
+25 is the minimum start timestamp we are looking for, return 
+{25, 25 + 8 = 33}
+```
+
+Refer to
+https://leetcode.com/discuss/study-guide/2166045/line-sweep-algorithms
+Some pointers, we have 2 candidate, so if both have started only then only take there latest time, for example suppose Person is available from [10:00 , 12:00] but person 2 is available from [11:00 , 12:00]after we sweep the line past [11:00] count would be 2 and then we can take [11:00] as candidate start time as this time is common to both person.
+Next whenever we encounter an end of time AND we have already noted down the common_time , check if we met the duration ? if yes return , because this earlies, otherwise reset the common_time, as now we have to find some common start all over again.
+```
+Interval earliestAppropriateDuration(vector<Interval> &slots1, vector<Interval> &slots2, int duration) {
+    // --- write your code here ---
+    map<int, int> m;
+    for(auto& i : slots1){
+        m[i.start]++;
+        m[i.end]--;
+    }
+    for(auto& i : slots2){
+        m[i.start]++;
+        m[i.end]--;
+    }
+    int count = 0;
+    Interval candidate(-1, -1);
+    
+    for(auto& p : m){
+        int old = count;
+        count += p.second;
+        if(count ==2){
+            candidate.start = p.first;
+        }
+        // If count is decreasing that mean some slot is ending
+        if(count < old and candidate.start!=-1){
+            if(p.first - candidate.start >= duration) // we found
+            {
+                candidate.end = candidate.start+duration;
+                return candidate;
+            }
+            else{
+                candidate.start = -1;
+            }
+        }
+    }
+    return {-1, -1};
+}
+```
