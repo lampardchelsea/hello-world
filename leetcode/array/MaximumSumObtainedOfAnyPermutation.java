@@ -76,6 +76,23 @@ Time Complexity:
 Space Complexity: 
 ```
 
+Step by Step
+```
+nums = [1,2,3,4,5], requests = [[1,3],[0,1]]
+
+
+ index  0  1  2  3  4
+           +        - => request = [1,3], index = 1++, 4--
+        +     -       => request = [0,1], index = 0++, 2--
+ delta  1  1 -1  0 -1 
+presum  1  2  1  1  0
+
+         Sort presum = [1,2,1,1,0] -> [0,1,1,1,2]
+Already Sorted  nums = [1,2,3,4,5] -> [1,2,3,4,5]
+
+5*2 + 4*1 + 3*1 + 2*1 + 1*0 = 19
+```
+
 Refer to
 https://leetcode.com/problems/maximum-sum-obtained-of-any-permutation/solutions/854206/java-c-python-sweep-line/
 
