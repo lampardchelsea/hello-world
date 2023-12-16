@@ -100,7 +100,7 @@ class Solution {
             if(start != -1 && count != 0) {
                 result.add(Arrays.asList(start, end, count));
             }
-            // The running count (presum) assign value at 'end' index
+            // The running count (presum) binding with value at 'start' index
             count += e.getValue();
             start = end;
         }
