@@ -66,6 +66,100 @@ class Solution {
 
 Time Compleity: O(N^2*logN)
 Space Complexity: O(1)
+
+注意：本题无法直接移植L2251的第一种解法，即如下的代码：
+因为L1851需要获得的是最短的包含query值的区间，而不是区间的个数，L2251可以通过构建treemap delta => presum => presum数组存储了对应具体坐标的区间个数，但是L1851中就算求出treemap delta和presum，然后获得具体坐标对应的区间个数，这对于获得对应具体坐标的最短区间没有直接帮助，我们甚至需要额外建立一个基于presum存储了presum上所有坐标和对应一个坐标上所有包含该坐标的区间的区间长度的map，这个map的构造并不容易，所以我们需要一种比较另类的融合了Priority Queue的Line Sweep模型，见Solution 2
+
+// L2251. Solution 1:  Sweep Line + Sorting + TreeMap + Binary Search (60 min)
+class Solution {
+    public int[] fullBloomFlowers(int[][] flowers, int[] people) {
+        TreeMap<Integer, Integer> delta = new TreeMap<>();
+        // Why we have to add (0, 0) onto delta array ?
+        // What happens if there is a person that arrives before 
+        // any flower blooms? 
+        // This may confuse our binary search since the minimum 
+        // value in positions will be greater than person. We will 
+        // initialize difference with 0: 0 to represent at time 0, 
+        // we don't see any new flowers.
+        // In another word: Since this problem relate to Binary Search,
+        // the lower boudary is important, if not adding 0 as lower
+        // boundary, and only based on given 'flowers' array which start
+        // index from 1 only, the lower boundary in Binary Search will
+        // also be 1 not 0
+        // ========================================================
+        // If no 'delta.put(0, 0)', error out:
+        // IndexOutOfBoundsException: Index -1 out of bounds for length 4
+        // Test out by:
+        // flowers = [[19,37],[19,38],[19,35]]
+        // people = [6,7,21,1,13,37,5,37,46,43]
+        // Failed when binary search on 6 which exceed flowers min
+        // range before 19, 'lo' will be 0 - 1 = -1, when attempt
+        // on 'list.get(lo)' will error out "IndexOutOfBoundsException"
+        delta.put(0, 0);
+        for(int[] flower : flowers) {
+            delta.put(flower[0], delta.getOrDefault(flower[0], 0) + 1);
+            delta.put(flower[1] + 1, delta.getOrDefault(flower[1] + 1, 0) - 1);
+        }
+        List<Integer> presum = new ArrayList<>();
+        int count = 0;
+        for(int val : delta.values()) {
+            count += val;
+            presum.add(count);
+        }
+        List<Integer> keys = new ArrayList<>(delta.keySet());
+        int[] result = new int[people.length];
+        for(int i = 0; i < result.length; i++) {
+            int index = binarySearch(keys, people[i]);
+            result[i] = presum.get(index);
+        }
+        return result;
+    }
+    private int binarySearch(List<Integer> list, int val) {
+        int lo = 0;
+        int hi = list.size() - 1;
+        while(lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if(list.get(mid) == val) {
+                return mid;
+            } else if(list.get(mid) > val) {
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        // Refer L704.Binary Search
+        // (1) Why need 'list.get(lo) != val' check and what should return ?
+        // If not able to find target 'val' index till go through the list,
+        // return the index able to insert 'val' into list as 'lo - 1'.
+        // And why always 'lo - 1' as insert index ? Because when it happen
+        // the loop ending condition is 'lo > hi', which means when loop
+        // terminated, the 'lo' index is one position right to 'hi' index,
+        // and still no matched 'val', the 'val' should insert at 'lo - 1'
+        // index, which is left to 'lo' index but right to 'hi' index
+        // e.g
+        // loop terminated:
+        // hi   lo
+        // |----|   -> no 'val' found
+        // adding 'insert = lo - 1' index left to 'lo' but right to 'hi'
+        // hi insert lo
+        // |----|----|
+        // ================================================================
+        // (2) Why need 'lo >= list.size()' condition ?
+        // If no 'lo >= list.size()' condition, error out:
+        // IndexOutOfBoundsException: Index 5 out of bounds for length 5
+        // Test out by:
+        // flowers = [[19,37],[19,38],[19,35]]
+        // people = [6,7,21,1,13,37,5,37,46,43]
+        // Failed when binary search on 46, 43 which exceed flowers max
+        // range till 38, 'lo' will be 5 >= list.size() = 5, when attempt
+        // on 'list.get(lo)' will error out "IndexOutOfBoundsException"
+        if(lo >= list.size() || list.get(lo) != val) {
+            return lo - 1;
+        }
+        return lo;
+    }
+}
+ 
 --------------------------------------------------------------------------------
 Solution 2: Priority Queue + Sorting (180 min)
 class Solution {
