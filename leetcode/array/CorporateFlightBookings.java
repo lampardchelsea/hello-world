@@ -128,3 +128,103 @@ class Solution {
         return result;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Attempt 1: 2023-12-16
+Solution 1: Line Sweep (10 min)
+
+class Solution {
+    public int[] corpFlightBookings(int[][] bookings, int n) {
+        int[] delta = new int[n];
+        Arrays.sort(bookings, (a, b) -> a[0] - b[0]);
+        for(int i = 0; i < bookings.length; i++) {
+            // '-1' to mapping 1-indexed 'start' flight number to 0-indexed array
+            int start = bookings[i][0] - 1;
+            // '+1' to make sure decrease after 'end' flight number only
+            // '-1' to mapping 1-indexed 'end' flight number to 0-indexed array
+            int end = bookings[i][1] + 1 - 1;
+            delta[start] += bookings[i][2];
+            // 'end' flight number edge case, when handling the last concatenate
+            // flight we don't need to decrease
+            // e.g flights = [[1,2,10],[2,3,20],[2,5,25]], n = 5, check out [2,5,25]
+            if(end < n) {
+                delta[end] -= bookings[i][2];
+            }
+        }
+        int[] result = new int[n];
+        int count = 0;
+        for(int i = 0; i < delta.length; i++) {
+            count += delta[i];
+            result[i] = count;
+        }
+        return result;
+    }
+}
+
+Time Complexity: O(N)
+Space Complexity: O(N)
