@@ -291,6 +291,17 @@ class Solution {
         return lo;
     }
 }
+
+Time Complexity: O(mlogm), m is the number of ride intervals
+Sorting the Rides: The initial step in the code is to sort the rides list, which consists of m ride intervals. This has a time complexity of O(m log m), where m is the number of rides.
+Dynamic Programming: O(m), single for loop on all rides
+Binary Search: O(logm)
+
+Space Complexity: O(m), m is the number of ride intervals
+Sorting: O(logm)
+Dynamic Programming: O(m), single for loop on all rides
+
+So Time Complexity is O(mlogm) and Space Complexity is O(m)
 --------------------------------------------------------------------------------
 Refer to
 https://leetcode.com/problems/maximum-earnings-from-taxi/solutions/1613010/c-brute-recursion-better-dp-optimal-dp-binary-search-clear-and-concise/
