@@ -196,6 +196,11 @@ class Solution {
     }
 }
 
+Time Complexity: O(m^2), m is the number of ride intervals
+First m is for worst case may need m recursion on depth, second m is for each recursion internally we have a for loop to find the next recursion entry
+Space Complexity: O(m), m is the number of ride intervals
+Recursion Stack: The depth of recursion may go up to m in the worst case if all rides are taken sequentially with no overlap, which contributes to O(m) space complexity.
+
 The problem for wrong solution happens at inner for loop not break out like the logic in Native DFS, in Native DFS, we have a recursion helper method and input parameter as 'index' which will recursively progress from 'index = 0' to 'index = n - 1', then we initialize a variable 'i' outside the for loop in helper method, and when we detect the first 'i' match condition "rides[i][0] >= rides[index][1]", we "break out" to keep the first 'i' value and continue further recursion, the physical meaning behind the "break out" to keep the first 'i' value is that will be the concatenation point for next ride, which means the next recursion entry. But in bottom up DP (tabulation) if we don't "break out" then if not only one 'i' satisfy "rides[i][0] >= rides[index][1]", the later 'i' will overwrite the first 'i' value, the physical meaning is we will miss the correct concatenation point for next ride, the next recursion will start with wrong entry 'i'.
 Test case below, step by step:
 Example 2:
