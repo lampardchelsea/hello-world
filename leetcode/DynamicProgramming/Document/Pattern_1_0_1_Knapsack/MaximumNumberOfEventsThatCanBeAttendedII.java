@@ -28,6 +28,7 @@ Constraints:
 - 1 <= valuei <= 10^6
 --------------------------------------------------------------------------------
 Attempt 1: 2023-12-19
+本题和L2054.Two Best Non-Overlapping Events (Ref.L2008). 完全一致
 Solution 1: Native DFS (10min, TLE 64/69)
 class Solution {
     public int maxValue(int[][] events, int k) {
