@@ -35,7 +35,7 @@ At least one call will be made to count.
 --------------------------------------------------------------------------------
 Attempt 1: 2024-01-07
 Solution 1: Insert + Merge Interval (10min, TLE 69/73)
-This solution exactly bring the idea from L56, L57, L352
+This solution exactly bring the idea from L56, L57, L352,L715
 class CountIntervals {
     List<int[]> intervals;
     public CountIntervals() {
