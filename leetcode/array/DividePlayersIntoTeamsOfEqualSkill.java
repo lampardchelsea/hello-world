@@ -29,7 +29,7 @@ skill.length is even.
 1 <= skill[i] <= 1000
 --------------------------------------------------------------------------------
 Attempt 1: 2024-01-12
-Solution 1:  (10min)
+Solution 1: Sorting + Two Pointers (10min)
 After sorting, we set a target total skill value, which is the sum of the first and last element in the sorted array
 本题最关键的一步就是因为要严格分出所有2人一组的球队，那么对于每一只队伍的skill value总和是多少呢？先把整个输入排序，然后最小与最大值的和就一定是，也唯一是skill value的总和，因为如果skill value不是这个最小加上最大值说明至少最小或者最大值这一组里面有一个数不满足组成一只球队的要求，那么总体上就无法平均分出2人一组的多支球队
 class Solution {
