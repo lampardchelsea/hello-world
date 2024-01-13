@@ -24,7 +24,8 @@ Explanation: The input is already sorted, so there is no need to flip anything.
 Note that other answers, such as [3, 3], would also be accepted.
 --------------------------------------------------------------------------------
 Attempt 1: 2024-01-05
-Solution 1:  (60min)
+Solution 1: Sorting + Two Pointers (60min)
+本题的做法非常像Bubble Sort
 class Solution {
     public List<Integer> pancakeSort(int[] arr) {
         List<Integer> result = new ArrayList<>();
