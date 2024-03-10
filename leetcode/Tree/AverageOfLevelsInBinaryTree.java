@@ -52,3 +52,13 @@ class Solution {
         return result;
     }
 }
+
+Time Complexity: O(N)
+The time complexity of the given code is O(N), where N is the number of nodes in the binary tree. 
+This is because the algorithm uses a queue to traverse each node exactly once. During the traversal, 
+each node's value is accessed and added to a sum, and its children are potentially added to the queue.
+Space Complexity: O(W)
+The space complexity of the code can be considered as O(W), where W is the maximum width of the tree 
+or the maximum number of nodes at any level of the tree. This occurs because the queue stores a level 
+of the tree at most, which, in the worst case, can be all the leaf nodes of a full binary tree at the 
+last level.
