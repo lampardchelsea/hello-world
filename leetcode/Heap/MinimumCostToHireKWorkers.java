@@ -21,7 +21,7 @@ Constraints:
 - 1 <= quality[i], wage[i] <= 10^4
 --------------------------------------------------------------------------------
 Attempt 1: 2023-03-16
-Solution 1: Priority Queue (180 min)
+Solution 1: Priority Queue (60 min)
 Wrong Solution
 Test out by
 Input
