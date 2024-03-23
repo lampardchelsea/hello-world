@@ -1,11 +1,9 @@
+
 https://leetcode.com/problems/distinct-subsequences/
-
-Given two strings s and t, return the number of distinct subsequences ofswhich equalst.
-
+Given two strings s and t, return the number of distinct subsequences of s which equals t.
 The test cases are generated so that the answer fits on a 32-bit signed integer.
 
 Example 1:
-```
 Input: s = "rabbbit", t = "rabbit"
 Output: 3
 Explanation:
@@ -17,10 +15,8 @@ rabbbit
 ^^ ^^^^
 rabbbit
 ^^^ ^^^
-```
 
 Example 2:
-```
 Input: s = "babgbag", t = "bag"
 Output: 5
 Explanation:
@@ -36,21 +32,17 @@ babgbag
   ^  ^^
 babgbag
     ^^^
-```
 
 Constraints:
 - 1 <= s.length, t.length <= 1000
 - s and t consist of English letters.
----
+--------------------------------------------------------------------------------
 Attempt 1: 2023-07-04
-
 Wrong Solution
-
 Why Base condition 1 before Base condition 2 is wrong ?
 Test out by:
 Input: s = "rabbbit", t = "rabbit"
 Expect Output: 3, Actual Output: 0
-```
 class Solution {
     public int numDistinct(String s, String t) {
         // Given s and t, pick chars from s to match t, find out how many 
@@ -90,7 +82,6 @@ class Solution {
         return count;
     }
 }
-```
 
 Because if Base condition 1 is ahead without additional limitation as "t_start < t.length()", then the Base condition 2 will never able to approach, it can be test out by print log in both Base condition 1 and 2, and we observe not able to touch Base condition 2, and only keep returning 0 after each recursion finish
 
@@ -102,9 +93,7 @@ So there are two ways to avoid s and t finished scanning at same time and both r
 (2) Keep Base condition 1 ahead of Base condition 2 but add additional condition as t_start < t.length()
 
 Solution 1: Divide and Conquer (30 min, TLE 53/65)
-
 Style 1: Base condition 1 ahead of Base condition 2 but additional condition as t_start < t.length()
-```
 class Solution {
     public int numDistinct(String s, String t) {
         // Given s and t, pick chars from s to match t, find out how many 
@@ -149,10 +138,8 @@ class Solution {
         return count;
     }
 }
-```
 
 Style 2: Base condition 2 ahead of Base condition 1 then no additional condition required
-```
 class Solution {
     public int numDistinct(String s, String t) {
         // Given s and t, pick chars from s to match t, find out how many 
@@ -197,12 +184,9 @@ class Solution {
         return count;
     }
 }
-```
 
 Divide and Conquer update with Memoization
-
 Style 1: Use classic memo 
-```
 class Solution {
     public int numDistinct(String s, String t) {
         // +1 because index for s[0..s.length()] and t[0..t.length()] during recursion
@@ -256,6 +240,7 @@ class Solution {
 ==================================================================================================================
 Refer to
 https://leetcode.com/problems/distinct-subsequences/solutions/2738744/recursion-to-dp-optimise-easy-understanding/
+
 class Solution {
     public int numDistinct(String s, String t) {
         int[][] memo = new int[s.length() + 1][t.length()+1];
@@ -277,10 +262,8 @@ class Solution {
         return memo[i][j];
     }
 }
-```
 
 Style 2: Use String as key in HashMap to create memo
-```
 class Solution {
     public int numDistinct(String s, String t) {
         Map<String, Integer> memo = new HashMap<String, Integer>();
@@ -330,37 +313,24 @@ class Solution {
         return count;
     }
 }
-```
 
 Refer to
 https://leetcode.wang/leetcode-115-Distinct-Subsequences.html
-
 解法一 递归之分治
-
 S 中的每个字母就是两种可能选他或者不选他。我们用递归的常规思路，将大问题化成小问题，也就是分治的思想。
-
 如果我们求 S[0，S_len - 1] 中能选出多少个 T[0，T_len - 1]，个数记为 n。那么分两种情况，
 - S[0] == T[0]，需要知道两种情况
-	- 从 S 中选择当前的字母，此时 S 跳过这个字母, T 也跳过一个字母。
-	  去求 S[1，S_len - 1] 中能选出多少个 T[1，T_len - 1]，个数记为 n1
-	- S 不选当前的字母，此时S跳过这个字母，T 不跳过字母。
-	  去求S[1，S_len - 1] 中能选出多少个 T[0，T_len - 1]，个数记为 n2
-
-
+- 从 S 中选择当前的字母，此时 S 跳过这个字母, T 也跳过一个字母。去求 S[1，S_len - 1] 中能选出多少个 T[1，T_len - 1]，个数记为 n1
+- S 不选当前的字母，此时S跳过这个字母，T 不跳过字母。去求S[1，S_len - 1] 中能选出多少个 T[0，T_len - 1]，个数记为 n2
 - S[0] ！= T[0]
-  S 只能不选当前的字母，此时S跳过这个字母， T 不跳过字母。
-  去求S[1，S_len - 1] 中能选出多少个 T[0，T_len - 1]，个数记为 n1
-
+S 只能不选当前的字母，此时S跳过这个字母， T 不跳过字母。去求S[1，S_len - 1] 中能选出多少个 T[0，T_len - 1]，个数记为 n1
 也就是说如果求 S[0，S_len - 1] 中能选出多少个 T[0，T_len - 1]，个数记为 n。转换为数学式就是
-```
 if(S[0] == T[0]){
     n = n1 + n2;
 }else{
     n = n1;
 }
-```
 推广到一般情况，我们可以先写出递归的部分代码。
-```
 public int numDistinct(String s, String t) {
     return numDistinctHelper(s, 0, t, 0);
 }
@@ -379,15 +349,11 @@ private int numDistinctHelper(String s, int s_start, String t, int t_start) {
     }
     return count; 
 }
-```
 递归出口的话，因为我们的S和T的开始下标都是增长的。
-
 如果S[s_start, S_len - 1]中， s_start 等于了 S_len ，意味着S是空串，从空串中选字符串T，那结果肯定是0。
-
 如果T[t_start, T_len - 1]中，t_start等于了 T_len，意味着T是空串，从S中选择空字符串T，只需要不选择 S 中的所有字母，所以选法是1。
 
 综上，代码总体就是下边的样子
-```
 public int numDistinct(String s, String t) {
     return numDistinctHelper(s, 0, t, 0);
 }
@@ -414,16 +380,12 @@ private int numDistinctHelper(String s, int s_start, String t, int t_start) {
     }
     return count; 
 }
-```
 遗憾的是，这个解法对于如果S太长的 case 会超时。
 
-原因就是因为递归函数中，我们多次调用了递归函数，这会使得我们重复递归很多的过程，解决方案就很简单了，Memoization 技术，把每次的结果利用一个map保存起来，在求之前，先看map中有没有，有的话直接拿出来就可以了。
-
+原因就是因为递归函数中，我们多次调用了递归函数，这会使得我们重复递归很多的过程，解决方案就很简单了，
+Memoization 技术，把每次的结果利用一个map保存起来，在求之前，先看map中有没有，有的话直接拿出来就可以了。
 map的key的话就标识当前的递归，s_start 和 t_start 联合表示，利用字符串 s_start + '@' + t_start。
-
 value的话就保存这次递归返回的count。
-
-```
 public int numDistinct(String s, String t) {
     HashMap<String, Integer> map = new HashMap<>();
     return numDistinctHelper(s, 0, t, 0, map);
@@ -458,16 +420,13 @@ private int numDistinctHelper(String s, int s_start, String t, int t_start, Hash
     map.put(key, count);
     return count; 
 }
-```
 
----
+--------------------------------------------------------------------------------
 Solution 2: Recursion (30 min, TLE 53/65)
-
 Difference between Recursion and Divide and Conquer:
 1.Recursion as void return, Divide and Conquer as actual return
 2.Recursion has global variable, Divide and Conquer only local variable
 3.Usually in Recursion (base condition -> process on current level -> recursive into smaller problem), in Divide and Conquer (base condition -> recursive into smaller problem -> process on bottom level then return to parent level), but the difference is not significant in this L115, the base condition narrative is a bit different
-```
 class Solution {
     int count = 0;
     public int numDistinct(String s, String t) {
@@ -504,10 +463,8 @@ class Solution {
         helper(s, s_start + 1, t, t_start);
     }
 }
-```
 
 Recursion update with Memoization (Memoization on global variable is new skill)
-```
 class Solution {
     int count = 0;
     public int numDistinct(String s, String t) {
@@ -559,23 +516,12 @@ class Solution {
         memo[s_start][t_start] = diff;
     }
 }
-```
 
 Refer to
 https://leetcode.wang/leetcode-115-Distinct-Subsequences.html
-
 解法二 递归之回溯
-
-回溯的思想就是朝着一个方向找到一个解，然后再回到之前的状态，改变当前状态，继续尝试得到新的解。可以类比于二叉树的DFS，一路走到底，然后回到之前的节点继续递归。
-
-对于这道题，和二叉树的DFS很像了，每次有两个可选的状态，选择S串的当前字母和不选择当前字母。
-
-当S串的当前字母和T串的当前字母相等，我们就可以选择S的当前字母，进入递归。
-
-递归出来以后，继续尝试不选择S的当前字母，进入递归。
-
+回溯的思想就是朝着一个方向找到一个解，然后再回到之前的状态，改变当前状态，继续尝试得到新的解。可以类比于二叉树的DFS，一路走到底，然后回到之前的节点继续递归。对于这道题，和二叉树的DFS很像了，每次有两个可选的状态，选择S串的当前字母和不选择当前字母。当S串的当前字母和T串的当前字母相等，我们就可以选择S的当前字母，进入递归。递归出来以后，继续尝试不选择S的当前字母，进入递归。
 代码可以是下边这样。
-```
 public int numDistinct3(String s, String t) { 
     numDistinctHelper(s, 0, t, 0);
 }
@@ -589,12 +535,10 @@ private void numDistinctHelper(String s, int s_start, String t, int t_start) {
     //出来以后，继续尝试不选择当前字母，s_start 后移一个，t_start 不后移
     numDistinctHelper(s, s_start + 1, t, t_start);
 }
-```
 
 递归出口的话，就是两种了。
 - 当t_start == T_len，那么就意味着当前从S中选择的字母组成了T，此时就代表一种选法。我们可以用一个全局变量count，count计数此时就加一。然后return，返回到上一层继续寻求解。
 - 当s_start == S_len，此时S到达了结尾，直接 return。
-```
 int count = 0;
 public int numDistinct(String s, String t) { 
     numDistinctHelper(s, 0, t, 0);
@@ -615,33 +559,23 @@ private void numDistinctHelper(String s, int s_start, String t, int t_start) {
     //出来以后，继续尝试不选择当前字母，s_start 后移一个，t_start 不后移
     numDistinctHelper(s, s_start + 1, t, t_start);
 }
-```
 
 
-好吧，这个熟悉的错误又出现了，同样是递归中调用了两次递归，会重复计算一些解。怎么办呢？Memoization 技术。
-
-map的key和之前一样，标识当前的递归，s_start 和 t_start 联合表示，利用字符串 s_start + '@' + t_start。
-
+好吧，这个熟悉的错误又出现了，同样是递归中调用了两次递归，会重复计算一些解。怎么办呢？Memoization 技术。map的key和之前一样，标识当前的递归，s_start 和 t_start 联合表示，利用字符串 s_start + '@' + t_start。
 map的value的话？存什么呢。区别于解法一，我们每次都得到了当前条件下的count，然后存起来了。而现在我们只有一个全局变量，该怎么办呢？存全局变量count吗？
 
 如果递归过程中
-```
 if (map.containsKey(key)) {
    ... ...
 }
-```
 遇到了已经求过的解该怎么办呢？
-
 我们每次得到一个解后增加全局变量count，所以我们map的value存两次递归后 count 的增量。这样的话，第二次遇到同样的情况的时候，就不用递归了，把当前增量加上就可以了。
-```
 if (map.containsKey(key)) {
     count += map.get(key);
     return; 
 }
-```
 
 综上，代码就出来了
-```
 int count = 0;
 public int numDistinct(String s, String t) { 
     HashMap<String, Integer> map = new HashMap<>();
@@ -674,23 +608,15 @@ private void numDistinctHelper(String s, int s_start, String t, int t_start,
     int count_increment = count - count_pre;
     map.put(key, count_increment); 
 }
-```
 
----
+--------------------------------------------------------------------------------
 Solution 3: DP (-- min)
-
 Recursion to DP evolution lecture
-
-
 1.基本文献：
-
 Refer to
 https://leetcode.wang/leetcode-115-Distinct-Subsequences.html
-
 解法三 动态规划
-
 让我们来回想一下解法一做了什么。s_start 和 t_start 不停的增加，一直压栈，压栈，直到
-```
 //T 是空串，选法就是 1 种
 if (t_start == t.length()) { 
     return 1;
@@ -699,27 +625,17 @@ if (t_start == t.length()) {
 if (s_start == s.length()) {
     return 0;
 }
-```
 T 是空串或者 S 是空串，我们就直接可以返回结果了，接下来就是不停的出栈出栈，然后把结果通过递推关系取得。
 
 递归的过程就是由顶到底再回到顶。
-
 动态规划要做的就是去省略压栈的过程，直接由底向顶。
-
 这里我们用一个二维数组 dp[m][n] 对应于从 S[m，S_len) 中能选出多少个 T[n，T_len)。
-
 当 m == S_len，意味着S是空串，此时dp[S_len][n]，n 取 0 到 T_len - 1的值都为 0。
-
 当 n == T_len，意味着T是空串，此时dp[m][T_len]，m 取 0 到 S_len的值都为 1。
-
 然后状态转移的话和解法一分析的一样。如果求dp[s][t]。
-- S[s] == T[t]，当前字符相等，那就对应两种情况，选择S的当前字母和不选择S的当前字母
-  dp[s][t] = dp[s+1][t+1] + dp[s+1][t]
-- S[s] != T[t]，只有一种情况，不选择S的当前字母
-  dp[s][t] = dp[s+1][t]
-
+- S[s] == T[t]，当前字符相等，那就对应两种情况，选择S的当前字母和不选择S的当前字母dp[s][t] = dp[s+1][t+1] + dp[s+1][t]
+- S[s] != T[t]，只有一种情况，不选择S的当前字母dp[s][t] = dp[s+1][t]
 代码就可以写了。
-```
 public int numDistinct(String s, String t) {
     int s_len = s.length();
     int t_len = t.length();
@@ -745,31 +661,26 @@ public int numDistinct(String s, String t) {
     }
     return dp[0][0];
 }
-```
 对比于解法一和解法二，如果Memoization 技术我们不用hash，而是用一个二维数组，会发现其实我们的递归过程，其实就是在更新下图中的二维表，只不过更新的顺序没有动态规划这么归整。这也是不用Memoization 技术会超时的原因，如果把递归的更新路线画出来，会发现很多路线重合了，意味着我们进行了很多没有必要的递归，从而造成了超时。
 
 我们画一下动态规划的过程。
-
 S = "babgbag", T = "bag"
-
 T 为空串时，所有的 s 对应于 1。 S 为空串时，所有的 t 对应于 0。
 
-此时我们从 dp[6][2] 开始求。根据公式，因为当前字母相等，所以 dp[6][2] = dp[7][3] + dp[7][2] = 1 + 0 = 1 。
-
-接着求dp[5][2]，当前字母不相等，dp[5][2] = dp[6][2] = 1。
-
+此时我们从 
+dp[6][2] 开始求。根据公式，因为当前字母相等，所以 
+dp[6][2] = dp[7][3] + dp[7][2] = 1 + 0 = 1 。
+接着求
+dp[5][2]，当前字母不相等，
+dp[5][2] = dp[6][2] = 1。
 一直求下去。
 
 
 
-求当前问号的地方的值的时候，我们只需要它的上一个值和斜对角的值。
-
-换句话讲，求当前列的时候，我们只需要上一列的信息。比如当前求第1列，第3列的值就不会用到了。
+求当前问号的地方的值的时候，我们只需要它的上一个值和斜对角的值。换句话讲，求当前列的时候，我们只需要上一列的信息。比如当前求第1列，第3列的值就不会用到了。
 
 所以我们可以优化算法的空间复杂度，不需要二维数组，需要一维数组就够了。
-
 此时需要解决一个问题，就是当求上图的dp[1][1]的时候，需要dp[2][1]和dp[2][2]的信息。但是如果我们是一维数组，dp[2][1]之前已经把dp[2][2]的信息覆盖掉了。所以我们需要一个pre变量保存之前的值。
-```
 public int numDistinct(String s, String t) {
     int s_len = s.length();
     int t_len = t.length();
@@ -794,13 +705,11 @@ public int numDistinct(String s, String t) {
     }
     return dp[0];
 }
-```
 利用temp和pre两个变量实现了保存之前的值。
 
 其实动态规划优化空间复杂度的思想，在 5题，10题，53题，72题 等等都已经用了，是非常经典的。
-
-上边的动态规划是从字符串末尾倒着进行的，其实我们只要改变dp数组的含义，用dp[m][n]表示S[0,m)和T[0,n)，然后两层循环我们就可以从 1 往末尾进行了，思想是类似的，leetcode 高票答案也都是这样的，如果理解了上边的思想，代码其实也很好写。这里只分享下代码吧。
-```
+上边的动态规划是从字符串末尾倒着进行的，其实我们只要改变dp数组的含义，用dp[m][n]表示S[0,m)和T[0,n)，然后两层循环我们就可以从 
+1 往末尾进行了，思想是类似的，leetcode 高票答案也都是这样的，如果理解了上边的思想，代码其实也很好写。这里只分享下代码吧。
 public int numDistinct(String s, String t) {
     int s_len = s.length();
     int t_len = t.length();
@@ -823,16 +732,13 @@ public int numDistinct(String s, String t) {
     }
     return dp[s_len];
 }
-```
-
-总结：
-
-这道题太经典了，从递归实现回溯，递归实现分治，Memoization 技术对递归的优化，从递归转为动态规划再到动态规划空间复杂度的优化，一切都是理所当然，不需要什么特殊技巧，一切都是这么优雅，太棒了。
+总结：这道题太经典了，从递归实现回溯，递归实现分治，
+Memoization 技术对递归的优化，从递归转为动态规划再到动态规划空间复杂度的优化，一切都是理所当然，不需要什么特殊技巧，一切都是这么优雅，太棒了。
 
 自己一开始是想到回溯的方法，然后卡到了超时的问题上，看了这篇 和 这篇 的题解后才恍然大悟，一切才都联通了，解法一、解法二、解法三其实本质都是在填充那个二维矩阵，最终殊途同归，不知为什么脑海中有宇宙大爆炸，然后万物产生联系的画面，2333。
-
-这里自己需要吸取下教训，自己开始在回溯卡住了以后，思考了动态规划的方法，dp数组的含义已经定义出来了，想状态转移方程的时候在脑海里一直想，又卡住了。所以对于这种稍微复杂的动态规划还是拿纸出来画一画比较好。
----
+这里自己需要吸取下教训，自己开始在回溯卡住了以后，思考了动态规划的方法，
+dp数组的含义已经定义出来了，想状态转移方程的时候在脑海里一直想，又卡住了。所以对于这种稍微复杂的动态规划还是拿纸出来画一画比较好。
+--------------------------------------------------------------------------------
 2. 递归从正反两条路线进化到DP的思路和区别：
 中文文献中二维DP图从右下角开始，多出来的最后一列代表T空串时子串个数状态，多出来的最后一列代表S空串时字串个数状态，反推到左上角代表最终状态的体系，一脉相承于解法一和解法二构建的扫描S和T的时候坐标从0增长到自身长度并剩下空字符串的体系，该体系中递归解法（解法一和解法二）的终止条件（base condition）完全符合它们如何进化到解法三DP解法的预期，而在leetcode讨论中的高赞英文样例中二维DP图从左上角开始，多出来的第一列（或第一行，参见Solution 3 DP style 2）代表T空串时子串个数状态，多出来的第一行（或第一列，参见Solution 3 DP style 2）代表S空串时字串个数状态，正推到右下角代表最终状态的体系，则是因为把S和T空串情况放在最开始考虑所得。
 
@@ -840,9 +746,7 @@ public int numDistinct(String s, String t) {
 
 回顾前文中文文献中的关键定义：
 T 是空串或者 S 是空串，我们就直接可以返回结果了，接下来就是不停的出栈出栈，然后把结果通过递推关系取得。
-
 递归的过程就是由顶到底再回到顶。
-
 动态规划要做的就是去省略压栈的过程，直接由底向顶。
 
 此刻我们抛出最关键的问题：底是什么？顶又是什么？在本题中如何定义？
@@ -858,7 +762,6 @@ T 是空串或者 S 是空串，我们就直接可以返回结果了，接下来
 
 递归中再由底回到顶的过程：
 在从顶到底并触碰到base condition开启return之后，逐层返回，m == s_len(底) --> m == 0(顶)，n == t_len(底) --> n == 0(顶)，此时最终状态实际上在顶，也就是m == 0和n == 0时取得，和二维DP中最终状态在左上角[0, 0]处获得形成一致
-```
 Style 1: Base condition 1 ahead of Base condition 2 but additional condition as t_start < t.length()
 
 class Solution {
@@ -957,10 +860,8 @@ class Solution {
         return count;
     }
 }
-```
 
 第二步：递归配合Memoization(逆向版本)：
-```
 Style 1: Use classic memo 
  
 class Solution {
@@ -1064,7 +965,6 @@ class Solution {
         return count;
     }
 }
-```
 
 第三步：基于递归的2D DP(逆向版本)：
 DP能够省略掉递归中"从顶到底"的过程，而"直接由底向顶"，这也意味着从二维数组DP状态表的角度讲，从右下角逆推到左上角的过程，也就是m == s_len(底) --> m == 0(顶)，n == t_len(底) --> n == 0(顶)的过程
@@ -1072,15 +972,11 @@ DP能够省略掉递归中"从顶到底"的过程，而"直接由底向顶"，�
 这里我们用一个二维数组 dp[m][n] 对应于从 s[m，s_len) 中能选出多少个 t[n，t_len)。
 当 m == s_len，意味着s是空串，此时dp[s_len][n]，n 取 0 到 t_len - 1的值都为 0。
 当 n == t_len，意味着t是空串，此时dp[m][t_len]，m 取 0 到 s_len的值都为 1。
-
 然后状态转移的话和解法一分析的一样。如果求dp[s][t]。
-- S[s] == T[t]，当前字符相等，那就对应两种情况，选择S的当前字母和不选择S的当前字母
-  dp[s][t] = dp[s+1][t+1] + dp[s+1][t]
-- S[s] != T[t]，只有一种情况，不选择S的当前字母
-  dp[s][t] = dp[s+1][t]
+- S[s] == T[t]，当前字符相等，那就对应两种情况，选择S的当前字母和不选择S的当前字母dp[s][t] = dp[s+1][t+1] + dp[s+1][t]
+- S[s] != T[t]，只有一种情况，不选择S的当前字母dp[s][t] = dp[s+1][t]
 
 代码就可以写了。
-```
 class Solution {
     /**
         t.charAt(i) != s.charAt(j)  
@@ -1127,13 +1023,11 @@ class Solution {
         return dp[0][0];
     }
 }
-```
 
 第四步：基于2D DP的空间优化1D DP(逆向版本)：
 
 优化为2 rows
 Style 1: Pre-initialize dp along with dpPrev initialize for loop before major for loop since dp[t_len] always same value in this problem (if dp[t_len] not always same value cannot pre-initialize dp)
-```
 class Solution {
     public int numDistinct(String s, String t) {
         int s_len = s.length();
@@ -1175,10 +1069,8 @@ class Solution {
         return dpPrev[0];
     }
 }
-```
 
 2 rows array如何替代2D DP array的具体步骤
-```
 2D DP array
         
          t r a b b i t ''
@@ -1262,11 +1154,9 @@ after dpPrev = dp.clone()
 dpPrev = [3, 3, 3, 3, 1, 1, 1]
 ================================
 Finally either return dp[0] or dpPrev[0] is same
-```
 
 Style 2: dp along with dpPrev initialize in major for loop (more general way, since we cannot guarantee dp[t_len] always same value, refer to L72. Edit Distance)
 First is wrong way if we miss the dp[t_len] initialize in each for loop iteration
-```
 class Solution {
     public int numDistinct(String s, String t) {
         int s_len = s.length();
@@ -1282,6 +1172,7 @@ class Solution {
         //}
         // -> 去掉row维度后初始化状态进化为只需要设定剩下column维度的第一个数即dp[t_len]为1，等价于t是空串时dp[i][t_len] = 1
         //dp[t_len] = 1; --> remove from here and suppose to relocate into major for loop then initialize in each for loop iteration 
+
         dpPrev[t_len] = 1;
         // 倒着进行，s 每次增加一个字母
         // -> 外层循环依旧为row维度，而且dpPrev/dp在row维度的反复替换也在外层循环发生，为了维持row维度的替换，外层循环必须使用row维度
@@ -1312,6 +1203,7 @@ class Solution {
 Wrong result below:
 e.g
 s = "babgbag", t = "bag"
+
            0 1 2 3
          t b a g '' -> i
        s   
@@ -1324,6 +1216,7 @@ s = "babgbag", t = "bag"
     6  g   0 0 1 0 -> equal j = 6 dp array
     7 ''   0 0 0 1 -> equal initial
     -> j
+
 外层循环为row维度，逐行填充，用2 rows array取代原先2D DP array
 for(int j = s_len - 1; j >= 0; j--)
 Initial:
@@ -1394,10 +1287,8 @@ after dpPrev = dp.clone()
 dpPrev = [4, 2, 1, 0]
 ================================
 Finally either return dp[0] or dpPrev[0] is same
-```
 
 Then we add back the dp[t_len] initialize in each for loop iteration as correct way
-```
 class Solution {
     public int numDistinct(String s, String t) {
         int s_len = s.length();
@@ -1413,6 +1304,7 @@ class Solution {
         //}
         // -> 去掉row维度后初始化状态进化为只需要设定剩下column维度的第一个数即dp[t_len]为1，等价于t是空串时dp[i][t_len] = 1
         //dp[t_len] = 1; --> remove from here and suppose to relocate into major for loop then initialize in each for loop iteration 
+
         dpPrev[t_len] = 1;
         // 倒着进行，s 每次增加一个字母
         // -> 外层循环依旧为row维度，而且dpPrev/dp在row维度的反复替换也在外层循环发生，为了维持row维度的替换，外层循环必须使用row维度
@@ -1440,10 +1332,13 @@ class Solution {
     }
 }
 
+
+
 =======================================================================================================
 Correct result below:
 e.g
 s = "babgbag", t = "bag"
+
            0 1 2 3
          t b a g '' -> i
        s   
@@ -1456,6 +1351,7 @@ s = "babgbag", t = "bag"
     6  g   0 0 1 1 -> equal j = 6 dp array
     7 ''   0 0 0 1 -> equal initial
     -> j
+
 外层循环为row维度，逐行填充，用2 rows array取代原先2D DP array
 for(int j = s_len - 1; j >= 0; j--)
 Initial:
@@ -1528,10 +1424,8 @@ after dpPrev = dp.clone()
 dpPrev = [5, 3, 2, 1]
 ================================
 Finally either return dp[0] or dpPrev[0] is same
-```
 
 进一步优化为1 row
-```
 class Solution {
     public int numDistinct(String s, String t) {
         int s_len = s.length();
@@ -1554,7 +1448,12 @@ class Solution {
             // 但当合并为1 row array以后，上一层的dpPrev[i + 1]和当前层的
             // dpPrev[i]变成了必须存储在同一数组中，换句话说上一层的dpPrev[i + 1]
             // 值会被当前层的dpPrev[i]更新，导致上一层dpPrev[i + 1]的原值丢失，
-            // 导致基于上一层dpPrev[i + 1]的原值计算获得的dpPrev[i]不稳定
+            // 导致基于上一层dpPrev[i + 1]的原值计算获得的dpPrev[i]不稳定,
+            // 而在正确的写法中，即改为从左向右循环以后，实际上利用了前后两次循环
+            // 的时间差，即后面一次循环(写作dpPrev[i]的dp[i])依然能读取到前一次
+            // 循环中dpPrev[i]的值，因为dpPrev[i]还没有更新，虽然表面上看标记仍
+            // 为dpPrev，但本质上在后一次循环开启的时候dpPrev实际从左到右开始承但
+            // dp的作用，更新为dp的值
             for(int i = 0; i <= t_len - 1; i++) {
                 if(t.charAt(i) == s.charAt(j)) {
                     dpPrev[i] = dpPrev[i + 1] + dpPrev[i];
@@ -1564,7 +1463,6 @@ class Solution {
         return dpPrev[0];
     }
 }
-```
 
 (2) 正向递归进化到DP的思路
 第一步：实现一个基本递归(正向版本)：
@@ -1575,7 +1473,6 @@ class Solution {
 
 递归中再由底回到顶的过程：
 在从顶到底并触碰到base condition开启return之后，逐层返回，m == 0(底) --> m == s_len(顶)，n == 0(底) --> n == t_len(顶)，此时最终状态实际上在顶，也就是m == s_len和n == t_len时取得，和二维DP中最终状态在右下角[s_len, t_len]处获得形成一致
-```
 Style 1: Base condition 1 ahead of Base condition 2 but additional condition as t_end > 0
 
 class Solution {
@@ -1643,10 +1540,8 @@ class Solution {
         return count;
     }
 }
-```
 
 第二步：递归配合Memoization(正向版本)：
-```
 Style 1: Use classic memo
 
 class Solution {
@@ -1735,10 +1630,11 @@ class Solution {
         return count;
     }
 }
-```
 
 第三步：基于递归的2D DP(正向版本)：
-```
+dp[i][j] means s[0..i - 1] contains t[0..j - 1] that many times as distinct subsequences
+注意：正向版本的和之前的逆向版本定义不同, 之前的逆向版本定义：dp[m][n] 对应于从 s[m，s_len) 中能选出多少个 t[n，t_len)，
+换成i和j的说法是 dp[i][j] means s[i, s_len) contains t[j, t_len) that many times as distinct subsequences
 Style 1: String s present by each column, String t present by each row
 
 class Solution {
@@ -1858,12 +1754,10 @@ class Solution {
         return dp[t_len][s_len];
     }
 }
-```
 
 第四步：基于2D DP的空间优化1D DP(正向版本，基于第三步Style 1)：
 
 优化为2 rows
-```
 class Solution {
     public int numDistinct(String s, String t) {
         int s_len = s.length();
@@ -1902,10 +1796,8 @@ class Solution {
         return dpPrev[t_len];
     }
 }
-```
 
 2 rows array如何替代2D DP array的具体步骤
-```
 2D DP array
           t '' r a b b i t
         s   
@@ -1989,10 +1881,8 @@ after dpPrev = dp.clone()
 dpPrev = [1, 1, 1, 3, 3, 3, 3]
 ================================
 Finally either return dp[t_len] or dpPrev[t_len] is same
-```
 
 进一步优化为1 row
-```
 class Solution {
     public int numDistinct(String s, String t) {
         int s_len = s.length();
@@ -2025,7 +1915,6 @@ class Solution {
         return dpPrev[t_len];
     }
 }
-```
 
 Refer to
 In 1D DP array 1 row solution, why scan from the right instead of left ?
@@ -2037,7 +1926,6 @@ If you iterate from i = 0, then dp[i-num] will be overwritten before you use it,
 You can avoid this problem by iterating from i=sum
 
 https://leetcode.com/problems/partition-equal-subset-sum/solutions/90592/0-1-knapsack-detailed-explanation/comments/241664
-```
 public boolean canPartition(int[] nums) {
     int sum = 0; 
     for(int num : nums) {
@@ -2060,54 +1948,49 @@ public boolean canPartition(int[] nums) {
     }
     return dp[sum];
 }
-```
 Yes, the magic is observation from the induction rule/recurrence relation!
 For this problem, the induction rule:
-1. If not picking nums[i - 1], then dp[i][j] = dp[i-1][j]
-2. if picking nums[i - 1], then dp[i][j] = dp[i - 1][j - nums[i - 1]]
+1.If not picking nums[i - 1], then dp[i][j] = dp[i-1][j]
+2.if picking nums[i - 1], then dp[i][j] = dp[i - 1][j - nums[i - 1]]
 
 You can see that if you point them out in the matrix, it will be like:
-```
-			  j
-	. . . . . . . . . . . . 
-	. . . . . . . . . . . .  
-	. . ? . . ? . . . . . .  ?(left): dp[i - 1][j - nums[i], ?(right): dp[i - 1][j]
-i	. . . . . # . . . . . .  # dp[i][j]
-	. . . . . . . . . . . . 
-	. . . . . . . . . . . . 
-	. . . . . . . . . . . . 
-	. . . . . . . . . . . . 
-	. . . . . . . . . . . . 
-```
-1. Optimize to O(2*n): you can see that dp[i][j] only depends on previous row, so you can optimize the space by only using 2 rows instead of the matrix. Let's say array1 and array2. Every time you finish updating array2, array1 have no value, you can copy array2 to array1 as the previous row of the next new row.
-2. Note: For 2 rows array solution since the previous iteration result will only keep in row array1 as dp[i - 1], current iteration result will only keep in row array2 as dp[i], and based on formula dp[i][j] = dp[i-1][j] || dp[i - 1][j - nums[i - 1]], the current iteration result row array2 as dp[i] will only depend on previous iteration result row array1 as dp[i - 1] , and since we use 2 rows, the previous and current iteration result naturally decoupled into 2 separate rows, when calculate current iteration result and store into array2 as dp[i] by using previous iteration result row array1 as dp[i - 1], no overwrite happen on row array1, its safe to keep iterating forwards on inner for loop in 2 rows array solution, and after finishing update array2,  value in array1 is no use anymore, we can copy array2 into array1 and clean up array2 to prepare receiving new calculated result in next iteration
-3. Optimize to O(n): you can also see that, the column indices of dp[i - 1][j - nums[i] and dp[i - 1][j] are <= j. The conclusion you can get is: the elements of previous row whose column index is > j(i.e. dp[i - 1][j + 1 : n - 1]) will not affect the update of dp[i][j] since we will not touch them:
-```
-			  j
-	. . . . . . . . . . . . 
-	. . . . . . . . . . . .  
-	. . ? . . ? x x x x x x  you will not touch x for dp[i][j]
-i	. . . . . # . . . . . .  # dp[i][j]
-	. . . . . . . . . . . . 
-	. . . . . . . . . . . . 
-	. . . . . . . . . . . . 
-	. . . . . . . . . . . . 
-	. . . . . . . . . . . . 
-```
+              j
+    . . . . . . . . . . . . 
+    . . . . . . . . . . . .  
+    . . ? . . ? . . . . . .  ?(left): dp[i - 1][j - nums[i], ?(right): dp[i - 1][j]
+i    . . . . . # . . . . . .  # dp[i][j]
+    . . . . . . . . . . . . 
+    . . . . . . . . . . . . 
+    . . . . . . . . . . . . 
+    . . . . . . . . . . . . 
+    . . . . . . . . . . . . 
+1.Optimize to O(2*n): you can see that dp[i][j] 
+only depends on previous row, so you can optimize the space by only using 2 rows instead of the matrix. Let's say array1 and array2. Every time you finish updating array2, array1 have no value, you can copy array2 to array1 as the previous row of the next new row.
+2.Note: For 2 rows array solution since the previous iteration result will only keep in row array1 as dp[i - 1], current iteration result will only keep in row array2 as dp[i], and based on formula dp[i][j] = dp[i-1][j] || dp[i - 1][j - nums[i - 1]], the current iteration result row array2 as dp[i] will only depend on previous iteration result row array1 as dp[i - 1] , and since we use 2 rows, the previous and current iteration result naturally decoupled into 2 separate rows, when calculate current iteration result and store into array2 as dp[i] by using previous iteration result row array1 as dp[i - 1], no overwrite happen on row array1, its safe to keep iterating forwards on inner for loop in 2 rows array solution, and after finishing update array2,  value in array1 is no use anymore, we can copy array2 into array1 and clean up array2 to prepare receiving new calculated result in next iteration
+3.Optimize to O(n): you can also see that, the column indices of dp[i - 1][j - nums[i] and dp[i - 1][j] are <= j. The conclusion you can get is: the elements of previous row whose column index is > j(i.e. dp[i - 1][j + 1 : n - 1]) will not affect the update of dp[i][j] since we will not touch them:
+              j
+    . . . . . . . . . . . . 
+    . . . . . . . . . . . .  
+    . . ? . . ? x x x x x x  you will not touch x for dp[i][j]
+i    . . . . . # . . . . . .  # dp[i][j]
+    . . . . . . . . . . . . 
+    . . . . . . . . . . . . 
+    . . . . . . . . . . . . 
+    . . . . . . . . . . . . 
+    . . . . . . . . . . . . 
 
 But thus if we merge array1 and array2 to a single array, if we update array backwards, all dependencies are not touched!
-```
         (n represents new value, i.e. updated)
-	. . ? . . ? n n n n n n n
+    . . ? . . ? n n n n n n n
                   #  
-```
 
 However if we update forwards, dp[j - nums[i - 1]] is updated already, we cannot use it:
-```
         (n represents new value, i.e. updated)
-	n n n n n ? . . . . . .  where another ? goes? Oops, it is overriden, we lost it :(
+    n n n n n ? . . . . . .  where another ? goes? Oops, it is overriden, we lost it :(
                   #  
-```
 
 Conclusion:
 So the rule is that observe the positions of current element and its dependencies in the matrix. Mostly if current elements depends on the elements in previous row(most frequent case)/columns, you can optimize the space.
+
+Refer to
+L72.Edit Distance (Refer L115.Distinct Subsequences)
