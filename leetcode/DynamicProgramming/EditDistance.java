@@ -1,24 +1,20 @@
+
 https://leetcode.com/problems/edit-distance/description/
-
 Given two strings word1 and word2, return the minimum number of operations required to convert word1 to word2.
-
 You have the following three operations permitted on a word:
 - Insert a character
 - Delete a character
 - Replace a character
  
 Example 1:
-```
 Input: word1 = "horse", word2 = "ros"
 Output: 3
 Explanation: 
 horse -> rorse (replace 'h' with 'r')
 rorse -> rose (remove 'r')
 rose -> ros (remove 'e')
-```
 
 Example 2:
-```
 Input: word1 = "intention", word2 = "execution"
 Output: 5
 Explanation: 
@@ -27,18 +23,14 @@ inention -> enention (replace 'i' with 'e')
 enention -> exention (replace 'n' with 'x')
 exention -> exection (replace 'n' with 'c')
 exection -> execution (insert 'u')
-```
 
 Constraints:
 - 0 <= word1.length, word2.length <= 500
 - word1 and word2 consist of lowercase English letters.
----
+--------------------------------------------------------------------------------
 Attempt 1: 2023-07-12
-
 (1) 基于L115文献的逆向递归进化到DP的思路
-
 word1, word2 scan from left to right
-
 在L115中文文献中，从递归的角度讲，"顶"就是递归最开始在主体方法中被呼叫的状态，本题中就是i == 0 和 j == 0 时，"底"在本题中就是当 递归到达i == s1.length() 和 n == s2.length() 时，也就是递归实际方法中的base condition，递归就是先从"顶"即i == 0 和 j == 0逐层到达"底"即i == s1.length() 和 n == s2.length()，然后在到达"底"后再通过返回语句逐层从"底"返回到"顶"，而DP能够省略掉递归中"从顶到底"的过程，而"直接由底向顶"，这也意味着从二维数组DP状态表的角度讲，从右下角逆推到左上角的过程，也就是i == s1.length()(底) --> i == 0(顶)，n == s2.length()(底) --> n == 0(顶)的过程
 
 第一步：实现一个基本递归(逆向版本)：
@@ -49,7 +41,6 @@ word1, word2 scan from left to right
 
 递归中再由底回到顶的过程：
 在从顶到底并触碰到base condition开启return之后，逐层返回，i == s1.length()(底) --> i == 0(顶)，j == s2.length()(底) --> j == 0(顶)，此时最终状态实际上在顶，也就是i == 0和j == 0时取得，和二维DP中最终状态在左上角[0, 0]处获得形成一致
-```
 class Solution {
     public int minDistance(String word1, String word2) {
         // 从顶i = 0和j = 0开始递归
@@ -117,10 +108,8 @@ class Solution {
         return result;
     }
 }
-```
 
 第二步：递归配合Memoization(逆向版本)：
-```
 class Solution {
     public int minDistance(String word1, String word2) {
         Integer[][] memo = new Integer[word1.length() + 1][word2.length() + 1];
@@ -193,26 +182,23 @@ class Solution {
         return memo[i][j] = result;
     }
 }
-```
 
 第三步：基于递归的2D DP(逆向版本)：
 DP能够省略掉递归中"从顶到底"的过程，而"直接由底向顶"，这也意味着从二维数组DP状态表的角度讲，从右下角逆推到左上角的过程，也就是i == s1.length()(底) --> i == 0(顶)，j == s2.length()(底) --> j == 0(顶)的过程
 
 这里我们用一个二维数组 dp[i][j] 对应于从 s[i，s1.length()) 所代表的的字符串需要多少步变成 s2[j，s2.length())。
-当 i == s1.length()，意味着s1是空串，此时dp[s1.length()][j]，i 取 0 到 s1.length() - 1的值都为 0。
-当 j == s2.length()，意味着s2是空串，此时dp[i][s2.length()]，j 取 0 到 s2.length()的值都为 1。
-
+当 i == s1.length()，意味着s1是空串，此时dp[s1.length()][j]，取值随 j 变化，即 s2.length() - j
+当 j == s2.length()，意味着s2是空串，此时dp[i][s2.length()]，取值随 i 变化，即 s1.length() - i
 然后状态转移的话和解法一分析的一样。如果求dp[i][j]。
 - s1[i] == s2[j]，当前两个字符相等，需要多少步s1能变成s2取决于同时跳过当前字符时两个字符串的关系，之前需要多少步现在仍需要多少步
-  dp[i][j] = dp[i+1][j+1]
+dp[i][j] = dp[i+1][j+1]
 - s1[i] != s2[j]，有三种情况，1.去掉一个字符，2.加入一个字符，3.替换一个字符，取三种方案中所需步骤最少的方案
-  dp[i][j] = Math.min(Math.min(dp[i + 1][j], dp[i][j + 1]), dp[i + 1][j + 1])
+dp[i][j] = Math.min(Math.min(dp[i + 1][j], dp[i][j + 1]), dp[i + 1][j + 1])
              insert -> 对应dp[i][j + 1]
              delete -> 对应dp[i + 1][j]
              replace -> 对应dp[i + 1][j + 1]
 
 代码就可以写了。
-```
 class Solution {
     /** 
         在底i == s1.length()和j == s2.length()触底开启逐层返回到顶i = 0和j = 0过程
@@ -354,12 +340,10 @@ class Solution {
         return dp[0][0];
     }
 }
-```
 
 第四步：基于2D DP的空间优化1D DP(逆向版本)：
 
 优化为2 rows (相对于L115真正展现2 rows array替代2D array的本质)
-```
 class Solution {
     public int minDistance(String word1, String word2) {
         int w1_len = word1.length();
@@ -441,10 +425,8 @@ class Solution {
         return dpPrev[0];
     }
 }
-```
 
 进一步优化为1 row (不是真正的1 row方案，内层循环不需要反转，因为只是用2个变量替代了2 rows中的1 row)
-```
 class Solution {
     public int minDistance(String word1, String word2) {
         int w1_len = word1.length();
@@ -490,11 +472,9 @@ class Solution {
         return dpPrev[0];
     }
 }
-```
 
 Refer to
 https://leetcode.com/problems/edit-distance/solutions/25846/c-o-n-space-dp/
-```
 class Solution {
 public:
     int minDistance(string word1, string word2) {
@@ -519,7 +499,6 @@ public:
         return cur[n];
     }
 };
-```
 
 (2) 基于L115文献的正向递归进化到DP的思路
 
@@ -533,7 +512,6 @@ word1, word2 scan from right to left
 
 递归中再由底回到顶的过程：
 在从顶到底并触碰到base condition开启return之后，逐层返回，i == 0(底) --> i == s1.length()(顶)，j == 0(底) --> j == s2.length()(顶)，此时最终状态实际上在顶，也就是i == s1.length()和j == s2.length()时取得，和二维DP中最终状态在右下角[s1.length(), s2.length()]处获得形成一致
-```
 class Solution {
     public int minDistance(String word1, String word2) {
         return helper(word1, word1.length(), word2, word2.length());
@@ -567,10 +545,8 @@ class Solution {
         return result;
     }
 }
-```
 
 第二步：递归配合Memoization(正向版本)：
-```
 class Solution {
     public int minDistance(String word1, String word2) {
         Integer[][] memo = new Integer[word1.length() + 1][word2.length() + 1];
@@ -608,10 +584,8 @@ class Solution {
         return memo[i][j] = result;
     }
 }
-```
 
 第三步：基于递归的2D DP(正向版本)：
-```
 class Solution {
     /**
       s1.charAt(i - 1) == s2.charAt(j - 1) 
@@ -619,7 +593,9 @@ class Solution {
         
       s1.charAt(i - 1) != s2.charAt(j - 1) 
       -> dp[i][j] = Math.min(Math.min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]);
+
       e.g s1 = "horse", s2 = "ros"
+
              0 1 2 3
          s2 '' r o s -> j
        s1   
@@ -653,13 +629,10 @@ class Solution {
         return dp[w1_len][w2_len];
     }
 }
-```
 
 第四步：基于2D DP的空间优化1D DP(正向版本，基于第三步)：
 
 优化为2 rows (相对于L115真正展现2 rows array替代2D array的本质)
-```
-class Solution {
 class Solution {
     /**
       s1.charAt(i - 1) == s2.charAt(j - 1) 
@@ -667,7 +640,9 @@ class Solution {
         
       s1.charAt(i - 1) != s2.charAt(j - 1) 
       -> dp[i][j] = Math.min(Math.min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]);
+
       e.g s1 = "horse", s2 = "ros"
+
              0 1 2 3
          s2 '' r o s -> j
        s1   
@@ -718,10 +693,8 @@ class Solution {
         return dpPrev[w2_len];
     }
 }
-```
 
 进一步优化为1 row (不是真正的1 row方案，内层循环不需要反转，因为只是用2个变量替代了2 rows中的1 row)
-```
 class Solution {
     /**
       s1.charAt(i - 1) == s2.charAt(j - 1) 
@@ -730,7 +703,9 @@ class Solution {
       s1.charAt(i - 1) != s2.charAt(j - 1) 
       -> dp[i][j] = Math.min(Math.min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]);
  
+
       e.g s1 = "horse", s2 = "ros"
+
              0 1 2 3
          s2 '' r o s -> j
        s1   
@@ -786,11 +761,9 @@ class Solution {
         return dpPrev[w2_len];
     }
 }
-```
 
 Refer to
 https://leetcode.com/problems/edit-distance/solutions/25846/c-o-n-space-dp/
-```
 class Solution {
 public:
     int minDistance(string word1, string word2) {
@@ -815,9 +788,8 @@ public:
         return cur[n];
     }
 };
-```
 
----
+--------------------------------------------------------------------------------
 Refer to
 https://leetcode.com/problems/edit-distance/solutions/25895/step-by-step-explanation-of-how-to-optimize-the-solution-from-simple-recursion-to-dp/comments/562196
 I was having trouble with this and figuring out the recurrences for the edit operations. i and j basically keep track of the current characters that are getting compared, each operation shifts them differently. The important thing to note is that we are simulating the edit operations by moving i and j around, not actually changing the input strings.
@@ -837,10 +809,12 @@ c1 = sample, c2 = example
 i = 1 (a) , j = 0 (e)
 
 Insert is the opposite of delete, we insert the char we need, shifting word 1 to the right. Since we do not actually add a char, leave i alone. It's the similar as doing:
-```
   c1 = "e" + c1;
   match(c1,c2,i+1,j+1) //Since we added "e", i+1 would point to "s"
-```
 Insert -> match(c1, c2, i, j+1)
 c1 = esample, c2 = example
-i = 0 (s), j = 1 (x)
+i = 0 (s), j = 1 (x)      
+
+
+Refer to
+L115.Distinct Subsequences
