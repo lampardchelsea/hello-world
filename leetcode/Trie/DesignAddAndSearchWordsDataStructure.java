@@ -1,14 +1,14 @@
+
 https://leetcode.com/problems/design-add-and-search-words-data-structure/
 
 Design a data structure that supports adding new words and finding if a string matches any previously added string.
-
-Implement the WordDictionary class:
+Implement the 
+WordDictionary class:
 - WordDictionary() Initializes the object.
 - void addWord(word) Adds word to the data structure, it can be matched later.
 - bool search(word) Returns true if there is any string in the data structure that matches word or false otherwise. word may contain dots '.' where dots can be matched with any letter.
  
 Example:
-```
 Input
 ["WordDictionary","addWord","addWord","addWord","search","search","search","search"]
 [[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]]
@@ -25,21 +25,16 @@ wordDictionary.search("bad"); // return True
 wordDictionary.search(".ad"); // return True
 wordDictionary.search("b.."); // return True
 
-```
-
 Constraints:
 - 1 <= word.length <= 25
 - word in addWord consists of lowercase English letters.
 - word in search consist of '.' or lowercase English letters.
 - There will be at most 2 dots in word for search queries.
-- At most 104 calls will be made to addWord and search.
----
+- At most 10^4 calls will be made to addWord and search.
+--------------------------------------------------------------------------------
 Attempt 1: 2023-06-17
-
 Wrong Solution:
 Because of when search recursion happen, the passed in node cannot keep as 'root', needs to correspondingly passed in as its descendant child node
-```
-Wrong solution: because of when search recursion happen, the passed in node cannot keep as 'root', needs to correspondingly passed in as its descendant child node
 e.g
 level 1 -> pass in node = root
 level 2 -> pass in node = root.children[index1]
@@ -49,42 +44,36 @@ etc.
 =========================================================================
 e.g
 Current trie has 3 words: "bad", "dad", "mad", search with ".ad"
-
-Each recursion level two parameters relation represent as the string and its corresponding node pass to the same level
-
+Each recursion level two parameters relation represent as the string and its corresponding node pass 
+to the same level
 Level 1: search(".ad", root)
 '.' of ".ad" mapping to root
 .ad => root -> children[1,3,12], .(dot) mapping to b,d,m
                         b,d,m
-
 Level 2: search("ad", root.children[1])
-'a' of "ad" mapping to one of Level 1's node parameter(root)'s children(children[1],[3],[12]) as children[1]'s only child(children[0])
+'a' of "ad" mapping to one of Level 1's node parameter(root)'s children(children[1],[3],[12]) as 
+children[1]'s only child(children[0])
  ad => child(children[1]) -> children[0], a mapping to a
                       b               a
 -------------------------------------------------------------------------
 Current trie has 3 words: "bad", "dad", "mad", search with "..d"
-
-Each recursion level two parameters relation represent as the string and its corresponding node pass to the same level
-
+Each recursion level two parameters relation represent as the string and its corresponding node pass 
+to the same level
 Level 1: search("..d", root)
 '.' of "..d" mapping to root
 ..d => root -> children[1,3,12], .(dot) mapping to b,d,m
                         b,d,m
-
 Level 2: search(".d", root.children[1])
 '.' of ".d" mapping to one of Level 1's node parameter(root)'s children(children[1],[3],[12]) as children[1]'s only child(children[0])
  .d => child(children[1]) -> children[0], . mapping to a
                       b               a
-
 Level 3: search("d", root.children[1].children[0])
 'd' of "d" mapping to one of Level 2's node parameter(root.children[1].children[0]) as children[1].children[0]'s only child(children[3])
 d => child(children[3]), d mapping to d
                     d
-
 =========================================================================
 class WordDictionary {
     TrieNode root;
-
     public WordDictionary() {
         root = new TrieNode();
     }
@@ -125,9 +114,7 @@ class WordDictionary {
         }
         return cur != null && cur.isEnd;
     }
-
 }
-
 class TrieNode {
     TrieNode[] children;
     boolean isEnd;
@@ -136,19 +123,15 @@ class TrieNode {
         this.isEnd = false;
     }
 }
-
 /**
  * Your WordDictionary object will be instantiated and called as such:
  * WordDictionary obj = new WordDictionary();
  * obj.addWord(word);
  * boolean param_2 = obj.search(word);
  */
-```
 
 Solution 1: Trie + DFS (60 min)
-
 Style 1: For loop DFS
-```
 class WordDictionary {
     TrieNode root;
     public WordDictionary() {
@@ -211,7 +194,6 @@ class TrieNode {
  * obj.addWord(word);
  * boolean param_2 = obj.search(word);
  */
-```
 
 Refer to
 https://leetcode.com/problems/design-add-and-search-words-data-structure/solutions/1725327/java-c-python-a-very-well-detailed-explanation/
@@ -234,18 +216,12 @@ Now, you have understood how Trie aka Prefix Tree work.
 
 Now let's take an example & build our tree,
 Input
-```
 ["WordDictionary","addWord","addWord","addWord","search","search","search","search"]
-
-
 [[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]]
-```
 Output
-```
 [null,null,null,null,false,true,true,true]
-```
 - The first word we add is "bad". "b" -> "a" -> "d"
-- Next we adding another word "dad". So, we have to start with different path. As, these two word's have a different prefix. One start with "b"and one start with "d". So, let's add it: "d" -> "a" -> "d"
+- Next we adding another word "dad". So, we have to start with different path. As, these two word's have a different prefix. One start with "b" and one start with "d". So, let's add it: "d" -> "a" -> "d"
 - We have one last word before we start searching, this one gonna be "mad". So, we don't have "m", then let's add it: "m" -> "a" -> "d"
 
 So far we have 3 word's and all of them end with different "d". But they all 3 of them have different prefix that's why they are along different path's.
@@ -260,7 +236,6 @@ Now understand this VISUALLY, it's not super hard.
 
 Now, let's code it up:
 Java
-```
 class WordDictionary {
     private WordDictionary[] children;
     boolean isEndOfWord;
@@ -297,19 +272,14 @@ class WordDictionary {
         return curr != null && curr.isEndOfWord;
     }
 }
-```
 ANALYSIS :-
 - Time Complexity :- BigO(M) for well defined words, But in worse case BigO(M.26^N)
 - Space Complexity :- BigO(1) for well defined words, But for worst case BigO(M)
-
 Complexity: Easy part is space complexity, it is O(M), where M is sum of lengths of all words in our Trie. This is upper bound: in practice it will be less than M and it depends, how much words are intersected. The worst time complexity is also O(M), potentially we can visit all our Trie, if we have pattern like ...... For words without ., time complexity will be O(h), where h is height of Trie. For words with several letters and several ., we have something in the middle.
-
----
+--------------------------------------------------------------------------------
 Style 2: Standard DFS
-```
 class WordDictionary {
     TrieNode root;
-
     public WordDictionary() {
         root = new TrieNode();
     }
@@ -329,8 +299,6 @@ class WordDictionary {
     public boolean search(String word) {
         return helper(word, 0, root);
     }
-
-
 
     private boolean helper(String word, int i, TrieNode node) {
         if(i == word.length()) {
@@ -355,8 +323,6 @@ class WordDictionary {
     }
 }
 
-
-
 class TrieNode {
     TrieNode[] children;
     boolean isEnd;
@@ -365,18 +331,15 @@ class TrieNode {
         this.isEnd = false;
     }
 }
-
 /**
  * Your WordDictionary object will be instantiated and called as such:
  * WordDictionary obj = new WordDictionary();
  * obj.addWord(word);
  * boolean param_2 = obj.search(word);
  */
-```
 
 Refer to
 https://leetcode.com/problems/design-add-and-search-words-data-structure/solutions/59554/my-simple-and-clean-java-code/
-```
 public class WordDictionary {
     public class TrieNode {
         public TrieNode[] children = new TrieNode[26];
@@ -384,7 +347,6 @@ public class WordDictionary {
     }
     
     private TrieNode root = new TrieNode();
-
     public void addWord(String word) {
         TrieNode node = root;
         for (char c : word.toCharArray()) {
@@ -395,7 +357,6 @@ public class WordDictionary {
         }
         node.item = word;
     }
-
     public boolean search(String word) {
         return match(word.toCharArray(), 0, root);
     }
@@ -416,10 +377,8 @@ public class WordDictionary {
         return false;
     }
 }
-```
 
 https://leetcode.com/problems/design-add-and-search-words-data-structure/solutions/59718/easy-to-understand-java-solution-using-trie-and-recursion-with-explanation/
-```
 public class WordDictionary {
     private class TrieNode {
         private boolean isWord;
@@ -432,7 +391,6 @@ public class WordDictionary {
     }
     
     private TrieNode root = new TrieNode();
-
     // Adds a word into the data structure.
     public void addWord(String word) {
         TrieNode curr = root;
@@ -444,7 +402,6 @@ public class WordDictionary {
         }
         curr.isWord = true;
     }
-
     // Returns if the word is in the data structure. A word could
     // contain the dot character '.' to represent any one letter.
     public boolean search(String word) {
@@ -481,10 +438,8 @@ public class WordDictionary {
         return searchHelper(node.childList.get(word.charAt(pos)), pos + 1, word);
     }
 }
-```
 
 https://leetcode.com/problems/design-add-and-search-words-data-structure/solutions/3313638/java-c-simple-solution-easy-to-understand/
-```
 class TrieNode {
     Map<Character, TrieNode> children;
     boolean isWord;
@@ -494,14 +449,11 @@ class TrieNode {
         isWord = false;
     }
 }
-
 class WordDictionary {
     private TrieNode root;
-
     public WordDictionary() {
         root = new TrieNode();
     }
-
     public void addWord(String word) {
         TrieNode node = root;
         // Traverse the trie for each character in the word
@@ -518,11 +470,9 @@ class WordDictionary {
         // Mark the last node as a word node
         node.isWord = true;
     }
-
     public boolean search(String word) {
         return searchHelper(root, word, 0);
     }
-
     private boolean searchHelper(TrieNode node, String word, int index) {
         // If we have reached the end of the word,
         // check if the current node is a word node
@@ -554,4 +504,5 @@ class WordDictionary {
         }
     }
 }
-```
+      
+    
