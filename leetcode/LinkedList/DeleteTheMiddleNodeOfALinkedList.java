@@ -301,3 +301,7 @@ The algorithm uses a few constant extra variables: dummy, slow, and fast. Regard
 
 Refer to
 L203.Remove Linked List Elements
+L876.P4.3.Middle of the Linked List (Ref.L2095)
+L148.Sort List (Ref.L876,L21)
+L148 refer here is for the same way we handle middle node, L148 is using same pattern below:
+while(fast.next != null && fast.next.next != null) {...}
