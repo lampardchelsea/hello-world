@@ -159,42 +159,35 @@ public class SortList {
 
 
 
-https://leetcode.com/problems/sort-list/
 
+https://leetcode.com/problems/sort-list/
 Given the head of a linked list, return the list after sorting it in ascending order.
 
 Example 1:
 
 
-```
 Input: head = [4,2,1,3]
 Output: [1,2,3,4]
-```
 
 Example 2:
 
 
-```
 Input: head = [-1,5,3,4,0]
 Output: [-1,0,3,4,5]
-```
 
 Example 3:
-```
 Input: head = []
 Output: []
-```
 
 Constraints:
-- The number of nodes in the list is in the range [0, 5 * 104].
-- -105 <= Node.val <= 105
- 
-Follow up: Can you sort the linked list in O(n logn) time and O(1) memory (i.e. constant space)?
----
-Attempt 1: 2023-02-10
+- The number of nodes in the list is in the range [0, 5 * 10^4].
+- -10^5 <= Node.val <= 10^5
 
-Solution 1: Merge Sort (60 min)
-```
+Follow up: 
+Can you sort the linked list in O(n logn) time and O(1) memory (i.e. constant space)?
+--------------------------------------------------------------------------------
+Attempt 1: 2023-02-10
+Solution 1: Merge Sort (30 min)
 /** 
  * Definition for singly-linked list. 
  * public class ListNode { 
@@ -251,61 +244,54 @@ class Solution {
     } 
 }
 
-Time Complexity: O(nlog⁡n), where n is the number of nodes in linked list. The algorithm can be split into 2 phases, Split and Merge
-Space Complexity: O(log⁡n), where n is the number of nodes in linked list. Since the problem is recursive, we need additional space to store the recursive call stack. The maximum depth of the recursion tree is log⁡n
-```
+Time Complexity: O(nlog⁡n), where n is the number of nodes in linked list. 
+The algorithm can be split into 2 phases, Split and Merge
+Space Complexity: O(log⁡n), where n is the number of nodes in linked list. 
+Since the problem is recursive, we need additional space to store the recursive call stack. 
+The maximum depth of the recursion tree is log⁡n
 
-Note: There is a slightly difference between L148. Sort List vs L876. Middle of the Linked List
-
+Note: There is a slightly difference between L148. Sort List & L2095. Delete the Middle Node of a Linked List vs L876. Middle of the Linked List
 In L876 use below 'slow' and 'fast' pointer (fast != null && fast.next != null) to find the actual middle node, 'slow' directly point to it
 Test out by 2 cases:
 1. {1,2,3,4,5} -> slow = 3, actual middle node = 3
 2. {1,2,3,4,5,6} -> slow = 4, actual middle node = 4
-```
         while(fast != null && fast.next != null) {  
+            fast = fast.next.next;  
+            slow = slow.next;  
+        }  
+        return slow;
+But in L148 / L2095 use another style (fast.next != null && fast.next.next != null) because the purpose is cut the list into two halves, the cutting point is after the end of first half and before the start of second half,  instead of find actual middle node, 'slow' should point to last node of first half, in future we can cut list into two halves by reserve head of second half as 'ListNode secondHalf = slow.next' and cut list by removing connection between two sub-lists as 'slow.next=null'
+Test out by 2 cases:
+1.{1,2,3,4,5} -> slow = 2, slow.next = 3, second half start node = 3
+2.{1,2,3,4,5,6} -> slow = 3, slow.next = 4, second half start node = 4
+        while(fast.next != null && fast.next.next != null) { 
             fast = fast.next.next; 
             slow = slow.next; 
         } 
-        return slow;
-```
-But in L148 use another style (fast.next != null && fast.next.next != null) because the purpose is cut the list into two halves, the cutting point is after the end of first half and before the start of second half,  instead of find actual middle node, 'slow' should point to last node of first half, in future we can cut list into two halves by reserve head of second half as 'ListNode secondHalf = slow.next' and cut list by removing connection between two sub-lists as 'slow.next=null'Test out by 2 cases:
-1.{1,2,3,4,5} -> slow = 2, slow.next = 3, second half start node = 3
-2.{1,2,3,4,5,6} -> slow = 3, slow.next = 4, second half start node = 4
-```
-        while(fast.next != null && fast.next.next != null) {
-            fast = fast.next.next;
-            slow = slow.next;
-        }
-        ListNode firstHalf = head;
-        ListNode secondHalf = slow.next;
+        ListNode firstHalf = head; 
+        ListNode secondHalf = slow.next; 
         slow.next = null;
-```
 
 Refer to
 https://leetcode.com/problems/sort-list/solutions/840381/sort-list/
-
 Overview
-
 The problem is to sort the linked list in O(nlog⁡n) time and using only constant extra space. If we look at various sorting algorithms, Merge Sort is one of the efficient sorting algorithms that is popularly used for sorting the linked list. The merge sort algorithm runs in O(nlog⁡n) time in all the cases. Let's discuss approaches to sort linked list using merge sort.
 
 Quicksort is also one of the efficient algorithms with the average time complexity of O(nlog⁡n). But the worst-case time complexity is O(n^2). Also, variations of the quick sort like randomized quicksort are not efficient for the linked list because unlike arrays, random access in the linked list is not possible in O(1) time. If we sort the linked list using quicksort, we would end up using the head as a pivot element which may not be efficient in all scenarios.
 
-
 Approach 1: Top Down Merge Sort
-
 Intuition
 Merge sort is a popularly known algorithm that follows the Divide and Conquer Strategy. The divide and conquer strategy can be split into 2 phases:
 Divide phase: Divide the problem into subproblems.
 Conquer phase: Repeatedly solve each subproblem independently and combine the result to form the original problem.
 The Top Down approach for merge sort recursively splits the original list into sublists of equal sizes, sorts each sublist independently, and eventually merge the sorted lists. Let's look at the algorithm to implement merge sort in Top Down Fashion.
 
-
 Algorithm
-- Recursively split the original list into two halves. The split continues until there is only one node in the linked list (Divide phase). To split the list into two halves, we find the middle of the linked list using the Fast and Slow pointer approach as mentioned in Find Middle Of Linked List.
-- Recursively sort each sublist and combine it into a single sorted list. (Merge Phase). This is similar to the problem Merge two sorted linked lists
+- Recursively split the original list into two halves. The split continues until there is only one node in the linked list (Divide phase). To split the list into two halves, we find the middle of the linked list using the Fast and Slow pointer approach as mentioned in 
+Find Middle Of Linked List.
+- Recursively sort each sublist and combine it into a single sorted list. (Merge Phase). This is similar to the problem Recursively sort each sublist and combine it into a single sorted list. (Merge Phase). This is similar to the problem 
+Merge two sorted linked lists
 The process continues until we get the original list in sorted order.
-
-
 For the linked list = [10,1,60,30,5], the following figure illustrates the merge sort process using a top down approach.
 
 
@@ -320,7 +306,7 @@ If we have sorted lists, list1 = [1,10] and list2 = [5,30,60]. The following ani
 
 
 
-```
+
 class Solution { 
     public ListNode sortList(ListNode head) { 
         if (head == null || head.next == null) 
@@ -358,7 +344,6 @@ class Solution {
         return mid; 
     } 
 }
-```
 Complexity Analysis
 - Time Complexity: O(nlog⁡n), where n is the number of nodes in linked list. The algorithm can be split into 2 phases, Split and Merge.
 Let's assume that nis power of 2. For n = 16, the split and merge operation in Top Down fashion can be visualized as follows
@@ -369,3 +354,12 @@ Merge
 At each level, we merge n nodes which takes O(n) time. For n=166, we perform merge operation on 16 nodes in each of the 4 levels.
 So the time complexity for split and merge operation is O(nlog⁡n)
 - Space Complexity: O(log⁡n), where n is the number of nodes in linked list. Since the problem is recursive, we need additional space to store the recursive call stack. The maximum depth of the recursion tree is log⁡n
+
+Refer to
+L876.P4.3.Middle of the Linked List (Ref.L2095)
+L21.Merge Two Sorted Lists (Ref.L148)
+L88.Merge Sorted Array
+L2095.Delete the Middle Node of a Linked List (Ref.L203,L876)
+十大经典排序算法(动图演示)
+Merge Sort
+Quick Sort
