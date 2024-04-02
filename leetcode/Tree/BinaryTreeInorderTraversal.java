@@ -53,40 +53,32 @@ class Solution {
 
 
 
-https://leetcode.com/problems/binary-tree-inorder-traversal/
 
+https://leetcode.com/problems/binary-tree-inorder-traversal/
 Given the root of a binary tree, return the inorder traversal of its nodes' values.
 
 Example 1:
 
 
-```
 Input: root = [1,null,2,3]
 Output: [1,3,2]
-```
 
 Example 2:
-```
 Input: root = []
 Output: []
-```
 
 Example 3:
-```
 Input: root = [1]
 Output: [1]
-```
 
 Constraints:
 - The number of nodes in the tree is in the range [0, 100].
 - -100 <= Node.val <= 100
  
 Follow up: Recursive solution is trivial, could you do it iteratively?
----
+--------------------------------------------------------------------------------
 Attempt 1: 2022-10-23
-
 Solution 1:  Recursive traversal (10min)
-```
 /** 
  * Definition for a binary tree node. 
  * public class TreeNode { 
@@ -122,10 +114,11 @@ class Solution {
         helper(root.right, result); 
     } 
 }
-```
+
+Time Complexity: O(n) 
+Space Complexity: O(n)
 
 Test:
-```
 import java.util.ArrayList; 
 import java.util.List; 
 public class Test { 
@@ -180,24 +173,20 @@ public class Test {
         helper(root.right, result); 
     } 
 }
-```
 
 Refer to
 https://leetcode.com/problems/binary-tree-inorder-traversal/discuss/283746/All-DFS-traversals-(preorder-inorder-postorder)-in-Python-in-1-line
 
 
-```
 def preorder(root): 
   return [root.val] + preorder(root.left) + preorder(root.right) if root else [] 
 def inorder(root): 
   return  inorder(root.left) + [root.val] + inorder(root.right) if root else [] 
 def postorder(root): 
   return  postorder(root.left) + postorder(root.right) + [root.val] if root else []
-```
 
 Refer to
 https://leetcode.com/problems/binary-tree-inorder-traversal/discuss/31231/C%2B%2B-Iterative-Recursive-and-Morris
-```
 // Recursive solution 
 class Solution { 
 public: 
@@ -216,10 +205,8 @@ private:
         inorder(root -> right, nodes); 
     } 
 };
-```
 
 Solution 2: Iterative traversal with Stack (10min)
-```
 /** 
  * Definition for a binary tree node. 
  * public class TreeNode { 
@@ -254,13 +241,14 @@ class Solution {
         return result; 
     } 
 }
-```
+
+Time Complexity: O(n)  
+Space Complexity: O(n)
 
 Refer to
 https://leetcode.com/problems/binary-tree-inorder-traversal/discuss/31213/Iterative-solution-in-Java-simple-and-readable
 
 
-```
 public List<Integer> inorderTraversal(TreeNode root) { 
     List<Integer> list = new ArrayList<Integer>(); 
     Stack<TreeNode> stack = new Stack<TreeNode>(); 
@@ -276,4 +264,10 @@ public List<Integer> inorderTraversal(TreeNode root) {
     } 
     return list; 
 }
-```
+      
+
+Refer to
+L98.Validate Binary Search Tree (Ref.L94,L333,L230)
+L230.Kth Smallest Element in a BST (Ref.L98)
+L144.Binary Tree Preorder Traversal (Ref.L94,L145)
+L145.Binary Tree Postorder Traversal (Ref.L94,L144)
