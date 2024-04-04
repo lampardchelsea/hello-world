@@ -250,34 +250,26 @@ private class TreeNode {
 
 
 
+
 https://leetcode.ca/all/333.html
-
 Given a binary tree, find the largest subtree which is a Binary Search Tree (BST), where largest means subtree with largest number of nodes in it.
-
 Note: A subtree must include all of its descendants.
-
 Example:
-```
 Input: [10,5,15,1,8,null,7]
-
-   10
-   / \
-  5  15
- / \   \
-1   8   7
+     10
+    /   \
+  [5]    15
+ /    \    \
+[1]   [8]   7
 
 Output: 3
-Explanation: The Largest BST Subtree in this case is the highlighted one.
-             The return value is the subtree's size, which is 3.
-```
-Follow up: Can you figure out ways to solve it with O(n) time complexity?
----
+Explanation: The Largest BST Subtree in this case is the highlighted one. The return value is the subtree's size, which is 3.
+Follow up: 
+Can you figure out ways to solve it with O(n) time complexity?
+--------------------------------------------------------------------------------
 Attempt 1: 2023-01-02
-
-Solution 1: Native recursive traversal two pass DFS O(N^2) solution (30 min, for each node check if a BST start from it, if yes then find number of nodes in in this tree)
-
+Solution 1: Native recursive traversal two pass DFS O(N^2) solution (30 min, for each node check if a BST start from it, if yes then find number of nodes in this tree)
 Style 1: Top Down DFS but with actual return (largestBSTSubtree) + Top Down DFS (isValidBST) + Bottom Up DFS (countNodes)
-```
 public class TreeSolution { 
     private class TreeNode { 
         public int val; 
@@ -355,7 +347,7 @@ public class TreeSolution {
         // Base 
         if(root == null) { 
             return 0; 
-        } 
+        } 1
         // Divide (递归成为更小的问题) 
         int left = countNodes(root.left); 
         int right = countNodes(root.right); 
@@ -366,12 +358,27 @@ public class TreeSolution {
 
 Time Complexity: O(n^2)   
 Space Complexity: O(n^2)
-```
+
+Note: Another global variable style to count the total nodes in a Binary Tree:
+Refer to
+https://takeuforward.org/binary-tree/count-number-of-nodes-in-a-binary-tree/
+    // Top Down DFS (遍历法132: 1.base case -> 3.进行当前层的处理计算 -> 2.递归成为更小的问题)
+    int count = 0;
+    private void countNodes(TreeNode root) { 
+        // Base 
+        if(root == null) { 
+            return; 
+        } 
+        // 进行当前层的处理计算
+        count++;
+        // 递归成为更小的问题
+        countNodes(root.left); 
+        countNodes(root.right); 
+    } 
 
 Refer to
 https://www.cnblogs.com/grandyang/p/5188938.html
-这道题让我们求一棵二分树的最大二分搜索子树，所谓二分搜索树就是满足左<根<右的二分树，需要返回这个二分搜索子树的节点个数。题目中给的提示说可以用之前那道 Validate Binary Search Tree 的方法来做，时间复杂度为 O(n2)，这种方法是把每个节点都当做根节点，来验证其是否是二叉搜索数，并记录节点的个数，若是二叉搜索树，就更新最终结果，对于每一个节点，都来验证其是否是 BST，如果是的话，就统计节点的个数即可，参见代码如下
-```
+这道题让我们求一棵二分树的最大二分搜索子树，所谓二分搜索树就是满足左<根<右的二分树，需要返回这个二分搜索子树的节点个数。题目中给的提示说可以用之前那道 Validate Binary Search Tree 的方法来做，时间复杂度为 O(n^2)，这种方法是把每个节点都当做根节点，来验证其是否是二叉搜索数，并记录节点的个数，若是二叉搜索树，就更新最终结果，对于每一个节点，都来验证其是否是 BST，如果是的话，就统计节点的个数即可，参见代码如下
 class Solution { 
 public: 
     int largestBSTSubtree(TreeNode* root) { 
@@ -389,10 +396,8 @@ public:
         return count(root->left) + count(root->right) + 1; 
     } 
 };
-```
 
 Style 2: Top Down DFS with classical global variable and void return (largestBSTSubtree + helper) + Top Down DFS (isValidBST) + Bottom Up DFS (countNodes)
-```
 public class TreeSolution { 
     private class TreeNode { 
         public int val; 
@@ -492,14 +497,12 @@ public class TreeSolution {
 
 Time Complexity: O(n^2)   
 Space Complexity: O(n^2)
-```
 
 Refer to
 https://www.jianshu.com/p/fa7a1ce4e614
 Top down approach 有两种，一种是Top down+ Top down, 另外一种是Top down + Bottom up，两种区别在于find_tree utility function, 两种方案都是基于Top down的DFS是经典global variable + void return (Top Down DFS with classical global variable and void return). 
 
 Top down + Top down 
-```
 class Solution { 
 public: 
     // Top down helper
@@ -541,9 +544,7 @@ public:
         return max_ret; 
     } 
 };
-```
 Top down + Bottom up
-```
 class Solution { 
 public: 
     // Bottom up helper
@@ -587,10 +588,8 @@ public:
         return max_ret; 
     } 
 };
-```
 
 Solution 2: Divide and Conquer one pass DFS (60 min)
-```
 public class TreeSolution { 
     private class TreeNode { 
         public int val; 
@@ -676,7 +675,6 @@ public class TreeSolution {
 
 Time Complexity: O(n)  
 Space Complexity: O(n)
-```
 
 Refer to
 https://tenderleo.gitbooks.io/leetcode-solutions-/content/GoogleMedium/333.html
@@ -684,7 +682,6 @@ https://tenderleo.gitbooks.io/leetcode-solutions-/content/GoogleMedium/333.html
 2. you need to track the size of subtree if it is a BST.
 3. thus global variable / TreeNode won't keep consistent info regarding 1&2.
 4. you need a wrapper to hold such 2 information. along with the current range of subtree.
-```
 /** 
  * Definition for a binary tree node. 
  * public class TreeNode { 
@@ -737,12 +734,10 @@ public class Solution {
         return node; 
     } 
 }
-```
 
 Refer to
 https://www.cnblogs.com/grandyang/p/5188938.html
 题目中的 Follow up 让用 O(n) 的时间复杂度来解决问题，还是采用 DFS 的思想来解题，由于时间复杂度的限制，只允许遍历一次整个二叉树，由于满足题目要求的二叉搜索子树必定是有叶节点的，所以思路就是先递归到最左子节点，然后逐层往上递归，对于每一个节点，都记录当前最大的 BST 的节点数，当做为左子树的最大值，和做为右子树的最小值，当每次遇到左子节点不存在或者当前节点值大于左子树的最大值，且右子树不存在或者当前节点值小于右子树的最小数时，说明 BST 的节点数又增加了一个，更新结果及其参数，如果当前节点不是 BST 的节点，那么更新 BST 的节点数 res 为左右子节点的各自的 BST 的节点数的较大值，参见代码如下：
-```
 class Solution {
 public:
     int largestBSTSubtree(TreeNode* root) {
@@ -765,4 +760,8 @@ public:
         }
     }
 };
-```
+      
+
+Refer to
+L98.Validate Binary Search Tree (Ref.L94,L333,L230)
+L222.Count Complete Tree Nodes (Ref.L104,L1448,L333)
