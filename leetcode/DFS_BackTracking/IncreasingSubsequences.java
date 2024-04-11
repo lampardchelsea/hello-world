@@ -121,36 +121,104 @@ class Solution {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 https://leetcode.com/problems/increasing-subsequences/
-
 Given an integer array nums, return all the different possible increasing subsequences of the given array with at least two elements. You may return the answer in any order.
-
 The given array may contain duplicates, and two equal integers should also be considered a special case of increasing sequence.
 
 Example 1:
-```
 Input: nums = [4,6,7,7]
 Output: [[4,6],[4,6,7],[4,6,7,7],[4,7],[4,7,7],[6,7],[6,7,7],[7,7]]
-```
 
 Example 2:
-```
 Input: nums = [4,4,3,2,1]
 Output: [[4,4]]
-```
 
 Constraints:
 - 1 <= nums.length <= 15
 - -100 <= nums[i] <= 100
----
+--------------------------------------------------------------------------------
 Attempt 1: 2022-10-30
-
 Wrong answer: 
-
 1.Don't sort the input
 Its not L40.Combination Sum II, because not able to sort to make the input monotonic increasing, we have to keep the order of input.
 e.g  Input nums = [4,4,3,2,1], after sort the input will be [1,2,3,4,4] -> the output will be [[1,2],[1,2,3],[1,2,3,4],[1,2,3,4,4],[1,2,4],[1,2,4,4],[1,3],[1,3,4],[1,3,4,4],[1,4],[1,4,4],[2,3],[2,3,4],[2,3,4,4],[2,4],[2,4,4],[3,4],[3,4,4],[4,4]], the expected output should be [4,4]
-```
 Input: [4,4,3,2,1]  
 Wrong output: [[1,2],[1,2,3],[1,2,3,4],[1,2,3,4,4],[1,2,4],[1,2,4,4],[1,3],[1,3,4],[1,3,4,4],[1,4],[1,4,4],[2,3],[2,3,4],[2,3,4,4],[2,4],[2,4,4],[3,4],[3,4,4],[4,4]]
 Expect output: [[4,4]] 
@@ -179,10 +247,8 @@ class Solution {
         } 
     } 
 }
-```
 
 2. Wrong limitation with if(tmp.size() > 1) {... return}
-```
 class Solution {  
     public List<List<Integer>> findSubsequences(int[] nums) {  
         List<List<Integer>> result = new ArrayList<List<Integer>>();  
@@ -205,10 +271,8 @@ class Solution {
         }  
     }  
 }
-```
 
 3. Wrong limitation with if(index  >= nums.length) {... return}
-```
 class Solution {  
     public List<List<Integer>> findSubsequences(int[] nums) {  
         List<List<Integer>> result = new ArrayList<List<Integer>>();  
@@ -231,10 +295,8 @@ class Solution {
         }  
     }  
 }
-```
 
 Solution 1:  Recursive traversal (360min, too long to figure out two new conditions to filter out elements rather than L90.Subsets II)
-```
 class Solution { 
     public List<List<Integer>> findSubsequences(int[] nums) { 
         List<List<Integer>> result = new ArrayList<List<Integer>>(); 
@@ -283,10 +345,8 @@ class Solution {
         } 
     } 
 }
-```
 
 Two new conditions to filter out elements rather than L90.Subsets II
-
 Condition 1: set.contains(nums[i]) 
 Create a local set to filter possible duplicates 
 Note: we introduce a new local set instead of use existing properties like "i > index && nums[i] == nums[i - 1]" to compare because we cannot sort input array into monotonic increasing format, same elements are not necessary adjacent
@@ -309,7 +369,6 @@ https://leetcode.com/problems/increasing-subsequences/discuss/97130/Java-20-line
 consider the following case: [4, 7, 6, 7], we can draw recursion tree like this:
 
 Java implementation:
-```
 public List<List<Integer>> findSubsequences(int[] nums) { 
         // we cannot sort array first, sequence matters 
         List<List<Integer>> res = new ArrayList<>(); 
@@ -333,12 +392,10 @@ public List<List<Integer>> findSubsequences(int[] nums) {
             } 
         } 
     }
-```
 
 Also refer to
 https://leetcode.com/problems/increasing-subsequences/discuss/97134/Evolve-from-intuitive-solution-to-optimal
 Solution 4: Duplicates can also be avoided in recursion. Starting from a given number, we pick the next number. We cache the numbers already tried to avoid duplicates.
-```
 vector<vector<int>> findSubsequences(vector<int>& nums) { 
         vector<vector<int>> res; 
         vector<int> one; 
@@ -357,11 +414,9 @@ vector<vector<int>> findSubsequences(vector<int>& nums) {
             one.pop_back(); 
         } 
     }
-```
 
 https://leetcode.com/problems/increasing-subsequences/discuss/97147/Java-solution-beats-100
 A bit different than use ArrayList for 'tmp', here use a Deque for 'tmp', which has "peekLast" method to find the last element
-```
 public class Solution { 
     public List<List<Integer>> findSubsequences(int[] nums) { 
         List<List<Integer>> res = new LinkedList<>(); 
@@ -382,15 +437,13 @@ public class Solution {
         } 
     } 
 }
-```
 
----
+--------------------------------------------------------------------------------
 Solution 2: Backtracking style 2 (720min, too long to sort out different conditions for "Not pick" and "Pick" branch, especially for "Not pick" branch, more complicate than L90.Subsets II)
 1. For "Pick" branch condition:  if (tmp.size() == 0 || nums[index] >= tmp.get(tmp.size() - 1) {...}
 2. For "Not pick" branch condition: if(index == 0 || tmp.size() == 0 || tmp.get(tmp.size() - 1) != nums[index]) {...} 
 
 Correct solution 2.1 "Pick" before "Not pick" style 1
-```
 class Solution { 
     public List<List<Integer>> findSubsequences(int[] nums) { 
         List<List<Integer>> result = new ArrayList<List<Integer>>(); 
@@ -418,12 +471,10 @@ class Solution {
         helper(nums, result, tmp, index + 1);  
     } 
 }
-```
 
 Refer to
 https://leetcode.com/problems/increasing-subsequences/discuss/97147/Java-solution-beats-100/363291
 The set is needless:
-```
 class Solution { 
      
     private List<List<Integer>> result = new ArrayList<>(); 
@@ -454,10 +505,8 @@ class Solution {
         helper(nums, index + 1, ans); 
     } 
 }
-```
 
 Correct solution 2.2 "Pick" before "Not pick" style 2, just merge 'return' condition with "Not pick" branch
-```
 class Solution { 
     public List<List<Integer>> findSubsequences(int[] nums) { 
         List<List<Integer>> result = new ArrayList<List<Integer>>(); 
@@ -484,10 +533,8 @@ class Solution {
         } 
     } 
 }
-```
 
 Correct solution 2.3 "Not pick" before "Pick", switch the branch will not impact the result, because no local variable used like L90.Subsets II
-```
 class Solution { 
     public List<List<Integer>> findSubsequences(int[] nums) { 
         List<List<Integer>> result = new ArrayList<List<Integer>>(); 
@@ -514,21 +561,13 @@ class Solution {
         } 
     } 
 }
-```
 
 Refer to
 https://leetcode.com/problems/increasing-subsequences/discuss/1857460/Java-Backtracking-91-Speed-or-Explained
 Usually when it comes to generating subsets, there is always a way to avoid using a HashSet, and this question is of no exception.
-
 For any element in the array, we can either pick or not pick and we only pick when the current element is no less than the last element in the tmp list, but that along is not enough because we will come across duplicates. Let me elaborate:
-
 Consider something like 3 -> 5 -> 7 -> 1 -> 7 -> .... Here, we have two 7 in the array, picking the first 7 and skip the second 7 is the exactly same thing as skipping the first 7 and picking the second 7!
-
 This means that we have to check the last element in the tmp list and if they are identical, we disallow not-pick as an option for the current layer of recursion. It works because if the last element in the list is the identical as the current element, not-pick option will be covered by the previous recursion layer that added that element to the tmp list (i.e. Choose not-pick there, not here), so we don't have to do it again.
-
-
-
-```
 class Solution { 
     public List<List<Integer>> findSubsequences(int[] nums) { 
         List<List<Integer>> ans = new ArrayList<>(); 
@@ -552,11 +591,9 @@ class Solution {
         } 
     } 
 }
-```
 
 Two step by step examples:
 Example 1: input = [4,4,6,7]
-```
                                                    { } 
                               /                                          \ 
                             { }                                          {4} 
@@ -566,13 +603,11 @@ Example 1: input = [4,4,6,7]
                  { }     {7}      {6}    {6,7}           {4}    {4,7}          {4,6}      {4,6,7} 
                 /   \   /   \     /  \   /    \          / \    /    \        /     \     /      \ 
               { }  {7}{7} {7,7} {6}{6,7}{6,7}{6,7,7}   {4}{4,7}{4,7}{4,7,7} {4,6}{4,6,7}{4,6,7}{4,6,7,7}
-```
 It works because if the last element in the list is the identical as the current element, not-pick option will be covered by the previous recursion layer that added that element to the tmp list (i.e. Choose not-pick there, not here), so we don't have to do it again --------> A good example below is for removed with back slash symbol subsets [6,7], [4,7], [4,6,7] in "Not pick" branch all covered by the previous recursion layer that same subsets in "Pick" branch, blue highlighted below for how "Not pick" branch skip happened when coming element is duplicate than existing last element on 'tmp' list
 
 
 
 Example 2: input = [4,4,3,2,1]
-```
                                                                                   { } 
                                /                                                                                             \ 
                               { }                                                                                            {4} 
@@ -585,6 +620,9 @@ Example 2: input = [4,4,3,2,1]
  / \   /  \     / \    /    \      /  \    /     \       /   \       /     \       /  \     /    \       /   \      /    \          /   \         /  \           /  \            /       \ 
 {}{1}{2}{2,1}{3}{3,1}{3,2}{3,2,1}{4}{4,1}{4,2}{4,2,1}{4,3}{4,3,1}{4,3,2}{4,3,2,1}{4}{4,1}{4,2}{4,2,1}{4,3}{4,3,1}{4,3,2}{4,3,2,1}{4,4}{4,4,1}{4,4,2}{4,4,2,1}{4,4,3}{4,4,3,1}{4,4,3,2}{4,4,3,2 
                                                                                                                                                                                             ,1}
-```
 
 
+      
+
+Refer to
+L90.P11.2.Subsets II (Ref.L491,L78)
