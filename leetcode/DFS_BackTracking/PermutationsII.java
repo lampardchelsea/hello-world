@@ -448,33 +448,28 @@ start = 0, i = 2 => {2 2 1} -> {1 2 2} recovered
 
 
 
-https://leetcode.com/problems/permutations-ii/
 
+https://leetcode.com/problems/permutations-ii/
 Given a collection of numbers, nums, that might contain duplicates, return all possible unique permutations in any order.
 
 Example 1:
-```
 Input: nums = [1,1,2]
 Output:
 [[1,1,2],
  [1,2,1],
  [2,1,1]]
-```
 
 Example 2:
-```
 Input: nums = [1,2,3]
 Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
-```
 
 Constraints:
 - 1 <= nums.length <= 8
 - -10 <= nums[i] <= 10
----
+--------------------------------------------------------------------------------
 Attempt 1: 2022-10-20
-
 Solution 1: Backtracking style 1 (10min)
-```
+Style 1: With redundant 'index' parameter
 class Solution { 
     public List<List<Integer>> permuteUnique(int[] nums) { 
         List<List<Integer>> result = new ArrayList<List<Integer>>(); 
@@ -502,6 +497,39 @@ class Solution {
     } 
 }
 
+Time Complexity: O(N * N!)
+Space Complexity: O(N)
+Style 2: Without redundant 'index' parameter
+class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        boolean[] visited = new boolean[nums.length];
+        Arrays.sort(nums);
+        helper(nums, result, new ArrayList<Integer>(), visited);
+        return result;
+    }
+
+    private void helper(int[] nums, List<List<Integer>> result, List<Integer> tmp, boolean[] visited) {
+        if(tmp.size() == nums.length) {
+            result.add(new ArrayList<Integer>(tmp));
+            return;
+        }
+        for(int i = 0; i < nums.length; i++) {
+            if(visited[i] || (i > 0 && !visited[i - 1] && nums[i] == nums[i - 1])) {
+                continue;
+            }
+            tmp.add(nums[i]);
+            visited[i] = true;
+            helper(nums, result, tmp, visited);
+            tmp.remove(tmp.size() - 1);
+            visited[i] = false;
+        }
+    }
+}
+
+Time Complexity: O(N * N!)
+Space Complexity: O(N)
+
 Refer to 
 https://leetcode.com/problems/permutations-ii/discuss/18594/Really-easy-Java-solution-much-easier-than-the-solutions-with-very-high-vote/121098 
 The worst-case time complexity is O(n! * n). 
@@ -526,18 +554,12 @@ Above equations can be added together to get:
       = O(N * N!) 
 Space Complexity: O(N). Recursion stack.   
 N = Length of input array.
-```
 
 Refer to
 https://leetcode.com/problems/permutations-ii/discuss/18594/Really-easy-Java-solution-much-easier-than-the-solutions-with-very-high-vote/324818
-The difficulty is to handle the duplicates.
-With inputs as [1a, 1b, 2a],
-If we don't handle the duplicates, the results would be: [1a, 1b, 2a], [1b, 1a, 2a]...,
-so we must make sure 1a goes before 1b to avoid duplicates
-By using nums[i-1]==nums[i] && !used[i-1], we can make sure that 1b cannot be chosen before 1a
+The difficulty is to handle the duplicates. With inputs as [1a, 1b, 2a]. If we don't handle the duplicates, the results would be: [1a, 1b, 2a], [1b, 1a, 2a] ..., so we must make sure 1a goes before 1b to avoid duplicates by using nums[i - 1] == nums[i] && !used[i - 1], we can make sure that 1b cannot be chosen before 1a
 
 http://www.jiuzhang.com/solutions/permutations-ii/
-```
 public class Solution { 
     public List<List<Integer>> permuteUnique(int[] nums) { 
         List<List<Integer>> result = new ArrayList<List<Integer>>(); 
@@ -574,11 +596,9 @@ public class Solution {
         }         
     } 
 }
-```
 
----
+--------------------------------------------------------------------------------
 Solution 2: Backtracking style 2 (10min, no Arrays.sort(), no boolean visited, but frequency Hash Map)
-```
 class Solution { 
     public List<List<Integer>> permuteUnique(int[] nums) { 
         List<List<Integer>> result = new ArrayList<List<Integer>>(); 
@@ -640,11 +660,11 @@ Above equations can be added together to get:
       = O(N * N!) 
 Space Complexity: O(N). Recursion stack.   
 N = Length of input array.
-```
 
 Video explain for Solution 2: Backtracking style 2 how to work with HashMap
 Permutations II - Backtracking - Leetcode 47
-https://www.youtube.com/watch?v=qhBVWf0YafAWe cannot use duplicate elements in the same position which will result into same permutation
+https://www.youtube.com/watch?v=qhBVWf0YafA
+We cannot use duplicate elements in the same position which will result into same permutation
 
 
 Create frequency table based on given input, when use an element decrease the frequency of that element
@@ -655,7 +675,6 @@ After using two 1 and one 2 to build one permutation {1,1,2}, both element 1 and
 
 Refer to
 https://leetcode.com/problems/permutations-ii/discuss/1768113/Java-Backtracking-HashMap
-```
 class Solution { 
     public List<List<Integer>> permuteUnique(int[] nums) { 
         List<List<Integer>> result = new ArrayList(); 
@@ -682,8 +701,11 @@ class Solution {
         } 
     } 
 }
-```
 
----
+--------------------------------------------------------------------------------
 No "Not pick" and "Pick" branch available for this problem yet (normal decision tree not gonna work)
-Because in L47. we have to use all numbers in the given array, not like L77. we just pick k out of n numbers, so there is no chance for a number in L47 to 'Not pick', hence no "Not pick" and "Pick" strategy here
+Because in L47. we have to use all numbers in the given array, not like L77. we just pick k out of n numbers, so there is no chance for a number in L47 to 'Not pick', hence no "Not pick" and "Pick" strategy here      
+    
+Refer to
+L46.P11.3.Permutations (Ref.L77)
+L90.P11.2.Subsets II (Ref.L491,L78)
