@@ -1,13 +1,10 @@
+
 https://leetcode.ca/all/298.html
-
 Given a binary tree, find the length of the longest consecutive sequence path.
-
 The path refers to any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The longest consecutive path need to be from parent to child (cannot be the reverse).
 
 Example 1:
-```
 Input:
-
    1
     \
      3
@@ -18,12 +15,9 @@ Input:
 
 Output: 3
 Explanation: Longest consecutive sequence path is 3-4-5, so return 3.
-```
 
 Example 2:
-```
 Input:
-
    2
     \
      3
@@ -31,18 +25,13 @@ Input:
    2
   /
  1
-
 Output: 2
 Explanation: Longest consecutive sequence path is 2-3, not 3-2-1, so return 2.
-```
 
----
+--------------------------------------------------------------------------------
 Attempt 1: 2022-12-28
-
 Solution 1: Recursive traversal with global variable and update on the fly during each recursion (30min)
-
 Style 1: Intuitive way
-```
 class TreeSolution { 
     private class TreeNode { 
         public int val; 
@@ -118,15 +107,15 @@ class TreeSolution {
     } 
 }
 
-Complexity Analysis    
-Time Complexity: O(N). Where N is the number of nodes in the binary tree. In the worst case we might be visiting all the nodes of the binary tree.    
-Space Complexity: O(N). This is because the maximum amount of space utilized by the recursion stack would be N since the height of a skewed binary tree could be N.
-```
+Complexity Analysis
+Time Complexity: O(N). Where N is the number of nodes in the binary tree. In the worst case we might be 
+visiting all the nodes of the binary tree. 
+Space Complexity: O(N). This is because the maximum amount of space utilized by the recursion stack 
+would be N since the height of a skewed binary tree could be N.
 
 Refer to
 https://www.cnblogs.com/grandyang/p/5252599.html
 下面这种写法是利用分治法的思想，对左右子节点分别处理，如果左子节点存在且节点值比其父节点值大1，则递归调用函数，如果节点值不是刚好大1，则递归调用重置了长度的函数，对于右子节点的处理情况和左子节点相同，参见代码如下：
-```
 class Solution { 
 public: 
     int longestConsecutive(TreeNode* root) { 
@@ -147,10 +136,8 @@ public:
         } 
     } 
 };
-```
 
-Style 2: Strick follow the Recursive traversal style (so called Top Down DFS, 遍历法132: 1.base case -> 3.进行当前层的处理计算 -> 2.递归成为更小的问题)
-```
+Style 2: Strictly follow the Recursive traversal style (so called Top Down DFS, 遍历法132: 1.base case -> 3.进行当前层的处理计算 -> 2.递归成为更小的问题)
 class TreeSolution { 
     private class TreeNode { 
         public int val; 
@@ -220,15 +207,15 @@ class TreeSolution {
     } 
 }
 
-Complexity Analysis    
-Time Complexity: O(N). Where N is the number of nodes in the binary tree. In the worst case we might be visiting all the nodes of the binary tree.    
-Space Complexity: O(N). This is because the maximum amount of space utilized by the recursion stack would be N since the height of a skewed binary tree could be N.
-```
+Complexity Analysis
+Time Complexity: O(N). Where N is the number of nodes in the binary tree. In the worst case we might be 
+visiting all the nodes of the binary tree.
+Space Complexity: O(N). This is because the maximum amount of space utilized by the recursion stack would 
+be N since the height of a skewed binary tree could be N.
 
 Refer to
 https://www.cnblogs.com/grandyang/p/5252599.html
 这道题让我们求二叉树的最长连续序列，关于二叉树的题基本都需要遍历树，而递归遍历写起来特别简单，下面这种解法是用到了递归版的先序遍历，对于每个遍历到的节点，看节点值是否比参数值(父节点值)大1，如果是则长度加1，否则长度重置为1，然后更新结果 res，再递归调用左右子节点即可，参见代码如下： 
-```
 class Solution { 
 public: 
     int longestConsecutive(TreeNode* root) { 
@@ -246,15 +233,11 @@ public:
         dfs(root->right, root->val, out, res); 
     } 
 };
-```
 
----
+--------------------------------------------------------------------------------
 Solution 2: Divide and Conquer with global variable (30min)
-
 The style is exactly same as L124/P9.7.Binary Tree Maximum Path Sum
-
 Style  1: Count current root node (+ 1) later in conquer step, strictly follow the Divide and Conquer style (so called Bottom Up DFS, 分治法123: 1.base case -> 2.递归成为更小的问题 -> 3.进行当前层的处理计算)
-```
 class TreeSolution { 
     private class TreeNode { 
         public int val; 
@@ -324,15 +307,15 @@ class TreeSolution {
     } 
 }
 
-Complexity Analysis    
-Time Complexity: O(N). Where N is the number of nodes in the binary tree. In the worst case we might be visiting all the nodes of the binary tree.    
-Space Complexity: O(N). This is because the maximum amount of space utilized by the recursion stack would be N since the height of a skewed binary tree could be N.
-```
+Complexity Analysis
+Time Complexity: O(N). Where N is the number of nodes in the binary tree. In the worst case we might be 
+visiting all the nodes of the binary tree.
+Space Complexity: O(N). This is because the maximum amount of space utilized by the recursion stack would 
+be N since the height of a skewed binary tree could be N.
 
 Refer to
 https://eugenejw.github.io/2017/08/leetcode-298
-```
- public class Solution { 
+public class Solution { 
     int ret = 0; 
     public int longestConsecutive(TreeNode root) { 
         dfs(root); 
@@ -356,10 +339,8 @@ https://eugenejw.github.io/2017/08/leetcode-298
          
     } 
 }
-```
 
 Style  2: Count current root node (+ 1) first in divide step, strictly follow the Divide and Conquer style (so called Bottom Up DFS, 分治法123: 1.base case -> 2.递归成为更小的问题 -> 3.进行当前层的处理计算)
-```
 class TreeSolution { 
     private class TreeNode { 
         public int val; 
@@ -429,14 +410,14 @@ class TreeSolution {
     } 
 }
 
-Complexity Analysis    
-Time Complexity: O(N). Where N is the number of nodes in the binary tree. In the worst case we might be visiting all the nodes of the binary tree.    
-Space Complexity: O(N). This is because the maximum amount of space utilized by the recursion stack would be N since the height of a skewed binary tree could be N.
-```
+Complexity Analysis
+Time Complexity: O(N). Where N is the number of nodes in the binary tree. In the worst case we might be 
+visiting all the nodes of the binary tree.
+Space Complexity: O(N). This is because the maximum amount of space utilized by the recursion stack would 
+be N since the height of a skewed binary tree could be N.
 
 Refer to
 https://wentao-shao.gitbook.io/leetcode/graph-search/298.binary-tree-longest-consecutive-sequence
-```
 class Solution { 
   private int maxLength = 0; 
   public int longestConsecutive(TreeNode root) { 
@@ -458,4 +439,8 @@ class Solution {
     return length; 
   } 
 }
-```
+
+Refer to
+L124.P9.7.Binary Tree Maximum Path Sum
+L257.Binary Tree Paths (Ref.L1430,L549,L124)
+L549.Binary Tree Longest Consecutive Sequence II (Ref.L257,L298)
