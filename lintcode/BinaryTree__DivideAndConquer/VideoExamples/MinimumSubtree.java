@@ -174,14 +174,34 @@ class ResultType {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 http://buttercola.blogspot.com/2019/04/lintcode-596-minimum-subtree.html
-
 Given a binary tree, find the subtree with minimum sum. Return the root of the subtree.
-
 Example
-
 Example 1:
-```
 Input:
 {1,-5,2,1,2,-4,-5}
 Output:1
@@ -193,10 +213,8 @@ The tree is look like this:
  / \   /  \
 0   2 -4  -5 
 The sum of whole tree is minimum, so return the root.
-```
 
 Example 2:
-```
 Input:
 {1}
 Output:1
@@ -204,20 +222,15 @@ Explanation:
 The tree is look like this:
    1
 There is one and only one subtree in the tree. So we return 1.
-```
-
 Notice
-
 LintCode will print the subtree which root is your return node. It's guaranteed that there is only one subtree with minimum sum and the given binary tree is not an empty tree.
----
+--------------------------------------------------------------------------------
 Attempt 1: 2022-12-31
-
 Wrong Solution: Duplicate sum calculation happening for each node
 Since getSum() and getSumHelper() both calculate sum (based on current node as root) with same formula:
 In getSum(): sum = root.val + getSumHelper(root.left) + getSumHelper(root.right)
 In getSumHelper(): result = root.val + getSumHelper(root.left) + getSumHelper(root.right)
 Since each node will be visited in getSum() already once, the second visit happen during sum calculation as 'root' node in getSumHelper() is a duplicate one 
-```
 public class TreeSolution { 
     private class TreeNode { 
         public int val; 
@@ -228,17 +241,6 @@ public class TreeSolution {
         } 
     } 
     public static void main(String[] args) { 
-        /** 
-         *            1 
-         *           / \ 
-         *          2   5 
-         *         / \   \ 
-         *        3  4    6 
-         *               / 
-         *              7 
-         *               \ 
-         *                8 
-         */ 
         TreeSolution s = new TreeSolution(); 
         TreeNode one = s.new TreeNode(1); 
         TreeNode two = s.new TreeNode(2); 
@@ -287,10 +289,8 @@ public class TreeSolution {
         return result; 
     } 
 }
-```
 
 Solution 1:  Divide and Conquer (30 min)
-```
 public class TreeSolution { 
     private class TreeNode { 
         public int val; 
@@ -302,17 +302,6 @@ public class TreeSolution {
     }
 
     public static void main(String[] args) { 
-        /** 
-         *            1 
-         *           / \ 
-         *          2   5 
-         *         / \   \ 
-         *        3  4    6 
-         *               / 
-         *              7 
-         *               \ 
-         *                8 
-         */ 
         TreeSolution s = new TreeSolution(); 
         TreeNode one = s.new TreeNode(1); 
         TreeNode two = s.new TreeNode(2); 
@@ -365,13 +354,11 @@ public class TreeSolution {
     } 
 }
 
-Time Complexity: O(n)
+Time Complexity: O(n) 
 Space Complexity: O(n)
-```
 
 Refer to
 http://buttercola.blogspot.com/2019/04/lintcode-596-minimum-subtree.html
-```
 /** 
  * Definition of TreeNode: 
  * public class TreeNode { 
@@ -419,12 +406,9 @@ public class Solution {
         return ret; 
     } 
 }
-```
 
 Solution 2:  Pure Divide and Conquer with helper class Node return sum and TreeNode at the same time (30 min, the similar way as L865.Smallest Subtree with all the Deepest Nodes)
-
 Style 1: Still with global variable 'result' to record the global minimum sum during traversal
-```
 public class TreeSolution { 
     private class TreeNode { 
         public int val; 
@@ -435,17 +419,6 @@ public class TreeSolution {
         } 
     } 
     public static void main(String[] args) { 
-        /** 
-         *            1 
-         *           / \ 
-         *          2   5 
-         *         / \   \ 
-         *        3  4    6 
-         *               / 
-         *              7 
-         *               \ 
-         *                8 
-         */ 
         TreeSolution s = new TreeSolution(); 
         TreeNode one = s.new TreeNode(1); 
         TreeNode two = s.new TreeNode(2); 
@@ -509,9 +482,8 @@ public class TreeSolution {
     } 
 }
 
-Time Complexity: O(n)
+Time Complexity: O(n) 
 Space Complexity: O(n)
-```
 
 Refer to
 https://yeqiuquan.blogspot.com/2017/03/lintcode-596-minimum-subtree_8.html
@@ -522,7 +494,6 @@ https://yeqiuquan.blogspot.com/2017/03/lintcode-596-minimum-subtree_8.html
 一个小弟找左子数的sum，一个小弟找右子树的sum。
 同时，我们根据算出来的当前树的sum决定要不要更新result。
 当遍历完整棵树的时候，result里记录的就是拥有最小sum的子树的信息。
-```
 /** 
  * Definition of TreeNode: 
  * public class TreeNode { 
@@ -579,10 +550,8 @@ public class Solution {
     } 
      
 }
-```
 
 Style 2: Without global variable 'result' but only return to record the global minimum sum during traversal
-```
 public class TreeSolution { 
     private class TreeNode { 
         public int val; 
@@ -594,17 +563,6 @@ public class TreeSolution {
     }
 
     public static void main(String[] args) { 
-        /** 
-         *            1 
-         *           / \ 
-         *          2   5 
-         *         / \   \ 
-         *        3  4    6 
-         *               / 
-         *              7 
-         *               \ 
-         *                8 
-         */ 
         TreeSolution s = new TreeSolution(); 
         TreeNode one = s.new TreeNode(1); 
         TreeNode two = s.new TreeNode(2); 
@@ -680,13 +638,11 @@ public class TreeSolution {
     } 
 }
 
-Time Complexity: O(n)
+Time Complexity: O(n) 
 Space Complexity: O(n)
-```
 
 Refer to
 http://buttercola.blogspot.com/2019/04/lintcode-596-minimum-subtree.html
-```
 /** 
  * Definition of TreeNode: 
  * public class TreeNode { 
@@ -751,11 +707,9 @@ class ResultType {
         this.minNode = minNode; 
     } 
 }
-```
 
 Refer to
 https://www.jiuzhang.com/problem/minimum-subtree/
-```
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -805,6 +759,7 @@ public class Solution {
         return result;
     }
 }
+
 class ResultType {
     public int sum, minSum;
     public TreeNode minSubtree;
@@ -815,4 +770,5 @@ class ResultType {
         this.sum = sum;
     }
 }
-```
+      
+    
