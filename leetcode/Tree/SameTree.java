@@ -222,44 +222,60 @@ class Solution {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 https://leetcode.com/problems/same-tree/
-
 Given the roots of two binary trees p and q, write a function to check if they are the same or not.
-
 Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
 
 Example 1:
 
 
-```
 Input: p = [1,2,3], q = [1,2,3]
 Output: true
-```
 
 Example 2:
 
 
-```
 Input: p = [1,2], q = [1,null,2]
 Output: false
-```
 
 Example 3:
 
 
-```
 Input: p = [1,2,1], q = [1,1,2]
 Output: false
-```
  
 Constraints:
 - The number of nodes in both trees is in the range [0, 100].
-- -104 <= Node.val <= 104
----
+- -10^4 <= Node.val <= 10^4
+--------------------------------------------------------------------------------
 Attempt 1: 2022-11-08
-
 Solution 1:  Divide and Conquer (10min)
-```
 /** 
  * Definition for a binary tree node. 
  * public class TreeNode { 
@@ -302,16 +318,12 @@ class Solution {
 
 Time Complexity: O(n), where n is number of nodes in the Binary Tree     
 Space Complexity: O(n)
-```
 
 Refer to
 https://leetcode.com/problems/same-tree/solution/
-
 Approach 1: Recursion
-
 Intuition
 The simplest strategy here is to use recursion. Check if p and q nodes are not None, and their values are equal. If all checks are OK, do the same for the child nodes recursively.
-```
 /** 
  * Definition for a binary tree node. 
  * public class TreeNode { 
@@ -332,14 +344,12 @@ class Solution {
             isSameTree(p.left, q.left); 
   } 
 }
-```
 Complexity Analysis
 - Time complexity : O(N), where N is a number of nodes in the tree, since one visits each node exactly once.
 - Space complexity : O(N)in the worst case of completely unbalanced tree, to keep a recursion stack.
 
 Solution 2: Iterative preorder traversal with stack (10min)
 Note:  Iterative postorder traversal with stack will be similar, the only difference is switch the order between right and left subtree check in while loop, since we don't need list output like result.add(0, node.val) for postorder traversal, so the switch on order is the only change
-```
 /** 
  * Definition for a binary tree node. 
  * public class TreeNode { 
@@ -392,22 +402,17 @@ class Solution {
 
 Time Complexity: O(n), where n is number of nodes in the Binary Tree      
 Space Complexity: O(n)
-```
 
 Refer to
 https://leetcode.com/problems/same-tree/solution/
-
 Approach 2: Iteration
-
 Intuition
 Start from the root and then at each iteration pop the current node out of the deque. Then do the same checks as in the approach 1 :
-
 - p and p are not None,
 - p.val is equal to q.val,
 and if checks are OK, push the child nodes.
 
 Implementation
-```
 class Solution { 
   public boolean check(TreeNode p, TreeNode q) { 
     // p and q are null 
@@ -446,13 +451,11 @@ class Solution {
     return true; 
   } 
 }
-```
 Complexity Analysis
 - Time complexity : O(N)since each node is visited exactly once.
 - Space complexity : O(N)in the worst case, where the tree is a perfect fully balanced binary tree, since BFS will have to store at least an entire level of the tree in the queue, and the last level has O(N)nodes.
 
 Solution 3: Iterative inorder traversal with stack (10min)
-```
 /** 
  * Definition for a binary tree node. 
  * public class TreeNode { 
@@ -514,5 +517,8 @@ class Solution {
 }
 
 Time Complexity: O(n), where n is number of nodes in the Binary Tree      
-Space Complexity: O(n)
-```
+Space Complexity: O(n)      
+    
+
+Refer to
+L94.Binary Tree Inorder Traversal (Ref.L98,L230,L144,L145)
