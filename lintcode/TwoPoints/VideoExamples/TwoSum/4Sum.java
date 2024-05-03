@@ -1,83 +1,26 @@
-/**
- * Refer to
- * http://www.lintcode.com/en/problem/4sum/#
- * Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target?
-    Find all unique quadruplets in the array which gives the sum of target.
-     Notice
 
-    Elements in a quadruplet (a,b,c,d) must be in non-descending order. (ie, a ≤ b ≤ c ≤ d)
-    The solution set must not contain duplicate quadruplets.
+https://leetcode.com/problems/4sum/
+Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:
+- 0 <= a, b, c, d < n
+- a, b, c, and d are distinct.
+- nums[a] + nums[b] + nums[c] + nums[d] == target
+You may return the answer in any order.
 
-    Have you met this question in a real interview? Yes
-    Example
-    Given array S = {1 0 -1 0 -2 2}, and target = 0. A solution set is:
+Example 1:
+Input: nums = [1,0,-1,0,-2,2], target = 0
+Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
 
-    (-1, 0, 0, 1)
-    (-2, -1, 1, 2)
-    (-2, 0, 0, 2)
- *
- *
- * Solution
- * http://www.jiuzhang.com/solutions/4sum/
-*/
-public class Solution {
-    /*
-     * @param numbers: Give an array
-     * @param target: An integer
-     * @return: Find all unique quadruplets in the array which gives the sum of zero
-     */
-    public List<List<Integer>> fourSum(int[] numbers, int target) {
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
-        if(numbers == null || numbers.length < 4) {
-            return result;
-        }
-        Arrays.sort(numbers);
-        for(int i = 0; i < numbers.length - 3; i++) {
-            if(i > 0 && numbers[i] == numbers[i - 1]) {
-                continue;
-            }
-            for(int j = i + 1; j < numbers.length - 2; j++) {
-                if(j > i + 1 && numbers[j] == numbers[j - 1]) {
-                    continue;
-                }
-                int left = j + 1;
-                int right = numbers.length - 1;
-                while(left < right) {
-                    int sum = numbers[i] + numbers[j] + numbers[left] + numbers[right];
-                    if(sum == target) {
-                        List<Integer> list = new ArrayList<Integer>();
-                        list.add(numbers[i]);
-                        list.add(numbers[j]);
-                        list.add(numbers[left]);
-                        list.add(numbers[right]);
-                        result.add(list);
-                        left++;
-                        right--;
-                        while(left < right && numbers[left] == numbers[left - 1]) {
-                            left++;
-                        }
-                        while(left < right && numbers[right] == numbers[right + 1]) {
-                            right--;
-                        }
-                    } else if(sum > target) {
-                        right--;
-                    } else {
-                        left++;
-                    }
-                }
-            }
-        }
-        return result;
-    }
-}
+Example 2:
+Input: nums = [2,2,2,2,2], target = 8
+Output: [[2,2,2,2]]
 
-
-
-
+Constraints:
+- 1 <= nums.length <= 200
+- -10^9 <= nums[i] <= 10^9
+- -10^9 <= target <= 10^9
+--------------------------------------------------------------------------------
 Attempt 1: 2022-09-30
-
 Solution 1:  Binary Search solution (30 min, too long for corner case added requires convert integer to long handling)
-```
 class Solution { 
     public List<List<Integer>> fourSum(int[] nums, int target) { 
         Arrays.sort(nums); 
@@ -145,24 +88,20 @@ class Solution {
 Space Complexity: O(1)  
 Time Complexity: O(n^3logn)  
 Three for loop cost O(n^3), inside inner for loop binary search for target cost O(logn)
-```
 
 Refer to
 Is it OK to compare an int and a long in Java ?
 https://stackoverflow.com/questions/11143253/is-it-ok-to-compare-an-int-and-a-long-in-java
 Q: Is it OK to compare an int and a long in Java...
-```
 long l = 800L
 int i = 4
 
 if (i < l) {
  // i is less than l
 }
-```
 A: Yes, that's fine. The int will be implicitly converted to a long, which can always be done without any loss of information.
 
 Solution 2:  Two Pointers solution (10 min)
-```
 class Solution { 
     public List<List<Integer>> fourSum(int[] nums, int target) { 
         Arrays.sort(nums); 
@@ -204,9 +143,9 @@ class Solution {
     } 
 }
 
+
+
 Time Complexity:O(n^k−1), or O(n^3) for 4Sum. We have k - 2 loops, and twoSum is O(n). 
 Note that for k > 2, sorting the array does not change the overall time complexity. 
 Space Complexity:O(n). We need O(k) space for the recursion. k can be the same as nn in the worst case for the generalized algorithm.
 Note that, for the purpose of complexity analysis, we ignore the memory required for the output.
-```
-
