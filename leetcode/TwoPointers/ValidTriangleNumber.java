@@ -1,58 +1,25 @@
-/**
-Refer to
+
 https://leetcode.com/problems/valid-triangle-number/
-Given an array consists of non-negative integers, your task is to count the number of triplets chosen from 
-the array that can make triangles if we take them as side lengths of a triangle.
+Given an integer array nums, return the number of triplets chosen from the array that can make triangles if we take them as side lengths of a triangle.
 
 Example 1:
-Input: [2,2,3,4]
+Input: nums = [2,2,3,4]
 Output: 3
-Explanation:
-Valid combinations are: 
+Explanation: Valid combinations are: 
 2,3,4 (using the first 2)
 2,3,4 (using the second 2)
 2,2,3
-Note:
-The length of the given array won't exceed 1000.
-The integers in the given array are in the range of [0, 1000]
-*/
 
-// Solution 1: Two Pointers scan from two ends + Sort Array + Triangle relation
-// Refer to
-// https://leetcode.com/problems/valid-triangle-number/discuss/104174/Java-O(n2)-Time-O(1)-Space
-class Solution {
-    public int triangleNumber(int[] nums) {
-        Arrays.sort(nums);
-        int count = 0;
-        int n = nums.length;
-        // i --> the longest side, after sort can only be choosen
-        // after index >= 2
-        // l, r --> other 2 sides
-        for(int i = n - 1; i >= 2; i--) {
-            int l = 0;
-            int r = i - 1;
-            while(l < r) {
-                // If satisfy triangle build relation, all combinations
-                // between l and r can be treat as able to build triangle
-                if(nums[l] + nums[r] > nums[i]) {
-                    count += r - l;
-                    r--;
-                } else {
-                    l++;
-                }
-            }
-        }
-        return count;
-    }
-}
+Example 2:
+Input: nums = [4,2,3,4]
+Output: 4
 
-
-
-Attempt 1: 2022-09-16
-
+Constraints:
+- 1 <= nums.length <= 1000
+- 0 <= nums[i] <= 1000
+--------------------------------------------------------------------------------
+Attempt 1: 2022-09-17
 Solution 1:  Two Pointers solution (10 min, similar to L15 3Sum Two Pointers solution)
-
-```
 class Solution { 
     public int triangleNumber(int[] nums) { 
         if(nums.length < 3) { 
@@ -85,13 +52,10 @@ class Solution {
 
 Space Complexity: O(1)    
 Time Complexity: O(n^2)
-```
 
 Refer to
 https://leetcode.com/problems/valid-triangle-number/discuss/104169/Java-Solution-3-pointers
-
 Solution 2: Binary Search solution (360min, too long to figure out how to transfer problem into Find Lower Boundary template)
-```
 class Solution {
     public int triangleNumber(int[] nums) {
         Arrays.sort(nums);
@@ -193,11 +157,9 @@ class Solution {
 
 Space Complexity: O(1)    
 Time Complexity: O(n^2logn)
-```
 
 Refer to
 https://leetcode.com/problems/valid-triangle-number/discuss/2203786/Binary-Search-Solution-oror-C%2B%2B-oror-O(n2logn)-Solution
-```
 class Solution {
 public:
     
@@ -241,4 +203,8 @@ public:
         return ans;
     }
 };
-```
+      
+
+Refer to
+L15.P3.4.3Sum
+L18.P3.9.4Sum(Ref.L15)
