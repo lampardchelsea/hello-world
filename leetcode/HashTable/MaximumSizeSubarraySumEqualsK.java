@@ -134,35 +134,40 @@ public class MaximumSizeSubarraySumEqualsK {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 https://www.lintcode.com/problem/911/
-
 Given an array nums and a target value k, find the maximum length of a subarray that sums to k. If there isn't one, return 0 instead.
-
 Note: The sum of the entire nums array is guaranteed to fit within the 32-bit signed integer range.
 
 Example 1:
-```
 Input: nums = [1, -1, 5, -2, 3], k = 3
 Output: 4
 Explanation: The subarray [1, -1, 5, -2] sums to 3 and is the longest.
-```
 
 Example 2:
-```
 Input: nums = [-2, -1, 2, 1], k = 1
 Output: 2 
 Explanation: The subarray [-1, 2] sums to 1 and is the longest.
-```
+
 Follow Up:
-
 Can you do it in O(n) time?
----
+--------------------------------------------------------------------------------
 Attempt 1: 2023-02-02
-
 Solution 1:  Hash Table (360 min)
-
 Style 1: int[] preSum = new int[nums.length + 1], the disadvantage is we also have to specially handle the nums.length == 1 && nums[0] == k case
-```
 public class Solution { 
     /** 
      * @param nums: an array 
@@ -229,10 +234,8 @@ public class Solution {
 
 Time Complexity: O(n)
 Space Complexity: O(n)
-```
 
 The problem on i < nums.length OR i <= nums.length in for loop
-```
 e.g nums={1, -1, 5, -2, 3}, k=3; 
 for(int i = 1; i < nums.length; i++) { 
     preSum[i] = preSum[i - 1] + nums[i - 1]; 
@@ -262,10 +265,8 @@ i=2 -> map not contains (0-3=-3)
 i=3 -> map not contains (5-3=2)
 i=4 -> map contains (3-3=0) -> i-map.get(preSum[i]-k)=4-map.get(0)=4-0=4 -> in preSum={0, 1, 0, 5, 3, 6} the initial preSum=0 get from index=0, the current preSum=3 get from index=4, length between calculate directly as 4-0=4, NOT including compensation +1 (e.g 4-0+1=5), because we introduce preSum[0]=0 and store nums beginning only from preSum[1], now comes back to raw input nums={1, -1, 5, -2, 3}, if we based on raw input, since it shift all elements index one step to left than preSum, maximum length to get between index=0 to index=3 needs to be calculated as 3-0+1=4, the compensation +1 is required then
 i=5 -> map contains (6-3=3) -> i-map.get(preSum[i]-k)=5-map.get(3)=5-4=1
-```
 
 Style 2: Set map.put(0, -1) with setting int[] preSum array on accumulate preSum[i + 1] = preSum[i] + nums[i] to avoid problem when i = 0, preSum[0] is nothing, nums[i] only accumulate on preSum[i + 1], e.g nums[0] only stored on preSum[1], nums[1] only stored on preSum[2]
-```
 public class Solution {
     /**
      * @param nums: an array
@@ -299,10 +300,8 @@ public class Solution {
 
 Time Complexity: O(n)
 Space Complexity: O(n)
-```
 
 Style 3: Set map.put(0, -1) with change int[] preSum array to int preSum only to avoid problem on accumulate preSum[i] = preSum[i - 1] + nums[i] issue when i = 0, we can NOT do preSum[i] = preSum[i] + nums[i], its wrong because of NO accumulate at all 
-```
 public class Solution {
     /**
      * @param nums: an array
@@ -338,7 +337,6 @@ public class Solution {
 
 Time Complexity: O(n)
 Space Complexity: O(1)
-```
 
 Refer to
 https://www.lintcode.com/problem/911/solution/59403
@@ -349,7 +347,6 @@ https://www.lintcode.com/problem/911/solution/59403
 特殊的，没有元素时默认和为0，所以要put一个-1进去，比如恰好第一个数num=k，有个-1可以使我们正好得到答案。
 
 题解代码
-```
 public class Solution {
     /**
      * @param nums: an array
@@ -390,4 +387,7 @@ public class Solution {
     }
 
 }
-```
+      
+    
+Refer to
+L560.Subarray Sum Equals K
