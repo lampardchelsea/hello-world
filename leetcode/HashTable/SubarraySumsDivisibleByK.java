@@ -99,7 +99,7 @@ class Solution {
         int[] presum = new int[n + 1];
         for(int i = 1; i <= n; i++) {
             presum[i] = presum[i - 1] + nums[i - 1];
-        }
+        }.,...,
         int count = 0;
         Map<Integer, Integer> map = new HashMap<>();
         for(int num : presum) {
@@ -287,3 +287,6 @@ Time Complexity
 The time complexity of the code is O(N), where N is the length of the nums array. This is because the code iterates through the nums array once, performing a constant amount of work for each element by adding the element to the cumulative sum s, computing the modulo k of the sum, and updating the cnt dictionary. The operations of updating the cnt dictionary and reading from it take O(1) time on average, due to hashing.
 Space Complexity
 The space complexity is O(K), with K being the input parameter defining the divisor for subarray sums. The cnt dictionary can have at most K unique keys since each key is the result of the modulo k operation, and there are only K different results possible (from 0 to K-1). Therefore, even in the worst-case scenario, the space used to store counts in the dictionary cannot exceed the number of possible remainders, which is determined by K.
+
+Refer to
+L560.Subarray Sum Equals K
