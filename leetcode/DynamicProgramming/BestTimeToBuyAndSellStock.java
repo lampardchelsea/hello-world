@@ -197,37 +197,29 @@ class Solution {
 
 
 
+
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
-
 You are given an array prices where prices[i] is the price of a given stock on the ith day.
-
 You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
-
 Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
 
 Example 1:
-```
 Input: prices = [7,1,5,3,6,4]
 Output: 5
 Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
 Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
-```
 
 Example 2:
-```
 Input: prices = [7,6,4,3,1]
 Output: 0
 Explanation: In this case, no transactions are done and the max profit = 0.
-```
 
 Constraints:
-- 1 <= prices.length <= 105
-- 0 <= prices[i] <= 104
----
+- 1 <= prices.length <= 10^5
+- 0 <= prices[i] <= 10^4
+--------------------------------------------------------------------------------
 Attempt 1: 2023-03-30
-
 Solution 1:  Brute Force (10 min, TLE)
-```
 class Solution { 
     public int maxProfit(int[] prices) { 
         int n = prices.length; 
@@ -243,11 +235,9 @@ class Solution {
 
 Time Complexity: O(n^2)
 Space Complexity: O(1) 
-```
 
 Refer to
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock/editorial/
-```
 public class Solution { 
     public int maxProfit(int prices[]) { 
         int maxprofit = 0; 
@@ -261,15 +251,11 @@ public class Solution {
         return maxprofit; 
     } 
 }
-```
-
 Complexity Analysis
-
 - Time complexity: O(n^2). Loop runs n * (n−1) / 2 times.
 - Space complexity: O(1). Only two variables - maxprofit and profit are used.
----
+--------------------------------------------------------------------------------
 Solution 2: One Pass (10 min)
-```
 class Solution { 
     public int maxProfit(int[] prices) { 
         int minVal = Integer.MAX_VALUE; 
@@ -287,25 +273,17 @@ class Solution {
 
 Time Complexity: O(n) 
 Space Complexity: O(1)
-```
 
 Refer to
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock/editorial/
-
 Approach 2: One Pass
-
-
 Algorithm
-
 Say the given array is:
-```
 [7, 1, 5, 3, 6, 4]
-```
 If we plot the numbers of the given array on a graph, we get:
 
 
 The points of interest are the peaks and valleys in the given graph. We need to find the largest price following each valley, which difference could be the max profit. We can maintain two variables - minprice and maxprofit corresponding to the smallest valley and maximum profit (maximum difference between selling price and minprice) obtained so far respectively.
-```
 public class Solution { 
     public int maxProfit(int prices[]) { 
         int minprice = Integer.MAX_VALUE; 
@@ -319,15 +297,11 @@ public class Solution {
         return maxprofit; 
     } 
 }
-```
-
 Complexity Analysis
-
 - Time complexity: O(n). Only a single pass is needed.
 - Space complexity: O(1). Only two variables are used.
----
+--------------------------------------------------------------------------------
 Solution 3: 1D DP and Kadane's Algorithm (30 min)
-```
 L121.Best Time to Buy and Sell Stock 1D DP solution
 class Solution { 
     public int maxProfit(int[] prices) { 
@@ -366,13 +340,11 @@ class Solution {
         return max; 
     } 
 }
-```
 Key: Modify original input into adjacent numbers difference sequence, which can apply 1D DP related Kadane's Algorithm, which is exactly same as L53.Maximum Subarray
 
 Refer to
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock/solutions/39038/kadane-s-algorithm-since-no-one-has-mentioned-about-this-so-far-in-case-if-interviewer-twists-the-input/
 The logic to solve this problem is same as "max subarray problem" using Kadane's Algorithm. Since no body has mentioned this so far, I thought it's a good thing for everybody to know.
-```
 L53.Maximum Subarray 1D DP solution
 class Solution { 
     // dp[i] denotes maximum subarray sum ending at i (including nums[i]) 
@@ -403,12 +375,9 @@ class Solution {
         return max;  
     }  
 }
-```
-
-All the straight forward solution should work, but if the interviewer twists the question slightly by giving the difference array of prices, Ex: for {1, 7, 4, 11}, if he gives {0, 6, -3, 7}, you might end up being confused.
-
+All the straight forward solution should work, but if the interviewer twists the question slightly by giving the difference array of prices, Ex: for 
+{1, 7, 4, 11}, if he gives {0, 6, -3, 7}, you might end up being confused.
 Here, the logic is to calculate the difference (maxCur += prices[i] - prices[i-1]) of the original array, and find a contiguous subarray giving maximum profit. If the difference falls below 0, reset it to zero.
-```
     public int maxProfit(int[] prices) { 
         int maxCur = 0, maxSoFar = 0; 
         for(int i = 1; i < prices.length; i++) { 
@@ -416,7 +385,10 @@ Here, the logic is to calculate the difference (maxCur += prices[i] - prices[i-1
             maxSoFar = Math.max(maxCur, maxSoFar); 
         } 
         return maxSoFar; 
-    }
-```
-*maxCur = current maximum value
-*maxSoFar = maximum value found so far
+    }*
+maxCur = current maximum value*
+maxSoFar = maximum value found so far
+    
+
+Refer to
+L53.Maximum Subarray (Ref.L821)
