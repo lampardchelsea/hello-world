@@ -197,41 +197,32 @@ class Solution {
 
 
 
+
 https://leetcode.com/problems/shortest-unsorted-continuous-subarray/
-
 Given an integer array nums, you need to find one continuous subarray that if you only sort this subarray in ascending order, then the whole array will be sorted in ascending order.
-
 Return the shortest such subarray and output its length.
 
 Example 1:
-```
 Input: nums = [2,6,4,8,10,9,15]
 Output: 5
 Explanation: You need to sort [6, 4, 8, 10, 9] in ascending order to make the whole array sorted in ascending order.
-```
 
 Example 2:
-```
 Input: nums = [1,2,3,4]
 Output: 0
-```
 
 Example 3:
-```
 Input: nums = [1]
 Output: 0
-```
 
 Constraints:
-- 1 <= nums.length <= 104
-- -105 <= nums[i] <= 105
+- 1 <= nums.length <= 10^4
+- -10^5 <= nums[i] <= 10^5
  
-Follow up: Can you solve it inO(n)time complexity?
----
+Follow up: Can you solve it in O(n)time complexity?
+--------------------------------------------------------------------------------
 Attempt 1: 2023-04-02
-
 Solution 1: Brute Force (30 min, TLE)
-```
 class Solution { 
     public int findUnsortedSubarray(int[] nums) { 
         int len = nums.length; 
@@ -279,20 +270,16 @@ class Solution {
 
 Time complexity : O(n^3). Three nested loops are there. 
 Space complexity : O(1). Constant space is used.
-```
 
 Refer to
 https://leetcode.com/problems/shortest-unsorted-continuous-subarray/editorial/
-
 Approach 1: Brute Force
-
 Algorithm
 In the brute force approach, we consider every possible subarray that can be formed from the given array nums. For every subarray nums[i:j]considered, we need to check whether this is the smallest unsorted subarray or not. Thus, for every such subarray considered, we find out the maximum and minimum values lying in that subarray given by max and min respectively.
 
 If the subarrays nums[0:i−1] and nums[j:n−1] are correctly sorted, then only nums[i:j] could be the required subarray. Further, the elements in nums[0:i−1] all need to be lesser than the min for satisfying the required condition. Similarly, all the elements in nums[j:n−1] need to be larger than max. We check for these conditions for every possible i and j selected.
 
 Further, we also need to check if nums[0:i−1] and nums[j:n−1] are sorted correctly. If all the above conditions are satisfied, we determine the length of the unsorted subarray as j−i. We do the same process for every subarray chosen and determine the length of the smallest unsorted subarray found.
-```
 public class Solution { 
     public int findUnsortedSubarray(int[] nums) { 
         int res = nums.length; 
@@ -325,13 +312,11 @@ public class Solution {
         return res; 
     } 
 }
-```
 Complexity Analysis
 - Time complexity : O(n^3). Three nested loops are there.
 - Space complexity : O(1). Constant space is used.
----
+--------------------------------------------------------------------------------
 Solution 2: Two Pass (30 min)
-```
 class Solution { 
     public int findUnsortedSubarray(int[] nums) { 
         if(nums == null) { 
@@ -369,11 +354,9 @@ class Solution {
 
 Time complexity : O(n).
 Space complexity : O(1). Constant space is used.
-```
 
 Refer to
 https://leetcode.com/problems/shortest-unsorted-continuous-subarray/solutions/103057/java-o-n-time-o-1-space/comments/106306
-```
     if(nums == null) return 0; 
     if(nums.Length == 0 || nums.Length == 1) return 0; 
      
@@ -400,7 +383,6 @@ https://leetcode.com/problems/shortest-unsorted-continuous-subarray/solutions/10
     } 
      
     return end - begin + 1;
-```
 Some explanations:
 endIdx = The most right element having greater elements on the left side. 
 begIdx = The most left element having smaller elements on the right side.
@@ -410,9 +392,8 @@ According to the definition, we can know that all elements on the right side of 
 
 Prove the bounds are tight:
 According to the definition, the two elements at begIdx and endIdx are "illegal", so the range to be sort should at least include these two elements.
----
+--------------------------------------------------------------------------------
 Solution 3: Sorting (30 min)
-```
 class Solution { 
     public int findUnsortedSubarray(int[] nums) { 
         if(nums == null) { 
@@ -441,16 +422,12 @@ class Solution {
 
 Time complexity : O(nlog⁡n). Sorting takes nlog⁡n time. 
 Space complexity : O(n). We are making copy of original array.
-```
 
 Refer to
 https://leetcode.com/problems/shortest-unsorted-continuous-subarray/editorial/
-
 Approach 3: Using Sorting
-
 Algorithm
 Another very simple idea is as follows. We can sort a copy of the given array nums, say given by nums_sorted. Then, if we compare the elements of nums and nums_sorted, we can determine the leftmost and rightmost elements which mismatch. The subarray lying between them is, then, the required shorted unsorted subarray.
-```
 public class Solution { 
     public int findUnsortedSubarray(int[] nums) { 
         int[] snums = nums.clone(); 
@@ -465,51 +442,46 @@ public class Solution {
         return (end - start >= 0 ? end - start + 1 : 0); 
     } 
 }
-```
 Complexity Analysis
 - Time complexity : O(nlog⁡n). Sorting takes nlog⁡n time.
 - Space complexity : O(n). We are making copy of original array.
----
+--------------------------------------------------------------------------------
 Solution 4: Monotonic Stack (30 min)
-```
-class Solution {
-    public int findUnsortedSubarray(int[] nums) {
-        if(nums == null) {
-            return 0;
-        }
-        int len = nums.length;
-        if(len == 0 || len == 1) {
-            return 0;
-        }
-        Stack<Integer> stack = new Stack<Integer>();
-        int start = len;
-        for(int i = 0; i < len; i++) {
-            while(!stack.isEmpty() && nums[stack.peek()] > nums[i]) {
-                start = Math.min(stack.pop(), start);
-            }
-            stack.push(i);
-        }
-        stack.clear();
-        int end = 0;
-        for(int i = len - 1; i >= 0; i--) {
-            while(!stack.isEmpty() && nums[stack.peek()] < nums[i]) {
-                end = Math.max(stack.pop(), end);
-            }
-            stack.push(i);
-        }
-        return end - start > 0 ? end - start + 1 : 0;
-    }
+class Solution { 
+    public int findUnsortedSubarray(int[] nums) { 
+        if(nums == null) { 
+            return 0; 
+        } 
+        int len = nums.length; 
+        if(len == 0 || len == 1) { 
+            return 0; 
+        } 
+        Stack<Integer> stack = new Stack<Integer>(); 
+        int start = len; 
+        for(int i = 0; i < len; i++) { 
+            while(!stack.isEmpty() && nums[stack.peek()] > nums[i]) { 
+                start = Math.min(stack.pop(), start); 
+            } 
+            stack.push(i); 
+        } 
+        stack.clear(); 
+        int end = 0; 
+        for(int i = len - 1; i >= 0; i--) { 
+            while(!stack.isEmpty() && nums[stack.peek()] < nums[i]) { 
+                end = Math.max(stack.pop(), end); 
+            } 
+            stack.push(i); 
+        } 
+        return end - start > 0 ? end - start + 1 : 0; 
+    } 
 }
 
 Time complexity : O(n). Stack of size n is filled. 
 Space complexity : O(n). Stack size grows up to n.
-```
 
 Refer to
 https://leetcode.com/problems/shortest-unsorted-continuous-subarray/editorial/
-
 Approach 4: Using Stack
-
 Algorithm
 The idea behind this approach is also based on selective sorting. We need to determine the correct position of the minimum and the maximum element in the unsorted subarray to determine the boundaries of the required unsorted subarray.
 
@@ -523,8 +495,6 @@ Similarly, to find the right boundary of the unsorted subarray, we traverse over
 
 We can look at the figure below for reference. We can observe that the slopes directly indicate the relative ordering. We can also observe that the point b needs to lie just after index 0 marking the left boundary and the point a needs to lie just before index 7 marking the right boundary of the unsorted subarray.
 
-
-```
 public class Solution { 
     public int findUnsortedSubarray(int[] nums) { 
         Stack < Integer > stack = new Stack < Integer > (); 
@@ -543,7 +513,6 @@ public class Solution {
         return r - l > 0 ? r - l + 1 : 0; 
     } 
 }
-```
 Complexity Analysis
 - Time complexity : O(n). Stack of size n is filled.
-- Space complexity : O(n). Stack size grows up to n.
+- Space complexity : O(n). Stack size grows up to n.      
