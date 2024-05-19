@@ -318,3 +318,5 @@ Complexity Analysis
 - Time complexity : O(n). Stack of size n is filled.
 - Space complexity : O(n). Stack size grows up to n.      
     
+Refer to
+L845.Longest Mountain in Array (Ref.L821)
