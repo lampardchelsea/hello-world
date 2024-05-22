@@ -697,34 +697,27 @@ public class LongestCommonPrefixDivideAndConquer {
 
 
 
+
 https://leetcode.com/problems/longest-common-prefix/
-
 Write a function to find the longest common prefix string amongst an array of strings.
-
 If there is no common prefix, return an empty string "".
 
 Example 1:
-```
 Input: strs = ["flower","flow","flight"]
 Output: "fl"
-```
 
 Example 2:
-```
 Input: strs = ["dog","racecar","car"]
 Output: ""
 Explanation: There is no common prefix among the input strings.
-```
 
 Constraints:
 - 1 <= strs.length <= 200
 - 0 <= strs[i].length <= 200
 - strs[i] consists of only lowercase English letters.
----
+--------------------------------------------------------------------------------
 Attempt 1: 2023-08-13
-
 Solution 1: Trie (30 min)
-```
 class Solution {
     TrieNode root = new TrieNode();
     public String longestCommonPrefix(String[] strs) {
@@ -791,13 +784,10 @@ class TrieNode {
 Time complexity : preprocessing O(S), where S is the number of all characters in the array, LCP query O(m). 
 Trie build has O(S) time complexity. To find the common prefix of q in the Trie takes in the worst case O(m). 
 Space complexity : O(S). We only used additional S extra space for the Trie.
-```
 
 Refer to
 https://leetcode.com/problems/longest-common-prefix/editorial/
-
 Further Thoughts / Follow up
-
 Let's take a look at a slightly different problem:
 
 Given a set of keys S = [S1,S2…Sn], find the longest common prefix among a string q and S. This LCP query will be called frequently.
@@ -810,8 +800,6 @@ Algorithm
 The only question left, is how to find the deepest path in the Trie, that fulfills the requirements above. The most effective way is to build a trie from [S1…Sn] strings. Then find the prefix of query string qin the Trie. We traverse the Trie from the root, till it is impossible to continue the path in the Trie because one of the conditions above is not satisfied.
 
 Figure 4. Finding the longest common prefix of strings using Trie
-
-```
 public String longestCommonPrefix(String q, String[] strs) {
     if (strs == null || strs.length == 0)
          return "";  
@@ -862,15 +850,13 @@ public class Trie {
          return prefix.toString();
     }
 }
-```
 Complexity Analysis
 In the worst case query q has length m and it is equal to all n strings of the array.
 - Time complexity : preprocessing O(S), where S is the number of all characters in the array, LCP query O(m).
-  Trie build has O(S) time complexity. To find the common prefix of q in the Trie takes in the worst case O(m).
+Trie build has O(S) time complexity. To find the common prefix of q in the Trie takes in the worst case O(m).
 - Space complexity : O(S). We only used additional S extra space for the Trie.
----
+--------------------------------------------------------------------------------
 Solution 2: Vertical Scanning (10 min)
-```
 class Solution {
     public String longestCommonPrefix(String[] strs) {
         for(int i = 0; i < strs[0].length(); i++) {
@@ -891,16 +877,12 @@ Time complexity : O(S), where S is the sum of all characters in all strings.
 In the worst case there will be n equal strings with length m and the algorithm performs S=m⋅n character comparisons. 
 Even though the worst case is still the same as Approach 1, in the best case there are at most n⋅minLen comparisons where minLen is the length of the shortest string in the array. 
 Space complexity : O(1). We only used constant extra space.
-```
 
 Refer to
 https://leetcode.com/problems/longest-common-prefix/editorial/
-
 Approach 2: Vertical scanning
-
 Algorithm
 Imagine a very short string is the common prefix at the end of the array. The above approach will still do SSScomparisons. One way to optimize this case is to do vertical scanning. We compare characters from top to bottom on the same column (same character index of the strings) before moving on to the next column.
-```
 public String longestCommonPrefix(String[] strs) {
     if (strs == null || strs.length == 0) return "";
     for (int i = 0; i < strs[0].length() ; i++){
@@ -912,16 +894,14 @@ public String longestCommonPrefix(String[] strs) {
     }
     return strs[0];
 }
-```
 Complexity Analysis
 - Time complexity : O(S), where S is the sum of all characters in all strings.
-  In the worst case there will be n equal strings with length m and the algorithm performs S=m⋅n character comparisons.
-  Even though the worst case is still the same as Approach 1, in the best case there are at most n⋅minLen comparisons where minLen is the length of the shortest string in the array.
+In the worst case there will be n equal strings with length m and the algorithm performs S=m⋅n character comparisons.
+Even though the worst case is still the same as Approach 1, in the best case there are at most n⋅minLen comparisons where minLen is the length of the shortest string in the array.
 - Space complexity : O(1). We only used constant extra space.
 
----
+--------------------------------------------------------------------------------
 Solution 3: Horizontal  Scanning (10 min)
-```
 class Solution {
     public String longestCommonPrefix(String[] strs) {
         String prefix = strs[0];
@@ -936,15 +916,11 @@ class Solution {
         return prefix;
     }
 }
-```
 
 Refer to
 https://leetcode.com/problems/longest-common-prefix/editorial/
-
 Approach 1: Horizontal scanning
-
 Intuition
-
 For a start we will describe a simple way of finding the longest prefix shared by a set of strings LCP(S1…Sn)
 We will use the observation that :
 LCP(S1…Sn)=LCP(LCP(LCP(S1,S2),S3),…Sn)
@@ -954,7 +930,6 @@ To employ this idea, the algorithm iterates through the strings [S1…Sn], findi
 When LCP(S1…Si) is an empty string, the algorithm ends. Otherwise after n iterations, the algorithm returns LCP(S1…Sn)
 
 Figure 1. Finding the longest common prefix (Horizontal scanning)
-```
  public String longestCommonPrefix(String[] strs) {
     if (strs.length == 0) return "";
     String prefix = strs[0];
@@ -965,14 +940,12 @@ Figure 1. Finding the longest common prefix (Horizontal scanning)
         }        
     return prefix;
 }
-```
 Complexity Analysis
 - Time complexity : O(S), where S is the sum of all characters in all strings.
-  In the worst case all n strings are the same. The algorithm compares the string S1 with the other strings [S2…Sn] There are S character comparisons, where S is the sum of all characters in the input array.
+In the worst case all n strings are the same. The algorithm compares the string S1 with the other strings [S2…Sn] There are S character comparisons, where S is the sum of all characters in the input array.
 - Space complexity : O(1). We only used constant extra space.
----
+--------------------------------------------------------------------------------
 Solution 4: Binary Search (10 min)
-```
 class Solution {
     public String longestCommonPrefix(String[] strs) {
         int minLen = Integer.MAX_VALUE;
@@ -996,7 +969,6 @@ class Solution {
         return strs[0].substring(0, hi);
     }
  
-
     private boolean isCommonPrefix(String[] strs, int len) {
         String str = strs[0].substring(0, len);
         for(int i = 1; i < strs.length; i++) {
@@ -1011,19 +983,15 @@ class Solution {
 Time complexity : O(S⋅log⁡m), where S is the sum of all characters in all strings. 
 The algorithm makes log⁡m iterations, for each of them there are S=m⋅n comparisons, which gives in total O(S⋅log⁡m) time complexity. 
 Space complexity : O(1). We only used constant extra space.
-```
 
 Refer to
 https://leetcode.com/problems/longest-common-prefix/editorial/
-
 Approach 4: Binary search
-
 The idea is to apply binary search method to find the string with maximum value L, which is common prefix of all of the strings. The algorithm searches space is the interval (0…minLen), where minLen is minimum string length and the maximum possible common prefix. Each time search space is divided in two equal parts, one of them is discarded, because it is sure that it doesn't contain the solution. There are two possible cases:
 - S[1...mid]is not a common string. This means that for each j > i S[1..j]is not a common string and we discard the second half of the search space.
 - S[1...mid]is common string. This means that for for each i < j S[1..i]is a common string and we discard the first half of the search space, because we try to find longer common prefix.
 
 Figure 3. Finding the longest common prefix of strings using binary search technique
-```
 public String longestCommonPrefix(String[] strs) {
     if (strs == null || strs.length == 0)
         return "";
@@ -1041,7 +1009,6 @@ public String longestCommonPrefix(String[] strs) {
     }
     return strs[0].substring(0, (low + high) / 2);
 }
-
 private boolean isCommonPrefix(String[] strs, int len){
     String str1 = strs[0].substring(0,len);
     for (int i = 1; i < strs.length; i++)
@@ -1049,20 +1016,17 @@ private boolean isCommonPrefix(String[] strs, int len){
             return false;
     return true;
 }
-```
 Complexity Analysis
 In the worst case we have n equal strings with length mmm
 - Time complexity : O(S⋅log⁡m), where S is the sum of all characters in all strings.
-  The algorithm makes log⁡m iterations, for each of them there are S=m⋅n comparisons, which gives in total O(S⋅log⁡m) time complexity.
+The algorithm makes log⁡m iterations, for each of them there are S=m⋅n comparisons, which gives in total O(S⋅log⁡m) time complexity.
 - Space complexity : O(1). We only used constant extra space.
----
+--------------------------------------------------------------------------------
 Solution 5: Divide and Conquer (10 min)
-```
 class Solution {
     public String longestCommonPrefix(String[] strs) {
         return helper(strs, 0, strs.length - 1);
     }
-
     private String helper(String[] strs, int left, int right) {
         // Base condition
         if(left == right) {
@@ -1076,7 +1040,6 @@ class Solution {
         return commonPrefix(lcpleft, lcpright);
     }
   
-
     private String commonPrefix(String lcpleft, String lcpright) {
         int minLen = Math.min(lcpleft.length(), lcpright.length());
         for(int i = 0; i < minLen; i++) {
@@ -1092,14 +1055,12 @@ Time complexity : O(S), where S is the number of all characters in the array, S=
 Time complexity is 2⋅T(n/2)+O(m). Therefore time complexity is O(S). 
 In the best case this algorithm performs O(minLen⋅n) comparisons, where minLen is the shortest string of the array 
 Space complexity : O(m⋅log⁡n) 
-There is a memory overhead since we store recursive calls in the execution stack. There are log⁡n recursive calls, each store need m space to store the result, so space complexity is O(m⋅log⁡n)
-```
+There is a memory overhead since we store recursive calls in the execution stack. There are log⁡n recursive calls, 
+each store need m space to store the result, so space complexity is O(m⋅log⁡n)
 
 Refer to
 https://leetcode.com/problems/longest-common-prefix/editorial/
-
 Approach 3: Divide and conquer
-
 Intuition
 The idea of the algorithm comes from the associative property of LCP operation. We notice that :
 LCP(S1…Sn)=LCP(LCP(S1…Sk),LCP(Sk+1…Sn)), where LCP(S1…Sn) is the longest common prefix in set of strings [S1…Sn], 1<k<n
@@ -1108,12 +1069,10 @@ Algorithm
 To apply the observation above, we use divide and conquer technique, where we split the LCP(Si…Sj) problem into two subproblems LCP(Si…Smid) and LCP(Smid+1…Sj), where mid is (i+j)/2. We use their solutions lcpLeft and lcpRight to construct the solution of the main problem LCP(Si…Sj). To accomplish this we compare one by one the characters of lcpLeft and lcpRight till there is no character match. The found common prefix of lcpLeft and lcpRight is the solution of the LCP(Si…Sj).
 
 Figure 2. Finding the longest common prefix of strings using divide and conquer technique
-```
 public String longestCommonPrefix(String[] strs) {
     if (strs == null || strs.length == 0) return "";    
         return longestCommonPrefix(strs, 0 , strs.length - 1);
 }
-
 private String longestCommonPrefix(String[] strs, int l, int r) {
     if (l == r) {
         return strs[l];
@@ -1125,7 +1084,6 @@ private String longestCommonPrefix(String[] strs, int l, int r) {
         return commonPrefix(lcpLeft, lcpRight);
    }
 }
-
 String commonPrefix(String left,String right) {
     int min = Math.min(left.length(), right.length());       
     for (int i = 0; i < min; i++) {
@@ -1134,24 +1092,20 @@ String commonPrefix(String left,String right) {
     }
     return left.substring(0, min);
 }
-```
 Complexity Analysis
 In the worst case we have n equal strings with length m
 - Time complexity : O(S), where S is the number of all characters in the array, S=m⋅n
-  Time complexity is 2⋅T(n/2)+O(m). Therefore time complexity is O(S).
-  In the best case this algorithm performs O(minLen⋅n) comparisons, where minLen is the shortest string of the array
+Time complexity is 2⋅T(n/2)+O(m). Therefore time complexity is O(S).
+In the best case this algorithm performs O(minLen⋅n) comparisons, where minLen is the shortest string of the array
 - Space complexity : O(m⋅log⁡n)
-  There is a memory overhead since we store recursive calls in the execution stack. There are log⁡n recursive calls, each store need m space to store the result, so space complexity is O(m⋅log⁡n)
-
+There is a memory overhead since we store recursive calls in the execution stack. There are log⁡n recursive calls, each store need m space to store the result, so space complexity is O(m⋅log⁡n)
+--------------------------------------------------------------------------------
 Also refer to
 https://leetcode.wang/leetCode-14-Longest-Common-Prefix.html
-
 解法一 垂直比较
-
 
 我们把所有字符串垂直排列，然后一列一列的比较，直到某一个字符串到达结尾或者该列字符不完全相同。
 下边看一下我的代码，看起来比较多
-```
 //这个函数判断 index 列的字符是否完全相同
 public boolean isSameAtIndex(String[] strs, int index) {
     int i = 0;
@@ -1164,7 +1118,6 @@ public boolean isSameAtIndex(String[] strs, int index) {
     }
     return true;
 }
-
 public String longestCommonPrefix(String[] strs) {
     if (strs.length == 0)
         return "";
@@ -1184,11 +1137,8 @@ public String longestCommonPrefix(String[] strs) {
         }
     }
     return strs[0].substring(0, j);
-
 }
-```
 下边看一下，官方的代码
-```
 public String longestCommonPrefix(String[] strs) {
     if (strs == null || strs.length == 0) return "";
     //遍历所有列
@@ -1207,16 +1157,13 @@ public String longestCommonPrefix(String[] strs) {
     }
     return strs[0];
 }
-```
 时间复杂度：最坏的情况就是 n 个 长度为 m 的完全一样的字符串，假设 S 是所有字符的和，那么 S = m * n，时间复杂度就是 O（S）。当然正常情况下并不需要比较所有字符串，最多比较 n * minLen 个字符就可以了。
 空间复杂度：O（1），常数个额外空间。
 
 
 解法二 水平比较
 
-
 我们将字符串水平排列，第 0 个和第 1 个字符串找最长子串，结果为 leet，再把结果和第 2 个字符串比较，结果为 leet，再把结果和第 3 个字符串比较，结果为 lee，即为最终结果。
-```
 public String longestCommonPrefix3(String[] strs) {
         if (strs.length == 0)
             return "";
@@ -1235,25 +1182,18 @@ public String longestCommonPrefix3(String[] strs) {
         }
         return prefix;
     }
-```
 时间复杂度：最坏情况和解法一是一样，n 个长度为 m 的完全相同的字符，就要比较所有的字符 S，S = n * m 。但对于正常情况，处于最短字符串前的字符串依旧要比较所有字符，而不是最短字符串个字符，相对于解法一较差。
 空间复杂度：O（1）。
 
-
 解法三 递归
 
-
 我们把原来的数组分成两部分，求出左半部分的最长公共前缀，求出右半部分的最长公共前缀，然后求出的两个结果再求最长公共前缀，就是最后的结果了。
-
 求左半部分的最长公共前缀，我们可以继续把它分成两部分，按照上边的思路接着求。然后一直分成两部分，递归下去。
-
 直到该部分只有 1 个字符串，那么最长公共子串就是它本身了，直接返回就可以了
-```
 public String longestCommonPrefix(String[] strs) {
     if (strs == null || strs.length == 0) return "";    
         return longestCommonPrefix(strs, 0 , strs.length - 1);
 }
-
 //递归不断分成两部分
 private String longestCommonPrefix(String[] strs, int l, int r) {
     if (l == r) {
@@ -1275,14 +1215,10 @@ String commonPrefix(String left,String right) {
     }
     return left.substring(0, min);
 }
-```
 时间复杂度：
-
 空间复杂度：
-
 每次遇到递归的情况，总是有些理不清楚，先空着吧。
 
-
 总
-
-进行了垂直比较和水平比较，又用到了递归，solution 里还介绍了二分查找，感觉这里用二分查找有些太僵硬了，反而使得时间复杂度变高了。还介绍了前缀树，这里后边遇到再总结吧。
+进行了垂直比较和水平比较，又用到了递归，solution 里还介绍了二分查找，感觉这里用二分查找有些太僵硬了，反而使得时间复杂度变高了。还介绍了前缀树，这里后边遇到再总结吧。      
+    
