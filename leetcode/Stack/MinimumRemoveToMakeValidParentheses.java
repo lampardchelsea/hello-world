@@ -297,50 +297,40 @@ class Solution {
 
 
 
+
 https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/description/
-
 Given a string s of '(' , ')' and lowercase English characters.
-
 Your task is to remove the minimum number of parentheses ( '(' or ')', in any positions ) so that the resulting parentheses string is valid and return any valid string.
-
 Formally, a parentheses string is valid if and only if:
 - It is the empty string, contains only lowercase characters, or
 - It can be written as AB (A concatenated with B), where A and B are valid strings, or
 - It can be written as (A), where A is a valid string.
  
 Example 1:
-```
 Input: s = "lee(t(c)o)de)"
 Output: "lee(t(c)o)de"
 Explanation: "lee(t(co)de)" , "lee(t(c)ode)" would also be accepted.
-```
 
 Example 2:
-```
 Input: s = "a)b(c)d"
 Output: "ab(c)d"
-```
 
 Example 3:
-```
 Input: s = "))(("
 Output: ""
 Explanation: An empty string is also valid.
-```
  
 Constraints:
-- 1 <= s.length <= 105
-- s[i] is either'(' , ')', or lowercase English letter.
----
+- 1 <= s.length <= 10^5
+- s[i] is either'(' , ')', or lowercase English letter
+--------------------------------------------------------------------------------
 Attempt 1: 2023-08-12
-
 Solution 1: Two Stacks (360min, TLE, 62/62)
 Key points:
 1. Paired opening bracket '(' will convert into '#', unpaired opening bracket '(' will ignore during final string builder
 2. 'tmp' stack temporarily used to cache the substring before current closing bracket ')' till its corresponding opening bracket '(' or if no corresponding opening bracket '(' then cache till the beginning of original input string
 3. Two stacks 'tmp' and 'stack' cooperate to go back and forth to construct "filtered" string by constructing session by session based on encountering closing bracket ')'
 4. In final scanning "filtered" string still need to handle redundant opening bracket '('  (e.g "))((", "ab(c(d", "ab(c(d)"...)
-```
 class Solution {
     public String minRemoveToMakeValid(String s) {
         Stack<Character> stack = new Stack<Character>();
@@ -400,11 +390,9 @@ class Solution {
 
 Time Complexity: O(N^2)
 Space Complexity: O(N)
-```
 
----
+--------------------------------------------------------------------------------
 Solution 2: Stack + boolean[] array (30min)
-```
 class Solution {
     public String minRemoveToMakeValid(String s) {
         boolean[] b = new boolean[s.length()];
@@ -434,21 +422,17 @@ class Solution {
 
 Time Complexity: O(N) 
 Space Complexity: O(N)
-```
 
 Refer to
 https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/solutions/419402/java-c-stack/
-
 Intuition
-
 To make the string valid with minimum removals, we need to get rid of all parentheses that do not have a matching pair.
-1. Push char index into the stack when we see '('.
-2. Pop from the stack when we see ')'.
-	- If the stack is empty, then we have ')' without the pair, and it needs to be removed.
-3. In the end, the stack will contain indexes of '(' without the pair, if any. We need to remove all of them too
+1.Push char index into the stack when we see '('.
+2.Pop from the stack when we see ')'.
+- If the stack is empty, then we have ')' without the pair, and it needs to be removed.
+3.In the end, the stack will contain indexes of '(' without the pair, if any. We need to remove all of them too
 If you are using a stack, you can maintain a simple boolean array to decide whether to take a character into result or not.
 https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/solutions/419402/java-c-stack/comments/413619
-```
 class Solution {
     public String minRemoveToMakeValid(String s) {
         int len = s.length();
@@ -475,11 +459,9 @@ class Solution {
         return res.toString();
     }
 }
-```
 
----
+--------------------------------------------------------------------------------
 Solution 3: Stack to record all opening bracket '(' index + Set to record redundant closing bracket ')' index  (30min)
-```
 class Solution {
     public String minRemoveToMakeValid(String s) {
         Set<Integer> set = new HashSet<Integer>();
@@ -533,12 +515,10 @@ class Solution {
 
 Time Complexity: O(N) 
 Space Complexity: O(N)
-```
 
----
+--------------------------------------------------------------------------------
 Solution 4: Stack without Set (30min)
 Based on Solution 3: we can remove Set
-```
 class Solution {
     public String minRemoveToMakeValid(String s) {
         StringBuilder sb = new StringBuilder(s);
@@ -571,17 +551,13 @@ class Solution {
 
 Time Complexity: O(N) 
 Space Complexity: O(N)
-```
 
 Refer to
 https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/solutions/419402/java-c-stack/
-
 Approach 1: Stack and Placeholder
-
 We mark removed parentheses with '*', and erase all of them in the end.
 
 Java
-```
 public String minRemoveToMakeValid(String s) {
   StringBuilder sb = new StringBuilder(s);
   Stack<Integer> st = new Stack<>();
@@ -596,4 +572,5 @@ public String minRemoveToMakeValid(String s) {
     sb.setCharAt(st.pop(), '*');
   return sb.toString().replaceAll("\\*", "");
 }
-```
+      
+    
