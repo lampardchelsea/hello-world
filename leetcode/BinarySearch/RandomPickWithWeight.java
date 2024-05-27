@@ -1,12 +1,10 @@
+
 https://leetcode.com/problems/random-pick-with-weight/description/
-
 You are given a 0-indexed array of positive integers w where w[i] describes the weight of the ith index.
-
 You need to implement the function pickIndex(), which randomly picks an index in the range [0, w.length - 1] (inclusive) and returns it. The probability of picking an index i is w[i] / sum(w).
 - For example, if w = [1, 3], the probability of picking index 0 is 1 / (1 + 3) = 0.25 (i.e., 25%), and the probability of picking index 1 is 3 / (1 + 3) = 0.75 (i.e., 75%).
  
 Example 1:
-```
 Input
 ["Solution","pickIndex"]
 [[[1]],[]]
@@ -16,10 +14,8 @@ Output
 Explanation
 Solution solution = new Solution([1]);
 solution.pickIndex(); // return 0. The only option is to return 0 since there is only one element in w.
-```
 
 Example 2:
-```
 Input
 ["Solution","pickIndex","pickIndex","pickIndex","pickIndex","pickIndex"]
 [[[1,3]],[],[],[],[],[]]
@@ -43,17 +39,14 @@ All of the following outputs can be considered correct:
 [null,1,0,1,0,0]
 ......
 and so on.
-```
 
 Constraints:
-- 1 <= w.length <= 104
-- 1 <= w[i] <= 105
-- pickIndex will be called at most 104 times.
----
+- 1 <= w.length <= 10^4
+- 1 <= w[i] <= 10^5
+- pickIndex will be called at most 10^4 times.
+--------------------------------------------------------------------------------
 Attempt 1: 2023-08-12
-
 Solution 1: Binary Search (60min)
-```
 class Solution {
     // e.g w = {1,3}
     // -> weighted mapping index arr = {0,1,1,1}
@@ -120,7 +113,6 @@ class Solution {
  * Solution obj = new Solution(w);
  * int param_1 = obj.pickIndex();
  */
-```
 
 Refer to
 https://leetcode.com/problems/random-pick-with-weight/solutions/605331/clear-problem-explanation-thought-process-optimal-code/
@@ -143,7 +135,6 @@ To do this efficiently we're going to build a cum array which contains the sum o
 The time complexity of pickIndex is O(logN) time complexity where N is the sum of all weights in our array.
 
 Here is the code:
-```
 import random
 from bisect import bisect_left
 class Solution:
@@ -157,24 +148,17 @@ class Solution:
     def pickIndex(self) -> int:
         randVal=random.randint(0,self.cum[-1])
         return bisect_left(self.cum,randVal)
-```
 
----
+--------------------------------------------------------------------------------
 Refer to
 https://leetcode.com/problems/random-pick-with-weight/solutions/154044/java-accumulated-freq-sum-binary-search/
 Use accumulated freq array to get idx.
-w[] = {2,5,3,4} => wsum[] = {2,7,10,14}
-then get random val random.nextInt(14)+1, idx is in range [1,14]
-```
+w[] = {2,5,3,4} => wsum[] = {2,7,10,14}then get random val random.nextInt(14)+1, idx is in range [1,14]
 idx in [1,2] return 0
 idx in [3,7] return 1
 idx in [8,10] return 2
 idx in [11,14] return 3
-```
-then become LeetCode 35. Search Insert Position
-Time: O(n) to init, O(logn) for one pick
-Space: O(n)
-```
+then become LeetCode 35. Search Insert PositionTime: O(n) to init, O(logn) for one pickSpace: O(n)
 class Solution {
 
     Random random;
@@ -204,15 +188,13 @@ class Solution {
         return left;
     }
 }
-```
 
----
+--------------------------------------------------------------------------------
 Refer to
 https://leetcode.com/problems/random-pick-with-weight/solutions/154432/very-easy-solution-based-on-uniform-sampling-with-explanation/
-say we have the numbers 1, 5, 2 easiest solution is to construct the following arrayarr[] = {0,1,1,1,1,1,2,2}then generate a random number between 0 and 7 and return the arr[rnd]. This is solution is not really good though due to the space requirements it has (imagine a number beeing 2billion).
+say we have the numbers 1, 5, 2 easiest solution is to construct the following arrayarr[] = {0,1,1,1,1,1,2,2} then generate a random number between 0 and 7 and return the arr[rnd]. This is solution is not really good though due to the space requirements it has (imagine a number beeing 2billion).
 
 The solution here is similar but instead we construct the following array (accumulated sum){1, 6, 8} generate a number between 1-8 and say all numbers generated up to 1 is index 0. all numbers generated greater than 1 and up to 6 are index 1 and all numbers greater than 6 and up to 8 are index 2. After we generate a random number to find which index to return we use binary search.
-```
 class Solution {
 
     int[] arr;
@@ -232,10 +214,13 @@ class Solution {
     public int pickIndex() {
         int rnd = random.nextInt(max) + 1;  // generate random number in [1,max]
         //this returns the index of the random  number,
-	//if the number does not exist in the array it returns  -(the position it should have been) - 1
+    //if the number does not exist in the array it returns  -(the position it should have been) - 1
         int ret = Arrays.binarySearch(arr, rnd); 
         if(ret < 0) ret = -ret - 1; //if not in the array 
         return ret;
     }
 }
-```
+      
+   
+Refer to
+L35.P12.2.Search Insert Position (Ref.L34,L704) 
