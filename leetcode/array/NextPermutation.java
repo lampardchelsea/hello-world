@@ -297,46 +297,35 @@ class Solution {
 
 
 
-https://leetcode.com/problems/next-permutation/
 
+https://leetcode.com/problems/next-permutation/
 A permutation of an array of integers is an arrangement of its members into a sequence or linear order.
 - For example, for arr = [1,2,3], the following are all the permutations of arr: [1,2,3], [1,3,2], [2, 1, 3], [2, 3, 1], [3,1,2], [3,2,1].
-
 The next permutation of an array of integers is the next lexicographically greater permutation of its integer. More formally, if all the permutations of the array are sorted in one container according to their lexicographical order, then the next permutation of that array is the permutation that follows it in the sorted container. If such arrangement is not possible, the array must be rearranged as the lowest possible order (i.e., sorted in ascending order).
 - For example, the next permutation of arr = [1,2,3] is [1,3,2].
 - Similarly, the next permutation of arr = [2,3,1] is [3,1,2].
 - While the next permutation of arr = [3,2,1] is [1,2,3] because [3,2,1] does not have a lexicographical larger rearrangement.
-
 Given an array of integers nums, find the next permutation of nums.
-
 The replacement must be in place and use only constant extra memory.
 
 Example 1:
-```
 Input: nums = [1,2,3]
 Output: [1,3,2]
-```
 
 Example 2:
-```
 Input: nums = [3,2,1]
 Output: [1,2,3]
-```
 
 Example 3:
-```
 Input: nums = [1,1,5]
 Output: [1,5,1]
-```
 
 Constraints:
 - 1 <= nums.length <= 100
 - 0 <= nums[i] <= 100
----
+--------------------------------------------------------------------------------
 Attempt 1: 2023-08-01
-
 Solution 1: Two Pointers (30min)
-```
 class Solution {
     public void nextPermutation(int[] nums) {
         // e.g {0,1,2,5,3,3,0}
@@ -344,15 +333,12 @@ class Solution {
         // i = 5, nums[5] == nums[4], i--
         // i = 4, nums[4] < nums[3], i--
         // i = 3, nums[3] > nums[2], break
-
         // e.g {3,2,1} monotonically decreasing example
         // i = 2, nums[2] < nums[1], i--
         // i = 1, nums[1] < nums[0], i--
         // i = 0, break out while loop
-
         // e.g {1,2,3} monotonically increasing example
         // i = 2, nums[2] > nums[1], break
-
         // Find longest increasing suffix (scan from right to left)
         int i = nums.length - 1;
         while(i >= 1) {
@@ -386,13 +372,11 @@ class Solution {
         }
     }
  
-
     private void swap(int[] nums, int i, int j) {
         int tmp = nums[i];
         nums[i] = nums[j];
         nums[j] = tmp;
     }
-
 
     private void reverse(int[] nums, int i, int j) {
         while(i < j) {
@@ -402,13 +386,11 @@ class Solution {
         }
     }
 }
-```
 
 Refer to
 https://leetcode.com/problems/next-permutation/solutions/13994/readable-code-without-confusing-i-j-and-with-explanation/
 
 
-```
 public class Solution {
 /*0*/ public void nextPermutation(int[] nums) {
         // pivot is the element just before the non-increasing (weakly decreasing) suffix
@@ -433,7 +415,6 @@ public class Solution {
         }
         return 0;
     }
-
     /** @return last index where the {@code num > threshold} or -1 if not found */
 /*3*/ int lastIndexOfGreater(int[] nums, int threshold) {
         for (int i = nums.length - 1; 0 <= i; --i) {
@@ -441,7 +422,6 @@ public class Solution {
         }
         return -1;
     }
-
     /** Reverse numbers starting from an index till the end. */
     void reverseSuffix(int[] nums, int start) {
         int end = nums.length - 1;
@@ -456,8 +436,6 @@ public class Solution {
         nums[j] = temp;
     }
 }
-```
-
 
 Refer to
 https://leetcode.wang/leetCode-31-Next-Permutation.html
@@ -469,9 +447,7 @@ https://leetcode.wang/leetCode-31-Next-Permutation.html
 
 题目还要求空间复杂度必须是 O（1）。
 
-
 解法一
-
 我们想几个问题。
 
 要想使得数字变大，只要任意一位变大就可以。
@@ -497,7 +473,6 @@ https://leetcode.wang/leetCode-31-Next-Permutation.html
 再看这个过程，我们其实是从右向左找到第一个数字不再递增的位置，然后从右边找到一个刚好大于当前位的数字即可。
 
 再看下代码吧。
-```
 public void nextPermutation(int[] nums) {
     int i = nums.length - 2;
     //找到第一个不再递增的位置
@@ -518,15 +493,12 @@ public void nextPermutation(int[] nums) {
     swap(nums, i, j);
     //利用倒置进行排序
     reverse(nums, i + 1);
-
 }
-
 private void swap(int[] nums, int i, int j) {
     int temp = nums[j];
     nums[j] = nums[i];
     nums[i] = temp;
 }
-
 private void reverse(int[] nums, int start) {
     int i = start, j = nums.length - 1;
     while (i < j) {
@@ -535,6 +507,6 @@ private void reverse(int[] nums, int start) {
         j--;
     }
 }
-```
 时间复杂度：最坏的情况就是遍历完所有位，O（n），倒置也是 O（n），所以总体依旧是 O（n）。
-空间复杂度：O（1）。
+空间复杂度：O（1）。      
+    
