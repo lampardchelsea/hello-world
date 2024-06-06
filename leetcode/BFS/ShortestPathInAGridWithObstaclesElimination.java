@@ -348,6 +348,7 @@ new boolean[m][n][k + 1]; // keeps track of whether or not we visited a node
 
 --------------------------------------------------------------------------------
 Solution 2: Dijkstra (120 min)
+Style 1:
 class Solution {
     public int shortestPath(int[][] grid, int k) {
         int[] dx = new int[]{0,0,1,-1};
@@ -520,6 +521,169 @@ class Solution {
         return (res == Integer.MAX_VALUE) ? -1 : res;
     }
 }
+
+Style 2: From ChatGPT
+class Solution {
+    public int shortestPath(int[][] grid, int k) {
+        int[] dx = new int[]{0,0,1,-1};
+        int[] dy = new int[]{1,-1,0,0};
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][][] distances = new int[m][n][k + 1];
+        for(int[][] distance : distances) {
+            for(int[] d : distance) {
+                Arrays.fill(d, Integer.MAX_VALUE);
+            }
+        }
+        // Initialize distance for all potential removing obstacles cases(0 ~ k) as 0
+        Arrays.fill(distances[0][0], 0);
+        // min-heap storing {i, j, # obstacles eliminated, distance}, sorted by distance to (0,0)
+        // Similar strategy as L743.Network Delay Time
+        PriorityQueue<int[]> minPQ = new PriorityQueue<>((a, b) -> a[3] - b[3]);
+        minPQ.offer(new int[]{0, 0, 0, 0});
+        // Using Dijkstra algorithm with PriorityQueue, no 'visited' array required
+        while(!minPQ.isEmpty()) {
+            int[] cur = minPQ.poll();
+            // When the target cell {m - 1, n - 1} is reached with any number 
+            // of obstacles(0 ~ k) removed within the allowed limit, the first
+            // case returned will surely be the minimum distance since its
+            // reaching the goal as first one
+            if(cur[0] == m - 1 && cur[1] == n - 1) {
+                return cur[3];
+            }
+            for(int i = 0; i < 4; i++) {
+                int new_x = cur[0] + dx[i];
+                int new_y = cur[1] + dy[i];
+                // Must in boundary
+                if(new_x >= 0 && new_x < m && new_y >= 0 && new_y < n) {
+                    int new_k = cur[2] + grid[new_x][new_y];
+                    // Must under # obstacles eliminated limit
+                    if(new_k <= k) {
+                        // Continue if we have more optimal result:
+                        // Under same number of obstacles removed case, if the 
+                        // new path(new_distance) able to reach longer distance 
+                        // than existing path(distances[new_x][new_y][new_k]), 
+                        // we will update current path to new path, which means 
+                        // addding the node into minPQ
+                        int new_distance = cur[3] + 1;
+                        if(distances[new_x][new_y][new_k] > new_distance) {
+                            distances[new_x][new_y][new_k] = new_distance;
+                            minPQ.offer(new int[]{new_x, new_y, new_k, new_distance});
+                        }
+                    }
+                }
+            }
+        }
+        // If not able to find a path to reach {m - 1, n - 1}
+        // just return -1
+        return -1;
+    }
+}
+
+Refer to ChatGPT
+Leetcode problem 1293, "Shortest Path in a Grid with Obstacles Elimination," requires finding the shortest path in a grid while being allowed to eliminate a certain number of obstacles. Dijkstra's algorithm can be adapted to solve this problem by treating each state (position in the grid, number of obstacles removed) as a node in the graph.
+Here’s the approach to solving the problem using a modified version of Dijkstra’s algorithm:
+Explanation
+1.State Representation:
+- Each state is represented as (row, col, obstacles_removed), where row and col are the current position in the grid and obstacles_removed is the number of obstacles removed so far.
+2.Priority Queue:
+- Use a priority queue to always expand the node with the smallest path cost first. The path cost here is the number of steps taken.
+3.Distance Array:
+- Maintain a 3D distance array dist[row][col][obstacles_removed] to store the shortest path to each state.
+4.Graph Exploration:
+- From each cell, consider moving to the neighboring cells (up, down, left, right). If moving to a cell with an obstacle, increase the count of obstacles_removed.
+5.Termination:
+- The algorithm terminates when the target cell (n-1, m-1) is reached with any number of obstacles removed within the allowed limit.
+Java Implementation
+Here's the Java code implementing the above approach using a priority queue:
+class Solution {
+    static class State implements Comparable<State> {
+        int row, col, steps, obstaclesRemoved;       
+        public State(int row, int col, int steps, int obstaclesRemoved) {
+            this.row = row;
+            this.col = col;
+            this.steps = steps;
+            this.obstaclesRemoved = obstaclesRemoved;
+        }       
+        @Override
+        public int compareTo(State other) {
+            return Integer.compare(this.steps, other.steps);
+        }
+    }
+    
+    public int shortestPath(int[][] grid, int k) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+        int[][][] dist = new int[rows][cols][k + 1];       
+        for (int[][] matrix : dist) {
+            for (int[] array : matrix) {
+                Arrays.fill(array, Integer.MAX_VALUE);
+            }
+        }        
+        PriorityQueue<State> pq = new PriorityQueue<>();
+        pq.add(new State(0, 0, 0, 0));
+        dist[0][0][0] = 0;       
+        int[] dr = {-1, 1, 0, 0};
+        int[] dc = {0, 0, -1, 1};       
+        while (!pq.isEmpty()) {
+            State current = pq.poll();           
+            if (current.row == rows - 1 && current.col == cols - 1) {
+                return current.steps;
+            }           
+            for (int i = 0; i < 4; i++) {
+                int newRow = current.row + dr[i];
+                int newCol = current.col + dc[i];                
+                if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
+                    int newObstaclesRemoved = current.obstaclesRemoved + grid[newRow][newCol];                    
+                    if (newObstaclesRemoved <= k && current.steps + 1 < dist[newRow][newCol][newObstaclesRemoved]) {
+                        dist[newRow][newCol][newObstaclesRemoved] = current.steps + 1;
+                        pq.add(new State(newRow, newCol, current.steps + 1, newObstaclesRemoved));
+                    }
+                }
+            }
+        }       
+        return -1;  // If the target is not reachable
+    }
+}
+Key Points:
+1.State: Each state in the priority queue includes the row, column, number of steps taken, and number of obstacles removed.
+2.Priority Queue: The priority queue ensures that the state with the smallest number of steps is processed first.
+3.Distance Array: The 3D distance array keeps track of the shortest path to each cell for each possible number of obstacles removed.
+Benefits:
+- Optimal Path: Dijkstra’s algorithm ensures the shortest path is found.
+- Efficiency: The priority queue and distance array help manage the exploration efficiently, avoiding unnecessary revisits to states that have already been processed optimally.
+By using this modified Dijkstra’s approach, the problem is efficiently solved while respecting the constraints on the number of obstacles that can be eliminated.
+--------------------------------------------------------------------------------
+Why in above Leetcode 1293 Dijkstra solution we need one more field in 'State' object as 'steps' but Leetcode 2290 Dijkstra solution don't need it ?
+The key difference between the two problems lies in the nature of the constraints and the goal for each problem.
+Leetcode 1293: "Shortest Path in a Grid with Obstacles Elimination"
+Problem Requirements:
+- Goal: Find the shortest path from the top-left to the bottom-right of the grid.
+- Constraints: You can eliminate up to k obstacles.
+- Objective: Minimize the number of steps to reach the target cell.
+Why We Need steps:
+1.Path Length: The primary goal is to minimize the number of steps taken to reach the target. Each state needs to keep track of the number of steps to ensure we are indeed minimizing the path length.
+2.Optimal Path: When we evaluate which state to process next, we need to compare not just the number of obstacles removed but also the number of steps taken to reach that state. The steps field helps us prioritize states that lead to shorter paths.
+3.Priority Queue: The priority queue needs to sort states not only by the number of obstacles removed but also by the number of steps taken. Thus, steps is essential for the ordering in the priority queue.
+Leetcode 2290: "Minimum Obstacle Removal to Reach Corner"
+Problem Requirements:
+- Goal: Find the minimum number of obstacles to remove to get from the top-left to the bottom-right of the grid.
+- Constraints: The number of obstacles is the primary constraint.
+- Objective: Minimize the number of obstacles removed.
+Why We Don't Need steps:
+1.Obstacle Removal Focus: The primary objective is to minimize the number of obstacles removed, not the number of steps taken.
+2.Sufficient to Track Obstacles: The shortest path in terms of steps is inherently considered because we always take the path with the fewest obstacles first. Since each step contributes equally to the path length in an unweighted sense, tracking the number of obstacles is sufficient.
+3.Priority Queue: The priority queue in this problem only needs to order states by the number of obstacles removed, making the steps field unnecessary.
+Summarizing the Differences:
+1.Leetcode 1293:
+- Objective: Minimize steps while keeping track of the number of obstacles removed.
+- State Representation: (row, col, steps, obstaclesRemoved).
+- Priority Queue: Orders states based on steps to ensure the shortest path in terms of steps.
+2.Leetcode 2290:
+- Objective: Minimize the number of obstacles removed to reach the target.
+- State Representation: (row, col, obstaclesRemoved).
+- Priority Queue: Orders states based on obstaclesRemoved to ensure the minimum obstacles are removed.
+In summary, the difference in the requirement of the steps field arises from the different objectives of the two problems: minimizing path length in one case and minimizing obstacle removal in the other.
 
 Refer to
 L2290.Minimum Obstacle Removal to Reach Corner (Ref.L1293)
