@@ -1,3 +1,4 @@
+
 https://leetcode.ca/all/588.html
 Design an in-memory file system to simulate the following functions:
 ls: Given a path in string format. If it is a file path, return a list that only contains this file's name. If it is a directory path, return the list of file and directory names in this directory. Your output (file and directory names together) should in lexicographic order.
@@ -11,7 +12,6 @@ readContentFromFile: Given a file path, return its content in string format.
 Example:
 
 
-```
 Input
 ["FileSystem", "ls", "mkdir", "addContentToFile", "ls", "readContentFromFile"]
 [[], ["/"], ["/a/b/c"], ["/a/b/c/d", "hello"], ["/"], ["/a/b/c/d"]]
@@ -25,20 +25,17 @@ fileSystem.mkdir("/a/b/c");
 fileSystem.addContentToFile("/a/b/c/d", "hello");
 fileSystem.ls("/");                         // return ["a"]
 fileSystem.readContentFromFile("/a/b/c/d"); // return "hello"
-```
 
 Note:
-1. 1 <= path.length, filePath.length <= 100
-2. path and filePath are absolute paths which begin with '/' and do not end with '/' except that the path is just "/".
-3. You can assume that all directory names and file names only contain lowercase letters, and the same names will not exist in the same directory.
-4. You can assume that all operations will be passed valid parameters, and users will not attempt to retrieve file content or list a directory or file that does not exist.
-5. 1 <= content.length <= 50
-6. At most 300 calls will be made to ls, mkdir, addContentToFile, and readContentFromFile.
----
+1.1 <= path.length, filePath.length <= 100
+path and filePath are absolute paths which begin with '/' and do not end with '/' except that the path is just "/".
+2.You can assume that all directory names and file names only contain lowercase letters, and the same names will not exist in the same directory.
+3.You can assume that all operations will be passed valid parameters, and users will not attempt to retrieve file content or list a directory or file that does not exist.
+4.1 <= content.length <= 50
+5.At most 300 calls will be made to ls, mkdir, addContentToFile, and readContentFromFile.
+--------------------------------------------------------------------------------
 Attempt 1: 2023-08-16
-
 Solution 1: Hash Table + Node structure + Design (360min)
-```
 public class FileSystem {
     class Node {
         Map<String, Node> dirs;
@@ -47,14 +44,12 @@ public class FileSystem {
             this.dirs = new HashMap<>();
             this.files = new HashMap<>();
         }
-    }
-  
+    }  
 
     Node root;
     public FileSystem() {
         this.root = new Node();
     }
-
 
     /**
      * ls: To test 'ls' method it is better to finish 'mkdir' and 'addContentToFile' first
@@ -93,12 +88,11 @@ public class FileSystem {
         }
         // If it is a directory path, return the list of file and directory names in this directory
         result.addAll(new ArrayList<>(node.dirs.keySet()));
-        result.addAll(new ArrayList<>(node.files.keySet()));
+        result.addAll(new ArrayList<>(node.files.k,eySet()));
         // Your output (file and directory names together) should in lexicographic order
         Collections.sort(result);
         return result;
     }
-
 
     /**
      * mkdir:
@@ -120,7 +114,6 @@ public class FileSystem {
         }
     }
 
-
     /**
      * addContentToFile:
      * @param filePath Given a file path in string format.
@@ -140,10 +133,9 @@ public class FileSystem {
         }
         // Last section is a 'file' not a 'directory'
         // e.g "c"(i=3).files = {"d", content}
-        node.files.put(p[p.length - 1], node.files.getOrDefault(p[p.length-1], "") + content);
+        node.files.put(p[p.length - 1], node.files.getOrDefault(p[p.length - 1], "") + content);
     }
  
-
     public String readContentFromFile(String filePath) {
         Node node = root;
         String[] p = filePath.split("/");
@@ -164,15 +156,13 @@ public class FileSystem {
         System.out.println(s);
     }
 }
-```
 
----
+--------------------------------------------------------------------------------
 Refer to
 https://grandyang.com/leetcode/588/
 这道题让我们设计一个内存文件系统，实现显示当前文件，创建文件，添加内容到文件，读取文件内容等功能，感觉像是模拟一个terminal的一些命令。这道题比较tricky的地方是ls这个命令，题目中的例子其实不能很好的展示出ls的要求，其对文件和文件夹的处理方式是不同的。由于这里面的文件没有后缀，所以最后一个字符串有可能是文件，也有可能是文件夹。比如a/b/c，那么最后的c有可能是文件夹，也有可能好是文件，如果c是文件夹的话，ls命令要输出文件夹c中的所有文件和文件夹，而当c是文件的话，只需要输出文件c即可。另外需要注意的是在创建文件夹的时候，路径上没有的文件夹都要创建出来，还有就是在给文件添加内容时，路径中没有的文件夹都要创建出来。论坛上这道题的高票解法都新建了一个自定义类，但是博主一般不喜欢用自定义类来解题，而且感觉那些使用了自定义类的解法并没有更简洁易懂，所以这里博主就不创建自定义类了，而是使用两个哈希表来做，其中dirs建立了路径和其对应的包含所有文件和文件夹的集合之间的映射，files建立了文件的路径跟其内容之间的映射。
 
 最开始时将根目录”/“放入dirs中，然后看ls的实现方法，如果该路径存在于files中，说明最后一个字符串是文件，那么我们将文件名取出来返回即可，如果不存在，说明最后一个字符串是文件夹，那么我们到dirs中取出该文件夹内所有的东西返回即可。再来看mkdir函数，我们的处理方法就是根据”/“来分隔分隔字符串，如果是Java，那么直接用String自带的split函数就好了，但是C++没有Java那么多自带函数，所以只能借助字符串流类来处理，处理方法就是将每一层的路径分离出来，然后将该层的文件或者文件夹加入对应的集合中，注意的地方就是处理根目录时，要先加上”/“，其他情况都是后加。下面来看addContentToFile函数，首先分离出路径和文件名，如果路径为空，说明是根目录，需要加上”/“，然后看这个路径是否已经在dirs中存在，如果不存在，调用mkdir来创建该路径，然后把文件加入该路径对应的集合中，再把内容加入该文件路径的映射中。最后的读取文件内容就相当简单了，直接在files中返回即可，参见代码如下：
-```
 class FileSystem {
     public:
     FileSystem() {
@@ -218,9 +208,8 @@ class FileSystem {
     unordered_map<string, set<string>> dirs;
     unordered_map<string, string> files;
 };
-```
 
----
+--------------------------------------------------------------------------------
 Refer to
 https://wentao-shao.gitbook.io/leetcode/data-structure/588.design-in-memory-file-system
 设计内存文件系统模拟实现如下功能：
@@ -230,17 +219,14 @@ addContentToFile：在文件中追加内容，若文件不存在，则新建
 readContentFromFile：从文件中读取内容并返回
 
 注意：
-1. 你可以假设文件和目录的路径均为绝对路径，以/开始，并且结尾不包含/，除非路径就是"/"本身
-2. 你可以假设所有操作均合法，用户不会常识读取一个不存在的文件，或者ls一个不存在的目录
-3. 你可以假设所有目录名称和文件名称都只包含小写字母，并且在同一目录下不会存在同名的目录或者文件
+1.你可以假设文件和目录的路径均为绝对路径，以/开始，并且结尾不包含/，除非路径就是"/"本身
+2.你可以假设所有操作均合法，用户不会常识读取一个不存在的文件，或者ls一个不存在的目录
+3.你可以假设所有目录名称和文件名称都只包含小写字母，并且在同一目录下不会存在同名的目录或者文件
 
 树形结构（Tree）
 目录节点Node包含两个字段dirs和files，分别存储其中包含的子目录节点和文件内容
-
 Approach #1 Using separate Directory and File List
-
 Time: O(m+n) && Space: O(m+n)
-```
 class FileSystem {
 
     class Dir {
@@ -316,9 +302,7 @@ class FileSystem {
  * obj.addContentToFile(filePath,content);
  * String param_4 = obj.readContentFromFile(filePath);
  */
-```
 Approach #2 Using unified Directory and File List
-```
 public class FileSystem {
     class File {
         boolean isfile = false;
@@ -389,9 +373,8 @@ public class FileSystem {
  * obj.addContentToFile(filePath,content);
  * String param_4 = obj.readContentFromFile(filePath);
  */
-```
 
----
+--------------------------------------------------------------------------------
 Refer to
 https://www.cnblogs.com/Dylan-Java-NYC/p/16514312.html
 It is like Tire.
@@ -403,7 +386,6 @@ add, O(m).
 readContentFromFile, O(m).
 Space: O(n). size of DirNode tree.
 AC Java:
-```
 class FileSystem {
     DirNode root;
 
@@ -482,4 +464,5 @@ class DirNode{
  * obj.addContentToFile(filePath,content);
  * String param_4 = obj.readContentFromFile(filePath);
  */
-```
+      
+    
