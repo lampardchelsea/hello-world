@@ -283,7 +283,17 @@ public class Solution {
         return sum;
     }
 }
-Step by Step
+Step by Step (with issue)
+注意，以下是一个博主的个人实现，经过实际测试，该实现在运行其他网站的标准答案的时候出现了异常，同样的输入{1, {4, {6}}}，在运行别的网站的类似答案的时候都是输出18，而不是27，只有在运行博主自己的 NestedIntegerSum class 的逻辑的时候才会输出27，最大的区别在于博主的答案里面以下部分并不是以 if - else 的逻辑区分开来，而是每一层都先计算了 current.getInteger() * level 并且加入到 tempSum 中，这样在后面 for 循环递归更深的层回来之后 tempSum 不会丢失当前层的 current.getInteger() * level 值，但是在其他网站的答案中 if - else 逻辑是严格区分开的，并没有在每一层累加 current.getInteger() * level 的逻辑，导致要是以博主自己实现的结构运行的时候递归更深的层回来之后 tempSum 会丢失当前层的 current.getInteger() * level 值，应该是博主自己实现的数据结构有问题
+                int tempSum = 0;
+                if (current.getInteger() != null) {
+                    tempSum = current.getInteger() * level;
+                }
+                for (NestedInteger nestedCurrent : current.getList()) {
+                    tempSum += depthSumNestedInteger(nestedCurrent, level + 1);
+                }
+                return tempSum;
+
 /**
  * This is the interface that represents nested lists. You should not implement
  * it, or speculate about its implementation.
@@ -519,3 +529,6 @@ Time Complexity
 The time complexity of the function is O(N), where N is the total number of integers and lists within all levels of the nested list. Specifically, the function dfs visits each element exactly once. For each integer it encounters, it performs a constant time operation of multiplication and addition. For each list, it makes a recursive call to process its elements. However, since every element is only visited once, the overall time to visit all elements is proportional to their count.
 Space Complexity
 The space complexity of the function is O(D), where D is the maximum depth of the nested list. This complexity arises from the call stack used for recursion. In the worst case, the recursion will go as deep as the deepest nested list. Therefore, the maximum number of nested calls will equal the maximum depth D. Furthermore, there is only a constant amount of space used at each level for variables such as depth_sum.
+
+Refer to
+L364.Nested List Weight Sum II (Ref.L339)
