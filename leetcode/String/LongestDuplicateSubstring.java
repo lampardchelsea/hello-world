@@ -1,29 +1,22 @@
+
 https://leetcode.com/problems/longest-duplicate-substring/description/
-
 Given a string s, consider all duplicated substrings: (contiguous) substrings of s that occur 2 or more times. The occurrences may overlap.
-
 Return any duplicated substring that has the longest possible length. If s does not have a duplicated substring, the answer is "".
 
 Example 1:
-```
 Input: s = "banana"
 Output: "ana"
-```
 
 Example 2:
-```
 Input: s = "abcd"
 Output: ""
-```
 
 Constraints:
-- 2 <= s.length <= 3 * 104
+- 2 <= s.length <= 3 * 10^4
 - s consists of lowercase English letters.
----
+--------------------------------------------------------------------------------
 Attempt 1: 2023-05-28
-
 Solution 1: Binary Search + Rolling Harsh (120 min, TLE 66/67)
-```
 class Solution {
     public String longestDupSubstring(String s) {
         int len = s.length();
@@ -107,11 +100,9 @@ class Solution {
         return "";
     }
 }
-```
 
 Solution 2: Binary Search + Rolling Harsh (10 min)
 The prime initialize as (1 << 31) - 1 is the root cause of TLE (Time Limit Exceed on 66/67), seen from one more post and use the same way to generate prime, it works
-```
 import java.math.BigInteger;
 import java.util.Random;
 class Solution {
@@ -199,43 +190,32 @@ class Solution {
         return "";
     }
 }
-```
 
----
+--------------------------------------------------------------------------------
 Binary search O(n log n) average with Rabin-Karp, explained
 Refer to
 https://leetcode.com/problems/longest-duplicate-substring/solutions/695029/python-binary-search-o-n-log-n-average-with-rabin-karp-explained/
 This is quite difficult problem in fact and you will be very unlucky if you have this on real interview. However if you familiar with Rabin-Karp algorithm, it will be not so difficult, you can see it in full details on Wikipedia: https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm
-
 Here I briefly explain the idea of it. Imagine, that we have string abcabcddcb, and we want to check if there are two substrings of size 3, which are equal. Idea is to hash this substrings, using rolling hash, where d is our base and q is used to avoid overflow.
-1. for abc we evaluate [ord(a)*d^2 + ord(b)*d^1 + ord(c)*d^0] % q
-2. for bca we evaluate [ord(b)*d^2 + ord(c)*d^1 + ord(a)*d^0] % q
-   
-   Note, that we can evaluate rolling hash in O(1), for more details please see Wikipedia.
-   ...
-
+1.for abc we evaluate [ord(a)*d^2 + ord(b)*d^1 + ord(c)*d^0] % q
+2.for bca we evaluate [ord(b)*d^2 + ord(c)*d^1 + ord(a)*d^0] % q
+Note, that we can evaluate rolling hash in O(1), for more details please see Wikipedia.
+...
 However, it can happen that we have collisions, we can falsely get two substrings with the same hash, which are not equal. So, we need to check our candidates.
-
 Binary search for help
-
 Note, that we are asked for the longest duplicate substring. If we found duplicate substring of length 10, it means that there are duplicate substrings of lengths 9,8, .... So, we can use binary search to find the longest one.
-
 Complexity of algorithm is O(n log n) if we assume that probability of collision is low.
-
 How to read the code
-
 I have RabinKarp(text, M,q) function, where text is the string where we search patterns, M is the length we are looking for and q is prime modulo for Rabin-Karp algorithm.
-1. First, we need to choose d, I chose d = 256, because it is more than ord(z). Rabin-Karp usually take 256, since maximum ASCII of char is 255
-2. For q used 2^31 - 1 is because it is a big prime number, but not big enough, so all multiplications stay in int32 region and work fast enough. Yes, the higher it is, the less probability of collisions, but if you take it too big, it will be quite slow, you reduce probability of collision from say 1% to 0.5% and it is just not worth it. To be honest, I tried different q and choose the best working one.
-3. Then we need to evaluate auxiliary value h, we need it for fast update of rolling hash.
-4. Evaluate hash for first window
-5. Evaluate hashes for all other windows in O(n) (that is O(1) for each window), using evaluated h.
-6. We keep all hashes in dictionary: for each hash we keep start indexes of windows.
-7. Finally, we iterate over our dictionary and for each unique hash we check all possible combinations and compare not hashes, but original windows to make sure that it was not a collision.
-
+1.First, we need to choose d, I chose d = 256, because it is more than ord(z). Rabin-Karp usually take 256, since maximum ASCII of char is 255
+2.For q used 2^31 - 1 is because it is a big prime number, but not big enough, so all multiplications stay in int32 region and work fast enough. Yes, the higher it is, the less probability of collisions, but if you take it too big, it will be quite slow, you reduce probability of collision from say 1% to 0.5% and it is just not worth it. To be honest, I tried different q and choose the best working one.
+3.Then we need to evaluate auxiliary value h, we need it for fast update of rolling hash.
+4.Evaluate hash for first window
+5.Evaluate hashes for all other windows in O(n) (that is O(1) for each window), using evaluated h.
+6.We keep all hashes in dictionary: for each hash we keep start indexes of windows.
+7.Finally, we iterate over our dictionary and for each unique hash we check all possible combinations and compare not hashes, but original windows to make sure that it was not a collision.
 
 Now, to the longestDupSubstring(S) function we run binary search, where we run our RabinKarp function at most log n times.
-```
 class Solution:
     def RabinKarp(self,text, M, q):
         if M == 0: return True
@@ -264,24 +244,21 @@ class Solution:
             else:
                 end = mid
         return Found
-```
 Further discussion I did some research in this domain, and there are different ways to handle this problem:
-1. You can solve it, using suffix array in O(n log n) (or even O(n) with suffix trees) complexity, see https://cp-algorithms.com/string/suffix-array.html for suffix array which is a bit easier than suffix trees https://en.wikipedia.org/wiki/Suffix_tree
-2. You can solve it with Tries, complexity To be checked.
-3. I think there is solution where we use KMP, but I have not seen one yet.
----
+1.You can solve it, using suffix array in O(n log n) (or even O(n) with suffix trees) complexity, see https://cp-algorithms.com/string/suffix-array.html for suffix array which is a bit easier than suffix trees https://en.wikipedia.org/wiki/Suffix_tree
+2.You can solve it with Tries, complexity To be checked.
+3.I think there is solution where we use KMP, but I have not seen one yet.
+--------------------------------------------------------------------------------
 Step by step to understand the binary search solution
 Refer to
 https://leetcode.com/problems/longest-duplicate-substring/solutions/327643/step-by-step-to-understand-the-binary-search-solution/
 
 Why use binary search
 Since the length of the answer must between 0 to the length of string minus 1, In the example one "banana", the answer must between 0 to 5, we can guess 3 at the first time. We will check every possible substring with length 3 to see if we can find any duplicate.
-```
 - ban
 - ana
 - nan
 - ana
-```
 If we are lucky enough, like this case, 'ana' is what we want. since we want to get the longest one, so we guess 4 (middle of 3 and 5) in the next time, if we found any valid answer, we can update the old one.
 
 How to check duplicate substring
@@ -292,29 +269,25 @@ hashmap = {}
 - nan -> not in the hashmap -> hashmap = {ban, ana, nan}
 - ana -> in the hashmap -> return 'ana'
 
-
 But we will get Memory Limit Exceeded in leetcode if we did this. So we have to implement our own hash function by calculated a unique number for every substring then compare between them. This is kinda hacking, In the answer from @lee215,
-```
-   def test(L):
-           p = pow(26, L, mod)
-           cur = reduce(lambda x, y: (x * 26 + y) % mod, A[:L], 0)
-           seen = {cur}
-           for i in xrange(L, len(S)):
-               cur = (cur * 26 + A[i] - A[i - L] * p) % mod
-               if cur in seen: return i - L + 1
-               seen.add(cur)
-```
+  def test(L):
+       p = pow(26, L, mod)
+       cur = reduce(lambda x, y: (x * 26 + y) % mod, A[:L], 0)
+       seen = {cur}
+       for i in xrange(L, len(S)):
+           cur = (cur * 26 + A[i] - A[i - L] * p) % mod
+           if cur in seen: return i - L + 1
+           seen.add(cur) 
 banana_val -> [b,a,n,a,n,a] -> [1, 0, 13, 0, 13, 0] (we give every char a number)
 - ban -> ((1 * 26) * 26) + 13 = 689
 - ana -> ban + a - b = (689 * 26) + 0 - 26 * 26 * 26 * b = 338 ( the current b had been multiple by 26 three times)
-  ...
+...
 Any finally we get 338 again, so we return 'ana'.
----
+--------------------------------------------------------------------------------
 Java Code Implementation 
 Refer to
 https://leetcode.com/problems/longest-duplicate-substring/solutions/695419/java-o-n-log-n-rabin-karp-binary-search/comments/1415420
 Reference to rolling hash implementation in https://algs4.cs.princeton.edu/53substring/RabinKarp.java.html to handle hash collision and overflow:
-```
 import java.math.BigInteger;
 import java.util.Random;
 class Solution {
@@ -376,11 +349,9 @@ class Solution {
         return prime.intValue();
     }
 }
-```
 
 Refer to
 https://leetcode.com/problems/longest-duplicate-substring/solutions/290871/python-binary-search/comments/274729/
-```
 class Solution {
     public String longestDupSubstring(String S) {
         // edge case
@@ -450,13 +421,14 @@ class Solution {
         return null;
     }
 }
-```
 
----
-
+--------------------------------------------------------------------------------
 Rabin Karp article refer to (in Document)
-
 https://zhuanlan.zhihu.com/p/563551141
 https://coolcao.com/2020/08/20/rabin-karp/#:~:text=Rabin%20Karp%E7%AE%97%E6%B3%95%E5%8D%B3%E6%98%AF,%E5%88%A4%E6%96%AD%E5%85%B6%E6%98%AF%E5%90%A6%E7%9C%9F%E6%AD%A3%E7%9B%B8%E7%AD%89%E3%80%82
 https://blog.csdn.net/qq_39559641/article/details/122284388
 
+Refer to
+L214.Shortest Palindrome (Ref.L1044,L1698)
+Rabin-Karp Algorithm
+Rabin-Karp 指纹字符串查找算法
