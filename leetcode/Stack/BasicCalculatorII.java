@@ -1,174 +1,36 @@
-import java.util.Stack;
-
-/**
- * Refer to
- * https://leetcode.com/problems/basic-calculator-ii/#/description
- * Implement a basic calculator to evaluate a simple expression string.
- * The expression string contains only non-negative integers, +, -, *, / operators and 
- * empty spaces . The integer division should truncate toward zero.
- * 数轴上向零的方向取整（Truncate toward Zero）
- * 
- * You may assume that the given expression is always valid.
-	Some examples:
-	
-	"3+2*2" = 7
-	" 3/2 " = 1
-	" 3+5 / 2 " = 5
-
- * Note: Do not use the eval built-in library function. 
- * 
- * Solution
- * https://segmentfault.com/a/1190000003796804
- * 栈法
- * 复杂度
- * 时间 O(N) 空间 O(N)
- * 思路
- * 因为乘法和除法不仅要知道下一个数，也要知道上一个数。所以我们用一个栈把上次的数存起来，遇到加减法就直接将数字压入栈中，
- * 遇到乘除法就把栈顶拿出来乘或除一下新数，再压回去。最后我们把栈里所有数加起来就行了。
- * 注意
- * 先用String.replace()去掉所有的空格
- */
-public class BasicCalculatorII {
-	public int calculate(String s) {
-		String tmp = s.replace(" ", "");
-		Stack<Integer> stack = new Stack<Integer>();
-		char[] chars = s.toCharArray();
-		/**
-		 * For strategy, this problem is a little different than 
-		 * the problem MiniParser which get useful substring value
-		 * by setting two pointers [left, right]. The BasicCalculatorII
-		 * must have a number before first operation, and the next
-		 * number will right after first operation, so divide by
-		 * operation, we need to find and calculate both numbers, the
-		 * [left, right] won't help on this way.
-		 */
-		// Find and push the first number onto stack
-		String firstNum = getNum(0, tmp);
-		stack.push(Integer.parseInt(firstNum));
-		// Find the position right after first number, it will
-		// be the first operation character
-		int i = firstNum.length() + 1;
-		while(i < s.length()) {
-			// Find the next number start right after previous operation
-			// symbol based on (i + 1) as character at position i is 
-			// surely an operation symbol
-			String nextNum = getNum(i + 1, tmp);
-			if(chars[i] == '+') {
-				stack.push(Integer.parseInt(nextNum));
-			} else if(chars[i] == '-') {
-				stack.push(Integer.parseInt(nextNum));
-			} else if(chars[i] == '*') {
-				stack.push(stack.pop() * (Integer.parseInt(nextNum)));
-			} else if(chars[i] == '/') {
-				stack.push(stack.pop() / (Integer.parseInt(nextNum)));
-			}
-			// Next scan will start from the position right after
-			// next number
-			i += (nextNum.length() + 1);
-		}
-		int result = 0;
-		while(!stack.isEmpty()) {
-			result += stack.pop();
-		}
-		return result;
-	}
-	
-	public String getNum(int start, String s) {
-		StringBuilder sb = new StringBuilder();
-		while(start < s.length() && Character.isDigit(s.charAt(start))) {
-			sb.append(s.charAt(start));
-			start++;
-		}
-		return sb.toString();
-	}
-	
-	public static void main(String[] args) {
-		BasicCalculatorII b = new BasicCalculatorII();
-		String s = "  30";
-		int result = b.calculate(s);
-		System.out.println(result);
-	}
-	
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 https://leetcode.com/problems/basic-calculator-ii/
-
 Given a string s which represents an expression, evaluate this expression and return its value. 
 
 The integer division should truncate toward zero.
-
-You may assume that the given expression is always valid. All intermediate results will be in the range of [-231, 231 - 1].
-
+You may assume that the given expression is always valid. All intermediate results will be in the range of [-2^31, 2^31 - 1].
 Note: You are not allowed to use any built-in function which evaluates strings as mathematical expressions, such as eval().
 
 Example 1:
-```
 Input: s = "3+2*2"
 Output: 7
-```
 
 Example 2:
-```
 Input: s = " 3/2 "
 Output: 1
-```
 
 Example 3:
-```
 Input: s = " 3+5 / 2 "
 Output: 5
-```
 
 Constraints:
-- 1 <= s.length <= 3 * 105
+- 1 <= s.length <= 3 * 10^5
 - s consists of integers and operators ('+', '-', '*', '/') separated by some number of spaces.
 - s represents a valid expression.
-- All the integers in the expression are non-negative integers in the range [0, 231 - 1].
+- All the integers in the expression are non-negative integers in the range [0, 2^31 - 1].
 - The answer is guaranteed to fit in a 32-bit integer.
----
+--------------------------------------------------------------------------------
 Attempt 1: 2022-11-26
-
 Wrong solution:  Not reserve last operation
-
 Take sample input as "3+2*2", the major difference is wrong solution still recognize the the same, the first operation is '+', then second operation is '*', but that will causing after push 3 onto stack, then will apply 3 *2 directly which is wrong, the correct solution treat sample input as "+3+2*2", the first operation is '+', the second operation is also '+', and finally the third operation is '*', so after push 3 and 2 both stack, it will apply 2*2 with popping out the first 2, which is correct logic
-```
 Input: "3+2*2"
 Expected: 7
-OUtput: 6
-
+Output: 6
 class Solution { 
     public int calculate(String s) { 
         Stack<Integer> stack = new Stack<Integer>(); 
@@ -198,18 +60,15 @@ class Solution {
         return result; 
     } 
 }
-```
 
 Solution 1:  With Stack
-
 Style 1: Stack with reserve 'last operation' exactly before pushing current number (120min, just remember the trick !!!)
-```
 class Solution { 
     public int calculate(String s) { 
         Stack<Integer> stack = new Stack<Integer>(); 
         int curNum = 0; 
         // Tricky point:  
-        // Constraints: All the integers in the expression are non-negative integers in the range [0, 231 - 1]. 
+        // Constraints: All the integers in the expression are non-negative integers in the range [0, 2^31 - 1]. 
         // e.g "-3+2*2" is invalid since -3 is negative 
         // Based on constraints, we can pre-define operation as '+' as last operation 
         // which transfer a input from "3+2*2" into "+3+2*2" 
@@ -248,7 +107,6 @@ class Solution {
 
 Time Complexity: O(n), where n is the length of the string s. We iterate over the string s at most twice. 
 Space Complexity: O(n), where n is the length of the string s.
-```
 
 Refer to
 https://leetcode.com/problems/basic-calculator-ii/discuss/1645655/C%2B%2B-Intuitive-Solution-(W-explanation)-or-Stack
@@ -256,21 +114,14 @@ APPROACH :
 - To begin with, we add '+' to the s=input string (Reason will be understood later).
 - We initilaize a few variables int ans=0(to store the final ans), char sign='+'(to store the previous operator), long long int curr=0 (to store the value computed until we encounter some operator) (The final ans is guaranteed to be an integer, but the values in between might exceed integer values).
 - While traversing the string :
-  1. If we encounter an empty space, we just continue.
-  2. Else if we encounter a digit/num (The string might also contain more than 1 digit numbers, so until we find any operator, we'll keep on forming the multi digit number (num = num*10 + s[i] ) ).
-  3. When we encounter a sign, we stop & check the previous operator :
-  ** If sign = '+' (i.e; the previous operator was +), we just push curr into the stack ('Cause this value needs to be added to ans).
-  ** If sign = '-', (i.e; the previous operator was -), we toggle curr's sign and push it into the stack ('Cause this value needs to be subtracted from ans).
-  ** If sign = '*', (i.e; we encountered a x sign previously), then the curr value should be multiplied with it and then added to ans, so we pop the top of the stack, multiply it with the current value and push the result into the stack.
-  ** If sign = '/', i.e; we encountered a / previously, then the curr value should divide the previous value ans, so we pop the top of the stack, divide it with curr and push the result into the stack.
-  4. At the end, we encounter another '+' sign, this is to push the last curr value into the stack.
-  5. Finally we have obtained a stack of values all of which only need to be added to obtain the ans.
-  6. So pop the values from stack one by one, add them to ans, and return the ans
+1. If we encounter an empty space, we just continue.
+2. Else if we encounter a digit/num (The string might also contain more than 1 digit numbers, so until we find any operator, we'll keep on forming the multi digit number (num = num*10 + s[i] ) ).
+3. When we encounter a sign, we stop & check the previous operator :** If sign = '+' (i.e; the previous operator was +), we just push curr into the stack ('Cause this value needs to be added to ans).** If sign = '-', (i.e; the previous operator was -), we toggle curr's sign and push it into the stack ('Cause this value needs to be subtracted from ans).** If sign = '*', (i.e; we encountered a x sign previously), then the curr value should be multiplied with it and then added to ans, so we pop the top of the stack, multiply it with the current value and push the result into the stack.** If sign = '/', i.e; we encountered a / previously, then the curr value should divide the previous value ans, so we pop the top of the stack, divide it with curr and push the result into the stack.4. At the end, we encounter another '+' sign, this is to push the last curr value into the stack.
+5. Finally we have obtained a stack of values all of which only need to be added to obtain the ans.6. So pop the values from stack one by one, add them to ans, and return the ans
 
 Time Complexity : O(n) - n = size of the input string
 Auxiliary Space : O(n) - For the stack
 Code :
-```
 class Solution { 
 public: 
     int calculate(string s) { 
@@ -312,48 +163,32 @@ public:
         return ans;     
     } 
 };
-```
 
 Refer to
 https://leetcode.com/problems/basic-calculator-ii/solution/
-
 Overview
-
 There are multiple variations of this problem like Basic Calculator and Basic Calculator III. This problem is relatively simpler to solve, as we don't have to take care of the parenthesis.
-
 The aim is to evaluate the given mathematical expression by applying the basic mathematical rules. The expressions are evaluated from left to right and the order of evaluation depends on the Operator Precedence. Let's understand how we could implement the problem using different approaches.
-
----
-
+--------------------------------------------------------------------------------
 Approach 1: Using Stack
-
 Intuition
 We know that there could be 4 types of operations - addition (+), subtraction (-), multiplication (*) and division (/). Without parenthesis, we know that, multiplication (*) and (\) operations would always have higher precedence than addition (+) and subtraction (-) based on operator precedence rules.
 
 
 If we look at the above examples, we can make the following observations -
-
-- If the current operation is addition (+) or subtraction (-), then the expression is evaluated based on the precedence of the next operation.
-
+If the current operation is addition (+) or subtraction (-), then the expression is evaluated based on the precedence of the next operation.
 In example 1, 4+3 is evaluated later because the next operation is multiplication (3*5) which has higher precedence. But, in example 2, 4+3 is evaluated first because the next operation is subtraction (3-5) which has equal precedence.
-
 - If the current operator is multiplication (*) or division (/), then the expression is evaluated irrespective of the next operation. This is because in the given set of operations (+,-,*,/), the * and / operations have the highest precedence and therefore must be evaluated first.
-
 In the above example 2 and 3, 4*3 is always evaluated first irrespective of the next operation.
-
 Using this intuition let's look at the algorithm to implement the problem.
 
 Algorithm
 Scan the input string s from left to right and evaluate the expressions based on the following rules
-1. If the current character is a digit 0-9 ( operand ), add it to the number currentNumber.
-2. Otherwise, the current character must be an operation (+,-,*, /). Evaluate the expression based on the type of operation.
+1.If the current character is a digit 0-9 ( operand ), add it to the number currentNumber.
+2.Otherwise, the current character must be an operation (+,-,*, /). Evaluate the expression based on the type of operation.
 - Addition (+) or Subtraction (-): We must evaluate the expression later based on the next operation. So, we must store the currentNumber to be used later. Let's push the currentNumber in the Stack.
-
 Stack data structure follows Last In First Out (LIFO) principle. Hence, the last pushed number in the stack would be popped out first for evaluation. In addition, when we pop from the stack and evaluate this expression in the future, we need a way to determine if the operation was Addition (+) or Subtraction (-). To simplify our evaluation, we can push -currentNumber in a stack if the current operation is subtraction (-) and assume that the operation for all the values in the stack is addition (+). This works because (a - currentNumber) is equivalent to (a + (-currentNumber)).
-
 - Multiplication (*) or Division (/): Pop the top values from the stack and evaluate the current expression. Push the evaluated value back to the stack.
-
-
 Once the string is scanned, pop from the stack and add to the result.
 
 
@@ -369,7 +204,8 @@ Once the string is scanned, pop from the stack and add to the result.
 
 
 
-```
+
+
 class Solution { 
     public int calculate(String s) { 
         if (s == null || s.isEmpty()) return 0; 
@@ -406,13 +242,11 @@ class Solution {
         return result; 
     } 
 }
-```
 Complexity Analysis
 - Time Complexity: O(n), where n is the length of the string s. We iterate over the string s at most twice.
 - Space Complexity: O(n), where nis the length of the string s.
----
+--------------------------------------------------------------------------------
 Style 2:  Push first number onto Stack before any other operations (60 min, more intuitive)
-```
 class Solution { 
     public int calculate(String s) { 
         Stack<Integer> stack = new Stack<Integer>(); 
@@ -451,29 +285,17 @@ class Solution {
     } 
      
 }
-```
 
 Refer to
 https://segmentfault.com/a/1190000003796804
-
 栈法
-
-
 复杂度
-
 时间 O(N) 空间 O(N)
-
 思路
-
 因为乘法和除法不仅要知道下一个数，也要知道上一个数。所以我们用一个栈把上次的数存起来，遇到加减法就直接将数字压入栈中，遇到乘除法就把栈顶拿出来乘或除一下新数，再压回去。最后我们把栈里所有数加起来就行了。
-
 注意
-
 先用String.replace()去掉所有的空格
-
 代码
-
-```
 public class Solution { 
     public int calculate(String s) { 
         s = s.replace(" ", ""); 
@@ -516,13 +338,10 @@ public class Solution {
     } 
      
 }
-```
 
----
+--------------------------------------------------------------------------------
 Solution 2:  Without Stack 
-
 Style 1: (120min)
-```
 class Solution { 
     public int calculate(String s) { 
         //Stack<Integer> stack = new Stack<Integer>(); 
@@ -587,13 +406,10 @@ class Solution {
         return result; 
     } 
 }
-```
 
 Refer to
 https://leetcode.com/problems/basic-calculator-ii/solution/
-
 Approach 2: Optimized Approach without the stack
-
 Intuition
 In the previous approach, we used a stack to track the values of the evaluated expressions. In the end, we pop all the values from the stack and add to the result. Instead of that, we could add the values to the result beforehand and keep track of the last calculated number, thus eliminating the need for the stack. Let's understand the algorithm in detail.
 
@@ -604,7 +420,6 @@ The approach works similar to Approach 1 with the following differences :
 - If the operation is Multiplication (*) or Division (/), we must evaluate the expression lastNumber * currentNumber and update the lastNumber with the result of the expression. This would be added to the result after the entire string is scanned.
 
 Implementation
-```
 class Solution { 
     public int calculate(String s) { 
         if (s == null || s.isEmpty()) return 0; 
@@ -633,13 +448,11 @@ class Solution {
         return result; 
     } 
 }
-```
 Complexity Analysis
 - Time Complexity: O(n), where n is the length of the string ss.
 - Space Complexity:  O(1), as we use constant extra space to store lastNumber, result and so on.
----
+--------------------------------------------------------------------------------
 Style 2: (60 min, more intuitive)
-```
 class Solution { 
     public int calculate(String s) { 
         //Stack<Integer> stack = new Stack<Integer>(); 
@@ -691,29 +504,17 @@ class Solution {
     } 
      
 }
-```
 
 Refer to
 https://segmentfault.com/a/1190000003796804
-
 临时变量法
-
-
 复杂度
-
 时间 O(N) 空间 O(1)
-
 思路
-
 这题很像Expression Add Operator。因为没有括号，其实我们也可以不用栈。首先维护一个当前的结果，加减法的时候，直接把下一个数加上或减去就行了。乘除法的技巧在于，记录下上次的数字，这样我们把上次计算出的结果，减去上次的数字，得到了上上次的结果，就相当于回退到加或减上一个数字之前的情况了。这时候我们再把上一个数字乘上或除以当前的数字，最后再加或减回上上次的结果，就是这次的结果了。比如2+3*4，当算完3时，结果是5，当算到4时，先用5-3=2，再用2+3*4=14，就是当前结果。这里要注意的是，对于下一个数，它的上一个数不是我们这轮的数，而是我们这轮的上轮的数乘以或除以这轮的数，如2+3*4*5，到4的时候结果14，到5的时候，上一个数是3*4，而不是4。
-
 注意
-
 要单独处理第一个数的情况
-
 代码
-
-```
 public class Solution { 
     public int calculate(String s) { 
         s = s.replace(" ",""); 
@@ -759,7 +560,106 @@ public class Solution {
             i++; 
         } 
         return num.toString(); 
-    } 
-     
+    }     
 }
-```
+
+Style 3: Two Stacks (General solution from L772)
+public class Solution {
+    /**
+     * @param s: the expression string
+     * @return: the answer
+     */
+    public int calculate(String s) {
+        Stack<Integer> nums = new Stack<>();
+        Stack<Character> ops = new Stack<>();
+        int n = s.length();
+        for(int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            if(c == ' ') {
+                continue;
+            }
+            if(Character.isDigit(c)) {
+                int num = 0;
+                while(i < n && Character.isDigit(s.charAt(i))) {
+                    num = num * 10 + s.charAt(i) - '0';
+                    i++;
+                }
+                nums.push(num);
+                i--;
+            } else if(c == '(') {
+                ops.push(c);
+            } else if(c == ')') {
+                while(ops.peek() != '(') {
+                    int b = nums.pop();
+                    int a = nums.pop();
+                    nums.push(apply_ops(ops.pop(), a, b));
+                }
+                ops.pop();
+            } else {
+                // Check if previous operator not '(' and higher precedence than current operator,
+                // then we have to calculate based on previous operator first.
+                // e.g 2*3+4, we will see '*' as previous operator at stack peek when we encounter '+',
+                // so we have to calculate based on '*' first by pop out 2 and 3 to get multiple as 6,
+                // rather than calcualte '+' with 4
+                while(!ops.isEmpty() && ops.peek() != '(' 
+                && precedence(ops.peek()) >= precedence(c)) {
+                    int b = nums.pop();
+                    int a = nums.pop();
+                    nums.push(apply_ops(ops.pop(), a, b));
+                }
+                // Negative scenario
+                // Test out by input = "1-(     -2)" against above original solution
+                if(c == '-') {
+                    // The first num is negative
+                    if(nums.isEmpty()) {
+                        nums.push(0);
+                    // The first num in parentheses is negative
+                    } else {
+                        int index = i - 1;
+                        while(index >= 0 && s.charAt(index) == ' ') {
+                            index--;
+                        }
+                        if(s.charAt(index) == '(') {
+                            nums.push(0);
+                        }
+                    }
+                }
+                ops.push(c);
+            }
+        }
+        while(!ops.isEmpty()) {
+            int b = nums.pop();
+            int a = nums.pop();
+            nums.push(apply_ops(ops.pop(), a, b));
+        }
+        return nums.peek();
+    }
+
+    private int precedence(char op) {
+        if(op == '(' || op == ')') {
+            return 0;
+        } else if(op == '+' || op == '-') {
+            return 1; // '+' and '-' has lower precedence as 1
+        } else {
+            return 2; // '*' and '/' has higher precedence as 2
+        }
+    }
+
+    private int apply_ops(char op, int a, int b) {
+        if(op == '+') {
+            return a + b;
+        } else if(op == '-') {
+            return a - b;
+        } else if(op == '*') {
+            return a * b;
+        } else {
+            return a / b;
+        }
+    }
+}
+
+Refer to
+L224.P11.7.Basic Calculator (Ref.L227,L772)
+L772.Basic Calculator III (Ref.L224,L227)
+
+    
