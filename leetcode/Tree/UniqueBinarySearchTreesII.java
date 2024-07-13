@@ -236,7 +236,6 @@ class Solution {
             return ans;
         }
         return getAns(1, n);
-
     }
 
     private List<TreeNode> getAns(int start, int end) { 
@@ -246,12 +245,12 @@ class Solution {
             ans.add(null);
             return ans;
         }
-        //只有一个数字，当前数字作为一棵树加入结果中
-        if (start == end) {
-            TreeNode tree = new TreeNode(start);
-            ans.add(tree);
-            return ans;
-        }
+        //只有一个数字，当前数字作为一棵树加入结果中(实际测试后发现并不需要这个条件)
+        //if (start == end) {
+        //    TreeNode tree = new TreeNode(start);
+        //    ans.add(tree);
+        //    return ans;
+        //}
         //尝试每个数字作为根节点
         for (int i = start; i <= end; i++) {
             //得到所有可能的左子树
@@ -276,14 +275,16 @@ class Solution {
 Time Complexity
 The time complexity of the given code can be tricky to analyze due to its recursive nature and because it generates all unique binary search trees (BSTs) with n distinct nodes. The number of such trees is given by the nth Catalan number, which is C_n = (2n)! / ((n+1)!n!).
 In the worst case, the recursion tree would have a branching factor equal to the maximum number of nodes n, at each node there is a loop that runs from left to right. As we recurse down the tree and back, we create new trees for each possible root node.
-For each value of i (from left to right inclusive), we generate all possible left subtrees with gen(left, i - 1) and all possible right subtrees with gen(i + 1, right). Then, for each combination of left and right subtrees, we connect them to a root node with value i. Since the number of combinations for the left and right subtrees is the product of the count of left subtrees and the count of right subtrees, we have a multiplication of possibilities each time we perform this operation.
+For each value of i (from left to right inclusive), we generate all possible left subtrees with gen(left, i - 1) and all possible right subtrees with gen(i + 1, right). Then, for each combination of left and right subtrees, we connect them to a root node with value i. 
+Since the number of combinations for the left and right subtrees is the product of the count of left subtrees and the count of right subtrees, we have a multiplication of possibilities each time we perform this operation.
 Considering the above factors, the time complexity is O(n * C_n), where C_n is the nth Catalan number, since we have n possibilities at each level of the recursive stack.
 The time taken for all recursive calls can thus be approximated as proportional to the number of unique BSTs generated, which is the Catalan number, times n, giving us a time complexity of O(n * C_n).
 
 Space Complexity
 The space complexity consists of the space needed for the output, which stores all unique BSTs, and the space needed for the execution stack during recursion.
 The output itself will hold C_n trees, and each tree has n nodes, so the space needed to store these trees is also proportional to O(n * C_n).
-The recursion stack space will be proportional to the height of the recursion tree, which is O(n) since in the worst case we will make n nested recursive calls before hitting the base case. However, since the space required for the recursion stack is significantly smaller compared to the output space, it is often considered secondary.
+The recursion stack space will be proportional to the height of the recursion tree, which is O(n) since in the worst case we will make n nested recursive calls before hitting the base case. 
+However, since the space required for the recursion stack is significantly smaller compared to the output space, it is often considered secondary.
 Thus, the space complexity of the code is O(n * C_n) for storing the unique BSTs generated.
 
 Refer to
@@ -525,12 +526,12 @@ class Solution {
             ans.add(null);
             return ans;
         }
-        //只有一个数字，当前数字作为一棵树加入结果中
-        if (start == end) {
-            TreeNode tree = new TreeNode(start);
-            ans.add(tree);
-            return ans;
-        }
+        //只有一个数字，当前数字作为一棵树加入结果中(实际测试后发现并不需要这个条件)
+        //if (start == end) {
+        //    TreeNode tree = new TreeNode(start);
+        //    ans.add(tree);
+        //    return ans;
+        //}
         //尝试每个数字作为根节点
         for (int i = start; i <= end; i++) {
             //得到所有可能的左子树
@@ -629,6 +630,5 @@ class Solution {
 
 
 Refer to
-L96.Unique Binary Search Trees
+L96.Unique Binary Search Trees (Ref.L95)
 L241.Different Ways to Add Parentheses (Ref.L95)
-
