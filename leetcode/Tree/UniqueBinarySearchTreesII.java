@@ -231,10 +231,6 @@ Solution 1: DFS + Divide and Conquer (360 min)
  */
 class Solution {
     public List<TreeNode> generateTrees(int n) {
-        List<TreeNode> ans = new ArrayList<TreeNode>();
-        if (n == 0) {
-            return ans;
-        }
         return getAns(1, n);
     }
 
