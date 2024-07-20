@@ -1,302 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * Refer to
- * http://www.lintcode.com/en/problem/binary-tree-paths/
- * Given a binary tree, return all root-to-leaf paths.
- * Have you met this question in a real interview?
-	Example
-	Given the following binary tree:
-	   1
-	 /   \
-	2     3
-	 \
-	  5
-	
-	All root-to-leaf paths are:
-	[
-	  "1->2->5",
-	  "1->3"
-	]
- *
- * Solution
- * http://www.jiuzhang.com/solutions/binary-tree-paths/
- */
-public class BinaryTreePaths {
-	private class TreeNode {
-		public int val;
-		public TreeNode left, right;
-		public TreeNode(int val) {
-		    this.val = val;
-		    this.left = this.right = null;
-		}
-    }
-	
-	// Traverse
-    public List<String> binaryTreePaths(TreeNode root) {
-        List<String> paths = new ArrayList<String>();
-        if(root == null) {
-            return paths;
-        }
-        helper(root, String.valueOf(root.val), paths);
-        return paths;
-    }
-    
-    
-    /**
-     * Start with path = "1"
-     * "1"
-     * "1 -> 2" (root = 1, add root.left.val = 2)
-     * "1 -> 2 -> 4" (root = 2, add root.left.val = 4)
-     * "1 -> 2 -> 5" (root = 2, add root.right.val = 5)
-     * "1 -> 3" (root = 1, add root.right.val = 3)
-     */
-    public void helper(TreeNode root, String path, List<String> paths) {
-        // Base case
-        if(root == null) {
-            return;
-        }
-        if(root.left == null && root.right == null) {
-            paths.add("" + path);
-        }
-        // Divide and merge
-        // Note: The order here must be 'path' before 'root.left.val' or 'root.right.val'
-        // which exactly reverse than the order in Divide and Conquer way, which is
-        // 'path' after 'root.left.val' or 'root.right.val'
-        if(root.left != null) {
-            helper(root.left, path + "->" + root.left.val, paths);            
-        }
-        if(root.right != null) {
-            helper(root.right, path + "->" + root.right.val, paths);   
-        }
-    }
-    
-    // Divide and Conquer
-    public List<String> binaryTreePaths2(TreeNode root) {
-    	List<String> result = new ArrayList<String>();
-    	// Base case
-    	if(root == null) {
-    		return result;
-    	}
-    	// Leaf case
-    	if(root.left == null && root.right == null) {
-    		result.add("" + root.val);
-    	}
-    	// Divide (We can call this method itself without create
-    	// a new helper method as we only need same type input
-    	// as parameter)
-    	List<String> leftPaths = binaryTreePaths2(root.left);
-    	List<String> rightPaths = binaryTreePaths2(root.right);
-    	// Merge
-    	for(String path : leftPaths) {
-    		// Note: Must put 'root.val' before 'path' as the
-    		// Divide and Conquer way based on bottom-up order
-    		// which will reach to bottom first as node '4' or
-    		// node '5' first, then back to parent node as '2',
-    		// then '1'. This process exactly reverse to the
-    		// traverse way
-    		/**
-    		 * result value change process:
-    		 * [4] (root is 4)
-    		 * [5] (root is 5)
-    		 * [2->4] (root is 2)
-    		 * [2->5] (root is 2)
-    		 * [1->2->4] (root is 1)
-    		 * [1->2->5] (root is 1)
-    		 * [3] (root is 3)
-    		 * [1->3] (root is 1)
-    		 */
-    		result.add(root.val + "->" + path);
-    	}
-    	for(String path : rightPaths) {
-    		result.add(root.val + "->" + path);
-    	}
-    	return result;
-    }
-    
-    
-    public static void main(String[] args) {
-    	/**
-    	 *       1
-    	 *      / \
-    	 *     2   3
-    	 *    / \
-    	 *   4   5
-    	 */
-    	BinaryTreePaths b = new BinaryTreePaths();
-    	TreeNode one = b.new TreeNode(1);
-    	TreeNode two = b.new TreeNode(2);
-    	TreeNode three = b.new TreeNode(3);
-    	TreeNode four = b.new TreeNode(4);
-    	TreeNode five = b.new TreeNode(5);
-    	one.left = two;
-    	one.right = three;
-    	two.left = four;
-    	two.right = five;
-    	List<String> result = b.binaryTreePaths2(one);
-    	for(String s : result) {
-    		System.out.println(s);
-    	}
-    }
-    
-}
-
-// Re-work
-// Solution 1: Recursive with String concatenation
-// Refer to
-// https://leetcode.com/problems/binary-tree-paths/discuss/68258/Accepted-Java-simple-solution-in-8-lines
-class Solution {
-    public List<String> binaryTreePaths(TreeNode root) {
-        List<String> result = new ArrayList<String>();
-        helper(root, result, "");
-        return result;
-    }
-    
-    private void helper(TreeNode root, List<String> result, String str) {
-        if(root == null) {
-            return;
-        }
-        if(root.left == null && root.right == null) {
-            result.add(str + root.val);
-        }
-        if(root.left != null) {
-            helper(root.left, result, str + root.val + "->");
-        }
-        if(root.right != null) {
-            helper(root.right, result, str + root.val + "->");
-        }
-    }
-}
-
-
-// Solution 2: Recursive with StringBuilder
-// Refer to
-// https://leetcode.com/problems/binary-tree-paths/discuss/68258/Accepted-Java-simple-solution-in-8-lines/70164
-/**
-The time complexity for the problem should be O(n), since we are basically visiting each node in the tree. 
-Yet an interviewer might ask you for further optimization when he or she saw a string concatenation. 
-A string concatenation is just too costly. A StringBuilder can be used although a bit tricky since it 
-is not immutable like string is.
-When using StringBuilder, We can just keep track of the length of the StringBuilder before we append anything to 
-it before recursion and afterwards set the length back. Another trick is when to append the "->", since we don't 
-need the last arrow at the end of the string, we only append it before recurse to the next level of the tree.  
-*/
-
-// https://leetcode.com/problems/binary-tree-paths/discuss/68265/Java-solution-using-StringBuilder-instead-of-string-manipulation.
-/**
-I think this is by far the on the best solutions in Java.
-1. If we use str1 + str2 it will bring a lot of unnecessary clones;
-2. If we clone StringBuffer it's as bad as cloning string;
-3. If we do concat root + "for(path : childrenPaths)" in every recursion call, it will not be time efficient;
-4. If we do iteration, the queues are not slick enough in this question.
-*/
-class Solution {
-    public List<String> binaryTreePaths(TreeNode root) {
-        List<String> result = new ArrayList<String>();
-        StringBuilder sb = new StringBuilder();
-        helper(root, result, sb);
-        return result;
-    }
-    
-    private void helper(TreeNode root, List<String> result, StringBuilder sb) {
-        if(root == null) {
-            return;
-        }
-        // When using StringBuilder, We can just keep track of the length 
-        // of the StringBuilder before we append anything to it before 
-        // recursion and afterwards set the length back.
-        int len = sb.length();
-        sb.append(root.val);
-        if(root.left == null && root.right == null) {
-            result.add(sb.toString());
-        } else {
-            // Another trick is when to append the "->", since we don't 
-            // need the last arrow at the end of the string, we only 
-            // append it before recurse to the next level of the tree.
-            sb.append("->");
-            helper(root.left, result, sb);
-            helper(root.right, result, sb);
-        }
-        sb.setLength(len);
-    }
-}
-
-// Solution 3: Iterative with DFS + Stack
-// Refer to
-// https://leetcode.com/problems/binary-tree-paths/discuss/68423/Java-recursive-and-iterative-solutions.
-/**
- Each element in stack is a full path and keep growing when move to node's next level (left / right child)
-*/
-class Solution {
-    public List<String> binaryTreePaths(TreeNode root) {
-        List<String> result = new ArrayList<String>();
-        Stack<Node> stack = new Stack<Node>();
-        Node n = new Node(root, "");
-        stack.push(n);
-        while(!stack.isEmpty()) {
-            Node curr = stack.pop();
-            TreeNode curr_node = curr.node;
-            String curr_str = curr.str;
-            if(curr_node != null) {
-                if(curr_node.left == null && curr_node.right == null) {
-                    curr_str += curr.node.val;
-                    result.add(curr_str);
-                }
-                stack.push(new Node(curr_node.left, curr_str + curr_node.val + "->"));
-                stack.push(new Node(curr_node.right, curr_str + curr_node.val + "->"));
-            }
-        }
-        return result;
-    }
-    
-    class Node {
-        TreeNode node;
-        String str;
-        public Node(TreeNode node, String str) {
-            this.node = node;
-            this.str = str;
-        }
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 https://leetcode.com/problems/binary-tree-paths/
 Given the root of a binary tree, return all root-to-leaf paths in any order.
@@ -517,6 +218,127 @@ public class Solution {
 }
 Two submissions reported 18ms and 19ms.So the performance did not show significant improvement in the perspective of the OJ and the set of test cases we have. But I do think theoretically StringBuilder could help. Also, the best-case and worst-case analysis would change in the case of using StringBuilder.
 --------------------------------------------------------------------------------
+There is one more backtracking solution but implement by List<String>
+Refer to
+https://algo.monster/liteproblems/257
+Problem Description
+The problem presents us with a binary tree, where each node contains an integer value and can have a left and/or right child. Our goal is to find all the unique paths from the root of the binary tree to its leaves. A leaf is defined as a node that has no children, which means neither a left nor a right child. The paths should be represented as strings, with each node's value on the path concatenated by "->". For instance, if the path goes through nodes with values 1, 2, and 3 in that order, the path string should be "1->2->3". We are required to return these path strings in any order.
+Intuition
+To solve this problem, we can utilize a technique called Depth-First Search (DFS). This strategy explores as far as possible along each branch before backtracking. Here's how we arrive at the solution approach:
+- We can start at the root and perform a DFS traversal on the binary tree.
+- As we traverse, we keep track of the current path by noting the nodes visited so far in the sequence.
+- Whenever we reach a leaf node (a node without children), we record the path we've taken to get there. This is a complete root-to-leaf path, so we add this to our list of answers.
+- The key part of this process is backtracking. When we visit a node and explore all of its children, we backtrack, which means we remove the node from our current path and return to the previous node to explore other paths.
+- We continue this process until all paths are explored and we have visited all the leaves.
+The recursive function dfs() in the solution code is where the DFS takes place. It takes the current node as a parameter, and as the function is called recursively, a local variable t keeps track of the current path as a list of node values. If a leaf node is reached, the current path is converted to the path string format required and added to the list ans, which contains all the full path strings. After exploring a node's left and right children, the node's value is popped from the path list to allow backtracking to the previous node's state.
+Solution Approach
+The solution approach for the given problem utilizes a typical pattern for tree traversal problems, which is the Depth-First Search (DFS) algorithm. Here's a step-by-step explanation of how the solution is implemented:
+- Define a Recursive Function (dfs): The recursive function dfs is defined within the class Solution. It is invoked with the current node being visited. This function does not return any value but instead updates the ans list with the path strings.
+- Base Case for Recursion: In the function dfs, before going further into recursion, we check if the given root node is None, indicating that we've reached beyond a leaf node. In this case, the function simply returns without performing any further action.
+- Track the Current Path: A local variable t in the class scope is used to keep track of the current path. It's a stack (implemented using a list in Python) that we update as we go down the tree. For each node, we convert its value to a string and append it to t.
+- Check for Leaf Node: In the DFS process, if the current node is a leaf (both left and right child nodes are None), we convert the current path into the required string format, which is obtained by joining the sequence of node values in t with "->". This complete path string is added to the ans list.
+- Recursive DFS Calls: If the current node has children, we perform DFS for both the left child (if not None) and right child (if not None). The function calls itself with root.left and root.right correspondingly.
+- Backtracking: After exploring both children from the current node, we need to backtrack. This ensures that when we return from the recursive call, the current path t reflects the state as if the current node was never visited. We achieve this by popping the last value from the t.
+- Return Paths: Once the DFS is complete, the ans list will be populated with all the path strings from root to all the leaf nodes. This list is returned as the final result of the binaryTreePaths method.
+The use of a stack for tracking the paths and the pattern of adding to the list only at leaf nodes are critical parts of the algorithm. The recursive DFS makes sure all potential paths are explored, while backtracking ensures that every unique path is properly captured without duplication.
+Example Walkthrough
+Let's illustrate the solution approach using a small example binary tree:
+Consider the following binary tree:
+     1
+    / \
+   2   3
+  /     \
+ 5       4
+Here's how we would apply the solution approach:
+1.We start with the root node which is 1.
+2.We initialize t with the value of the current node: t = ["1"].
+3.The node 1 is not a leaf, so we continue. We have two recursive DFS calls to make because both left and right children exist: root.left (which is 2) and root.right (which is 3).
+4.First DFS call: We move to the left child which is 2 and update t to ["1", "2"].
+5.Node 2 has a left child but no right child. We make a recursive DFS call to the left child which is 5.
+6.On reaching the node 5, we update t to ["1", "2", "5"].
+7.Node 5 is a leaf node, so we join the elements of t with "->" to form the path string "1->2->5". We add this to our ans list.
+8.Backtracking: We finished visiting 5, so we pop it from t making t = ["1", "2"].
+9.There are no more children for 2 to visit, so we pop it from t as well. Now t = ["1"].
+10.Second DFS call: Now, we explore the right child of 1, which is 3. We update t to ["1", "3"].
+11.Node 3 has a right child 4 but no left child. We make a recursive DFS call to the right child which is 4.
+12.On reaching 4, we update t to ["1", "3", "4"].
+13.Node 4 is a leaf node, so we join the elements of t with "->" to form the path string "1->3->4". We add this to our ans list.
+14.Backtracking: We've visited 4, so we pop it from t, reverting t back to ["1", "3"].
+15.After exploring node 3's right child, we backtrack one more time, popping 3 from t and t is now back to ["1"].
+Finally, since all paths have been explored, our ans list contains the root-to-leaf path strings: ["1->2->5", "1->3->4"]. We'd return this list as the output of our function.
+Solution Implementation
+/**
+ * Definition for a binary tree node.
+ */
+public class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+class Solution {
+    // A list to store all path strings
+    private List<String> allPaths = new ArrayList<>();
+    // A temporary list to keep the current path nodes
+    private List<String> currentPath = new ArrayList<>();
+
+    /**
+     * Finds all paths from root to leaf in a binary tree.
+     *
+     * @param root The root of the binary tree.
+     * @return A list of all root-to-leaf paths in string format.
+     */
+    public List<String> binaryTreePaths(TreeNode root) {
+        // Perform a depth-first search starting from the root
+        depthFirstSearch(root);
+        return allPaths;
+    }
+
+    /**
+     * Performs a recursive depth-first search to find all paths.
+     *
+     * @param node The current node in the binary tree.
+     */
+    private void depthFirstSearch(TreeNode node) {
+        if (node == null) {
+            // Base case: if node is null, do nothing
+            return;
+        }
+      
+        // Append current node's value to the path
+        currentPath.add(String.valueOf(node.val));
+      
+        // If node is a leaf, add the path to the list of all paths
+        if (node.left == null && node.right == null) {
+            allPaths.add(String.join("->", currentPath));
+        } else {
+            // Recur for left and right children
+            depthFirstSearch(node.left);
+            depthFirstSearch(node.right);
+        }
+
+        // Backtrack: remove the last node from the path before returning
+        currentPath.remove(currentPath.size() - 1);
+    }
+}
+Time and Space Complexity
+The given Python function binaryTreePaths traverses a binary tree to find all root-to-leaf paths. The primary operation is a Depth-First Search (DFS) defined in a nested function. Here's the analysis of its complexities:
+Time Complexity
+The time complexity is O(N), where N is the number of nodes in the tree. This is because each node in the binary tree is visited exactly once during the depth-first search. Therefore, the function's time complexity is directly proportional to the number of nodes.
+Space Complexity
+The space complexity of the function is also O(N). The major factors contributing to the space complexity are:
+The recursive call stack of the DFS, which in the worst case could be O(N) when the binary tree degrades to a linked list.
+The list t that holds the current path. In the worst case, when the binary tree is completely skewed (e.g., each parent has only one child), this list can also take up to O(N) space.
+The list ans that contains all the paths. In the best case, where each node has two children, there will be N/2 leaf nodes resulting in N/2 paths. Although each path could be of varying length, the concatenation of all paths will still take O(N) space since each node's value is only included in one path string.
+Considering the stack space for recursive calls and the space for storing the paths, the space complexity in the worst case scenario will be linear with respect to the number of nodes in the tree.
+--------------------------------------------------------------------------------
 Solution 3:  Divide and Conquer (30min)
 /** 
  * Definition for a binary tree node. 
@@ -667,5 +489,5 @@ public List<String> binaryTreePaths(TreeNode root) {
 
 Refer to
 L1430.Check If a String Is a Valid Sequence from Root to Leaves Path in a B
-L549.Binary Tree Longest Consecutive Sequence II (Refer L257.Binary Tree Pa
-L124.P9.7.Binary Tree Maximum Path Sum
+L549.Binary Tree Longest Consecutive Sequence II (Ref.L257,L298)
+L124.P9.7.Binary Tree Maximum Path Sum (Ref.L543)
