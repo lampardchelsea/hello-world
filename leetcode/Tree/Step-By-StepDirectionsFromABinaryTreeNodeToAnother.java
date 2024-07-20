@@ -382,11 +382,75 @@ This solution effectively finds the directions from the start node to the destin
 --------------------------------------------------------------------------------
 Refer to
 https://leetcode.com/problems/step-by-step-directions-from-a-binary-tree-node-to-another/solutions/1612123/this-actually-contains-several-tree-questions-nice-one/
-
+1.get lowest common ancestor
+2.find the path from ancestor to start / dest
+So this is a very good tree question
+lowestCommonAncestor + find path + calculate depth
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public String getDirections(TreeNode root, int startValue, int destValue) {
+        TreeNode ancestor = lowestCommonAncestor(root, startValue, destValue);
+        List<String> toStart = new ArrayList<>();
+        getDirection(ancestor, startValue, toStart);
+        List<String> toDest = new ArrayList<>();
+        getDirection(ancestor, destValue, toDest);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < toStart.size(); i++) sb.append("U");
+        for (String s : toDest) sb.append(s);
+        return sb.toString();
+    }
+    
+    private TreeNode lowestCommonAncestor(TreeNode root, int p, int q) {
+        if (root == null || p == root.val || q == root.val) return root; 
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if (left != null && right != null) return root; 
+        else return left == null ? right : left;
+    }
+    
+    private boolean getDirection(TreeNode ancestor, int value, List<String> steps) {
+        if (ancestor == null) return false;
+        if (ancestor.val == value) return true;
+        steps.add("L");
+        if (getDirection(ancestor.left, value, steps)) return true;
+        steps.remove(steps.size() - 1);
+        steps.add("R");
+        if (getDirection(ancestor.right, value, steps)) return true;
+        steps.remove(steps.size() - 1);
+        return false;
+    }
+}
 
 Refer to
 https://algo.monster/liteproblems/2096
+Let path(node1, node2) denote the path from node1 to node2.
+First consider the case where path(start, end) goes through the root. Let's split this into path(start, root) + path(root, end). We can perform a DFS (depth first search) to get path(root, end). This path consists of 'L's and 'R's. We can do another DFS to get path(root, start). Replacing the 'L's and 'R's of path(root, start) with 'U's gives us path(start, root). Now we can concatenate path(start, root) and path(root, end) to get the answer.
+In the general case, path(start, end) may not go through the root. Notice that this path goes up a non-negative number of times ("U"s) before going down a non-negative number of times ("L"s or "R"s). The highest node in this path is known as the LCA (lowest common ancestor) of start and end.
 
+
+Here, path(root, start) = "RRLLR" and path(root, end) = "RRRL". Let's remove their longest common prefix, which is "RR". We have path(LCA, start) = "LLR" and path(LCA, end) = "RL".
+
+Then we replace all characters in path(root, start) with "U"s to obtain path(start, lca) = "UUU". Finally, we get path(start, end) = path(start, LCA) + path(LCA, end) = "UUU" + "RL" = "UUURL".
+
+Time complexity
+Each DFS takes O(n) and our string operations never happen on strings exceeding length O(n). The time complexity is
+O(n).
+Space complexity
+The strings never exceed length O(n). The space complexity is O(n).
 
 Refer to
 L1740.Find Distance in a Binary Tree (Ref.L2096,L236)
