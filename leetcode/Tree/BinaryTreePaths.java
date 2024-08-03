@@ -373,15 +373,36 @@ class Solution {
         // The order is root.val before current results(path), 
         // because for Divide and Conquer will first go to bottom 
         // as leaf node and add it onto path, then assemble from 
-        // bottom up 
-        for(String leftResult : leftResults) { 
-            result.add(root.val + "->" + leftResult); 
-        } 
-        for(String rightResult : rightResults) { 
-            result.add(root.val + "->" + rightResult); 
-        } 
-        return result; 
-    } 
+        // bottom up, e.g for below tree, the process is
+        /**
+         *                1
+         *           /         \
+         *        2              3
+         *      /   \          /   \
+         *     4     5        6     7
+         */
+         // Following "Divide and Conquer", we will go 'Divide' logic 
+         // till 4 and 5 as leaf node first, and now we have already 
+         // opened 3 levels recursion, 1st level root = 1, 2nd level 
+         // root = 2, 3rd level root = 4 or 5, and based on leaf node 
+         // process step, result will add it as 'result.add("" + 4)' 
+         // or 'result.add("" + 5)', and we continue proceed till next 
+         // level as 4th level, but now the nodes on 4th level are 
+         // actually empty node for both 4 and 5, it will return immediately 
+         // to level 3, then continue to below "Conquer" logic on 
+         // 'leftResults' and 'rightResults' which currently stored 4
+         // inside 'leftResults' and 5 inside 'rightResults', after "Conquer"
+         // here, it return result and back to level 2, where the root is 2,
+         // then with below "Conquer" logic again, it put root value ahead
+         // and build as "2->4" and "2->5"... etc.
+         for(String leftResult : leftResults) { 
+             result.add(root.val + "->" + leftResult); 
+         } 
+         for(String rightResult : rightResults) { 
+             result.add(root.val + "->" + rightResult); 
+         } 
+         return result; 
+     } 
 }
 
 Test
