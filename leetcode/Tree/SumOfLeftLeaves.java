@@ -1,281 +1,232 @@
+https://leetcode.com/problems/sum-of-left-leaves/description/
+Given the root of a binary tree, return the sum of all left leaves.
+A leaf is a node with no children. A left leaf is a leaf that is the left child of another node.
+ 
+Example 1:
+
+Input: root = [3,9,20,null,null,15,7]
+Output: 24
+Explanation: There are two left leaves in the binary tree, with values 9 and 15 respectively.
+
+Example 2:
+Input: root = [1]
+Output: 0
+ 
+Constraints:
+- The number of nodes in the tree is in the range [1,1000].
+- -1000 <= Node.val <= 1000
+--------------------------------------------------------------------------------
+Attempt 1: 2024-08-06
+Solution 1: DFS (10 min)
 /**
- * Find the sum of all left leaves in a given binary tree.
- * Example:
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+        return helper(root, false);
+    }
 
-    3
-   / \
-  9  20
-    /  \
-   15   7
-
- * There are two left leaves in the binary tree, with values 9 and 15 respectively. Return 24.
-*/
-//Wrong way
-public class Solution {
-	public TreeNode root;
-	
-	private static class TreeNode {
-		private String val;
-		private TreeNode left, right;
-		public TreeNode(String x) {
-			this.val = x;
-		}
-	}
-	
-    public static int sum = 0;
-    public static int sumOfLeftLeaves(TreeNode root) {
+    private int helper(TreeNode root, boolean isLeft) {
         if(root == null) {
             return 0;
         }
-        
-        sumOfLeftLeavesRec(root, false, sum);
-        return sum;
-    }
-    
-    public static void sumOfLeftLeavesRec(TreeNode x, boolean isLeft, int sum) {
-        if(x == null) {
-            return;
+        if(root.left == null && root.right == null) {
+            return isLeft ? root.val : 0;
         }
-        
-        if(x.left == null && x.right == null && isLeft) {
-            sum += Integer.valueOf(x.val);
-        }
-        
-        sumOfLeftLeavesRec(x.left, true, sum);
-	// As debug model check, if just use static memeber variable sum could not
-	// keep the value when return from deepest recursion, e.g when return from
-	// node 8, the sum should be 8 and pass into new recursion on node 6(which
-	// return from recursion of node 8), but real situation is sum will change
-	// back to 0.
-        sumOfLeftLeavesRec(x.right, false, sum);
+        int leftSum = helper(root.left, true);
+        int rightSum = helper(root.right, false);
+        return leftSum + rightSum;
     }
-	
-	public static void main(String[] args) {
-	/*
-	 * The tree used for test
-	 *	       1
-	 *		 /   \
-	 *		2     3
-	 *	   / \   /
-	 *	  6   5 9
-	 *	 /
-	 *	8
-	*/
-	Solution s = new Solution();
-	s.root = new TreeNode("1");
-	s.root.left = new TreeNode("2");
-	s.root.right = new TreeNode("3");
-	s.root.left.left = new TreeNode("6");
-	s.root.left.right = new TreeNode("5");
-	s.root.left.left.left = new TreeNode("8");
-	s.root.right.left = new TreeNode("9");
-	
-	int result = sumOfLeftLeaves(s.root);
-	System.out.println(result);
 }
-
-	
-// Two right ways
-// http://stackoverflow.com/questions/40499420/why-static-member-variable-not-work-for-retain-value-in-recursive-method
-// Solution 1: Use class member variable "sum" and side effect to record result, as sum is primitive type, should NOT
-// pass into recursive method.
-// Refer to http://stackoverflow.com/a/10265620/6706875
-public class Solution {
-    public TreeNode root;
-	
-    private static class TreeNode {
-       private String val;
-       private TreeNode left, right;
-       public TreeNode(String x) {
-	  this.val = x;
-       }
-    }
-	
-    public static int sum = 0;
-    public static int sumOfLeftLeaves(TreeNode root) {
-        if(root == null) {
-            return 0;
+Solution 2: BFS (10 min)
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+        int result = 0;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        while(!q.isEmpty()) {
+            TreeNode node = q.poll();
+            if(node.left != null) {
+                if(node.left.left == null && node.left.right == null) {
+                    result += node.left.val;
+                }
+                q.offer(node.left);
+            }
+            if(node.right != null) {
+                q.offer(node.right);
+            }
         }
-        
-        sumOfLeftLeavesRec(root, false);
-        return sum;
-    }
-
-    public static void sumOfLeftLeavesRec(TreeNode x, boolean isLeft) {
-        if(x == null) {
-            return;
-        }
-        
-        if(x.left == null && x.right == null && isLeft) {
-        	sum += Integer.valueOf(x.val);
-        }
-        
-        sumOfLeftLeavesRec(x.left, true);
-        sumOfLeftLeavesRec(x.right, false);
-    }
-    
-    public static void main(String[] args) {
-	/*
-	 * The tree used for test
-	 *	       1
-	 *		 /   \
-	 *		2     3
-	 *	   / \   /
-	 *	  6   5 9
-	 *	 /
-	 *	8
-	*/
-	Solution s = new Solution();
-	s.root = new TreeNode("1");
-	s.root.left = new TreeNode("2");
-	s.root.right = new TreeNode("3");
-	s.root.left.left = new TreeNode("6");
-	s.root.left.right = new TreeNode("5");
-	s.root.left.left.left = new TreeNode("8");
-	s.root.right.left = new TreeNode("9");
-	
-	int result = sumOfLeftLeaves(s.root);
-	System.out.println(result); 
+        return result;
     }
 }
 
-// Solution 2: Create a new class Accumulator and pass an instance of this type as parameter into recursive method
-// to record.
-// Refer to http://www.geeksforgeeks.org/find-sum-left-leaves-given-binary-tree/
-// and http://stackoverflow.com/a/10265620/6706875
-public class Solution {
-    public TreeNode root;
-	
-    private static class TreeNode {
-       private String val;
-       private TreeNode left, right;
-       public TreeNode(String x) {
-	  this.val = x;
-       }
+--------------------------------------------------------------------------------
+Refer to chatGPT
+DFS solution:
+// Definition for a binary tree node.
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode() {}
+
+    TreeNode(int val) { 
+        this.val = val; 
     }
 
-    private static class Accumulator {
-       int sum = 0;
-    }
-    
-    public static int sumOfLeftLeaves(TreeNode root) {
-        if(root == null) {
-            return 0;
-        }
-        
-	Accumulator accumulator = new Accumulator();
-	    
-        sumOfLeftLeavesRec(root, false, accumulator);
-        return sum;
-    }
-
-    public static void sumOfLeftLeavesRec(TreeNode x, boolean isLeft, Accumulator accumulator) {
-        if(x == null) {
-            return;
-        }
-        
-        if(x.left == null && x.right == null && isLeft) {
-        	accumulator.sum += Integer.valueOf(x.val);
-        }
-        
-        sumOfLeftLeavesRec(x.left, true, accumulator);
-        sumOfLeftLeavesRec(x.right, false, accumulator);
-    }
-    
-    public static void main(String[] args) {
-	/*
-	 * The tree used for test
-	 *	       1
-	 *		 /   \
-	 *		2     3
-	 *	   / \   /
-	 *	  6   5 9
-	 *	 /
-	 *	8
-	*/
-	Solution s = new Solution();
-	s.root = new TreeNode("1");
-	s.root.left = new TreeNode("2");
-	s.root.right = new TreeNode("3");
-	s.root.left.left = new TreeNode("6");
-	s.root.left.right = new TreeNode("5");
-	s.root.left.left.left = new TreeNode("8");
-	s.root.right.left = new TreeNode("9");
-	
-	int result = sumOfLeftLeaves(s.root);
-	System.out.println(result); 
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
     }
 }
 
-	
-// Solution 3: The best way which match the recursive design rule
-// Rule refer to http://web.mit.edu/6.005/www/fa15/classes/10-recursion/
-// Implement refer to https://my.oschina.net/styshoo/blog/757251
-// In Solution 1: (1)The static member variable is not a good idea (2)In an ideal recursive implementation, all variables are final, 
-// all data is immutable, and the recursive methods are all pure functions in the sense that they do not mutate anything. 
-// The behavior of a method can be understood simply as a relationship between its parameters and its return value, with no side 
-// effects on any other part of the program. (3)Design including two major part, one is base case, another is recursive step
 public class Solution {
-    public TreeNode root;
-
-    private static class TreeNode {
-       private String val;
-       private TreeNode left, right;
-       public TreeNode(String x) {
-	  this.val = x;
-       }
-     }
-    
-    public static int sumOfLeftLeaves(TreeNode root) {
-        if(root == null) {
-            return 0;
-        }
-
-        return sumOfLeftLeavesRec(root, false);
+    public int sumOfLeftLeaves(TreeNode root) {
+        return sumOfLeftLeavesHelper(root, false);
     }
-    
-    public static int sumOfLeftLeavesRec(TreeNode x, boolean isLeft) {
-        if(x == null) {
+
+    private int sumOfLeftLeavesHelper(TreeNode node, boolean isLeft) {
+        if (node == null) {
             return 0;
         }
-	    
+        
+        // Check if it is a leaf node
+        if (node.left == null && node.right == null) {
+            return isLeft ? node.val : 0;
+        }
+
+        // Recursively sum the left and right subtrees
+        int leftSum = sumOfLeftLeavesHelper(node.left, true);
+        int rightSum = sumOfLeftLeavesHelper(node.right, false);
+
+        return leftSum + rightSum;
+    }
+}
+sumOfLeftLeavesHelper Method:
+- Takes two parameters: the current TreeNode and a boolean isLeft indicating if the current node is a left child.
+- If the node is null, it returns 0.
+- If the node is a leaf node (both left and right children are null), it returns the node's value if isLeft is true, otherwise returns 0.
+- Recursively calculates the sum of left leaves in the left and right subtrees.
+- Sums up the values from the left and right subtrees and returns the result.
+BFS solution
+import java.util.LinkedList;
+import java.util.Queue;
+
+// Definition for a binary tree node.
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode() {}
+
+    TreeNode(int val) { 
+        this.val = val; 
+    }
+
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+public class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        
         int sum = 0;
-        // Base Case
-        if(x.left == null && x.right == null && isLeft) {
-        	sum += Integer.valueOf(x.val);
-        } else {
-            // Recursive Steps
-            sum += sumOfLeftLeavesRec(x.left, true);
-            sum += sumOfLeftLeavesRec(x.right, false);
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            
+            // Check the left child
+            if (node.left != null) {
+                // If the left child is a leaf
+                if (node.left.left == null && node.left.right == null) {
+                    sum += node.left.val;
+                } else {
+                    // Otherwise, add the left child to the queue for further processing
+                    queue.offer(node.left);
+                }
+            }
+            
+            // Add the right child to the queue for further processing
+            if (node.right != null) {
+                queue.offer(node.right);
+            }
         }
         
         return sum;
     }
-    
-    public static void main(String[] args) {
-	/*
-	 * The tree used for test
-	 *	       1
-	 *		 /   \
-	 *		2     3
-	 *	   / \   /
-	 *	  6   5 9
-	 *	 /
-	 *	8
-	*/
-	Solution s = new Solution();
-	s.root = new TreeNode("1");
-	s.root.left = new TreeNode("2");
-	s.root.right = new TreeNode("3");
-	s.root.left.left = new TreeNode("6");
-	s.root.left.right = new TreeNode("5");
-	s.root.left.left.left = new TreeNode("8");
-	s.root.right.left = new TreeNode("9");
-	
-	int result = sumOfLeftLeaves(s.root);
-	System.out.println(result);
-    }
 }
 
-	
-	
+--------------------------------------------------------------------------------
+Refer to
+https://leetcode.com/problems/sum-of-left-leaves/solutions/88950/java-iterative-and-recursive-solutions/
+Recursive method. 
+For given node we check whether its left child is a leaf. If it is the case, we add its value to answer, otherwise recursively call method on left child. For right child we call method only if it has at least one nonnull child.
+public int sumOfLeftLeaves(TreeNode root) {
+    if(root == null) return 0;
+    int ans = 0;
+    if(root.left != null) {
+        if(root.left.left == null && root.left.right == null) ans += root.left.val;
+        else ans += sumOfLeftLeaves(root.left);
+    }
+    ans += sumOfLeftLeaves(root.right);
+    
+    return ans;
+}
+Iterative method. 
+Here for each node in the tree we check whether its left child is a leaf. If it is true, we add its value to answer, otherwise add left child to the stack to process it later. For right child we add it to stack only if it is not a leaf.
+public int sumOfLeftLeaves(TreeNode root) {
+    if(root == null) return 0;
+    int ans = 0;
+    Stack<TreeNode> stack = new Stack<TreeNode>();
+    stack.push(root);
+    while(!stack.empty()) {
+        TreeNode node = stack.pop();
+        if(node.left != null) {
+            if (node.left.left == null && node.left.right == null)
+                ans += node.left.val;
+            stack.push(node.left);
+        }
+        if(node.right != null) {
+            stack.push(node.right);
+        }
+    }
+    return ans;
+}
