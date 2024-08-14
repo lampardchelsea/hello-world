@@ -323,7 +323,641 @@ class Solution {
         return ans;
     }
 }
+--------------------------------------------------------------------------------
+Compare with Leetcode 1325 solution as "process subtree nodes first, then process current node", we find the second solution (set leaf nodes level by level as null) in Leetcode 366 is "process current node first, then process subtree nodes", what's the difference between ?
 
+Refer to chatGPT as "one thing leads to another" Q & A
+Q1: Compare to Leetcode 1325, the Leetcode 366 has similar requirement as record then remove each leaf node level by level, can you solve it in two ways:
+1. first process current node itself, then process current node's left and right subtree nodes
+2. first process current node's left and right subtree nodes, then process current node itself
+LeetCode 366 ("Find Leaves of Binary Tree") can be solved in both ways you mentioned:
+1.First process the current node itself, then process its left and right subtrees.
+2.First process the current node's left and right subtrees, then process the current node itself.
+1. Process Current Node First, Then Subtrees
+In this approach, you first check if the current node is a leaf. If it is, you record it, remove it by returning null, and then move to its subtrees.
+import java.util.ArrayList;
+import java.util.List;
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int val) {
+        this.val = val;
+    }
+}
+
+public class Solution {
+    public List<List<Integer>> findLeaves(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        while (root != null) {
+            List<Integer> leaves = new ArrayList<>();
+            root = removeLeaves(root, leaves);
+            result.add(leaves);
+        }
+        return result;
+    }
+
+    private TreeNode removeLeaves(TreeNode node, List<Integer> leaves) {
+        if (node == null) {
+            return null;
+        }
+        // If it's a leaf node, add to the list and return null
+        if (node.left == null && node.right == null) {
+            leaves.add(node.val);
+            return null;
+        }
+        // Otherwise, process its left and right subtrees
+        node.left = removeLeaves(node.left, leaves);
+        node.right = removeLeaves(node.right, leaves);
+        return node;
+    }
+}
+Explanation:
+- Remove Current Node if It's a Leaf: If the node has no children (i.e., it's a leaf), it's recorded and then removed by returning null.
+- Process Subtrees: The left and right subtrees are processed after the current node, which allows the removal of leaves from the bottom up.
+- Repeat Until Root is Null: This process is repeated until the root becomes null, indicating all nodes have been removed.
+2. Process Subtrees First, Then Current Node
+In this approach, you first process the left and right subtrees to identify and remove leaves, and then check if the current node has become a leaf after its children were processed.
+import java.util.ArrayList;
+import java.util.List;
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int val) {
+        this.val = val;
+    }
+}
+
+public class Solution {
+    public List<List<Integer>> findLeaves(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        collectLeaves(root, result);
+        return result;
+    }
+
+    private int collectLeaves(TreeNode node, List<List<Integer>> result) {
+        if (node == null) {
+            return -1;
+        }
+        // Process the left and right subtrees first
+        int leftHeight = collectLeaves(node.left, result);
+        int rightHeight = collectLeaves(node.right, result);
+        int currHeight = Math.max(leftHeight, rightHeight) + 1;
+
+        // Ensure the result list has enough lists for each level
+        if (result.size() <= currHeight) {
+            result.add(new ArrayList<>());
+        }
+
+        // Add the current node's value to the list corresponding to its height
+        result.get(currHeight).add(node.val);
+
+        // Return the height of this node, effectively removing it as a leaf
+        return currHeight;
+    }
+}
+Explanation:
+- Process Subtrees First: The left and right subtrees are processed first to determine the "height" or "level" of each node.
+- Record Node as a Leaf if Appropriate: After processing its children, the current node’s "height" is determined. If it's a leaf (i.e., at the lowest level), it gets added to the corresponding list in result.
+- Collect Leaves by Level: The currHeight is used to track and categorize leaves by their level, ensuring that all nodes on the same level are grouped together.
+Key Differences:
+- Node-First Approach: The first approach prioritizes checking and removing the current node if it's a leaf before its children are processed. This ensures that leaves are identified and removed immediately.
+- Subtrees-First Approach: The second approach processes the subtrees first, allowing for a full pass through the tree before evaluating and removing the current node. This approach naturally groups leaves by their level and can simplify the logic in some scenarios.
+Example Execution:
+For both solutions with input:
+Input: root = [1,2,3,4,5]
+
+    1
+   / \
+  2   3
+ / \
+4   5
+ 
+Expected Output:
+[[4, 5, 3], [2], [1]]
+Both approaches will yield the correct output, but they differ in how they traverse and process the tree. The choice between them depends on how you prefer to structure your recursion and where you want to focus the logic—on the node itself or on its subtrees.
+Q2: In above Leetcode 366 Solution 2. Process Subtrees First, Then Current Node, the given solution is not removing leaf nodes by setting it to NULL, can we also implement "Solution 2. Process Subtrees First, Then Current Node" as setting leaf nodes to NULL way ?
+Yes, the "Process Subtrees First, Then Current Node" approach in LeetCode 366 can also be implemented by setting leaf nodes to null. The idea is to recursively process the left and right subtrees first, and then decide whether the current node should be removed (i.e., set to null) if it has become a leaf after its children are processed.
+Here’s how you can implement this:
+Java Code Implementation
+import java.util.ArrayList;
+import java.util.List;
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int val) {
+        this.val = val;
+    }
+}
+
+public class Solution {
+    public List<List<Integer>> findLeaves(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        removeLeaves(root, result);
+        return result;
+    }
+
+    private TreeNode removeLeaves(TreeNode node, List<List<Integer>> result) {
+        if (node == null) {
+            return null;
+        }
+
+        // Process the left and right subtrees first
+        node.left = removeLeaves(node.left, result);
+        node.right = removeLeaves(node.right, result);
+
+        // If the current node is now a leaf, add it to the result and remove it
+        if (node.left == null && node.right == null) {
+            if (result.isEmpty() || result.size() == 0) {
+                result.add(new ArrayList<>());
+            }
+            result.get(result.size() - 1).add(node.val);
+            return null;
+        }
+
+        return node;
+    }
+}
+Explanation:
+1.Recursive Subtree Processing:
+- The function removeLeaves is called recursively to process the left and right subtrees before the current node.
+2.Check if Current Node is a Leaf:
+- After processing the subtrees, if both node.left and node.right are null, the current node is a leaf.
+3.Remove the Leaf Node:
+- If the current node is a leaf, it is added to the list of leaves in result.
+- The node is then removed from the tree by returning null.
+4.Return the Updated Tree:
+- If the node is not a leaf, the original node is returned, keeping it in the tree.
+Example Execution:
+For the input:
+Input: root = [1,2,3,4,5]
+
+    1
+   / \
+  2   3
+ / \
+4   5
+
+Expected Output:
+[[4, 5, 3], [2], [1]]
+
+Key Points:
+- This approach correctly removes nodes by setting them to null after their children have been processed, ensuring that leaves are removed in a bottom-up manner.
+- It groups the leaves by level, just like in the first approach, but processes the subtrees before making decisions about the current node.
+- This method is consistent with the requirement to first process the subtrees and then decide what to do with the current node.
+This approach is a flexible way to handle problems that involve modifying the tree structure while traversing it recursively.
+Q3: Actually above new solution ("Solution 2. Process Subtrees First, Then Current Node" as setting leaf nodes to NULL way) is wrong, if test with below input:
+class Solution {
+    public List<List<Integer>> findLeaves1(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        removeLeaves(root, result);
+        return result;
+    }
+
+    private TreeNode removeLeaves(TreeNode node, List<List<Integer>> result) {
+        if (node == null) {
+            return null;
+        }
+
+        // Process the left and right subtrees first
+        node.left = removeLeaves(node.left, result);
+        node.right = removeLeaves(node.right, result);
+
+        // If the current node is now a leaf, add it to the result and remove it
+        if (node.left == null && node.right == null) {
+            if (result.isEmpty() || result.size() == 0) {
+                result.add(new ArrayList<>());
+            }
+            result.get(result.size() - 1).add(node.val);
+            return null;
+        }
+
+        return node;
+    }
+
+    public static void main(String[] args) {
+        /**
+         *                1
+         *           /         \
+         *        2              3
+         *      /              /   \
+         *     5              6     4
+         */
+        TreeSolution so = new TreeSolution();
+        TreeNode one = so.new TreeNode(1);
+        TreeNode two = so.new TreeNode(2);
+        TreeNode three = so.new TreeNode(3);
+        TreeNode five = so.new TreeNode(5);
+        TreeNode six = so.new TreeNode(6);
+        TreeNode four = so.new TreeNode(4);
+        one.left = two;
+        one.right = three;
+        two.left = five;
+        three.left = six;
+        three.right = four;
+        List<List<Integer>> result = so.findLeaves1(one);
+        System.out.println(result);
+    }
+}
+the output is wrong as [[5, 2, 6, 4, 3, 1]], not the expect result as [[5, 6, 4], [2, 3], [1]], analyze why its wrong and how to fix ?
+The reason the provided solution produces the incorrect output is that it does not properly group nodes based on their "height" in the tree when they are removed as leaves. In your solution, when a node becomes a leaf, it is immediately added to the current list in the result, regardless of whether it's at the same level as previously removed leaves.
+Issue Breakdown:
+1.Incorrect Grouping by Height:
+- The issue arises because the current implementation does not differentiate between nodes at different levels (or heights) of the tree. All leaves, no matter their level, are added to the same list.
+2.Accumulation of Leaves in a Single List:
+- As a result, when a leaf node is removed, it is added to the last list in the result, which causes all nodes to be grouped together, resulting in [[5, 2, 6, 4, 3, 1]].
+How to Fix:
+To fix this issue, we need to ensure that nodes at the same height in the tree are grouped together. The height of a node is defined by the maximum height of its children plus one.
+Corrected Solution:
+We can modify the function so that it calculates the height of each node and uses this height to determine the correct list to place the node in the result.
+import java.util.ArrayList;
+import java.util.List;
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int val) {
+        this.val = val;
+    }
+}
+
+public class Solution {
+    public List<List<Integer>> findLeaves(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        findLeavesHelper(root, result);
+        return result;
+    }
+
+    private int findLeavesHelper(TreeNode node, List<List<Integer>> result) {
+        if (node == null) {
+            return -1;
+        }
+
+        // Process the left and right subtrees first
+        int leftHeight = findLeavesHelper(node.left, result);
+        int rightHeight = findLeavesHelper(node.right, result);
+        int currHeight = Math.max(leftHeight, rightHeight) + 1;
+
+        // Ensure the result list has enough lists for each level
+        if (result.size() <= currHeight) {
+            result.add(new ArrayList<>());
+        }
+
+        // Add the current node's value to the list corresponding to its height
+        result.get(currHeight).add(node.val);
+
+        // Return the height of this node, effectively removing it as a leaf
+        return currHeight;
+    }
+
+    public static void main(String[] args) {
+        /**
+         *                1
+         *           /         \
+         *        2              3
+         *      /              /   \
+         *     5              6     4
+         */
+        Solution so = new Solution();
+        TreeNode one = new TreeNode(1);
+        TreeNode two = new TreeNode(2);
+        TreeNode three = new TreeNode(3);
+        TreeNode five = new TreeNode(5);
+        TreeNode six = new TreeNode(6);
+        TreeNode four = new TreeNode(4);
+        one.left = two;
+        one.right = three;
+        two.left = five;
+        three.left = six;
+        three.right = four;
+        List<List<Integer>> result = so.findLeaves(one);
+        System.out.println(result);
+    }
+}
+
+Explanation of the Fix:
+- Calculate Height Recursively: The findLeavesHelper method calculates the height of each node by recursively calculating the heights of its children. The height of a node is defined as the maximum of its left and right subtree heights plus one.
+- Group Nodes by Height: Nodes at the same height are grouped together in the result list. This is done by ensuring the result list has enough sublists to accommodate all possible heights.
+- Correct Grouping: With this approach, nodes are grouped correctly based on their height, leading to the correct output.
+Example Output:
+For the given input:
+         1
+      /    \
+    2       3
+   /       / \
+  5       6   4
+The correct output will be:
+[[5, 6, 4], [2, 3], [1]]
+Summary:
+- The problem with the initial solution was that it didn't properly group nodes by their height.
+- By calculating and grouping nodes by their height, the issue is resolved, and the solution now correctly outputs leaves level by level.
+Q4: Above "Process Subtrees First, Then Current Node" solution encounter "height" issue, then why in below solution, "which process current node first then process subtree nodes" we don't encounter "height" issue like above solution ? 
+class Solution {
+    public List<List<Integer>> findLeaves(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        while (root != null) {
+            List<Integer> leaves = new ArrayList<>();
+            root = remove(root, leaves);
+            res.add(leaves);
+        }
+        return res;
+    }
+
+    private TreeNode remove(TreeNode node, List<Integer> leaves) {
+        if (node == null) return null;
+        // If the current node is a leaf node (both left and right
+        // children are null), it adds the node's value to the leaves
+        // list and returns null (indicating that this node is removed).
+        if (node.left == null && node.right == null) {
+            leaves.add(node.val);
+            return null;
+        }
+        node.left = remove(node.left, leaves);
+        node.right = remove(node.right, leaves);
+        return node;
+    }
+
+    public static void main(String[] args) {
+        /**
+         *                1
+         *           /         \
+         *        2              3
+         *      /              /   \
+         *     5              6     4
+         */
+        TreeSolution so = new TreeSolution();
+        TreeNode one = so.new TreeNode(1);
+        TreeNode two = so.new TreeNode(2);
+        TreeNode three = so.new TreeNode(3);
+        TreeNode five = so.new TreeNode(5);
+        TreeNode six = so.new TreeNode(6);
+        TreeNode four = so.new TreeNode(4);
+        one.left = two;
+        one.right = three;
+        two.left = five;
+        three.left = six;
+        three.right = four;
+        List<List<Integer>> result = so.findLeaves(one);
+        System.out.println(result);
+    }
+}
+The reason why the "process current node first then process subtree nodes" approach doesn't encounter the same "height" issue as the "process subtree nodes first then process current node" approach lies in the order and logic of how nodes are removed.
+Breakdown of the Two Approaches
+1. Process Current Node First, Then Subtrees (Your Approach)
+private TreeNode remove(TreeNode node, List<Integer> leaves) {
+    if (node == null) return null;
+
+    // If the current node is a leaf node (both left and right children are null),
+    // it adds the node's value to the leaves list and returns null.
+    if (node.left == null && node.right == null) {
+        leaves.add(node.val);
+        return null;
+    }
+
+    // Recursively process the left and right subtrees
+    node.left = remove(node.left, leaves);
+    node.right = remove(node.right, leaves);
+
+    return node;
+}
+- Immediate Removal of Leaves: In this approach, when the remove function encounters a leaf node (both left and right are null), it immediately adds the node’s value to the leaves list and returns null, effectively removing the node from the tree.
+- Top-Down Processing: Since each node is checked whether it's a leaf before processing its children, the leaves of the current tree structure are removed first in each iteration. After removing all the current leaves, the next iteration will remove the leaves of the remaining tree structure, which were not leaves in the previous iteration but became leaves after their children were removed.
+- Natural Grouping: Each time remove is called on the entire tree, it removes one "level" of leaves. These leaves are naturally at the same "height" (from the bottom of the tree), and they are grouped together in the leaves list during that iteration. This is why the solution correctly groups leaves without explicitly needing to calculate the height.
+2. Process Subtrees First, Then Current Node (Other Approach)
+private int findLeavesHelper(TreeNode node, List<List<Integer>> result) {
+    if (node == null) {
+        return -1;
+    }
+
+    // Process the left and right subtrees first
+    int leftHeight = findLeavesHelper(node.left, result);
+    int rightHeight = findLeavesHelper(node.right, result);
+    int currHeight = Math.max(leftHeight, rightHeight) + 1;
+
+    // Ensure the result list has enough lists for each level
+    if (result.size() <= currHeight) {
+        result.add(new ArrayList<>());
+    }
+
+    // Add the current node's value to the list corresponding to its height
+    result.get(currHeight).add(node.val);
+
+    // Return the height of this node, effectively removing it as a leaf
+    return currHeight;
+}
+- Height-Based Grouping: Here, the findLeavesHelper function processes the left and right subtrees first and then determines the height of the current node based on the heights of its children. Nodes are grouped by their calculated height.
+- Explicit Height Calculation: This approach explicitly calculates and uses the height of each node to group nodes correctly. Without this explicit grouping by height, nodes at different heights could end up in the same list, as seen in the original problem.
+Why the Current Node First Approach Works Without Height Calculation:
+- Implicit Level Grouping: By removing leaves first (before processing subtrees), the algorithm naturally divides the tree into levels. Each iteration of the remove function processes and removes the current leaves, effectively lowering the "height" of the remaining nodes. This means that nodes are grouped by their "level" in successive iterations, which aligns with their height without needing explicit height tracking.
+- Order of Operations: The order of operations in this approach ensures that once a node is identified as a leaf and removed, it’s not revisited in subsequent iterations. The remaining nodes gradually become the next level of leaves, which are then removed in the following iteration.
+Conclusion:
+The "process current node first" method works correctly without height calculation because it leverages the natural structure of the tree and removes leaves iteratively, ensuring that nodes are removed level by level. In contrast, the "process subtrees first" method requires explicit height calculations to ensure proper grouping because it processes nodes in a different order, which doesn't inherently group nodes by their level in the tree.
+Q5: If not using iteration way but using pure recursion way and keep "process current node first then process subtree nodes" style, how the solution looks like ?
+If you want to use a pure recursive approach while maintaining the "process current node first, then process subtree nodes" style, the solution can be structured similarly to how the iterative approach works, but fully within a recursive framework. In this method, we would still remove leaves level by level, but the logic would be embedded entirely within recursive calls.
+Here's how the solution would look:
+Java Code Implementation
+import java.util.ArrayList;
+import java.util.List;
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int val) {
+        this.val = val;
+    }
+}
+
+public class Solution {
+    public List<List<Integer>> findLeaves(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        // We can call a helper function that modifies the result list
+        // directly while it recursively processes nodes.
+        removeLeaves(root, res);
+        return res;
+    }
+
+    // The helper function will return the "height" of the node, while
+    // adding leaves to the appropriate list in `res`.
+    private int removeLeaves(TreeNode node, List<List<Integer>> res) {
+        if (node == null) return -1; // Return -1 to indicate null, making leaf node height as 0
+        
+        // First, remove the current node if it's a leaf.
+        int leftHeight = removeLeaves(node.left, res);
+        int rightHeight = removeLeaves(node.right, res);
+        
+        // The current node's height is determined by the max height of its children.
+        int currHeight = Math.max(leftHeight, rightHeight) + 1;
+        
+        // Ensure the `res` list is large enough to accommodate the current height.
+        if (currHeight >= res.size()) {
+            res.add(new ArrayList<>());
+        }
+        
+        // Add the current node's value to the list corresponding to its height.
+        res.get(currHeight).add(node.val);
+        
+        // If the node is a leaf (both children are null), we return null to remove it.
+        return currHeight;
+    }
+
+    public static void main(String[] args) {
+        /**
+         *                1
+         *           /         \
+         *        2              3
+         *      /              /   \
+         *     5              6     4
+         */
+        Solution so = new Solution();
+        TreeNode one = new TreeNode(1);
+        TreeNode two = new TreeNode(2);
+        TreeNode three = new TreeNode(3);
+        TreeNode five = new TreeNode(5);
+        TreeNode six = new TreeNode(6);
+        TreeNode four = new TreeNode(4);
+        one.left = two;
+        one.right = three;
+        two.left = five;
+        three.left = six;
+        three.right = four;
+        List<List<Integer>> result = so.findLeaves(one);
+        System.out.println(result);
+    }
+}
+Explanation:
+1.Recursive Tree Traversal:
+- The removeLeaves function recursively traverses the tree, first checking the current node before traversing its left and right children.
+2.Determine Node Height:
+- Each node's height is determined by the maximum height of its left and right children, plus one.
+3.Grouping Nodes by Height:
+- The current node's height dictates which list in the result res it should be added to. The result list is dynamically expanded to accommodate the height of the node if necessary.
+4.Remove Nodes:
+- If a node is a leaf (both left and right children are null), it is added to the list corresponding to its height and the node itself is effectively "removed" by the recursive return process (the node's reference is not maintained, resulting in it being excluded from the tree).
+5.Recursive Removal:
+- As the function unwinds, each node is evaluated, grouped by height, and removed if it has become a leaf after its children are processed.
+Output:
+For the input:
+         1
+      /    \
+    2       3
+   /       / \
+  5       6   4
+The output will be:
+[[5, 6, 4], [2, 3], [1]]
+Summary:
+- This solution maintains the "process current node first, then process subtree nodes" style.
+- The key difference is that it relies on recursive height calculation and grouping, without needing iterative loops.
+- It effectively removes nodes level by level, similar to the iterative solution, but the recursive structure allows it to be more elegant and pure in its approach.
+Q6: Your above solution is pure recursion but you didn't follow the requirement as "process current node first, it go into process left and right subtree nodes first", can you write a pure recursion solution but "process current node first then move on to subtree nodes" ?
+Certainly! Below is a pure recursion solution for Leetcode 366 that follows the requirement to "process the current node first, then move on to the left and right subtree nodes."
+Java Code Implementation
+import java.util.ArrayList;
+import java.util.List;
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int val) {
+        this.val = val;
+    }
+}
+
+public class Solution {
+    public List<List<Integer>> findLeaves(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        removeLeaves(root, res);
+        return res;
+    }
+
+    private boolean removeLeaves(TreeNode node, List<List<Integer>> res) {
+        if (node == null) return false;
+
+        // If current node is a leaf, add it to the current leaves list.
+        if (node.left == null && node.right == null) {
+            if (res.isEmpty() || res.get(res.size() - 1).isEmpty()) {
+                res.add(new ArrayList<>());
+            }
+            res.get(res.size() - 1).add(node.val);
+            return true; // return true indicating this node is a leaf and should be removed
+        }
+
+        // Process the left subtree
+        if (removeLeaves(node.left, res)) {
+            node.left = null; // Remove the left leaf
+        }
+
+        // Process the right subtree
+        if (removeLeaves(node.right, res)) {
+            node.right = null; // Remove the right leaf
+        }
+
+        // Return false because this node is not a leaf after processing its children
+        return false;
+    }
+
+    public static void main(String[] args) {
+        /**
+         *                1
+         *           /         \
+         *        2              3
+         *      /              /   \
+         *     5              6     4
+         */
+        Solution so = new Solution();
+        TreeNode one = new TreeNode(1);
+        TreeNode two = new TreeNode(2);
+        TreeNode three = new TreeNode(3);
+        TreeNode five = new TreeNode(5);
+        TreeNode six = new TreeNode(6);
+        TreeNode four = new TreeNode(4);
+        one.left = two;
+        one.right = three;
+        two.left = five;
+        three.left = six;
+        three.right = four;
+        List<List<Integer>> result = so.findLeaves(one);
+        System.out.println(result);
+    }
+}
+Explanation:
+1.Process Current Node First:
+- The method removeLeaves processes the current node first by checking if it's a leaf node (i.e., both its left and right children are null).
+- If it is a leaf, it adds the node's value to the current leaves list in res and returns true to indicate that the node should be removed.
+2.Recursive Removal of Leaves:
+- After processing the current node, the method recursively processes the left and right children.
+- If the left child is a leaf and is removed, the left pointer is set to null. The same is done for the right child.
+3.Return Value:
+- The return value of removeLeaves is true if the current node is a leaf, prompting its parent to remove it.
+- If the current node is not a leaf, it returns false, ensuring that the parent node remains in the tree.
+4.Result List Handling:
+- The result list res keeps track of the nodes removed at each level. A new list is added to res each time the method finds a new set of leaves.
+Output:
+For the input:
+         1
+      /    \
+    2       3
+   /       / \
+  5       6   4
+The output will be:
+[[5, 6, 4], [2, 3], [1]]
+Summary:
+- This solution strictly adheres to the requirement of "processing the current node first, then processing the left and right subtree nodes."
+- It removes the leaves in a pure recursive manner without using any iterative constructs, while ensuring that nodes are grouped by their removal order from the bottom up.
+--------------------------------------------------------------------------------
 Refer to
 What is the difference between tree depth and height
 L104.Maximum Depth of Binary Tree (Ref.L222,L366)
