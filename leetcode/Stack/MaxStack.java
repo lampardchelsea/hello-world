@@ -1,14 +1,13 @@
-https://www.lintcode.com/problem/859/description
 
+https://www.lintcode.com/problem/859/description
 Design a max stack that supports push, pop, top, peekMax and popMax.
-1. push(x) -- Push element x onto stack.
-2. pop() -- Remove the element on top of the stack and return it.
-3. top() -- Get the element on the top.
-4. peekMax() -- Retrieve the maximum element in the stack.
-5. popMax() -- Retrieve the maximum element in the stack, and remove it. If you find more than one maximum elements, only remove the top-most one.
+1.push(x) -- Push element x onto stack.
+2.pop() -- Remove the element on top of the stack and return it.
+3.top() -- Get the element on the top.
+4.peekMax() -- Retrieve the maximum element in the stack.
+5.popMax() -- Retrieve the maximum element in the stack, and remove it. If you find more than one maximum elements, only remove the top-most one.
 
 Example 1:
-```
 MaxStack stack = new MaxStack();
 stack.push(5);
 stack.push(1);
@@ -19,20 +18,17 @@ stack.top(); -> 1
 stack.peekMax(); -> 5
 stack.pop(); -> 1
 stack.top(); -> 5
-```
 
 Note:
-1. -1e7 <= x <= 1e7
-2. Number of operations won't exceed 10000.
-3. The last four operations won't be called when stack is empty.
----
+1.-1e7 <= x <= 1e7
+2.Number of operations won't exceed 10000.
+3.The last four operations won't be called when stack is empty.
+--------------------------------------------------------------------------------
 Attempt 1: 2023-05-31
-
 The big difference than L155.Min Stack is L716.Max Stack requires a new method:
 popMax() -- Retrieve the maximum element in the stack, and remove it. If you find more than one maximum elements, only remove the top-most one.
 
 Solution 1: Two Stacks (30 min)
-```
 class MaxStack {
     Stack<Integer> stack;
     Stack<Integer> maxStack;
@@ -87,19 +83,13 @@ class MaxStack {
 
 Time Complexity: O(N) for the popMax operation, and O(1) for the other operations, where N is the number of operations performed. 
 Space Complexity: O(N), the maximum size of the stack.
-```
 
 Refer to
 https://aaronice.gitbook.io/lintcode/stack/max-stack
-
 LeetCode Official - Approach #1: Two Stacks
-
-For peekMax, we remember the largest value we've seen on the side. For example if we add [2, 1, 5, 3, 9] in stack , we'll store [2, 2, 5, 5, 9] in maxStack. This works seamlessly withpopoperations, and also it's easy to compute: it's just the maximum of the element we are adding and the previous maximum.
-ForpopMax, we know what the current maximum (peekMax) is. We can pop until we find that maximum, then push the popped elements back on the stack.
+For peekMax, we remember the largest value we've seen on the side. For example if we add [2, 1, 5, 3, 9] in stack , we'll store [2, 2, 5, 5, 9] in maxStack. This works seamlessly with popoperations, and also it's easy to compute: it's just the maximum of the element we are adding and the previous maximum.For popMax, we know what the current maximum (peekMax) is. We can pop until we find that maximum, then push the popped elements back on the stack.
 https://leetcode.ca/2017-11-15-716-Max-Stack/
 The popMax() function. This is a highly complex function that requires careful handling. Since the maximum element may not always be at the top of the normal stack, it may be necessary to first pop some elements from the normal stack in order to locate it. The top element of the normal stack is considered the maximum only if it is identical to the top element of the maximum stack. Once the maximum element has been popped, any other elements that were previously removed from the normal stack must be re-added. To accomplish this, a new stack is used to store all the popped elements until the maximum element is identified. Once the maximum element has been popped and retrieved, each element in the new stack must be pushed back onto the normal stack, to ensure that both the normal stack and the maximum stack contain the correct values.
-
-```
 class MaxStack {
     Stack<Integer> stack;
     Stack<Integer> maxStack;
@@ -131,9 +121,8 @@ class MaxStack {
         return max;
     }
 }
-```
+
 Example
-```
 e.g
 s.push(2);
 s.push(9);
@@ -158,20 +147,21 @@ stack    maxStack         stack   maxStack  buffer         stack  maxStack  buff
                           x means permanently removed      and maxStack based on push(x)
                           Note: especially maxStack elements
                           not move to buffer based on pop()
-```
-- Time Complexity: O(N) for the popMaxoperation, and O(1) for the other operations, where N is the number of operations performed.
-- Space Complexity: O(N), the maximum size of the stack.
----
+
+Time Complexity: O(N) for the popMaxoperation, and O(1) for the other operations, where N is the number of operations performed.
+Space Complexity: O(N), the maximum size of the stack.
+
+--------------------------------------------------------------------------------
 Solution 2: Double Linked List + TreeMap (30 min)
-```
 class MaxStack {
     DoubleLinkedList list;
     TreeMap<Integer, List<Node>> map;
+
     public MaxStack() {
         list = new DoubleLinkedList();
         map = new TreeMap<Integer, List<Node>>();
     }
-
+    
     public void push(int x) {
         Node node = list.add(x);
         if(!map.containsKey(x)) {
@@ -214,7 +204,6 @@ class MaxStack {
 class DoubleLinkedList {
     Node head;
     Node tail;
-
     public DoubleLinkedList() {
         head = new Node(0);
         tail = new Node(0);
@@ -243,7 +232,7 @@ class DoubleLinkedList {
     public int pop() {
         return unlink(tail.prev).val;
     }
-
+    
     public int peek() {
         return tail.prev.val;
     }
@@ -260,25 +249,21 @@ class Node {
 
 Time Complexity: O(logN) for all operations except peek which is O(1), where N is the number of operations performed. Most operations involving TreeMap are O(logN). 
 Space Complexity: O(N), the size of the data structures used.
-```
 
 Refer to
 https://aaronice.gitbook.io/lintcode/stack/max-stack
-
 LeetCode Official - Approach #2: Double Linked List + TreeMap
-
 Intuition
-Using structures like Array or Stack will never let uspopMaxquickly. We turn our attention to tree and linked-list structures that have a lower time complexity for removal, with the aim of makingpopMaxfaster than O(N) time complexity.
+Using structures like Array or Stack will never let us popMax quickly. We turn our attention to tree and linked-list structures that have a lower time complexity for removal, with the aim of making popMax faster than O(N) time complexity.
 Say we have a double linked list as our "stack". This reduces the problem to finding which node to remove, since we can remove nodes in O(1) time.
 We can use a TreeMap mapping values to a list of nodes to answer this question. TreeMap can find the largest value, insert values, and delete values, all in O(logN) time.
 Algorithm
-Let's store the stack as a double linked listdll, and store amapfromvalueto aListofNode.
-- When weMaxStack.push(x), we add a node to ourdll, and add or update our entrymap.get(x).add(node).
-- When weMaxStack.pop(), we find the valueval = dll.pop(), and remove the node from ourmap, deleting the entry if it was the last one.
-- When weMaxStack.popMax(), we use themapto find the relevant node tounlink, and return it's value.
-The above operations are more clear given that we have a workingDoubleLinkedListclass. The implementation provided usesheadandtail_sentinels_to simplify the relevantDoubleLinkedListoperations.
+Let's store the stack as a double linked list dll, and store a map from value to a List of Node created by this value.
+- When we MaxStack.push(x), we add a node to our dll, and add or update our entry map.get(x).add(node).
+- When we MaxStack.pop(), we find the value val = dll.pop(), and remove the node from our map, deleting the entry if it was the last one.
+- When we MaxStack.popMax(), we use the map to find the relevant node to unlink, and return it's value.
+The above operations are more clear given that we have a working DoubleLinkedList class. The implementation provided uses head and tail_sentinels_to simplify the relevant DoubleLinkedList operations.
 A Python implementation was not included for this approach because there is no analog to_TreeMap_available.
-```
 class MaxStack {
     TreeMap<Integer, List<Node>> map;
     DoubleLinkedList dll;
@@ -346,7 +331,9 @@ class Node {
     Node prev, next;
     public Node(int v) {val = v;}
 }
-```
 Complexity Analysis
-- Time Complexity: O(logN) for all operations exceptpeekwhich is O(1), where N is the number of operations performed. Most operations involvingTreeMapare O(logN).
-- Space Complexity: O(N), the size of the data structures used.
+- Time Complexity: O(logN) for all operations except peekwhich is O(1), where N is the number of operations performed. Most operations involving TreeMapare O(logN).
+- Space Complexity: O(N), the size of the data structures used.      
+    
+Refer to
+L155.Min Stack
