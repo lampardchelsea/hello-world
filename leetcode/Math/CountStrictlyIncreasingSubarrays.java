@@ -184,5 +184,5 @@ Example:
 For the input array {1, 3, 5, 4, 7}, the strictly increasing subarrays are: [1], [3], [5], [1, 3], [3, 5], [4], [7], making a total of 7.
 This solution efficiently counts the number of strictly increasing subarrays with a time complexity of O(n) , where n is the number of elements in the input array.
 
-
-
+Refer to
+L845.Longest Mountain in Array (Ref.L821)
