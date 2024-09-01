@@ -275,3 +275,6 @@ class Solution {
 ANALYSIS :-
 - Time Complexity : O(N) as we are traversing the array only once.
 - Space Complexity : O(1) as we are not using any extra space
+
+Refer to
+L1671.Minimum Number of Removals to Make Mountain Array (Ref.L300)
