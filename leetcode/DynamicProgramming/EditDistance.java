@@ -818,3 +818,5 @@ i = 0 (s), j = 1 (x)
 
 Refer to
 L115.Distinct Subsequences
+L712.Minimum ASCII Delete Sum for Two Strings (Ref.L72,L583,L1143)
+L1143.Longest Common Subsequence (Ref.L516,L583,L712)
