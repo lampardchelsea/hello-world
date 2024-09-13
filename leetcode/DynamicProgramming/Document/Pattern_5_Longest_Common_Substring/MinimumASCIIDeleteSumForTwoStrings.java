@@ -425,8 +425,103 @@ public int minimumDeleteSum(String s1, String s2) {
     return dp[m][n];
 }
 
+--------------------------------------------------------------------------------
+For Leetcode 72, why in pure DFS converted 2D DP solution for base case, we don't need to for loop from last to first index ? But in Leetcode 712 pure DFS converted 2D DP solution base case we have for loop from last to first index, and if loop from first to last index is wrong
+Refer to chatGPT
+This is a great observation, and it highlights the difference in the nature of the base cases between LeetCode 72 ("Edit Distance") and LeetCode 712 ("Minimum ASCII Delete Sum for Two Strings").
+Let's break down the reasoning for each problem:
+LeetCode 72 (Edit Distance):
+In the pure DFS solution of LeetCode 72, when either word1 or word2 reaches the end, the remaining characters in the other string are considered one-to-one operations (either insertions or deletions). This is why in the DP conversion:
+- If i == word1.length(), the minimum number of operations to transform the rest of word1 to word2[j:] is simply the number of remaining characters in word2, i.e., word2.length() - j.
+- Similarly, if j == word2.length(), the minimum number of operations to transform the rest of word2 to word1[i:] is word1.length() - i.
+Thus, in the DP solution, the base case can be directly initialized in one step (no loop over individual characters is required):
+// Base case for LeetCode 72
+for (int j = 0; j <= m; j++) {
+    dp[n][j] = m - j;
+}
+for (int i = 0; i <= n; i++) {
+    dp[i][m] = n - i;
+}
+This initialization works because the remaining number of characters corresponds to the number of insertions or deletions, and each step can be handled independently.
+LeetCode 712 (Minimum ASCII Delete Sum for Two Strings):
+In LeetCode 712, the cost of transforming one string into another is based on the ASCII sum of the characters being deleted. When one string is exhausted, you must delete all remaining characters from the other string. The total cost is the sum of the ASCII values of those characters.
+Why does LeetCode 712 use a loop?
+When either s1 or s2 is exhausted in the DFS solution:
+- If i == s1.length(), you need to delete all remaining characters from s2[j:], which means you have to accumulate the total ASCII value of s2[j:].
+- Similarly, if j == s2.length(), you need to delete all remaining characters from s1[i:], and you accumulate the total ASCII value of s1[i:].
+In the DFS base case, this looks like a loop to sum up the ASCII values:
+if (i == s1.length()) {
+    int sum = 0;
+    for (int k = j; k < s2.length(); k++) {
+        sum += s2.charAt(k); // Summing the ASCII values of remaining characters
+    }
+    return sum;
+}
+When converting to DP, we handle this in a similar manner by initializing the DP table for when one of the strings is exhausted:
+// Base case for LeetCode 712
+for (int j = s2.length() - 1; j >= 0; j--) {
+    dp[s1.length()][j] = dp[s1.length()][j + 1] + s2.charAt(j);
+}
+for (int i = s1.length() - 1; i >= 0; i--) {
+    dp[i][s2.length()] = dp[i + 1][s2.length()] + s1.charAt(i);
+}
+Here, we are accumulating the ASCII values in reverse (from the last character to the first). This ensures that the base case accumulates the correct cost for deleting the remaining characters.
+Key Differences in Base Case Initialization:
+1.LeetCode 72 (Edit Distance):
+- The base case involves counting the number of remaining characters in one string and treating each as a separate operation.
+- Hence, no need for a loop over the string—just subtract the current index from the length of the string to get the number of operations.
+2.LeetCode 712 (Minimum ASCII Delete Sum):
+- The base case involves summing the ASCII values of the remaining characters, which requires processing each character.
+- A loop is necessary to accumulate the ASCII values of the remaining characters when one string is exhausted.
+Why the Order of Looping Matters (First to Last vs. Last to First):
+In LeetCode 712, if you initialize from the first character (index 0) and try to compute the total sum of remaining characters in a forward manner (first to last), you may overwrite values in the DP table that you still need for further calculations, leading to incorrect results.
+By processing the DP table from the last index to the first (in reverse order), you ensure that you always have the correct values for future computations, as you're filling in the table progressively and using previously computed values correctly.
+In contrast, in LeetCode 72, since the number of operations (insertions or deletions) is independent of the actual characters, you don't have this issue, and initializing the DP table in either direction would work correctly.
+Summary:
+- LeetCode 72: No loop is needed in the base case because the remaining operations are just counting how many characters are left.
+- LeetCode 712: A loop is needed to accumulate the total ASCII value of the remaining characters, and processing from last to first ensures the DP table is correctly filled without overwriting values prematurely.
+--------------------------------------------------------------------------------
+Use s1 = "sea" and s2 = "eat" to elaborate your statement:In LeetCode 712, if you initialize from the first character (index 0) and try to compute the total sum of remaining characters in a forward manner (first to last), you may overwrite values in the DP table that you still need for further calculations, leading to incorrect results. 
+Refer to chatGPT
+Let's use the strings s1 = "sea" and s2 = "eat" to demonstrate the issue with initializing the DP table from the first character (index 0) and processing the sum of remaining characters in a forward manner.
+The Goal of LeetCode 712:
+We want to find the minimum ASCII delete sum to make the two strings identical by deleting characters from either string.
+DP Table Structure:
+We will define a 2D DP table dp[i][j] where i represents the index in s1 and j represents the index in s2. The value dp[i][j] represents the minimum ASCII delete sum to make s1[i:] and s2[j:] identical (i.e., making the substrings starting from i in s1 and j in s2 equal).
+The Correct Way: Initialize from the Last Character (Reverse Order)
+Let's initialize the DP table from the last character to the first, and observe the correct behavior:
+1.Base case: When i == s1.length() or j == s2.length(), the remaining characters in the other string need to be deleted entirely.
+- dp[3][j] = ASCII sum of s2[j:] (i.e., dp[3][j] represents deleting all remaining characters of s2 starting from index j).
+- dp[i][3] = ASCII sum of s1[i:] (i.e., dp[i][3] represents deleting all remaining characters of s1 starting from index i).
+Let's initialize the base cases:
+- dp[3][2] = ASCII('t') = 116
+- dp[3][1] = ASCII('a') + dp[3][2] = 97 + 116 = 213
+- dp[3][0] = ASCII('e') + dp[3][1] = 101 + 213 = 314
+- dp[2][3] = ASCII('a') = 97
+- dp[1][3] = ASCII('e') + dp[2][3] = 101 + 97 = 198
+- dp[0][3] = ASCII('s') + dp[1][3] = 115 + 198 = 313
+Now, we fill the DP table using the transition formula:
+- If s1[i] == s2[j], then dp[i][j] = dp[i + 1][j + 1] (no deletion needed).
+- If s1[i] != s2[j], then we take the minimum between:
+- Deleting s1[i] (i.e., dp[i][j] = ASCII(s1[i]) + dp[i + 1][j]).
+- Deleting s2[j] (i.e., dp[i][j] = ASCII(s2[j]) + dp[i][j + 1]).
+Let's now fill the table:
+- dp[2][2]: s1[2] == s2[2] ('a' == 'a'), so dp[2][2] = dp[3][3] = 0
+- dp[2][1]: s1[2] != s2[1] ('a' != 't'), so dp[2][1] = min(ASCII('a') + dp[3][1], ASCII('t') + dp[2][2]) = min(97 + 213, 116 + 0) = 116
+- dp[2][0]: s1[2] != s2[0] ('a' != 'e'), so dp[2][0] = min(ASCII('a') + dp[3][0], ASCII('e') + dp[2][1]) = min(97 + 314, 101 + 116) = 217
+Continuing this way, the final answer dp[0][0] gives the minimum ASCII delete sum, which is 231 (the correct answer).
+What Goes Wrong if You Initialize Forward (From First to Last)
+Now, let's consider what happens if we try to initialize from the first character to the last:
+- Let's say we first try to initialize dp[0][j] for j = 0 (starting from the first character of s2), and similarly for dp[i][0].
+- If we initialize the base cases in forward order, we would start from dp[0][0], where no correct information from future states (dp[i+1][j] or dp[i][j+1]) is available yet. The dp[0][0] entry could overwrite values that have not been computed yet, leading to incorrect results when we fill the table.
+Example:
+- Suppose dp[0][0] is computed before dp[1][1] is available. We might calculate it based on uninitialized or incorrectly initialized values for the cells dp[1][0] or dp[0][1].
+In other words, the recursion depends on future values (lower indices) being filled in first, and initializing forward would mean that the necessary data isn't available, leading to incorrect results. The DP table needs the future values for each subproblem, which is why initializing in reverse order ensures that we compute the smaller subproblems first before using them to solve the larger ones.
+Conclusion:
+In LeetCode 712, initializing the DP table from the last character to the first works correctly because it respects the dependency on future states, while initializing from the first character would overwrite necessary information and lead to incorrect results.
+
 Refer to
-L72.Edit Distance (Ref.L115)
+L72.Edit Distance (Ref.L115,L712,L1143)
 L583.Delete Operation for Two Strings (Ref.L712,L72,L1143)
 L1143.Longest Common Subsequence (Ref.L516,L583,L712)
 L673.Number of Longest Increasing Subsequence (Ref.L300)
