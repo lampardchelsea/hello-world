@@ -305,7 +305,8 @@ Steps to Convert to DP:
 class Solution {
     public int longestPalindromeSubseq(String s) {
         int n = s.length();
-        // Create a 2D DP table
+        // dp[i][j] contains the answer of the longest palindromic 
+        // subsequence of the substring formed from index i to j in s
         int[][] dp = new int[n][n];
         
         // Base case: A single character is a palindrome of length 1
