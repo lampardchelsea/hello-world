@@ -398,3 +398,4 @@ class Solution {
 Refer to
 L300.Longest Increasing Subsequence
 L704.Binary Search
+L2111.Minimum Operations to Make the Array K-Increasing (Ref.L300,L1964)
