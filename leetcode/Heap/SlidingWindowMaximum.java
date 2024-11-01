@@ -1,534 +1,139 @@
-// Solution 1: Heap Solution
-/**
- * Refer to
- * https://leetcode.com/problems/sliding-window-maximum/?tab=Description
- * 
- * Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the 
- * very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position.
 
-	For example,
-	Given nums = [1,3,-1,-3,5,3,6,7], and k = 3.
-	
-	Window position                Max
-	---------------               -----
-	[1  3  -1] -3  5  3  6  7       3
-	 1 [3  -1  -3] 5  3  6  7       3
-	 1  3 [-1  -3  5] 3  6  7       5
-	 1  3  -1 [-3  5  3] 6  7       5
-	 1  3  -1  -3 [5  3  6] 7       6
-	 1  3  -1  -3  5 [3  6  7]      7
-	Therefore, return the max sliding window as [3,3,5,5,6,7].
+https://leetcode.com/problems/sliding-window-maximum/
+You are given an array of integers nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position.
+Return the max sliding window.
 
- * Note: 
- * You may assume k is always valid, ie: 1 ≤ k ≤ input array's size for non-empty array.
- * 
- * Follow up:
- * Could you solve it in linear time?
- * 
- * Hint:
- * How about using a data structure such as deque (double-ended queue)?
- * The queue size need not be the same as the window’s size.
- * Remove redundant elements and the queue should store only elements that need to be considered.
- *
- * Refer to
- * https://segmentfault.com/a/1190000003903509
- * http://articles.leetcode.com/sliding-window-maximum/
- * 
- * The important part is add a function as remove()
- * Refer to
- * http://grepcode.com/file_/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/util/PriorityQueue.java/?v=source
- * http://algs4.cs.princeton.edu/24pq/IndexMaxPQ.java.html
- * 
- * E.g Given nums = [1,3,-1,-3,5,3,6,7], and k = 3.
-    1st removeAt(int i)
-	i = 2, n = 3, pq = [null, 3, 1, -1]
-    after hit exch(i, n--)      pq = [null, 3, -1, 1]
-	after hit swim(i)           pq = [null, 3, -1, 1]
-	after hit sink(i)           pq = [null, 3, -1, 1]
-	after hit pq[n + 1] = null  pq = [null, 3, -1, null]
-	
-	2nd removeAt(int i)
-	i = 1, n = 3, pq = [null, 3, -1, -3]
-	after hit exch(i, n--)      pq = [null, -3, -1, 3]
-	after hit swim(i)           pq = [null, -3, -1, 3]  
-	after hit sink(i)           pq = [null, -1, -3, 3]
-	after hit pq[n + 1] = null  pq = [null, -1, -3, null]
-	
-	3rd removeAt(int i)
-	i = 3, n = 3, pq = [null, 5, -3, -1]
-	after pq[i] = null          pq = [null, 5, -3, null]
-	
-	4th removeAt(int i)
-	i = 4, n = 4, pq = [null, 5, 3, null, -3, null, null, null]
-	after pq[i] = null          pq = [null, 5, 3, null, null, null, null, null]
-	
-	5th removeAt(int i)
-	i = 2, n = 5, pq = [null, 6, 5, null, null, 3, null, null]
-	after hit exch(i)           pq = [null, 6, 3, null, null, 5, null, null]
-	after hit swim(i)           pq = [null, 6, 3, null, null, 5, null, null]
-	after hit sink(i)           pq = [null, 6, 3, null, -2147483648, 5, null, null]
-	after hit pq[n + 1] = null  pq = [null, 6, 3, null, -2147483648, null, null, null] 
- * 
- */
-public class MaxSlidingWindow {
-	public int[] maxSlidingWindow(int[] nums, int k) {
-		int len = nums.length;
-		if(nums == null || len == 0) {
-			return new int[0];
-		}
-		MaxPQ maxPQ = new MaxPQ();
-		int[] result = new int[len - k + 1];
-		for(int i = 0; i < len; i++) {
-			if(i >= k) {		
-				maxPQ.remove(nums[i - k]);
-			}
-			maxPQ.insert(nums[i]);
-			if(i + 1 >= k) {
-				result[i + 1 - k] = maxPQ.peek();
-			}
-		}
-		return result;
-    }
-	
-	private class MaxPQ {
-        Integer[] pq;
-        int n;
-        public MaxPQ(int initialCapacity) {
-            pq = new Integer[initialCapacity + 1];
-            n = 0;
-        }
-        
-        public MaxPQ() {
-            this(1);
-        }
-        
-        public void insert(Integer x) {
-            if(n == pq.length - 1) {
-                resize(2 * pq.length);
-            }
-            pq[++n] = x;
-            swim(n);
-        }
-        
-        public boolean remove(Integer x) {
-        	int i = indexOf(x);
-        	if(i == -1) {
-        		return false;
-        	} else {
-        		removeAt(i);
-        		return true;
-        	}
-        }
-        
-        public int indexOf(Integer x) {
-        	if(x != null) {
-        		for(int i = 1; i <= n; i++) {
-        			if(x.equals(pq[i])) {
-        				return i;
-        			}
-        		}
-        	}
-        	return -1;
-        }
-        
-        /**
-         * Refer to
-         * http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/util/PriorityQueue.java#PriorityQueue.removeAt%28int%29
-         * Removes the ith element from queue. Normally this method leaves the elements at up to i-1, 
-         * inclusive, untouched. Under these circumstances, it returns null. Occasionally, in order 
-         * to maintain the heap invariant, it must swap a later element of the list with one earlier 
-         * than i. Under these circumstances, this method returns the element that was previously at 
-         * the end of the list and is now at some position before i. This fact is used by iterator.remove
-         * so as to avoid missing traversing elements.
-         *     private E removeAt(int i) {
-			        assert i >= 0 && i < size;
-			        modCount++;
-			        int s = --size;
-			        if (s == i) // removed last element
-			            queue[i] = null;
-			        else {
-			            E moved = (E) queue[s];
-			            queue[s] = null;
-			            siftDown(i, moved);
-			            if (queue[i] == moved) {
-			                siftUp(i, moved);
-			                if (queue[i] != moved)
-			                    return moved;
-			            }
-			        }
-			        return null;
-			   }
-         * 
-         * --------------------------------------------------------------------------------------------------
-         * Refer to
-         * http://algs4.cs.princeton.edu/24pq/IndexMaxPQ.java.html
-         * Remove the key on the priority queue associated with index {@code i}
-         *     public void delete(int i) {
-			        if (!contains(i)) throw new NoSuchElementException("index is not in the priority queue");
-			        int index = qp[i];
-			        exch(index, n--);
-			        swim(index);
-			        sink(index);
-			        keys[i] = null;
-			        qp[i] = -1;
-			   }
-         * 
-         * 
-         * @param i The index of element on MaxPQ need to remove
-         * @return
-         */
-        public Integer removeAt(int i) {
-        	if(i == n) {
-        		// Remove last element without heapify
-        		pq[i] = null;
-        	} else {
-        		Integer removed = pq[i];
-        		exch(i, n--);
-        		// Best try here !!!
-        		// Don't use swim(n) or sink(1), the order of swim(i) and sink(i)
-        		// can exchange, because no matter what value store at position i,
-        		// it must go through both process to locate at final heapified
-        		// location in MaxPQ
-        		swim(i);
-                sink(i);
-        		pq[n + 1] = null;
-        		if((n > 0) && (n == (pq.length - 1) / 4)) {
-        			resize(pq.length / 2);
-        		}
-        		// For test, we can add assert function
-        		assert isMaxHeap();
-        		return removed;
-        	}
-        	return null;
-        }
-        
-        // The change on less method is modified on object compare case,
-        // especially with setting to Integer.MIN_VALUE when its NULL
-        public boolean less(int v, int w) {
-            if(pq[v] == null) {
-        		pq[v] = Integer.MIN_VALUE;
-        	}
-        	if(pq[w] == null) {
-        		pq[w] = Integer.MIN_VALUE;
-        	}
-        	return pq[v].compareTo(pq[w]) < 0;
-        }
-        
-        // is pq[1..N] a max heap?
-        private boolean isMaxHeap() {
-            return isMaxHeap(1);
-        }
+Example 1:
+Input: nums = [1,3,-1,-3,5,3,6,7], k = 3
+Output: [3,3,5,5,6,7]
+Explanation: 
+Window position                Max
+---------------               -----
+[1  3  -1] -3  5  3  6  7       3
+ 1 [3  -1  -3] 5  3  6  7       3
+ 1  3 [-1  -3  5] 3  6  7       5
+ 1  3  -1 [-3  5  3] 6  7       5
+ 1  3  -1  -3 [5  3  6] 7       6
+ 1  3  -1  -3  5 [3  6  7]      7
 
-        // is subtree of pq[1..n] rooted at k a max heap?
-        private boolean isMaxHeap(int k) {
-            if (k > n) return true;
-            int left = 2 * k;
-            int right = 2 * k + 1;
-            if (left  <= n && less(k, left))  return false;
-            if (right <= n && less(k, right)) return false;
-            return isMaxHeap(left) && isMaxHeap(right);
-        }
-               
-        public void resize(int len) {
-        	Integer[] temp = new Integer[len];
-            for(int i = 1; i <= n; i++) {
-                temp[i] = pq[i];
-            }
-            pq = temp;
-        }
-        
-        public void swim(int k) {
-            while(k > 1 && less(k/2, k)) {
-                exch(k/2, k);
-                k = k/2;
-            }
-        }
-        
-        public void sink(int k) {
-            while(k <= n/2) {
-                int j = 2 * k;
-                if(j < n && less(j, j + 1)) {
-                    j++;
-                }
-                if(!less(k, j)) {
-                    break;
-                }
-                exch(k, j);
-                k = j;
+Example 2:
+Input: nums = [1], k = 1
+Output: [1]
+ 
+Constraints:
+- 1 <= nums.length <= 10^5
+- -10^4 <= nums[i] <= 10^4
+- 1 <= k <= nums.length
+--------------------------------------------------------------------------------
+Attempt 1: 2022-09-10
+Solution 1 (5min, but Time Complexity: O(nlogk) consider as Time Limit Exceeded) 
+class Solution { 
+    public int[] maxSlidingWindow(int[] nums, int k) { 
+        int len = nums.length; 
+        int[] result = new int[len - k + 1]; 
+        PriorityQueue<Integer> maxPQ = new PriorityQueue<Integer>((a, b) -> b.compareTo(a)); 
+        for(int i = 0; i < len; i++) { 
+            maxPQ.add(nums[i]); 
+            if(i >= k - 1) { 
+                result[i - k + 1] = maxPQ.peek(); 
+                maxPQ.remove(nums[i - k + 1]); 
             } 
-        }
-        
-        public void exch(int v, int w) {
-        	Integer swap = pq[v];
-            pq[v] = pq[w];
-            pq[w] = swap;
-        }
-        
-        public boolean isEmpty() {
-            return n == 0;
-        }
-
-        public Integer peek() {
-            if(isEmpty()) {
-               return Integer.MAX_VALUE; 
-            }
-            return pq[1];
-        }
-    }
-	
-	
-	public static void main(String[] args) {		
-		int[] nums = {1, 3, -1, -3, 5, 3, 6, 7};
-		int k = 3;
-//		int[] nums = {1, -1};
-//		int k = 1;
-		MaxSlidingWindow m = new MaxSlidingWindow();
-		int[] result = m.maxSlidingWindow(nums, k);
-		for(int i = 0; i < result.length; i++) {
-			System.out.println(result[i]);
-		}
-	}
-	
+        } 
+        return result; 
+    } 
 }
 
+Space Complexity: O(n)
+Time Complexity: O(nlogk)
+Not a linear solution, instead, it is of O(nlogk) complexity, since add, pop and  remove operation 
+of PriorityQueue cost O(logk) time. What we need to do is just maintain a heap, that heap top gets 
+the maximal value of the k elements.
 
-
-
-
-
-// Same solution with generic setup
-/**
- * Generic version refer to 
- * Apache commons objectutils source code
- * http://commons.apache.org/proper/commons-lang/apidocs/src-html/org/apache/commons/lang3/ObjectUtils.html
- * 
- * Priceton MaxPQ
- * http://algs4.cs.princeton.edu/24pq/MaxPQ.java.html
- */
-public class MaxSlidingWindow {
-	public int[] maxSlidingWindow(int[] nums, int k) {
-		int len = nums.length;
-		if(nums == null || len == 0) {
-			return new int[0];
-		}
-		MaxPQ<Integer> maxPQ = new MaxPQ<Integer>();
-		int[] result = new int[len - k + 1];
-		for(int i = 0; i < len; i++) {
-			if(i >= k) {		
-				maxPQ.remove(nums[i - k]);
-			}
-			maxPQ.insert(nums[i]);
-			if(i + 1 >= k) {
-				result[i + 1 - k] = maxPQ.peek();
-			}
-		}
-		return result;
-    }
-	
-	private class MaxPQ<Key> {
-        private Key[] pq;
-        private int n;
-        @SuppressWarnings("unchecked")
-		public MaxPQ(int initialCapacity) {
-            pq = (Key[]) new Object[initialCapacity + 1];
-            n = 0;
-        }
-        
-        public MaxPQ() {
-            this(1);
-        }
-        
-        public void insert(Key x) {
-            if(n == pq.length - 1) {
-                resize(2 * pq.length);
-            }
-            pq[++n] = x;
-            swim(n);
-        }
-        
-        public boolean remove(Key x) {
-        	int i = indexOf(x);
-        	if(i == -1) {
-        		return false;
-        	} else {
-        		removeAt(i);
-        		return true;
-        	}
-        }
-        
-        public int indexOf(Key x) {
-        	if(x != null) {
-        		for(int i = 1; i <= n; i++) {
-        			if(x.equals(pq[i])) {
-        				return i;
-        			}
-        		}
-        	}
-        	return -1;
-        }
-
-        public Key removeAt(int i) {
-        	if(i == n) {
-        		pq[i] = null;
-        	} else {
-        		Key removed = pq[i];
-        		exch(i, n--);
-        		swim(i);
-                sink(i);
-        		pq[n + 1] = null;
-        		if((n > 0) && (n == (pq.length - 1) / 4)) {
-        			resize(pq.length / 2);
-        		}
-        		// For test, we can add assert function
-        		assert isMaxHeap();
-        		return removed;
-        	}
-        	return null;
-        }
-        
-        /**
-         * Refer to
-         * Apache commons objectutils source code
-         * http://commons.apache.org/proper/commons-lang/apidocs/src-html/org/apache/commons/lang3/ObjectUtils.html
-         * ---------------------------------------------------------------------------------------------------------------
-	     * <p>Null safe comparison of Comparables.
-	     * {@code null} is assumed to be less than a non-{@code null} value.</p>
-	     *
-	     * @param <T> type of the values processed by this method
-	     * @param c1  the first comparable, may be null
-	     * @param c2  the second comparable, may be null
-	     * @return a negative value if c1 &lt; c2, zero if c1 = c2 and a positive value if c1 &gt; c2
-		    public static <T extends Comparable<? super T>> int compare(final T c1, final T c2) {
-		        return compare(c1, c2, false);
-		    }
-		 * ---------------------------------------------------------------------------------------------------------------
-	     * <p>Null safe comparison of Comparables.</p>
-	     *
-	     * @param <T> type of the values processed by this method
-	     * @param c1  the first comparable, may be null
-	     * @param c2  the second comparable, may be null
-	     * @param nullGreater if true {@code null} is considered greater
-	     *  than a non-{@code null} value or if false {@code null} is
-	     *  considered less than a Non-{@code null} value
-	     * @return a negative value if c1 &lt; c2, zero if c1 = c2
-	     *  and a positive value if c1 &gt; c2
-	     * @see java.util.Comparator#compare(Object, Object)
-		    public static <T extends Comparable<? super T>> int compare(final T c1, final T c2, final boolean nullGreater) {
-		        if (c1 == c2) {
-		            return 0;
-		        } else if (c1 == null) {
-		            return nullGreater ? 1 : -1;
-		        } else if (c2 == null) {
-		            return nullGreater ? -1 : 1;
-		        }
-		        return c1.compareTo(c2);
-		    }
-		 * ---------------------------------------------------------------------------------------------------------------
-         */
-        @SuppressWarnings("unchecked")
-		public boolean less(int v, int w) {
-//          if(pq[v] == null) {
-//        		pq[v] = Integer.MIN_VALUE;
-//        	}
-//        	if(pq[w] == null) {
-//        		pq[w] = Integer.MIN_VALUE;
-//        	}
-//        	return pq[v].compareTo(pq[w]) < 0;
-        	int result;
-        	if(pq[v] == pq[w]) {
-        		result = 0;
-        	} else if(pq[v] == null) {
-        		result = -1;
-        	} else if(pq[w] == null) {
-        		result = 1;
-        	} else {
-        		result = ((Comparable<Key>)pq[v]).compareTo(pq[w]);
-        	}    	
-        	return result < 0;
-        }
-        
-        // is pq[1..N] a max heap?
-        private boolean isMaxHeap() {
-            return isMaxHeap(1);
-        }
-
-        // is subtree of pq[1..n] rooted at k a max heap?
-        private boolean isMaxHeap(int k) {
-            if (k > n) return true;
-            int left = 2 * k;
-            int right = 2 * k + 1;
-            if (left  <= n && less(k, left))  return false;
-            if (right <= n && less(k, right)) return false;
-            return isMaxHeap(left) && isMaxHeap(right);
-        }
-               
-        public void resize(int len) {
-        	@SuppressWarnings("unchecked")
-			Key[] temp = (Key[]) new Object[len];
-            for(int i = 1; i <= n; i++) {
-                temp[i] = pq[i];
-            }
-            pq = temp;
-        }
-        
-        public void swim(int k) {
-            while(k > 1 && less(k/2, k)) {
-                exch(k/2, k);
-                k = k/2;
-            }
-        }
-        
-        public void sink(int k) {
-            while(k <= n/2) {
-                int j = 2 * k;
-                if(j < n && less(j, j + 1)) {
-                    j++;
-                }
-                if(!less(k, j)) {
-                    break;
-                }
-                exch(k, j);
-                k = j;
+Solution 2 (360min, too long since not familiar with Monotonic Deque and have difficulty to come up with store index only)
+class Solution { 
+    public int[] maxSlidingWindow(int[] nums, int k) { 
+        int len = nums.length; 
+        // Use deque to store index (store index also store value by the way) 
+        // Since deque can add or remove element from either end, we can 
+        // leverage this attribute to simulate the natural scanning order(from 
+        // left to right) to add or remove nums' indexes from left to right,  
+        // which means always try to remove old indexes from deque's left end( 
+        // front end) by using removeFirst() / peekFirst() methods, and always  
+        // try to add new indexes on deque's right end(rear end) by using 
+        // addLast() / peekLast() methods. 
+        // Java Deque: 
+        // https://jenkov.com/tutorials/java-collections/deque.html 
+        Deque<Integer> deque = new LinkedList<Integer>(); 
+        int[] result = new int[len - k + 1]; 
+        for(int i = 0; i < len; i++) { 
+            // Remove index(represent corresponding number) out of range k 
+            // from deque's left end(front end) 
+            if(!deque.isEmpty() && deque.peekFirst() == i - k) { 
+                deque.removeFirst(); 
             } 
-        }
-        
-        public void exch(int v, int w) {
-        	Key swap = pq[v];
-            pq[v] = pq[w];
-            pq[w] = swap;
-        }
-        
-        public boolean isEmpty() {
-            return n == 0;
-        }
-
-        public Key peek() {
-//            if(isEmpty()) {
-//               return Integer.MAX_VALUE; 
-//            }
-        	// For change Integer into Key, change
-        	// setting from Integer.MAX_VALUE to NUll
-            if(isEmpty()) {
-                return null; 
-             }
-            return pq[1];
-        }
-    }
-	
-	
-	public static void main(String[] args) {		
-		int[] nums = {1, 3, -1, -3, 5, 3, 6, 7};
-		int k = 3;
-//		int[] nums = {1, -1};
-//		int k = 1;
-		MaxSlidingWindow m = new MaxSlidingWindow();
-		int[] result = m.maxSlidingWindow(nums, k);
-		for(int i = 0; i < result.length; i++) {
-			System.out.println(result[i]);
-		}
-	}
-	
+            // Add new index(represent corresponding number) onto deque's 
+            // right end(rear end), but since it requires O(n) time complexity, 
+            // we could not implement additional sort algorithem or use auto  
+            // sort data structure like Priority Queue which is O(nlogn), finally  
+            // comes to Montonic Deque which guarantee O(n) 
+            // Before add a new index onto deque's rear end, we have to compare new 
+            // element's value(nums[i]) against all previous rear end elements'  
+            // values(nums[deque.peekLast()]), if previous rear end elements'  
+            // values less than new element value, we have to looply remove them  
+            // till find a larger or equal element to maintain a strictly decreasing 
+            // order of elements' values on monotonic deque from left to right(front  
+            // to rear) 
+            // In short, the elements(indexes represented) stored on deque must 
+            // monotonically decrease from left to right, e.g 1st > 2nd > 3rd... 
+            // and we can easily find the maximum element value at the left end(front 
+            // end) of deque by using nums[deque.peekFirst()] 
+            while(!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) { 
+                deque.removeLast(); 
+            } 
+            deque.addLast(i); 
+            if(i >= k - 1) { 
+                result[i - k + 1] = nums[deque.peekFirst()]; 
+            } 
+        } 
+        return result; 
+    } 
 }
 
+Space Complexity: O(n) 
+Time Complexity: O(n)
+      
+  
+Refer to
+[Python] Decreasing deque, short, explained
+https://leetcode.com/problems/sliding-window-maximum/solutions/951683/python-decreasing-deque-short-explained/
+There are a big variety of different algorithms for this problem. The most difficult, but most efficient uses idea of decreasing deque: on each moment of time we will keep only decreasing numbers in it. Let us consider the following example: nums = [1,3,-1,-3,5,3,6,7], k = 3. Let us process numbers one by one: (I will print numbers, however we will keep indexes in our stack):
+1.We put 1 into emtpy deque: [1].
+2.New element is bigger, than previous, so we remove previous element and put new one: [3].
+3.Next element is smaller than previous, put it to the end of deque: [3, -1].
+4.Similar to previous step: [3, -1, -3].
+5.Now, let us look at the first element 3, it has index 1 in our data, what does it mean? It was to far ago, and we need to delete it: so we popleft it. So, now we have [-1, -3]. Then we check that new element is bigger than the top of our deque, so we remove two elements and have [5] in the end.
+6.New element is smaller than previous, just add it to the end: [5, 3].
+7.New element is bigger, remove elements from end, until we can put it: [6].
+8.New element is bigger, remove elements from end, until we can put it: [7].
+So, once again we have the following rules:
+1.Elements in deque are always in decreasing order.
+2.They are always elements from last sliding window of k elements.
+3.It follows from here, that biggest element in current sliding window will be the 0-th element in it.
+Complexity: time complexity is O(n), because we iterate over our elements and for each element it can be put inside and outside of our deque only once. Space complexity is O(k), the maximum size of our deque.
+class Solution:
+    def maxSlidingWindow(self, nums, k):
+        deq, n, ans = deque([0]), len(nums), []
 
+        for i in range (n):
+            while deq and deq[0] <= i - k:
+                deq.popleft()
+            while deq and nums[i] >= nums[deq[-1]] :
+                deq.pop()
+            deq.append(i)
+            
+            ans.append(nums[deq[0]])
+            
+        return ans[k-1:]
 
+Refer to
+L1425.Constrained Subsequence Sum (Ref.L239,L739,L53)
