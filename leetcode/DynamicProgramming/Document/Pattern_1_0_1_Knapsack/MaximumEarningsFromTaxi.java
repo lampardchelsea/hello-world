@@ -91,59 +91,8 @@ Space Complexity: O(m), m is the number of ride intervals
 Memoization: The dfs function uses a memoization, which will store results for each unique argument (i). This could result in up to m entries in the worst case, giving a space complexity of O(m).
 Recursion Stack: The depth of recursion may go up to m in the worst case if all rides are taken sequentially with no overlap, which contributes to O(m) space complexity.
 So both are O(m), final cost is O(m)
-Solution 3: DFS + Memoization + Binary Search (10 min)
-class Solution {
-    public long maxTaxiEarnings(int n, int[][] rides) {
-        Arrays.sort(rides, (a, b) -> a[0] - b[0]);
-        int len = rides.length;
-        long[] dp = new long[len + 1];
-        // In Native DFS, the top is 0(recursion entry), bottom is 
-        // len(recursion base condition), in bottom up DP (tabulation), 
-        // we start from bottom and return at top
-        dp[len] = 0;
-        // Exactly same logic as Native DFS
-        for(int index = len - 1; index >= 0; index--) {
-            // Note: rides is already sorted
-            // Find lower boundary, the first index 'i' satisfy
-            // "rides[i][0] >= rides[index][1] (= val)"
-            int i = binarySearch(rides, rides[index][1], index + 1);
-            // 1. dp[index + 1] means not take current ride
-            // 2. rides[index][1] - rides[index][0] + rides[index][2] + dp[i] means take current ride
-            dp[index] = Math.max(dp[index + 1], rides[index][1] - rides[index][0] + rides[index][2] + dp[i]);
-        }
-        return dp[0];
-    }
 
-    // Find lower boundary
-    private int binarySearch(int[][] rides, int val, int lo) {
-        int hi = rides.length - 1;
-        while(lo <= hi) {
-            int mid = lo + (hi - lo) / 2;
-            if(rides[mid][0] >= val) {
-                hi = mid - 1;
-            } else {
-                lo = mid + 1;
-            }
-        }
-        return lo;
-    }
-}
-
-Time Complexity: O(mlogm), m is the number of ride intervals
-Sorting the Rides: The initial step in the code is to sort the rides list, which consists of m ride intervals. This has a time complexity of O(m log m), where m is the number of rides.
-Dynamic Programming with Memoization (dfs function): The dfs function is used here to implement dynamic programming with memoization. The memoization ensures that each possible starting point of a ride is computed at most once. Since memoization caches the results, the maximum number of distinct states to consider is m, the length of the sorted rides list.
-Binary Search (bisect_left function): Inside the dfs function, binary search is used to find the next non-overlapping ride, which has a time complexity of O(log m) per call.
-Combining the dynamic programming computation with the binary search, for each of the m calls to dfs, a binary search operation is involved. Thus, each call may contribute up to O(log m) complexity. Given that there are m such calls, the total time complexity from the dynamic programming along with the binary searches is O(m log m).
-Considering both sorting and the memoized dfs, the overall time complexity of the algorithm is O(m log m).
-
-Space Complexity: O(m), m is the number of ride intervals
-Sorting: Sorting is done in-place in Python (Timsort), but it may still require O(log m) space for the stack frames used in the sort implementation.
-Memoization: The dfs function uses a memoization table (implicitly through the @cache decorator), which will store results for each unique argument (i). This could result in up to m entries in the worst case, giving a space complexity of O(m).
-Recursion Stack: The depth of recursion may go up to m in the worst case if all rides are taken sequentially with no overlap, which contributes to O(m) space complexity.
-Thus, combining the space requirements for the sorting, memoization, and recursion stack, the total space complexity is O(m).
-In conclusion, the time complexity of the code is O(m log m) and the space complexity is O(m), where m is the number of rides.
-
-Solution 4: DP (30 min)
+Solution 3: DP (30 min)
 Wrong Solution
 class Solution {
     public long maxTaxiEarnings(int n, int[][] rides) {
@@ -254,7 +203,8 @@ index = 3 -> i = 4,5, i = 4 result overwrite by i = 5, 2nd error
 index = 2 -> i = 4,5, i = 4 result overwrite by i = 5, same 2nd error
 index = 1 -> i = 2,3,4,5, i = 2 result overwrite by i = 3,4,5, same 2nd error
 index = 0 -> i = 2,3,4,5, i = 2 result overwrite by i = 3,4,5, same 2nd error 
-Solution 5: DP + Binary Search (10 min)
+
+Solution 4: DP + Binary Search (10 min)
 class Solution {
     public long maxTaxiEarnings(int n, int[][] rides) {
         Arrays.sort(rides, (a, b) -> a[0] - b[0]);
@@ -294,14 +244,18 @@ class Solution {
 
 Time Complexity: O(mlogm), m is the number of ride intervals
 Sorting the Rides: The initial step in the code is to sort the rides list, which consists of m ride intervals. This has a time complexity of O(m log m), where m is the number of rides.
-Dynamic Programming: O(m), single for loop on all rides
-Binary Search: O(logm)
+Dynamic Programming with Memoization (dfs function): The dfs function is used here to implement dynamic programming with memoization. The memoization ensures that each possible starting point of a ride is computed at most once. Since memoization caches the results, the maximum number of distinct states to consider is m, the length of the sorted rides list.
+Binary Search (bisect_left function): Inside the dfs function, binary search is used to find the next non-overlapping ride, which has a time complexity of O(log m) per call.
+Combining the dynamic programming computation with the binary search, for each of the m calls to dfs, a binary search operation is involved. Thus, each call may contribute up to O(log m) complexity. Given that there are m such calls, the total time complexity from the dynamic programming along with the binary searches is O(m log m).
+Considering both sorting and the memoized dfs, the overall time complexity of the algorithm is O(m log m).
 
 Space Complexity: O(m), m is the number of ride intervals
-Sorting: O(logm)
-Dynamic Programming: O(m), single for loop on all rides
+Sorting: Sorting is done in-place in Python (Timsort), but it may still require O(log m) space for the stack frames used in the sort implementation.
+Memoization: The dfs function uses a memoization table (implicitly through the @cache decorator), which will store results for each unique argument (i). This could result in up to m entries in the worst case, giving a space complexity of O(m).
+Recursion Stack: The depth of recursion may go up to m in the worst case if all rides are taken sequentially with no overlap, which contributes to O(m) space complexity.
+Thus, combining the space requirements for the sorting, memoization, and recursion stack, the total space complexity is O(m).
+In conclusion, the time complexity of the code is O(m log m) and the space complexity is O(m), where m is the number of rides.
 
-So Time Complexity is O(mlogm) and Space Complexity is O(m)
 --------------------------------------------------------------------------------
 Refer to
 https://leetcode.com/problems/maximum-earnings-from-taxi/solutions/1613010/c-brute-recursion-better-dp-optimal-dp-binary-search-clear-and-concise/
