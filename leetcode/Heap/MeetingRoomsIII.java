@@ -124,6 +124,9 @@ class Solution {
             // minPQ peek position, then the meeting stored on peek position treat as ended meeting,
             // pop out ended meeting from occupied_rooms minPQ and release the room for current meeting,
             // add the released room into empty_rooms minPQ
+            // Do NOT use 'if' instead of 'while' since it may not release only one free room but multiple
+            // e.g n = 4, meetings = [[18,19],[3,12],[17,19],[2,13],[7,10]]
+            // expected = 0, if use 'if' instead of 'while', output = 1, which is wrong
             while(!occupied_rooms.isEmpty() && start >= occupied_rooms.peek()[1]) {
                 int release_room_id = occupied_rooms.poll()[0];
                 empty_rooms.offer(release_room_id);
