@@ -824,10 +824,13 @@ Space Complexity: O(N) since we need to initialize an array of size N+1 to hold 
 Refer to Document: Explaining the Binary Indexed Tree
 https://medium.com/@edison.cy.yang/explaining-the-binary-indexed-tree-34f27ad0a513
 Based on this document, the most critical part is how to build up the Binary Indexed Tree with given nums array, below is the detail steps for the same input nums array shared on document
+Also, to calculate positive number's corresponding negative number, refer to two's complementary method: 
+To take the two’s complement of a number, simply complement each bit and then add one.
+Example: The number 6 in binary is 0110. To take the two’s complement, complement each bit 1001, and add 1, result as 1010.
 ======================================================================
 Basic operation for i & -i
 00000001 = 1
-11111111 = -199999
+11111111 = -1
 00000001 = 1 (1&-1)
 00000010 = 2
 11111110 = -2
@@ -1022,3 +1025,6 @@ public class NumArray {
 // numArray.sumRange(0, 1);
 // numArray.update(1, 10);
 // numArray.sumRange(1, 2);
+
+Refer to
+What Is Two's Complement
