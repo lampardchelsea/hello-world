@@ -1,51 +1,40 @@
+
 https://leetcode.com/problems/longest-increasing-subsequence-ii/description/
-
 You are given an integer array nums and an integer k.
-
 Find the longest subsequence of nums that meets the following requirements:
 - The subsequence is strictly increasing and
 - The difference between adjacent elements in the subsequence is at most k.
-
 Return the length of the longest subsequence that meets the requirements.
-
 A subsequence is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
 
 Example 1:
-```
 Input: nums = [4,2,1,4,3,4,5,8,15], k = 3
 Output: 5
 Explanation:
 The longest subsequence that meets the requirements is [1,3,4,5,8].
 The subsequence has a length of 5, so we return 5.
 Note that the subsequence [1,3,4,5,8,15] does not meet the requirements because 15 - 8 = 7 is larger than 3.
-```
 
 Example 2:
-```
 Input: nums = [7,4,5,1,8,12,4,7], k = 5
 Output: 4
 Explanation:
 The longest subsequence that meets the requirements is [4,5,8,12].
 The subsequence has a length of 4, so we return 4.
-```
 
 Example 3:
-```
 Input: nums = [1,5], k = 1
 Output: 1
 Explanation:
 The longest subsequence that meets the requirements is [1].
 The subsequence has a length of 1, so we return 1.
-```
 
 Constraints:
-- 1 <= nums.length <= 105
-- 1 <= nums[i], k <= 105
----
+- 1 <= nums.length <= 10^5
+- 1 <= nums[i], k <= 10^5
+--------------------------------------------------------------------------------
 Attempt 1: 2023-05-11
-
 Solution 1: DP (10 min, TLE)
-```
 class Solution {
     public int lengthOfLIS(int[] nums, int k) {
         int result = 1;
@@ -66,7 +55,6 @@ class Solution {
 
 Time Complexity : O(N^2) 
 Space Complexity : O(N)
-```
 The DP solution is very similar to L300.Longest Increasing Subsequence, the only difference is add one more condition as "nums[i] - nums[j] <= k" based on new restriction from problem description, but TLE on 71/83 
 
 Why can't we use DP
@@ -75,11 +63,8 @@ https://leetcode.com/problems/longest-increasing-subsequence-ii/solutions/256031
 Test cases too heavy, so n^2 wouldn't pass, segment trees have Time Complexity -> O(NlogN) Space Complexity -> O(NlogN), I tries to use most optimum solution from here: https://leetcode.com/problems/longest-increasing-subsequence/discuss/1326552/Optimization-From-Brute-Force-to-Dynamic-Programming-Explained! but couldnt make it work for this question
 
 Solution 2: Segment Tree (60 min)
-
 Style 1:  Iterative version of Segment Trees
-
 Approach 1: Query range exclusive on right as [left, right)
-```
 class Solution {
     // n = 100001 means each potential value is
     // an array index based on 1 <= nums[i] <= 10^5 
@@ -139,10 +124,8 @@ class Solution {
         }
     }
 }
-```
 
 Approach 2: Query range inclusive as [left, right]
-```
 class Solution {
     // n = 100001 means each potential value is
     // an array index based on 1 <= nums[i] <= 10^5 
@@ -212,8 +195,6 @@ class Solution {
         }
     }
 }
-```
-
 Example to explain how LIS[a] = 1 + max(LIS[a - k : a]) works
 Refer to
 https://leetcode.com/problems/longest-increasing-subsequence-ii/solutions/2560085/python-explanation-with-pictures-segment-tree/
@@ -221,10 +202,7 @@ We store the longest increasing subsequence ended by each number in array LIS (1
 
 
 The key is for a given value a, we should find the maximum value from LIS[a - k: a] ), then LIS[a] = 1 + max(LIS[a - k : a]).
-
-
 Take the pictures below as an example:
-
 For the first number 4, the maximum length is the maximum of LIS[1], LIS[2], LIS[3] plus 1 (4 itself). Thus we shall look for the max(LIS[1:4]) . Apparently, LIS[4] = 1 which stands for 4 itself.
 
 
@@ -241,15 +219,12 @@ Then update LIS for 9, we look for max(LIS[6:9]).
 
 
 so on so forth...
-
 However, brute force ends up with O(n^2) time, we shall look for a better approach.
-
 Its range queries of min/max value, thus we can use segment tree.
----
+--------------------------------------------------------------------------------
 Java implementation Example (Same as approach 1)
 Refer to
 https://leetcode.com/problems/longest-increasing-subsequence-ii/solutions/2560103/c-java-segment-tree-max-range-query/
-```
 class Solution {
     int N = 100001;
     int[] seg = new int[2*N];
@@ -303,13 +278,11 @@ class Solution {
         return ans;
     }
 }
-```
 
 Note:
 The above article is just an example, not showing the actual segment tree resize and recursively update till top node structure, the actual segment tree implementation steps below:
 
 Approach 1 Query range exclusive on right as [left, right) demo
-```
 class Solution {
     // n = 100001 means each potential value is
     // an array index based on 1 <= nums[i] <= 10^5 
@@ -426,10 +399,8 @@ update(A[i],res)=update(A[4],res)=update(9,1)
 seg=[0, 3, 1, 3, 1, 0, 1, 3, 0, 1, 0, 0, 1, 0, 2, 3, 0, 0, 0, 1]
 -----------------------------------------------------------------
 We see the segment tree array is quite different than the article example
-```
 
 Approach 2 Query range inclusive as [left, right] demo
-```
 class Solution {
     // n = 100001 means each potential value is
     // an array index based on 1 <= nums[i] <= 10^5 
@@ -576,17 +547,15 @@ seg=[0, 3, 1, 3, 1, 0, 1, 3, 0, 1, 0, 0, 1, 0, 2, 3, 0, 0, 0, 1]
 the difference is seg[0]=3
 -----------------------------------------------------------------
 We see the segment tree array is quite different than the article example
-```
 
----
+--------------------------------------------------------------------------------
 The difference between query [left, right) and query [left, right]
 
 
 Take example for equal query on seg[4] = Max (seg[1], seg[2], seg[3]) situation, in query [left, right) will be query [1, 4), but in query[left, right] will be query [1, 3]
 
 query [left, right] => query [1, 3]
-```
-    private int query(int left, int right) { // query max [lo, hi]
+  private int query(int left, int right) { // query max [lo, hi]
         left += n;
         right += n;
         int result = 0;
@@ -623,12 +592,10 @@ query for [1,3], n = 10
     right-- = 5
     right / 2 = 2
     -------------------
-    left = 3, right = 2 not match left <= right condition end
-```
+    left = 3, right = 2 not match left <= right condition end  
 
 query [left, right) => query [1, 4)
-```
-    private int query(int left, int right) { // query max [lo, hi)
+   private int query(int left, int right) { // query max [lo, hi)
         left += n;
         right += n;
         int result = 0;
@@ -665,15 +632,12 @@ query for [1,4), n = 10
     right / 2 = 3
     --------------------
     left = 3, right = 3 not match left < right condition end
-```
 
 The comparison here is in query [left, right) when right boundary identified as a right child node, we cannot use it to directly find its parent node, because "right)" is exclusive, to find a valid parent node based on given right boundary, we have to minus 1 (right--) first to find the actual valid right child inclusively as right boundary and then move on to find its parent node. That's why its logic is different than query [left, right]
 
----
+--------------------------------------------------------------------------------
 Style 2:  Recursive version of Segment Trees
-
 The same style as L307. Range Sum Query Mutable recursive way
-```
 class Solution {
     int[] tree;
     // Critical point: Different than L307. Range Sum Query
@@ -746,11 +710,9 @@ class Solution {
         //return Math.max(leftMax, rightMax);
     }
 }
-```
 
 Refer to
 https://leetcode.com/problems/longest-increasing-subsequence-ii/solutions/2560747/java-easy-segment-tree/
-```
 class Solution {
     int N = 1_00_001;
     int seg[];
@@ -794,29 +756,36 @@ class Solution {
         return max;
     }
 }
-```
-
----
+--------------------------------------------------------------------------------
+Why in Leetcode 2407 when build Segment Tree the size equal to 4 multiple possible maximum value in given array 'nums' instead of 4 multiple given array 'nums' length ?
+In LeetCode 2407, the segment tree is built for range queries over indices that represent values in the array nums, rather than directly on the array indices. This distinction is why the size of the segment tree is based on the possible maximum value in nums, not the length of the array nums.
+Key Points:
+1.Purpose of the Segment Tree:
+- The problem involves finding information (like the maximum LIS length) related to the values in the array nums over certain ranges.
+- The range for the segment tree depends on the values in nums, so the tree needs to handle queries efficiently over the range [1, max(nums)].
+2.Size of Segment Tree:
+- The size of a segment tree for a range of length n is typically 4×n to account for worst-case scenarios where the tree might be unbalanced due to the structure of recursive segment splits.
+- In this problem, n corresponds to the range of possible values, i.e., max(nums), not the array length nums.length.
+3.Why Not nums.length:
+- If the segment tree size were based on nums.length, it would only support queries on the indices of the array nums. However, the queries in this problem need to cover all possible values in the range [1, max(nums)], regardless of how many elements are in nums.
+--------------------------------------------------------------------------------
 Why cannot use Fenwick Tree (Binary Indexed Tree) ?
 Refer to
 https://leetcode.com/problems/longest-increasing-subsequence-ii/solutions/2560103/c-java-segment-tree-max-range-query/
-
 Strategy
-
-For every element A[i], we check the range [A[i]-k, A[i]-1] for the current best length and add 1. The problem here is that, we also need to update the max and it is not a prefix range from 0 to some number, so Fenwick tree won't work.
-I figure segment tree is good for this because it supports update and query in both O(logn).
+For every element A[i], we check the range [A[i]-k, A[i]-1] for the current best length and add 1. The problem here is that, we also need to update the max and it is not a prefix range from 0 to some number, so Fenwick tree won't work.I figure segment tree is good for this because it supports update and query in both O(logn).
 Time O(log(max(A[i])) * N)
 Space O(max(A[i]))
 
-https://leetcode.com/problems/longest-increasing-subsequence-ii/solutions/2578352/segment-tree/
-Can be solved by DP, where dp[nums[i]] = max(dp[1] ... dp[nums[i] - 1]).
+https://leetcode.com/problems/longest-increasing-subsequence-ii/solutions/2578352/segment-tree/Can be solved by DP, where 
+dp[nums[i]] = max(dp[1] ... dp[nums[i] - 1]).
 
 However, this leads to a quadratic solution, and we need to do it in O(n log n) based on the problem constraints.
-
 I wasted a lot of time trying to adapt a monotonic stack LIS solution, but only to realize that we must use DP.
-
 We just need to make the max range query to run in O(log n) instead of O(n). This can be done using a segment tree.
-
 Note that, for canonical LIS, we can also use the Fenwick tree. With k, Fenwick tree would not work as it can only answer min/max queries on the [0, r] interval (min/max are not commutative operations).
-
-It's possible to use a pair of Fenwick trees to answer mini/max queries on [l, r] interval, but the solution would be much more complicated, compared to a segment tree.
+It's possible to use a pair of Fenwick trees to answer mini/max queries on [l, r] interval, but the solution would be much more complicated, compared to a segment tree.      
+    
+Refer to
+L300.Longest Increasing Subsequence
+L307.Range Sum Query - Mutable
