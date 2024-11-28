@@ -227,7 +227,7 @@ we set S[i] = S[j] and increment i++.
         return new String(res, 0, i);
     }
 
-Style 2: Move back one step in one time
+Style 2: Move back one step once a time with 0 start index
 class Solution {
     public String removeDuplicates(String s) {
         int len = s.length();
@@ -283,6 +283,49 @@ class Solution {
         return new String(stack, 0, i);
     }
 }
+
+Style 3: Move back one step once a time with negative start index
+class Solution {
+    public String removeDuplicates(String s) {
+        int len = s.length();
+        char[] result = s.toCharArray();
+        // Write pointer
+        int i = -1; 
+        for(int j = 0; j < len; j++) {
+            if(i < 0 || result[i] != result[j]) {
+                // Move forward one step similar as push one more char on stack
+                i++;
+                // Record non-duplicate character on position i
+                result[i] = result[j];
+            } else {
+                // Move back one step similar as pop out current char on stack
+                i--;
+            }
+        }
+        return new String(result, 0, i + 1);
+    }
+}
+
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+Refer to
+https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/discuss/294964/Java-three-easy-iterative-codes-w-brief-explanation-and-analysis.
+Method 3: two pointers
+If current char is same as the end of non-adjacent-duplicate chars, decrease the counter end by 1;
+otherwise, copy the current char to its end.
+    public String removeDuplicates(String S) {
+        char[] a = S.toCharArray();
+        int end = -1;
+        for (char c : a) {
+            if (end >= 0 && a[end] == c) { 
+                --end; 
+            }else { 
+                a[++end] = c; 
+            }
+        }
+        return String.valueOf(a, 0, end + 1);
+    }
 
 Refer to
 L1209.Remove All Adjacent Duplicates in String II
