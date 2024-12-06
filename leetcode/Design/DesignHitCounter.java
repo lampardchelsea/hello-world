@@ -57,6 +57,11 @@ class HitCounter {
         @param timestamp - The current timestamp (in seconds granularity). */
     public int getHits(int timestamp) {
         // Remove hits older than 5 minutes (300 seconds)
+        // Since we use default LinkedList to simulate a queue, the default timestamp
+        // adding sequence is natrually appending sequence when hit(timestamp) method
+        // triggered, e.g hit(1) -> hit(3) -> hit(8), the queue will display as below
+        // hits = 1 -> 3 -> 8, the hits.peek() = 1 initially, if call hist.poll() will
+        // poll out 1, then hits.peek() = 3... etc.   
         while (!hits.isEmpty() && hits.peek() <= timestamp - 300) {
             hits.poll();
         }
@@ -119,6 +124,11 @@ public class Design_Hit_Counter {
             int startTime = timestamp - 300;
 
             // remove all hits over 300 seconds old
+            // Since we use default ArrayQueue to simulate a queue, the default timestamp
+            // adding sequence is natrually appending sequence when hit(timestamp) method
+            // triggered, e.g hit(1) -> hit(3) -> hit(8), the queue will display as below
+            // hits = 1 -> 3 -> 8, the hits.peek() = 1 initially, if call hist.poll() will
+            // poll out 1, then hits.peek() = 3... etc.
             while(!queue.isEmpty() && queue.peek() <= startTime) {
                 queue.poll();
             }
