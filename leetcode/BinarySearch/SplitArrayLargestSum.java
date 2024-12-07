@@ -263,8 +263,8 @@ class Solution {
     }
 }
 
-Time Complexity: 
-Space Complexity: 
+Time Complexity: O(nlogn)
+Space Complexity: O(1)
 
 Refer to
 https://leetcode.com/problems/split-array-largest-sum/solutions/89817/clear-explanation-8ms-binary-search-java/
