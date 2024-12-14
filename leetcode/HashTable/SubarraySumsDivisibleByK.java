@@ -89,7 +89,7 @@ public int subarraysDivByK(int[] nums, int k) {
 }
 Correct Solution
 关键点：
-1.map里面存的是当前presum % k的mod值，理论是presum_i % k == 0和presum_j % k == 0且i < j，那么presum = arr[i, j]可以被k整除
+1.map里面存的是当前presum % k的mod值的频率，理论是presum_i % k == a和presum_j % k == a且i < j，那么presum = arr[i, j]可以被k整除
 2.对于mod取余必须要考虑负数的情况，所以有(num % k + k) % k的说法
 3.如果起点为index = 0的subarray构成的presum本身就能被k整除，我们必须前置一个presum = 0来完成覆盖，如果采用另外生成一个presum数组并计算好所有presum的话，必须用presum = new int[nums.length + 1]且presum[0] = 0来实现，如果采用map随着for loop逐步构建的话，必须用map.put(0, 1)来实现，这个频率1就是为了map.getOrDefault()的时候能返回频率+1
 Style 1: Pre-calculate all presum and stored in another array
@@ -99,7 +99,7 @@ class Solution {
         int[] presum = new int[n + 1];
         for(int i = 1; i <= n; i++) {
             presum[i] = presum[i - 1] + nums[i - 1];
-        }.,...,
+        }
         int count = 0;
         Map<Integer, Integer> map = new HashMap<>();
         for(int num : presum) {
@@ -287,6 +287,75 @@ Time Complexity
 The time complexity of the code is O(N), where N is the length of the nums array. This is because the code iterates through the nums array once, performing a constant amount of work for each element by adding the element to the cumulative sum s, computing the modulo k of the sum, and updating the cnt dictionary. The operations of updating the cnt dictionary and reading from it take O(1) time on average, due to hashing.
 Space Complexity
 The space complexity is O(K), with K being the input parameter defining the divisor for subarray sums. The cnt dictionary can have at most K unique keys since each key is the result of the modulo k operation, and there are only K different results possible (from 0 to K-1). Therefore, even in the worst-case scenario, the space used to store counts in the dictionary cannot exceed the number of possible remainders, which is determined by K.
+--------------------------------------------------------------------------------
+Refer to chatGPT
+Approach:
+We can solve this problem using the prefix sum and hash map technique:
+1.Calculate the prefix sum as we iterate through the array.
+2.Track the remainder of the prefix sum divided by k:
+- If two prefix sums have the same remainder, the subarray between them is divisible by k.
+3.Use a hash map to count how many times a remainder has appeared so far.
+Key Observations:
+1.For a subarray sum sum(i...j):
+sum(i...j) = prefix[j] − prefix[i − 1]
+If sum(i...j) is divisible by k, then:
+(prefix[j] % k) = (prefix[i − 1] % k)
+2.Use a hash map to store the frequency of each remainder (prefix % k).
+3.Handle negative remainders:
+- In Java, the % operator can return a negative remainder. To normalize it:
+remainder=(remainder+k)%k
+class Solution {
+    public int subarraysDivByK(int[] nums, int k) {
+        // Map to store the frequency of remainders
+        HashMap<Integer, Integer> remainderCount = new HashMap<>();
+        remainderCount.put(0, 1); // Initialize with remainder 0 appearing once
+
+        int prefixSum = 0; // Cumulative prefix sum
+        int count = 0;     // Count of subarrays divisible by k
+
+        for (int num : nums) {
+            // Calculate prefix sum
+            prefixSum += num;
+            // Calculate remainder and normalize it to be non-negative
+            int remainder = ((prefixSum % k) + k) % k;
+
+            // If remainder has been seen before, increment count
+            if (remainderCount.containsKey(remainder)) {
+                count += remainderCount.get(remainder);
+            }
+
+            // Update the frequency of the current remainder
+            remainderCount.put(remainder, remainderCount.getOrDefault(remainder, 0) + 1);
+        }
+
+        return count;
+    }
+}
+Explanation:
+1.Initialization:
+- The hash map remainderCount starts with {0: 1} because a subarray that itself has a sum divisible by k will have a remainder of 0.
+2.Iterating Through nums:
+- Update the cumulative prefix sum.
+- Calculate the remainder when divided by k and normalize it to ensure it’s positive.
+- Check if the remainder has been seen before in the map:
+- If yes, add its frequency to the count.
+- Update the hash map with the new remainder.
+3.Return Result:
+- The final count gives the total number of subarrays whose sum is divisible by k.
+Example:
+Input:
+nums = [4, 5, 0, -2, -3, 1], k = 5
+Execution:
+1.Initialize remainderCount = {0: 1}, prefixSum = 0, count = 0.
+2.Iterate through nums:
+- num = 4: prefixSum = 4, remainder = 4 % 5 = 4, update {4: 1}.
+- num = 5: prefixSum = 9, remainder = 9 % 5 = 4, count += 1 → {4: 2}.
+- num = 0: prefixSum = 9, remainder = 9 % 5 = 4, count += 2 → {4: 3}.
+- num = -2: prefixSum = 7, remainder = (7 % 5 + 5) % 5 = 2, update {2: 1}.
+- num = -3: prefixSum = 4, remainder = 4 % 5 = 4, count += 3 → {4: 4}.
+- num = 1: prefixSum = 5, remainder = 5 % 5 = 0, count += 1 → {0: 2}.
+3.Final count = 7.
 
 Refer to
 L560.Subarray Sum Equals K
+L523.Continuous Subarray Sum (Ref.L974)
