@@ -31,6 +31,12 @@ class Solution {
         Map<Integer, Integer> map = new HashMap<>();
         for(int i = 0; i < nums.length; i++) {
             int val = i - nums[i];
+            // For a new difference value as i - nums[i] at index i, all 
+            // previous occurrences of this value (the count tracked so far) 
+            // represent the number of good pairs with the new index i. 
+            // Hence, bad pairs can be determined by subtracting the 
+            // number of good pairs at each step from the total number 
+            // of pairs seen so far.
             badPairs += i - map.getOrDefault(val, 0);
             map.put(val, map.getOrDefault(val, 0) + 1);
         }
@@ -117,3 +123,9 @@ class Solution {
 Time and Space Complexity
 The time complexity of the given code is O(n), where n is the length of the nums array. The reason for this is that the code uses a single loop that iterates through all elements of nums, performing a constant amount of work within each iteration. The cnt Counter dictionary lookup and update operations are O(1) on average, so they don't change the overall linear time complexity.
 The space complexity of the code is also O(n) because the cnt Counter dictionary can potentially grow to have as many distinct keys as there are elements in nums. In the worst case, each iteration introduces a new key-value pair into the cnt dictionary.
+
+Refer to
+L523.Continuous Subarray Sum (Ref.L974)
+L560.Subarray Sum Equals K
+L974.Subarray Sums Divisible by K (Ref.L560,L523)
+L1590.Make Sum Divisible by P (Ref.L974,L560,L523)
