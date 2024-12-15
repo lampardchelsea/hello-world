@@ -21,7 +21,7 @@ Constraints:
 - 1 <= m <= 10^9
 --------------------------------------------------------------------------------
 Attempt 1: 2024-01-21
-Solution 1: Math (10 min)
+Solution 1: Math (30 min)
 class Solution {
     public int[] divisibilityArray(String word, int m) {
         int n = word.length();
@@ -51,7 +51,7 @@ https://leetcode.com/problems/find-the-divisibility-array-of-a-string/solutions/
 https://leetcode.com/problems/find-the-divisibility-array-of-a-string/solutions/3231219/explained-reminder-checking-very-simple-easy-to-understand-solution/
 
 Approach
-Let say a number n when we devide it by m we get q as quotient & r as reminder.
+Let say a number n when we divide it by m we get q as quotient & r as reminder.
 So we can write => n = q*m + r
 Now add a new digit ( say d) to the the end.
 This is equivalent to multiplying 10 with previous number and then add d to it.
@@ -141,3 +141,10 @@ Time Complexity
 The time complexity of the given code is O(n), where n is the length of the word string. This complexity arises because the code iterates over each character in the word string exactly once. Within the loop, it performs constant time operations: a multiplication, an addition, a modulo operation, and a conditional check. Since none of these operations depend on the size of the string, they don't add any additional factor to the complexity.
 Space Complexity
 The space complexity of the code is O(n), with n being the length of the word string. The additional space is used to store the ans list, which contains an integer for each character in the word. No other significant space-consuming structures or recursive calls are involved, so the space complexity is linear with respect to the input size.
+
+Refer to
+L523.Continuous Subarray Sum (Ref.L974)
+L560.Subarray Sum Equals K
+L974.Subarray Sums Divisible by K (Ref.L560,L523)
+L1590.Make Sum Divisible by P (Ref.L974,L560,L523)
+L2364.Count Number of Bad Pairs (Ref.L523,L560,L974)
