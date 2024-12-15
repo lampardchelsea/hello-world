@@ -72,6 +72,51 @@ Time Complexity: O(N)
 Space Complexity: O(N)
 
 Refer to
+https://leetcode.com/problems/count-of-interesting-subarrays/solutions/3995124/c-count-subarrays-with-sum-mod-k-easy-explanation/
+Special elements are those elements whose elem % mod == k, we have to focus on counting the no of subarrays whose count of special elements % mod == k
+Now let's convert these special elements into 1 and non special elements into 0
+Now instead of focussing on the count of special elements in subarray, we can focus on the sum of elements in subarray, as count is same as sum now..
+we have to find those subarrays whose sum % mod == k, which means (sum - k) is divisable by mod, and it will be the same problem as L974.Subarray Sums Divisible by K (Ref.L560,L523)
+Now this comes to down to some standard questions like
+https://leetcode.com/problems/subarray-sums-divisible-by-k/
+class Solution {
+public:
+    long long countInterestingSubarrays(vector<int>& nums, int modulo, int k) {
+        #define int long long int 
+        int ans = 0;
+        int n = nums.size();
+        for(int i = 0; i < n;i++)
+        {
+            if (nums[i] % modulo == k)
+            {
+                nums[i] = 1;
+            }
+            else
+            {
+                nums[i] = 0;
+            }
+        }
+        unordered_map <int, int> mp;
+        int total = 0;
+        for(int i = 0; i < n;i++)
+        {
+            total += nums[i];
+            int mod_val = total % modulo;
+            if (mod_val == k) ans++;
+            int find = mod_val - k;
+            if (find < 0)
+            {
+                find += modulo;
+            }
+            ans += mp[find];
+            mp[mod_val]++;
+        }
+        return ans;
+        #undef int 
+    }
+};
+
+Refer to
 https://leetcode.com/problems/count-of-interesting-subarrays/solutions/3994985/java-c-python-prefix-o-n/
 Intuition
 We don't care the value of A[i],
@@ -188,3 +233,11 @@ class Solution {
 Time and Space Complexity
 The time complexity of the code is O(n), where n is the length of the input list nums. This is because the code iterates through the nums list once, performing a constant amount of work for each element by computing the modulo, updating the sum s, looking up and updating the count in the cnt dictionary, and incrementing the answer ans.
 The space complexity of the code is also O(n) due to the use of the cnt dictionary, which stores up to n unique sums modulo the value of modulo, and the list arr which stores n elements.
+
+Refer to
+L523.Continuous Subarray Sum (Ref.L974)
+L560.Subarray Sum Equals K
+L974.Subarray Sums Divisible by K (Ref.L560,L523)
+L1590.Make Sum Divisible by P (Ref.L974,L560,L523)
+L2364.Count Number of Bad Pairs (Ref.L523,L560,L974)
+L2575.Find the Divisibility Array of a String (Ref.L523,L560,L974)
