@@ -395,3 +395,11 @@ public class Solution {
 A harder problem
 https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/
 https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/discuss/803353/java-solution-with-detailed-explanation
+
+Refer to
+L713.Subarray Product Less Than K
+L724.Find Pivot Index
+L1074.Number of Submatrices That Sum to Target (Ref.L560)
+L1658.Minimum Operations to Reduce X to Zero (Ref.L1423)
+L2090.K Radius Subarray Averages (Ref.L560)
+L2219.Maximum Sum Score of Array (Ref.L560)
