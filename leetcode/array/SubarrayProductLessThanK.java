@@ -1,102 +1,3 @@
-/**
- * Refer to
- * https://leetcode.com/problems/subarray-product-less-than-k/description/
- * Your are given an array of positive integers nums.
-
-  Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than k.
-
-  Example 1:
-  Input: nums = [10, 5, 2, 6], k = 100
-  Output: 8
-  Explanation: The 8 subarrays that have product less than 100 are: [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6].
-  Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k.
-  Note:
-
-  0 < nums.length <= 50000.
-  0 < nums[i] < 1000.
-  0 <= k < 10^6.
- *
- * Solution
- * https://leetcode.com/problems/subarray-product-less-than-k/discuss/108861/JavaC++-Clean-Code-with-Explanation
-*/
-class Solution {
-    /**
-        1. The idea is always keep an max-product-window less than K;
-        2. Every time shift window by adding a new number on the right(j), if the product is greater than k, 
-        then try to reduce numbers on the left(i), until the subarray product fit less than k again, (subarray could be empty);
-        3. Each step introduces x new subarrays, where x is the size of the current window (j + 1 - i);
-        example:
-        for window (5, 2), when 6 is introduced, it add 3 new subarray: (5, (2, (6)))
-                (6)
-             (2, 6)
-          (5, 2, 6)
-    */
-    public int numSubarrayProductLessThanK(int[] nums, int k) {
-        // a * b * c < k -> [a,b,c][a,b][b,c][a][b][c] -> 6 entries
-        // a * b * c * d < k -> [a,b,c,d][a,b,c][b,c,d][a,b][b,c][c,d][a][b][c][d] -> 10 entries
-        int count = 0;
-        int prod = 1;
-        int i = 0;
-        for(int j = 0; j < nums.length; j++) {
-            prod *= nums[j];
-            while(i <= j && prod >= k) {
-                prod /= nums[i++];
-            }
-            count += (j - i + 1); 
-        }
-        return count;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 https://leetcode.com/problems/subarray-product-less-than-k/
 Given an array of integers nums and an integer k, return the number of contiguous subarrays where the product of all the elements in the subarray is strictly less than k.
@@ -119,6 +20,10 @@ Constraints:
 --------------------------------------------------------------------------------
 Attempt 1: 2022-09-09 (30min, spend time to figure out condition avoid forever loop)
 class Solution { 
+    // We can use Sliding Window to expand on right and shrink on left is because the 
+    // given nums[i] is positive only as 1 <= nums[i] <= 1000, which means if multiple 
+    // any new element will monopoly increasing, and divide any old element will monopoly 
+    // decreasing, which match the usage scenario of Sliding Window.
     public int numSubarrayProductLessThanK(int[] nums, int k) { 
         int product = 1; 
         int count = 0; 
@@ -162,3 +67,72 @@ class Solution {
 
 Space Complexity: O(1) 
 Time Complexity: O(n)
+
+We can use Sliding Window to expand on right and shrink on left is because the given nums[i] is positive only as 1 <= nums[i] <= 1000, which means if multiple any new element will monopoly increasing, and divide any old element will monopoly decreasing, which match the usage scenario of Sliding Window.
+Refer to chatGPT
+Key Idea: Sliding Window (Two Pointers)
+1.Use the sliding window technique to maintain a window of contiguous elements where the product is less than k.
+2.Expand the window by moving the right pointer.
+3.If the product exceeds or equals k, shrink the window by moving the left pointer.
+4.For each valid window, all subarrays ending at the current right pointer are valid:
+- Count = right - left + 1
+class Solution {
+    public int numSubarrayProductLessThanK(int[] nums, int k) {
+        if (k <= 1) return 0; // If k <= 1, no product can be less than k
+
+        int count = 0;
+        int left = 0;
+        long product = 1;
+
+        // Sliding window
+        for (int right = 0; right < nums.length; right++) {
+            product *= nums[right];
+
+            // Shrink the window if product >= k
+            while (product >= k) {
+                product /= nums[left];
+                left++;
+            }
+
+            // Count all valid subarrays ending at 'right'
+            count += (right - left + 1);
+        }
+
+        return count;
+    }
+}
+Explanation:
+1.Initialization:
+- left pointer starts at the beginning of the array.
+- product keeps track of the product of elements in the current window.
+2.Expand the Window:
+- Multiply the current nums[right] to the product.
+3.Shrink the Window:
+- If product >= k, move the left pointer to the right (shrink the window) and divide out nums[left] from the product.
+4.Count Valid Subarrays:
+- At each step, the number of valid subarrays ending at index right is:
+right - left + 1
+- This is because all subarrays starting from left to right (inclusive) are valid.
+5.Return Result:
+- Accumulate the count for all windows.
+Example:
+Input:
+nums = [10, 5, 2, 6]
+k = 100
+Execution:
+1.Initialize: left = 0, product = 1, count = 0
+2.Step-by-Step:
+- right = 0, nums[0] = 10 → product = 10, count += 1 → count = 1
+- right = 1, nums[1] = 5 → product = 50, count += 2 → count = 3
+- right = 2, nums[2] = 2 → product = 100, shrink left → product = 10, count += 3 → count = 6
+- right = 3, nums[3] = 6 → product = 60, count += 4 → count = 10
+Output:
+10
+Edge Cases:
+1.k = 0 or 1: Return 0 since no subarray can have a product less than kkk.
+2.Single Element: Handle edge cases where the product is already less than kkk.
+
+
+Refer to
+L560.Subarray Sum Equals K
+    
