@@ -1,152 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Refer to
- * http://www.cnblogs.com/grandyang/p/5336668.html
- * Given an array nums and a target value k, find the maximum length of a subarray that sums to k. 
- * If there isn't one, return 0 instead.
- * Example 1:
- * Given nums = [1, -1, 5, -2, 3], k = 3,
- * return 4. (because the subarray [1, -1, 5, -2] sums to 3 and is the longest)
- * 
- * Example 2:
- * Given nums = [-2, -1, 2, 1], k = 1,
- * return 2. (because the subarray [-1, 2] sums to 1 and is the longest)
- *
- * Follow Up:
- * Can you do it in O(n) time? 
- *
- * Solution 1:
- * https://discuss.leetcode.com/topic/33259/o-n-super-clean-9-line-java-solution-with-hashmap
- * The HashMap stores the sum of all elements before index i as key, and i as value. For each i, 
- * check not only the current sum but also (currentSum - previousSum) to see if there is any that 
- * equals k, and update max length.
- * 
- * Solution 2:
- * https://discuss.leetcode.com/topic/33537/java-o-n-explain-how-i-come-up-with-this-idea
- * The subarray sum reminds me the range sum problem. Preprocess the input array such that you get
- * the range sum in constant time.
- * sum[i] means the sum from 0 to i inclusively, the sum from i to j is sum[j] - sum[i - 1] 
- * -----------> except that from 0 to j is sum[j] <--------------- (This is a special case).
- * j-i is equal to the length of subarray of original array. we want to find the max(j - i)
- * for any sum[j] we need to find if there is a previous sum[i] such that sum[j] - sum[i] = k
- * Instead of scanning from 0 to j -1 to find such i, we use hashmap to do the job in constant time.
- * However, there might be duplicate value of of sum[i] we should avoid overriding its index as we 
- * want the max j - i, so we want to keep i as left as possible.
-*/
-public class MaximumSizeSubarraySumEqualsK {
-	// Solution 1:
-	public int maxSubArrayLen(int[] nums, int k) {
-		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-		int sum = 0;
-		int max = 0;
-		for(int i = 0; i < nums.length; i++) {
-			sum += nums[i];
-			if(sum == k) {
-				max = i + 1; 
-			// Refer to
-			// https://discuss.leetcode.com/topic/33259/o-n-super-clean-9-line-java-solution-with-hashmap/2
-			// Only one question, if sum == k, we do not need to check the second one cause i+1 
-			// must be larger,
-			} else if(map.containsKey(sum - k)) {
-				max = Math.max(max, i - map.get(sum - k));
-			}
-			if(!map.containsKey(sum)) {
-				map.put(sum, i);
-			}
-		}
-		return max;
-	}
-	
-	// Solution 2:
-	public int maxSubArrayLen2(int[] nums, int k) {
-		if(nums == null || nums.length == 0) {
-			return 0;
-		}
-		int n = nums.length;
-		for(int i = 1; i < n; i++) {
-			nums[i] += nums[i - 1];
-		}
-		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-		int max = 0;
-		// Refer to
-		// https://discuss.leetcode.com/topic/33537/java-o-n-explain-how-i-come-up-with-this-idea/8
-		// look at this part max = Math.max(max, i - map.get(nums[i] - k))
-		// so make map.put(0,-1) is just to say if the nums[i]-k==0 which means 
-		// index from 0 to index i will make to sum k.
-		// in this case, the length of the subarray will be 0,1,2,...i, which is i+1, so you need 
-		// the value of map.get(nums[i]-k) to be "-1"
-		map.put(0, -1);
-		for(int i = 0; i < n; i++) {
-			if(map.containsKey(nums[i] - k)) {
-				max = Math.max(max, i - map.get(nums[i] - k));
-			}
-			// Keep only 1st duplicate as we want first index as left as possible
-			if(!map.containsKey(nums[i])) {
-				map.put(nums[i], i);
-			}
-		}
-		return max;
-	}
-	
-	public static void main(String[] args) {
-		int[] nums = {1, -1, 5, -2, 3};
-		int k = 3;
-		MaximumSizeSubarraySumEqualsK m = new MaximumSizeSubarraySumEqualsK();
-		int result = m.maxSubArrayLen2(nums, k);
-		System.out.println(result);
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 https://www.lintcode.com/problem/911/
 Given an array nums and a target value k, find the maximum length of a subarray that sums to k. If there isn't one, return 0 instead.
@@ -162,11 +13,16 @@ Input: nums = [-2, -1, 2, 1], k = 1
 Output: 2 
 Explanation: The subarray [-1, 2] sums to 1 and is the longest.
 
+Constraints:
+- 1 <= nums.length <= 2 * 10^5
+- -10^4 <= nums[i] <= 10^4
+- -10^9 <= k <= 10^9
+
 Follow Up:
 Can you do it in O(n) time?
 --------------------------------------------------------------------------------
 Attempt 1: 2023-02-02
-Solution 1:  Hash Table (360 min)
+Solution 1: Hash Table (360 min, refer to L523.Continuous Subarray Sum (Ref.L974))
 Style 1: int[] preSum = new int[nums.length + 1], the disadvantage is we also have to specially handle the nums.length == 1 && nums[0] == k case
 public class Solution { 
     /** 
@@ -191,7 +47,9 @@ public class Solution {
             } 
             // Only store preSum[i] when it happened first time, since we need to find 
             // maximum length between, and it supposed to get between first happening 
-            // index to current index, all other indexes will only have less length 
+            // index to current index, all other indexes will only have less length,
+            // we can also use map.putIfAbsent(preSum[i], i) to guarantee only record
+            // the first time happening index, refer to L523.Continuous Subarray Sum
             if(!map.containsKey(preSum[i])) { 
                 map.put(preSum[i], i); 
             } 
@@ -223,7 +81,9 @@ public class Solution {
             } 
             // Only store preSum[i] + k when it happened first time, since we need to find 
             // maximum length between, and it supposed to get between first happening 
-            // index to current index, all other indexes will only have less length 
+            // index to current index, all other indexes will only have less length,
+            // we can also use map.putIfAbsent(preSum[i], i) to guarantee only record
+            // the first time happening index, refer to L523.Continuous Subarray Sum
             if(!map.containsKey(preSum[i] + k)) { 
                 map.put(preSum[i] + k, i); 
             } 
@@ -289,7 +149,9 @@ public class Solution {
             }
             // Only store preSum[i] when it happened first time, since we need to find
             // maximum length between, and it supposed to get between first happening
-            // index to current index, all other indexes will only have less length
+            // index to current index, all other indexes will only have less length,
+            // we can also use map.putIfAbsent(preSum[i], i) to guarantee only record
+            // the first time happening index, refer to L523.Continuous Subarray Sum
             if(!map.containsKey(preSum[i + 1])) {
                 map.put(preSum[i + 1], i);
             }
@@ -326,7 +188,9 @@ public class Solution {
             }
             // Only store preSum[i] when it happened first time, since we need to find
             // maximum length between, and it supposed to get between first happening
-            // index to current index, all other indexes will only have less length
+            // index to current index, all other indexes will only have less length,
+            // we can also use map.putIfAbsent(preSum[i], i) to guarantee only record
+            // the first time happening index, refer to L523.Continuous Subarray Sum
             if(!map.containsKey(preSum)) {
                 map.put(preSum, i);
             }
@@ -337,7 +201,7 @@ public class Solution {
 
 Time Complexity: O(n)
 Space Complexity: O(1)
-
+--------------------------------------------------------------------------------
 Refer to
 https://www.lintcode.com/problem/911/solution/59403
 解题思路
@@ -388,6 +252,86 @@ public class Solution {
 
 }
       
-    
+
+--------------------------------------------------------------------------------
+Refer to chatGPT
+Approach:
+1.Prefix Sum:
+- At each index, calculate the cumulative sum (prefix sum) of the array.
+- If prefixSum[j] - prefixSum[i] = k, then the subarray nums[i+1...j] sums to k.
+2.HashMap:
+- Store the first occurrence of each prefix sum and its corresponding index.
+- If prefixSum - k exists in the map, it means the subarray between that stored index and the current index sums to k.
+3.Result:
+- Keep track of the maximum subarray length when a valid subarray is found.
+class Solution {
+    public int maxSubArrayLen(int[] nums, int k) {
+        // Map to store the first occurrence of a prefix sum
+        HashMap<Integer, Integer> prefixSumMap = new HashMap<>();
+        prefixSumMap.put(0, -1); // To handle the case where the entire subarray sums to k
+
+        int prefixSum = 0; // Cumulative prefix sum
+        int maxLength = 0; // Result: maximum length of subarray
+
+        for (int i = 0; i < nums.length; i++) {
+            prefixSum += nums[i]; // Update prefix sum
+
+            // Check if there exists a subarray that sums to k
+            if (prefixSumMap.containsKey(prefixSum - k)) {
+                int length = i - prefixSumMap.get(prefixSum - k);
+                maxLength = Math.max(maxLength, length);
+            }
+
+            // Store the first occurrence of the prefix sum
+            // If the prefixSum already exists, we do NOT update it because we want the longest subarray
+            if (!prefixSumMap.containsKey(prefixSum)) {
+                prefixSumMap.put(prefixSum, i);
+            }
+        }
+
+        return maxLength;
+    }
+}
+Explanation:
+1.Initialization:
+- prefixSumMap is a HashMap that stores the first occurrence of each prefix sum and its index.
+- Insert (0, -1) into the map to handle cases where the subarray starting from index 0 sums to k.
+2.Iterate through the array:
+- Update the prefixSum at each index.
+- Check if prefixSum - k exists in the map:
+- If it exists, calculate the length of the subarray and update maxLength if the new length is greater.
+- If the current prefixSum does not exist in the map, store it with the current index.
+3.Return maxLength:
+- This gives the maximum length of any subarray that sums to k.
+Example:
+Input:
+nums = [1, -1, 5, -2, 3], k = 3
+Execution:
+- Step 1: Initialize prefixSumMap = {0: -1}, prefixSum = 0, maxLength = 0
+- Step 2: Traverse the array:
+- Index 0: prefixSum = 1, store (1, 0)
+- Index 1: prefixSum = 0, store (0, 1)
+- Index 2: prefixSum = 5, check 5 - 3 = 2 (not in map), store (5, 2)
+- Index 3: prefixSum = 3, check 3 - 3 = 0 (found at -1), update maxLength = 4
+- Index 4: prefixSum = 6, check 6 - 3 = 3 (found at 3), update maxLength = 4
+- Step 3: Return 4.
+Output:
+4
+--------------------------------------------------------------------------------
+Edge Cases:
+1.No valid subarray:
+- Input: nums = [1, 2, 3], k = 7
+- Output: 0
+2.Single Element:
+- Input: nums = [3], k = 3
+- Output: 1
+3.Negative Numbers:
+- Input: nums = [1, -1, 1, -1], k = 0
+- Output: 4
+
+--------------------------------------------------------------------------------
 Refer to
+L523.Continuous Subarray Sum (Ref.L974)
 L560.Subarray Sum Equals K
+L713.Subarray Product Less Than K (Ref.L325,L560,L2302)
+L2302.Count Subarrays With Score Less Than K
