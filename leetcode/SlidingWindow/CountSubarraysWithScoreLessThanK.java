@@ -51,6 +51,25 @@ class Solution {
 Time Complexity: O(N)
 Space Complexity: O(1)
 
+We can use Sliding Window to expand on right and shrink on left is because the given nums[i] is positive only as 1 <= nums[i] <= 10^5, which means if expand any new element on right will monopoly increasing (subarray length increase 1 multiply increased sum), and shrink any old element on left will monopoly decreasing (subarray length decrease 1 multiply decreased sum), which match the usage scenario of Sliding Window.
+Refer to
+https://leetcode.com/problems/count-subarrays-with-score-less-than-k/solutions/2138778/sliding-window/
+This problem is similar to L713.Subarray Product Less Than K (Ref.L325,L560,L2302).
+We use a sliding window technique, tracking the sum of the subarray in the window.
+The score of the subarray in the window is sum * (i - j + 1). We move the left side of the window, decreasing sum, if that score is equal or greater than k.
+Note that element i forms i - j + 1 valid subarrays. This is because subarrays [j + 1, i], [j + 2, i] ... [i, i] are valid if subarray [j, i] is valid.
+public long countSubarrays(int[] nums, long k) {
+    long sum = 0, res = 0;
+    for (int i = 0, j = 0; i < nums.length; ++i) {
+        sum += nums[i];
+        while (sum * (i - j + 1) >= k)
+            sum -= nums[j++];
+        res += i - j + 1;
+    }
+    return res;
+}
+
+--------------------------------------------------------------------------------
 Refer to
 https://algo.monster/liteproblems/2302
 Problem Description
@@ -121,3 +140,6 @@ The given code uses a sliding window technique to count the number of subarrays 
 Thus, the time complexity of this algorithm is O(n), where n is the number of elements in the array nums. This is because both pointers i and j can only move from the start to the end of the array once, and the operations inside the for-loop and while-loop are all constant time operations.
 Space Complexity
 The space complexity is determined by the extra space used aside from the input. In this case, only a fixed number of variables (ans, s, j, i, v) are used. These do not depend on the size of the input array. Therefore, the space complexity of the code is O(1), which is constant space complexity since no additional space that grows with the input size is used.
+
+Refer to
+L713.Subarray Product Less Than K (Ref.L325,L560,L2302)
