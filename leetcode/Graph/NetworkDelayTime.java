@@ -298,6 +298,7 @@ class Solution {
 
 
 
+
 https://leetcode.com/problems/network-delay-time/
 You are given a network of n nodes, labeled from 1 to n. You are also given times, a list of travel times as directed edges times[i] = (ui, vi, wi), where ui is the source node, vi is the target node, and wi is the time it takes for a signal to travel from source to target.
 We will send a signal from a given node k. Return the minimum time it takes for all the n nodes to receive the signal. If it is impossible for all the n nodes to receive the signal, return -1.
@@ -450,6 +451,7 @@ class Solution {
         return max_time == Integer.MAX_VALUE ? -1 : max_time;
     }
 }
+
 Refer to
 https://leetcode.com/problems/network-delay-time/solutions/340477/c-dijkstra-with-priority-queue/
 class Solution {
@@ -489,6 +491,201 @@ public:
     }
 };
 
+Style 3: Without "visited" array, also early terminate when same node process again with Dijkstra Algorithm
+class Solution {
+    public int networkDelayTime(int[][] times, int N, int K) {
+        // Build graph
+        List<List<int[]>> graph = new ArrayList<>();
+        for (int i = 0; i <= N; i++) {
+            graph.add(new ArrayList<>());
+        }
+        for (int[] edge : times) {
+            int fr_node = edge[0];
+            int to_node = edge[1];
+            int cost = edge[2];
+            graph.get(fr_node).add(new int[]{to_node, cost});
+        }
+        // Record minimum distance between node k to each node, to find minimum 
+        // distance, initially with maximum value 
+        int[] distances = new int[N + 1];
+        Arrays.fill(distances, Integer.MAX_VALUE);
+        // Dijkstra with minimum priority queue 
+        // minPQ -> int[]{from, distance} 
+        PriorityQueue<int[]> minPQ = new PriorityQueue<>((a, b) -> a[1] - b[1]);
+        // The initial start point is node k, distance for node k to itself is 0 
+        distances[K] = 0;
+        minPQ.offer(new int[]{K, 0});
+        while (!minPQ.isEmpty()) {
+            int[] cur = minPQ.poll();
+            int curNode = cur[0];
+            int curCost = cur[1];
+            // Add below statement improve Elapsed Time from 11ms to 9ms
+            // Skip if encounter same node again and node's distance is outdated:
+            // Once a node is processed earlier, no shorter distance can be found 
+            // for it due to the PriorityQueue. The distances[] array acts as a 
+            // safeguard: it prevents processing outdated or longer paths, 
+            // eliminating the need for a visited array. If a node is encountered 
+            // again in the PriorityQueue, its distance will not be processed 
+            // since this node's guaranteed smallest distance result (based on
+            // Minimum PriorityQueue natruality) stored at distances[curNode] 
+            // earlier, ensured by the condition below:
+            // "if (curCost > distances[curNode]) continue;"
+            // Additionally, if not add this statement, the Dijkstra algorithm
+            // still works, only won't terminate early when encountering same node
+            // again, and same node will be added onto PriorityQueue again and
+            // all further process blocked later with condition below:
+            // "if (newCost < distances[neighbor[0]]) {...}"
+            // since the newCost is surely >= distances[neighbor[0]]
+            // at a certain moment
+            if (curCost > distances[curNode]) {
+                continue;
+            }
+            for (int[] neighbor : graph.get(curNode)) {
+                int newCost = distances[curNode] + neighbor[1];
+                if (newCost < distances[neighbor[0]]) {
+                    distances[neighbor[0]] = newCost;
+                    minPQ.offer(new int[]{neighbor[0], newCost});
+                }
+            }
+        }
+        int max_time = Integer.MIN_VALUE;
+        for (int i = 1; i < distances.length; ++i) {
+            if (max_time < distances[i]) {
+                max_time = distances[i];
+            }
+        }
+        return max_time == Integer.MAX_VALUE ? -1 : max_time;
+    }
+}
+
+Dijkstra algorithm no need "visited" array ? why ?
+Refer to chatGPT
+In Dijkstra's algorithm, a visited array is often not explicitly required because the algorithm inherently ensures that each node is processed only once. This is achieved by the priority queue (or min-heap) and the way distances are updated and processed. Let's explore why this is the case:
+1. Priority Queue Guarantees Optimal Order
+- Dijkstra's algorithm uses a priority queue to always process the node with the smallest tentative distance first.
+- Once a node is dequeued (processed), it means the shortest path to that node is already determined, and its distance cannot be improved further.
+Reason: Relaxation of edges from other nodes cannot produce a smaller distance due to the priority queue's property.
+Thus, there's no need to revisit a node, which is the primary purpose of a visited array.
+2. Implicit Handling of Re-visits
+- In the case where an already processed node is encountered again (due to a shorter path being found earlier in the queue), the algorithm skips it naturally because:
+- The node's tentative distance will not be smaller than the distance already processed.
+- Priority queues ensure that nodes are processed in increasing order of their distances.
+This property makes a visited array redundant.
+3. Efficiency and Correctness
+- Using a visited array in Dijkstra’s algorithm can slightly improve performance by preventing unnecessary operations like inserting the same node into the priority queue multiple times.
+- However, many implementations avoid explicitly maintaining a visited array because the priority queue mechanism already handles this aspect implicitly.
+4. When a Visited Array Might Be Useful
+- Modified Dijkstra: If the algorithm is modified for specific scenarios, such as finding paths with certain constraints, a visited array might help.
+- Memory Optimization: In dense graphs, using a priority queue without a visited array could lead to more nodes being inserted into the queue than necessary, causing memory overhead.
+Example Without Visited Array
+class Dijkstra {
+    public int[] shortestPath(int n, int[][] edges, int source) {
+        Map<Integer, List<int[]>> graph = new HashMap<>();
+        for (int[] edge : edges) {
+            graph.computeIfAbsent(edge[0], k -> new ArrayList<>()).add(new int[]{edge[1], edge[2]});
+            graph.computeIfAbsent(edge[1], k -> new ArrayList<>()).add(new int[]{edge[0], edge[2]}); // Undirected graph
+        }
+        
+        int[] dist = new int[n];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[source] = 0;
+
+        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[1])); // {node, distance}
+        pq.add(new int[]{source, 0});
+
+        while (!pq.isEmpty()) {
+            int[] current = pq.poll();
+            int node = current[0];
+            int d = current[1];
+            
+            // Skip if this distance is outdated
+            if (d > dist[node]) continue;
+            
+            for (int[] neighbor : graph.getOrDefault(node, new ArrayList<>())) {
+                int next = neighbor[0];
+                int weight = neighbor[1];
+                if (dist[node] + weight < dist[next]) {
+                    dist[next] = dist[node] + weight;
+                    pq.add(new int[]{next, dist[next]});
+                }
+            }
+        }
+        
+        return dist; // Returns shortest distances from the source to all nodes
+    }
+}
+Key Insight
+The algorithm skips nodes that are already processed because the priority queue ensures optimal order. Using a visited array becomes optional but redundant for correctness.
+Can you use Leetcode 743 to elaborate how Dijkstra works without using visited array ?
+Key Idea
+1.Use a priority queue (min-heap) to process nodes in order of their smallest distance.
+2.Maintain a dist[] array to store the shortest known distance to each node.
+- Initialize all distances to infinity (Integer.MAX_VALUE), except for the starting node (k), which is 0.
+3.Each node is processed only once at its shortest distance because:
+- If a shorter path to a node is found, it will re-enter the priority queue.
+- Priority queue ensures that only the shortest distance is processed first, making re-visiting unnecessary.
+Implementation Without Visited Array
+class Solution {
+    public int networkDelayTime(int[][] times, int n, int k) {
+        // Step 1: Build the graph
+        Map<Integer, List<int[]>> graph = new HashMap<>();
+        for (int[] edge : times) {
+            graph.computeIfAbsent(edge[0], x -> new ArrayList<>()).add(new int[]{edge[1], edge[2]});
+        }
+
+        // Step 2: Initialize distance array
+        int[] dist = new int[n + 1]; // 1-indexed nodes
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[k] = 0; // Distance to source is 0
+
+        // Step 3: Priority queue to process nodes by shortest distance
+        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[1])); // {node, distance}
+        pq.add(new int[]{k, 0}); // Start with the source node
+
+        // Step 4: Process the queue
+        while (!pq.isEmpty()) {
+            int[] current = pq.poll();
+            int node = current[0];
+            int time = current[1];
+
+            // Skip if the distance is outdated
+            if (time > dist[node]) continue;
+
+            // Traverse all neighbors
+            for (int[] neighbor : graph.getOrDefault(node, new ArrayList<>())) {
+                int nextNode = neighbor[0];
+                int weight = neighbor[1];
+
+                // If a shorter path to the neighbor is found
+                if (dist[node] + weight < dist[nextNode]) {
+                    dist[nextNode] = dist[node] + weight;
+                    pq.add(new int[]{nextNode, dist[nextNode]});
+                }
+            }
+        }
+
+        // Step 5: Find the maximum distance to determine the result
+        int maxTime = 0;
+        for (int i = 1; i <= n; i++) {
+            if (dist[i] == Integer.MAX_VALUE) return -1; // Unreachable node
+            maxTime = Math.max(maxTime, dist[i]);
+        }
+        return maxTime;
+    }
+}
+How It Works Without Visited Array
+1.Priority Queue Ensures Shortest Path Processing
+- Nodes are processed in increasing order of distance.
+- When a node is dequeued, it is guaranteed to be at its shortest distance because:
+- All shorter paths have been processed already.
+- If a node is encountered again in the priority queue, its distance will not be processed if it’s already smaller (ensured by the condition if (time > dist[node]) continue).
+2.No Need to Explicitly Track Visited Nodes
+- Once a node is processed, no shorter distance can be found for it due to the priority queue.
+- The dist[] array acts as a safeguard: it prevents processing outdated or longer paths, eliminating the need for a visited array.
+Key Takeaways
+- The priority queue and dist[] array ensure that nodes are processed only at their shortest distances.
+- No explicit visited array is needed because outdated paths are skipped naturally by checking if (time > dist[node]).
+- The algorithm has a time complexity of O((V+E) log⁡V), where V is the number of nodes and E is the number of edges.
 --------------------------------------------------------------------------------
 Solution 2:  Promote by removing distances array (10min)
 class Solution { 
