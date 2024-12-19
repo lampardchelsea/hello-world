@@ -380,4 +380,5 @@ https://leetcode.com/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-
 
 Refer to
 L1368.Minimum Cost to Make at Least One Valid Path in a Grid (Ref.L743,L2290)
+L1631.Path With Minimum Effort (Ref.L778)
 L2556.Disconnect Path in a Binary Matrix by at Most One Flip
