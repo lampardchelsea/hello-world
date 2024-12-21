@@ -673,4 +673,5 @@ int maximumSafenessFactor(vector<vector<int>>& g) {
 
 Refer to
 L778.Swim in Rising Water (Ref.L1368,L1631)
+L1102.Path With Maximum Minimum Value (Ref.L1368,L2812)
 L1631.Path With Minimum Effort (Ref.L778)
