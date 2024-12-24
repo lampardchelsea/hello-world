@@ -1,152 +1,3 @@
-/**
-Refer to
-https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
-You are given an integer array nums and an integer x. In one operation, you can either remove the leftmost or the rightmost element 
-from the array nums and subtract its value from x. Note that this modifies the array for future operations.
-
-Return the minimum number of operations to reduce x to exactly 0 if it's possible, otherwise, return -1.
-
-Example 1:
-Input: nums = [1,1,4,2,3], x = 5
-Output: 2
-Explanation: The optimal solution is to remove the last two elements to reduce x to zero.
-
-Example 2:
-Input: nums = [5,6,7,8,9], x = 4
-Output: -1
-
-Example 3:
-Input: nums = [3,2,20,1,1,3], x = 10
-Output: 5
-Explanation: The optimal solution is to remove the last three elements and the first two elements (5 operations in total) to reduce x to zero.
-
-Constraints:
-1 <= nums.length <= 105
-1 <= nums[i] <= 104
-1 <= x <= 109
-*/
-
-// Solution 1: Not fixed length slidnig window + 1423. Maximum Points You Can Obtain from Cards
-// https://github.com/lampardchelsea/hello-world/blob/master/leetcode/SlidingWindow/MaximumPointsYouCanObtainFromCards.java
-
-// Refer to
-// https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/discuss/936074/JavaPython-3-Sliding-window%3A-Longest-subarray-sum-to-the-target-sum(nums)-x.
-/**
-Using sliding window to find the longest subarry that sums to sum(nums) - x.
-
-    public int minOperations(int[] nums, int x) {
-        int target = Arrays.stream(nums).sum() - x, size = -1, n = nums.length;
-        for (int lo = -1, hi = 0, winSum = 0; hi < n; ++hi) {
-            winSum += nums[hi];
-            while (lo + 1 < nums.length && winSum > target) {
-                winSum -= nums[++lo];
-            }
-            if (winSum == target) {
-                size = Math.max(size, hi - lo);
-            }
-        }
-        return size < 0 ? -1 : n - size;
-    }
-
-Analysis:
-Time: O(n), space: O(1), where n = nums.length.
-
-Similar problems:
-918. Maximum Sum Circular Subarray
-1423. Maximum Points You Can Obtain from Cards
-*/
-class Solution {
-    public int minOperations(int[] nums, int x) {
-        int n = nums.length;
-        int sum = 0;
-        for(int j = 0; j < n; j++) {
-            sum += nums[j];
-        }
-        int target = sum - x;
-        int maxLen = -1;
-        int i = 0;
-        sum = 0;
-        for(int j = 0; j < n; j++) {
-            sum += nums[j];
-            // i can equal to j which means use up all elements currently have, if only set as i < j, test out by below case:
-            // Input: nums = [8828,9581,49,9818,9974,9869,9991,10000,10000,10000,9999,9993,9904,8819,1231,6309] and x = 134365
-            // Output: -1
-            // Expected: 16
-            while(i <= j && sum > target) {
-                sum -= nums[i];
-                i++;
-            }
-            // check 'sum == target' must after while loop, test out by below case:
-            // Input: nums = [3,2,20,1,1,3] and x = 10
-            // Output: -1
-            // Expected: 5
-            if(sum == target) {
-                maxLen = Math.max(maxLen, j - i + 1);
-            }
-        }
-        return maxLen < 0 ? -1 : n - maxLen;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/description/
 You are given an integer array nums and an integer x. In one operation, you can either remove the leftmost or the rightmost element from the array nums and subtract its value from x. Note that this modifies the array for future operations.
 Return the minimum number of operations to reduce x to exactly 0 if it is possible, otherwise, return -1. 
@@ -170,7 +21,118 @@ Constraints:
 - 1 <= x <= 10^9
 --------------------------------------------------------------------------------
 Attempt 1: 2024-05-04
-Solution 1: Not fixed length Sliding Window (10 min)
+Wrong Solution 1: sum == target condition before while loop
+Test case:
+Input: nums = [3,2,20,1,1,3], x = 10, Output = -1, Expected = 5
+class Solution {
+    public int minOperations(int[] nums, int x) {
+        int n = nums.length;
+        int sum = 0;
+        for(int j = 0; j < n; j++) {
+            sum += nums[j];
+        }
+        int target = sum - x;
+        int maxLen = -1;
+        int i = 0;
+        sum = 0;
+        for(int j = 0; j < n; j++) {
+            sum += nums[j];
+            if(sum == target) {
+                maxLen = Math.max(maxLen, j - i + 1);
+            }
+            while(i <= j && sum > target) {
+                sum -= nums[i];
+                i++;
+            }
+        }
+        return maxLen < 0 ? -1 : n - maxLen;
+    }
+}
+Issue in the Wrong Solution
+Here’s the problematic part of the wrong code:
+sum += nums[j];
+if(sum == target) {
+    maxLen = Math.max(maxLen, j - i + 1);
+}
+while(i <= j && sum > target) {
+    sum -= nums[i];
+    i++;
+}
+What Happens
+1.The if(sum == target) condition checks if the current subarray has the desired sum before adjusting the window using the while loop.
+2.If the current sum is equal to target, the subarray length is updated. However, this check occurs before reducing the window, which can cause valid subarrays to be missed when sum > target and then try to meet the target by forwarding left boundary (shrink the window) in certain iterations.
+Like the test case identify the issue here: Input: nums = [3,2,20,1,1,3], x = 10, Output = -1, Expected = 5
+In correct solution, we have below order, when sum = 3 + 2 + 20 = 25 > 20 in 3rd iteration, it hits sum(=25) > target(=20) condition, we will try to shrink the window by moving forward left boundary, which removing 3 and 2 in sequence, and 25 - 3 - 2 = 20, hence sum(=20) <= target(=20) terminate the while loop, and following if condition also match, now we find a solution.
+sum += nums[j];
+while(i <= j && sum > target) {
+    sum -= nums[i];
+    i++;
+}
+if(sum == target) {
+    maxLen = Math.max(maxLen, j - i + 1);
+}
+In wrong solution, we have below order, sum(3 -> 5 -> 25) never match target(=20), so we cannot find a result till now, but till 3rd iteration, sum as 25, it hits sum(=25) > target(=20) condition, we will try to shrink the window by moving forward left boundary, which removing 3 and 2 in sequence, and 25 - 3 - 2 = 20, hence sum(=20) <= target(=20) terminate the while loop, but there is NO following if condition to check when sum match target happening after while loop, it directly moves forward to next iteration, and sum change from 20 to 20 + 1 = 21... etc, the sum never hits back to 20 again, so we could never find a solution.
+sum += nums[j];
+if(sum == target) {
+    maxLen = Math.max(maxLen, j - i + 1);
+}
+while(i <= j && sum > target) {
+    sum -= nums[i];
+    i++;
+}
+--------------------------------------------------------------------------------
+Wrong Solution 2: sum == target condition inside while loop
+Test case:
+Input: nums = [1,1,4,2,3], x = 5, Output = 3, Expected = 2
+class Solution {
+    public int minOperations(int[] nums, int x) {
+        int n = nums.length;
+        int sum = 0;
+        for(int j = 0; j < n; j++) {
+            sum += nums[j];
+        }
+        int target = sum - x;
+        int maxLen = -1;
+        int i = 0;
+        sum = 0;
+        for(int j = 0; j < n; j++) {
+            sum += nums[j];
+            while(i <= j && sum > target) {
+                sum -= nums[i];
+                i++;
+                if(sum == target) {
+                    maxLen = Math.max(maxLen, j - i + 1);
+                }
+            }
+        }
+        return maxLen < 0 ? -1 : n - maxLen;
+    }
+}
+What Happens:
+1.The if(sum == target) check is inside the while loop that reduces the window size. This causes valid subarrays to be missed because the check is only triggered while shrinking the window.
+2.When sum > target, the loop keeps shrinking the window and reduces sum, but the if(sum == target) check is skipped for valid subarrays that are identified before entering the loop.
+Like the test case identify the issue here: Input: nums = [1,1,4,2,3], x = 5, Output = 3, Expected = 2
+In correct solution, we have below order, when sum = 1 + 1 + 4 = 6 in 3rd iteration, it matches sum(=6) == target(=6) condition, we don't need to shrink the window by moving forward left boundary by now since sum > target condition not triggered, and following if condition directly match, now we find a solution as j - i + 1 = 2 - 0 + 1 = 3, maxLen = 3, in later process we will find sum = 6 + 2 = 8, it hits sum(=8) > target(=6) condition to trigger the while loop, in while loop shrink left boundary two times, then find another solution as j - i + 1 = 3 - 2 + 1 = 2, maxLen = 2 < previous maxLen = 3, we keep original solution as 3
+sum += nums[j];
+while(i <= j && sum > target) {
+    sum -= nums[i];
+    i++;
+}
+if(sum == target) {
+    maxLen = Math.max(maxLen, j - i + 1);
+}
+In wrong solution, when sum = 1 + 1 + 4 = 6 in 3rd iteration, since sum not > target(=6), not trigger while loop, we will miss the solution as j - i + 1 = 2 - 0 + 1 = 3, maxLen = 3 scenario, and only able to find the later solution as j - i + 1 = 3 - 2 + 1 = 2, maxLen = 2, which like previously mentioned: The if(sum == target) check is inside the while loop that reduces the window size. This causes valid subarrays to be missed because the check is only triggered while shrinking the window.
+sum += nums[j];
+while(i <= j && sum > target) {
+    sum -= nums[i];
+    i++;
+    if(sum == target) {
+        maxLen = Math.max(maxLen, j - i + 1);
+    }
+}
+So be careful of the Sliding Window template usage: the later process step should out of while loop
+--------------------------------------------------------------------------------
+Solution 1: Not fixed length Sliding Window (60 min)
 class Solution {
     public int minOperations(int[] nums, int x) {
         int n = nums.length;
@@ -300,4 +262,5 @@ public int minOperations(int[] nums, int x) {
 }
 
 Refer to
+L918.Maximum Sum Circular Subarray (Ref.L1658)
 L1423.Maximum Points You Can Obtain from Cards (Ref.L1658)
