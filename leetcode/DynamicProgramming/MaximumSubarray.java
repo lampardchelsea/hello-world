@@ -99,7 +99,6 @@ class Solution {
 public: 
     int maxSubArray(vector<int>& nums) { 
         int max_sum = INT_MIN; 
-         
         for(int i=0; i<nums.size(); i++){ 
             int curr_sum = 0; 
             for(int j=i; j<nums.size(); j++){ 
@@ -115,6 +114,7 @@ Time: O(N^2)
 Space: O(1)
 --------------------------------------------------------------------------------
 Solution 3: Recursion (360 min, too hard to organize the logic on hard point 'considerPreValue', TLE)
+Style 1: boolean 'considerPreValue' flag, return int
 class Solution { 
     public int maxSubArray(int[] nums) { 
         return helper(nums, 0, false); 
@@ -190,7 +190,76 @@ public:
         return f(nums, 0, false);
     } 
 };
+Style 2 to 4 getting from chatGPT
+Style 2: Change the boolean flag 'considerPreValue' to int 'currentSum', void return
+class Solution {
+    private int maxSum = Integer.MIN_VALUE;
+    public int maxSubArray(int[] nums) {
+        helper(nums, 0, 0);  // Start DFS from index 0 with an initial sum of 0
+        return maxSum;
+    }
 
+    private void helper(int[] nums, int index, int currentSum) {
+        // Base case: If we reach the end of the array, stop the recursion
+        if (index >= nums.length) {
+            return;
+        }
+        // Include the current element in the current subarray or start a new subarray
+        currentSum = Math.max(nums[index], currentSum + nums[index]);
+        // Update the global maximum sum
+        maxSum = Math.max(maxSum, currentSum);
+        // Recurse for the next element
+        helper(nums, index + 1, currentSum);
+    }
+}
+Style 3: Change the boolean flag 'considerPreValue' to int 'currentSum', return int similar to Style 1
+class Solution {
+    public int maxSubArray(int[] nums) {
+        return helper(nums, 0, Integer.MIN_VALUE, 0);
+    }
+
+    private int helper(int[] nums, int index, int globalMax, int currentSum) {
+        // Base case: when we reach the end of the array
+        if (index >= nums.length) {
+            return globalMax;
+        }
+        // Update the current sum by adding the current number
+        currentSum += nums[index];
+        // Update the global maximum to track the highest sum found so far
+        globalMax = Math.max(globalMax, currentSum);
+        // If the current sum is less than 0, reset it to 0
+        // (effectively "breaking" the subarray at this point)
+        if (currentSum < 0) {
+            currentSum = 0;
+        }
+        // Recurse to the next index
+        return helper(nums, index + 1, globalMax, currentSum);
+    }
+}
+Q: It looks like the condition to reset currentSum to 0 when it is negative comes before updating globalMax ?
+A: The reset to 0 is intended to discard negative sums so that they don’t impact future subarrays. However, the contribution of the current sum must be considered before this reset to avoid losing valid results.
+This ensures that the algorithm correctly handles edge cases like a single negative number, where the maximum subarray is the number itself.
+Style 4: Evolution from Style 3, but merge explicit reset of 'currentSum' to 0 logic before setup 'globalMax'
+class Solution {
+    public int maxSubArray(int[] nums) {
+        return helper(nums, 0, Integer.MIN_VALUE, 0);
+    }
+
+    private int helper(int[] nums, int index, int globalMax, int currentSum) {
+        // Base case: when we reach the end of the array
+        if (index == nums.length) {
+            return globalMax;
+        }
+        // Update the current sum by adding the current number
+        // and if the current sum is less than 0, reset it to 0
+        // (effectively "breaking" the subarray at this point)
+        currentSum = Math.max(nums[index], currentSum + nums[index]);
+        // Update the global maximum to track the highest sum found so far
+        globalMax = Math.max(globalMax, currentSum);
+        // Recurse to the next index
+        return helper(nums, index + 1, globalMax, currentSum);
+    }
+}
 --------------------------------------------------------------------------------
 Solution 4: Memoization + Recursion (30 min, based on Solution 3)
 class Solution { 
@@ -690,12 +759,10 @@ public int maxSubArray(int[] nums) {
 --------------------------------------------------------------------------------
 Solution 6: Kadane's Algorithm (10 min)
 Same as 1D DP O(1) space solution
-
 Refer to
 https://leetcode.com/problems/maximum-subarray/solutions/1595195/c-python-7-simple-solutions-w-explanation-brute-force-dp-kadane-divide-conquer/
 ✔️ Solution - V (Kadane's Algorithm)
-We can observe that in the previous approach, dp[i] only depended on dp[i-1]. So do we really need to maintain the whole dp array of 
-N elements? One might see the last line of previous solution and say that we needed all elements of dp at the end to find the maximum sum subarray. But we can simply optimize that by storing the max at each iteration instead of separately calculating it at the end.
+We can observe that in the previous approach, dp[i] only depended on dp[i-1]. So do we really need to maintain the whole dp array of N elements? One might see the last line of previous solution and say that we needed all elements of dp at the end to find the maximum sum subarray. But we can simply optimize that by storing the max at each iteration instead of separately calculating it at the end.
 Thus, we only need to maintain curMax which is the maximum subarray sum ending at i and maxTillNow which is the maximum sum we have seen till now. And this way of solving this problem is what we popularly know as Kadane's Algorithm
 class Solution { 
 public: 
@@ -732,7 +799,44 @@ class Solution {
         return max; 
     } 
 }
+Why Leetcode 53 cannot use Sliding Window ?
+Refer to chatGPT
+1. Sliding Window Requires a Fixed or Adjustable Condition
+- The sliding window technique is effective when there's a clear condition to expand or shrink the window (e.g., "sum ≤ target", "window size = k").
+- In Leetcode 53, the problem is to find the maximum sum of a contiguous subarray. However, there isn't a fixed condition to decide when to shrink the window because a negative sum may still lead to a better overall result later. This dynamic nature prevents using a simple rule to shrink or expand the window.
+2. Negative Numbers Can Reset the Optimal Subarray
+- If part of the subarray results in a negative sum, including it in the current window might decrease the total sum. For example:
+- Consider nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4].
+- If the sliding window tried to extend through all positive numbers, it wouldn't know when to "reset" after encountering negatives like -3 or -5.
+- This behavior makes Kadane's Algorithm more suitable, as it tracks the local maximum (subarray ending at the current position) and resets when the local sum becomes negative.
+3. Sliding Window Doesn't Track History
+- Sliding window focuses on the current window and adjusts it to meet specific conditions. It doesn't inherently remember past windows or results.
+- In Leetcode 53, you need to remember the maximum sum encountered so far, which isn't naturally handled by a sliding window. Kadane's Algorithm achieves this by maintaining:
+- currentSum: The maximum sum of the subarray ending at the current position.
+- maxSum: The global maximum sum found so far.
+Comparison of Approaches
+FeatureSliding WindowKadane's AlgorithmWorks with dynamic conditions?Yes (e.g., sum <= target, window size)No (tracks cumulative subarray sums)Handles negatives dynamically?NoYesTracks historical results?NoYesTime ComplexityO(n)O(n)Space ComplexityO(1)O(1)
 
+Correct Solution Using Kadane's Algorithm
+Here’s the correct implementation for Leetcode 53:
+public int maxSubArray(int[] nums) {
+    int maxSum = nums[0];
+    int currentSum = nums[0];
+
+    for (int i = 1; i < nums.length; i++) {
+        // Update currentSum to include nums[i] or start a new subarray
+        currentSum = Math.max(nums[i], currentSum + nums[i]);
+        // Update maxSum to track the highest sum so far
+        maxSum = Math.max(maxSum, currentSum);
+    }
+
+    return maxSum;
+}
+Key Differences from Sliding Window
+1.Dynamic Inclusion: Kadane’s Algorithm decides whether to include the current element in the ongoing subarray or start fresh based on currentSum + nums[i].
+2.No Fixed Window: The size of the subarray is not predefined or adjustable based on a condition; it dynamically evolves.
+3.Global Tracking: The algorithm keeps track of the global maximum sum (maxSum) throughout the process.
+--------------------------------------------------------------------------------
 Follow up:
 Now here in this question you can see that you can also be asked some more things like :
 - Length of the max subarray
@@ -830,3 +934,4 @@ public:
 
 Refer to
 L821.Shortest Distance to a Character (Ref.L845)
+L918.Maximum Sum Circular Subarray (Ref.L1658)
