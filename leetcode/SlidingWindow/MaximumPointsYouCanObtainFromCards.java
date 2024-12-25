@@ -256,4 +256,5 @@ class Solution {
 }
 
 Refer to
-L1658.Minimum Operations to Reduce X to Zero (Ref.L1423)
+L918.Maximum Sum Circular Subarray (Ref.L1658)
+L1658.Minimum Operations to Reduce X to Zero (Ref.L918,L1423)
