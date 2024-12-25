@@ -58,6 +58,56 @@ class Solution {
 Time Complexity: O(n)
 Space Complexity: O(1)
 
+Refer to chatGPT
+Problem Description
+For a given array nums and an integer k, calculate the average of every subarray of size 2k + 1 centered at each index. If it's not possible to form a subarray at an index, return -1 for that index.
+class Solution {
+    public int[] getAverages(int[] nums, int k) {
+        int n = nums.length;
+        int[] result = new int[n];
+        long currentSum = 0; // To handle the sum of elements within the window
+        int windowSize = 2 * k + 1; // Size of the window
+        
+        // Initialize the result array with -1
+        for (int i = 0; i < n; i++) {
+            result[i] = -1;
+        }
+        
+        // Iterate through the array
+        for (int i = 0; i < n; i++) {
+            // Add the current element to the window sum
+            currentSum += nums[i];
+            
+            // Check if the window has reached its full size
+            if (i >= windowSize - 1) {
+                // Calculate the center index of the current window
+                int center = i - k;
+                
+                // Assign the average to the result array
+                result[center] = (int) (currentSum / windowSize);
+                
+                // Remove the element that is sliding out of the window
+                currentSum -= nums[i - windowSize + 1];
+            }
+        }
+        
+        return result;
+    }
+}
+Explanation
+1.Initialize Variables:
+- currentSum tracks the sum of elements in the sliding window.
+- windowSize = 2 * k + 1 determines the size of the window.
+- The result array is initialized with -1, as the problem requires -1 for indices where averages cannot be calculated.
+2.Sliding Window Logic:
+- Add the current element nums[i] to currentSum.
+- When the window reaches its full size (i >= windowSize - 1):
+- Calculate the center of the window: center = i - k.
+- Compute the average as (int)(currentSum / windowSize) and store it in result[center].
+- Remove the oldest element from the window (nums[i - windowSize + 1]) to slide the window forward.
+3.Handle Edges Automatically:
+- For indices where the window cannot form (start and end of the array), the result array remains -1 since we don't update those indices.
+--------------------------------------------------------------------------------
 Refer to
 https://leetcode.com/problems/k-radius-subarray-averages/solutions/1599973/python-3-sliding-window-illustration/
 
