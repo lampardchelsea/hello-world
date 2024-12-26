@@ -23,7 +23,7 @@ Constraints:
 - blocks[i] is either 'W' or 'B'.
 - 1 <= k <= n
 --------------------------------------------------------------------------------
-Attempt 1: 2024-01-26
+Attempt 1: 2024-12-25
 Solution 1: Fixed length Sliding Window (10 min)
 We can treat the k as fixed length sliding window size, and we try to find how many existing 'B' in each window during the move from left to right, then find out the maximum 'B' count in this process, the remain count as k - maxBCount requires update 'W' to 'B' operations
 class Solution {
