@@ -123,3 +123,6 @@ int minimumRecolors(string blocks, int k) {
     }
     return ans;
 }
+
+Refer to
+L2024.Maximize the Confusion of an Exam (Ref.L424,L2379,L2401)
