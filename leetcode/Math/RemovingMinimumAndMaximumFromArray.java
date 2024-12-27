@@ -105,3 +105,6 @@ public:
         return min({ a + 1 + N - b, b + 1, N - a });
     }
 };
+Refer to
+L1423.Maximum Points You Can Obtain from Cards (Ref.L1658)
+L1647.Minimum Deletions to Make Character Frequencies Unique
