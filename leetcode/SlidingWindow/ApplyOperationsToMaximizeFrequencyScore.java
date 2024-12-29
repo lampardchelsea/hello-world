@@ -28,6 +28,7 @@ Constraints:
 --------------------------------------------------------------------------------
 Attempt 1: 2024-12-28
 Solution 1: Math + Sorting + Binary Search (180 min)
+Style 1: Separately handle 'leftCost' and 'rightCost'
 class Solution {
     public int maxFrequencyScore(int[] nums, long k) {
         Arrays.sort(nums);
@@ -252,6 +253,160 @@ class Solution {
     }
 }
 
+Style 2: Merge handle 'leftCost' and 'rightCost'
+Wrong Solution
+Test case:
+nums = [1,2,6,4], k = 3
+Output = 2, Expected = 3
+class Solution {
+    public int maxFrequencyScore(int[] nums, long k) {
+        Arrays.sort(nums);
+        int len = nums.length;
+        long[] presum = new long[len + 1];
+        for(int i = 1; i <= len; i++) {
+            presum[i] = presum[i - 1] + (long) nums[i - 1];
+        }
+        // 'lo' and 'hi' represent target frequency of the 
+        // most frequent element in the array, the minimum 
+        // potential target frequency is 0, the maximum 
+        // potential target frequency is array length, we 
+        // keep searching for the middle value based on
+        // minimum and maximum target frequency boundary
+        // and check if a subarray of length equal to this
+        // middle value can be transformed such that all of 
+        // its elements become the median of this subarray 
+        // with a total operation cost that doesn't exceed k
+        int lo = 0;
+        int hi = len;
+        // Find upper boundary
+        while(lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            // Since we try to find the maximum score you can achieve,
+            // if able to find with element frequency(subarray length)
+            // equal to 'mid', then we move forward 'lo' to 'mid + 1'
+            // attempt on larger element frequency, otherwise move
+            // backward 'hi' to 'mid - 1' attempt on smaller element 
+            // frequency
+            if(isPossible(nums, presum, k, mid)) {
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
+        }
+        return lo - 1;
+    }
+
+    private boolean isPossible(int[] nums, long[] presum, long k, int subarrayLen) {
+        boolean possible = false;
+        // Try for all subarrays of size 'subarrayLen'
+        for(int i = 0; i <= nums.length - subarrayLen; i++) {
+            int j = i + subarrayLen;
+            if(presum[i] + presum[j] - 2 * presum[(i + j) / 2] <= k) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+After correction
+class Solution {
+    public int maxFrequencyScore(int[] nums, long k) {
+        Arrays.sort(nums);
+        int len = nums.length;
+        long[] presum = new long[len + 1];
+        for(int i = 1; i <= len; i++) {
+            presum[i] = presum[i - 1] + (long) nums[i - 1];
+        }
+        // 'lo' and 'hi' represent target frequency of the 
+        // most frequent element in the array, the minimum 
+        // potential target frequency is 0, the maximum 
+        // potential target frequency is array length, we 
+        // keep searching for the middle value based on
+        // minimum and maximum target frequency boundary
+        // and check if a subarray of length equal to this
+        // middle value can be transformed such that all of 
+        // its elements become the median of this subarray 
+        // with a total operation cost that doesn't exceed k
+        int lo = 0;
+        int hi = len;
+        // Find upper boundary
+        while(lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            // Since we try to find the maximum score you can achieve,
+            // if able to find with element frequency(subarray length)
+            // equal to 'mid', then we move forward 'lo' to 'mid + 1'
+            // attempt on larger element frequency, otherwise move
+            // backward 'hi' to 'mid - 1' attempt on smaller element 
+            // frequency
+            if(isPossible(nums, presum, k, mid)) {
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
+        }
+        return lo - 1;
+    }
+
+    private boolean isPossible(int[] nums, long[] presum, long k, int subarrayLen) {
+        for (int i = 0; i <= nums.length - subarrayLen; i++) {
+            int j = i + subarrayLen;
+            if ((j - i) % 2 == 0) {
+                // Symmetric case
+                if (presum[i] + presum[j] - 2 * presum[(i + j) / 2] <= k) {
+                    return true;
+                }
+            } else {
+                // Asymmetric case: adjust median calculation
+                int medianLeft = (i + j - 1) / 2;
+                int medianRight = (i + j + 1) / 2;
+                if (presum[i] + presum[j] - (presum[medianLeft] + presum[medianRight]) <= k) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
+
+Time Complexity: O(nlogn)
+Space Complexity: O(n)
+Refer to chatGPT
+You're right to flag this—there's an issue with the merged logic. The problem lies in how the formula assumes a balanced cost calculation but doesn't handle the exact asymmetry caused by unequal partitions around the median. Let’s dig deeper into why the error happens.
+Key Issue
+The calculation: presum[i] + presum[j] − 2 * presum[(i + j) / 2​]
+does not fully account for the uneven number of elements in the left and right subarrays around the median when i + j is odd.
+For example:
+- Subarray [1, 2, 4] (from [1, 2, 6, 4] after sorting) has median 2.
+- Left Subarray: [1]
+- Right Subarray: [4]
+The left cost and right cost are calculated relative to different numbers of elements, but the merged formula assumes symmetry.
+Fixing the Issue
+To fix this, you need to adjust the formula for scenarios where the subarray length results in uneven partitions around the median.
+Correct Merged Logic
+When i + j is even:
+- Median index is (i + j) / 2.
+- The merged formula works correctly.
+When i + j is odd:
+- Adjust the presum term to correctly account for the asymmetric split.
+Here’s the fixed formula:
+if ((j - i) % 2 == 0) {
+    // Symmetric case
+    if (presum[i] + presum[j] - 2 * presum[(i + j) / 2] <= k) {
+        return true;
+    }
+} else {
+    // Asymmetric case: adjust median calculation
+    int medianLeft = (i + j - 1) / 2;
+    int medianRight = (i + j + 1) / 2;
+    if (presum[i] + presum[j] - (presum[medianLeft] + presum[medianRight]) <= k) {
+        return true;
+    }
+}
+Why This Fix Works
+1.Handles Symmetry: When j − i is even, the formula remains unchanged.
+2.Corrects Asymmetry: When j − i is odd, it ensures both halves around the median are properly accounted for, avoiding underestimation of the costs.
+Final Thoughts
+The corrected logic handles both symmetric and asymmetric cases around the median. Let me know if you'd like any further clarification!
 --------------------------------------------------------------------------------
 Solution 2: Sliding Window (60 min)
 class Solution {
