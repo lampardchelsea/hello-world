@@ -325,7 +325,7 @@ Complexity:
 - Time Complexity: O(n), where n is the length of the string, since we traverse the string once.
 - Space Complexity: O(1), as no additional data structures are used.
 --------------------------------------------------------------------------------
-Solution 2: Two Pointers (10 min)
+Solution 2: Sliding Window + Two Pointers (10 min)
 class Solution {
     public int longestBeautifulSubstring(String word) {
         int maxLen = 0;
