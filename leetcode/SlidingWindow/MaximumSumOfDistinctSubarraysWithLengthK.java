@@ -212,13 +212,14 @@ class Solution {
                 i++;
             }
             
-            // If the window size is exactly 'k' and all elements are distinct,
-            // check if the current sum is the maximum so far
+            // If the window size is exactly 'k' at this moment (after window
+            // size confirmed as k), and all elements are distinct (map's size
+            // equal to k means k unique keys), check if the current sum is 
+            // the maximum so far
             if(map.size() == k) {
                 maxSum = Math.max(maxSum, curSum);
             }
         }
-        
         // Return the maximum subarray sum found
         return maxSum;
     }
