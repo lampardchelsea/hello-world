@@ -245,7 +245,7 @@ class Solution {
 }
 --------------------------------------------------------------------------------
 Solution 2: Trie (180 min, the convergence DFS logic quite similar to L1034.Coloring A Border (Ref.L200,L733))
-L792 对 Trie 的使用是个非典型的使用方案，一般都是在一堆字符串构建的 Trie 中寻找一个目标字符串，这里是在一堆字符串构建的 Trie 中将每个字符串再单独拎出来和另外一个字符串比较，实际上不算是完全意义上的利用了 Trie 结构，而仅仅是利用了其中的存储 count 方便 DFS 获取这样的特性
+L792 对 Trie 的使用是个非典型的使用方案，一般都是在一堆字符串构建的 Trie 中寻找一个目标字符串，这里是在一堆字符串构建的 Trie 中将每个字符串再单独拎出来和另外一个模版字符串比较，每一次比较的时候 Trie 中存储的每个字符串上的字母投影在用来比较的另外一个模版字符串上的 index 并不是连续的，而是跳跃的，因为 Trie 中存储的字符串可能是该模版字符串的 subsequence
 class Solution {
     class TrieNode {
         char c;
