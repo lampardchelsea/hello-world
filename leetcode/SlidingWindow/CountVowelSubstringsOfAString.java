@@ -320,9 +320,9 @@ class Solution {
 
 --------------------------------------------------------------------------------
 Refer to
-792
-992
-1513
+L792.Number of Matching Subsequences (Ref.L208,L392,L1034,L2062)
+L992.Subarrays with K Different Integers
+L1513.Number of Substrings With Only 1s
 L1839.Longest Substring Of All Vowels in Order (Ref.L2062,L2401)
 L2262.Total Appeal of A String (Ref.L828)
 L2461.Maximum Sum of Distinct Subarrays With Length K (Ref.L2062,L2401)
