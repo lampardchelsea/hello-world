@@ -58,6 +58,28 @@ class Solution {
     }
 }
 
+Time Complexity: O(n^3)
+Space Complexity: O(n)
+Time Complexity
+1.Recursive Calls:
+- The helper function iterates over all possible substrings of the string. For each starting index start, it considers all substrings starting from start.
+- The total number of substrings in a string of length nnn is O(n^2), as there are n+(n−1)+⋯+1=n(n+1) substrings.
+2.String Substring Creation:
+- For each substring current, the substring() operation in Java takes O(k) time, where k is the length of the substring.
+3.Counting Unique Characters:
+- The countUniqueChars method iterates over each substring and uses a hashmap to count character frequencies. This operation takes O(k), where k is the length of the substring.
+Combining these factors:
+- There are O(n^2) substrings in total.
+- The average substring length is O(n/2), leading to O(n^2⋅n)=O(n^3) complexity for substring creation and unique character counting.
+Overall time complexity: O(n^3).
+Space Complexity
+1.Substring Storage:
+- The current string is passed recursively and reconstructed in each iteration. While strings are immutable, the temporary storage contributes to the memory usage. On average, this takes O(n) for the longest substring.
+2.HashMap:
+- The countUniqueChars function uses a HashMap to store character frequencies. In the worst case, the hashmap size is proportional to the number of distinct characters in the substring, i.e., O(k), where k≤26 (for lowercase alphabets).
+3.Recursive Stack:
+- The recursion depth is O(n) because of the helper function.
+Overall space complexity: O(n+k)) ≈ O(n).
 --------------------------------------------------------------------------------
 Solution 2: DP (720 min)
 Style 1:
@@ -226,7 +248,7 @@ class Solution {
 Refer to
 [Java] Clean O(n) Solution || detailed explanation of why it works
 https://leetcode.com/problems/count-unique-characters-of-all-substrings-of-a-given-string/
-The Key of solving this problem in linear time is find the relationship between sum of countUniqueChars() for substrings ending index i and sum of countUniqueChars() for substrings ending index i-1. This article aims to leave leave no room for ambiguity​ of how this algorithm works.
+The Key of solving this problem in linear time is find the relationship between sum of countUniqueChars() for substrings ending index i and sum of countUniqueChars() for substrings ending index i-1. This article aims to leave no room for ambiguity​ of how this algorithm works.
 For each index i, consider all substrings ending at index i:
 s[0 : i] , ... , s[i-1 : i]  , s[i : i];
 Comparing with all substrings ending at index i-1:
@@ -272,6 +294,8 @@ For k:
 一共有p - (q + 1) + 1 = p - 1种情况
 
 3. k in [0, q]       <==>  c appears at least 2 times in s[k : i-1]
+也就是说只有当k在[0,q]的范围的时候才会满足 Case 3. s[k : i-1] contains 2 c 的情况，
+但是因为直接不是 unique character的情况，所以我们可以直接跳过这种情况
 Thus we have:
 #(Case 1)  =  (i-1) - (p+1) + 1 
            =  i - p - 1
@@ -428,6 +452,10 @@ Characteristics:
 1.Looping Through Options: This method uses a for loop to iterate through each possible starting index for the next character to include in the subsequence. This means that for each recursive call, the method explores all possible continuations of the subsequence starting from the current index.
 2.Explicit Backtracking: After each recursive call, the method explicitly backtracks by removing the last character from the current subsequence.
 3.Subset Generation: This approach generates all subsequences that start from each character in the original string.
+The final generated all subsequences adding into result order for Approach 1 as below:
+加入的顺序不同体现了两种思路的不同，都很重要，需要记忆两种思路的写法
+abc -> 1st add "a" -> 2nd add "ab" -> 3rd add "abc" -> 4th add "ac" -> 5th add "b" -> 6th add "bc" -> 7th add "c"
+
 Approach 2: Two Branches (Include or Skip)
 private static void generateSubsequencesRecursive(String str, int start, String current, List<String> result) {
     if (start == str.length()) {
@@ -446,7 +474,11 @@ Characteristics:
 1.Binary Decisions: This method uses a binary decision process to either include or skip the current character. For each character, it makes two recursive calls: one excluding the character and one including it.
 2.Implicit Backtracking: The method naturally backtracks by making two separate recursive calls without the need to explicitly modify the current subsequence after the recursive call.
 3.Power Set Generation: This approach can be thought of as generating the power set of the string's characters, as it considers every combination of included and excluded characters.
-Differences
+The final generated all subsequences adding into result order for Approach 2 as below:
+加入的顺序不同体现了两种思路的不同，都很重要，需要记忆两种思路的写法
+abc -> 1st add "c" -> 2nd add "b" -> 3rd add "bc" -> 4th add "a" -> 5th add "ac" -> 6th add "ab" -> 7th add "abc"
+
+Approach 1 and 2 Differences
 1.Control Flow:
 - The for loop approach explicitly iterates through each possible continuation of the subsequence, making it more iterative in nature within each recursive call.
 - The binary decision approach recursively branches into two paths at each step, making it more declarative and simpler to understand the inclusion/exclusion logic.
