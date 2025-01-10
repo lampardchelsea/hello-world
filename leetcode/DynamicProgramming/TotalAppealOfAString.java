@@ -27,14 +27,23 @@ Constraints:
 - 1 <= s.length <= 10^5
 - s consists of lowercase English letters.
 --------------------------------------------------------------------------------
+What's the difference between Leetcode 828 and Leetcode 2262 ?
+Refer to chatGPT
+AspectLeetcode 828Leetcode 2262
+FocusIndividual characters being unique in substrings.All distinct characters in substrings.
+Formula(i−prev)×(next−i)(i−last)×(length−i)
+ResultTotal unique character count across all substrings.Total "appeal" (distinct character count) of substrings.
+ComplexityO(n) with efficient precomputation of prev and next.O(n) with tracking last for each character.
+
+--------------------------------------------------------------------------------
 Attempt 1: 2024-06-18
 Solution 1: DFS (10 min, TLE 53/76)
-Similar to L828.Count Unique Characters of All Substrings of a Given String (Ref.L2262 DFS TLE solution, just need to change implementation of countUniqueChars method
+Similar to L828.Count Unique Characters of All Substrings of a Given String (Ref.L2262) DFS TLE solution, just need to change implementation of countUniqueChars method
 class Solution {
     long count = 0;
     public long appealSum(String s) {
         helper(s, 0, "");
-        return count;        
+        return count;
     }
 
     private void helper(String str, int start, String current) {
@@ -85,7 +94,7 @@ Space O(26)
         return res;
     }
 Then improved from O(26n) to O(n)
-Don't do a O(26) for loop to accumulate the last, insteadly ccount the total value of last and update it in O(1)
+Don't do a O(26) for loop to accumulate the last, instead count the total value of last and update it in O(1)
     public long appealSum(String s) {
         int last[] = new int[26];
         long res = 0, total = 0;
@@ -202,4 +211,4 @@ Since 26 is a constant and does not change with the input size, we could also co
 
 
 Refer to
-L828.Count Unique Characters of All Substrings of a Given String (Ref.L2262
+L828.Count Unique Characters of All Substrings of a Given String (Ref.L2262)
