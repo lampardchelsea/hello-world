@@ -23,6 +23,7 @@ Constraints:
 --------------------------------------------------------------------------------
 Attempt 1: 2025-01-19
 Solution 1: Not fixed length Sliding Window + Decreasing Monotonic Deque (60 min)
+这道题在 Sliding Window 里使用的 Deque 技术和 L239.P2.1.Sliding Window Maximum (Ref.L1425,L2398) 非常相似
 想到用 Decreasing Monotonic Deque 来保证仅用 O(n) 时间复杂度随时更新和保存 Sliding Window 中的最大值是关键，Deque 的前端 (deque.peekFirst()) 存储着当前 Sliding Window 中最大 chargeTime 所对应的坐标，Deque 的后端 (deque.peekLast()) 会随时更新，以保证从 first 到 last 一直满足 monotonically decreasing.
 class Solution {
     public int maximumRobots(int[] chargeTimes, int[] runningCosts, long budget) {
@@ -268,7 +269,7 @@ where:
 - After ensuring the window satisfies the budget constraint, update the maximum number of robots (maxRobots) with the current window size.
 
 Refer to
-L239.P2.1.Sliding Window Maximum (Ref.L1425)
+L239.P2.1.Sliding Window Maximum (Ref.L1425,L2398)
 L739.Daily Temperatures
 L2040.Kth Smallest Product of Two Sorted Arrays
 L2064.Minimized Maximum of Products Distributed to Any Store (Ref.L410)
