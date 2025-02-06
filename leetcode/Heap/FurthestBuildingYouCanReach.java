@@ -447,3 +447,6 @@ Key Takeaways:
 - A bottom-up DP solution is possible but inefficient for this problem due to its large state space and high time/space complexity.
 - The greedy approach with a min-heap is the most efficient and recommended solution for this problem.
 - Use DP only for problems where the state space is manageable and the problem naturally fits a DP structure.
+
+Refer to
+L1405.Longest Happy String (Ref.L1642)
