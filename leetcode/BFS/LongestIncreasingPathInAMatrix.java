@@ -606,4 +606,5 @@ This solution is correct and efficient, and it’s a great addition to your tool
 
 
 Refer to
+L2328.Number of Increasing Paths in a Grid
 Topological Sort DFS, BFS and DAG
