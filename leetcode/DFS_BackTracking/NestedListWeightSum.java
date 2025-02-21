@@ -1,202 +1,3 @@
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-/**
- * Refer to
- * http://www.cnblogs.com/grandyang/p/5340305.html
- * Given a nested list of integers, return the sum of all integers in the list weighted by their depth.
-
-	Each element is either an integer, or a list -- whose elements may also be integers or other lists.
-	
-	Example 1:
-	Given the list [[1,1],2,[1,1]], return 10. (four 1's at depth 2, one 2 at depth 1)
-	
-	Example 2:
-	Given the list [1,[4,[6]]], return 27. (one 1 at depth 1, one 4 at depth 2, 
-	and one 6 at depth 3; 1 + 4*2 + 6*3 = 27)
- * 
- * // This is the interface that allows for creating nested lists.
- * // You should not implement it, or speculate about its implementation
- * public interface NestedInteger {
- *
- *     // @return true if this NestedInteger holds a single integer,
- *     // rather than a nested list.
- *     public boolean isInteger();
- *
- *     // @return the single integer that this NestedInteger holds,
- *     // if it holds a single integer
- *     // Return null if this NestedInteger holds a nested list
- *     public Integer getInteger();
- *
- *     // @return the nested list that this NestedInteger holds,
- *     // if it holds a nested list
- *     // Return null if this NestedInteger holds a single integer
- *     public List<NestedInteger> getList();
- * }
- */
-public class NestedListWeightSum {
-	// dummy class
-	private class NestedInteger {
-		// dummy methods
-		public boolean isInteger() {}
-		public int getInteger() {}
-		public List<NestedInteger> getList() {}
-	}
-	
-	// Solution 1: DFS
-	// Refer to
-	// https://discuss.leetcode.com/topic/41357/2ms-easy-to-understand-java-solution
-	public int depthSum(List<NestedInteger> nestedList) {
-        return helper(nestedList, 1);
-	}
-	
-	private int helper(List<NestedInteger> list, int depth) {
-		int result = 0;
-		for(NestedInteger e : list) {
-			if(e.isInteger()) {
-				result += e.getInteger() * depth;
-			} else {
-				helper(e.getList(), depth + 1);
-			}
-		}
-		return result;
-	}
-	
-	// Solution 2: BFS (level order traverse)
-	// Refer to
-	// https://discuss.leetcode.com/topic/41495/java-solution-similar-to-tree-level-order-traversal
-	public int depthSum2(List<NestedInteger> nestedList) {
-		if(nestedList == null) {
-			return 0;
-		}
-		int sum = 0;
-		int level = 1;
-		Queue<NestedInteger> queue = new LinkedList<NestedInteger>(nestedList);
-		while(!queue.isEmpty()) {
-			int size = queue.size();
-			for(int i = 0; i < size; i++) {
-				NestedInteger ni = queue.poll();
-				if(ni.isInteger()) {
-					sum += ni.getInteger() * level;
-				} else {
-					queue.addAll(ni.getList());
-				}
-			}
-			level++;
-		}
-		return sum;
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 https://leetcode.ca/all/339.html
 Given a nested list of integers, return the sum of all integers in the list weighted by their depth.
 Each element is either an integer, or a list -- whose elements may also be integers or other lists.
@@ -260,10 +61,83 @@ class Solution {
     }
 }
 
+Refer to Deepseek
+To solve LeetCode 339, "Nested List Weight Sum," we need to calculate the sum of all integers in a nested list, weighted by their depth. This can be achieved using a Depth-First Search (DFS) approach, where we recursively traverse the nested list and keep track of the current depth.
+Approach
+1.Base Case: If the current element is an integer, add its value multiplied by the current depth to the sum.
+2.Recursive Case: If the current element is a list, recursively process each element in the list, incrementing the depth by 1.
+3.Initialization: Start with depth = 1.
+public class Solution {
+    public int depthSum(List<NestedInteger> nestedList) {
+        return dfs(nestedList, 1); // Start with depth = 1
+    }
+
+    private int dfs(List<NestedInteger> nestedList, int depth) {
+        int sum = 0;
+        for (NestedInteger ni : nestedList) {
+            if (ni.isInteger()) {
+                // If it's an integer, add its value weighted by depth
+                sum += ni.getInteger() * depth;
+            } else {
+                // If it's a list, recursively process it with increased depth
+                sum += dfs(ni.getList(), depth + 1);
+            }
+        }
+        return sum;
+    }
+}
+Explanation of the Code
+1.depthSum Method:
+- This is the entry point of the solution.
+- It calls the dfs method with the input nestedList and an initial depth of 1.
+2.dfs Method:
+- This is a recursive helper function that processes each element in the nested list.
+- If the current element is an integer, it adds the integer value multiplied by the current depth to the sum.
+- If the current element is a list, it recursively calls dfs on the list, incrementing the depth by 1.
+3.Base Case:
+- When all elements in the nested list have been processed, the recursion stops, and the final sum is returned.
+Example Walkthrough
+Example 1:
+Input: [[1,1],2,[1,1]]
+Execution:
+1.Start with depth = 1.
+2.Process [1,1] (a list):
+- Increment depth to 2.
+- Process 1 (integer): Add 1 * 2 = 2 to the sum.
+- Process 1 (integer): Add 1 * 2 = 2 to the sum.
+3.Process 2 (integer): Add 2 * 1 = 2 to the sum.
+4.Process [1,1] (a list):
+- Increment depth to 2.
+- Process 1 (integer): Add 1 * 2 = 2 to the sum.
+- Process 1 (integer): Add 1 * 2 = 2 to the sum.
+5.Final sum: 2 + 2 + 2 + 2 + 2 = 10.
+Output: 10
+Example 2:
+Input: [1,[4,[6]]]
+Execution:
+1.Start with depth = 1.
+2.Process 1 (integer): Add 1 * 1 = 1 to the sum.
+3.Process [4,[6]] (a list):
+- Increment depth to 2.
+- Process 4 (integer): Add 4 * 2 = 8 to the sum.
+- Process [6] (a list):
+
+- Increment depth to 3.
+- Process 6 (integer): Add 6 * 3 = 18 to the sum.
+4.Final sum: 1 + 8 + 18 = 27.
+Output: 27
+Complexity Analysis
+1.Time Complexity:
+- Every element in the nested list is visited exactly once.
+- If there are N total integers and L nested lists, the time complexity is O(N + L).
+2.Space Complexity:
+- The space used by the recursion stack depends on the maximum depth of the nested list.
+- In the worst case, the depth is D, so the space complexity is O(D).
+This solution is efficient and handles all edge cases, including deeply nested lists.
+--------------------------------------------------------------------------------
 Refer to
 https://www.cnblogs.com/apanda009/p/7948211.html
- fb: 原题的weight是1,2,3,...
-改成了1,2,6,24,...这样子
+ fb: 原题的weight是1,2,3,...改成了1,2,6,24,...这样子
 Time Complexity: O(n). n 是指全部叶子的数目加上dfs走过层数的总数. [[[[[5]]]],[[3]], 1], 3个叶子, dfs一共走了6层. 所以用了 3 + 6 = 9 的时间. 
 Space: O(D). D 是recursive call用的stack的最大数目, 即是最深的层数, 上面例子最深走过4层, 这里D = 4.
 Recursive (DFS)
@@ -531,4 +405,5 @@ Space Complexity
 The space complexity of the function is O(D), where D is the maximum depth of the nested list. This complexity arises from the call stack used for recursion. In the worst case, the recursion will go as deep as the deepest nested list. Therefore, the maximum number of nested calls will equal the maximum depth D. Furthermore, there is only a constant amount of space used at each level for variables such as depth_sum.
 
 Refer to
+L341.Flatten Nested List Iterator (Ref.L565)
 L364.Nested List Weight Sum II (Ref.L339)
