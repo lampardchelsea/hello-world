@@ -239,8 +239,8 @@ class Solution {
     } 
 }
 --------------------------------------------------------------------------------
-Solution 2: Line Sweep + Two Pointers (30 min)
-Two Pointers handling way exactly same as L1943.Describe the Painting
+Solution 2: Sweep Line + Two Pointers (30 min)
+Two Pointers handling way exactly same as L1943.Describe the Painting (Ref.L759)
 class Solution {
     class Interval {
         int start;
@@ -321,7 +321,7 @@ presum 0   2   1   0   1   2   1   1   1   1    0
                    ^   #
 
 The presum(running accumulate sum of delta) '0' at timestamp 3 (tag with ^) 
-is what we intreset with: it means all employees free interval start at 
+is what we interested with: it means all employees free interval start at 
 this moment, and all employees free interval end at timestamp 4 (tag with #)
 which set by coming interval 'start' timestamp (e.g [4,10] is the coming
 interval right after timestamp 3), so all employee free interval is [3,4]
@@ -436,3 +436,7 @@ class Solution {
         return res;
     }
 };
+
+Refer to
+L56.P5.1.Merge Intervals (Ref.L759)
+L1943.Describe the Painting
