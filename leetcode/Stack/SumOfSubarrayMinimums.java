@@ -1,7 +1,6 @@
 
 https://leetcode.com/problems/sum-of-subarray-minimums/description/
-Given an array of integers arr, find the sum of min(b), where b ranges over every (contiguous) subarray of arr. Since the answer may be large, return the answer modulo 
-10^9 + 7.
+Given an array of integers arr, find the sum of min(b), where b ranges over every (contiguous) subarray of arr. Since the answer may be large, return the answer modulo 10^9 + 7.
 
 Example 1:
 Input: arr = [3,1,2,4]
@@ -16,8 +15,8 @@ Input: arr = [11,81,94,43,3]
 Output: 444
 
 Constraints:
-- 1 <= arr.length <= 3 * 104
-- 1 <= arr[i] <= 3 * 104
+- 1 <= arr.length <= 3 * 10^4
+- 1 <= arr[i] <= 3 * 10^4
 --------------------------------------------------------------------------------
 Attempt 1: 2023-03-19
 Solution 1: Monotonic Increasing Stack (360 min)
@@ -31,9 +30,9 @@ class Solution {
         Stack<int[]> nle = new Stack<int[]>(); 
         for(int i = 0; i < n; i++) { 
             // Use ">=" to deal with duplicate elements, non-strict less 
-            while(!ple.isEmpty() && ple.peek()[0] >= arr[i]) { 
+            while(!ple.isEmpty() && ple.peek()[0] >= arr[i]) {
                 ple.pop(); 
-            } 
+            }
             // Why i + 1 when stack empty ? 
             // When ple is empty, which means there is no previous less  
             // element for arr[i], in this case, we set left[i]=i + 1 by  
@@ -82,16 +81,16 @@ class Solution {
 Refer to
 https://leetcode.com/problems/sum-of-subarray-minimums/solutions/178876/stack-solution-with-very-detailed-explanation-step-by-step/
 Before diving into the solution, we first introduce a very important stack type, which is called monotone stack .
-What is monotonous increase stack?
+What is Monotonic Increasing Stack?
 Roughly speaking, the elements in the an monotonous increase stack keeps an increasing order.
-The typical paradigm for monotonous increase stack:
+The typical paradigm for Monotonic Increasing Stack:
 for(int i = 0; i < A.size(); i++){ 
   while(!in_stk.empty() && in_stk.top() > A[i]){ 
     in_stk.pop(); 
   } 
   in_stk.push(A[i]); 
 }
-What can monotonous increase stack do?
+What can Monotonic Increasing Stack do?
 (1) find the previous less element of each element in a vector with O(n) time:
 - What is the previous less element of an element?
 For example:
@@ -135,7 +134,7 @@ for(int i = 0; i < A.size(); i++){
   } 
   in_stk.push(i); 
 }
-How can the monotonous increase stack be applied to this problem?
+How can the Monotonic Increasing Stack be applied to this problem?
 For example: Consider the element 3 in the following vector:
                             [2, 9, 7, 8, 3, 4, 6, 1] 
                  |                    | 
@@ -310,7 +309,6 @@ Let R = total number of right subarrays = 5
 N = Total number of subarrays containing element in middle subarray N = L * M * R = 5 * 1 * 5 = 25
 
 If we want to obtain subarrays with 2 as the minimum element the options to the left and right reduce as follows.
-
 
 If we start from index 4 (with a value 2) and travel to the left of the array, the first index with a value less than 2 can be used to calculate the total number of viable left subarrays.
 
