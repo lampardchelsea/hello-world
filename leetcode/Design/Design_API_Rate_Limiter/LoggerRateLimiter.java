@@ -1,145 +1,125 @@
-/**
-Refer to
-https://aaronice.gitbook.io/lintcode/hash-table/logger-rate-limiter
-Design a logger system that receive stream of messages along with its timestamps, each message should be printed if and only if it isnot printed in the last 10 seconds.
-Given a message and a timestamp (in seconds granularity), return true if the message should be printed in the given timestamp, otherwise returns false.
-It is possible that several messages arrive roughly at the same time.
+https://leetcode.ca/all/359.html
+Design a logger system that receives a stream of messages along with their timestamps. Each unique message should only be printed at most every 10 seconds (i.e. a message printed at timestamp t will prevent other identical messages from being printed until timestamp t + 10).
+All messages will come in chronological order. Several messages may arrive at the same timestamp.
+Implement the Logger class:
+- Logger() Initializes the logger object.
+- bool shouldPrintMessage(int timestamp, string message) Returns true if the message should be printed in the given timestamp, otherwise returns false.
+
 Example:
+Input
+["Logger", "shouldPrintMessage", "shouldPrintMessage", "shouldPrintMessage", "shouldPrintMessage", "shouldPrintMessage", "shouldPrintMessage"]
+[[], [1, "foo"], [2, "bar"], [3, "foo"], [8, "bar"], [10, "foo"], [11, "foo"]]
+
+Output
+[null, true, true, false, false, false, true]
+
+Explanation
 Logger logger = new Logger();
-
-// logging string "foo" at timestamp 1
-logger.shouldPrintMessage(1, "foo"); returns true; 
-
-// logging string "bar" at timestamp 2
-logger.shouldPrintMessage(2,"bar"); returns true;
-
-// logging string "foo" at timestamp 3
-logger.shouldPrintMessage(3,"foo"); returns false;
-
-// logging string "bar" at timestamp 8
-logger.shouldPrintMessage(8,"bar"); returns false;
-
-// logging string "foo" at timestamp 10
-logger.shouldPrintMessage(10,"foo"); returns false;
-
-// logging string "foo" at timestamp 11
-logger.shouldPrintMessage(11,"foo"); returns true;
-*/
-
-/**
-Analysis
-Naive implementation would be using hashmap, with key of log message and value of timestamp.
-It would pass the OJ, however, there are concerns on the capacity, thinking of it as a cache, then certain eviction policy needed 
-to remove obsolete record to avoid exploding the data structure in memory.
-简单地用HashMap可以实现功能，但并不完美，没有考虑到大数据且很多message不同的情形，这样HashMap很有可能造成内存过载。归根结底，这是一个微型系统设计 
-- design a logger system，因此也考验系统扩展性和健壮性。
-如果使用Java的LinkedHashMap，可以很方便地实现eviction。实际上LinkedHashMap也可以用于实现LRU。
-https://www.baeldung.com/java-linked-hashmap
-LinkedHashMap<Integer, String> map = new LinkedHashMap<>(16, .75f, true);
-initial capacity, custom load factor (LF), and access-order (vs default insertion-order)
-This mechanism ensures that the order of iteration of elements is the order in which the elements were last accessed, from least-recently 
-accessed to most-recently accessed. The order of elements in the key set is transformed as we perform access operations on the map.
-自定义 removeEldestEntry()：
-protected boolean removeEldestEntry(Map.Entry<String, Integer> eldest) {    return lastSecond - eldest.getValue() > 10;}
-相关问题： https://leetcode.com/problems/design-hit-counter/
-*/
-
-// Solution 1: Naive Implementation Using HashMap (not considering capacity) - （134 ms）
+logger.shouldPrintMessage(1, "foo");  // return true, next allowed timestamp for "foo" is 1 + 10 = 11
+logger.shouldPrintMessage(2, "bar");  // return true, next allowed timestamp for "bar" is 2 + 10 = 12
+logger.shouldPrintMessage(3, "foo");  // 3 < 11, return false
+logger.shouldPrintMessage(8, "bar");  // 8 < 12, return false
+logger.shouldPrintMessage(10, "foo"); // 10 < 11, return false
+logger.shouldPrintMessage(11, "foo"); // 11 >= 11, return true, next allowed timestamp for "foo" is 11 + 10 = 21
+--------------------------------------------------------------------------------
+Attempt 1: 2025-02-23
+Solution 1: Hash Table (10 min)
 class Logger {
-    Map<String, Integer> logs;
+    // Map to store the last timestamp when each message was printed
+    private Map<String, Integer> messageTimestamps;
 
     /** Initialize your data structure here. */
     public Logger() {
-        this.logs = new HashMap<>();
+        messageTimestamps = new HashMap<>();
     }
 
-    /** Returns true if the message should be printed in the given timestamp, otherwise returns false.
-        If this method returns false, the message will not be printed.
-        The timestamp is in seconds granularity. */
+    /** 
+     * Returns true if the message should be printed in the given timestamp, otherwise returns false.
+     * If this method returns false, the message will not be printed.
+     */
     public boolean shouldPrintMessage(int timestamp, String message) {
-        if (logs.containsKey(message)) {
-            if (timestamp - logs.get(message) >= 10) {
-                logs.put(message, timestamp);
-                return true;
-            } else {
+        // Check if the message has been printed before
+        if (messageTimestamps.containsKey(message)) {
+            // Get the last timestamp when the message was printed
+            int lastTimestamp = messageTimestamps.get(message);
+            
+            // Check if the message was printed within the last 10 seconds
+            if (timestamp - lastTimestamp < 10) {
                 return false;
             }
-        } else {
-            logs.put(message, timestamp);
         }
+        
+        // Update the timestamp for the message
+        messageTimestamps.put(message, timestamp);
         return true;
     }
 }
 
+Time Complexity: O(n)
+Space Complexity: O(n)
 
-// Solution 2: Using LinkedHashMap (@agnhugo) - (147ms)
-public class Logger {
+Refer to Deepseek
+To solve the Logger Rate Limiter problem, we need to design a system that ensures each message is printed only if it hasn't been printed in the last 10 seconds. We can achieve this by using a HashMap to store the last timestamp when each message was printed.
+Here's the Java implementation:
+import java.util.HashMap;
+import java.util.Map;
 
-    public Map<String, Integer> map;
-    int lastSecond = 0;
-
-    /** Initialize your data structure here. */
-    public Logger() {
-        map = new java.util.LinkedHashMap<String, Integer>(100, 0.6f, true) {
-            protected boolean removeEldestEntry(Map.Entry<String, Integer> eldest) {
-                return lastSecond - eldest.getValue() > 10;
-            }
-        };
-    }
-
-    /** Returns true if the message should be printed in the given timestamp, otherwise returns false.
-        If this method returns false, the message will not be printed.
-        The timestamp is in seconds granularity. */
-    public boolean shouldPrintMessage(int timestamp, String message) {
-        lastSecond = timestamp;
-        if(!map.containsKey(message)||timestamp - map.get(message) >= 10){
-            map.put(message,timestamp);
-            return true;
-        }
-        return false;
-    }
-}
-
-// Solution 3: Using Queue (@han_xuan)
 class Logger {
-    // Algo thinking Queue
-    // time = O(N)
-
-    class TimeMsg {
-        int timestamp;
-        String msg;
-        public TimeMsg(int timestamp, String msg) {
-            this.timestamp = timestamp;
-            this.msg = msg;
-        }
-    }
+    // Map to store the last timestamp when each message was printed
+    private Map<String, Integer> messageTimestamps;
 
     /** Initialize your data structure here. */
-    private static final int MAX_TIME_WINDOW = 10;
-
-    Queue<TimeMsg> msgQueue;
     public Logger() {
-        msgQueue = new LinkedList<>();
+        messageTimestamps = new HashMap<>();
     }
 
-    /** Returns true if the message should be printed in the given timestamp, otherwise returns false.
-    If this method returns false, the message will not be printed.
-    The timestamp is in seconds granularity. */
+    /** 
+     * Returns true if the message should be printed in the given timestamp, otherwise returns false.
+     * If this method returns false, the message will not be printed.
+     */
     public boolean shouldPrintMessage(int timestamp, String message) {
-
-        while (!msgQueue.isEmpty() && timestamp - msgQueue.peek().timestamp >= MAX_TIME_WINDOW) {
-            msgQueue.poll();
+        // Check if the message has been printed before
+        if (messageTimestamps.containsKey(message)) {
+            // Get the last timestamp when the message was printed
+            int lastTimestamp = messageTimestamps.get(message);
+            
+            // Check if the message was printed within the last 10 seconds
+            if (timestamp - lastTimestamp < 10) {
+                return false;
+            }
         }
-
-        Iterator<TimeMsg> iter = msgQueue.iterator();
-        while (iter.hasNext()) {
-            TimeMsg tm = iter.next();
-            if (tm.msg.equals(message)) return false;
-        }
-
-
-        msgQueue.offer(new TimeMsg(timestamp, message));
-
+        
+        // Update the timestamp for the message
+        messageTimestamps.put(message, timestamp);
         return true;
     }
 }
+
+// Example usage:
+public class Main {
+    public static void main(String[] args) {
+        Logger logger = new Logger();
+        
+        System.out.println(logger.shouldPrintMessage(1, "foo")); // returns true
+        System.out.println(logger.shouldPrintMessage(2, "bar")); // returns true
+        System.out.println(logger.shouldPrintMessage(3, "foo")); // returns false
+        System.out.println(logger.shouldPrintMessage(8, "bar")); // returns false
+        System.out.println(logger.shouldPrintMessage(10, "foo")); // returns false
+        System.out.println(logger.shouldPrintMessage(11, "foo")); // returns true
+    }
+}
+
+Explanation:
+1.**Data Structure**: We use a 
+HashMap called messageTimestamps to store the last timestamp when each message was printed. The key is the message, and the value is the timestamp.
+2.**shouldPrintMessage Method**:
+- We first check if the message already exists in the HashMap.
+- If it does, we compare the current timestamp with the last timestamp when the message was printed.
+- If the difference is less than 10 seconds, we return false (indicating the message should not be printed again).
+- If the message hasn't been printed before or if it was printed more than 10 seconds ago, we update the timestamp in the HashMap and return true.
+3.**Example Usage**: The 
+Main class demonstrates how to use the Logger class with the provided example.
+Complexity Analysis:
+- **Time Complexity**: O(1) for both shouldPrintMessage and put operations in the HashMap.
+- **Space Complexity**: O(N), where N is the number of unique messages stored in the HashMap.
+This solution efficiently handles the rate-limiting requirement for logging messages.
