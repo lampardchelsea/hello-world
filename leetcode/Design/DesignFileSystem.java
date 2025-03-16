@@ -123,6 +123,9 @@ public class Solution {
     }
 }
 
+Time: O(k) for both createPath and get, where k is the length of the input path.
+Space: O(T), where T is the total number of components in all stored paths.
+
 Refer to
 https://leetcode.ca/2019-02-08-1166-Design-File-System/
 Related to 588-Design-In-Memory-File-System, and this question is simplified version of 588-Design-In-Memory-File-System
@@ -312,6 +315,22 @@ Explanation
 - createPath Method: This method splits the path into components, checks if the parent path exists, and creates the new directory if valid.
 - get Method: This method splits the path into components, traverses the trie, and returns the value of the specified path or -1 if it doesn't exist.
 This approach efficiently handles both creating paths and retrieving values using a trie structure, ensuring that each operation (create and get) runs in O(k) time complexity, where k is the number of components in the path. The space complexity is linear in the number of directories created.
+Time Complexity Analysis
+The solution uses a trie structure to manage paths. Here's the breakdown of time complexity for each operation:
+1.createPath(path: String, value: int):
+- Splitting the Path: Splitting the string by / takes O(k), where k is the length of the path string.
+- Traversing the Trie: For a path with m components (e.g., /a/b/c has m = 3), traversal requires O(m) operations. Each step involves a hash map lookup/insertion, which is O(1) on average.
+- Total: O(k + m) → simplifies to O(k) since m ≤ k (each component is at least 1 character).
+2.get(path: String):
+- Splitting the Path: Same as above, O(k).
+- Traversing the Trie: Again, O(m) steps for m components.
+- Total: O(k + m) → simplifies to O(k).
+Space Complexity
+- Trie Structure: Each node in the trie occupies space proportional to the number of child nodes. For n valid paths, the worst-case space is O(T), where T is the total number of components across all paths (e.g., /a/b contributes 2 components).
+Summary
+- Time: O(k) for both createPath and get, where k is the length of the input path.
+- Space: O(T), where T is the total number of components in all stored paths.
+This makes the solution efficient for large-scale operations, as hash map operations dominate the time complexity and are highly optimized.
 
 Refer to
 L588.Design In-Memory File System
