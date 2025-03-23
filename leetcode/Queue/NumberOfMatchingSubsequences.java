@@ -471,7 +471,7 @@ Combining all the above:
 2.Recursive stack: O(maxWordLength)
 Final space complexity:O(N×M) (if N×M > maxWordLengthN, otherwise the stack size may dominate in specific edge cases).
 --------------------------------------------------------------------------------
-Solution 3: Binary Search (10 min, exactly same as L392.Is Subsequence (Ref.L792), TLE 23/53)
+Solution 3: Binary Search (60 min, exactly same as L392.Is Subsequence (Ref.L792), TLE 23/53)
 class Solution {
     public int numMatchingSubseq(String s, String[] words) {
         int count = 0;
@@ -533,8 +533,145 @@ class Solution {
     }
 }
 
-Time Complexity: O(n^2 * log⁡n)
-Space Complexity: O(n)
+Time Complexity: O(N * S + N * W * log S)
+In this isSubsequence method, they create a Map<Character, List<Integer>> called s_char_indexes 
+for each word. This means that for every single word, they are reprocessing the entire string s 
+to build this map of character indices. So, if there are N words, this preprocessing step is 
+done N times, which is O(N * S) where S is the length of s. This is very inefficient compared 
+to the binary search solution, which preprocesses s once in O(S) time.
+Space Complexity: O(N)
+The above Binary Serach solution encounters TLE and below is analysis
+Refer to Deepseek
+Example Binary Search solution which won't encounters TLE and pass all 53 test cases in 140 ms
+class Solution {
+    public int numMatchingSubseq(String s, String[] words) {
+        List<Integer>[] charIndices = new ArrayList[26];
+        for (int i = 0; i < 26; i++) {
+            charIndices[i] = new ArrayList<>();
+        }
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            charIndices[c - 'a'].add(i);
+        }
+        
+        int count = 0;
+        for (String word : words) {
+            if (isSubsequence(word, charIndices)) {
+                count++;
+            }
+        }
+        return count;
+    }
+    
+    private boolean isSubsequence(String word, List<Integer>[] charIndices) {
+        int currentPos = -1;
+        for (char c : word.toCharArray()) {
+            List<Integer> indices = charIndices[c - 'a'];
+            if (indices.isEmpty()) {
+                return false;
+            }
+            int key = currentPos + 1;
+            int bsResult = Collections.binarySearch(indices, key);
+            if (bsResult >= 0) {
+                currentPos = indices.get(bsResult);
+            } else {
+                int insertionPoint = - (bsResult + 1);
+                if (insertionPoint >= indices.size()) {
+                    return false;
+                }
+                currentPos = indices.get(insertionPoint);
+            }
+        }
+        return true;
+    }
+}
+Okay, let's try to figure out why the user's solution is getting a Time Limit Exceeded (TLE) while the binary search solution passes all test cases. Both solutions use binary search to determine if a word is a subsequence of the string s, but there must be some key differences in their implementations that affect performance.
+First, let's look at the binary search solution that works. In this solution, they preprocess the string s by creating an array of lists, where each list contains the indices of a particular character in s. For example, charIndices[0] would have all the indices where 'a' appears in s. This preprocessing is done once, outside the loop that checks each word. Then, for each word, they check if it's a subsequence by using binary search on these precomputed lists. This way, the preprocessing happens once, and each word is checked efficiently using the stored indices.
+Now, let's examine the user's solution that's getting TLE. The user's approach also uses binary search, but there's a critical difference. In the user's isSubsequence method, they create a Map<Character, List<Integer>> called s_char_indexes for each word. This means that for every single word, they are reprocessing the entire string s to build this map of character indices. So, if there are N words, this preprocessing step is done N times, which is O(N * S) where S is the length of s. This is very inefficient compared to the binary search solution, which preprocesses s once in O(S) time.
+Another thing to note is that in the user's solution, the binarySearch method is implemented manually. While the logic seems correct, using the built-in Collections.binarySearch might be more optimized in practice. The user's binary search could have slight inefficiencies, but the main issue is definitely the repeated preprocessing of s for each word.
+So, the key problem in the user's solution is the repeated creation of the character indices map for every word. This leads to a much higher time complexity, especially when the number of words is large. The binary search solution avoids this by preprocessing once, making it significantly faster for large inputs.
+To fix the user's solution, they should preprocess the character indices once before processing all words, similar to the binary search solution. By moving the creation of s_char_indexes outside of the isSubsequence method and doing it once at the beginning, the time complexity would improve from O(N * S + N * W * log S) to O(S + N * W * log S), where W is the average length of the words. This would prevent redundant computations and eliminate the TLE issue.
+The key difference lies in how the character indices of s are preprocessed. Here's the breakdown:
+1. Preprocessing Overhead
+- Your Solution:
+- For every word, you build the s_char_indexes map from scratch. This involves iterating through s and populating the map with character indices each time.
+- Time Complexity: For N words, this becomes O(N·S), where S is the length of s.
+- Binary Search Solution:
+- Preprocesses s once into charIndices, an array of lists storing indices for each character.
+- Time Complexity: O(S) (done once), leading to O(S + N·W·logS), where W is the average word length.
+2. Why Your Solution Gets TLE
+- Repeatedly rebuilding s_char_indexes for every word is redundant and computationally expensive. For example, if s has 1e4 characters and there are 1e4 words, your solution does 1e8 operations just for preprocessing, which is impractical.
+3. Fixing Your Solution
+Move the preprocessing of s outside the word loop to avoid redundant computations:
+class Solution {
+    public int numMatchingSubseq(String s, String[] words) {
+        // Preprocess 's' only once
+        // {k, v} -> {char in s, indexes of this char in s}
+        Map<Character, List<Integer>> sCharIndices = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            sCharIndices.putIfAbsent(c, new ArrayList<>());
+            sCharIndices.get(c).add(i);
+        }
+        int count = 0;
+        for (String word : words) {
+            count += isSubsequence(word, sCharIndices);
+        }
+        return count;
+    }
+
+    private int isSubsequence(String word, Map<Character, List<Integer>> sCharIndices) {
+        int prev_char_last_index = -1;
+        for (char c : word.toCharArray()) {
+            List<Integer> indices = sCharIndices.get(c);
+            // Must check if current char exist in 's'
+            // Test out: word = "axc", s = "ahbgdc"
+            if (indices == null) {
+                return 0;
+            }
+            // Use binary search to find current char's smallest new index 
+            // which should greater than previous char's last index
+            int curr_char_new_index = binarySearch(indices, prev_char_last_index);
+            // If no valid index is found for current char, 'word' is not 
+            // a subsequence for 's'            
+            if (curr_char_new_index == -1) {
+                return 0;
+            }
+            // Update previous char's last index to the found index
+            // of current char's smallest new index
+            prev_char_last_index = curr_char_new_index;
+        }
+        return 1;
+    }
+
+    // Find lower boundary
+    private int binarySearch(List<Integer> indexes, int prev_char_last_index) {
+        int lo = 0;
+        int hi = indexes.size() - 1;
+        while(lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            // Strictly '>' since bottom line is new index one more 
+            // larger than given index
+            if(indexes.get(mid) > prev_char_last_index) {
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        // If 'lo' is within bounds, return the index, otherwise, return -1
+        if(lo >= indexes.size()) {
+            return -1;
+        }
+        return indexes.get(lo);
+    }
+}
+
+Time Complexity: O(S + N·W·logS)
+Space Complexity: O(N)
+Key Takeaways
+- Preprocess Once: Avoid rebuilding the same data structure multiple times.
+- Leverage Built-in Methods: Use Collections.binarySearch (as in the original solution) for better optimization.
+- Time Complexity: Your fixed solution will now run in O(S + N·W·logS), matching the efficiency of the binary search approach.
 --------------------------------------------------------------------------------
 Solution 4: Two Pointers (10 min, exactly same as L392.Is Subsequence (Ref.L792), TLE 45/53)
 class Solution {
