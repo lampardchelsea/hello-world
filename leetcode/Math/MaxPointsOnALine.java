@@ -29,14 +29,14 @@ class Solution {
             int x = points[i][0];
             int y = points[i][1];
             int curMax = 0;
-            // If no change on x and y, then its a duplicate point
-            // Count points that are identical to the base point separately.
             int duplicates = 0;
             // For each pair of points, compute the change in x (deltaX) 
             // and change in y (deltaY).
             for(int j = 0; j != i && j < n; j++) {
                 int dx = points[j][0] - x;
                 int dy = points[j][1] - y;
+                // If no change on x and y, then its a duplicate point
+                // Count points that are identical to the base point separately.
                 if(dx == 0 && dy == 0) {
                     duplicates++;
                     continue;
@@ -208,4 +208,6 @@ Conclusion
 The normalization step ensures that different fractional representations of the same slope (due to negative signs) are consolidated into a single key in the hash map. This is essential for accurately counting the number of points lying on the same straight line, as it prevents the same slope from being counted under different keys.
 
 Refer to
-
+L356.Line Reflection (Ref.L149)
+L2152.Minimum Number of Lines to Cover Points (Ref.L149)
+L2280.Minimum Lines to Represent a Line Chart (Ref.L149)
