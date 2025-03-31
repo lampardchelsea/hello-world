@@ -181,3 +181,6 @@ The space complexity is determined by the data structures used in the algorithm:
 The cnt variable is a Counter object which, in the worst case, will contain an entry for each unique node in edges. This means its size grows linearly with the number of nodes, contributing a space complexity of O(n).
 The ans variable is an integer, which occupies O(1) space.
 As such, the total space complexity of the algorithm is O(n) for the Counter object plus O(1) for the integer, which results in an overall space complexity of O(n).
+
+Refer to
+L451.P14.5.Sort Characters By Frequency (Ref.L347)
