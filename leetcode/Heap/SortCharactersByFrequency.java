@@ -248,6 +248,7 @@ public class SortCharactersByFrequency {
 
 
 
+
 https://leetcode.com/problems/sort-characters-by-frequency/description/
 Given a string s, sort it in decreasing order based on the frequency of the characters. The frequency of a character is the number of times it appears in the string.
 Return the sorted string. If there are multiple answers, return any of them.
@@ -364,7 +365,7 @@ class Solution {
             for(int i = 0; i < e.getValue()[0]; i++) {
                 sb.append(e.getKey());
             }
-        }      
+        }
         return sb.toString();
     }
 }
@@ -383,15 +384,13 @@ public class Solution {
     public String frequencySort(String s) {
         Map<Character, Integer> map = new HashMap<>();
         for (char c : s.toCharArray()) 
-            map.put(c, map.getOrDefault(c, 0) + 1);
-                        
+            map.put(c, map.getOrDefault(c, 0) + 1);        
         List<Character> [] bucket = new List[s.length() + 1];
         for (char key : map.keySet()) {
             int frequency = map.get(key);
             if (bucket[frequency] == null) bucket[frequency] = new ArrayList<>();
             bucket[frequency].add(key);
         }
-                
         StringBuilder sb = new StringBuilder();
         for (int pos = bucket.length - 1; pos >= 0; pos--)
             if (bucket[pos] != null)
@@ -451,3 +450,7 @@ There is a follow up if you are interested, when same frequency we need to maint
 Refer to
 L347.P14.5.Top K Frequent Elements (Ref.L451)
 L387.First Unique Character in a String (Ref.L451,L2351)
+L1636.Sort Array by Increasing Frequency (Ref.L451)
+L2278.Percentage of Letter in String (Ref.L451)
+L2341.Maximum Number of Pairs in Array (Ref.L451)
+L2374.Node With Highest Edge Score (Ref.L451)
