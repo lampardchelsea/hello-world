@@ -379,5 +379,5 @@ Refer to
 Union Find (并查集) 的四种方法
 L323.Lint431.Number of Connected Components in an Undirected Graph (Ref.L2421)
 L547.Number of Provinces (Friend Circles) (Ref.L323,L2421)
+L1671.Minimum Number of Removals to Make Mountain Array (Ref.L300)
 L2506.Count Pairs Of Similar Strings (Ref.L451)
-
