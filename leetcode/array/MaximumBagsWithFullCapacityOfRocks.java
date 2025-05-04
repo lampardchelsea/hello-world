@@ -130,4 +130,5 @@ This solution has a time complexity of O(n log n) due to the sorting step, and a
 Alternative implementations using priority queues are possible but would have the same time complexity while potentially using more space . The sorting-based approach shown here is the most straightforward and efficient solution.
 
 Refer to
+L1011.Capacity To Ship Packages Within D Days (Ref.L410,L1482)
 L1710.Maximum Units on a Truck (Ref.L2279)
