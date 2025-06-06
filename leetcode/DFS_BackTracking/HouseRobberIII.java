@@ -97,7 +97,7 @@ class Solution {
 
 Time Complexity: O(n)
 Space Complexity: O(n)
-Solution 3: Another Memoization Solution
+Solution 3: Another Memoization Solution (60 min)
 class Solution {
     public int rob(TreeNode root) {
         int[] result = helper(root);
