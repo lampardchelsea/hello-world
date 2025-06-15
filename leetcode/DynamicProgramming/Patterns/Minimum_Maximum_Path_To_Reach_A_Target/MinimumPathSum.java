@@ -1,388 +1,36 @@
-/**
- Refer to
- https://leetcode.com/problems/minimum-path-sum/
- Given a m x n grid filled with non-negative numbers, find a path from top left to 
- bottom right which minimizes the sum of all numbers along its path.
-
-Note: You can only move either down or right at any point in time.
-
-Example:
-Input:
-[
-  [1,3,1],
-  [1,5,1],
-  [4,2,1]
-]
-Output: 7
-Explanation: Because the path 1→3→1→1→1 minimizes the sum.
-*/
-
-// Solution:
-// Refer to
-// https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns#Minimum-(Maximum)-Path-to-Reach-a-Target
-/**
-Minimum (Maximum) Path to Reach a Target
-Problem list: https://leetcode.com/list/55ac4kuc
-
-Generate problem statement for this pattern
-
-Statement
-Given a target find minimum (maximum) cost / path / sum to reach the target.
-
-Approach
-Choose minimum (maximum) path among all possible paths before the current state, then add value for the current state.
-
-routes[i] = min(routes[i-1], routes[i-2], ... , routes[i-k]) + cost[i]
-Generate optimal solutions for all values in the target and return the value for the target.
-
-Top-Down
-for (int j = 0; j < ways.size(); ++j) {
-    result = min(result, topDown(target - ways[j]) + cost/ path / sum);
-}
-return memo[state parameters] = result;
-Bottom-Up
-for (int i = 1; i <= target; ++i) {
-   for (int j = 0; j < ways.size(); ++j) {
-       if (ways[j] <= i) {
-           dp[i] = min(dp[i], dp[i - ways[j]] + cost / path / sum) ;
-       }
-   }
-}
- 
-return dp[target]
-*/
-
-// Refer to
-// https://leetcode.com/problems/minimum-path-sum/discuss/819102/Evolve-from-recursion-to-dp
-/**
-1. brute force O(2^min(m,n)), dfs returns the min cost from i, j to bottom right.
-	public int minPathSum(int[][] grid) {
-        return dfs(0,0,grid);
-    }
-    private int dfs(int i, int j, int[][] grid) {
-        int r=grid.length, c=grid[0].length;
-        if(i==r||j==c) return Integer.MAX_VALUE;
-        if(i==r-1&&j==c-1) return grid[i][j];
-        int down=dfs(i+1,j,grid), right=dfs(i,j+1,grid);
-        return Math.min(down,right)+grid[i][j];
-    }
-    
-2. Memoization O(mn)
-	public int minPathSum(int[][] grid) {
-        Integer[][] mem=new Integer[grid.length][grid[0].length];
-        return dfs(0,0,grid,mem);
-    }
-    private int dfs(int i, int j, int[][] grid, Integer[][] mem) {
-        int r=grid.length, c=grid[0].length;
-        if(i==r||j==c) return Integer.MAX_VALUE;
-        if(i==r-1&&j==c-1) return grid[i][j];
-        if(mem[i][j]!=null) return mem[i][j];
-        int down=dfs(i+1,j,grid,mem), right=dfs(i,j+1,grid,mem);
-        return mem[i][j]=Math.min(down,right)+grid[i][j];
-    }
-    
-3. dp O(mn) Time, O(mn) Space. From #1, f[i][j] = min(f[i+1][j],f[i][j+1]) + grid[i][j]
-	 public int minPathSum(int[][] grid) {
-        int r=grid.length, c=grid[0].length;
-        int[][] dp=new int[r+1][c+1];
-		for(int i=0;i<r-1;i++) dp[i][c]=Integer.MAX_VALUE;// dp[r-1][c]=0
-        for(int i=0;i<c-1;i++) dp[r][i]=Integer.MAX_VALUE;// dp[r][c-1]=0
-        for(int i=r-1;i>=0;i--)
-            for(int j=c-1;j>=0;j--)
-                dp[i][j]=Math.min(dp[i+1][j],dp[i][j+1])+grid[i][j];
-        return dp[0][0];
-    }
-    
-4. O(mn) Time, O(n) space dp
-	 public int minPathSum(int[][] grid) {
-        int r=grid.length, c=grid[0].length;
-        int[] dp=new int[c+1];
-		Arrays.fill(dp,Integer.MAX_VALUE);//row r
-        dp[c-1]=0;
-        for(int i=r-1;i>=0;i--)
-            for(int j=c-1;j>=0;j--)
-                dp[j]=Math.min(dp[j],dp[j+1])+grid[i][j];
-        return dp[0];
-    }
-*/
-
-// Solution 1: Native DFS(TLE)
-class Solution {
-    public int minPathSum(int[][] grid) {
-        if(grid == null || grid.length == 0) {
-            return 0;
-        }
-        return helper(grid, 0, 0);
-    }
-    
-    private int helper(int[][] grid, int i, int j) {
-        int r = grid.length;
-        int c = grid[0].length;
-        if(i == r || j == c) {
-            return Integer.MAX_VALUE;
-        }
-        if(i == r - 1 && j == c - 1) {
-            return grid[i][j];
-        }
-        int down = helper(grid, i + 1, j);
-        int right = helper(grid, i, j + 1);
-        return Math.min(down, right) + grid[i][j];
-    }
-}
-
-// Solution 2: Top Down DP Memoization
-/**
-Previous version
-// Refer to
-// https://loveforprogramming.quora.com/Backtracking-Memoization-Dynamic-Programming
-// https://leetcode.com/problems/minimum-path-sum/discuss/23493/My-Java-solution-using-DP-with-memorization-(beats-about-98-submissions)/273665
-// Runtime: 1 ms, faster than 99.80% of Java online submissions for Minimum Path Sum.
-// Memory Usage: 35.4 MB, less than 100.00% of Java online submissions for Minimum Path Sum.
-class Solution {
-    public int minPathSum(int[][] grid) {
-        if(grid == null || grid.length == 0) {
-            return 0;
-        }
-        int m = grid.length;
-        int n = grid[0].length;
-        // Initial memo to store already computed back tracking
-        // path value on each corresponding position =>
-        // Each cell in memo mapping to cell in given grid and
-        // store the minimum path sum calculated backwards from
-        // bottom right corner cell to this cell
-        int[][] memo = new int[m][n];
-        return helper(grid, 0, 0, memo);
-    }
-    
-    private int helper(int[][] grid, int i, int j, int[][] memo) {
-        if(i < grid.length && j < grid[0].length) {
-            if(i == grid.length - 1 && j == grid[0].length - 1) {
-                // Store current cell value in memo if we reach
-                // to bottom right and return it
-                memo[i][j] = grid[i][j];
-                return memo[i][j];
-            }
-            // Consult memo in case we have already calculated routes
-            // for a particular cell, if the result not as initial as
-            // 0, return it, otherwise use the usual recursion on
-            // bottom and right direction
-            if(memo[i][j] != 0) {
-                return memo[i][j];
-            }
-            int bottom = helper(grid, i + 1, j, memo);
-            int right = helper(grid, i, j + 1, memo);
-            // Take the minimum value for a cell on a decision tree
-            int min = Math.min(bottom, right);
-            // Add cell value to the minimum value from left or right child
-            memo[i][j] = min + grid[i][j];
-            return memo[i][j];
-        }
-        return Integer.MAX_VALUE;
-    }
-}
-*/
-class Solution {
-    public int minPathSum(int[][] grid) {
-        if(grid == null || grid.length == 0) {
-            return 0;
-        }
-        Integer[][] memo = new Integer[grid.length][grid[0].length];
-        return helper(grid, 0, 0, memo);
-    }
-    
-    private int helper(int[][] grid, int i, int j, Integer[][] memo) {
-        int r = grid.length;
-        int c = grid[0].length;
-        if(i == r || j == c) {
-            return Integer.MAX_VALUE;
-        }
-        if(i == r - 1 && j == c - 1) {
-            return grid[i][j];
-        }
-        if(memo[i][j] != null) {
-            return memo[i][j];
-        }
-        int down = helper(grid, i + 1, j, memo);
-        int right = helper(grid, i, j + 1, memo);
-        memo[i][j] = Math.min(down, right) + grid[i][j];
-        return memo[i][j];
-    }
-}
-
-// Solution 3: Bottom Up DP
-class Solution {
-    public int minPathSum(int[][] grid) {
-        if(grid == null || grid.length == 0) {
-            return 0;
-        }
-        int m = grid.length;
-        int n = grid[0].length;
-        int[][] dp = new int[m][n];
-        dp[0][0] = grid[0][0];
-        for(int i = 1; i < m; i++) {
-            dp[i][0] = dp[i - 1][0] + grid[i][0];
-        }
-        for(int i = 1; i < n; i++) {
-            dp[0][i] = dp[0][i - 1] + grid[0][i];
-        }
-        for(int i = 1; i < m; i++) {
-            for(int j = 1; j < n; j++) {
-                dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
-            }
-        }
-        return dp[m - 1][n - 1];
-    }
-}
-
-// Solution 4: Bottom Up DP without extra space
-class Solution {
-    public int minPathSum(int[][] grid) {
-        if(grid == null || grid.length == 0) {
-            return 0;
-        }
-        int m = grid.length;
-        int n = grid[0].length;
-        for(int i = 1; i < m; i++) {
-            grid[i][0] = grid[i - 1][0] + grid[i][0];
-        }
-        for(int i = 1; i < n; i++) {
-            grid[0][i] = grid[0][i - 1] + grid[0][i];
-        }
-        for(int i = 1; i < m; i++) {
-            for(int j = 1; j < n; j++) {
-                grid[i][j] = Math.min(grid[i - 1][j], grid[i][j - 1]) + grid[i][j];
-            }
-        }
-        return grid[m - 1][n - 1];
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 https://leetcode.com/problems/minimum-path-sum/description/
-
-Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right, which minimizes the sum of all numbers along its path.
+Given a 
+m x n 
+grid filled with non-negative numbers, find a path from top left to bottom right, which minimizes the sum of all numbers along its path.
 
 Note: You can only move either down or right at any point in time.
 
 Example 1:
 
 
-```
 Input: grid = [[1,3,1],[1,5,1],[4,2,1]]
 Output: 7
 Explanation: Because the path 1 → 3 → 1 → 1 → 1 minimizes the sum.
-```
 
 Example 2:
-```
 Input: grid = [[1,2,3],[4,5,6]]
 Output: 12
-```
 
 Constraints:
 - m == grid.length
 - n == grid[i].length
 - 1 <= m, n <= 200
 - 0 <= grid[i][j] <= 200
----
+--------------------------------------------------------------------------------
 Attempt 1: 2023-08-22
-
 Solution 1: Native DFS (10 min, TLE 25/61)
-```
 class Solution {
     public int minPathSum(int[][] grid) {
         return helper(grid, 0, 0);
     }
  
+
     private int helper(int[][] grid, int i, int j) {
         if(i >= grid.length || j >= grid[0].length) {
             return Integer.MAX_VALUE;
@@ -395,16 +43,15 @@ class Solution {
         return Math.min(go_down, go_right) + grid[i][j];
     }
 }
-```
 
 Solution 2: DFS + Memoization (10 min)
-```
 class Solution {
     public int minPathSum(int[][] grid) {
         Integer[][] memo = new Integer[grid.length][grid[0].length];
         return helper(grid, 0, 0, memo);
     }
  
+
     private int helper(int[][] grid, int i, int j, Integer[][] memo) {
         if(i >= grid.length || j >= grid[0].length) {
             return Integer.MAX_VALUE;
@@ -420,14 +67,10 @@ class Solution {
         return memo[i][j] = Math.min(go_down, go_right) + grid[i][j];
     }
 }
-```
 
 Solution 3: 2D DP (60 min)
-
 Style 1: Initial 2D dp array as same size of 2D grid array
-
 Note: Fully based on recursion "top" as (0, 0) and recursion "bottom" as (grid.length - 1, grid[0].length - 1) standard which exactly reflect the relation from Solution 1 Native DFS, in dp traversal, since compare to DFS solution, the dp solution will save much more time as no recursion stack push from "top" to "bottom" procedure like DFS, instead it directly process from "bottom" to "top", we should start with "bottom" and trace back to "top", the final solution will come out from dp[0][0]
-```
 class Solution {
     public int minPathSum(int[][] grid) {
         int m = grid.length;
@@ -452,12 +95,10 @@ class Solution {
         return dp[0][0];
     }
 }
-```
 
 Refer to
 https://leetcode.com/problems/minimum-path-sum/solutions/856314/sequential-thought-recursion-memo-dp-faster-easy-understanding/
-```
-//3. Dynamic Programming [ faster than 71.65% ] [ TC: (m*n) ]
+3. Dynamic Programming [ faster than 71.65% ] [ TC: (m*n) ]
 class Solution {
 public:
     int minCost(vector<vector<int>> &cost,int m, int n,vector<vector<int>> dp) { 
@@ -475,12 +116,9 @@ public:
       }
       return dp[0][0];
     }
-```
 
 Style 2: Initial 2D dp array as one more column and row than original grid array
-
 Note: Create one more row and one more column which helps uniform the formula make it even able to apply to last column and last row, even it strictly follow the conditions in Native DFS, still need to handle original last column and row specially, the difference between int[][] dp = new int[m][n] style is here the additional last column and row provide a way to do Math.min() as a uniform style as it always have a rightwards, downwards one to compare, which also mapping to base condition 1 in Native DFS
-```
 class Solution {
     public int minPathSum(int[][] grid) {
         int m = grid.length;
@@ -531,15 +169,11 @@ class Solution {
         return dp[0][0];
     }
 }
-```
 
 Refer to
 https://leetcode.wang/leetCode-64-Minimum-PathSum.html
-
 解法二
-
 这里我们直接用 grid 覆盖存，不去 new 一个 n 的空间了。
-```
 public int minPathSum(int[][] grid) {
     int m = grid.length;
     int n = grid[0].length;
@@ -556,15 +190,397 @@ public int minPathSum(int[][] grid) {
     for (int i = 1; i < m; i++) {
         for (int j = 1; j < n; j++) {
             grid[i][j] = Math.min(grid[i][j - 1], grid[i - 1][j]) + grid[i][j];
+
         }
     }
     return grid[m - 1][n - 1];
 }
-```
 时间复杂度：O（m * n）。
 空间复杂度：O（1）。
 
-
 总
-
 依旧是62题的扩展，理解了 62 题的话，很快就写出来了。
+--------------------------------------------------------------------------------
+Attempt 2: 2025-06-15
+Solution 1: Native DFS (TLE 25/66)
+Style 1:
+class Solution {
+    public int minPathSum(int[][] grid) {
+        return helper(0, 0, grid);
+    }
+    
+    private int helper(int i, int j, int[][] grid) {
+        if (i == grid.length - 1 && j == grid[0].length - 1) {
+            return grid[i][j];
+        }
+        int minSum = Integer.MAX_VALUE;
+        if (i + 1 < grid.length) {
+            int downSum = helper(i + 1, j, grid);
+            minSum = Math.min(minSum, downSum);
+        }
+        if (j + 1 < grid[0].length) {
+            int rightSum = helper(i, j + 1, grid);
+            minSum = Math.min(minSum, rightSum);
+        }
+        return grid[i][j] + minSum;
+    }
+}
+
+Time Complexity: O(2^n)
+Space Complexity: O(n)
+Style 2:
+class Solution {
+    public int minPathSum(int[][] grid) {
+        return helper(grid, 0, 0);
+    } 
+
+    private int helper(int[][] grid, int i, int j) {
+        if(i == grid.length - 1 && j == grid[0].length - 1) {
+            return grid[i][j];
+        }
+        if(i > grid.length - 1 || j > grid[0].length - 1) {
+            return Integer.MAX_VALUE;
+        }
+        int go_down = helper(grid, i + 1, j);
+        int go_right = helper(grid, i, j + 1);
+        return Math.min(go_down, go_right) + grid[i][j];
+    }
+}
+
+Time Complexity: O(2^n)
+Space Complexity: O(n)
+
+Solution 2: Memoization (10 min)
+Style 1:
+class Solution {
+    public int minPathSum(int[][] grid) {
+        // Create memoization table initialized with -1
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][] memo = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            Arrays.fill(memo[i], -1);
+        }
+        return helper(0, 0, grid, memo);
+    }
+    
+    private int helper(int i, int j, int[][] grid, int[][] memo) {
+        // Base case: reached bottom-right corner
+        if (i == grid.length - 1 && j == grid[0].length - 1) {
+            return grid[i][j];
+        }
+        // Return memoized result if available
+        if (memo[i][j] != -1) {
+            return memo[i][j];
+        }
+        int minSum = Integer.MAX_VALUE;
+        // Try moving down
+        if (i + 1 < grid.length) {
+            int downSum = helper(i + 1, j, grid, memo);
+            minSum = Math.min(minSum, downSum);
+        }
+        // Try moving right
+        if (j + 1 < grid[0].length) {
+            int rightSum = helper(i, j + 1, grid, memo);
+            minSum = Math.min(minSum, rightSum);
+        }
+        // Store result in memo table before returning
+        memo[i][j] = grid[i][j] + minSum;
+        return memo[i][j];
+    }
+}
+
+Time Complexity: O(n)
+Space Complexity: O(n)
+Style 2:
+class Solution {
+    public int minPathSum(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][] memo = new int[m][n];
+        // Initialize with -1 (or another value that can't occur)
+        for (int[] row : memo) Arrays.fill(row, -1);
+        return helper(grid, 0, 0, memo);
+    } 
+
+    private int helper(int[][] grid, int i, int j, int[][] memo) {
+        if (i == grid.length - 1 && j == grid[0].length - 1) {
+            return grid[i][j];
+        }
+        if (i >= grid.length || j >= grid[0].length) {
+            return Integer.MAX_VALUE;
+        }
+        if (memo[i][j] != -1) {
+            return memo[i][j];
+        }
+        int go_down = helper(grid, i + 1, j, memo);
+        int go_right = helper(grid, i, j + 1, memo);
+        memo[i][j] = Math.min(go_down, go_right) + grid[i][j];
+        return memo[i][j];
+    }
+}
+
+Time Complexity: O(n)
+Space Complexity: O(n)
+
+Solution 3: 2D DP (10 min)
+Wrong Solution
+Input
+grid = [[1,3,1],[1,5,1],[4,2,1]]
+Output = -2147483642
+Expected = 7
+class Solution {
+    public int minPathSum(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][] dp = new int[m][n];
+        dp[m - 1][n - 1] = grid[m - 1][n - 1];
+        for(int i = m - 1; i >= 0; i--) {
+            for(int j = n - 1; j >= 0; j--) {
+                int go_down = (i + 1 < m ? dp[i + 1][j] : Integer.MAX_VALUE);
+                int go_right = (j + 1 < n ? dp[i][j + 1] : Integer.MAX_VALUE);
+                dp[i][j] = Math.min(go_down, go_right) + grid[i][j];
+            }
+        }
+        return dp[0][0];
+    }
+}
+
+Refer to Deepseek
+The issue with your 2D DP solution is that you're overwriting the destination cell dp[m-1][n-1] after its initialization. Here's why it fails and how to fix it:
+Problem Analysis
+For input grid = [[1,3,1],[1,5,1],[4,2,1]]:
+- Your code returns -2147483642 (integer overflow)
+- Expected output is 7 (path: 1→1→4→2→1)
+The Bug
+1.Double Counting:
+- You initialize dp[2][2] = 1 (correct)
+- But then in the loop when i=2, j=2, you recompute it:
+dp[2][2] = Math.min(MAX_VALUE, MAX_VALUE) + 1; // Results in MAX_VALUE + 1
+- This causes integer overflow (wraps around to negative)
+2.Incorrect Value Propagation:
+- The overflow at dp[2][2] propagates wrong values upward
+Fixed Solution
+class Solution {
+    public int minPathSum(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][] dp = new int[m][n];
+        // Initialize destination cell
+        dp[m-1][n-1] = grid[m-1][n-1];
+        // Fill DP table from bottom-right to top-left
+        for (int i = m-1; i >= 0; i--) {
+            for (int j = n-1; j >= 0; j--) {
+                // Skip destination cell (already initialized)
+                if (i == m-1 && j == n-1) continue;
+                // Get values from below and right
+                int down = (i + 1 < m) ? dp[i+1][j] : Integer.MAX_VALUE;
+                int right = (j + 1 < n) ? dp[i][j+1] : Integer.MAX_VALUE;
+                // Current cell value + minimum path
+                dp[i][j] = grid[i][j] + Math.min(down, right);
+            }
+        }
+        return dp[0][0];
+    }
+}
+
+Time Complexity: O(m * n)
+Space Complexity: O(m * n)
+Key Fixes
+1.Skip Destination Cell:
+- Uncommented the continue statement for (m-1, n-1)
+- Prevents recomputation of the destination cell
+2.Proper Initialization:
+- Only initialize dp[m-1][n-1] once
+- All other cells are computed based on their neighbors
+Why This Works
+- Correctly computes minimum path sums without overflow
+- Maintains the same logic as your DFS solution:
+
+- Uses MAX_VALUE for out-of-bounds cases
+- Takes minimum of down/right paths
+- Processes cells in the same order (bottom-up, right-to-left)
+Edge Case Handling
+The fixed solution properly handles:
+- Grids of any size
+- All positive numbers (no overflow)
+- The destination cell being computed only once
+This will now correctly return 7 for the given input.
+
+Solution 4: 2 Rows DP (10 min)
+class Solution {
+    public int minPathSum(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[] nextRow = new int[n];
+        int[] currRow = new int[n];
+        // Base case
+        nextRow[n - 1] = grid[m - 1][n - 1];
+        // Initialize nextRow
+        for(int j = n - 2; j >= 0; j--) {
+            nextRow[j] = grid[m - 1][j] + nextRow[j + 1];
+        }
+        // Process rows from bottom to top
+        for(int i = m - 2; i >= 0; i--) {
+            // Initialize currRow's last column
+            currRow[n - 1] = grid[i][n - 1] + nextRow[n - 1];
+            // Process columns from right to left
+            for(int j = n - 2; j >= 0; j--) {
+                currRow[j] = grid[i][j] + Math.min(currRow[j + 1], nextRow[j]);
+            }
+            // Swap rows for next iteration (next row value update 
+            // to current row since in next iteration, current row
+            // value used as next row)
+            int[] tmp = nextRow;
+            nextRow = currRow;
+            currRow = tmp;
+        }
+        return nextRow[0];
+    }
+}
+
+Time Complexity: O(m * n)
+Space Complexity: O(2 * n)
+Refer to Deepseek
+Here's the space-optimized 2-row DP solution based on your fixed 2D DP approach:
+class Solution {
+    public int minPathSum(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[] currentRow = new int[n];
+        int[] nextRow = new int[n];
+        // Initialize bottom row
+        nextRow[n-1] = grid[m-1][n-1];
+        for (int j = n-2; j >= 0; j--) {
+            nextRow[j] = grid[m-1][j] + nextRow[j+1];
+        }
+        // Process rows from bottom to top
+        for (int i = m-2; i >= 0; i--) {
+            // Initialize current row's last column
+            currentRow[n-1] = grid[i][n-1] + nextRow[n-1];
+            // Process columns from right to left
+            for (int j = n-2; j >= 0; j--) {
+                currentRow[j] = grid[i][j] + Math.min(currentRow[j+1], nextRow[j]);
+            }
+            // Swap rows for next iteration
+            int[] temp = nextRow;
+            nextRow = currentRow;
+            currentRow = temp;
+        }
+        return nextRow[0];
+    }
+}
+Key Features:
+1.Space Optimization:
+- Uses only two 1D arrays (currentRow and nextRow) instead of full 2D grid
+- Reduces space complexity from O(mn) to O(n)
+2.Correct Initialization:
+- Properly initializes the bottom row first
+- Handles the destination cell correctly without recomputation
+3.Processing Order:
+- Processes rows from bottom to top (m-2 to 0)
+- Processes columns from right to left (n-2 to 0)
+- Matches the computation order of the 2D DP solution
+4.Boundary Handling:
+- Last column of each row is handled separately
+- Naturally handles grid boundaries without MAX_VALUE checks
+Why This Works:
+1.Dependency Preservation:
+- nextRow stores values from the row below
+- currentRow[j+1] gives the right neighbor in current row
+- This matches the dependencies in the 2D version:
+
+- dp[i][j] depends on dp[i+1][j] (below) and dp[i][j+1] (right)
+2.Correct State Transition:
+- currentRow[j] = grid[i][j] + Math.min(currentRow[j+1], nextRow[j])
+- Exactly mirrors the 2D DP logic
+3.Efficiency:
+- Each cell is computed exactly once
+- Only maintains two rows at any time
+Example Walkthrough:
+For input grid = [[1,3,1],[1,5,1],[4,2,1]]:
+1.Initialize nextRow with bottom row values: [7, 3, 1]
+2.Process middle row:
+- currentRow becomes [8, 5, 2]
+3.Process top row:
+- currentRow becomes [7, 6, 3]
+4.Final result is nextRow[0] = 7
+This matches the expected minimum path sum (1→1→4→2→1 = 7) while using only O(n) space.
+
+Solution 5: 1D DP (10 min)
+class Solution {
+    public int minPathSum(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[] dp = new int[n];
+        // Base case
+        dp[n - 1] = grid[m - 1][n - 1];
+        // Initialize last row
+        for(int j = n - 2; j >= 0; j--) {
+            dp[j] = grid[m - 1][j] + dp[j + 1];
+        }
+        // Process rows from bottom to top
+        for(int i = m - 2; i >= 0; i--) {
+            // Initialize currRow's last column
+            // The 'dp[n - 1]' on equation left side means the previous
+            // row's last column value (before update), the 'dp[n - 1]'
+            // on equation right side means the current row's last column
+            // value (after update), same statement, different meaning
+            dp[n - 1] = grid[i][n - 1] + dp[n - 1];
+            // Process columns from right to left
+            for(int j = n - 2; j >= 0; j--) {
+                dp[j] = grid[i][j] + Math.min(dp[j + 1], dp[j]);
+            }
+        }
+        return dp[0];
+    }
+}
+
+Time Complexity: O(m * n)
+Space Complexity: O(n)
+
+Refer to Deepseek
+Here's the most space-efficient version using just a single 1D array:
+class Solution {
+    public int minPathSum(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[] dp = new int[n];
+        // Initialize last row
+        dp[n-1] = grid[m-1][n-1];
+        for (int j = n-2; j >= 0; j--) {
+            dp[j] = grid[m-1][j] + dp[j+1];
+        }
+        // Process rows from bottom to top
+        for (int i = m-2; i >= 0; i--) {
+            // Update last column in current row
+            dp[n-1] += grid[i][n-1];
+            // Process columns from right to left
+            for (int j = n-2; j >= 0; j--) {
+                dp[j] = grid[i][j] + Math.min(dp[j], dp[j+1]);
+            }
+        }
+        return dp[0];
+    }
+}
+Key Insights:
+1.Single Array Usage:
+- dp[j] serves dual purpose:
+
+- Before update: stores value from below (previous row)
+- After update: stores value for current cell
+2.Right-to-Left Processing:
+- Essential for correct dependencies
+- dp[j+1] is already updated for current row
+- dp[j] (before update) contains value from row below
+3.Efficient Updates:
+- Last column handled separately (only depends on cell below)
+- Other columns: dp[j] = grid[i][j] + min(below, right)
+Time/Space Complexity:
+- Time: O(mn) - processes each cell once
+- Space: O(n) - single array of size n
+This maintains the same computation order as the 2D and 2-row solutions while using minimal space. The right-to-left processing is crucial for correct results.
+
+Refer to
+L62.Unique Paths (Ref.L63,L64,L174,L2087,L2304,L2400)
+L63.Unique Paths II (Ref.L62)
