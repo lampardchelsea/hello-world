@@ -492,3 +492,7 @@ This mapping preserves the DFS logic while enabling efficient tabulation. The lo
 
 Refer to
 L62.Unique Paths (Ref.L63,L64,L174,L2087,L2304,L2400)
+L174.Dungeon Game (Ref.L62,L72)
+L741.Cherry Pickup (Ref.L62,L2435)
+L1091.Shortest Path in Binary Matrix
+L2087.Minimum Cost Homecoming of a Robot in a Grid (Ref.L62)
