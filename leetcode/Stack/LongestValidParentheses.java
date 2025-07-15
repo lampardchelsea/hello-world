@@ -183,39 +183,47 @@ Solution 1: Stack (60 min)
 Style 1: With push -1 as dummy begin first
 class Solution {
     public int longestValidParentheses(String s) {
-        // Stores the maximum length of valid parentheses found
+        // Stores the maximum length of valid parentheses substring found
         int maxLen = 0;
-        // Stack to keep track of indices
+        // Stack to keep track of indices of parentheses
+        // The indices help us calculate the length of valid substrings
         Stack<Integer> stack = new Stack<>();
-        // The -1 serves as a dummy index representing the position 
-        // before the string starts (imaginary index -1)
-        // It provides a reference point for calculating the length 
-        // of valid parentheses starting from index 0
+        // Push -1 as initial base index onto the stack
+        // This serves three important purposes:
+        // 1. Provides a reference point for calculating lengths starting from index 0
+        // 2. Acts as a boundary marker when the stack becomes empty
+        // 3. Helps handle edge cases like valid substrings starting at index 0
         stack.push(-1);
+        // Iterate through each character in the string
         for(int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if(c == '(') {
-                // Push the index of '(' onto the stack
+                // For opening '(', push its index onto the stack
+                // These represent potential starting points for valid substrings
                 stack.push(i);
-            // When encountering ')'
             } else {
+                // For closing ')', we first pop the top element
+                // This could be either:
+                // 1. The index of a matching '(' (which we'll use to calculate length)
+                // 2. A boundary marker (either -1 or index of a previous unmatched ')')
                 stack.pop();
                 if(stack.isEmpty()) {
-                    // When we pop and the stack becomes empty, we 
-                    // know we've encountered an unmatched )
-                    // We then push the current index as a new boundary marker
+                    // If stack becomes empty after popping, push current index
+                    // This serves as a new boundary marker because:
+                    // 1. We've encountered an unmatched ')'
+                    // 2. Future valid substrings cannot extend past this point
                     stack.push(i);
                 } else {
-                    // Current valid length is i - stack.peek()
-                    // Length Calculation:
-                    // When we find a valid pair () at indices (i,j), the 
-                    // length is j - stack.peek()
-                    // Without -1, we wouldn't have a starting reference 
-                    // for valid pairs beginning at index 0
+                    // If stack is not empty, the current top represents:
+                    // - For matched pairs: the index before the valid substring starts
+                    // - For boundary cases: the last unmatched position
+                    // Calculate current valid length as current index - stack's top index
+                    // Update maxLen if this is the longest valid substring found so far
                     maxLen = Math.max(maxLen, i - stack.peek());
                 }
             }
         }
+        // Return the maximum length of valid parentheses substring found
         return maxLen;
     }
 }
