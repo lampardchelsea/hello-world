@@ -461,6 +461,67 @@ Without -1:
 3.')' at 1: pop → stack empty → need special handling
 The -1 initialization makes the algorithm more elegant and uniform in handling all cases. While it's possible to write a solution without it, the resulting code would be more complex and harder to maintain.
 
+For Style 1 below explain and the statement, please how an example to for: A boundary marker (either -1 or index of a previous unmatched ')')
+// For closing ')', we first pop the top element
+// This could be either:
+// 1. The index of a matching '(' (which we'll use to calculate length)
+// 2. A boundary marker (either -1 or index of a previous unmatched ')')
+stack.pop();
+Explanation with Examples: Popping from the Stack for ')'
+When we encounter a closing parenthesis ')', we always pop() from the stack. The popped element can be one of two things:
+Case 1: Index of a Matching '(' (Valid Pair)
+Example String: "()"
+- Stack starts: [-1]
+- i=0 '(' → push 0 → stack: [-1, 0]
+- i=1 ')' → pop() removes 0
+- This 0 was the index of a matching '('
+- Stack becomes: [-1] (not empty)
+- Calculate length: 1 - (-1) = 2
+- Result: Valid substring "()" (length=2)
+Case 2: Boundary Marker (Unmatched ')')
+Example String: "())"
+- Stack starts: [-1]
+- i=0 '(' → push 0 → stack: [-1, 0]
+- i=1 ')' → pop() removes 0 (matching '(')
+
+- Stack becomes: [-1]
+- Length: 1 - (-1) = 2
+- i=2 ')' → pop() removes -1
+- This -1 was a boundary marker (not a '(')
+- Stack becomes empty → push current index 2
+- New stack: [2] (this 2 is a boundary marker for future calculations)
+Why Boundary Markers Matter
+Extended Example: "())()"
+1.After processing "())" (above):
+- Stack: [2] (boundary marker at index 2)
+- Current max length: 2
+2.Continue processing:
+- i=3 '(' → push 3 → stack: [2, 3]
+- i=4 ')' → pop() removes 3 (matching '(')
+
+- Stack becomes: [2] (not empty)
+- Calculate length: 4 - 2 = 2
+- New max length: max(2, 2) = 2
+3.Final valid substring: "()" (indices 3-4)
+- Separated from earlier valid "()" (indices 0-1) by boundary marker 2 (the unmatched ')')
+Key Insights
+1.Boundary markers are indices that represent:
+- The start of the string (initial -1)
+- Positions of unmatched ')' (like index 2 in the example)
+2.Length calculation i - stack.peek():
+- Measures distance from current position back to:
+
+- The last boundary marker (if no matches since then)
+- Or the position after the last valid match
+3.Purpose of pushing unmatched ')':
+Creates a new boundary preventing future valid substrings from merging across unmatched parentheses.
+Visualization
+For "())()":
+Indices: 0 1 2 3 4
+Chars:   ( ) ) ( )
+         └─┘   └─┘
+         len=2   len=2 (separated by boundary at index 2)
+The unmatched ')' at index 2 acts as a permanent divider between the two valid substrings.
 
 Refer to
 L20.P11.5.Valid Parentheses (Ref.L32)
