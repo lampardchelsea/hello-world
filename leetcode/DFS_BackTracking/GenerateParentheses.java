@@ -1,253 +1,3 @@
-/**
- * Refer to
- * https://leetcode.com/problems/generate-parentheses/#/description
- *  Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
-    For example, given n = 3, a solution set is:
-    [
-      "((()))",
-      "(()())",
-      "(())()",
-      "()(())",
-      "()()()"
-    ]
- * 
- * Solution
- * https://discuss.leetcode.com/topic/8724/easy-to-understand-java-backtracking-solution
- * https://segmentfault.com/a/1190000003884251
- * 回溯法
- * 复杂度
- * 时间 O(N) 空间 O(N) 递归栈
- * 思路
- * 当我们放置一个新的符号时，我们有两个选择，放置左括号，或者放置右括号，但是按照题意我们最多放置n个左括号，
- * 放一个剩余可放置左括号就少一个，但剩余可放置右括号则多了一个。而对于右括号，必须前面放了一个左括号，
- * 我们才能放一个右括号。所以我们根据剩余可放置左括号，和剩余可放置右括号，代入递归，就可以求解。
- * public class Solution {
-      List<String> res = new LinkedList<String>();
-      public List<String> generateParenthesis(int n) {
-          helper(n, 0, "");
-          return res;
-      }
-      private void helper(int left, int right, String tmp){
-          // 如果左括号右括号都放完了，则找到一个结果
-          if(left == 0 && right == 0){
-              res.add(tmp);
-              return;
-          }
-          // 对于每个位置，我们有两种选择，要么放左括号，要么放右括号
-          if (left > 0){
-              helper(left - 1, right + 1, tmp+"(");
-          }
-          if (right > 0){
-              helper(left, right - 1, tmp+")");
-          }
-      }
-  }
- * 
-*/
-
-// The explain for why we need if(open > close) {...} ?
-/**
-https://leetcode.com/problems/generate-parentheses/discuss/10100/Easy-to-understand-Java-backtracking-solution/10980
-I would like to share my understanding about this algorithm. Hope will make people easier to understand the beauty of this code.
-
-The goal is to print a string of "(" ,")" in certain order. The length of string is 2n. The constraints are that "("s need to match ")"s.
-Without constraints, we just simply print out "(" or ")" until length hits n. So the base case will be length == 2 n, recursive case is 
-print out "(" and ")". The code will look like
-
-//base case
-if(string length == 2*n) {
-add(string);
-return;
-}
-//recursive case
-add a "("
-add a ")"
-
-Let’s add in constraints now. We need to interpret the meanings of constraints. First, the first character should be "(". 
-Second, at each step, you can either print "(" or ")", but print ")" only when there are more "("s than ")"s to make sure we only construct "()". 
-Stop printing out "(" when the number of "(" s hit n. The first actually merges into the second condition.
-
-The code will be:
-//base case
-if(string length == 2*n) {
-add(string);
-return;
-}
-//recursive case
-if(number of "("s < n){
-add a "("
-}
-if(number of "("s > number of ")"s){
-add a ")"
-}
-*/
-
-// Solution 1: Style 1
-// https://leetcode.com/problems/generate-parentheses/discuss/10098/Java-DFS-way-solution/10940
-class Solution {
-    public List<String> generateParenthesis(int n) {
-        List<String> result = new ArrayList<String>();
-        helper(result, n, n, "");
-        return result;
-    }
-    
-    private void helper(List<String> result, int open, int close, String temp) {
-        if(open == 0 && close == 0) {
-            result.add(temp);
-        }
-        // Has left Parenthesis
-        if(open > 0) {
-            helper(result, open - 1, close, temp + "(");
-        }
-        // Has more right Parenthesis, hence we can put ")" to construct "()" only
-        // if normal limitation as 'if(close > 0)' may result as ")("
-        if(close > open) {
-            helper(result, open, close - 1, temp + ")");
-        }
-    }
-}
-
-
-// Solution 2: Style 2
-public class Solution {
-    public List<String> generateParenthesis(int n) {
-        List<String> result = new ArrayList<String>();
-        helper(result, "", 0, 0, n);
-        return result;
-    }
-    
-    public void helper(List<String> result, String str, int open, int close, int max) {
-        if(str.length() == max * 2) {
-            result.add(str);
-            return;
-        }
-        if(open < max) {
-            helper(result, str + "(", open + 1, close, max);
-        }
-        if(close < open) {
-            helper(result, str + ")", open, close + 1, max);
-        }
-    }
-    
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 https://leetcode.com/problems/generate-parentheses/
 Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
 
@@ -442,7 +192,6 @@ class Solution {
     }
 }
 
-
 Refer to
 https://algo.monster/liteproblems/22
 Problem Description
@@ -559,3 +308,93 @@ Time Complexity
 The time complexity of the given code is O(4^n / sqrt(n)). This complexity arises because each valid combination can be represented by a path in a decision tree, which has 2n levels (since we make a decision at each level to add either a left or a right parenthesis, and we do this n times for each parenthesis type). However, not all paths in the tree are valid; the number of valid paths follows the nth Catalan number, which is proportional to 4^n / (n * sqrt(n)), and n is a factor that represents the polynomial part that gets smaller as n gets larger. Since we're looking at big-O notation, we simplify this to 4^n / sqrt(n) for large n.
 Space Complexity
 The space complexity is O(n) because the depth of the recursive call stack is proportional to the number of parentheses to generate, which is 2n, and the space required to store a single generated set of parentheses is also linear to n. Hence, the complexity due to the call stack is O(n). The space used to store the answers is separate and does not affect the complexity from a big-O perspective. Keep in mind that the returned list itself will contain O(4^n / sqrt(n)) elements, and if you consider the space for the output list, the overall space complexity would be O(n * 4^n / sqrt(n)), which includes the length of each string times the number of valid strings. Typically, the space complexity considers only the additional space required, not the space for the output. Therefore, we only consider the O(n) space used by the call stack for our space complexity analysis.
+
+Refer to Deepseek
+Here's a Java solution using backtracking to generate all combinations of well-formed parentheses:
+public class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> result = new ArrayList<>();
+        backtrack(result, "", 0, 0, n);
+        return result;
+    }
+    
+    private void backtrack(List<String> result, String current, int open, int close, int max) {
+        if (current.length() == max * 2) {
+            result.add(current);
+            return;
+        }
+        if (open < max) {
+            backtrack(result, current + "(", open + 1, close, max);
+        }
+        if (close < open) {
+            backtrack(result, current + ")", open, close + 1, max);
+        }
+    }
+}
+Explanation:
+1.Base Case: When the current string's length reaches 2*n (since each pair has 2 parentheses), we add it to the result list.
+2.Recursive Cases:
+- Add an opening parenthesis '(' if the count of opening parentheses is less than n
+- Add a closing parenthesis ')' if the count of closing parentheses is less than opening parentheses
+3.Backtracking: The algorithm builds the solution incrementally by trying all valid possibilities at each step, and backtracking when it hits an invalid state (which is implicitly handled by the conditions).
+Time and Space Complexity:
+- Time Complexity: O(4^n/√n) - This is the nth Catalan number which is the exact number of valid combinations.
+- Space Complexity: O(4^n/√n) for storing all combinations, and O(n) for the recursion stack.
+This approach efficiently generates all valid combinations by ensuring at each step that we never have more closing parentheses than opening ones.
+
+I didn't see explicit backtracking statement, is that because we use String type parameter in recursion call ? And if yes, is that means if we use StringBuilder type parameter in recursion call, we have to write explicit backtracking statement ?
+Yes, your understanding is correct. Let me clarify the difference:
+1. Using String (Original Solution) - Implicit Backtracking
+backtrack(result, current + "(", ...); 
+
+- Immutable Strings: Each recursive call gets a new copy of the string
+- Automatic State Revert: When recursion returns to parent call, the original current remains unchanged
+- No cleanup needed: The parameter is passed by value, so modifications stay in child calls
+2. Using StringBuilder - Explicit Backtracking Required
+// With mutable StringBuilder
+current.append('(');
+backtrack(...);
+current.deleteCharAt(current.length() - 1); // REQUIRED CLEANUP
+
+- Mutable Object: All recursive calls share the same StringBuilder instance
+- Explicit Backtracking: Must manually remove added characters after recursion
+- Why?: Otherwise previous calls would retain modifications from deeper calls
+Modified Solution with StringBuilder (Explicit Backtracking):
+public class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> result = new ArrayList<>();
+        backtrack(result, new StringBuilder(), 0, 0, n);
+        return result;
+    }
+    
+    private void backtrack(List<String> result, StringBuilder sb, int open, int close, int max) {
+        // Base case: valid combination found
+        if (sb.length() == max * 2) {
+            result.add(sb.toString());
+            return;
+        }
+        // Case 1: Add '(' if possible
+        if (open < max) {
+            sb.append('(');
+            backtrack(result, sb, open + 1, close, max);
+            sb.deleteCharAt(sb.length() - 1); // Explicit backtracking
+        }
+        // Case 2: Add ')' if valid
+        if (close < open) {
+            sb.append(')');
+            backtrack(result, sb, open, close + 1, max);
+            sb.deleteCharAt(sb.length() - 1); // Explicit backtracking
+        }
+    }
+}
+Key Differences:
+AspectString VersionStringBuilder VersionMutabilityImmutableMutableMemory EfficiencyCreates new strings (higher overhead)Modifies in-place (more efficient)BacktrackingAutomatic (no code needed)Manual deleteCharAt() requiredParameter PassingPass-by-value (safe)Pass-by-reference (shared state)Recursion StateEach call has isolated stateAll calls share same object
+Why This Matters:
+- String: Simpler, less error-prone, but creates many temporary strings
+- StringBuilder: More efficient (O(n) vs O(n²) per recursive call), but requires careful state management
+- Best Practice: Use String for simplicity in small inputs (like LeetCode), StringBuilder for memory-critical applications
+Both solutions have the same time complexity (O(4^n/√n)), but the StringBuilder version reduces memory allocation overhead by avoiding creating new string objects at each recursion level.
+
+
+Refer to
+L20.P11.5.Valid Parentheses (Ref.L32)
