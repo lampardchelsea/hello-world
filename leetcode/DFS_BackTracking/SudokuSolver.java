@@ -1,116 +1,14 @@
-/**
- * Refer to
- * https://leetcode.com/problems/sudoku-solver/description/
- * 
- * Solution
- * https://discuss.leetcode.com/topic/11327/straight-forward-java-solution-using-backtracking
-*/
-class Solution {
-    public void solveSudoku(char[][] board) {
-        if(board == null || board.length == 0 || board[0] == null || board[0].length == 0) {
-            return;
-        }
-        helper(board);
-    }
-    
-    private boolean helper(char[][] board) {
-        for(int i = 0; i < 9; i++) {
-            for(int j = 0; j < 9; j++) {
-                if(board[i][j] == '.') {
-                    for(char c = '1'; c <= '9'; c++) { //trial. Try 1 through 9
-                        if(isValid(board, i, j, c)) {
-                            board[i][j] = c; //Put c for this cell
-                            if(helper(board)) {
-                                return true;
-                            } else {
-                                board[i][j] = '.'; //If it's the solution return true
-                            }
-                        }
-                    }
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-    
-    private boolean isValid(char[][] board, int row, int col, char c) {
-        for(int i = 0; i < 9; i++) {
-            // board[row][i] != '.' is not necessary
-            //if(board[row][i] != '.' && board[row][i] == c) { //check row
-            if(board[row][i] == c) {
-                return false;
-            }
-            // board[i][col] != '.' is not necessary
-            //if(board[i][col] != '.' && board[i][col] == c) { //check column
-            if(board[i][col] == c) {
-                return false;
-            }
-            // board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] != '.' is not necessary
-            // if(board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] != '.' && board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] == c) {
-            if(board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] == c) {
-                return false; //check 3*3 block
-            }
-        }
-        return true;
-    }
-    
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 https://leetcode.com/problems/sudoku-solver/
-
 Write a program to solve a Sudoku puzzle by filling the empty cells.
-
 A sudoku solution must satisfy all of the following rules:
-1. Each of the digits 1-9 must occur exactly once in each row.
-2. Each of the digits 1-9 must occur exactly once in each column.
-3. Each of the digits 1-9 must occur exactly once in each of the 9 3x3 sub-boxes of the grid.
+1.Each of the digits 1-9 must occur exactly once in each row.
+2.Each of the digits 1-9 must occur exactly once in each column.
+3.Each of the digits 1-9 must occur exactly once in each of the 9 3x3 sub-boxes of the grid.
 The '.' character indicates empty cells.
 
 Example 1:
 
 
-```
 Input: board = [["5","3",".",".","7",".",".",".","."],
                 ["6",".",".","1","9","5",".",".","."],
                 [".","9","8",".",".",".",".","6","."],
@@ -130,7 +28,6 @@ Output: [["5","3","4","6","7","8","9","1","2"],
          ["9","6","1","5","3","7","2","8","4"],
          ["2","8","7","4","1","9","6","3","5"],
          ["3","4","5","2","8","6","1","7","9"]]
-```
 
 Explanation: The input board is shown above and the only valid solution is shown below:
 
@@ -140,15 +37,14 @@ Constraints:
 - board[i].length == 9
 - board[i][j] is a digit or '.'.
 - It is guaranteed that the input board has only one solution.
----
+--------------------------------------------------------------------------------
 Attempt 1: 2023-01-06
-
 Solution 1: Backtracking (10 min)
-```
 class Solution { 
     public void solveSudoku(char[][] board) { 
         helper(board); 
-    } 
+    }
+    
     private boolean helper(char[][] board) { 
         for(int i = 0; i < 9; i++) { 
             for(int j = 0; j < 9; j++) { 
@@ -196,12 +92,10 @@ class Solution {
 Time Complexity: O(9^m)
 Try 1 through 9 for each cell. The time complexity should be 9 ^ m (m represents the number of blanks to be filled in), since each blank can have 9 choices.
 Space Complexity: O(9^m), the recursion stack
-```
 
 Refer to
 https://leetcode.com/problems/sudoku-solver/solutions/15752/straight-forward-java-solution-using-backtracking/comments/15800
 Try 1 through 9 for each cell. The time complexity should be 9 ^ m (m represents the number of blanks to be filled in), since each blank can have 9 choices. Details see comments inside code.
-```
     public void solveSudoku(char[][] board) { 
         doSolve(board, 0, 0); 
     } 
@@ -232,13 +126,11 @@ Try 1 through 9 for each cell. The time complexity should be 9 ^ m (m represents
                 return false; 
         return true; 
     }
-```
 
 Refer to
 https://leetcode.com/problems/sudoku-solver/solutions/15752/straight-forward-java-solution-using-backtracking/comments/15787
-1. Don't need to check whether the a cell in the row, col or region is not dot. Just check these cells are not c is enough. Since c will not be a '.'
-2. Define region start row and region start col variables make the code a bit more readable and reduce 8 times duplicate computing in each call.
-```
+1.Don't need to check whether the a cell in the row, col or region is not dot. Just check these cells are not c is enough. Since c will not be a '.'
+2.Define region start row and region start col variables make the code a bit more readable and reduce 8 times duplicate computing in each call.
     private boolean isValid(char[][] board, int row, int col, char c){ 
         int regionRow = 3 * (row / 3);  //region start row 
         int regionCol = 3 * (col / 3);    //region start col 
@@ -249,4 +141,6 @@ https://leetcode.com/problems/sudoku-solver/solutions/15752/straight-forward-jav
         } 
         return true; 
     }
-```
+ 
+Refer to
+L36.Valid Sudoku (Ref.L37,L2133)
