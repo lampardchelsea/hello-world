@@ -147,4 +147,4 @@ Refer to
 L36.Valid Sudoku (Ref.L37,L2133)
 L37.Sudoku Solver (Ref.L36)
 L1572.Matrix Diagonal Sum (Ref.L2133,L2319)
-2661
+L2661.First Completely Painted Row or Column (Ref.L2133)
