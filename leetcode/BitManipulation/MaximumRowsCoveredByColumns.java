@@ -335,3 +335,4 @@ For n=12, both approaches are feasible since C(12, k) is manageable (maximum C(1
 
 Refer to
 L473.Matchsticks to Square (Ref.L2397)
+L698.Partition to K Equal Sum Subsets (Ref.L473,L2397)
