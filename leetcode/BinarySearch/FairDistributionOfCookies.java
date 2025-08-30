@@ -154,46 +154,111 @@ This problem is about distributing cookies among k children such that the maximu
 We can use backtracking with pruning or binary search with greedy checking.
 Solution 1: Backtracking with Pruning (Recommended)
 class Solution {
-    private int minUnfairness = Integer.MAX_VALUE;
+    private int minUnfairness = Integer.MAX_VALUE; // Tracks the minimum maximum cookies any child gets
     
     public int distributeCookies(int[] cookies, int k) {
-        int[] children = new int[k];
-        backtrack(cookies, 0, children);
+        int[] children = new int[k]; // Array to track cookie count for each child
+        backtrack(cookies, 0, children); // Start backtracking from first cookie
         return minUnfairness;
     }
     
     private void backtrack(int[] cookies, int index, int[] children) {
+        // Base case: all cookies have been distributed
         if (index == cookies.length) {
             int max = 0;
+            // Find the maximum cookies any child has (the unfairness metric)
             for (int amount : children) {
                 max = Math.max(max, amount);
             }
+            // Update the global minimum unfairness
             minUnfairness = Math.min(minUnfairness, max);
             return;
         }
-        
-        // Prune: if current max is already worse than best found, return
+        // PRUNING: Calculate current maximum before distributing more cookies
         int currentMax = 0;
         for (int amount : children) {
             currentMax = Math.max(currentMax, amount);
         }
+        // If current distribution is already worse than best found solution, stop exploring
         if (currentMax >= minUnfairness) {
             return;
         }
-        
+        // Try giving the current cookie to each child
         for (int i = 0; i < children.length; i++) {
-            children[i] += cookies[index];
-            backtrack(cookies, index + 1, children);
-            children[i] -= cookies[index];
-            
-            // Prune: if this child hasn't received any cookies yet, 
-            // no need to try other empty children (duplicate states)
+            children[i] += cookies[index]; // Give cookie to this child
+            backtrack(cookies, index + 1, children); // Recurse for next cookie
+            children[i] -= cookies[index]; // Backtrack: take cookie back
+            // IMPORTANT PRUNING: If this child had 0 cookies before receiving this cookie,
+            // and we're backtracking (meaning this assignment didn't lead to a better solution),
+            // then no need to try giving this cookie to other children who also have 0 cookies.
+            // This avoids duplicate states where the same cookie is given to different empty children.
             if (children[i] == 0) {
                 break;
             }
         }
     }
 }
+Can you share an example for below prune to illustrate the logic ?
+// IMPORTANT PRUNING: If this child had 0 cookies before receiving this cookie,
+// and we're backtracking (meaning this assignment didn't lead to a better solution),
+// then no need to try giving this cookie to other children who also have 0 cookies.
+// This avoids duplicate states where the same cookie is given to different empty children.
+if (children[i] == 0) {
+    break;
+}
+Let me illustrate this critical pruning with a concrete example:
+Example Scenario
+Cookies: [8, 15, 10] (3 cookies)
+Children: k = 3 (Child A, Child B, Child C)
+Current state: All children have 0 cookies initially
+Without Pruning
+We would try all permutations:
+Give cookie#1 (8) to Child A → then try cookie#2 and cookie#3
+Give cookie#1 (8) to Child B → then try cookie#2 and cookie#3  
+Give cookie#1 (8) to Child C → then try cookie#2 and cookie#3
+But all these are equivalent states since the children are indistinguishable when empty!
+With Pruning
+if (children[i] == 0) {
+    break;
+}
+Here's what happens:
+1.First iteration: Give cookie#1 (8) to Child A
+- children = [8, 0, 0]
+- Recurse to distribute remaining cookies
+- Backtrack: Child A goes back to 0
+2.Second iteration: Try to give cookie#1 (8) to Child B
+- But children[i] == 0 is true (Child B has 0 cookies)
+- break out of the loop ← PRUNING HAPPENS HERE
+- Skip trying Child C entirely
+Why This Works
+Mathematically equivalent states:
+- [8, 0, 0] (cookie to Child A)
+- [0, 8, 0] (cookie to Child B)
+- [0, 0, 8] (cookie to Child C)
+These all represent the same distribution pattern: one child has 8 cookies, others have 0.
+More Complex Example
+Cookies: [8, 15, 10, 5]
+Partial distribution: [8, 15, 0, 0] (Child A=8, Child B=15, Child C=0, Child D=0)
+Now we want to distribute cookie#3 (10):
+Option 1: Give to Child C → [8, 15, 10, 0]
+Option 2: Give to Child D → [8, 15, 0, 10] ← EQUIVALENT to Option 1!
+With pruning:
+1.Give to Child C → explore this branch fully
+2.When backtracking, Child C goes back to 0
+3.Try to give to Child D → but children[i] == 0 → break
+The Logic Behind the Pruning
+for (int i = 0; i < children.length; i++) {
+    children[i] += cookies[index];
+    backtrack(...);
+    children[i] -= cookies[index];
+    
+    if (children[i] == 0) {  // After backtracking, if child is empty again
+        break;               // No need to try other empty children
+    }
+}
+Key insight: If giving a cookie to an empty child didn't lead to a better solution, then giving it to any other empty child won't either, because empty children are indistinguishable.
+This pruning eliminates symmetrical duplicate states and reduces the time complexity from O(k^n) to roughly O(k^(n/k)) in practice, making it feasible for the problem constraints.
+
 Solution 2: Binary Search + Greedy (Similar to LeetCode 410)
 class Solution {
     public int distributeCookies(int[] cookies, int k) {
