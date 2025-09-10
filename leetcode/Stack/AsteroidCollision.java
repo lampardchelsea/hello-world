@@ -1,202 +1,3 @@
-/**
-Refer to
-https://leetcode.com/problems/asteroid-collision/
-We are given an array asteroids of integers representing asteroids in a row.
-
-For each asteroid, the absolute value represents its size, and the sign represents its direction (positive meaning right, 
-negative meaning left). Each asteroid moves at the same speed.
-
-Find out the state of the asteroids after all collisions. If two asteroids meet, the smaller one will explode. If both are 
-the same size, both will explode. Two asteroids moving in the same direction will never meet.
-
-Example 1:
-Input: asteroids = [5,10,-5]
-Output: [5,10]
-Explanation: The 10 and -5 collide resulting in 10. The 5 and 10 never collide.
-
-Example 2:
-Input: asteroids = [8,-8]
-Output: []
-Explanation: The 8 and -8 collide exploding each other.
-
-Example 3:
-Input: asteroids = [10,2,-5]
-Output: [10]
-Explanation: The 2 and -5 collide resulting in -5. The 10 and -5 collide resulting in 10.
-
-Example 4:
-Input: asteroids = [-2,-1,1,2]
-Output: [-2,-1,1,2]
-Explanation: The -2 and -1 are moving left, while the 1 and 2 are moving right. Asteroids moving the same direction never meet, so no asteroids will meet each other.
-
-Constraints:
-2 <= asteroids.length <= 104
--1000 <= asteroids[i] <= 1000
-asteroids[i] != 0
-*/
-
-// Wrong Solution, PASS:244/275
-// Failed on Input [1,-2,-2,-2], Output [-2,-2], Expected [-2,-2,-2]
-/**
-class Solution {
-    public int[] asteroidCollision(int[] asteroids) {
-        Stack<Integer> stack = new Stack<Integer>();
-        for(int a : asteroids) {
-            if(stack.isEmpty()) {
-                stack.push(a);
-            } else {
-                // Add flag test out by [-2,-2,1,-1]
-                boolean flag = true;
-                while(!stack.isEmpty()) {
-                    if(stack.peek() > 0 && a < 0) {
-                        if(stack.peek() <= Math.abs(a)) {
-                            // Separately handle equal and non-equal case test out by [-2,-2,1,-2]
-                            // Only 1 time pop out add break test out by [-2,1,1,-1]
-                            if(stack.peek() == Math.abs(a)) {
-                                flag = false;
-                                stack.pop();
-                                break;
-                            } else {
-                                stack.pop();
-                            }
-                        } else {
-                            break;
-                        }
-                    } else {
-                        break;
-                    }
-                }
-                if(!stack.isEmpty() && flag) {
-                    if(stack.peek() * a > 0 || (stack.peek() < 0 && a > 0)) {
-                        stack.push(a);
-                    }
-                }
-            }
-        }
-        int n = stack.size();
-        int i = n - 1;
-        int[] result = new int[n];
-        while(!stack.isEmpty()) {
-            result[i--] = stack.pop();
-        }
-        return result;
-    }
-}
-
-
-Input
-[1,-2,-2,-2]
-Output
-[-2,-2]
-Expected
-[-2,-2,-2]
-*/
-
-// Solution 1: Category as always push positive, handle negative in different situation, similar to open / close brackets handling
-// Refer to
-// https://leetcode.com/problems/asteroid-collision/discuss/193403/Java-easy-to-understand-solution
-/**
-public int[] asteroidCollision(int[] asteroids) {
-        Stack<Integer> s = new Stack<>();
-        for(int i: asteroids){
-            if(i > 0){
-                s.push(i);
-            }else{// i is negative
-                while(!s.isEmpty() && s.peek() > 0 && s.peek() < Math.abs(i)){
-                    s.pop();
-                }
-                if(s.isEmpty() || s.peek() < 0){
-                    s.push(i);
-                }else if(i + s.peek() == 0){
-                    s.pop(); //equal
-                }
-            }
-        }
-        int[] res = new int[s.size()];   
-        for(int i = res.length - 1; i >= 0; i--){
-            res[i] = s.pop();
-        }
-        return res;
-    }
-*/
-class Solution {
-    public int[] asteroidCollision(int[] asteroids) {
-        Stack<Integer> stack = new Stack<Integer>();
-        for(int a : asteroids) {
-            if(a > 0) {
-                stack.push(a);
-            } else {
-                // There is only one case need to looply calculate collide case
-                // current peek as positive and coming value as negative
-                // Based on collide rules, have to pop out peek value if its less
-                // than absolute value of coming negative
-                while(!stack.isEmpty() && stack.peek() > 0 && stack.peek() < Math.abs(a)) {
-                    stack.pop();
-                }
-                // After pop out all collided positive if stack becomes empty or 
-                // stack peek is also negative we can push current negative
-                if(stack.isEmpty() || stack.peek() < 0) {
-                    stack.push(a);
-                } else if(stack.peek() + a == 0) {
-                    stack.pop(); // Handle equal case, e.g [8,-8]
-                }
-            }
-        }
-        int n = stack.size();
-        int i = n - 1;
-        int[] result = new int[n];
-        while(!stack.isEmpty()) {
-            result[i--] = stack.pop();
-        }
-        return result;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 https://leetcode.com/problems/asteroid-collision/
 We are given an array asteroids of integers representing asteroids in a row.
 For each asteroid, the absolute value represents its size, and the sign represents its direction (positive meaning right, negative meaning left). Each asteroid moves at the same speed.
@@ -224,6 +25,130 @@ Constraints:
 --------------------------------------------------------------------------------
 Attempt 1: 2024-10-20
 Solution 1: Stack (30 min)
+Style 1: More intuitive to understand
+class Solution {
+    public int[] asteroidCollision(int[] asteroids) {
+        Stack<Integer> stack = new Stack<>();
+        for(int ast : asteroids) {
+            boolean push = true;
+            // Only when current asteroid is negative and the top of stack is positive, collision happens
+            while(!stack.isEmpty() && ast < 0 && stack.peek() > 0) {
+                int cur = stack.peek();
+                // Top explodes, need push
+                if(cur < -ast) {
+                    stack.pop();
+                    continue;
+                // Both explode, pop out top and no need push
+                } else if(cur == -ast) {
+                    stack.pop();
+                    push = false;
+                    break;
+                // Current asteroid explodes, no need push
+                } else {
+                    push = false;
+                    break;
+                }
+            }
+            if(push) {
+                stack.push(ast);
+            }
+        }
+        int[] result = new int[stack.size()];
+        for(int i = result.length - 1; i >= 0; i--) {
+            result[i] = stack.pop();
+        }
+        return result;
+    }
+}
+
+Time Complexity: O(n), each asteroid is pushed and popped at most once.
+Space Complexity: O(n) for the stack.
+
+Refer to Deepseek
+I'll provide a Java solution for LeetCode 735. "Asteroid Collision", along with an explanation and complexity analysis.
+Problem Description
+We are given an array asteroids of integers representing asteroids in a row. For each asteroid:
+- The absolute value represents its size.
+- The sign represents its direction (positive: moving right, negative: moving left).
+- All asteroids move at the same speed.
+When two asteroids meet:
+- The smaller one explodes.
+- If both are the same size, both explode.
+Asteroids moving in the same direction never meet. The problem is to return the state of the asteroids after all collisions.
+Java Solution
+import java.util.Stack;
+
+class Solution {
+    public int[] asteroidCollision(int[] asteroids) {
+        Stack<Integer> stack = new Stack<>();
+        for (int ast : asteroids) {
+            boolean push = true;
+            // Only when current asteroid is negative and the top of stack is positive, collision happens
+            while (!stack.isEmpty() && ast < 0 && stack.peek() > 0) {
+                int top = stack.peek();
+                if (top < -ast) {
+                    stack.pop(); // top explodes
+                    continue; // check next top
+                } else if (top == -ast) {
+                    stack.pop(); // both explode
+                    push = false;
+                    break;
+                } else {
+                    push = false; // current asteroid explodes
+                    break;
+                }
+            }
+            if (push) {
+                stack.push(ast);
+            }
+        }
+        // Convert stack to array
+        int[] result = new int[stack.size()];
+        for (int i = result.length - 1; i >= 0; i--) {
+            result[i] = stack.pop();
+        }
+        return result;
+    }
+}
+Explanation
+1.Use a Stack:
+- We traverse each asteroid.
+- Collisions only occur when a negative asteroid (moving left) meets a positive asteroid (moving right) in the stack.
+2.Handle Collisions:
+- While the stack is not empty, and the current asteroid is negative, and the top of the stack is positive:
+
+- If the top asteroid is smaller than the current (absolute value), pop it from the stack (it explodes).
+- If they are equal, pop the top and skip pushing the current (both explode).
+- If the top is larger, skip pushing the current (it explodes).
+3.Push Asteroid:
+- If no collision occurs or the current asteroid survives, push it to the stack.
+4.Convert Stack to Array:
+- The stack contains the asteroids that survived, in reverse order. We pop them into an array from the end to the beginning.
+Example Walkthrough
+Let asteroids = [5, 10, -5]:
+- Push 5: stack = [5]
+- Push 10: stack = [5,10]
+- Current asteroid = -5:
+
+- Compare with top (10): 10 > 5? So -5 explodes? Wait, actually:
+
+- top = 10, current = -5: 10 > |-5|? So current explodes? But wait, the rule: if top is larger, current explodes.
+- So we break without pushing.
+- Result: [5,10]
+Another example: asteroids = [10, 2, -5]:
+- Push 10: stack = [10]
+- Push 2: stack = [10,2]
+- Current = -5:
+
+- Compare with top (2): 2 < |-5|? So pop 2 (explodes). Now stack = [10].
+- Compare with top (10): 10 > |-5|? So current explodes.
+- Result: [10]
+Complexity Analysis
+- Time Complexity: O(n), each asteroid is pushed and popped at most once.
+- Space Complexity: O(n) for the stack.
+This solution efficiently simulates the collisions using a stack. Let me know if you need further clarification!
+--------------------------------------------------------------------------------
+Style 2:
 class Solution {
     public int[] asteroidCollision(int[] asteroids) {
         Stack<Integer> stack = new Stack<>();
