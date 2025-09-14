@@ -83,6 +83,33 @@ public int minMoves2(int[] nums) {
     return operations;
 }
 Approach 2: Quick Select
+How Would This Work In Code?
+Our algorithm is quite simple:
+function quickSelect(nums, left, right, k)
+   if left = right return nums[left]   // base case
+
+   pIndex = random element between left and right
+   pIndex = partition(nums, left, right, pIndex)
+   
+   if k = pIndex
+      return nums[k]
+   else if k < pIndex
+      return quickselect with: right = pIndex - 1
+   else
+      return quickselect with: left = pIndex + 1
+Keep in mind that k above represents the kth smallest element; not the largest. We handle this in our main function as aforementioned.
+All we need now are a couple of helper functions, namely partition() and swap().
+Partition Function:
+In our partition function, all we need to do is:
+- Swap our pivot and the right-most element
+- Move each element to less than the pivot to the left partition.
+It can be a bit confusing to understand how swaps are made so let me try and explain it visually. Let the pivot here be 4.
+
+
+As you can see, after partitioning, our pivot is at the exact index it's supposed to be in a sorted array. Not only that but all the elements less than 4 are to the left of it and all the elements to the right are greater than it. Awesome! This is our expected behaviour.
+In Java, we have to use a custom swap function to swap elements two elements in an array.
+Note: the reason to use a random pivot is to minimise the potential that our algorithm hits the worst-case time. In other words, with random pivoting, our algorithm's expected performance is equally good on all datasets.
+Code:
 Time complexity: O(n) average case (read this Guide for Quick Select)
 Space complexity: O(logn)
 class Solution {
@@ -142,49 +169,130 @@ class Solution {
         return moves;
     }
 }
-Approach 2: Quickselect for Median (More Efficient)
-class Solution {
-    public int minMoves2(int[] nums) {
-        final int n = nums.length;
-        final int median = quickSelect(nums, 0, n - 1, (n + 1) / 2);
-        int ans = 0;
-        for (final int num : nums)
-            ans += Math.abs(num - median);
-
-        return ans;
-    }
-
-    private int quickSelect(int[] nums, int l, int r, int k) {
-        final int randIndex = new Random().nextInt(r - l + 1) + l;
-        swap(nums, randIndex, r);
-        final int pivot = nums[r];
-        int nextSwapped = l;
-        for (int i = l; i < r; ++i)
-            if (nums[i] <= pivot)
-                swap(nums, nextSwapped++, i);
-        swap(nums, nextSwapped, r);
-        final int count = nextSwapped - l + 1;
-        if (count == k)
-            return nums[nextSwapped];
-        if (count > k)
-            return quickSelect(nums, l, nextSwapped - 1, k);
-        return quickSelect(nums, nextSwapped + 1, r, k - count);
-    }
-
-    private void swap(int[] nums, int i, int j) {
-        final int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
-    }
-}
 Explanation
-Approach 1 (Sorting + Median)
-1.Sorting: The array is sorted to easily find the median .
+1.Sorting: The array is sorted to easily find the median.
 2.Median Selection: The middle element of the sorted array is chosen as the median (for odd lengths) .
 3.Move Calculation: The sum of absolute differences between each element and the median gives the minimum number of moves .
 - Time Complexity: O(n log n) due to sorting .
 - Space Complexity: O(1) or O(n) depending on the sorting algorithm's space usage.
-Approach 2 (Quickselect)
+Approach 2: Quickselect for Median (More Efficient)
+1. 什么是 Quickselect？
+Quickselect 是一种用于在未排序的数组中找到第 k 小（或第 k 大）元素的高效算法。它是著名的 Quicksort（快速排序）算法的变体，但只专注于排序的一侧，因此平均时间复杂度为 O(n)，最坏情况下为 O(n²)（但通过优化可以避免）。
+2. 算法思想
+Quickselect 的核心思想与 Quicksort 类似：
+1.选择基准（Pivot）：从数组中选择一个元素作为基准（通常随机选择以避免最坏情况）。
+2.分区（Partitioning）：将数组重新排列，使得所有小于基准的元素都在基准的左边，所有大于基准的元素都在右边（等于基准的元素可以任意放置）。
+3.递归搜索：
+- 如果基准的位置正好是 k，那么基准就是第 k 小的元素。
+- 如果 k 小于基准的位置，则在左子数组中递归查找第 k 小的元素。
+- 如果 k 大于基准的位置，则在右子数组中递归查找第 k 小的元素（注意调整 k 的值）。
+3. 算法步骤（伪代码）
+function quickselect(arr, left, right, k):
+    if left == right:
+        return arr[left]
+
+    pivot_index = partition(arr, left, right)
+
+    if k == pivot_index:
+        return arr[k]
+    else if k < pivot_index:
+        return quickselect(arr, left, pivot_index - 1, k)
+    else:
+        return quickselect(arr, pivot_index + 1, right, k)
+4. 分区（Partition）方法
+分区是 Quickselect 的核心步骤，通常采用 Lomuto 或 Hoare 分区方案。这里以 Lomuto 分区为例：
+1.选择最后一个元素作为基准（pivot）。
+2.初始化一个指针 i = left - 1。
+3.遍历数组从 left 到 right-1：
+- 如果当前元素 <= pivot，则 i++，并交换 arr[i] 和 arr[j]。
+4.最后将 pivot（arr[right]）与 arr[i+1] 交换。
+5.返回 pivot 的最终位置 i+1。
+5. 时间复杂度
+- 平均情况：O(n)（因为每次递归处理的数据规模大约减半）。
+- 最坏情况：O(n²)（当每次选择的 pivot 都是最大或最小值时）。
+- 优化：通过随机选择 pivot，最坏情况可以被避免，平均时间复杂度为 O(n)。
+6. 与排序对比
+- 如果只需要第 k 小的元素，完全排序整个数组需要 O(n log n)，而 Quickselect 平均只要 O(n)，更高效。
+7. 应用场景
+- 找中位数、第 k 小/大的元素。
+- 例如 LeetCode 462（Minimum Moves to Equal Array Elements II）中，找中位数时就可以用 Quickselect 代替排序，将时间复杂度从 O(n log n) 优化到平均 O(n)。
+8. Java 代码示例（找第 k 小的元素）
+import java.util.Random;
+
+class Solution {
+    // 随机数生成器，用于随机选择pivot以避免最坏情况
+    private static Random rand = new Random();
+
+    // 主方法：找到第k小的元素（k从1开始计数）
+    public int findKthSmallest(int[] nums, int k) {
+        // 因为数组索引从0开始，所以第k小的元素在排序后的索引位置是k-1
+        return quickselect(nums, 0, nums.length - 1, k - 1);
+    }
+
+    // Quickselect递归方法
+    private int quickselect(int[] nums, int left, int right, int k) {
+        // 基准情况：当左右边界相等时，只有一个元素，直接返回
+        if (left == right) {
+            return nums[left];
+        }
+
+        // 对当前子数组进行分区，返回pivot的最终位置
+        int pivotIndex = partition(nums, left, right);
+
+        // 如果pivot的位置正好是k，那么pivot就是我们要找的元素
+        if (k == pivotIndex) {
+            return nums[k];
+        } 
+        // 如果k在pivot的左边，只在左半部分递归查找
+        else if (k < pivotIndex) {
+            return quickselect(nums, left, pivotIndex - 1, k);
+        } 
+        // 如果k在pivot的右边，只在右半部分递归查找
+        else {
+            return quickselect(nums, pivotIndex + 1, right, k);
+        }
+    }
+
+    // 分区方法：使用Lomuto分区方案
+    private int partition(int[] nums, int left, int right) {
+        // 随机选择pivot索引，避免最坏情况（如数组已排序）
+        int pivotIndex = left + rand.nextInt(right - left + 1);
+        // 将pivot交换到最右边位置
+        swap(nums, pivotIndex, right);
+        // 获取pivot值
+        int pivot = nums[right];
+
+        // i指针：指向最后一个小于等于pivot的元素的位置
+        int i = left - 1;
+        
+        // j指针：遍历从left到right-1的所有元素
+        for (int j = left; j < right; j++) {
+            // 如果当前元素小于等于pivot
+            if (nums[j] <= pivot) {
+                i++; // 移动i指针
+                swap(nums, i, j); // 将当前元素交换到i的位置
+            }
+        }
+        
+        // 将pivot从最右边交换到正确的位置（i+1）
+        swap(nums, i + 1, right);
+        
+        // 返回pivot的最终位置
+        return i + 1;
+    }
+
+    // 交换数组中两个元素的位置
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+}
+9. 总结
+- Quickselect 是一种高效的选择算法，适用于找第 k 小/大的元素。
+- 通过随机选择 pivot 可以避免最坏情况。
+- 在需要中位数或顺序统计量时，比完全排序更优。
+希望这个介绍对你有帮助！如果有任何疑问，欢迎继续提问。
 1.Median Finding: Uses Quickselect to find the median in O(n) average time .
 2.Move Calculation: Same as Approach 1, summing absolute differences from the median .
 - Time Complexity: O(n) average case, O(n²) worst case (though rare with randomized pivot selection) .
@@ -195,9 +303,9 @@ Key Insights
 - Quickselect provides a more efficient solution for large arrays where O(n log n) sorting might be too slow .
 
 Refer to
-L296.Best Meeting Point
+L296.Best Meeting Point (Ref.L462)
 L453.Minimum Moves to Equal Array Elements (Ref.L462,L2137,L2491)
 L2033.Minimum Operations to Make a Uni-Value Grid (Ref.L462)
 L2137.Pour Water Between Buckets to Make Water Levels Equal (Ref.L462)
 L2448.Minimum Cost to Make Array Equal (Ref.L2968)
-L2602.Minimum Operations to Make All Array Elements Equal (Ref.L462)
+L2602.Minimum Operations to Make All Array Elements Equal (Ref.L462,L704)
