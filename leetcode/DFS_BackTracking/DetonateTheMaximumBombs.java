@@ -222,3 +222,9 @@ The algorithm:
 2.For every bomb start, runs DFS to count how many distinct bombs are reachable (i.e., will explode in the chain reaction).
 3.Keeps the maximum count across all starting bombs.
 This passes all LeetCode tests and is identical to the reference implementation in .
+
+Refer to
+L529.Minesweeper
+L547.Number of Provinces (Friend Circles) (Ref.L323,L2421)
+L695.Max Area of Island (Ref.L200,L1568)
+L994.Rotting Oranges (Ref.286)
