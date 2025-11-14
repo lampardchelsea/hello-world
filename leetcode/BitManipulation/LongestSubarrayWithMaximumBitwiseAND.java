@@ -172,4 +172,6 @@ class Solution {
 This solution efficiently finds the answer by leveraging the mathematical properties of the bitwise AND operation!
 
 Refer to
+L1805.Number of Different Integers in a String (Ref.L2419)
 L2038.Remove Colored Pieces if Both Neighbors are the Same Color (Ref.L2419)
+L2411.Smallest Subarrays With Maximum Bitwise OR (Ref.L2419)
