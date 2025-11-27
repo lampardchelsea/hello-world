@@ -305,3 +305,6 @@ This shows why the first sequence is better - it maintains balance throughout.
 The success of achieving 7 operations depends on maintaining balance among the piles. If we let one pile become too large relative to the others, we might not be able to use all stones optimally.
 The greedy formula (a + b + c) / 2 works because when max < min + mid, we can always find a sequence that uses almost all stones through careful balancing!
 This example perfectly illustrates why the mathematical solution gives us the correct maximum of 7 operations!
+
+Refer to
+L1354.Construct Target Array With Multiple Sums (Ref.L2335)
