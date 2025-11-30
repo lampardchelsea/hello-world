@@ -336,6 +336,250 @@ verticalOrder([1,2,null,3,null,4,null]) → [[4],[3],[2],[1]]
 verticalOrder([1,null,2,null,3,null,4]) → [[1],[2],[3],[4]]
 The BFS solution with column tracking is optimal for LeetCode 314 - it achieves O(n) time and O(n) space while maintaining the required left-to-right order!
 
+Do we have DFS solution ?
+Yes, LeetCode 314 can be solved with a DFS approach. The key is to record both the column and row (depth) of each node during traversal, then sort them to achieve the required order.
+Here is a Java solution using DFS:
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> verticalOrder(TreeNode root) {
+        // Map to store column index as key, and a list of (row, value) pairs as value
+        Map<Integer, List<int[]>> columnMap = new HashMap<>();
+        
+        // Perform DFS to traverse the tree and record node positions
+        dfs(root, 0, 0, columnMap);
+        
+        // Prepare the result list
+        List<List<Integer>> result = new ArrayList<>();
+        
+        // Sort the columns from leftmost to rightmost
+        List<Integer> sortedColumns = new ArrayList<>(columnMap.keySet());
+        Collections.sort(sortedColumns);
+        
+        // For each column, sort the nodes by row (depth), then by natural visitation order for same row
+        for (int col : sortedColumns) {
+            List<int[]> nodesInColumn = columnMap.get(col);
+            // Sort by row (depth)
+            Collections.sort(nodesInColumn, (a, b) -> a[0] - b[0]);
+            
+            // Extract the values in the sorted order
+            List<Integer> values = new ArrayList<>();
+            for (int[] node : nodesInColumn) {
+                values.add(node[1]);
+            }
+            result.add(values);
+        }
+        
+        return result;
+    }
+    
+    private void dfs(TreeNode node, int row, int col, Map<Integer, List<int[]>> columnMap) {
+        if (node == null) {
+            return;
+        }
+        
+        // If the column doesn't exist in the map, create a new list for it
+        columnMap.computeIfAbsent(col, k -> new ArrayList<>());
+        // Add the current node's row and value to its column list
+        columnMap.get(col).add(new int[]{row, node.val});
+        
+        // Traverse left: column decreases, row increases
+        dfs(node.left, row + 1, col - 1, columnMap);
+        // Traverse right: column increases, row increases
+        dfs(node.right, row + 1, col + 1, columnMap);
+    }
+}
+
+🔍 How the DFS Solution Works
+The core idea is to track both the column (horizontal distance from root) and row (depth) for each node. The root starts at (0, 0). Moving to a left child changes the position to (row+1, col-1), and to a right child to (row+1, col+1).
+After traversal, the solution processes the collected data in two sorting steps:
+1.Sort columns from leftmost to rightmost.
+2.Within each column, sort nodes by their row (depth) to get top-to-bottom order.
+⚖️ DFS vs. BFS for This Problem
+While a DFS solution works, a BFS (level-order) approach is generally more efficient and straightforward for this specific problem.
+FeatureDFS ApproachBFS ApproachSorting Needed✅ Sort by column, then by row✅ Sort only by columnNatural OrderDoes not naturally visit nodes top-to-bottom, left-to-rightNaturally visits nodes in the required orderTime ComplexityO(n log n) due to sortingO(n) with efficient range tracking
+The BFS approach is more efficient because it uses the natural level-order traversal to maintain the top-to-bottom, left-to-right order, eliminating the need to sort nodes by their depth.
+I hope this clarifies the DFS approach for LeetCode 314. Would you like me to explain the BFS solution as well?
+
+If using TreeMap for DFS solution, how it looks like ?
+Here's the LeetCode 314 DFS solution using TreeMap to automatically handle column sorting:
+🎯 DFS Solution with TreeMap
+class Solution {
+    public List<List<Integer>> verticalOrder(TreeNode root) {
+        if (root == null) return new ArrayList<>();
+        
+        // TreeMap: column -> List of [row, value] pairs
+        // Automatically sorts columns from left to right
+        Map<Integer, List<int[]>> map = new TreeMap<>();
+        
+        // DFS traversal
+        dfs(root, 0, 0, map);
+        
+        // Build result
+        List<List<Integer>> result = new ArrayList<>();
+        
+        // Process columns in sorted order (thanks to TreeMap)
+        for (List<int[]> columnNodes : map.values()) {
+            // Sort nodes within this column by row (depth)
+            Collections.sort(columnNodes, (a, b) -> a[0] - b[0]);
+            
+            // Extract just the values in sorted order
+            List<Integer> values = new ArrayList<>();
+            for (int[] node : columnNodes) {
+                values.add(node[1]);
+            }
+            result.add(values);
+        }
+        
+        return result;
+    }
+    
+    private void dfs(TreeNode node, int row, int col, Map<Integer, List<int[]>> map) {
+        if (node == null) return;
+        
+        // Add node to the appropriate column with its row information
+        map.computeIfAbsent(col, k -> new ArrayList<>())
+           .add(new int[]{row, node.val});
+        
+        // Traverse children
+        dfs(node.left, row + 1, col - 1, map);
+        dfs(node.right, row + 1, col + 1, map);
+    }
+}
+💡 Alternative: Nested TreeMap Approach (The only difference of this solution between L987.Vertical Order Traversal of a Binary Tree (Ref.L103,L199,L314) DFS solution is NO Collections.sort(values))
+class Solution {
+    public List<List<Integer>> verticalOrder(TreeNode root) {
+        if (root == null) return new ArrayList<>();
+        
+        // TreeMap: column -> TreeMap: row -> List of values
+        // Both levels automatically sorted!
+        Map<Integer, TreeMap<Integer, List<Integer>>> map = new TreeMap<>();
+        
+        dfs(root, 0, 0, map);
+        
+        // Build result - much cleaner!
+        List<List<Integer>> result = new ArrayList<>();
+        for (TreeMap<Integer, List<Integer>> column : map.values()) {
+            List<Integer> columnValues = new ArrayList<>();
+            for (List<Integer> values : column.values()) {
+                columnValues.addAll(values);
+            }
+            result.add(columnValues);
+        }
+        
+        return result;
+    }
+    
+    private void dfs(TreeNode node, int row, int col, 
+                    Map<Integer, TreeMap<Integer, List<Integer>>> map) {
+        if (node == null) return;
+        
+        map.computeIfAbsent(col, k -> new TreeMap<>())
+           .computeIfAbsent(row, k -> new ArrayList<>())
+           .add(node.val);
+        
+        dfs(node.left, row + 1, col - 1, map);
+        dfs(node.right, row + 1, col + 1, map);
+    }
+}
+🔍 Key Differences from LeetCode 987
+LeetCode 314 (This Problem):
+// No value sorting needed within same (row, col)
+// Just maintain DFS visitation order
+map.get(col).get(row).add(node.val);  // Order matters!
+LeetCode 987 (Different Problem):
+// Need to sort values within same (row, col)
+Collections.sort(values);  // Extra sorting step
+🧠 Why DFS Works for 314 (Unlike Common Belief)
+Many think DFS doesn't work for 314, but it does work with proper row tracking:
+The Trick:
+- Track both column AND row during DFS
+- Sort columns left→right (TreeMap handles this)
+- Sort nodes within each column by row top→bottom
+- No value sorting - maintain DFS order for same row
+Example: [3,9,8,4,0,1,7]
+Tree:
+       3
+      / \
+     9   8
+    / \ / \
+   4  0 1  7
+
+DFS Order (pre-order): [3, 9, 4, 0, 8, 1, 7]
+But with row tracking, we reconstruct correct vertical order!
+🚀 Most Elegant TreeMap Solution
+class Solution {
+    public List<List<Integer>> verticalOrder(TreeNode root) {
+        if (root == null) return new ArrayList<>();
+        
+        // column -> row -> values (all auto-sorted)
+        Map<Integer, TreeMap<Integer, List<Integer>>> map = new TreeMap<>();
+        
+        dfs(root, 0, 0, map);
+        
+        // Build result - very clean!
+        List<List<Integer>> result = new ArrayList<>();
+        for (TreeMap<Integer, List<Integer>> column : map.values()) {
+            List<Integer> columnValues = new ArrayList<>();
+            // Rows are automatically sorted by TreeMap!
+            for (List<Integer> values : column.values()) {
+                columnValues.addAll(values);
+            }
+            result.add(columnValues);
+        }
+        return result;
+    }
+    
+    private void dfs(TreeNode node, int row, int col, 
+                    Map<Integer, TreeMap<Integer, List<Integer>>> map) {
+        if (node == null) return;
+        
+        map.computeIfAbsent(col, k -> new TreeMap<>())
+           .computeIfAbsent(row, k -> new ArrayList<>())
+           .add(node.val);
+        
+        dfs(node.left, row + 1, col - 1, map);
+        dfs(node.right, row + 1, col + 1, map);
+    }
+}
+📊 Complexity Analysis
+Time Complexity: O(n log n)
+- DFS Traversal: O(n)
+- TreeMap Operations: O(n log C) where C = number of columns
+- Result Construction: O(n) - just flattening
+Space Complexity: O(n)
+- Recursion Stack: O(h) where h = tree height
+- TreeMap Structures: O(n) total storage
+- Result: O(n)
+🎯 When to Use DFS vs BFS for 314
+Use BFS When:
+- You want optimal O(n) time
+- Simpler code
+- Natural level-order preservation
+Use DFS When:
+- You're practicing DFS techniques
+- Tree is very deep but narrow (better stack usage)
+- You want to understand the coordinate tracking concept
+💡 Key Insight
+The TreeMap DFS solution works because:
+1.TreeMap sorts columns automatically
+2.Inner TreeMap sorts rows automatically
+3.We preserve DFS order for nodes at same (row,col) - which is acceptable for 314!
+4.No value sorting needed - unlike problem 987
+While BFS is generally preferred for LeetCode 314, this DFS + TreeMap solution demonstrates an elegant approach that automatically handles the sorting requirements!
 
 
 Refer to
