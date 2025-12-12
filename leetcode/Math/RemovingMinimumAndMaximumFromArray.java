@@ -105,6 +105,143 @@ public:
         return min({ a + 1 + N - b, b + 1, N - a });
     }
 };
+
+Refer to Deepseek
+For LeetCode 2091, we need to find the minimum number of removals to delete both the minimum and maximum elements from an array. Here's the optimal Java solution:
+🏆 Optimal Solution: Three Strategies
+class Solution {
+    public int minimumDeletions(int[] nums) {
+        int n = nums.length;
+        if (n <= 2) return n; // Need to remove all elements
+        
+        // Find indices of min and max
+        int minIdx = 0, maxIdx = 0;
+        for (int i = 1; i < n; i++) {
+            if (nums[i] < nums[minIdx]) minIdx = i;
+            if (nums[i] > nums[maxIdx]) maxIdx = i;
+        }
+        
+        // Ensure minIdx < maxIdx for easier calculation
+        if (minIdx > maxIdx) {
+            int temp = minIdx;
+            minIdx = maxIdx;
+            maxIdx = temp;
+        }
+        
+        // Three possible strategies:
+        // 1. Remove both from left (remove up to maxIdx)
+        int fromLeft = maxIdx + 1;
+        
+        // 2. Remove both from right (remove from minIdx to end)
+        int fromRight = n - minIdx;
+        
+        // 3. Remove min from left, max from right
+        int fromBothSides = (minIdx + 1) + (n - maxIdx);
+        
+        // Return minimum of the three
+        return Math.min(fromLeft, Math.min(fromRight, fromBothSides));
+    }
+}
+🧠 How It Works: The Three Strategies
+For any array with min at index i and max at index j (assuming i < j):
+Array: [a0, a1, a2, ..., ai, ..., aj, ..., an-1]
+                         ↑         ↑
+                         min at i  max at j
+Three removal strategies:
+1.Remove from left only: Remove all elements from start to j → j + 1 operations
+2.Remove from right only: Remove all elements from i to end → n - i operations
+3.Remove from both sides: Remove from start to i AND from j to end → (i + 1) + (n - j) operations
+🔍 Visual Example
+Example 1: nums = [2,10,7,5,4,1,8,6]
+- Min (1) at index 5, Max (10) at index 1
+- Strategy 1 (left only): Remove indices 0-1 → 2 operations
+- Strategy 2 (right only): Remove indices 5-7 → 3 operations
+- Strategy 3 (both sides): Remove indices 0-5 (6) AND no right removal → 6 operations
+- Minimum = 2 ✓
+Example 2: nums = [0,-4,19,1,8,-2,-3,5]
+- Min (-4) at index 1, Max (19) at index 2
+- Strategy 1 (left only): Remove indices 0-2 → 3 operations
+- Strategy 2 (right only): Remove indices 1-7 → 7 operations
+- Strategy 3 (both sides): Remove indices 0-1 (2) + indices 2-7 (6) → 8 operations
+- Minimum = 3 ✓
+📊 Alternative: More Explicit Version
+class Solution {
+    public int minimumDeletions(int[] nums) {
+        int n = nums.length;
+        if (n == 1) return 1;
+        if (n == 2) return 2;
+        
+        // Find min and max indices
+        int minIdx = 0, maxIdx = 0;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] < nums[minIdx]) minIdx = i;
+            if (nums[i] > nums[maxIdx]) maxIdx = i;
+        }
+        
+        // Calculate distances
+        int left = Math.min(minIdx, maxIdx);
+        int right = Math.max(minIdx, maxIdx);
+        
+        // Case 1: Remove from left (through right element)
+        int option1 = right + 1;
+        
+        // Case 2: Remove from right (through left element)
+        int option2 = n - left;
+        
+        // Case 3: Remove left element from left, right element from right
+        int option3 = (left + 1) + (n - right);
+        
+        return Math.min(option1, Math.min(option2, option3));
+    }
+}
+⚡ Optimized One-Pass Solution
+class Solution {
+    public int minimumDeletions(int[] nums) {
+        int n = nums.length;
+        int minIdx = 0, maxIdx = 0;
+        
+        // Single pass to find min and max
+        for (int i = 0; i < n; i++) {
+            if (nums[i] < nums[minIdx]) minIdx = i;
+            if (nums[i] > nums[maxIdx]) maxIdx = i;
+        }
+        
+        int left = Math.min(minIdx, maxIdx);
+        int right = Math.max(minIdx, maxIdx);
+        
+        // Three strategies in one line
+        return Math.min(right + 1, Math.min(n - left, left + 1 + n - right));
+    }
+}
+📈 Complexity Analysis
+AspectValueExplanationTimeO(n)One pass to find min/max indicesSpaceO(1)Only a few variablesOperations3 comparisonsCompare three strategies
+💡 Key Insight
+The problem reduces to: Given two indices i and j in array of length n, find minimum removals to delete both.
+This is purely a positioning problem - the actual values don't matter, only the indices!
+🔄 Mathematical Proof
+Let l = min(i,j), r = max(i,j):
+1.Remove prefix up to r: cost = r + 1
+2.Remove suffix from l: cost = n - l
+3.Remove both sides: cost = (l + 1) + (n - r)
+The minimum is: min(r+1, n-l, l+1+n-r)
+🧪 Edge Cases
+// Test cases:
+1. [5] → 1 (remove only element)
+2. [5,2] → 2 (remove both)
+3. [1,2,3] → 2 (remove [1,3] or [1,2] or [2,3])
+4. Min and max at ends: [1,...,100] → 2 (remove both ends)
+5. Min and max adjacent: [10,1,5,20] → 2 (remove [10,1] or [1,5,20])
+🎯 Why This Solution is Optimal
+1.O(n) time unavoidable: Must scan array to find min/max
+2.O(1) space optimal: Only store indices
+3.Simple math: Just position calculations, no complex logic
+4.Handles all cases: The three strategies cover all possibilities
+⚠️ Common Pitfalls
+1.Forgetting to handle n ≤ 2: Need special case
+2.Assuming minIdx < maxIdx: Should sort indices
+3.Overcomplicating: Don't need to actually remove elements
+The solution is elegant because it recognizes this is just a geometry problem on indices!
+
 Refer to
-L1423.Maximum Points You Can Obtain from Cards (Ref.L1658)
+L1423.Maximum Points You Can Obtain from Cards (Ref.L1658,L2091,L2379)
 L1647.Minimum Deletions to Make Character Frequencies Unique
