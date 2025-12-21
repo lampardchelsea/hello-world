@@ -228,3 +228,213 @@ class Solution {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://leetcode.com/problems/subtree-of-another-tree/description/
+Given the roots of two binary trees root and subRoot, return true if there is a subtree of root with the same structure and node values of subRoot and false otherwise.
+A subtree of a binary tree tree is a tree that consists of a node in tree and all of this node's descendants. The tree tree could also be considered as a subtree of itself.
+ 
+Example 1:
+
+Input: root = [3,4,5,1,2], subRoot = [4,1,2]
+Output: true
+
+Example 2:
+
+Input: root = [3,4,5,1,2,null,null,null,null,0], subRoot = [4,1,2]
+Output: false
+ 
+Constraints:
+- The number of nodes in the root tree is in the range [1, 2000].
+- The number of nodes in the subRoot tree is in the range [1, 1000].
+- -104 <= root.val <= 10^4
+- -104 <= subRoot.val <= 10^4
+--------------------------------------------------------------------------------
+Attempt 1: 2025-12-16
+Solution 1: DFS (10 min)
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        if(root == null) {
+            return false;
+        }
+        return isSameTree(root, subRoot) || isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+    }
+
+    private boolean isSameTree(TreeNode a, TreeNode b) {
+        if(a == null || b == null) {
+            return a == b;
+        }
+        return a.val == b.val && isSameTree(a.left, b.left) && isSameTree(a.right, b.right);
+    }
+}
+
+Time Complexity: O(m * n), In the worst case (e.g., a skewed tree), 
+for each of the n nodes in root, we might check against all m nodes of subRoot.
+Space Complexity: O(h), The space is determined by the recursion stack, 
+which depends on the height h of the main tree root.
+
+Refer to Deepseek
+For LeetCode 572 (Subtree of Another Tree), the standard Java solution is a recursive Depth-First Search (DFS) approach. The core idea is to traverse the main tree and, at each node, check if the subtree rooted there is identical to the given subRoot.
+📝 Java Solution (Recursive DFS)
+Here is the complete, well-commented Java solution:
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        // Base case: if the main tree is null, it cannot contain a subtree 
+        if (root == null) {
+            return false;
+        }
+      
+        // Check: 1. If trees match from the current root, OR
+        //        2. If the subtree exists in the left child, OR
+        //        3. If the subtree exists in the right child.
+        return isSameTree(root, subRoot) 
+            || isSubtree(root.left, subRoot)
+            || isSubtree(root.right, subRoot);
+    }
+
+    // Helper function to check if two trees are identical
+    private boolean isSameTree(TreeNode p, TreeNode q) {
+        // If either node is null, both must be null for the trees to be identical
+        if (p == null || q == null) {
+            return p == q;
+        }
+        // Check if the current nodes have the same value
+        // AND their left subtrees are identical
+        // AND their right subtrees are identical
+        return p.val == q.val 
+            && isSameTree(p.left, q.left) 
+            && isSameTree(p.right, q.right);
+    }
+}
+🔍 How the Algorithm Works
+The solution uses a two-part recursive strategy:
+1.isSubtree: This is the main function. It recursively traverses every node in the root tree, treating each node as a potential starting point for the subRoot tree. It checks three possibilities at each step: if the trees match at the current node, or if the subRoot is a subtree of the left child, or if it's a subtree of the right child .
+2.isSameTree: This helper function checks if two given trees are structurally identical and have matching node values at every corresponding position. It's called by isSubtree to verify a match at a specific node .
+This is visualized in the flowchart below:
+flowchart TD
+    Start["isSubtree(root, subRoot)"] --> CheckRoot{"root == null?"}
+    
+    CheckRoot -->|Yes| ReturnFalse["Return false"]
+    
+    CheckRoot -->|No| CheckCurrent["Check: isSameTree(root, subRoot)"]
+    CheckCurrent -->|Trees are identical| ReturnTrue["Return true"]
+    
+    CheckCurrent -->|Not identical| CheckLeft["Recurse: isSubtree(root.left, subRoot)"]
+    CheckLeft -->|Found in left| ReturnTrue
+    
+    CheckLeft -->|Not in left| CheckRight["Recurse: isSubtree(root.right, subRoot)"]
+    CheckRight -->|Found in right| ReturnTrue
+    CheckRight -->|Not found anywhere| ReturnFalse
+📊 Complexity Analysis
+AspectComplexityExplanationTime ComplexityO(m × n)In the worst case (e.g., a skewed tree), for each of the n nodes in root, we might check against all m nodes of subRoot .Space ComplexityO(h)The space is determined by the recursion stack, which depends on the height h of the main tree root .
+💡 Alternative Approach: Tree Serialization
+For a more advanced solution with better worst-case time complexity, you can serialize both trees into strings and perform substring matching (e.g., using the KMP algorithm). This approach has an O(m + n) time and space complexity but is more complex to implement . The recursive DFS method above is typically preferred for interviews due to its clarity.
+✅ Edge Cases to Consider
+When testing your solution, make sure it handles these scenarios:
+- Empty subRoot: An empty tree is always a subtree. The code above returns false for this case, but LeetCode's constraints state the number of nodes is at least 1 .
+- Identical trees: The main tree is considered a subtree of itself .
+- subRoot is a leaf node: The algorithm should correctly match a single node.
+- Values match but structure differs: The isSameTree function catches this by checking structure.
+I hope this detailed explanation helps you understand the solution. Would you like me to walk through a specific example or explain the alternative serialization approach in more detail?
+
+Refer to
+L1770.Maximum Score from Performing Multiplication Operations (Ref.L1423)
+DFS return logic
+
