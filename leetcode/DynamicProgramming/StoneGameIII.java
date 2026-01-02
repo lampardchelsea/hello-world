@@ -429,9 +429,8 @@ The space-optimized DP solution (O(1) space) is the most efficient, but all DP s
 Refer to
 L877.Stone Game (Ref.L1690)
 L1140.Stone Game II (Ref.L877,L1690)
-1510
-1563
-1686
+L1510.Stone Game IV (Ref.L877,L1140,L1406,L1690)
+L1563.Stone Game V (Ref.L877,L1140,L1406,L1510)
+L1686.Stone Game VI
 L1690.Stone Game VII (Ref.L1770)
-1872
-2029
+L1872.Stone Game VIII
