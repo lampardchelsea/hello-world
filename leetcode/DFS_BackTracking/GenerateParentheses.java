@@ -245,7 +245,7 @@ Step 6: Base Case Reached
 Now l = 2 and r = 2, which equals n. We have reached a base case where we have a well-formed combination. This combination "(())" is added to our answer set ans.
 Backtracking
 The algorithm will backtrack now and explore other paths, but since n = 2 and we have used all our opening parentheses, there are no more paths to discover.
-这里的 Backtracking 是典型的 implicit backtracking，简单说就是利用了DFS的本质：一直递归到底的backtracking，因为到了底 (base return condition) 的时候就会自然返回上一层，实际作用等价于 backtracking, 而 explicit backtracking 一般在递归到底之前就被提前激活了，相当于节约了递归的时间和空间，当然，是否使用 explicit backtracking 或者 implicit backtracking 也基于递归过程中使用的承载字符串的是 StringBuilder 还是 String，如果是 StringBuilder 就需要 explicit backtracking 来手动恢复成上一层递归的状态，如果是 String 就不需要手动恢复成上一层的递归状态（基于 String immutable 的原理）
+这里的 Backtracking 是典型的 implicit backtracking，简单说就是利用了DFS的本质：一直递归到底的backtracking，因为到了底 (base return condition) 的时候就会自然返回上一层，换个说法就是terminate the current path at the end of current path，实际作用等价于 backtracking, 而 explicit backtracking 一般在递归到底之前就被提前激活了，相当于节约了递归的时间和空间，当然，是否使用 explicit backtracking 或者 implicit backtracking 也基于递归过程中使用的承载字符串的是 StringBuilder 还是 String，如果是 StringBuilder 就需要 explicit backtracking 来手动恢复成上一层递归的状态，如果是 String 就不需要手动恢复成上一层的递归状态（基于 String immutable 的原理）
 Refer to
 https://leetcode.com/problems/generate-parentheses/solutions/10100/easy-to-understand-java-backtracking-solution/comments/531279 
 If you change the input parameter type String to StringBuilder as follow, it is explicit the solution is a typical backtracking, which has a obvious stepping back sb.deleteCharAt(sb.length() - 1);. I think it is String type makes backtracking implicit and lets people consider it a common DFS solution. In Java, String is a final type, changing a string will generate a new string, which disables one string's ability in memorialized searching (compared to one StringBuilder) in multilevel function calls. Thus in the String appoach, through generating new string (by appending a parentheses to the string int the previous function call) for memorialized searching, we don't need an explicit stepping back like sb.deleteCharAt(sb.length() - 1);.
@@ -398,3 +398,8 @@ Both solutions have the same time complexity (O(4^n/√n)), but the StringBuilde
 
 Refer to
 L20.P11.5.Valid Parentheses (Ref.L32)
+L301.Remove Invalid Parentheses (Ref.L22)
+L1003.Check If Word Is Valid After Substitutions (Ref.L301)
+L2116.Check if a Parentheses String Can Be Valid (Ref.L301,L1963)
+L2337.Move Pieces to Obtain a String (Ref.L301)
+DFS return logic
