@@ -359,6 +359,63 @@ class Solution {
 Time Complexity: O(n)
 Space Complexity: O(n)
 
+Solution 2: Stack (120 min)
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public String tree2str(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        StringBuilder sb = new StringBuilder();
+        Set<TreeNode> visited = new HashSet<>();
+        while(!stack.isEmpty()) {
+            TreeNode node = stack.peek();
+            if(visited.contains(node)) {
+                stack.pop();
+                sb.append(")");
+            } else {
+                visited.add(node);
+                sb.append("(").append(node.val);
+                // If leaf node just continue
+                if(node.left == null && node.right == null) {
+                    continue;
+                }
+                // Process right child first (stack is LIFO)
+                if(node.right != null) {
+                    stack.push(node.right);
+                }
+                if(node.left != null) {
+                    stack.push(node.left);
+                } else {
+                    // If left is null but right exists, we need empty parentheses
+                    if(node.right != null) {
+                        sb.append("()");
+                    }
+                }
+            }
+        }
+        // Remove the outer parentheses
+        return sb.substring(1, sb.length() - 1);
+    }
+}
+
+Time Complexity: O(n)
+Space Complexity: O(n)
+
+
 Refer to
 https://leetcode.com/problems/construct-string-from-binary-tree/solutions/103992/java-solution-tree-traversal-by-shawngao-7nd3/comments/106929/
 class Solution {
@@ -550,11 +607,253 @@ Why it's O(n) and not worse:
 Even though we're building a string with parentheses, the recursive function itself only does constant work per node. The StringBuilder efficiently handles the string construction with amortized O(1) append operations.
 Conclusion: The solution has O(n) time complexity and O(n) space complexity, which is optimal since we need to visit every node at least once and produce an output string that contains information about every node.
 
+How the stack solution looks like ?
+Refer to Deepseek & QWEN
+Here's your LeetCode 606 stack-based solution with detailed theoretical comments explaining the core concepts, traversal logic, and parentheses rules:
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    /**
+     * Iterative stack-based solution for constructing string representation from binary tree.
+     * 
+     * THEORY OVERVIEW:
+     * This solution simulates PREORDER traversal (Root → Left → Right) using an explicit stack
+     * instead of recursion. The key challenge is correctly handling parentheses according to
+     * the problem's specific rules:
+     * 
+     * RULES FOR PARENTHESES:
+     * 1. Leaf nodes (no children): no parentheses needed → "val"
+     * 2. Only left child exists: only left parentheses → "val(left)"
+     * 3. Only right child exists: MUST include empty left parentheses → "val()(right)"  
+     *    (This preserves tree structure - without "()", it would be ambiguous)
+     * 4. Both children exist: both parentheses → "val(left)(right)"
+     * 
+     * STACK MECHANICS:
+     * - Each node is processed in TWO PHASES using a 'visited' set:
+     *   PHASE 1 (first encounter): Process node value and enqueue children
+     *   PHASE 2 (after children processed): Close with closing parenthesis
+     * - This mimics how recursive calls work: 
+     *   - Function call = Phase 1 (append value, recurse to children)
+     *   - Function return = Phase 2 (append closing parenthesis)
+     * 
+     * TIME COMPLEXITY: O(n) - each node visited exactly twice (once for each phase)
+     * SPACE COMPLEXITY: O(h) - stack depth equals tree height, plus O(n) for visited set
+     */
+    public String tree2str(TreeNode root) {
+        if (root == null) return "";
+        
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        StringBuilder sb = new StringBuilder();
+        Set<TreeNode> visited = new HashSet<>(); // Tracks nodes that have been processed (Phase 1 completed)
+        
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.peek(); // Look at top without removing
+            
+            // PHASE 2: Node has already been processed (children handled)
+            // This simulates the "return" from recursive call - close the current subtree
+            if (visited.contains(node)) {
+                stack.pop(); // Remove node from stack permanently
+                sb.append(")"); // Close the parentheses opened in Phase 1
+            } 
+            // PHASE 1: First time encountering this node
+            else {
+                visited.add(node); // Mark as processed to trigger Phase 2 later
+                sb.append("(").append(node.val); // Open parentheses and add node value
+                
+                // SPECIAL CASE: Leaf node handling
+                // If no children, we don't need to push anything to stack
+                // But we still need to close the parentheses later (handled in Phase 2)
+                if (node.left == null && node.right == null) {
+                    continue; // Skip child processing, will close in next iteration
+                }
+                
+                // CHILD PROCESSING ORDER (CRITICAL):
+                // Push RIGHT child first, then LEFT child
+                // Because stack is LIFO (Last In, First Out), LEFT will be processed before RIGHT
+                // This maintains correct PREORDER traversal: Root → Left → Right
+                
+                // Process right child first (will be popped after left due to LIFO)
+                if (node.right != null) {
+                    stack.push(node.right);
+                }
+                
+                // Process left child second (will be popped first due to LIFO)
+                if (node.left != null) {
+                    stack.push(node.left);
+                } 
+                // SPECIAL PARENTHESES RULE: 
+                // If left child is null BUT right child exists, we MUST add empty parentheses "()"
+                // This prevents ambiguity - without "()", the right child would appear as left child
+                else {
+                    if (node.right != null) {
+                        sb.append("()");
+                    }
+                }
+            }
+        }
+        
+        // REMOVE OUTER PARENTHESES:
+        // The algorithm wraps the entire tree in parentheses: "(root(left)(right))"
+        // But the problem requires no outermost parentheses: "root(left)(right)"
+        // So we remove the first '(' and last ')' characters
+        return sb.substring(1, sb.length() - 1);
+    }
+}
+Key Theoretical Concepts Explained:
+Two-Phase Processing
+The visited set creates a state machine for each node:
+- Phase 1: "Enter node" - append value, handle special cases, push children
+- Phase 2: "Exit node" - close parentheses after all children are processed
+This exactly mirrors recursive function behavior where you do work before and after recursive calls.
+Why Right Child Pushed First
+Stack is LIFO (Last In, First Out):
+- Push right → Push left
+- Pop left → Pop right
+- Result: Left processed before right = correct preorder sequence
+The Critical Empty Parentheses Rule
+When only right child exists, "()" is mandatory because:
+- Without it: "1(2)" could mean either:
+- Node 1 with left child 2, OR
+- Node 1 with right child 2
+- With it: "1()(2)" unambiguously means right child only
+This preserves the one-to-one mapping between string representation and tree structure, which is the entire point of the problem.
+The stack solution elegantly handles all these rules while maintaining O(n) efficiency!
+
+Refer to QWEN
+Great question! While LeetCode 606 is most naturally solved with recursion, there is a stack-based iterative solution. However, it's more complex because we need to track both the traversal state and when to add parentheses.
+Here's a working stack solution:
+class Solution {
+    public String tree2str(TreeNode root) {
+        if (root == null) return "";
+        
+        StringBuilder sb = new StringBuilder();
+        Stack<TreeNode> stack = new Stack<>();
+        Set<TreeNode> visited = new HashSet<>();
+        stack.push(root);
+        
+        while (!stack.isEmpty()) {
+            TreeNode curr = stack.peek();
+            
+            if (visited.contains(curr)) {
+                // We're backtracking from this node - close parentheses
+                stack.pop();
+                sb.append(")");
+            } else {
+                // First time visiting this node - add its value
+                visited.add(curr);
+                sb.append("(").append(curr.val);
+                
+                // Handle children based on the problem's rules:
+                if (curr.left == null && curr.right != null) {
+                    // Must add empty parentheses for missing left child
+                    sb.append("()");
+                }
+                
+                // Push children in reverse order (right then left)
+                // because stack is LIFO
+                if (curr.right != null) {
+                    stack.push(curr.right);
+                }
+                if (curr.left != null) {
+                    stack.push(curr.left);
+                }
+                
+                // If it's a leaf node, close immediately
+                if (curr.left == null && curr.right == null) {
+                    sb.append(")");
+                    stack.pop(); // Remove since we're done with it
+                    visited.remove(curr); // Clean up or handle differently
+                }
+            }
+        }
+        
+        // Remove the outermost parentheses
+        return sb.substring(1, sb.length() - 1);
+    }
+}
+
+However, the above has some complexity with the visited set and leaf handling. Here's a cleaner version using a custom wrapper class to track state:
+class Solution {
+    public String tree2str(TreeNode root) {
+        if (root == null) return "";
+        
+        StringBuilder sb = new StringBuilder();
+        Stack<NodeState> stack = new Stack<>();
+        stack.push(new NodeState(root, false));
+        
+        while (!stack.isEmpty()) {
+            NodeState current = stack.pop();
+            TreeNode node = current.node;
+            
+            if (current.processed) {
+                sb.append(")");
+                continue;
+            }
+            
+            // Mark as processed and push back for closing
+            stack.push(new NodeState(node, true));
+            sb.append("(").append(node.val);
+            
+            // Handle the special case: left is null but right exists
+            if (node.left == null && node.right != null) {
+                sb.append("()");
+            }
+            
+            // Push right first, then left (so left is processed first)
+            if (node.right != null) {
+                stack.push(new NodeState(node.right, false));
+            }
+            if (node.left != null) {
+                stack.push(new NodeState(node.left, false));
+            }
+        }
+        
+        return sb.substring(1, sb.length() - 1);
+    }
+    
+    private static class NodeState {
+        TreeNode node;
+        boolean processed; // false = need to process children, true = just close
+        
+        NodeState(TreeNode node, boolean processed) {
+            this.node = node;
+            this.processed = processed;
+        }
+    }
+}
+How it works:
+1.Each node is pushed twice:
+- First time (processed = false): add value and handle children
+- Second time (processed = true): just add closing parenthesis
+2.Special rule handling: When left == null but right != null, we explicitly add "()"
+3.Parentheses management: Every node gets wrapped in parentheses, then we remove the outermost ones at the end
+Why recursion is preferred:
+- Simpler logic: The recursive solution directly mirrors the problem's structure
+- Less code: ~10 lines vs ~25+ lines for stack solution
+- More readable: The rules are expressed naturally
+- Same complexity: Both are O(n) time, O(h) space
+The stack solution is mainly useful for demonstrating iterative thinking or when you specifically can't use recursion (though that's rare for this problem size).
+Bottom line: While a stack solution exists, the recursive approach is the standard and recommended solution for LeetCode 606.
+
 
 
 Refer to
 L297.Serialize and Deserialize Binary Tree (Ref.L449,L536)
 L449.Serialize and Deserialize BST (Ref.L297,L536)
-L536.Lint880.Construct Binary Tree from String (Ref.L297,L449,L606)
+L536.Lint880.Construct Binary Tree from String (Ref.L297,L449,L606,L761)
 L652.Find Duplicate Subtrees (Ref.L1948)
 DFS return logic
