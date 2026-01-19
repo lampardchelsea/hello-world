@@ -929,6 +929,86 @@ The exclusion of "[]" (leaf nodes) from counting is required by problem definiti
 4.Avoids trivial matches: Otherwise every empty folder would match every other empty folder
 This is a perfect example of how understanding the problem constraints leads to correct implementation details. The !node.serial.equals("[]") check is not an optimization—it's a requirement for correctness.
 
+Q2: Please explain why in collectedPaths method we have to use backtracking ?
+Great question! The backtracking in the collectedPaths method is essential because we're building paths incrementally as we traverse the trie, and we need to maintain the correct path state at each level of recursion.
+Let me explain why backtracking is necessary with a concrete example:
+The Problem Without Backtracking
+Imagine we have this folder structure:
+root/
+├── a/
+│   ├── b/
+│   └── c/
+└── d/
+    └── e/
+Without backtracking, if we used a single shared list:
+// WRONG approach - no backtracking
+List<String> currPath = new ArrayList<>();
+currPath.add("a");        // currPath = ["a"]
+currPath.add("b");        // currPath = ["a", "b"]
+result.add(currPath);     // result = [["a", "b"]]
+currPath.add("c");        // currPath = ["a", "b", "c"] ← PROBLEM!
+result.add(currPath);     // result = [["a", "b", "c"], ["a", "b", "c"]]
+The issue is that all references point to the same list object, so when we modify it later, all previously added paths get corrupted!
+How Backtracking Solves This
+With backtracking, we:
+1.Add the current folder to the path
+2.Recurse to process children with this updated path
+3.Remove the current folder (backtrack) to restore the path state for the next sibling
+Step-by-step walkthrough:
+Starting with empty currPath = []
+Processing "a":
+- Add "a" → currPath = ["a"]
+- Add to result → result = [["a"]]
+- Process "a"'s children...
+Processing "a/b":
+- Add "b" → currPath = ["a", "b"]
+- Add to result → result = [["a"], ["a", "b"]]
+- "b" has no children, so return
+- Backtrack: Remove "b" → currPath = ["a"]
+Processing "a/c":
+- Add "c" → currPath = ["a", "c"] (clean state!)
+- Add to result → result = [["a"], ["a", "b"], ["a", "c"]]
+- "c" has no children, so return
+- Backtrack: Remove "c" → currPath = ["a"]
+Back to root level:
+- Backtrack: Remove "a" → currPath = []
+- Now process "d" with clean state...
+Why We Can't Just Create New Lists
+You might think: "Why not just create a new ArrayList at each call?"
+// Alternative without backtracking
+private void collectedPaths(TrieNode node, List<String> currPath, List<List<String>> result) {
+    if(node == null || node.isDeleted) return;
+    
+    if(!currPath.isEmpty()) {
+        result.add(new ArrayList<>(currPath)); // This part is fine
+    }
+    
+    for(Map.Entry<String, TrieNode> entry : node.children.entrySet()) {
+        String childFolder = entry.getKey();
+        TrieNode child = entry.getValue();
+        // Create new list instead of modifying existing one
+        List<String> newPath = new ArrayList<>(currPath);
+        newPath.add(childFolder);
+        collectedPaths(child, newPath, result);
+        // No backtracking needed!
+    }
+}
+This would work, but it's less efficient because:
+- Memory overhead: Creates a new ArrayList for every recursive call
+- Time overhead: Copies all elements from parent path to child path
+- Space complexity: O(n²) vs O(n) with backtracking
+The Key Insight
+Backtracking maintains a single path list that represents the current traversal path from root to the current node.
+- When we go down the tree (deeper recursion), we add to the path
+- When we go up the tree (return from recursion), we remove from the path
+- This ensures that at any point in the recursion, currPath contains exactly the folders from root to the current node
+This is the classic depth-first search with path tracking pattern, and backtracking is the standard, efficient way to implement it.
+In your specific solution, backtracking is crucial because:
+1.You need to collect all valid paths (not just leaf paths)
+2.You're working with a shared mutable list for efficiency
+3.You must preserve the integrity of previously collected paths
+Without backtracking, your result would contain corrupted or incorrect paths!
+
 
 Refer to
 L609.Find Duplicate File in System (Ref.L1948)
