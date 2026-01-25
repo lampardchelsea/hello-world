@@ -1,302 +1,3 @@
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Stack;
-
-/**
- * Refer to
- * https://leetcode.com/problems/decode-string/#/description
- * Given an encoded string, return it's decoded string.
- * The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets 
- * is being repeated exactly k times. Note that k is guaranteed to be a positive integer.
- * You may assume that the input string is always valid; No extra white spaces, 
- * square brackets are well-formed, etc.
- * Furthermore, you may assume that the original data does not contain any digits and that 
- * digits are only for those repeat numbers, k. For example, there won't be input like 3a or 2[4].
-
-	Examples:
-	s = "3[a]2[bc]", return "aaabcbc".
-	s = "3[a2[c]]", return "accaccacc".
-	s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
- * 
- * 
- * Solution
- * https://discuss.leetcode.com/topic/57250/java-short-and-easy-understanding-solution-using-stack
- *
- * Note:
- * The idea very like
- * https://leetcode.com/problems/mini-parser/#/description
- * 
- * Follow up
- * https://discuss.leetcode.com/topic/57250/java-short-and-easy-understanding-solution-using-stack/6
- * 
-    (1) I replaced Strings with StringBuilders to avoid recreating Strings due to immutability
-    (2) To calc the multiplier, I used some fancy logic from @sampsonchan. See his solution.
-    (3) Since Java Doc says not to use Stack anymore, I used a double-ended Q (Deque)
-    (4) I used verbose variable names
-
-   public static StringBuilder decode(String s) {
-      // Stack is deprecated so using double-ended Q
-      Deque<Integer> multipliers = new ArrayDeque<>();
-      Deque<StringBuilder> result = new ArrayDeque<>();
-      result.push(new StringBuilder());
-      int multiplier = 0;
-
-      // Would be nice to use an 'enhanced' for loop, but don't want
-      // the expense of converting the String to an array (ie toCharArray)
-      // for (char ch : s.toCharArray()) {
-      for (int i = 0; i < s.length(); i++) {
-         char ch = s.charAt(i);
-         if (Character.isDigit(ch)) {
-            multiplier = multiplier * 10 + ch - '0';
-            multipliers.push(multiplier);
-         } else if (ch == '[') {
-            result.push(new StringBuilder());
-            multiplier = 0; //reset
-         } else if (ch == ']') {
-            StringBuilder str2Multiply = result.pop();
-            int times = multipliers.pop();
-            StringBuilder multipliedStr = new StringBuilder();
-            for (int j = 0; j < times; j += 1) {
-               multipliedStr.append(str2Multiply);
-            }
-            result.push(result.pop().append(multipliedStr));
-         } else {
-            result.push(result.pop().append(ch));
-         }
-      }
-
-      return result.pop();
-   }
- *
- * Why should I use Deque over Stack?
- * https://stackoverflow.com/questions/12524826/why-should-i-use-deque-over-stack
- * Q: I need a Stack datastructure for my use case. I should be able to push items into the datastructure 
- *    and I only want to retrieve the last item from the Stack . The JavaDoc for Stack says :
- *    A more complete and consistent set of LIFO stack operations is provided by the Deque interface and 
- *    its implementations, which should be used in preference to this class. For example:
- *        Deque<Integer> stack = new ArrayDeque<>();
- *    I definitely do not want synchronized behavior here as I will be using this datastructure local to 
- *    a method . Apart from this why should I prefer Deque over Stack here ?
- *    P.S: The javadoc from Deque says :
- *    Deques can also be used as LIFO (Last-In-First-Out) stacks. This interface should be used in 
- *    preference to the legacy Stack class.
- *    
- * A: For one thing, it's more sensible in terms of inheritance. The fact that Stack extends Vector is 
- *    really strange, in my view. Early in Java, inheritance was overused IMO - Properties being another 
- *    example.
- *    For me, the crucial word in the docs you quoted is consistent. Deque exposes a set of operations 
- *    which is all about being able to fetch/add/remove items from the start or end of a collection, 
- *    iterate etc - and that's it. There's deliberately no way to access an element by position, which 
- *    Stack exposes because it's a subclass of Vector.
- *    Oh, and also Stack has no interface, so if you know you need Stack operations you end up committing 
- *    to a specific concrete class, which isn't usually a good idea.
- */
-public class DecodeString {
-    public String decodeString(String s) {
-        Stack<Integer> count = new Stack<Integer>();
-        // The evolution process of result stack
-        // Don't forget the initial push of empty string and push empty string when encounter '['
-        // E.g s = "3[a]2[bc]"
-        //  0         1            2          3        4           5               6                7             8            9
-        // [""] -> ["", ""] -> ["", "a"] -> [""] -> ["aaa"] -> ["aaa", ""] -> ["aaa", "b"] -> ["aaa", "bc"] -> ["aaa"] -> ["aaabcbc"]
-        // initial push of empty string --> step 0
-        // push empty string when encounter '[' --> step 1, 5
-        Stack<String> result = new Stack<String>();
-        int i = 0;
-        // If not initial result stack with empty string
-        // will throw java.util.EmptyStackException
-        // because we try to pop out first when encounter ']'
-        // E.g s = "3[a]2[bc]"
-        result.push("");
-        while(i < s.length()) {
-            // Find continuous number if exist
-            char ch = s.charAt(i);
-            if(ch >= '0' && ch <= '9') {
-                int start = i;
-                while(s.charAt(i + 1) >= '0' && s.charAt(i + 1) <= '9') {
-                    i++;
-                }
-                int currCount = Integer.parseInt(s.substring(start, i + 1));
-                count.push(currCount);
-            } else if(ch == '[') {
-                // If not initial result stack with empty string
-                // will throw java.util.EmptyStackException
-                // because we try to pop out first when encounter '['
-                // E.g s = "3[a]2[bc]"
-                result.push("");
-            } else if(ch == ']') {
-                String str = result.pop();
-                StringBuilder sb = new StringBuilder();
-                int times = count.pop();
-                for(int j = 0; j < times; j++) {
-                    sb.append(str);
-                }
-                result.push(result.pop() + sb.toString());
-            } else {
-                result.push(result.pop() + ch);
-            }
-            i++;
-        }
-        return result.pop();
-    }
-    
-    /**
-     * Refer to
-     * https://discuss.leetcode.com/topic/57250/java-short-and-easy-understanding-solution-using-stack/6
-     * (1) I replaced Strings with StringBuilders to avoid recreating Strings due to immutability
-     * (2) To calc the multiplier, I used some fancy logic from @sampsonchan. See his solution.
-     * (3) Since Java Doc says not to use Stack anymore, I used a double-ended Q (Deque)
-     * (4) I used verbose variable names
-     */
-    public String decodeString2(String s) {
-        // return result.pop();
-        Deque<Integer> count = new ArrayDeque<Integer>();
-        Deque<StringBuilder> result = new ArrayDeque<StringBuilder>();
-        int i = 0;
-        result.push(new StringBuilder());
-        while(i < s.length()) {
-            char ch = s.charAt(i);
-            if(ch >= '0' && ch <= '9') {
-                int start = i;
-                while(s.charAt(i + 1) >= '0' && s.charAt(i + 1) <= '9') {
-                    i++;
-                }
-                int number = Integer.parseInt(s.substring(start, i + 1));
-                count.push(number);
-            } else if(ch == '[') {
-                result.push(new StringBuilder());
-            } else if(ch == ']') {
-                int times = count.pop();
-                StringBuilder sb = new StringBuilder();
-                StringBuilder str = result.pop();
-                for(int j = 0; j < times; j++) {
-                    sb.append(str);
-                }
-                result.push(result.pop().append(sb));
-            } else {
-                result.push(result.pop().append(ch));
-            }
-            i++;
-        }
-        return result.pop().toString();
-    }
-    
-    
-    
-    public static void main(String[] args) {
-    	DecodeString d = new DecodeString();
-    	String s = "3[a]2[bc]";
-    	String result = d.decodeString(s);
-    	System.out.println(result);
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 https://leetcode.com/problems/decode-string/
 Given an encoded string, return its decoded string.
@@ -325,7 +26,48 @@ Constraints:
 --------------------------------------------------------------------------------
 Attempt 1: 2023-10-22
 Solution 1: Two Stacks (120 min)
-Style 1: We must create new StringBuilder object 'sb' for each level of brackets, don't use 'sb.setLength(0)'
+Style 1: Handle as 3 cases: '[', ']' and other (number or char in same case but two logic)
+class Solution {
+    public String decodeString(String s) {
+        Stack<Integer> numberStack = new Stack<>();
+        Stack<StringBuilder> stringStack = new Stack<>();
+        StringBuilder curr = new StringBuilder();
+        int number = 0;
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(c == '[') {
+                // Push current number and current string to stacks
+                numberStack.push(number);
+                stringStack.push(curr);
+                // Reset for current number and reset for new substring,
+                // prepare for the new inner section
+                curr = new StringBuilder();
+                number = 0;
+            } else if(c == ']') {
+                // Pop count and previous string
+                int count = numberStack.pop();
+                StringBuilder decoded = stringStack.pop();
+                // Append current string repeated count times
+                for(int j = 0; j < count; j++) {
+                    decoded.append(curr);
+                }
+                // Critical statement: Continue use global object 'curr'
+                // to record the decoded string
+                curr = decoded;
+            } else {
+                // Handle multi-digit numbers
+                if(Character.isDigit(c)) {
+                    number = number * 10 + (c - '0');
+                } else {
+                    curr.append(c);
+                }
+            }
+        }
+        return curr.toString();
+    }
+}
+
+Style 2: We must create new StringBuilder object 'sb' for each level of brackets, don't use 'sb.setLength(0)'
 class Solution {
     public String decodeString(String s) {
         Stack<Integer> intStack = new Stack<>();
@@ -370,7 +112,7 @@ class Solution {
     }
 }
 
-Style 2: A more readable way
+Style 3: A more readable way
 class Solution {
     public String decodeString(String s) {
         Stack<Integer> intStack = new Stack<>();
@@ -468,7 +210,7 @@ https://grandyang.com/leetcode/394/
     };
 
 --------------------------------------------------------------------------------
-Solution 2: Recursion (120 min)
+Solution 2: Recursion (120 min, exatly similar 'global index variable' and 'break' style as L1190.Reverse Substrings Between Each Pair of Parentheses (Ref.L856,L1021))
 Style 1: For loop
 class Solution {
     // The int i is a globle parameter to indicate the current 
@@ -522,6 +264,54 @@ class Solution {
 }
 
 Style 2: While loop
+class Solution {
+    int index = 0;
+    public String decodeString(String s) {
+        return helper(s);
+    }
+
+    private String helper(String s) {
+        if(index >= s.length()) {
+            return "";
+        }
+        StringBuilder curr = new StringBuilder();
+        int number = 0;
+        while(index < s.length()) {
+            char c = s.charAt(index);
+            index++;
+            if(c == '[') {
+                // Recursively decode inside brackets
+                String next = helper(s);
+                // Append repeated string calculate from next recursion level
+                for(int i = 0; i < number; i++) {
+                    curr.append(next);
+                }
+                // Reset number to 0 for next [] at the same level
+                // e.g 3[a]2[bc], [] for [bc] is the next [] at
+                // the same level will be impact if the number not
+                // set back to 0, the number will grow into 3*10+2
+                // = 32 if not set back, on the other hand, nested
+                // brackets like 3[a2[c]] won't be impact even number 
+                // not set back to 0, since when enter next recursion 
+                // level, the number will initialize as 0 again
+                number = 0;
+            } else if(c == ']') {
+                // End of current level, break out directly to last
+                // statement as 'return curr.toString()'
+                break;
+            } else {
+                if(Character.isDigit(c)) {
+                    number = number * 10 + (c - '0');
+                } else {
+                    curr.append(c);
+                }
+            }
+        }
+        return curr.toString();
+    }
+}
+
+Or write as below
 class Solution {
     // The int i is a globle parameter to indicate the current 
     // index of char in the String s.
@@ -661,5 +451,509 @@ private int pos = 0;
         }
         return buf.toString();
     }    
-      
+
+Refer to Deepseek
+Problem Understanding
+Given an encoded string, decode it following the rule k[encoded_string], where the encoded_string inside the brackets is repeated exactly k times.
+Examples:
+- "3[a]2[bc]" → "aaabcbc"
+- "3[a2[c]]" → "accaccacc"
+- "2[abc]3[cd]ef" → "abcabccdcdcdef"
+Solution 1: Stack with Two Stacks (Most Common)
+class Solution {
+    public String decodeString(String s) {
+        Stack<Integer> countStack = new Stack<>();
+        Stack<StringBuilder> stringStack = new Stack<>();
+        StringBuilder current = new StringBuilder();
+        int k = 0;
+        
+        for (char c : s.toCharArray()) {
+            if (Character.isDigit(c)) {
+                k = k * 10 + (c - '0'); // Handle multi-digit numbers
+            } else if (c == '[') {
+                // Push current k and current string to stacks
+                countStack.push(k);
+                stringStack.push(current);
+                // Reset for new substring
+                current = new StringBuilder();
+                k = 0;
+            } else if (c == ']') {
+                // Pop count and previous string
+                int count = countStack.pop();
+                StringBuilder decoded = stringStack.pop();
+                // Append current string repeated count times
+                for (int i = 0; i < count; i++) {
+                    decoded.append(current);
+                }
+                current = decoded;
+            } else {
+                // Regular character
+                current.append(c);
+            }
+        }
+        
+        return current.toString();
+    }
+}
+Solution 2: Single Stack with Marker
+class Solution {
+    public String decodeString(String s) {
+        Stack<Character> stack = new Stack<>();
+        
+        for (char c : s.toCharArray()) {
+            if (c != ']') {
+                stack.push(c);
+            } else {
+                // Get string inside brackets
+                StringBuilder sb = new StringBuilder();
+                while (!stack.isEmpty() && Character.isLetter(stack.peek())) {
+                    sb.insert(0, stack.pop());
+                }
+                String sub = sb.toString();
+                
+                // Remove '['
+                stack.pop();
+                
+                // Get number
+                StringBuilder numStr = new StringBuilder();
+                while (!stack.isEmpty() && Character.isDigit(stack.peek())) {
+                    numStr.insert(0, stack.pop());
+                }
+                int k = Integer.parseInt(numStr.toString());
+                
+                // Push decoded string back to stack
+                for (int i = 0; i < k; i++) {
+                    for (char ch : sub.toCharArray()) {
+                        stack.push(ch);
+                    }
+                }
+            }
+        }
+        
+        // Build result from stack
+        StringBuilder result = new StringBuilder();
+        while (!stack.isEmpty()) {
+            result.insert(0, stack.pop());
+        }
+        
+        return result.toString();
+    }
+}
+Solution 3: Recursive DFS (Classic Approach)
+class Solution {
+    private int index = 0;
     
+    public String decodeString(String s) {
+        return dfs(s);
+    }
+    
+    private String dfs(String s) {
+        StringBuilder result = new StringBuilder();
+        int num = 0;
+        
+        while (index < s.length()) {
+            char c = s.charAt(index++);
+            
+            if (Character.isDigit(c)) {
+                num = num * 10 + (c - '0');
+            } else if (c == '[') {
+                // Recursively decode inside brackets
+                String inner = dfs(s);
+                // Append repeated string
+                for (int i = 0; i < num; i++) {
+                    result.append(inner);
+                }
+                num = 0; // Reset number
+            } else if (c == ']') {
+                // End of current level
+                break;
+            } else {
+                result.append(c);
+            }
+        }
+        
+        return result.toString();
+    }
+}
+Solution 4: Pure Recursion without Global Index
+class Solution {
+    public String decodeString(String s) {
+        return decode(s, new int[]{0});
+    }
+    
+    private String decode(String s, int[] idx) {
+        StringBuilder result = new StringBuilder();
+        int num = 0;
+        
+        while (idx[0] < s.length()) {
+            char c = s.charAt(idx[0]);
+            idx[0]++; // Move index
+            
+            if (Character.isDigit(c)) {
+                num = num * 10 + (c - '0');
+            } else if (c == '[') {
+                String inner = decode(s, idx);
+                for (int i = 0; i < num; i++) {
+                    result.append(inner);
+                }
+                num = 0;
+            } else if (c == ']') {
+                break;
+            } else {
+                result.append(c);
+            }
+        }
+        
+        return result.toString();
+    }
+}
+Solution 5: Iterative with One Stack (Optimized)
+class Solution {
+    public String decodeString(String s) {
+        Stack<Object> stack = new Stack<>();
+        StringBuilder current = new StringBuilder();
+        int num = 0;
+        
+        for (char c : s.toCharArray()) {
+            if (Character.isDigit(c)) {
+                num = num * 10 + (c - '0');
+            } else if (c == '[') {
+                // Push current number and string
+                stack.push(num);
+                stack.push(current);
+                // Reset
+                num = 0;
+                current = new StringBuilder();
+            } else if (c == ']') {
+                // Pop previous string and number
+                StringBuilder prev = (StringBuilder) stack.pop();
+                int count = (Integer) stack.pop();
+                // Build decoded string
+                for (int i = 0; i < count; i++) {
+                    prev.append(current);
+                }
+                current = prev;
+            } else {
+                current.append(c);
+            }
+        }
+        
+        return current.toString();
+    }
+}
+Solution 6: Using String Stack Only
+class Solution {
+    public String decodeString(String s) {
+        Stack<String> stack = new Stack<>();
+        StringBuilder current = new StringBuilder();
+        int num = 0;
+        
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            
+            if (Character.isDigit(c)) {
+                num = num * 10 + (c - '0');
+            } else if (c == '[') {
+                // Push current number as string
+                stack.push(current.toString());
+                stack.push(String.valueOf(num));
+                // Reset
+                current = new StringBuilder();
+                num = 0;
+            } else if (c == ']') {
+                // Pop number and previous string
+                int count = Integer.parseInt(stack.pop());
+                String prev = stack.pop();
+                // Build decoded string
+                StringBuilder temp = new StringBuilder(prev);
+                for (int j = 0; j < count; j++) {
+                    temp.append(current);
+                }
+                current = temp;
+            } else {
+                current.append(c);
+            }
+        }
+        
+        return current.toString();
+    }
+}
+Detailed Explanation
+Key Insight:
+- Use stack to handle nested brackets
+- When encountering '[', save current context (string and repeat count)
+- When encountering ']', pop context and build decoded string
+Example Walkthrough:
+Example 1: "3[a]2[bc]"
+Solution 1 trace:
+Step 1: '3' → k = 3
+Step 2: '[' → push k=3, push current="", reset
+Step 3: 'a' → current="a"
+Step 4: ']' → pop count=3, pop prev="", append "a"×3 → current="aaa"
+Step 5: '2' → k = 2
+Step 6: '[' → push k=2, push current="aaa", reset
+Step 7: 'b' → current="b"
+Step 8: 'c' → current="bc"
+Step 9: ']' → pop count=2, pop prev="aaa", append "bc"×2 → current="aaabcbc"
+Result: "aaabcbc"
+
+Example 2: "3[a2[c]]"
+Trace:
+'3' → k=3
+'[' → push 3, push "", current="", k=0
+'a' → current="a"
+'2' → k=2
+'[' → push 2, push "a", current="", k=0
+'c' → current="c"
+']' → pop count=2, pop prev="a", append "c"×2 → current="acc"
+']' → pop count=3, pop prev="", append "acc"×3 → current="accaccacc"
+Result: "accaccacc"
+Complexity Analysis
+Solution 1 (Two Stacks):
+- Time: O(n × m) where n = input length, m = maximum repeat count
+- Space: O(n) for stacks
+Solution 3 (Recursive DFS):
+- Time: O(n × m) worst case
+- Space: O(d) recursion depth where d = nesting depth
+Recommended Solutions
+Best for Interviews: Solution 1
+class Solution {
+    public String decodeString(String s) {
+        Stack<Integer> counts = new Stack<>();
+        Stack<StringBuilder> result = new Stack<>();
+        StringBuilder current = new StringBuilder();
+        int k = 0;
+        
+        for (char c : s.toCharArray()) {
+            if (Character.isDigit(c)) {
+                k = k * 10 + (c - '0');
+            } else if (c == '[') {
+                counts.push(k);
+                result.push(current);
+                current = new StringBuilder();
+                k = 0;
+            } else if (c == ']') {
+                StringBuilder temp = current;
+                current = result.pop();
+                int count = counts.pop();
+                for (int i = 0; i < count; i++) {
+                    current.append(temp);
+                }
+            } else {
+                current.append(c);
+            }
+        }
+        
+        return current.toString();
+    }
+}
+Most Elegant: Solution 3 (Recursive)
+class Solution {
+    private int i = 0;
+    
+    public String decodeString(String s) {
+        return decodeHelper(s);
+    }
+    
+    private String decodeHelper(String s) {
+        StringBuilder sb = new StringBuilder();
+        int num = 0;
+        
+        while (i < s.length()) {
+            char c = s.charAt(i++);
+            if (Character.isDigit(c)) {
+                num = num * 10 + (c - '0');
+            } else if (c == '[') {
+                String inner = decodeHelper(s);
+                for (int j = 0; j < num; j++) {
+                    sb.append(inner);
+                }
+                num = 0;
+            } else if (c == ']') {
+                break;
+            } else {
+                sb.append(c);
+            }
+        }
+        
+        return sb.toString();
+    }
+}
+Edge Cases
+1.Nested brackets: "3[a2[c]]" → "accaccacc"
+2.Multiple separate: "2[abc]3[cd]ef" → "abcabccdcdcdef"
+3.No brackets: "abc" → "abc"
+4.Empty brackets: "3[]" → ""
+5.Large numbers: "100[a]" → "aaa..."
+6.Single letter: "a" → "a"
+Visual Representation
+For "3[a2[c]]":
+Parse: 3 [ a 2 [ c ] ]
+        ↓ ↓ ↓ ↓ ↓ ↓ ↓
+Stack: - 3 a 2 c build: acc, accaccacc
+Processing flow:
+Input: 3 [ a 2 [ c ] ]
+Step1: Parse '3' → k=3
+Step2: '[' → push 3, push "", reset
+Step3: 'a' → current="a"
+Step4: '2' → k=2
+Step5: '[' → push 2, push "a", reset
+Step6: 'c' → current="c"
+Step7: ']' → pop 2, pop "a" → "a" + "c"×2 = "acc"
+Step8: ']' → pop 3, pop "" → "" + "acc"×3 = "accaccacc"
+Comparison with LeetCode 1190
+Both problems involve nested structures:
+- 1190: Reverse strings inside parentheses
+- 394: Repeat strings inside brackets
+Similarities:
+- Both use stack/recursion to handle nesting
+- Both process from innermost to outermost
+- Both have O(n) optimal solutions with clever techniques
+Differences:
+- 394 needs to handle numbers (repeat counts)
+- 1190 only needs to reverse, not repeat
+- 394's repetition can create much longer outputs
+Key Challenges
+1.Multi-digit numbers: "100[a]" needs to parse 100, not just 1
+2.Nested brackets: Need to handle arbitrary depth
+3.Memory efficiency: Output can be exponentially longer than input
+4.Order of operations: Process innermost brackets first
+Summary
+The stack-based solution (Solution 1) is most intuitive:
+1.Use two stacks: one for repeat counts, one for partial strings
+2.When you see '[': push current count and string, reset
+3.When you see ']': pop, repeat current string, append to previous
+4.Accumulate result as you go
+Time: O(n × m), Space: O(n) where n = input length, m = max repeat count.
+
+Q1: In DFS solution why in recursion helper method handling '[' branch we only have to reset number to 0, no need reset StringBuilder object ?
+Excellent observation! You're right to question this. The key insight is understanding how the recursion manages state and scope.
+The Short Answer
+You don't need to reset StringBuilder curr because each recursive call creates its OWN StringBuilder.
+When you make a recursive call helper(s), a new stack frame is created with fresh local variables curr and number. The reset happens automatically because they're new variables in a new scope.
+Detailed Explanation: Scope and Recursion Stack
+Let's trace through what happens:
+1. Each Recursive Call Has Its Own Variables
+private String helper(String s) {
+    // FRESH VARIABLES for each call:
+    StringBuilder curr = new StringBuilder();  // Brand new for this level
+    int number = 0;                           // Brand new for this level
+    
+    while(index < s.length()) {
+        // ...
+    }
+    return curr.toString();
+}
+When helper calls itself recursively:
+- A new stack frame is created
+- New curr and number variables are initialized
+- The previous level's curr and number are preserved on the stack
+2. Visual Example: "3[a2[c]]"
+Let's trace the execution:
+Initial call: helper("3[a2[c]]")
+  curr = "", number = 0
+  index=0: '3' → number=3
+  index=1: '[' → RECURSIVE CALL (level 1)
+
+Level 1 (inside first [):
+  curr = "", number = 0  ← FRESH!
+  index=2: 'a' → curr="a"
+  index=3: '2' → number=2
+  index=4: '[' → RECURSIVE CALL (level 2)
+
+Level 2 (innermost):
+  curr = "", number = 0  ← FRESH!
+  index=5: 'c' → curr="c"
+  index=6: ']' → break, return "c" to level 1
+
+Back to Level 1:
+  next = "c" (from level 2)
+  For i=0 to 1: curr.append("c") → curr="acc"
+  number = 0 (reset for potential more numbers)
+  index=7: ']' → break, return "acc" to initial level
+
+Back to Initial:
+  next = "acc" (from level 1)
+  For i=0 to 2: curr.append("acc") → curr="accaccacc"
+  Return "accaccacc"
+Why number = 0 But Not curr = new StringBuilder()?
+number needs resetting:
+- number accumulates digits BEFORE '['
+- After processing "[...]", if there might be another number later in SAME level
+- Example: "2[a]3[b]" - need number=0 after 'a' to read 3 for 'b'
+curr doesn't need resetting:
+- curr accumulates results FOR THIS LEVEL
+- When you return from recursion, you want to CONTINUE appending to same curr
+- curr represents the entire decoded string for this recursion level
+What Would Happen If You Reset curr?
+If you added curr = new StringBuilder() after processing '[':
+if(c == '[') {
+    String next = helper(s);
+    for(int i = 0; i < number; i++) {
+        curr.append(next);
+    }
+    number = 0;
+    // WRONG: curr = new StringBuilder(); // This would lose previous content
+}
+Example with "a2[b]c":
+- Before '[': curr = "a"
+- Process "2[b]" → next = "bb"
+- Append to curr: curr = "abb"
+- If reset curr: loses "a"!
+- After ']': curr.append("c") → would be just "c" instead of "abbc"
+The Mental Model: "Scoped Builders"
+Think of each recursive level having its own workspace:
+- Level 0's workspace: Builds final result
+- Level 1's workspace: Builds inner bracket content
+- Level 2's workspace: Builds innermost bracket content
+When Level 1 returns its result to Level 0, Level 0 continues building in its own workspace.
+Comparison with Alternative Approach
+If we wanted to avoid resetting number, we could structure differently:
+private String helper(String s) {
+    StringBuilder curr = new StringBuilder();
+    
+    while(index < s.length()) {
+        char c = s.charAt(index);
+        index++;
+        
+        if(Character.isDigit(c)) {
+            // Parse full number
+            int num = c - '0';
+            while(Character.isDigit(s.charAt(index))) {
+                num = num * 10 + (s.charAt(index) - '0');
+                index++;
+            }
+            // Next char must be '['
+            index++; // skip '['
+            String inner = helper(s);
+            for(int i = 0; i < num; i++) {
+                curr.append(inner);
+            }
+        } else if(c == ']') {
+            break;
+        } else {
+            curr.append(c);
+        }
+    }
+    
+    return curr.toString();
+}
+This approach reads the entire number before recursion, so no need to reset.
+Key Recursion Pattern
+This follows a classic pattern:
+1.Accumulate prefix before '[' (in curr)
+2.Recursively process inside '[...]'
+3.Append repeated result to current curr
+4.Continue accumulating after ']' (if any)
+The curr StringBuilder represents the complete output for this recursion level.
+Summary
+VariableWhy Reset?Why Not Reset?numberNeed to clear for next number in same level-curr-It's accumulating ALL content for this level
+The reset happens naturally through recursion:
+- New recursive call = new StringBuilder
+- Return from recursion = continue with existing StringBuilder
+This is the elegance of recursion: each call gets its own clean state, and the call stack manages the scope automatically.
+
+
+Refer to
+L726.Number of Atoms (Ref.L394)
+L1190.Reverse Substrings Between Each Pair of Parentheses (Ref.L856,L1021)
