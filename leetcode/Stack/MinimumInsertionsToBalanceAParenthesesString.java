@@ -612,3 +612,730 @@ class Node {
 
 // So change mind to follow the correct way from 
 // https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/discuss/779928/Simple-O(n)-stack-solution-with-detailed-explanation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/description/
+Given a parentheses string s containing only the characters '(' and ')'. A parentheses string is balanced if:
+- Any left parenthesis '(' must have a corresponding two consecutive right parenthesis '))'.
+- Left parenthesis '(' must go before the corresponding two consecutive right parenthesis '))'.
+In other words, we treat '(' as an opening parenthesis and '))' as a closing parenthesis.
+- For example, "())", "())(())))" and "(())())))" are balanced, ")()", "()))" and "(()))" are not balanced.
+You can insert the characters '(' and ')' at any position of the string to balance it if needed.
+Return the minimum number of insertions needed to make s balanced.
+ 
+Example 1:
+Input: s = "(()))"
+Output: 1
+Explanation: The second '(' has two matching '))', but the first '(' has only ')' matching. We need to add one more ')' at the end of the string to be "(())))" which is balanced.
+
+Example 2:
+Input: s = "())"
+Output: 0
+Explanation: The string is already balanced.
+
+Example 3:
+Input: s = "))())("
+Output: 3
+Explanation: Add '(' to match the first '))', Add '))' to match the last '('.
+ 
+Constraints:
+- 1 <= s.length <= 105
+- s consists of '(' and ')' only.
+--------------------------------------------------------------------------------
+Attempt 1: 2026-01-24
+Solution 1: Math (120 min)
+Style 1: Balance Counter
+class Solution {
+    public int minInsertions(String s) {
+        int insert = 0;
+        int closeNeeded = 0;
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(c == '(') {
+                // Each '(' needs two ')'
+                closeNeeded += 2;
+                // If needRight is odd, we need to insert one ')' to make it even
+                if(closeNeeded % 2 == 1) {
+                    // Insert one ')' to fix the odd count
+                    insert++;
+                    // Reduce need by 1 to make it even
+                    closeNeeded--;
+                }
+            } else {
+                // Offset one closeNeeded with current ')'
+                closeNeeded--;
+                // If we have more ')' than needed, we need to insert '('
+                if(closeNeeded < 0) {
+                    // Insert one '('
+                    insert++;
+                    // Now we need two more ')' since insert a new '('
+                    closeNeeded += 2;
+                }
+            }
+        }
+        return insert + closeNeeded;
+    }
+}
+
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+Style 2: Two-character Lookahead
+class Solution {
+    public int minInsertions(String s) {
+        int insert = 0;
+        int openCount = 0;
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(c == '(') {
+                openCount++;
+            } else {
+                // Check if we have two consecutive closing parentheses
+                // We have two consecutive ')'
+                if(i + 1 < s.length() && s.charAt(i + 1) == ')') {
+                    // We have two consecutive ')' hence match a ')'
+                    if(openCount > 0) {
+                        openCount--;
+                    // Too many ')' and need insert a '(' for this pair
+                    } else {
+                        insert++;
+                    }
+                    // Skip next ')'
+                    i++;
+                // We don't have two consecutive ')'
+                } else {
+                    // Single ')', need to insert one more ')'
+                    // Already have a '('
+                    if(openCount > 0) {
+                        // Need to insert one more ')'
+                        insert++;
+                        // Match the already having '(' and consume it
+                        openCount--;
+                    // Not even have a '('
+                    } else {
+                        // Need to insert one more '(' and one more ')'
+                        insert += 2;
+                    }
+                }
+            }
+        }
+        // Each remaining '(' needs two ')'
+        return insert + openCount * 2;
+    }
+}
+
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+Refer to QWEN
+Here's the optimal Java solution for LeetCode 1541. Minimum Insertions to Balance a Parentheses String:
+class Solution {
+    public int minInsertions(String s) {
+        int insertions = 0;  // Count of insertions needed
+        int openCount = 0;   // Count of unmatched opening parentheses
+        
+        int i = 0;
+        while (i < s.length()) {
+            char c = s.charAt(i);
+            
+            if (c == '(') {
+                openCount++;
+                i++;
+            } else { // c == ')'
+                // Check if we have two consecutive closing parentheses
+                if (i + 1 < s.length() && s.charAt(i + 1) == ')') {
+                    // We have "))" - good, we can use both
+                    i += 2; // Skip both closing parentheses
+                } else {
+                    // We have only one ")" - need to insert another ")"
+                    insertions++;
+                    i++; // Skip the single closing parenthesis
+                }
+                
+                // Now handle the closing pair (either existing or created by insertion)
+                if (openCount > 0) {
+                    // Match with an existing opening parenthesis
+                    openCount--;
+                } else {
+                    // No opening parenthesis to match - need to insert "("
+                    insertions++;
+                }
+            }
+        }
+        
+        // Handle remaining unmatched opening parentheses
+        // Each unmatched "(" needs two ")" to be balanced
+        insertions += openCount * 2;
+        
+        return insertions;
+    }
+}
+Alternative: Simpler Counter Approach
+class Solution {
+    public int minInsertions(String s) {
+        int insertions = 0;
+        int needRight = 0; // Number of right parentheses needed
+        
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                needRight += 2; // Each '(' needs two ')'
+                // If needRight is odd, we need to insert one ')' to make it even
+                if (needRight % 2 == 1) {
+                    insertions++;
+                    needRight--; // Reduce need by 1 to make it even
+                }
+            } else { // c == ')'
+                needRight--;
+                // If we have more ')' than needed, we need to insert '('
+                if (needRight < 0) {
+                    insertions++; // Insert '('
+                    needRight += 2; // Now we need two more ')'
+                }
+            }
+        }
+        
+        return insertions + needRight;
+    }
+}
+Key Concepts Explained:
+Problem Understanding:
+- Input contains only '(' and ')'
+- A balanced string requires two ) for each (
+- We can insert '(' or ')' anywhere to balance the string
+- Goal: find minimum insertions needed
+Algorithm Logic (First Approach):
+1.Process characters left to right
+2.For '(': increment openCount
+3.For ')':
+- Check if next character is also ')'
+- If yes: use both as a complete pair
+- If no: insert one ')' to complete the pair
+4.After processing a pair of ')':
+- If we have unmatched '(', match them
+- If no unmatched '(', insert a '('
+5.At the end: each remaining unmatched '(' needs two ')'
+Example Walkthrough:
+Input: "(()))"
+- '(' → openCount = 1
+- '(' → openCount = 2
+- ')' → check next is ')', so use both "))"
+- openCount = 2 - 1 = 1 (matched one pair)
+- Remaining openCount = 1 → needs 1 × 2 = 2 insertions
+- Total: 2
+Wait, let me recalculate this example properly:
+Input: "(()))"
+- i=0: '(' → openCount = 1
+- i=1: '(' → openCount = 2
+- i=2: ')' → next char i=3 is ')', so use both
+- openCount = 2 - 1 = 1 (one opening matched)
+- i becomes 4
+- i=4: ')' → next doesn't exist, so insert one ')' (insertions = 1)
+- Now handle this pair: openCount = 1 > 0, so openCount = 0
+- End: openCount = 0
+- Total: 1
+Actually, "(()))" is already almost balanced. Let me use a better example:
+Input: "())"
+- i=0: '(' → openCount = 1
+- i=1: ')' → next char i=2 is ')', use both
+- openCount = 1 - 1 = 0
+- Total: 0 ✓
+Input: "((("
+- Three '(' → openCount = 3
+- End: insertions += 3 × 2 = 6
+- Total: 6 ✓
+Second Approach Logic:
+- Track needRight: how many ')' we need
+- For each '(': add 2 to needRight
+- For each ')': subtract 1 from needRight
+- Handle edge cases when needRight becomes odd or negative
+Time & Space Complexity:
+- Time: O(n) - single pass through the string
+- Space: O(1) - only using integer variables
+This solution efficiently handles all cases including single closing parentheses, unmatched opening parentheses, and mixed scenarios!
+
+Q1: In your Alternative: Simpler Counter Approach, you have slightly explained why we use 'insertions' separately against 'needRight' and also show on they work together with example, but for me its not that intuitive, can you explain more how we introduce 'insertions' and how 'needRight' not enough to cover the logic OR if no need 'insertions' and 'needRight' is good enough to cover the logic ?
+Great question! Let me clarify why we need both insertions and needRight, and whether needRight alone could handle everything.
+The Core Issue: Two Different Types of Problems
+The key insight is that there are two distinct scenarios that require insertions:
+Scenario 1: Too Many Closing Parentheses
+- We have more ) than we can match with existing (
+- Solution: Insert a ( to balance
+- This affects needRight immediately
+Scenario 2: Odd Number of Closing Parentheses Needed
+- Each ( requires exactly 2 )
+- If needRight becomes odd, we have a problem!
+- Solution: Insert one ) to make it even, then adjust
+Let me walk through the second approach step by step:
+public int minInsertions(String s) {
+    int insertions = 0;
+    int needRight = 0; // How many ')' we need in total
+    
+    for (char c : s.toCharArray()) {
+        if (c == '(') {
+            needRight += 2; // Each '(' needs 2 ')'
+            
+            // CRITICAL: What if needRight becomes odd?
+            if (needRight % 2 == 1) {
+                insertions++;   // Insert one ')' to fix the odd count
+                needRight--;    // Now needRight is even again
+            }
+        } else { // c == ')'
+            needRight--;
+            
+            // CRITICAL: What if we have too many ')'?
+            if (needRight < 0) {
+                insertions++;   // Insert one '(' 
+                needRight += 2; // Now we need 2 more ')' for this new '('
+            }
+        }
+    }
+    
+    return insertions + needRight;
+}
+
+Why needRight Alone Isn't Enough
+Problem 1: Negative needRight
+If we only tracked needRight, when it goes negative, we wouldn't know how many insertions we made to fix it.
+Example: ")"
+- Start: needRight = 0
+- Process ')': needRight = -1
+- We need to insert '(', but needRight = -1 doesn't tell us we made an insertion
+- After fixing: we should have needRight = 1 (since new '(' needs 2 ')', we already have 1 ')')
+- But if we just set needRight = 1, we lost track that we made 1 insertion
+Problem 2: Odd needRight
+When we see '(', we add 2 to needRight. But what if we previously had an odd needRight?
+Example: "())("
+Let's trace without insertions counter:
+- '(': needRight = 2
+- ')': needRight = 1
+- ')': needRight = 0
+- '(': needRight = 2 ← Wait, this seems fine!
+But consider: `"()("``
+- '(': needRight = 2
+- ')': needRight = 1 ← ODD!
+- '(': needRight = 3 ← Still odd!
+The issue is: we can never have an odd number of needed closing parentheses because each opening parenthesis requires exactly 2 closing ones.
+So when needRight becomes odd, we must immediately insert a closing parenthesis to make it even.
+Could We Use Only needRight?
+Technically yes, but it would be confusing and error-prone. Here's how it might look:
+// DON'T do this - hard to understand!
+public int minInsertions(String s) {
+    int needRight = 0;
+    int totalInsertions = 0;
+    
+    for (char c : s.toCharArray()) {
+        if (c == '(') {
+            if (needRight % 2 == 1) {
+                // Fix odd count by effectively inserting a ')'
+                needRight--; // This represents the insertion
+                totalInsertions++;
+            }
+            needRight += 2;
+        } else {
+            needRight--;
+            if (needRight < 0) {
+                // Fix by inserting '(' which needs 2 ')'
+                needRight += 2;
+                totalInsertions++;
+            }
+        }
+    }
+    
+    return totalInsertions + needRight;
+}
+But notice: we still need totalInsertions! We can't avoid counting insertions separately because:
+1.needRight represents future needs, not past actions
+2.Insertions are immediate actions that affect both current state and future needs
+3.Final answer = insertions made during processing + remaining needs
+The Clean Separation
+- needRight: "How many ) do I still need going forward?"
+- insertions: "How many characters have I already inserted?"
+This separation makes the logic clear and maintainable.
+
+Refer to Deepseek
+Problem Understanding
+Given a string containing only '(' and ')', return the minimum number of insertions needed to make it balanced. A balanced string follows:
+- '(' must be followed by two consecutive ')' (not one)
+- '(' and ')' must be in the correct order
+Solution 1: Balance Counter (Most Efficient)
+class Solution {
+    public int minInsertions(String s) {
+        int insertions = 0;  // Total insertions needed
+        int openNeeded = 0;  // Count of '(' needed to balance
+        
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            
+            if (c == '(') {
+                // Each '(' needs two ')'
+                openNeeded += 2;
+                
+                // If openNeeded is odd, we need to insert one ')'
+                // to make the previous '(' have two ')'
+                if (openNeeded % 2 == 1) {
+                    insertions++;    // Add a ')'
+                    openNeeded--;    // Now we need one less ')'
+                }
+            } else { // c == ')'
+                // Decrease the needed ')'
+                openNeeded--;
+                
+                // If openNeeded becomes -1, we need to insert '('
+                if (openNeeded == -1) {
+                    insertions++;    // Add a '('
+                    openNeeded = 1;  // Now we need one ')' (two total, one from this ')')
+                }
+            }
+        }
+        
+        // At the end, add any needed ')' for unmatched '('
+        return insertions + openNeeded;
+    }
+}
+Solution 2: Simplified Balance Counter
+class Solution {
+    public int minInsertions(String s) {
+        int insertions = 0;
+        int balance = 0;  // Positive = need ')', Negative = need '('
+        
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            
+            if (c == '(') {
+                balance += 2;
+                
+                // If balance is odd, it means we have an incomplete pair
+                // Need to insert one ')' to complete previous pair
+                if (balance % 2 == 1) {
+                    insertions++;  // Insert ')'
+                    balance--;     // One ')' satisfied
+                }
+            } else { // c == ')'
+                balance--;
+                
+                // Too many ')', need to insert '('
+                if (balance == -1) {
+                    insertions++;  // Insert '('
+                    balance = 1;   // Now we need one ')' (for the inserted '(')
+                }
+            }
+        }
+        
+        return insertions + balance;
+    }
+}
+Solution 3: Two-character Lookahead
+class Solution {
+    public int minInsertions(String s) {
+        int insertions = 0;
+        int open = 0;  // Count of unmatched '('
+        
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            
+            if (c == '(') {
+                open++;
+            } else { // c == ')'
+                // Check if next char is also ')'
+                if (i + 1 < s.length() && s.charAt(i + 1) == ')') {
+                    // We have two consecutive ')'
+                    if (open > 0) {
+                        open--;  // Match with existing '('
+                    } else {
+                        insertions++;  // Need '(' for this pair
+                    }
+                    i++;  // Skip next ')'
+                } else {
+                    // Single ')', need to insert one more ')'
+                    if (open > 0) {
+                        open--;        // Use one '('
+                        insertions++;  // Need one more ')'
+                    } else {
+                        insertions += 2;  // Need '(' and one more ')'
+                    }
+                }
+            }
+        }
+        
+        // Each remaining '(' needs two ')'
+        return insertions + (open * 2);
+    }
+}
+Solution 4: Stack-based (Conceptual)
+class Solution {
+    public int minInsertions(String s) {
+        Stack<Character> stack = new Stack<>();
+        int insertions = 0;
+        
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            
+            if (c == '(') {
+                stack.push(c);
+            } else { // c == ')'
+                // Check if next is also ')'
+                if (i + 1 < s.length() && s.charAt(i + 1) == ')') {
+                    // We have "))"
+                    if (!stack.isEmpty()) {
+                        stack.pop();  // Match with '('
+                    } else {
+                        insertions++;  // Need '(' for this pair
+                    }
+                    i++;  // Skip next ')'
+                } else {
+                    // Single ')', need to insert one more ')'
+                    if (!stack.isEmpty()) {
+                        stack.pop();    // Use one '('
+                        insertions++;   // Need one more ')'
+                    } else {
+                        insertions += 2; // Need '(' and ')'
+                    }
+                }
+            }
+        }
+        
+        // Each remaining '(' needs two ')'
+        return insertions + (stack.size() * 2);
+    }
+}
+Detailed Explanation
+Key Insight:
+Unlike regular parentheses (where '(' needs one ')'), here each '(' needs TWO ')' (consecutive).
+- Think of '))' as a single "closing unit"
+- Each '(' needs one '))' unit
+- Track needed closing units with a counter
+Example Walkthrough:
+Example 1: "(()))"
+Solution 1 trace:
+i=0: '(' → openNeeded=2, even ✓
+i=1: '(' → openNeeded=4, even ✓  
+i=2: ')' → openNeeded=3
+i=3: ')' → openNeeded=2
+i=4: ')' → openNeeded=1
+End: insertions=0 + openNeeded=1 = 1
+
+Explanation: Need one more ')' at end: "(())))"
+Example 2: "())"
+i=0: '(' → openNeeded=2, even ✓
+i=1: ')' → openNeeded=1
+i=2: ')' → openNeeded=0
+End: insertions=0 + openNeeded=0 = 0 ✓
+
+String: "())" is balanced (one '(' with two ')')
+Example 3: "))())("
+i=0: ')' → openNeeded=-1 → insertions=1, openNeeded=1
+i=1: ')' → openNeeded=0
+i=2: '(' → openNeeded=2, even ✓
+i=3: ')' → openNeeded=1
+i=4: ')' → openNeeded=0
+i=5: '(' → openNeeded=2, even ✓
+End: insertions=1 + openNeeded=2 = 3
+
+Explanation: Insert '(' at beginning, add "))" at end
+Result: "(" + "))())(" + "))" = "()))())()))"
+Complexity Analysis
+Solution 1 (Balance Counter):
+- Time: O(n) - single pass through string
+- Space: O(1) - only variables
+Solution 3 (Two-character lookahead):
+- Time: O(n) - single pass with lookahead
+- Space: O(1) - only variables
+Recommended Solutions
+Best for Interviews: Solution 1
+class Solution {
+    public int minInsertions(String s) {
+        int insertions = 0;
+        int needed = 0; // Number of ')' needed
+        
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            
+            if (c == '(') {
+                // Each '(' needs two ')'
+                needed += 2;
+                
+                // If needed is odd, insert one ')'
+                if (needed % 2 == 1) {
+                    insertions++;
+                    needed--;
+                }
+            } else { // c == ')'
+                needed--;
+                
+                // Too many ')', need '('
+                if (needed == -1) {
+                    insertions++;  // Insert '('
+                    needed = 1;    // Now need one ')'
+                }
+            }
+        }
+        
+        return insertions + needed;
+    }
+}
+Alternative: Solution 3 (More Intuitive)
+class Solution {
+    public int minInsertions(String s) {
+        int res = 0, left = 0, n = s.length();
+        
+        for (int i = 0; i < n; i++) {
+            if (s.charAt(i) == '(') {
+                left++;
+            } else {
+                // Check if we have two consecutive ')'
+                if (i < n - 1 && s.charAt(i + 1) == ')') {
+                    i++; // Skip next ')'
+                    if (left > 0) left--; // Match with '('
+                    else res++; // Need '('
+                } else {
+                    // Single ')'
+                    if (left > 0) {
+                        left--;
+                        res++; // Need one more ')'
+                    } else {
+                        res += 2; // Need '(' and ')'
+                    }
+                }
+            }
+        }
+        
+        return res + left * 2;
+    }
+}
+Visual Representation
+For "))())(":
+String:  )  )  (  )  )  (
+Index:   0  1  2  3  4  5
+
+Solution 1 trace:
+i=0: ')' → needed=-1 → insertions=1, needed=1
+i=1: ')' → needed=0
+i=2: '(' → needed=2
+i=3: ')' → needed=1  
+i=4: ')' → needed=0
+i=5: '(' → needed=2
+
+Result: insertions=1 + needed=2 = 3
+Rule Summary:
+1.Each '(' needs '))' (two consecutive ')')
+2.Track needed closing parentheses (needed)
+3.If needed becomes negative, insert '('
+4.If needed is odd, insert one ')'
+5.At end, add remaining needed ')'
+Edge Cases
+1.Empty string: "" → 0
+2.Already balanced: "()())" → 0
+3.Only '(': "(((" → 6 (each needs two ')')
+4.Only ')': "))))" → 6 (need '(' for each pair)
+5.Mixed: "(()))(()))()())" → 2
+6.Single ')': ")" → 2 (need '(' and one more ')')
+Comparison with Regular Parentheses (LeetCode 921)
+AspectLeetCode 921LeetCode 1541Pairing'(' ↔ ')' (1:1)'(' ↔ '))' (1:2)SolutionTrack balance, add when neededTrack needed closings, handle odd/evenKey insightBalance should never go negativeNeeded closings can be odd, fix by adding ')'
+Why needed % 2 == 1 Check?
+When needed is odd, it means:
+- We have an incomplete pair of ')'
+- Example: needed = 3 means we need 3 ')', but '(' needs them in pairs of 2
+- We insert one ')' to make needed = 2 (a complete pair)
+Example: "(()"
+i=0: '(' → needed=2
+i=1: '(' → needed=4  
+i=2: ')' → needed=3 (ODD!)
+  Insert ')' → insertions=1, needed=2
+End: insertions=1 + needed=2 = 3
+
+Result: Insert one ')' now, two ')' at end
+Summary
+The optimal solution:
+1.Initialize insertions = 0, needed = 0
+2.For '(': needed += 2, if needed odd: insert ')', needed--
+3.For ')': needed--, if needed == -1: insert '(', needed = 1
+4.Return insertions + needed
+This handles all cases in O(n) time, O(1) space. The key is recognizing that '(' needs two consecutive ')', not just one.
+
+
+Refer to
+L921.Minimum Add to Make Parentheses Valid (Ref.L1249,L1963)
+L1963.Minimum Number of Swaps to Make the String Balanced (Ref.L301,L2116)
