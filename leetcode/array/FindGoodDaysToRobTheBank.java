@@ -151,7 +151,7 @@ Time Complexity
 - O(n), where n is the number of days. We make two passes over the array to fill the nonIncreasing and nonDecreasing arrays and one more pass to find the good days, resulting in a linear runtime.
 This solution efficiently finds the good days to rob the bank while adhering to the problem constraints.
 --------------------------------------------------------------------------------
-Question 1: Why the for loop direction on calculating 'nonIncreasingDays' must from right to left and NOT from left to right as normal ?
+Question 1: Why the for loop direction on calculating 'nonDecreasingDays' must from right to left and NOT from left to right as normal ?
 The wrong solution below if we change to left to right as below:
 security = [5,3,3,3,5,6,2], time = 2
 Output = [3]
@@ -216,7 +216,7 @@ For example, in the wrong solution if given input security = [5,3,3,3,5,6,2] and
 The correct result for nonDecreasing array should be [0, 4, 3, 2, 1, 0, 0]
 
 
-Question 2: When calculating LIS, nested for loop NOT required for Leetcode 2100 but rqeuired in Leetcode 1671, 300, ... etc ?
+Question 2: When calculating LIS, nested for loop NOT required for Leetcode 2100 but required in Leetcode 1671, 300, ... etc ?
 There is a question if compare this solution against Leetcode 1671 solution below:
 // Sample from Leetcode 1671 nested for loop when calculating LIS
 for(int i = 0; i < len; i++) {
