@@ -608,9 +608,119 @@ Key Theoretical Points
 Conclusion
 The right-to-left iteration is correct because it perfectly maintains the DP principle of only using stable old states when computing new states. Left-to-right iteration would corrupt the state dependencies and produce incorrect results. This directionality is crucial for the space optimization to work correctly.
 
+
+For Leetcode 62.Unique Paths, i have below solution but looks like incorrect, help me to fix ?
+Why i am try with int[][] dp = new int[m + 1][n + 1] in Leetcode 62 is because i tried it success in Leetcode 64.Minimum Path Sum, below are my two solutions for Leetcode 64, Solution 1 initialize with int[][] dp = new int[m][n], Solution 2 initialize with int[][] dp = new int[m + 1][n + 1]:
+Input
+m = 3
+n = 7
+Output = 0
+Expected = 28
+class Solution {
+    public int uniquePaths(int m, int n) {
+        // dp[i][j] will denote the number of unique paths from 
+        // cell (0, 0) to the cell (i, j). (Note this differs from 
+        // memoization approach where dp[i][j] denoted number of 
+        // unique paths from cell (i, j) to the cell (m-1, n-1))
+        int[][] dp = new int[m + 1][n + 1];
+        // We start at cell (0, 0), so dp[0][0] = 1, means number
+        // of unique paths from cell (0, 0) to cell(i, j) as 
+        // cell(0, 0) is 1 as itself
+        dp[0][0] = 1;
+        // Since we can only move right or down, there is only one 
+        // way to reach a cell (i, 0) or (0, j). Thus, we also 
+        // initialize dp[i][0] = 1 and dp[0][j]=1.
+        //for(int i = 1; i < m; i++) {
+        //    dp[i][0] = 1;
+        //}
+        //for(int j = 1; j < n; j++) {
+        //    dp[0][j] = 1;
+        //}
+        // For every other cell (i, j) (where 1 <= i <= m-1 and 
+        // 1 <= j <= n-1), we can reach here either from the top 
+        // cell (i-1, j) or the left cell (i, j-1). So the result 
+        // for number of unique paths to arrive at (i, j) is the 
+        // summation of both, i.e, dp[i][j] = dp[i-1][j] + dp[i][j-1].
+        for(int i = 1; i <= m; i++) {
+            for(int j = 1; j <= n; j++) {
+                dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+            }
+        }
+        return dp[m][n];
+    }
+}
+
+Refer to Deepseek
+在 Leetcode 62 中，你尝试使用 int[m+1][n+1] 的 DP 数组，但因为没有正确初始化边界，导致所有 dp 值均为 0，最终返回 0。下面解释为什么同样的技巧在 64 题（最小路径和）中可行，而在 62 题中需要不同处理，并给出修正后的代码。
+--------------------------------------------------------------------------------
+为什么你的代码失败？
+你的代码中：
+int[][] dp = new int[m + 1][n + 1];
+dp[0][0] = 1;
+for(int i = 1; i <= m; i++) {
+    for(int j = 1; j <= n; j++) {
+        dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+    }
+}
+return dp[m][n];
+- dp[0][0] = 1 只设置了起点，但 dp[0][1] 和 dp[1][0] 仍然是默认值 0。
+- 当 i=1, j=1 时，dp[1][1] = dp[0][1] + dp[1][0] = 0+0 = 0，导致整个表格后续计算全为 0。
+实际上，从 (0,0) 到第一行或第一列的任意格子都只有一条路径（只能一直向右或一直向下），所以第一行和第一列的值应该为 1。你的代码没有初始化这些边界，因此出错。
+--------------------------------------------------------------------------------
+为什么 64 题可以用 int[m+1][n+1] 并设置边界为无穷大？
+在 64 题中，递推公式是 dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]。如果将虚拟边界（第 0 行和第 0 列）设为 Integer.MAX_VALUE，那么 min 操作会自动忽略这些边界，从而无需单独处理第一行和第一列。但注意，起点 (1,1) 需要特殊处理，因为它的左和上都为无穷大，会导致错误，所以你在代码中手动设置了 dp[m-1][n-1] 并额外处理了最后一行和最后一列。
+这个技巧的核心是：无穷大在 min 中会被自然忽略，但在加法中（如 62 题）却会破坏结果。因此 62 题不能简单地用无穷大边界，而需要正确初始化边界为 1。
+--------------------------------------------------------------------------------
+如何用 int[m+1][n+1] 正确解决 62 题？
+我们可以利用一个常见的 DP 技巧：将虚拟边界中的 dp[0][1] 或 dp[1][0] 设为 1，这样 dp[1][1] 就会自动计算为 1（因为 dp[1][1] = dp[0][1] + dp[1][0]）。然后从 (1,1) 开始递推即可。
+修正后的代码：
+class Solution {
+    public int uniquePaths(int m, int n) {
+        int[][] dp = new int[m + 1][n + 1];
+        // 技巧：将虚拟边界中的某一个设为 1，使得 dp[1][1] 自动为 1
+        dp[0][1] = 1; // 或 dp[1][0] = 1
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+            }
+        }
+        return dp[m][n];
+    }
+}
+- dp[0][1] 代表从起点到虚拟格子 (0,1) 的路径数，虽然该格子不存在，但数学上它帮助统一了边界。
+- 循环从 (1,1) 到 (m,n)，dp[i][j] 自动累加左和上的值。
+测试 m=3, n=7 输出 28，符合预期。
+--------------------------------------------------------------------------------
+另一种常见写法（0-indexed）
+如果不习惯虚拟边界，更直观的 0-indexed 写法如下：
+class Solution {
+    public int uniquePaths(int m, int n) {
+        int[][] dp = new int[m][n];
+        // 初始化第一列
+        for (int i = 0; i < m; i++) dp[i][0] = 1;
+        // 初始化第一行
+        for (int j = 0; j < n; j++) dp[0][j] = 1;
+        // 递推
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+            }
+        }
+        return dp[m - 1][n - 1];
+    }
+}
+这种方法更容易理解，也推荐使用。
+--------------------------------------------------------------------------------
+总结
+- 在 62 题中，int[m+1][n+1] 技巧需要将虚拟边界的一个值设为 1 来启动递推。
+- 在 64 题中，虚拟边界设为无穷大可以配合 min 运算，但需要额外处理起点。
+- 理解 DP 边界的初始化方式，是正确解题的关键。
+
+
+
 Refer to
 L63.Unique Paths II (Ref.L62)
-L64.Minimum Path Sum (Ref.L62)
+L64.Minimum Path Sum (Ref.L62,L63)
 L174.Dungeon Game (Ref.L62,L72)
 L2087.Minimum Cost Homecoming of a Robot in a Grid (Ref.L62)
 L2304.Minimum Path Cost in a Grid (Ref.L62)
