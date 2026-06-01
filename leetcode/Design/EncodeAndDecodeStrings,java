@@ -1,0 +1,97 @@
+https://leetcode.ca/all/271.html
+Design an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings.
+Machine 1 (sender) has the function:
+string encode(vector<string> strs) {
+  // ... your code
+  return encoded_string;
+}
+Machine 2 (receiver) has the function:
+vector<string> decode(string s) {
+  //... your code
+  return strs;
+}
+So Machine 1 does:
+string encoded_string = encode(strs);
+and Machine 2 does:
+vector<string> strs2 = decode(encoded_string);
+strs2 in Machine 2 should be the same as strs in Machine 1.
+Implement the encode and decode methods.
+ 
+Note:
+- The string may contain any possible characters out of 256 valid ascii characters. Your algorithm should be generalized enough to work on any possible characters.
+- Do not use class member/global/static variables to store states. Your encode and decode algorithms should be stateless.
+- Do not rely on any library method such as eval or serialize methods. You should implement your own encode/decode algorithm.
+--------------------------------------------------------------------------------
+Attempt 1: 2026-05-31
+Solution 1: Design + String (30 min)
+Refer to QWEN
+Here's a clean, production-ready Java solution for LeetCode 271 / LintCode 659. Encode and Decode Strings using the Length-Prefix Pattern:
+import java.util.ArrayList;
+import java.util.List;
+
+public class Codec {
+    // Encodes a list of strings to a single string.
+    public String encode(List<String> strs) {
+        StringBuilder sb = new StringBuilder();
+        for (String s : strs) {
+            sb.append(s.length()).append('#').append(s);
+        }
+        return sb.toString();
+    }
+
+    // Decodes a single string to a list of strings.
+    public List<String> decode(String s) {
+        List<String> res = new ArrayList<>();
+        int i = 0;
+        while (i < s.length()) {
+            // indexOf(int ch, int fromIndex): Finds the first occurrence of a character, 
+            // starting the search forward from the specified index.
+            int delimiter = s.indexOf('#', i);
+            int len = Integer.parseInt(s.substring(i, delimiter));
+            res.add(s.substring(delimiter + 1, delimiter + 1 + len));
+            i = delimiter + 1 + len;
+        }
+        return res;
+    }
+}
+
+Time Complexity: O(N) where N is the total number of characters across all strings. Each character is written once during encode and read once during decode.
+Space Complexity: O(N) for the encoded string and the decoded list. Auxiliary space is O(1).
+🔍 Core Idea: Length-Prefix Encoding
+Instead of relying on a delimiter that could appear inside the strings (like /, ,, or #), we prefix each string with its exact length followed by a separator. During decoding, the length tells us exactly how many characters to consume next, making the format completely unambiguous.
+Example: ["abc", "a#b", ""] → "3#abc3#a#b0#"
+- Read 3 → consume next 3 chars → "abc"
+- Read 3 → consume next 3 chars → "a#b" (the # inside is safely consumed), because indexOf(int ch, int fromIndex): Finds the first occurrence of a character, starting the search forward from the specified index, e.g 3#a#bwill only retrieve first '#' and keep a#bintact 
+- Read 0 → consume next 0 chars → ""
+⏱️ Complexity
+- Time: O(N) where N is the total number of characters across all strings. Each character is written once during encode and read once during decode.
+- Space: O(N) for the encoded string and the decoded list. Auxiliary space is O(1).
+💡 Why This Beats Naive Delimiter Approaches
+ApproachProblemFixJust join with #"a#b"becomes ambiguousEscape delimiters (\#), but then you must also escape \ → cascading complexityFixed-width paddingWastes space, breaks if strings exceed paddingInefficient and constraint-dependentLength PrefixNoneDeterministic, O(1) overhead per string, handles any ASCII/Unicode content
+🔧 Advanced Optimization (Manual Parsing)
+If you want to avoid substring() and Integer.parseInt() overhead (useful in high-throughput systems), parse the length manually:
+public List<String> decode(String s) {
+    List<String> res = new ArrayList<>();
+    int i = 0;
+    while (i < s.length()) {
+        int len = 0;
+        while (s.charAt(i) != '#') {
+            len = len * 10 + (s.charAt(i) - '0');
+            i++;
+        }
+        i++; // skip '#'
+        res.add(s.substring(i, i + len));
+        i += len;
+    }
+    return res;
+}
+Trade-off: Slightly faster in tight loops, but indexOf + parseInt is more readable and perfectly acceptable for interviews.
+📝 Interview Checklist
+- ✅ Always clarify: "Can strings contain any character?" → Yes, so length-prefix is mandatory.
+- ✅ State why you chose # (or /) → Doesn't matter, length prefix makes it irrelevant.
+- ✅ Mention empty list & empty string handling → Both work naturally with this approach.
+- ✅ Note that StringBuilder avoids O(K * N) concatenation overhead where K is number of strings.
+Let me know if you'd like a version that supports streaming/large inputs, or a breakdown of how this pattern applies to network protocols (like HTTP chunked encoding)!
+
+Refer to
+L696.Count Binary Substrings (Ref.L271,L2489,L3234)
