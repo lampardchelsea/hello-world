@@ -233,3 +233,71 @@ Space Complexity
 The cnt variable is a Counter that stores the occurrences of each item in deliciousness. At worst, if all elements are unique, cnt would be the same size as deliciousness, so the space used by cnt is O(n) where n is the length of deliciousness.
 S(n) = O(n)
 There is a negligible additional space used for the loop indices, calculations, and single-item b, which does not depend on the size of deliciousness and thus does not affect the overall space complexity.
+--------------------------------------------------------------------------------
+Refer to Deepseek
+以下是 LeetCode 1711 "Count Good Meals" 的 Java 解法，采用哈希表统计，时间复杂度 O(n·22)，空间 O(n)。
+class Solution {
+    public int countPairs(int[] deliciousness) {
+        final int MOD = 1_000_000_007;
+        Map<Integer, Integer> freq = new HashMap<>();
+        long ans = 0;
+        
+        // 最大可能的两数之和: 2^20 + 2^20 = 2^21，但保险枚举到 2^22 也可
+        // 因为 deliciousness[i] <= 2^20，所以最大和为 2^21，枚举 1,2,4,...,2^21
+        for (int x : deliciousness) {
+            // 枚举所有可能的2的幂
+            for (int sum = 1; sum <= (1 << 21); sum <<= 1) {
+                int complement = sum - x;
+                ans += freq.getOrDefault(complement, 0);
+            }
+            // 将当前数加入频率表，供后续元素配对
+            freq.put(x, freq.getOrDefault(x, 0) + 1);
+        }
+        return (int)(ans % MOD);
+    }
+}
+思路简介：
+- 遍历数组，对于当前数 x，所有能与它组成“好餐”的前序数 y 都必须满足 x + y = 2^k。
+- 2 的幂的范围：因为 deliciousness[i] ≤ 2^20，所以最大和不超过 2^21。枚举所有 k 从 0 到 21，即 sum = 1, 2, 4, ..., 2^21。
+- 用哈希表记录之前出现的每个数字及其频次，累加 complement = sum - x 的出现次数即可。
+- 最后取模 1_000_000_007。
+复杂度：
+- 时间复杂度：O(n·22) ≈ O(n)，因为 22 是常数。
+- 空间复杂度：O(n)。
+
+Refer to Kimi
+Here is the Java solution for LeetCode 1711. Count Good Meals.
+Approach: HashMap + Power-of-Two Enumeration
+A "good meal" requires the sum of two deliciousness values to be a power of two. Since deliciousness[i] ≤ 2^20, the maximum possible sum is 2^20 + 2^20 = 2^21. Thus, we only need to check 22 possible target sums (from 2^0 to 2^21).
+For each number, we check how many previously seen numbers can pair with it to form each power of two.
+Time Complexity: $O(n \cdot 22) = O(n)$
+Space Complexity: $O(n)$
+import java.util.*;
+
+class Solution {
+    public int countPairs(int[] deliciousness) {
+        final int MOD = 1_000_000_007;
+        Map<Integer, Integer> freq = new HashMap<>();
+        long ans = 0;
+        
+        // Maximum possible sum is 2^20 + 2^20 = 2^21
+        int maxPower = 1 << 21;  // 2^21
+        
+        for (int num : deliciousness) {
+            // Check all powers of two from 2^0 to 2^21
+            for (int sum = 1; sum <= maxPower; sum <<= 1) {
+                int complement = sum - num;
+                ans += freq.getOrDefault(complement, 0);
+            }
+            
+            // Add current number to the frequency map
+            freq.put(num, freq.getOrDefault(num, 0) + 1);
+        }
+        
+        return (int) (ans % MOD);
+    }
+}
+
+Why it works
+StepActionIterate each numFor every possible power-of-two sum, compute complement = sum - numCount pairsIf complement was seen before, each occurrence forms a valid pair with current numUpdate mapAdd current num to the map so it can pair with future numbers
+The inner loop runs at most 22 times (fixed constant), making the overall complexity linear. ans uses long to prevent integer overflow before the final modulo.
