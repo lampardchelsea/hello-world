@@ -25,6 +25,7 @@ Constraints:
 --------------------------------------------------------------------------------
 Attempt 1: 2026-06-22
 Solution 1: Monotonic Stack + Greedy (60 min)
+Style 1: With real Stack
 class Solution {
     /**
      * 主方法：从两个数组中选出总长度为 k 的序列，使其组成的数字最大。
@@ -142,7 +143,123 @@ class Solution {
 
 Time Complexity: 枚举 i 最多 O(k) 种（实际 O(k) 次），每次取子序列 O(m+n)，合并 O(k)，比较 O(k)，总复杂度 O(k·(m+n))，在 k ≤ 500 时可接受。
 Space Complexity: O(k) 存储临时数组
+Style 2: Without real Stack
+class Solution {
+    /**
+     * 主方法：从两个数组中选出总长度为 k 的序列，使其组成的数字最大。
+     * @param nums1 第一个数组
+     * @param nums2 第二个数组
+     * @param k     需要选取的总元素个数
+     * @return 长度为 k 的最大数字序列（以 int[] 形式表示）
+     */
+    public int[] maxNumber(int[] nums1, int[] nums2, int k) {
+        int m = nums1.length;
+        int n = nums2.length;
+        int[] result = new int[k]; // 最终答案
 
+        // 枚举从 nums1 中取 i 个元素，从 nums2 中取 k-i 个元素
+        // i 的范围：必须满足 0 <= i <= m 且 0 <= k-i <= n
+        // 因此 i 的下界为 max(0, k-n)，上界为 min(k, m)
+        for (int i = Math.max(0, k - n); i <= Math.min(k, m); i++) {
+            // 从 nums1 中取 i 个得到最大子序列
+            int[] seq1 = maxSubsequence(nums1, i);
+            // 从 nums2 中取 k-i 个得到最大子序列
+            int[] seq2 = maxSubsequence(nums2, k - i);
+            // 将两个子序列合并，使得合并后的序列最大
+            int[] merged = merge(seq1, seq2);
+            // 如果合并结果比当前答案更大，则更新答案
+            if (compare(merged, result, 0, 0)) {
+                result = merged;
+            }
+        }
+        return result;
+    }
+
+    /**
+    * 从给定数组中选取 k 个元素（保持原相对顺序），使得组成的数字最大。
+    * 思路：利用单调递减栈，在遍历时，若当前数字比栈顶大，且丢弃栈顶后剩余元素仍然足够凑齐 k 个，
+    * 则弹出栈顶（让更大数字占据更靠前的位置）。
+    * 弹出条件详解：
+    * - 当前栈内元素个数：top + 1（top 为栈顶索引）
+    * - 剩余未遍历元素个数（包括当前位置 i）：num.length - i
+    * - 如果弹出栈顶，则栈内还剩 top 个元素，加上剩余元素，总共 top + (num.length - i) 个。
+    * - 必须保证这个总数 ≥ k，否则弹出后无法凑够 k 个。
+    * - 等价地，弹出前可用总数 (top + 1) + (num.length - i) > k 时才能进行弹出。
+    *
+    * @param num 原数组
+    * @param k   需要选取的元素个数
+    * @return 长度为 k 的最大子序列（数组形式）
+    */
+    private int[] maxSubsequence(int[] num, int k) {
+        int[] result = new int[k];
+        int top = -1; // 栈顶指针（-1 表示空栈
+        for (int i = 0; i < num.length; i++) {
+            // 当栈非空、栈顶 < 当前值，且弹出后仍能凑够 k 个元素时，弹出栈顶
+            while (top + num.length - i >= k && top >= 0 && result[top] < num[i]) {
+                //result[top] = 0
+                top--;   // 逻辑弹出（物理数据无需清除，后续覆盖）
+            }
+            // 如果栈未满，则压入当前数字
+            if (top < k - 1) {
+                result[++top] = num[i];
+            }
+            // 否则当前数字被丢弃（因为它比栈内某些元素小，且无位置）
+        }
+        return result;
+    }
+
+    /**
+     * 合并两个子序列，使得合并后的序列（保持各自内部顺序）组成的数字最大。
+     * 合并时，每一步比较两个序列当前指针所指的后续子序列，选择字典序更大的那一个。
+     * @param seq1 第一个子序列
+     * @param seq2 第二个子序列
+     * @return 合并后的最大序列
+     */
+    private int[] merge(int[] seq1, int[] seq2) {
+        int m = seq1.length;
+        int n = seq2.length;
+        int[] result = new int[m + n];
+        int i = 0, j = 0, k = 0;
+
+        while (i < m || j < n) {
+            // 比较 seq1[i..] 和 seq2[j..] 的字典序，若 seq1 更大则优先取 seq1[i]
+            if (compare(seq1, seq2, i, j)) {
+                result[k++] = seq1[i++];
+            } else {
+                result[k++] = seq2[j++];
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 比较两个数组从指定下标开始的子序列的字典序大小。
+     * 若 seq1[i..] 大于 seq2[j..] 则返回 true，否则返回 false。
+     * 当元素全部相等时，较长的子序列被视为更大，因为在合并时希望优先消耗较长的序列，
+     * 从而让后续的拼接结果更大。
+     * @param seq1 第一个数组
+     * @param seq2 第二个数组
+     * @param i    seq1 的起始下标
+     * @param j    seq2 的起始下标
+     * @return 若 seq1 的子序列更大则返回 true，否则 false
+     */
+    private boolean compare(int[] seq1, int[] seq2, int i, int j) {
+        // 逐一比较对应位置的元素
+        while (i < seq1.length && j < seq2.length) {
+            if (seq1[i] != seq2[j]) {
+                // 第一个不同位置，谁大谁对应的子序列就更大
+                return seq1[i] - seq2[j] > 0;
+            }
+            i++;
+            j++;
+        }
+        // 若所有已比较元素都相等，则长度较长的子序列更大（因为它后面还有元素可以继续构成更大的数）
+        return (seq1.length - i) > (seq2.length - j);
+    }
+}
+
+Time Complexity: 枚举 i 最多 O(k) 种（实际 O(k) 次），每次取子序列 O(m+n)，合并 O(k)，比较 O(k)，总复杂度 O(k·(m+n))，在 k ≤ 500 时可接受。
+Space Complexity: O(k) 存储临时数组
 
 Refer to Deepseek
 以下是 LeetCode 321 "Create Maximum Number" 的 Java 解法，采用贪心 + 枚举拆分策略，时间复杂度 O(k·(m+n))，空间 O(k)。
