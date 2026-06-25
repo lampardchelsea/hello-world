@@ -1,4 +1,3 @@
-
 https://leetcode.com/problems/basic-calculator/
 Given a string s representing a valid expression, implement a basic calculator to evaluate it, and return the result of the evaluation.
 Note: You are not allowed to use any built-in function which evaluates strings as mathematical expressions, such as eval().
@@ -25,7 +24,7 @@ Constraints:
 - Every number and running calculation will fit in a signed 32-bit integer.
 --------------------------------------------------------------------------------
 Attempt 1: 2022-11-26
-Solution 1:  Stack 
+Solution 1: Stack 
 Style 1: Stack store both number and sign for current brace  [当前所属括号的符号] (120 min)
 class Solution { 
     public int calculate(String s) { 
@@ -68,6 +67,9 @@ class Solution {
         return result; 
     } 
 }
+
+Time Complexity: O(n)
+Space Complexity: O(n) (stack for nested parentheses)
 
 Refer to
 https://leetcode.com/problems/basic-calculator/discuss/62362/JAVA-Easy-Version-To-Understand!!!!!
@@ -376,7 +378,134 @@ public class Solution {
 }
 
 
-Refer to
+Refer to Deepseek
+以下是 LeetCode 224 "Basic Calculator" 的 Java 解法，使用栈处理括号和符号，支持加法、减法、括号和空格，时间复杂度 O(n)，空间复杂度 O(n)。
+import java.util.Deque;
+import java.util.ArrayDeque;
 
+class Solution {
+    public int calculate(String s) {
+        Deque<Integer> stack = new ArrayDeque<>(); // 存放括号前的结果和符号
+        int result = 0;   // 当前累积的结果
+        int sign = 1;     // 当前数字的符号（+1 或 -1）
+        int i = 0;
+        int n = s.length();
+        
+        while (i < n) {
+            char c = s.charAt(i);
+            if (Character.isDigit(c)) {
+                // 解析完整的数字（可能多位）
+                int num = 0;
+                while (i < n && Character.isDigit(s.charAt(i))) {
+                    num = num * 10 + (s.charAt(i) - '0');
+                    i++;
+                }
+                // 将当前数字以当前符号加入结果
+                result += sign * num;
+                continue; // 因为 i 已经在数字后，跳过外层 i++
+            } else if (c == '+') {
+                sign = 1;
+            } else if (c == '-') {
+                sign = -1;
+            } else if (c == '(') {
+                // 遇到左括号：将当前结果和符号压栈，然后重置
+                stack.push(result);
+                stack.push(sign);
+                result = 0;
+                sign = 1;
+            } else if (c == ')') {
+                // 遇到右括号：弹出符号和之前的结果，计算新结果
+                int prevSign = stack.pop();
+                int prevResult = stack.pop();
+                result = prevResult + prevSign * result;
+            }
+            // 空格忽略
+            i++;
+        }
+        return result;
+    }
+}
+算法思路
+1.符号处理：sign 记录当前数字前的正负号（+1 或 -1）。
+2.数字解析：遇到数字连续读取完整整数，以当前符号累加到 result。
+3.括号处理：
+- 遇到 (：将当前 result 和 sign 压栈，然后重置 result = 0，sign = 1，开始计算括号内的表达式。
+- 遇到 )：弹出栈顶的 sign 和之前的结果 prevResult，更新 result = prevResult + prevSign * result，实现括号内结果与外部相加。
+4.运算符更新：+ 和 - 只修改 sign，不立即计算。
+5.空格：直接跳过。
+示例
+输入："1 + (2 - (3 + 4))"
+- 扫描过程与栈协作，最终得到正确结果 -4。
+复杂度
+- 时间：O(n)，每个字符处理一次。
+- 空间：O(n)，栈中最多存储 O(括号层数) 个元素。
+注意事项
+- 使用 Deque 代替 Stack（推荐），避免 Stack 的遗留同步开销。
+- 负数处理：例如 "-1 + 2"，起始 sign 默认为 1，但第一个字符是 '-'，会将 sign 置为 -1，后续读取数字时正确应用。
+- 括号前有负号的情况：如 "-(1+2)"，解析过程依然有效（'-' 被当作运算符，括号内的结果会乘以 -1）。
+此解法在 LeetCode 上可通过所有测试用例。
+
+Refer to Kimi
+Here is the Java solution for LeetCode 224. Basic Calculator.
+Approach: Stack + Sign Tracking
+The expression contains +, -, (, ), and spaces. We use a stack to handle nested parentheses by saving the current result and sign before entering a new scope.
+Key Insight:
+- Maintain a sign variable: +1 or -1 for the current number.
+- When seeing (, push the current result and sign onto the stack, then reset for the inner expression.
+- When seeing ), pop and combine with the outer scope.
+Time Complexity: O(n)
+Space Complexity: O(n) (stack for nested parentheses)
+class Solution {
+    public int calculate(String s) {
+        Deque<Integer> stack = new ArrayDeque<>();
+        int result = 0;
+        int num = 0;
+        int sign = 1;  // +1 for positive, -1 for negative
+        
+        for (char c : s.toCharArray()) {
+            if (Character.isDigit(c)) {
+                // Build multi-digit number
+                num = num * 10 + (c - '0');
+                
+            } else if (c == '+') {
+                result += sign * num;  // finalize previous number
+                num = 0;
+                sign = 1;  // next number is positive
+                
+            } else if (c == '-') {
+                result += sign * num;  // finalize previous number
+                num = 0;
+                sign = -1;  // next number is negative
+                
+            } else if (c == '(') {
+                // Save current state, start fresh for inner expression
+                stack.push(result);
+                stack.push(sign);
+                result = 0;
+                sign = 1;
+                
+            } else if (c == ')') {
+                result += sign * num;  // finalize inner expression's last number
+                num = 0;
+                // Pop sign and previous result
+                result *= stack.pop();      // apply sign before '('
+                result += stack.pop();      // add to previous result
+                
+            }
+            // spaces are ignored
+        }
+        
+        // Add the last number if expression doesn't end with ')'
+        result += sign * num;
+        return result;
+    }
+}
+Walkthrough: "1 + (2 - (3 + 4))"
+CharActionnumsignresultStack1digit110 ode>[]+finalize: 0 + 1*1 = 1011 ode>[](push result=1, sign=1010[1, 1]2digit210[1, 1]-finalize: 0 + 1*2 = 20-12[1, 1](push result=2, sign=-1010[1, 1, -1, 2]3digit310[1, 1, -1, 2]+finalize: 0 + 1*3 = 3013[1, 1, -1, 2]4digit413[1, 1, -1, 2])finalize: 3 + 1*4 = 7; pop sign=-1: 7 * -1 = -7; pop prev=2: -7 + 2 = -501-5[1, 1])finalize: -5 + 1*0 = -5; pop sign=1: -5 * 1 = -5; pop prev=1: -5 + 1 = -401-4 ode>[]
+Final: result + sign*num = -4 + 0 = -4 ✅
+
+
+Refer to
+L150.Evaluate Reverse Polish Notation (Ref.L224,L282,L772)
 L227.P11.7.Basic Calculator II (Ref.L224,L772)
 L772.Basic Calculator III (Ref.L224,L227)
