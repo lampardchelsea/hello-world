@@ -242,4 +242,6 @@ Space Complexity
 The space complexity of the code is O(n) in the worst case, where n is the number of tokens in the list. This worst-case scenario occurs when all tokens are numbers and are thus pushed onto the stack. In the best-case scenario, where the input is balanced with numbers and operators, the space complexity could be better than O(n), but the upper bound remains O(n). The auxiliary space required is for the nums stack used to perform the calculations. There are no other data structures that use significant memory.
 
 Refer to
+L224.P11.7.Basic Calculator (Ref.L227,L772)
+L282.Expression Add Operators (Ref.L93)
 L772.Basic Calculator III (Ref.L224,L227)
