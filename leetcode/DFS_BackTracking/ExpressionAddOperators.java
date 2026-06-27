@@ -98,6 +98,196 @@ class Solution {
 Time Complexity: O(3^N)
 Space Complexity: O(N)
 
+Refer to Deepseek
+以下是 LeetCode 282 "Expression Add Operators" 的 Java 解法，使用深度优先搜索（DFS）+ 回溯，支持加、减、乘三种运算符，并处理前导零和整数溢出问题。
+import java.util.*;
+
+class Solution {
+    private List<String> result = new ArrayList<>();
+    private String num;
+    private int target;
+
+    public List<String> addOperators(String num, int target) {
+        this.num = num;
+        this.target = target;
+        dfs(0, 0, 0, new StringBuilder());
+        return result;
+    }
+
+    /**
+     * 深度优先搜索
+     * @param index     当前处理到的字符位置
+     * @param eval      当前表达式的计算结果
+     * @param prev      上一个操作数（用于乘法回退）
+     * @param path      当前构建的表达式字符串
+     */
+    private void dfs(int index, long eval, long prev, StringBuilder path) {
+        if (index == num.length()) {
+            if (eval == target) {
+                result.add(path.toString());
+            }
+            return;
+        }
+
+        // 枚举当前数字的所有可能长度（从当前位置开始）
+        for (int i = index; i < num.length(); i++) {
+            // 处理前导零：如果当前数字长度 > 1 且第一位是 '0'，则跳过
+            // 例如 "05" 是非法的，但 "0" 是合法的
+            if (i > index && num.charAt(index) == '0') break;
+
+            // 获取当前数字（从 index 到 i 的子串）
+            long curNum = Long.parseLong(num.substring(index, i + 1));
+            int curLen = path.length(); // 记录当前 path 长度，用于回溯
+
+            // 第一个数字（表达式开头），不需要加运算符
+            if (index == 0) {
+                path.append(curNum);
+                dfs(i + 1, curNum, curNum, path);
+                path.setLength(curLen); // 回溯
+            } else {
+                // 尝试加 '+'
+                path.append('+').append(curNum);
+                dfs(i + 1, eval + curNum, curNum, path);
+                path.setLength(curLen);
+
+                // 尝试减 '-'
+                path.append('-').append(curNum);
+                dfs(i + 1, eval - curNum, -curNum, path);
+                path.setLength(curLen);
+
+                // 尝试乘 '*'
+                path.append('*').append(curNum);
+                dfs(i + 1, eval - prev + prev * curNum, prev * curNum, path);
+                path.setLength(curLen);
+            }
+        }
+    }
+}
+--------------------------------------------------------------------------------
+算法核心思想
+1.DFS 枚举所有可能的数字分割
+从当前位置 index 开始，取子串 num.substring(index, i+1) 作为一个完整的数字（长度从 1 到剩余部分），避免前导零。
+2.维护三个关键变量
+- eval：当前表达式的计算结果（按常规运算优先级处理）。
+- prev：上一个操作数，用于处理乘法操作（因为乘法优先级高，需要回退上一次运算）。
+- path：当前构造的表达式字符串。
+3.处理乘法
+当添加 * curNum 时，之前的上一步计算为 eval = eval - prev + prev * curNum，其中 prev 是上一个操作数，curNum 是当前数。同时将 prev 更新为 prev * curNum，用于后续可能的连续乘法。
+4.前导零处理
+如果当前数字长度大于 1 且首位是 '0'，则直接跳出循环（因为再往后只会产生更多前导零，如 "05" 非法），这确保了每个数字要么是单个 '0'，要么不以 '0' 开头。
+5.回溯
+在每次递归后，通过 path.setLength(curLen) 恢复字符串状态，复用同一个 StringBuilder。
+--------------------------------------------------------------------------------
+示例
+输入：num = "123", target = 6
+输出：["1*2*3", "1+2+3"]
+输入：num = "105", target = 5
+输出：["1*0+5", "10-5"]（注意 "1*05" 不会出现，因为前导零被阻止）
+--------------------------------------------------------------------------------
+复杂度分析
+- 时间复杂度：最坏情况下为 O(4^N)，其中 N 是数字长度。每个数字之间可能有 4 种选择（不加运算符（即合并数字）、加、减、乘），但实际合并数字的情况被枚举为数字分割，整体为 O(4^N)。
+- 空间复杂度：O(N)（递归深度 + 字符串构建），结果存储空间不计入。
+--------------------------------------------------------------------------------
+注意事项
+- 使用 long 类型避免中间计算溢出。
+- 在递归过程中，curNum 是从子串解析得到的，可能很大但 long 足够。
+- 空字符串或长度 0 的情况已被函数入口处理（若 num 为空，直接返回空列表）。
+
+追问：详细举例解释：
+处理乘法
+当添加 * curNum 时，之前的上一步计算为 eval = eval - prev + prev * curNum，其中 prev 是上一个操作数，curNum 是当前数。同时将 prev 更新为 prev * curNum，用于后续可能的连续乘法。
+好的，我们来详细解释 LeetCode 282 解法中乘法处理的精髓，特别是 eval 和 prev 的含义以及为什么乘法需要特殊处理。
+--------------------------------------------------------------------------------
+1. 核心问题：运算符优先级
+在表达式 1 + 2 * 3 中，数学上先算乘法再算加法，结果是 7。
+但如果我们在递归中从左到右顺序计算，直接 eval = eval + curNum 或 eval = eval * curNum 会出错，因为乘法的优先级高于加减法。
+例如，按顺序计算：
+1 → eval = 1
++ 2 → eval = 1 + 2 = 3
+* 3 → 如果直接 eval = eval * 3 = 9，错误！
+显然，我们需要一种机制来处理乘法的优先级，即在遇到乘法时，撤销上一步的加法（或减法），把上一步的操作数取出来与当前数相乘，再加回之前的结果。
+--------------------------------------------------------------------------------
+2. 变量含义
+在 DFS 递归中，我们维护两个关键变量：
+- eval：当前已经确定的表达式值（考虑了已处理部分的优先级）。
+- prev：上一个操作数（即当前表达式最后一个被加/减/乘的数）。它用于在遇到乘法时进行“回退”操作。
+具体来说：
+- 当上一个操作是 +num，prev = num。
+- 当上一个操作是 -num，prev = -num（记录负值）。
+- 当上一个操作是 *num，prev 已经被更新为 prev_old * num。
+这样，eval 始终保持为“当前已计算部分的值”，而 prev 则是参与最近一次计算的操作数。
+--------------------------------------------------------------------------------
+3. 乘法处理公式
+当我们尝试在表达式末尾添加 * curNum 时：
+eval_new = eval - prev + prev * curNum
+prev_new = prev * curNum
+为什么这样更新？
+- 旧的 eval 包含了上一次运算的结果（比如 1+2 → eval = 3，prev = 2）。
+- 我们要把上一次的运算取消（eval - prev 回到上一步之前的数值，即 1），然后将 prev 与 curNum 相乘得到新的项，再加回 eval - prev 中。
+- 同时，新的 prev 变为乘积 prev * curNum，以支持后续连续乘法。
+--------------------------------------------------------------------------------
+4. 具体例子分析
+例子 1：表达式 1 + 2 * 3
+步骤跟踪（假设数字逐个解析）
+1.初始状态（第一个数字 1）：
+- eval = 1
+- prev = 1
+- 表达式路径："1"
+2.添加 +2：
+- 操作：加法
+- eval = eval + 2 = 3
+- prev = 2  （因为加法的操作数是 2）
+- 路径："1+2"
+3.现在尝试添加 *3（乘法分支）：
+- 当前 eval = 3，prev = 2
+- 应用公式：
+eval_new = 3 - 2 + 2 * 3 = 1 + 6 = 7
+prev_new = 2 * 3 = 6
+- 新状态：eval = 7，prev = 6，路径："1+2*3"
+- 此时递归到末尾，eval == target，记录结果 "1+2*3"
+解释：eval - prev 回退到上一次加法之前的值（3 - 2 = 1，即初始数字 1），然后加上乘法结果 2*3=6，最终得到 7。完美处理了乘法优先级。
+--------------------------------------------------------------------------------
+例子 2：连续乘法 1 + 2 * 3 * 4
+我们跟踪连续乘法的情况。
+1.添加 +2 后：
+- eval = 3, prev = 2
+2.添加 *3（第一次乘法）：
+- eval = 3 - 2 + 2*3 = 7
+- prev = 2*3 = 6
+- 路径："1+2*3"
+3.再添加 *4（第二次乘法）：
+- 当前 eval = 7，prev = 6
+- 应用公式：
+eval_new = 7 - 6 + 6 * 4 = 1 + 24 = 25
+prev_new = 6 * 4 = 24
+- 最终结果为 1 + 2*3*4 = 25，正确！
+解释：第二次乘法时，eval - prev 回退到“上一次乘法之前”的值，即 7 - 6 = 1（也就是最初的 1），然后加上 6*4=24，得到 25。连续乘法时，prev 总是累积乘积，所以每次乘法都能正确回退到最近的项。
+--------------------------------------------------------------------------------
+例子 3：减法和乘法混合 2 - 3 * 4
+1.初始 2：eval=2, prev=2
+2.添加 -3：eval = 2 - 3 = -1, prev = -3（因为减法的操作数是负的）
+3.添加 *4：
+- 当前 eval = -1，prev = -3
+- 应用公式：
+eval_new = -1 - (-3) + (-3) * 4 = -1 + 3 - 12 = 2 - 12 = -10
+prev_new = -3 * 4 = -12
+- 结果为 2 - 3*4 = -10，正确。
+关键：prev 保留了负号，使得回退时能正确处理减法。
+--------------------------------------------------------------------------------
+5. 为什么 prev 要存储“上一个操作数”而不是整个表达式？
+因为乘法的优先级只影响最近一个操作数，我们不需要回溯整个表达式，只需要回退最后一次加减法造成的增量，把那个操作数拿出来与当前数相乘即可。这种设计让算法在 O(1) 时间内完成乘法处理，且状态极小。
+--------------------------------------------------------------------------------
+6. 总结
+- eval：当前已计算值（按正确优先级）。
+- prev：最后一个操作数（用于乘法回退）。
+- 乘法更新：
+eval = eval - prev + prev * curNum;
+prev = prev * curNum;
+这个公式巧妙地撤销了上一步的加减法，然后把乘法结果合并进去。
+通过这种方式，DFS 能够正确地枚举所有加、减、乘的组合，并得到正确的计算结果。这就是 LeetCode 282 题解中最精妙的部分。
+
+
+
 Refer to
 https://leetcode.com/problems/expression-add-operators/solutions/71895/java-standard-backtrace-ac-solutoin-short-and-clear/
 https://leetcode.com/problems/expression-add-operators/solutions/71895/java-standard-backtrace-ac-solutoin-short-and-clear/comments/74405
@@ -310,4 +500,4 @@ Time Complexity: O(3^n)
 Space Complexity: O(n)
 
 Refer to
-L93.Restore IP Addresses
+L93.Restore IP Addresses (Ref.L282,L751)
