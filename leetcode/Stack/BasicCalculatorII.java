@@ -1,7 +1,5 @@
-
 https://leetcode.com/problems/basic-calculator-ii/
 Given a string s which represents an expression, evaluate this expression and return its value. 
-
 The integer division should truncate toward zero.
 You may assume that the given expression is always valid. All intermediate results will be in the range of [-2^31, 2^31 - 1].
 Note: You are not allowed to use any built-in function which evaluates strings as mathematical expressions, such as eval().
@@ -85,7 +83,7 @@ class Solution {
             // Test case: "3+2*2" 
             if(!Character.isDigit(c) && c != ' ' || i == s.length() - 1) { 
                 if(lastOperation == '+') { 
-                    stack.push(curNum);                     
+                    stack.push(curNum);
                 } else if(lastOperation == '-') { 
                     stack.push(-curNum); 
                 } else if(lastOperation == '*') { 
@@ -201,6 +199,7 @@ Once the string is scanned, pop from the stack and add to the result.
 
 
 
+Reach the last character (i == s.length() - 1) must pop out
 
 
 
@@ -658,8 +657,72 @@ public class Solution {
     }
 }
 
+
+Refer to Deepseek
+Q1：What's the difference between Leetcode 227 and 224 ? I have a solution for Leetcode 224 as below, but looks like not very same as Leetcode 227
+LeetCode 224 和 227 是两道不同的题目，主要差异如下：
+特性224. Basic Calculator227. Basic Calculator II支持的运算符+、-、(、)+、-、*、/是否包含括号✅ 包含括号❌ 不含括号是否包含乘除❌ 不含乘除✅ 包含乘除运算符优先级所有运算符优先级相同（从左到右）乘除优先于加减难点括号嵌套 + 符号处理乘除的优先级处理典型解法栈（保存括号前结果和符号）栈（暂存加减操作数，乘除立即计算）
+--------------------------------------------------------------------------------
+你的 224 解法分析
+你提供的代码是专门针对 224 的经典解法：
+- 遇到数字：解析完整数字，按当前符号累加到 result。
+- 遇到 + / -：更新 sign。
+- 遇到 (：将当前 result 和 sign 压栈，重置 result=0，sign=1 计算括号内。
+- 遇到 )：弹出栈顶符号和之前的结果，合并：result = result * popSign + popResult。
+这个解法完全不处理 * 和 /，因此无法用于 227。
+--------------------------------------------------------------------------------
+227 为什么需要不同的解法
+在 227 中，由于存在乘法除法，我们不能简单地顺序累加（因为乘法优先级高）。例如 3+2*2，如果顺序计算会得到 10，但正确结果是 7。因此需要延迟加减法，遇到乘除时立即计算，并将结果存入栈中，最后统一求和。
+典型的 227 解法：
+public int calculate(String s) {
+    int cur = 0;
+    char lastOp = '+';
+    Stack<Integer> stack = new Stack<>();
+    for (int i = 0; i < s.length(); i++) {
+        char c = s.charAt(i);
+        if (Character.isDigit(c)) cur = cur * 10 + c - '0';
+        if (!Character.isDigit(c) && c != ' ' || i == s.length()-1) {
+            if (lastOp == '+') stack.push(cur);
+            else if (lastOp == '-') stack.push(-cur);
+            else if (lastOp == '*') stack.push(stack.pop() * cur);
+            else if (lastOp == '/') stack.push(stack.pop() / cur);
+            cur = 0;
+            lastOp = c;
+        }
+    }
+    int ans = 0;
+    while (!stack.isEmpty()) ans += stack.pop();
+    return ans;
+}
+这个解法没有括号处理，而是用栈存储加减的操作数，乘除则即时运算。
+--------------------------------------------------------------------------------
+总结
+- 224 解决的是带括号的加减法（需处理括号内符号翻转）。
+- 227 解决的是无括号的加减乘除（需处理乘除优先级）。
+- 两者的输入格式和运算规则不同，因此解法不能互换。如果你的目标是解决 227，请参考上述基于栈的解法。
+
+Q2：Now can you compare both Leetcode 224 and 227 to Leetcode 772. Basic Calculator III ?
+LeetCode 的这三道“基本计算器”题目，可以看作一个逐步升级的系列。它们的核心区别在于所支持的运算符和是否包含括号，这直接导致了题目难度和解法的不同。
+下面是这三道题的详细对比：
+特性224. 基本计算器 (Basic Calculator)227. 基本计算器 II (Basic Calculator II)772. 基本计算器 III (Basic Calculator III)难度困难 (Hard)中等 (Medium)困难 (Hard)支持运算符+、-+、-、*、/+、-、*、/支持括号✅ 支持 ( 和 )❌ 不支持✅ 支持 ( 和 )核心难点括号处理、符号翻转运算优先级（乘除优先于加减）结合前两者：括号处理 + 运算优先级核心解法栈，遇到括号时保存状态并重置栈，遇到乘除立即计算递归下降 或 双栈（运算符栈 + 数字栈）
+--------------------------------------------------------------------------------
+📝 详细解读
+- LeetCode 227 (Basic Calculator II)：它是基础版。因为没有括号，所以难点在于如何处理 * 和 / 的高优先级。解法是使用一个栈，遇到 + 或 - 时，将数字（注意正负号）压栈；遇到 * 或 / 时，从栈顶弹出数字进行运算，再将结果压栈。最后把栈里所有数字加起来就是答案。
+- LeetCode 224 (Basic Calculator I)：它只有加减法和括号。因为括号的存在，难点变成了如何处理括号嵌套以及括号前的正负号（符号翻转）。解法通常也是用栈，但栈里存的是遇到 ( 之前的结果和符号。遇到 ( 时，将当前结果和符号压栈并重置；遇到 ) 时，弹出栈顶的符号和之前的结果，与当前括号内的结果合并。
+- LeetCode 772 (Basic Calculator III)：这是前两个问题的结合体。它同时拥有括号和乘除运算符，所以需要同时处理括号嵌套和运算符优先级。最自然的解法是递归下降（Recursive Descent）或双栈（运算符栈 + 数字栈）。当遇到 ( 时，递归调用自身来计算括号内的子表达式；在计算子表达式时，则使用处理 + - * / 的逻辑。
+--------------------------------------------------------------------------------
+💎 总结
+简单来说，这就像建造一个计算器：
+1.227 先实现了基础的四则运算。
+2.224 实现了括号功能。
+3.772 则是将两者合并，实现了一个完整的计算器。
+因此，LeetCode 772 的解法通常可以看作是在 LeetCode 227 的解法上，增加了处理括号的递归或逻辑。理解了前两道题的解法，第三道题的思路也就清晰了。
+
+
+
 Refer to
-L224.P11.7.Basic Calculator (Ref.L227,L772)
+L150.Evaluate Reverse Polish Notation (Ref.L224,L282,L772)
+L224.P11.7.Basic Calculator (Ref.L150,L227,L772)
 L772.Basic Calculator III (Ref.L224,L227)
 
     
