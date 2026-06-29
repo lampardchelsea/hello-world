@@ -377,7 +377,50 @@ public class Solution {
     }
 }
 
+Solution 2: DFS 
+class Solution {
+    int index = 0;  // 全局指针，模拟"消费"字符串
+    public int calculate(String s) {
+        this.index = 0;
+        return helper(s);
+    }
+    
+    private int helper(String s) {
+        int result = 0;
+        int sign = 1;  // 当前数字前的符号，+1 或 -1
+        while (index < s.length()) {
+            char c = s.charAt(index);
+            if (c == ' ') {
+                index++; // 跳过空格
+            } else if (c == '+') {
+                sign = 1;
+                index++;
+            } else if (c == '-') {
+                sign = -1;
+                index++;
+            } else if (c == '(') {
+                index++;                // 跳过 '('
+                int inner = helper(s);  // 递归算括号内
+                result += sign * inner; // 将括号结果以当前符号并入外部结果
+            } else if (c == ')') {
+                index++;                // 跳过 ')'
+                return result;          // 结束当前递归层，返回该层结果
+            } else if (Character.isDigit(c)) {
+                int num = 0;
+                // 解析完整数字（可能多位）
+                while (index < s.length() && Character.isDigit(s.charAt(index))) {
+                    num = num * 10 + (s.charAt(index) - '0');
+                    index++;
+                }
+                result += sign * num;   // 将数字以当前符号累加
+            }
+        }
+        return result; // 若没有遇到 ')'，则返回最终结果（顶层的计算结果）
+    }
+}
 
+
+--------------------------------------------------------------------------------
 Refer to Deepseek
 以下是 LeetCode 224 "Basic Calculator" 的 Java 解法，使用栈处理括号和符号，支持加法、减法、括号和空格，时间复杂度 O(n)，空间复杂度 O(n)。
 import java.util.Deque;
@@ -504,8 +547,207 @@ Walkthrough: "1 + (2 - (3 + 4))"
 CharActionnumsignresultStack1digit110 ode>[]+finalize: 0 + 1*1 = 1011 ode>[](push result=1, sign=1010[1, 1]2digit210[1, 1]-finalize: 0 + 1*2 = 20-12[1, 1](push result=2, sign=-1010[1, 1, -1, 2]3digit310[1, 1, -1, 2]+finalize: 0 + 1*3 = 3013[1, 1, -1, 2]4digit413[1, 1, -1, 2])finalize: 3 + 1*4 = 7; pop sign=-1: 7 * -1 = -7; pop prev=2: -7 + 2 = -501-5[1, 1])finalize: -5 + 1*0 = -5; pop sign=1: -5 * 1 = -5; pop prev=1: -5 + 1 = -401-4 ode>[]
 Final: result + sign*num = -4 + 0 = -4 ✅
 
+Q1: And consider Leetcode 772  (解法 A：递归 DFS + 单栈（推荐，最优雅), and since its handling way, is that means Leetcode 224 has a recursion way which don't need stack ?
+Refer to Kimi
+这是一个非常好的洞察！让我直接回答：
+--------------------------------------------------------------------------------
+核心结论
+LeetCode 224 确实有纯递归解法，不需要栈。 而且 772 的递归单栈解法，本质上就是 "224 的纯递归思想" + "227 的优先级处理" 的结合。
+--------------------------------------------------------------------------------
+224 的纯递归解法（无栈）
+224 只有 + - 和括号，没有乘除优先级问题。所以可以用最纯粹的递归：
+class Solution {
+    int index = 0;  // 全局指针，模拟"消费"字符串
+    
+    public int calculate(String s) {
+        this.index = 0;
+        return dfs(s);
+    }
+    
+    private int dfs(String s) {
+        int result = 0;
+        int sign = 1;  // 当前数字前的符号，+1 或 -1
+        
+        while (index < s.length()) {
+            char c = s.charAt(index);
+            
+            if (c == ' ') {
+                index++; // 跳过空格
+            } else if (c == '+') {
+                sign = 1;
+                index++;
+            } else if (c == '-') {
+                sign = -1;
+                index++;
+            } else if (c == '(') {
+                index++;           // 跳过 '('
+                int inner = dfs(s); // 递归算括号内
+                result += sign * inner; // 将括号结果以当前符号并入外部结果
+            } else if (c == ')') {
+                index++;           // 跳过 ')'
+                return result;      // 结束当前递归层，返回该层结果
+            } else if (Character.isDigit(c)) {
+                int num = 0;
+                // 解析完整数字（可能多位）
+                while (index < s.length() && Character.isDigit(s.charAt(index))) {
+                    num = num * 10 + (s.charAt(index) - '0');
+                    index++;
+                }
+                result += sign * num; // 将数字以当前符号累加
+            }
+        }
+        return result; // 若没有遇到 ')'，则返回最终结果（顶层的计算结果）
+    }
+}
+为什么 224 可以纯递归？
+因为 只有加减，没有优先级问题：
+- 1 + (2 - 3) → 遇到 ( 递归，返回 2-3=-1，外层 1 + (-1) = 0
+- 不需要保存"中间状态"，因为加减是左结合且同优先级
+--------------------------------------------------------------------------------
+对比：224 纯递归 vs 772 递归单栈
+特性224 纯递归772 递归单栈递归用途处理括号嵌套处理括号嵌套函数内部直接累加 result用栈保存操作数，处理 */为什么需要栈不需要，只有 +-需要，因为 */ 优先级更高，不能立即累加核心变量result, signstack, sign, num遇到数字result += sign * num根据 sign 决定 push 或立即计算遇到 (result += sign * dfs(...)num = dfs(...)，然后按 sign 处理遇到 )return resultreturn sum(stack)
+--------------------------------------------------------------------------------
+关键洞察：772 的递归单栈 = 224 的递归框架 + 227 的栈
+224 纯递归:                    227 单栈:
+
+  递归处理括号                    栈处理 * / 优先级
+  ↓                              ↓
+  "遇到 ( 就递归"                "遇到 * / 先算，+ - 入栈"
+  ↓                              ↓
+              ↘                ↙
+                772 递归单栈:
+                  递归处理括号 (来自 224)
+                  栈处理优先级 (来自 227)
+--------------------------------------------------------------------------------
+772 递归单栈的完整代码（对比清晰版）
+class Solution {
+    int index = 0;
+    String s;
+    
+    public int calculate(String s) {
+        this.s = s;
+        this.index = 0;
+        return dfs();
+    }
+    
+    private int dfs() {
+        Deque<Integer> stack = new ArrayDeque<>();  // ← 来自 227 的思想
+        int num = 0;
+        char sign = '+';
+        
+        while (index < s.length()) {
+            char c = s.charAt(index);
+            
+            if (Character.isDigit(c)) {
+                num = num * 10 + (c - '0');
+            }
+            
+            if (c == '(') {
+                index++;           // ← 来自 224 的思想
+                num = dfs();        // 递归算括号内，结果当数字
+            }
+            
+            // 遇到运算符、右括号、或结束，处理上一个 sign
+            if (c == '+' || c == '-' || c == '*' || c == '/' || c == ')' || index == s.length() - 1) {
+                switch (sign) {
+                    case '+' -> stack.push(num);      // ← 来自 227
+                    case '-' -> stack.push(-num);
+                    case '*' -> stack.push(stack.pop() * num);
+                    case '/' -> stack.push(stack.pop() / num);
+                }
+                num = 0;
+                sign = c;
+            }
+            
+            if (c == ')') {
+                index++;
+                break;  // ← 来自 224：结束当前递归层
+            }
+            index++;
+        }
+        
+        // 栈求和 ← 来自 227
+        int res = 0;
+        for (int n : stack) res += n;
+        return res;
+    }
+}
+--------------------------------------------------------------------------------
+一句话总结
+224 可以纯递归无栈，因为加减同优先级。772 必须"递归 + 栈"，因为乘除优先级打破了"立即累加"的假设——需要用栈来"延迟"加减运算，等乘除先算完。
+
+
+Refer to Deepseek
+我完全赞同 Kimi 的分析，这个洞察非常精辟。让我用更通俗的语言来总结和扩展一下：
+--------------------------------------------------------------------------------
+1. 为什么 224 可以纯递归（不需要栈）？
+因为 224 只有加减和括号，没有乘除。所有运算符优先级相同，所以不需要延迟计算。
+遇到括号时，递归求值，然后立即把结果带符号加/减到当前结果中即可。
+例如：1 + (2 - 3)
+- 递归计算括号内 2 - 3 = -1
+- 外层 1 + (-1) = 0
+整个过程顺序进行，递归返回后直接合并，不需要额外保存什么状态。
+--------------------------------------------------------------------------------
+2. 为什么 772 需要“递归 + 栈”？
+772 既有乘除又有括号，乘除的优先级高于加减，所以不能遇到一个数字就立刻累加到结果中——必须先处理乘除，再处理加减。
+例如：1 + 2 * (3 - 1)
+如果顺序累加：1 + 2 = 3，然后 3 * 2 = 6，错误！正确是 1 + (2*2) = 5。
+所以必须用栈来暂时存放“加减项”，遇到 * 或 / 时立即与栈顶操作数计算，把结果压回栈。遇到括号时，递归求值，再把结果当作一个“数字”参与后续的乘除/加减逻辑。
+所以 772 的解法 = 224 的递归框架（处理括号） + 227 的栈逻辑（处理乘除）。
+--------------------------------------------------------------------------------
+3. 代码对比（直观对照）
+224 纯递归（无栈）
+private int dfs() {
+    int res = 0, sign = 1;
+    while (...) {
+        if (数字) res += sign * num;
+        if ('+') sign = 1;
+        if ('-') sign = -1;
+        if ('(') {
+            int inner = dfs();    // 递归
+            res += sign * inner;  // 立即合并
+        }
+        if (')') return res;
+    }
+    return res;
+}
+772 递归 + 栈
+private int dfs() {
+    Deque<Integer> stack = new ArrayDeque<>(); // ← 来自 227
+    int num = 0; char sign = '+';
+    while (...) {
+        if (数字) num = ...
+        if ('(') {
+            num = dfs();   // 递归，结果当数字
+        }
+        if (遇到运算符 || ')' || 结束) {
+            // 按照 sign 将 num 合并到栈中（同 227）
+            switch (sign) {
+                case '+': stack.push(num); break;
+                case '-': stack.push(-num); break;
+                case '*': stack.push(stack.pop() * num); break;
+                case '/': stack.push(stack.pop() / num); break;
+            }
+            num = 0; sign = c;
+        }
+        if (')') break;
+    }
+    // 求和返回（同 227）
+    int res = 0; for (int n : stack) res += n;
+    return res;
+}
+两者对比，结构完全一致，唯一差别就是 224 直接用 res 累加，772 用栈处理 * /。
+--------------------------------------------------------------------------------
+4. 总结
+- 224 能纯递归，是因为加减同优先级，无需保存中间状态。
+- 772 需要栈，是因为乘除优先级高，必须用栈延迟加减项，先处理乘除。
+- 772 的解法 = 224 的递归骨架 + 227 的栈逻辑，这个理解非常到位。
+如果你还在纠结 224 的迭代栈解法，其实可以把它看作是手工模拟递归——用栈保存挂起状态，本质和递归调用栈是一样的。
+
+
 
 Refer to
+
 L150.Evaluate Reverse Polish Notation (Ref.L224,L282,L772)
-L227.P11.7.Basic Calculator II (Ref.L224,L772)
+L227.P11.7.Basic Calculator II (Ref.L150,L224,L772)
 L772.Basic Calculator III (Ref.L224,L227)
