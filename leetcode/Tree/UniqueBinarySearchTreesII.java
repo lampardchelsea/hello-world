@@ -1,202 +1,3 @@
-/**
- Refer to
- https://leetcode.com/problems/unique-binary-search-trees-ii/
- Given an integer n, generate all structurally unique BST's (binary search trees) that store values 1 ... n.
-
-Example:
-Input: 3
-Output:
-[
-  [1,null,3,2],
-  [3,2,null,1],
-  [3,1,null,null,2],
-  [2,1,3],
-  [1,null,2,null,3]
-]
-Explanation:
-The above output corresponds to the 5 unique BST's shown below:
-
-   1         3     3      2      1
-    \       /     /      / \      \
-     3     2     1      1   3      2
-    /     /       \                 \
-   2     1         2                 3
- 
-
-Constraints:
-
-0 <= n <= 8
-*/
-
-// Solution 1: Recursive with O(n^3)
-// Refer to
-// https://leetcode.com/problems/unique-binary-search-trees-ii/discuss/31494/A-simple-recursive-solution/30203
-// https://leetcode.wang/leetCode-95-Unique-Binary-Search-TreesII.html#%E8%A7%A3%E6%B3%95%E5%9B%9B-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-2
-/**
-解法一完全没有用到查找二叉树的性质，暴力尝试了所有可能从而造成了重复。我们可以利用一下查找二叉树的性质。左子树的所有值小于根节点，右子树的所有值大于根节点。
-
-所以如果求 1...n 的所有可能。
-
-我们只需要把 1 作为根节点，[ ] 空作为左子树，[ 2 ... n ] 的所有可能作为右子树。
-
-2 作为根节点，[ 1 ] 作为左子树，[ 3...n ] 的所有可能作为右子树。
-
-3 作为根节点，[ 1 2 ] 的所有可能作为左子树，[ 4 ... n ] 的所有可能作为右子树，然后左子树和右子树两两组合。
-
-4 作为根节点，[ 1 2 3 ] 的所有可能作为左子树，[ 5 ... n ] 的所有可能作为右子树，然后左子树和右子树两两组合。
-
-...
-
-n 作为根节点，[ 1... n ] 的所有可能作为左子树，[ ] 作为右子树。
-
-至于，[ 2 ... n ] 的所有可能以及 [ 4 ... n ] 以及其他情况的所有可能，可以利用上边的方法，把每个数字作为根节点，然后把所有可能的左子树和右子树组合起来即可。
-
-如果只有一个数字，那么所有可能就是一种情况，把该数字作为一棵树。而如果是 [ ]，那就返回 null。
-*/
-public List<TreeNode> generateTrees(int n) {
-    List<TreeNode> ans = new ArrayList<TreeNode>();
-    if (n == 0) {
-        return ans;
-    }
-    return getAns(1, n);
-
-}
-
-private List<TreeNode> getAns(int start, int end) { 
-    List<TreeNode> ans = new ArrayList<TreeNode>();
-    //此时没有数字，将 null 加入结果中
-    if (start > end) {
-        ans.add(null);
-        return ans;
-    }
-    //只有一个数字，当前数字作为一棵树加入结果中
-    if (start == end) {
-        TreeNode tree = new TreeNode(start);
-        ans.add(tree);
-        return ans;
-    }
-    //尝试每个数字作为根节点
-    for (int i = start; i <= end; i++) {
-        //得到所有可能的左子树
-        List<TreeNode> leftTrees = getAns(start, i - 1);
-         //得到所有可能的右子树
-        List<TreeNode> rightTrees = getAns(i + 1, end);
-        //左子树右子树两两组合
-        for (TreeNode leftTree : leftTrees) {
-            for (TreeNode rightTree : rightTrees) {
-                TreeNode root = new TreeNode(i);
-                root.left = leftTree;
-                root.right = rightTree;
-                //加入到最终结果中
-                ans.add(root);
-            }
-        }
-    }
-    return ans;
-}
-
-// Another explain
-class Solution {
-    public List<TreeNode> generateTrees(int n) {
-        List<TreeNode> result = new ArrayList<TreeNode>();
-        if(n == 0) {
-            return result;
-        }
-        return helper(1, n);
-    }
-    
-    private List<TreeNode> helper(int lo, int hi) {
-        List<TreeNode> list = new ArrayList<TreeNode>();
-        // Base case
-        // Refer to
-        // https://www.youtube.com/watch?v=GZ0qvkTAjmw
-        /**
-          Why the base case is lo > hi ?
-          Because when we reach to the leave node and you still call
-          recursive helper() method, the boundary will become below:
-          e.g i = 5 -> left = helper(5,4), right = helper(6,5)
-          hence lo > hi always the terminate condition
-        */
-        if(lo > hi) {
-            return list;
-        }
-        for(int i = lo; i <= hi; i++) {
-            List<TreeNode> left = helper(lo, i - 1);
-            List<TreeNode> right = helper(i + 1, hi);
-            // Create root should in each block since for loop
-            // in the block means create multiple root required
-            // TreeNode root = new TreeNode(i);
-            if(left.size() == 0 && right.size() == 0) {
-                TreeNode root = new TreeNode(i);
-                list.add(root);
-            } else if(right.size() == 0) {
-                for(TreeNode l : left) {
-                    TreeNode root = new TreeNode(i);
-                    root.left = l;
-                    list.add(root);
-                }
-            } else if(left.size() == 0) {
-                for(TreeNode r : right) {
-                    TreeNode root = new TreeNode(i);
-                    root.right = r;
-                    list.add(root);
-                }
-            } else {
-                for(TreeNode l : left) {
-                    for(TreeNode r : right) {
-                        TreeNode root = new TreeNode(i);
-                        root.left = l;
-                        root.right = r;
-                        list.add(root);
-                    }
-                }   
-            }
-        }
-        return list;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 https://leetcode.com/problems/unique-binary-search-trees-ii/description/
 Given an integer n, return all the structurally unique BST's (binary search trees), which has exactly n nodes of unique values from 1 to n. Return the answer in any order.
 
@@ -507,10 +308,11 @@ n 作为根节点，[ 1... n ] 的所有可能作为左子树，[ ] 作为右子
  */
 class Solution {
     public List<TreeNode> generateTrees(int n) {
-        List<TreeNode> ans = new ArrayList<TreeNode>();
-        if (n == 0) {
-            return ans;
-        }
+        //不需要，因为设定里面n > 0
+        //List<TreeNode> ans = new ArrayList<TreeNode>();
+        //if (n == 0) {
+        //    return ans;
+        //}
         return getAns(1, n);
 
     }
@@ -624,7 +426,154 @@ class Solution {
     }
 }
 
+Refer to Deepseek
+LeetCode 95 "Unique Binary Search Trees II" 要求生成所有由 1...n 构成的不同的二叉搜索树（BST），并返回所有可能的树根节点。
+与第 96 题（只计数）不同，本题需要实际构造出所有树，采用分治递归思路：
+--------------------------------------------------------------------------------
+核心思路
+对于区间 [start, end]，枚举其中的每一个数 i 作为根节点：
+- 左子树由 [start, i-1] 递归生成所有可能的左子树列表。
+- 右子树由 [i+1, end] 递归生成所有可能的右子树列表。
+- 将每个左子树和右子树两两组合，与根 i 构成一棵完整的树，加入结果集。
+基准情况：当 start > end 时，返回包含 null 的列表（表示空子树），这样在组合时能正确拼接。
+--------------------------------------------------------------------------------
+Java 代码实现
+class Solution {
+    public List<TreeNode> generateTrees(int n) {
+        if (n == 0) return new ArrayList<>(); // 空输入
+        return buildTrees(1, n);
+    }
+
+    // 递归构建区间 [start, end] 的所有 BST
+    private List<TreeNode> buildTrees(int start, int end) {
+        List<TreeNode> allTrees = new ArrayList<>();
+
+        // 空区间 -> 返回包含 null 的列表，代表空子树
+        if (start > end) {
+            allTrees.add(null);
+            return allTrees;
+        }
+
+        // 枚举根节点的值
+        for (int i = start; i <= end; i++) {
+            // 生成所有可能的左子树列表
+            List<TreeNode> leftTrees = buildTrees(start, i - 1);
+            // 生成所有可能的右子树列表
+            List<TreeNode> rightTrees = buildTrees(i + 1, end);
+
+            // 组合左、右子树
+            for (TreeNode left : leftTrees) {
+                for (TreeNode right : rightTrees) {
+                    TreeNode root = new TreeNode(i);
+                    root.left = left;
+                    root.right = right;
+                    allTrees.add(root);
+                }
+            }
+        }
+        return allTrees;
+    }
+}
+
+--------------------------------------------------------------------------------
+复杂度分析
+- 时间：解的个数等于第 n 个卡特兰数 C_n = (2n)!/(n!(n+1)!)，其增长为 O(4^n / n^(3/2))。构造每个解需要 O(n) 时间（复制节点），总时间复杂度为 O(C_n * n)。
+- 空间：存储所有树的空间同样为 O(C_n * n)，递归栈深度 O(n)。
+--------------------------------------------------------------------------------
+记忆化优化（可选）
+由于存在重复的子区间（例如 buildTrees(1,2) 可能会被多次调用），可以使用 Map<String, List<TreeNode>> 缓存结果，但本题 n 最多 8，重复计算影响不大。若想添加，只需：
+private Map<String, List<TreeNode>> memo = new HashMap<>();
+
+private List<TreeNode> buildTrees(int start, int end) {
+    String key = start + "," + end;
+    if (memo.containsKey(key)) return memo.get(key);
+    // ... 原有逻辑
+    memo.put(key, allTrees);
+    return allTrees;
+}
+但注意，缓存时不能直接返回同一份列表，因为外部可能修改树的节点（但题目只读，可以安全复用）。
+--------------------------------------------------------------------------------
+示例
+输入 n = 3，输出 5 棵不同的 BST，它们分别是以 1、2、3 为根的多种结构。代码会正确生成所有树。
+
+Q1: Why below solution is wrong ?
+class Solution {
+    public List<TreeNode> generateTrees(int n) {
+        return getAns(1, n);
+    }
+
+    private List<TreeNode> getAns(int start, int end) { 
+        List<TreeNode> ans = new ArrayList<TreeNode>();
+        //此时没有数字，将 null 加入结果中
+        if (start > end) {
+            ans.add(null);
+            return ans;
+        }
+        //只有一个数字，当前数字作为一棵树加入结果中(实际测试后发现并不需要这个条件)
+        //if (start == end) {
+        //    TreeNode tree = new TreeNode(start);
+        //    ans.add(tree);
+        //    return ans;
+        //}
+        //尝试每个数字作为根节点
+        for (int i = start; i <= end; i++) {
+            TreeNode root = new TreeNode(i);
+            //得到所有可能的左子树
+            List<TreeNode> leftTrees = getAns(start, i - 1);
+            //得到所有可能的右子树
+            List<TreeNode> rightTrees = getAns(i + 1, end);
+            //左子树右子树两两组合
+            for (TreeNode leftTree : leftTrees) {
+                for (TreeNode rightTree : rightTrees) {
+                    //TreeNode root = new TreeNode(i);
+                    root.left = leftTree;
+                    root.right = rightTree;
+                    //加入到最终结果中
+                    ans.add(root);
+                }
+            }
+        }
+        return ans;
+    }
+}
+你的解法错误在于 根节点对象被复用了。在 for 循环中，你只创建了一个 root 节点，然后在双重循环中反复使用同一个 root，并不断修改它的 left 和 right 引用，最后将同一个对象多次加入 ans。这导致之前加入的树也被后续修改，最终所有树都指向了最后一组左右子树组合，从而得到错误结果。
+正确的做法是：每次组合左右子树时，都新创建一个根节点。
+修正后的代码：
+class Solution {
+    public List<TreeNode> generateTrees(int n) {
+        return getAns(1, n);
+    }
+
+    private List<TreeNode> getAns(int start, int end) {
+        List<TreeNode> ans = new ArrayList<>();
+        if (start > end) {
+            ans.add(null);
+            return ans;
+        }
+        for (int i = start; i <= end; i++) {
+            List<TreeNode> leftTrees = getAns(start, i - 1);
+            List<TreeNode> rightTrees = getAns(i + 1, end);
+            for (TreeNode left : leftTrees) {
+                for (TreeNode right : rightTrees) {
+                    // 关键修改：每次组合都要新建根节点
+                    TreeNode root = new TreeNode(i);
+                    root.left = left;
+                    root.right = right;
+                    ans.add(root);
+                }
+            }
+        }
+        return ans;
+    }
+}
+错误原因可视化
+假设 n=2，i=1 作为根，左子树为空，右子树为 [2]。循环会得到一棵树：1->right=2。
+然后 i=2 作为根，左子树为 [1]，右子树为空。但由于 root 对象被复用，之前加入的 1->right=2 会被覆盖成 2->left=1，最终导致所有树都变成最后一种组合。
+额外说明
+- 你注释掉的 if (start == end) 分支确实多余，因为 for 循环可以处理单个数字的情况（左右子树均为 null）。
+- 记忆化优化并非必需，因为 n 很小（通常 ≤ 8），但如果你想加，需注意缓存的列表不可被外部修改（这里只读，所以可以直接复用）。
+
 
 Refer to
-L96.Unique Binary Search Trees (Ref.L95)
-L241.Different Ways to Add Parentheses (Ref.L95)
+L96.P11.9.Unique Binary Search Trees (Ref.L95)
+L241.Different Ways to Add Parentheses (Ref.L95,L2019)
