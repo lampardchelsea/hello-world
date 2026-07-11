@@ -1,35 +1,24 @@
-https://leetcode.com/problems/burst-balloons/
-
+https://leetcode.com/problems/burst-balloons/description/
 You are given n balloons, indexed from 0 to n - 1. Each balloon is painted with a number on it represented by an array nums. You are asked to burst all the balloons.
-
 If you burst the ith balloon, you will get nums[i - 1] * nums[i] * nums[i + 1] coins. If i - 1 or i + 1 goes out of bounds of the array, then treat it as if there is a balloon with a 1 painted on it.
-
 Return the maximum coins you can collect by bursting the balloons wisely.
-
+ 
 Example 1:
-```
 Input: nums = [3,1,5,8]
 Output: 167
-Explanation:
-nums = [3,1,5,8] --> [3,5,8] --> [3,8] --> [8] --> []
-coins =  3*1*5    +   3*5*8   +  1*3*8  + 1*8*1 = 167
-```
+Explanation:nums = [3,1,5,8] --> [3,5,8] --> [3,8] --> [8] --> []coins =  3*1*5    +   3*5*8   +  1*3*8  + 1*8*1 = 167
 
 Example 2:
-```
 Input: nums = [1,5]
 Output: 10
-```
-
+ 
 Constraints:
 - n == nums.length
 - 1 <= n <= 300
 - 0 <= nums[i] <= 100
----
+--------------------------------------------------------------------------------
 Attempt 1: 2023-09-03
-
 Solution 1:  DFS + Memoization (360 min)
-```
 class Solution {
     public int maxCoins(int[] nums) {
         int n = nums.length;
@@ -44,6 +33,7 @@ class Solution {
         return helper(arr, 0, n + 1, memo);
     }
  
+
     private int helper(int[] arr, int left, int right, Integer[][] memo) {
         if(left + 1 == right) {
             return 0;
@@ -61,11 +51,8 @@ class Solution {
 
 Time Complexity : O(N^3)  
 Space Complexity : O(N^2)
-```
 
----
 Solution 2:  DP (360 min)
-```
 class Solution {
     public int maxCoins(int[] nums) {
         int n = nums.length;
@@ -96,11 +83,9 @@ class Solution {
 
 Time Complexity : O(N^3)  
 Space Complexity : O(N^2)
-```
 
----
-JAVA | DP | Divide and Conquer | Sliding Window | Detailed Explanation Using Image
 Refer to
+JAVA | DP | Divide and Conquer | Sliding Window | Detailed Explanation Using Image
 https://leetcode.com/problems/burst-balloons/solutions/1659162/java-dp-divide-and-conquer-sliding-window-detailed-explanation-using-image/
 Intuition: Suppose you have been given array [1,2,3,4] which u can see as [1,1,2,3,4,1] (padded by 1 on both side). So now if u decide to burst balloon with value 3 at last then that means all other balloons will already burst and so total value to burst the balloons will be = (1 * 3 * 1 + left + right) where left will be max cost of bursting balloons left to 3 i.e., [1,2] and right will be max cost of bursting balloons t the right of 3 i.e., [4].So here we can clearly observe that to get the answer for window of size n we need to have the answer for window of size 2(left) and 1(right) that is smaller subproblems. So here we can definitely think of DP.(Divide and Conquer DP)
 
@@ -110,25 +95,22 @@ Explanation of Approach:
 - Now in the current window we have to burst balloons in such sequence that we get the max value. And for this we have to check for each balloon in that window whether it can give the max value if burst at last.
 - So for this we have to traverse from left to right in the window and each time calculate the value assuming ith balloon is burst at last.
 - So while filling Dp we will be filling values for left to right window , i.e.,
-  dp[left][right] = Max(already calculated value, burst this ith balloon last and add left and right subarray points within the window)
+dp[left][right] = Max(already calculated value, burst this ith balloon last and add left and right subarray points within the window)
 - dp[left][right] = max(dp[left][right], arr[left-1] * arr[i] * arr[right+1] + dp[left][i-1] + dp[i+1][right])
 
+
 So now we just need to apply 3 loops:
-1. 1st for window size from 1 to n
-2. then for left pointer from 1 to (n-window+1)
-3. Now right is already fixed i.e., (left+window-1), so now third loop from left to right.
-   Each time update the value in dp for left to right.
-4. Time Complexity : O(N^3)
+1.1st for window size from 1 to n
+2.then for left pointer from 1 to (n-window+1)
+3.Now right is already fixed i.e., (left+window-1), so now third loop from left to right.
+Each time update the value in dp for left to right.
+4.Time Complexity : O(N^3)
 
 ❌Approach 0: Recursion (Here we will only understand why to not do using recursion)
 For that Lets first see the power of DP over recursion: if we do it by recursion then we have to make N! calls to cover all the permutations of N sized array and then to calculate points for each permutation we need O(N). So by recursion Time Complexity will be O(N!N)So now if N=20,then N! = 2.43 * 10^18 => N!N = 4.86 * 10^19and if we assume we can do 10^8 computations in 1sec then the above value of N!N goanna take approx. 3168 years to compute!! LOL!!
 And at the same time for DP the Time Complexity is N^3 = 8000 < 1sec
-
 From 3168 years to less than 1sec => I think this is more than enough to understand the power of DP.
-
-
 Approach 1 : Memoization
-```
 class Solution {
     public int maxCoins(int[] nums) {
         int n = nums.length;
@@ -153,10 +135,8 @@ class Solution {
         return ans;
     }     
 }
-```
 
 Approach2 : DP
-```
 class Solution {
     public int maxCoins(int[] nums) {
         int n = nums.length;
@@ -166,10 +146,10 @@ class Solution {
             arr[i] = nums[i-1];   //final padded array
         }  
         int dp[][] = new int[n+2][n+2];         
-        for(int window = 1;window<=n;window++){     // window size 		
-            for(int left = 1;left<=n-window+1;left++){    // left pointer 			
-                int right = left+window-1;               // right pointer 				
-                for(int i=left;i<=right;i++){           // iterate from left to right 				
+        for(int window = 1;window<=n;window++){     // window size         
+            for(int left = 1;left<=n-window+1;left++){    // left pointer             
+                int right = left+window-1;               // right pointer                 
+                for(int i=left;i<=right;i++){           // iterate from left to right                 
                     dp[left][right] = Math.max(dp[left][right], (arr[left-1]*arr[i]*arr[right+1]) + dp[left][i-1] + dp[i+1][right]);                                     
                 }
             }
@@ -177,29 +157,24 @@ class Solution {
         return dp[1][n];
     }
 }
-```
 
----
+--------------------------------------------------------------------------------
 Refer to
 https://grandyang.com/leetcode/312/
 这道题提出了一种打气球的游戏，每个气球都对应着一个数字，每次打爆一个气球，得到的金币数是被打爆的气球的数字和其两边的气球上的数字相乘，如果旁边没有气球了，则按1算，以此类推，求能得到的最多金币数。参见题目中给的例子，题意并不难理解。那么大家拿到题后，总是会习惯的先去想一下暴力破解法吧，这道题的暴力搜索将相当的复杂，因为每打爆一个气球，断开的地方又重新挨上，所有剩下的气球又要重新遍历，这使得分治法不能 work，整个的时间复杂度会相当的高，不要指望可以通过 OJ。而对于像这种求极值问题，一般都要考虑用动态规划 Dynamic Programming 来做，维护一个二维动态数组 dp，其中 dp[i][j] 表示打爆区间 [i,j] 中的所有气球能得到的最多金币。题目中说明了边界情况，当气球周围没有气球的时候，旁边的数字按1算，这样可以在原数组两边各填充一个1，方便于计算。这道题的最难点就是找状态转移方程，还是从定义式来看，假如区间只有一个数，比如 dp[i][i]，那么计算起来就很简单，直接乘以周围两个数字即可更新。如果区间里有两个数字，就要算两次了，先打破第一个再打破了第二个，或者先打破第二个再打破第一个，比较两种情况，其中较大值就是该区间的 dp 值。假如区间有三个数呢，比如 dp[1][3]，怎么更新呢？如果先打破第一个，剩下两个怎么办呢，难道还要分别再遍历算一下吗？这样跟暴力搜索的方法有啥区别呢，还要 dp 数组有啥意思。所谓的状态转移，就是假设已知了其他状态，来推导现在的状态，现在是想知道 dp[1][3] 的值，那么如果先打破了气球1，剩下了气球2和3，若之前已经计算了 dp[2][3] 的话，就可以使用其来更新 dp[1][3] 了，就是打破气球1的得分加上 dp[2][3]。那假如先打破气球2呢，只要之前计算了 dp[1][1] 和 dp[3][3]，那么三者加起来就可以更新 dp[1][3]。同理，先打破气球3，就用其得分加上 dp[1][2] 来更新 dp[1][3]。说到这里，是不是感觉豁然开朗了 ^.^
 
 那么对于有很多数的区间 [i, j]，如何来更新呢？现在是想知道 dp[i][j] 的值，这个区间可能比较大，但是如果知道了所有的小区间的 dp 值，然后聚沙成塔，逐步的就能推出大区间的 dp 值了。还是要遍历这个区间内的每个气球，就用k来遍历吧，k在区间 [i, j] 中，假如第k个气球最后被打爆，那么此时区间 [i, j] 被分成了三部分，[i, k-1]，[k]，和 [k+1, j]，只要之前更新过了 [i, k-1] 和 [k+1, j] 这两个子区间的 dp 值，可以直接用 dp[i][k-1] 和 dp[k+1][j]，那么最后被打爆的第k个气球的得分该怎么算呢，你可能会下意识的说，就乘以周围两个气球被 nums[k-1] * nums[k] * nums[k+1]，但其实这样是错误的，为啥呢？dp[i][k-1] 的意义是什么呢，是打爆区间 [i, k-1] 内所有的气球后的最大得分，此时第 k-1 个气球已经不能用了，同理，第 k+1 个气球也不能用了，相当于区间 [i, j] 中除了第k个气球，其他的已经爆了，那么周围的气球只能是第 i-1 个，和第 j+1 个了，所以得分应为 nums[i-1] * nums[k] * nums[j+1]，分析到这里，状态转移方程应该已经跃然纸上了吧，如下所示：
-
 dp[i][j] = max(dp[i][j], nums[i - 1] * nums[k] * nums[j + 1] + dp[i][k - 1] + dp[k + 1][j])                 ( i ≤ k ≤ j )
 
 有了状态转移方程了，就可以写代码，下面就遇到本题的第二大难点了，区间的遍历顺序。一般来说，遍历所有子区间的顺序都是i从0到n，然后j从i到n，然后得到的 [i, j] 就是子区间。但是这道题用这种遍历顺序就不对，在前面的分析中已经说了，这里需要先更新完所有的小区间，然后才能去更新大区间，而用这种一般的遍历子区间的顺序，会在更新完所有小区间之前就更新了大区间，从而不一定能算出正确的dp值，比如拿题目中的那个例子 [3, 1, 5, 8] 来说，一般的遍历顺序是：
-
 [3] -> [3, 1] -> [3, 1, 5] -> [3, 1, 5, 8] -> [1] -> [1, 5] -> [1, 5, 8] -> [5] -> [5, 8] -> [8] 
 
 显然不是我们需要的遍历顺序，正确的顺序应该是先遍历完所有长度为1的区间，再是长度为2的区间，再依次累加长度，直到最后才遍历整个区间：
-
 [3] -> [1] -> [5] -> [8] -> [3, 1] -> [1, 5] -> [5, 8] -> [3, 1, 5] -> [1, 5, 8] -> [3, 1, 5, 8]
 
 这里其实只是更新了 dp 数组的右上三角区域，最终要返回的值存在 dp[1][n] 中，其中n是两端添加1之前数组 nums 的个数。参见代码如下：
 
 解法一：
-```
     class Solution {
         public:
         int maxCoins(vector<int>& nums) {
@@ -218,26 +193,21 @@ dp[i][j] = max(dp[i][j], nums[i - 1] * nums[k] * nums[j + 1] + dp[i][k - 1] + dp
             return dp[1][n];
         }
     };
-```
+对于题目中的例子
+[3, 1, 5, 8]，得到的dp数组如下：
 
-对于题目中的例子[3, 1, 5, 8]，得到的dp数组如下：
 
-
-```
 0 0 0 0 0 0
 0 3 30 159 167 0
 0 0 15 135 159 0
 0 0 0 40 48 0
 0 0 0 0 40 0
 0 0 0 0 0 0
-```
-
 
 这题还有递归解法，思路都一样，就是写法略有不同，参见代码如下：
 
 
 解法二：
-```
     class Solution {
         public:
         int maxCoins(vector<int>& nums) {
@@ -258,4 +228,170 @@ dp[i][j] = max(dp[i][j], nums[i - 1] * nums[k] * nums[j + 1] + dp[i][k - 1] + dp
             return res;
         }
     };
-```
+
+Refer to Deepseek
+当然可以。我们分三步走，从暴力递归（最符合直觉的“原生DFS”）开始，发现问题，再到记忆化搜索（带备忘录的DFS），最后提一下它与前面动态规划的关系。
+--------------------------------------------------------------------------------
+第一步：原生暴力递归（正着戳）
+最直接的思路是：当前有哪些气球，我就挨个戳一遍。
+戳破一个气球后，把它从数组中移除，递归处理剩下的数组。
+但这样写有两个致命缺点：
+1.数组动态变化：移除元素后，原本左右邻居的索引会变，很难维护“当前左右邻居是谁”。
+2.时间复杂度 O(n!)：排列数爆炸，完全不可行。
+由于代码冗长且极低效，实际面试中不会这样写，我就不贴这个版本了。
+--------------------------------------------------------------------------------
+第二步：更优雅的“原生分治 DFS”（倒着想）
+LeetCode 312 经典的原生 DFS 解法，思路是逆序思考：
+我不去想“第一个戳破谁”，而是想 “最后一个戳破谁”。
+如果区间 (left, right) 内最后一个被戳破的是气球 k，那么当它被戳破时，它的左右邻居一定是边界 left 和 right（这两个边界气球是虚拟的，值为 1，永远不会被戳破）。
+此时，(left, k) 和 (k, right) 变成两个完全独立的子问题。
+这就是分治 DFS，它不修改原数组，只通过左右边界来控制区间。
+纯递归版本（无记忆化）
+class Solution {
+    public int maxCoins(int[] inums) {
+        // 1. 构建新数组，首尾加 1
+        int n = inums.length;
+        int[] nums = new int[n + 2];
+        nums[0] = 1;
+        nums[n + 1] = 1;
+        for (int i = 0; i < n; i++) {
+            nums[i + 1] = inums[i];
+        }
+        
+        // 2. 调用分治 DFS，初始区间为 (0, n+1)
+        return dfs(nums, 0, n + 1);
+    }
+
+    // 计算开区间 (left, right) 内所有气球被戳破能得到的最大硬币数
+    private int dfs(int[] nums, int left, int right) {
+        // 区间内没有气球了
+        if (left + 1 >= right) {
+            return 0;
+        }
+
+        int max = 0;
+        // 枚举区间内最后一个被戳破的气球 k
+        for (int k = left + 1; k < right; k++) {
+            // 当前得分：戳破 k 时，左右邻居是 left 和 right
+            int current = nums[left] * nums[k] * nums[right];
+            // 加上戳破左右两个子区间能得到的最大值
+            int total = current + dfs(nums, left, k) + dfs(nums, k, right);
+            max = Math.max(max, total);
+        }
+        return max;
+    }
+}
+这段代码的问题
+这个纯递归版本，虽然逻辑清晰，但存在大量重复计算。
+例如区间 (0, 4) 会递归计算 (0, 2) 和 (2, 4)，而其他的递归路径也可能再次计算 (0, 2)。它的时间复杂度是指数级的，在 LeetCode 上会严重超时（TLE）。
+
+第三步：带记忆化的 DFS（自顶向下 DP）
+既然有重复子问题，我们加一个 memo 数组 来缓存已经计算过的区间结果，把指数级复杂度优化到 O(n³)。
+import java.util.Arrays;
+
+class Solution {
+    public int maxCoins(int[] inums) {
+        int n = inums.length;
+        int[] nums = new int[n + 2];
+        nums[0] = 1;
+        nums[n + 1] = 1;
+        for (int i = 0; i < n; i++) {
+            nums[i + 1] = inums[i];
+        }
+
+        // 记忆化数组，初始化为 -1 表示未计算
+        int[][] memo = new int[n + 2][n + 2];
+        for (int[] row : memo) {
+            Arrays.fill(row, -1);
+        }
+
+        return dfs(nums, 0, n + 1, memo);
+    }
+
+    private int dfs(int[] nums, int left, int right, int[][] memo) {
+        if (left + 1 >= right) {
+            return 0;
+        }
+
+        // 命中缓存直接返回
+        if (memo[left][right] != -1) {
+            return memo[left][right];
+        }
+
+        int max = 0;
+        for (int k = left + 1; k < right; k++) {
+            int current = nums[left] * nums[k] * nums[right];
+            int total = current + dfs(nums, left, k, memo) + dfs(nums, k, right, memo);
+            max = Math.max(max, total);
+        }
+
+        // 存入缓存
+        memo[left][right] = max;
+        return max;
+    }
+}
+复杂度
+- 时间复杂度：O(n³)。总共有 O(n²) 个不同的 (left, right) 状态，每个状态内部遍历 O(n) 个 k。
+- 空间复杂度：O(n²)，用于存储 memo 数组。
+
+与之前自底向上 DP 的对比
+你之前看到的 dp 二维数组迭代法（按区间长度递增）和这里的记忆化搜索，本质上是同一个状态转移方程：
+dp[left][right] = max( nums[left] * nums[k] * nums[right] + dp[left][k] + dp[k][right] )
+- 记忆化搜索：自顶向下，从大区间递归分解到小区间，靠递归栈推进。
+- 迭代 DP：自底向上，先算长度小的区间，再算长度大的区间。
+两者时间复杂度完全一样，面试时你选自己最顺手的一种写即可。不过从理解题目角度来说，分治 DFS 是最容易想到的原生思路，背下这个递归模板后，加个 memo 就是满分答案了。
+
+第四步：自底向上 DP
+这道题的难点在于，戳破一个气球后，它的左右邻居会变成相邻，这导致直接思考“先戳破哪个”时，子问题会相互依赖。
+核心的解题技巧是逆向思维：不先想第一个戳破谁，而是想最后一个戳破谁。
+当区间 (i, j) 内只剩下最后一个气球 k 时，它的左右邻居就是区间边界 i 和 j，这两个气球是“虚拟”且不会被戳破的。此时，(i, k) 和 (k, j) 就变成了两个完全独立、互不影响的子问题。
+这种解法在官方题解中被称为“动态规划套路解决戳气球问题”。
+代码实现 (Java)
+class Solution {
+    public int maxCoins(int[] inums) {
+        // 1. 创建新数组，在首尾添加虚拟气球 1，简化边界处理
+        int[] nums = new int[inums.length + 2];
+        int n = 1;
+        for (int x : inums) {
+            if (x > 0) {
+                nums[n++] = x; // 跳过值为0的气球，它们不影响乘积
+            }
+        }
+        nums[0] = nums[n++] = 1; // 首尾置为1
+
+        // 2. dp[i][j] 表示戳破 (i, j) 开区间内所有气球能获得的最大硬币数
+        int[][] dp = new int[n][n];
+
+        // 3. 自底向上计算
+        // k 代表区间长度，从2开始，因为长度至少为2（两个边界1之间才有一个气球）
+        for (int len = 2; len < n; len++) {
+            // left 是区间左边界
+            for (int left = 0; left < n - len; left++) {
+                int right = left + len; // 区间右边界
+                // i 是 (left, right) 区间内最后一个被戳破的气球
+                for (int i = left + 1; i < right; i++) {
+                    // 状态转移方程
+                    int coins = nums[left] * nums[i] * nums[right] 
+                                + dp[left][i] + dp[i][right];
+                    dp[left][right] = Math.max(dp[left][right], coins);
+                }
+            }
+        }
+        // 最终答案是戳破 (0, n-1) 这个开区间内所有气球的最大硬币数
+        return dp[0][n - 1];
+    }
+}
+复杂度分析
+- 时间复杂度: O(n³)，其中 n 是气球总数。代码有三层循环，分别遍历区间长度、左边界和区间内的最后一个气球。
+- 空间复杂度: O(n²)，用于存储 dp 二维数组。
+解法总结
+这里的关键是状态的定义和转移：
+1.状态定义：dp[i][j] 表示在开区间 (i, j) 内的所有气球被戳破后能获得的最大硬币数。这里的 i 和 j 本身是“虚拟”气球（值为1），不参与戳破。
+2.状态转移：对于区间 (i, j)，假设最后一个被戳破的气球是 k。那么戳破它时，它的左右邻居分别是 i 和 j，因此得到的硬币是 nums[i] * nums[k] * nums[j]。
+3.子问题独立性：此时，(i, k) 和 (k, j) 两个子问题互不影响，可以独立求解。
+4.计算顺序：由于计算长区间依赖于更短的子区间，所以代码采用自底向上的方式，按区间长度从小到大进行计算。
+
+
+Refer to
+L2019.The Score of Students Solving Math Expression (Ref.L227,L241)
+L2232.Minimize Result by Adding Parentheses to Expression (Ref.L2019)
