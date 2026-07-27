@@ -1,7 +1,5 @@
-
 https://leetcode.com/problems/minimum-size-subarray-sum/
-Given an array of positive integers nums and a positive integer target, return the minimal length of a contiguous subarray [numsl, numsl+1, ..., numsr-1, numsr] of which the sum is greater than or equal to target. If
-there is no such subarray, return 0 instead.
+Given an array of positive integers nums and a positive integer target, return the minimal length of a contiguous subarray [numsl, numsl+1, ..., numsr-1, numsr] of which the sum is greater than or equal to target. If there is no such subarray, return 0 instead.
 
 Example 1:
 Input: target = 7, nums = [2,3,1,2,4,3]
@@ -17,10 +15,10 @@ Input: target = 11, nums = [1,1,1,1,1,1,1,1]
 Output: 0
 
 Constraints:
-- 1 <= target <= 109
-- 1 <= nums.length <= 105
-- 1 <= nums[i] <= 104
- Follow up: If you have figured out the O(n)solution, try coding another solution of which the time complexity is O(n log(n)).
+- 1 <= target <= 10^9
+- 1 <= nums.length <= 10^5
+- 1 <= nums[i] <= 10^4
+ Follow up: If you have figured out the O(n) solution, try coding another solution of which the time complexity is O(n log(n)).
 --------------------------------------------------------------------------------
 Solution 1: Brute Force (2022-09-07, 10min)
 class Solution { 
@@ -257,6 +255,62 @@ Time and Space Complexity
 The time complexity of the code is O(n), where n is the length of the input list nums. This is because there are two pointers i and j, both of which travel across the list at most once. The inner while loop only increases j and decreases the sum s until the sum is less than the target, but j can never be increased more than n times throughout the execution of the algorithm. Therefore, each element is processed at most twice, once when it is added to s and once when it is subtracted, leading to a linear time complexity.
 The space complexity of the code is O(1), which means it requires a constant amount of additional space. This is because the algorithm only uses a fixed number of single-value variables (n, ans, s, j, i, x) and does not utilize any data structures that grow with the size of the input.
 
+Refer to Deepseek
+这道题 (LeetCode 209) 是滑动窗口 (Sliding Window) 系列里最经典、最基础的一道题，难度为 Medium。
+因为数组里的元素全是正整数，所以滑动窗口具有单调性：窗口向右扩张时，和一定增加；窗口从左收缩时，和一定减少。这让我们可以用双指针在 O(n) 时间内找到最小的合法窗口。
+--------------------------------------------------------------------------------
+Java 代码实现
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int left = 0;
+        int sum = 0;
+        int minLen = Integer.MAX_VALUE;
+        
+        // 1. 右指针向右移动，不断扩张窗口
+        for (int right = 0; right < nums.length; right++) {
+            sum += nums[right];
+            
+            // 2. 只要当前窗口的和 >= target，就尝试收缩左边界
+            // 目的是找到以 right 为结尾的最短合法窗口
+            while (sum >= target) {
+                // 更新最小长度
+                minLen = Math.min(minLen, right - left + 1);
+                // 收缩左边界，减去离开窗口的元素
+                sum -= nums[left];
+                left++;
+            }
+        }
+        
+        // 如果 minLen 没有被更新过，说明不存在这样的子数组
+        return minLen == Integer.MAX_VALUE ? 0 : minLen;
+    }
+}
+示例演示
+输入：target = 7, nums = [2, 3, 1, 2, 4, 3]
+- right=0, sum=2：不满足，继续扩。
+- right=1, sum=5：不满足，继续扩。
+- right=2, sum=6：不满足，继续扩。
+- right=3, sum=8：满足！[2,3,1,2] 长度 4。收缩左边界，去掉 2，sum=6，left=1。
+- right=4, sum=10：满足！[3,1,2,4] 长度 4。收缩，去掉 3，sum=7，left=2。此时 [1,2,4] 长度 3，依然满足，继续收缩，去掉 1，sum=6，left=3。
+- right=5, sum=9：满足！[2,4,3] 长度 3。收缩，去掉 2，sum=7，left=4。此时 [4,3] 长度 2，依然满足，继续收缩，去掉 4，sum=3，left=5。
+- 最终 minLen 被更新为 2，答案是 2（子数组 [4,3]）。
+--------------------------------------------------------------------------------
+复杂度分析
+- 时间复杂度：O(n)。虽然有个 while 循环，但 left 和 right 各自最多只走 n 步，元素进出窗口各一次，整体是 O(2n)，即 O(n)。
+- 空间复杂度：O(1)，只使用了几个变量。
+--------------------------------------------------------------------------------
+与之前同类型题目的横向对比（建立刷题网络）
+我们刚做完 LeetCode 1438 (固定差)、2779 (最大美丽度) 和 2294 (分区)，现在做 209，正好可以帮你把滑动窗口这一大类题型的思维框架彻底打通：
+题目窗口合法性条件目标窗口调整逻辑LeetCode 209 (本题)窗口内元素和 >= target找到最小长度满足条件时，不断收缩左边界，直到条件不满足，寻找最短。LeetCode 2779 (最大美丽度)窗口内 max - min <= 2*k找到最大长度不满足条件时，移动左边界，满足条件时更新最大值（滑动窗口标准形态）。LeetCode 1438 (固定差)窗口内 max - min <= limit找到最大长度不满足条件时，移动左边界（需要配合单调队列取最值）。LeetCode 2294 (分区数组)分区内 当前值 - 起点 <= k最小分区数一旦不满足，重置左指针到当前元素（起点固定，贪心扩展，不用逐个回退）。
+--------------------------------------------------------------------------------
+关键总结（回答隐含的“易错点”）
+1.为什么能用滑动窗口？ 因为 全是正数。如果数组里有负数，窗口收缩时和不一定减少，滑窗逻辑就失效了（那就得用前缀和 + 二分查找）。
+2.while 和 if 的区别？ 必须用 while。因为即使收缩了一次后窗口和依然 >= target，我们还要继续收缩，直到找到以当前 right 结尾的最短长度。
+3.初始化 minLen 为什么是 Integer.MAX_VALUE？ 因为我们要取最小值，初始给一个很大的数，最后如果没被更新，说明找不到答案。
+这道题是所有滑窗题的“老祖宗”，牢牢记住 “右扩左缩，满足条件就收紧左边界” 的口诀，后续遇到变种滑窗（如 1438、2779）你就能一眼看穿了。
+
+
 Refer to
 L862.Shortest Subarray with Sum at Least K (Ref.L209,L1425)
 L704.Binary Search
+L1658.Minimum Operations to Reduce X to Zero (Ref.L918,L1423)
