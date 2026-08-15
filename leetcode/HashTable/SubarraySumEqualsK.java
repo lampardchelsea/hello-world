@@ -1,202 +1,3 @@
-/**
- * Refer to
- * https://leetcode.com/problems/subarray-sum-equals-k/description/
- * Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.
-    Example 1:
-    Input:nums = [1,1,1], k = 2
-    Output: 2
-    Note:
-    The length of the array is in range [1, 20,000].
-    The range of numbers in the array is [-1000, 1000] and the range of the integer k is [-1e7, 1e7].
- * 
- * Solution
- * https://leetcode.com/problems/subarray-sum-equals-k/solution/#approach-1-brute-force-time-limit-exceeded
- *
- * Complexity Analysis
- * Time complexity : O(n^2)
-   Considering every possible subarray takes O(n^2)time. 
-   Finding out the sum of any subarray takes O(1) time after the initial processing of O(n) 
-   for creating the cumulative sum array.
-   Space complexity : O(n). Cumulative sum array sumsum of size n+1 is used.
-*/
-
-// Solution 1: preSum way
-/**
- Approach #2 Using Cummulative sum [Accepted]
- Algorithm
- Instead of determining the sum of elements everytime for every new subarray considered, we can make use of a 
- cumulative sum array , sum. Then, in order to calculate the sum of elements lying between two indices, we 
- can subtract the cumulative sum corresponding to the two indices to obtain the sum directly, instead of 
- iterating over the subarray to obtain the sum.
- In this implementation, we make use of a cumulative sum array, sum, such that sum[i] is used to 
- store the cumulative sum of nums array upto the element corresponding to the (i-1)th index. Thus, to 
- determine the sum of elements for the subarray nums[i:j], we can directly use sum[j+1] - sum[i].
-*/
-class Solution {
-    public int subarraySum(int[] nums, int k) {
-        if(nums == null || nums.length == 0) {
-            return 0;
-        }
-        // Create preSum array
-        int[] sum = new int[nums.length + 1];
-        for(int i = 1; i <= nums.length; i++) {
-            sum[i] = sum[i - 1] + nums[i - 1];
-        }
-        int count = 0;
-        for(int start = 0; start < nums.length; start++) {
-            for(int end = start + 1; end <= nums.length; end++) {
-                if(sum[end] - sum[start] == k) {
-                    count++;
-                }
-            }
-        }
-        return count;
-    }
-}
-
-
-// Solution 2: 
-/**
- Approach #3 Without space [Accepted]
- Algorithm
- Instead of considering all the startstart and endend points and then finding the sum for each subarray 
- corresponding to those points, we can directly find the sum on the go while considering different end
- points. i.e. We can choose a particular start point and while iterating over the end points, 
- we can add the element corresponding to the end point to the sum formed till now. Whenver the sum
- equals the required kk value, we can update the count value. We do so while iterating over all 
- the end indices possible for every start index. Whenver, we update the start index, we need to 
- reset the sum value to 0.
- Complexity Analysis
-
-Time complexity : O(n^2). We need to consider every subarray possible
-Space complexity : O(1) Constant space is used.
-*/
-class Solution {
-    public int subarraySum(int[] nums, int k) {
-        int count = 0;
-        for(int start = 0; start < nums.length; start++) {
-            int sum = 0;
-            for(int end = start; end < nums.length; end++) {
-                sum += nums[end];
-                if(sum == k) {
-                    count++;
-                }                
-            }
-        }
-        return count;
-    }
-}
-
-// Solution 3: HashMap
-/**
- * Approach #4 Using hashmap [Accepted]
-   Algorithm
-   The idea behind this approach is as follows: If the cumulative sum(represented by sum[i] for sum upto ith index) 
-   upto two indices is the same, the sum of the elements lying in between those indices is zero. Extending the same 
-   thought further, if the cumulative sum upto two indices, say i and j is at a difference of k 
-   i.e. if sum[i] - sum[j] = k, the sum of elements lying between indices i and j is k.
-   Based on these thoughts, we make use of a hashmap which is used to store the cumulative sum upto all the 
-   indices possible along with the number of times the same sum occurs. We store the data in the form: 
-   (sum_i, no. of occurences of sum_i) We traverse over the array nums and keep on finding the cumulative sum. 
-   Every time we encounter a new sum, we make a new entry in the hashmap corresponding to that sum. If the same 
-   sum occurs again, we increment the count corresponding to that sum in the hashmap. 
-   Further, for every sum encountered, we also determine the number of times the sum k has occured already, 
-   since it will determine the number of times a subarray with sum k has occured upto the current index. 
-   We increment the count by the same amount.
-   After the complete array has been traversed, the count gives the required result.
-   Complexity Analysis
-   Time complexity : O(n) The entire nums array is traversed only once.
-   Space complexity : O(n) Hashmap map can contain upto nn distinct entries in the worst case.
-*/
-class Solution {
-    public int subarraySum(int[] nums, int k) {
-        int count = 0;
-        int sum = 0;
-        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-        // Why it is necessary to put (0,1) in the map before the loop. { map.put(0,1)} ?
-        // consider the case k = 3 and nums = [3]
-        map.put(0, 1);
-        for(int i = 0; i < nums.length; i++) {
-            sum += nums[i];
-            if(map.containsKey(sum - k)) {
-                count += map.get(sum - k);
-            }
-            map.put(sum, map.getOrDefault(sum, 0) + 1);
-        }
-        return count;
-    }
-}
-
-
-// Why does hashmap + presum solution work ?
-// Refer to
-// https://leetcode.com/problems/subarray-sum-equals-k/discuss/102106/Java-Solution-PreSum-+-HashMap/172014
-// Some comments on "Why does this work?"
-class Solution {
-    public int subarraySum(int[] nums, int k) {
-        // Edge cases
-        if(nums.length == 0)    return 0;
-        
-        // Sliding window -- No, contains negative number
-        // hashmap + preSum
-        /*
-            1. Hashmap<sum[0,i - 1], frequency>
-            2. sum[i, j] = sum[0, j] - sum[0, i - 1]    --> sum[0, i - 1] = sum[0, j] - sum[i, j]
-                   k           sum      hashmap-key     -->  hashmap-key  =  sum - k
-            3. now, we have k and sum.  
-                  As long as we can find a sum[0, i - 1], we then get a valid subarray
-                 which is as long as we have the hashmap-key,  we then get a valid subarray
-            4. Why don't map.put(sum[0, i - 1], 1) every time ?
-                  if all numbers are positive, this is fine
-                  if there exists negative number, there could be preSum frequency > 1
-        */
-        HashMap<Integer, Integer> map = new HashMap<>();
-        int sum = 0;
-        int result = 0;
-        map.put(0, 1);
-        for(int cur : nums) {
-            sum += cur;
-            if(map.containsKey(sum - k))  // there exist a key, that [hashmap-key  =  sum - k]
-                result += map.get(sum - k);
-            map.put(sum, map.getOrDefault(sum, 0) + 1);
-        }
-        return result; 
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 https://leetcode.com/problems/subarray-sum-equals-k/
 Given an array of integers nums and an integer k, return the total number of subarrays whose sum equals to k.
@@ -396,10 +197,77 @@ A harder problem
 https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/
 https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/discuss/803353/java-solution-with-detailed-explanation
 
+Refer to Deepseek
+这道题 (LeetCode 560) 和刚才的 862 非常相似——数组里都有负数，因此无法用双指针滑动窗口。但它们的目标完全不同，这就决定了数据结构的差异：
+- 862 (Shortest Subarray)：要找最短的长度，所以需要在满足条件时比较索引远近，此时需要单调队列来维护候选起点的"顺序"。
+- 560 (Subarray Sum Equals K)：要找等于 K 的子数组个数，我们只关心"数量"，不关心长度，此时只需要哈希表 (HashMap) 来记录前缀和出现的"次数"。
+因为负数存在，一旦当前前缀和变大或变小，我们没法像全是正数时那样通过移动左指针来"纠正"窗口，所以必须依赖前缀和公式来精准命中。
+--------------------------------------------------------------------------------
+Java 代码实现
+import java.util.HashMap;
+import java.util.Map;
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        // 1. 哈希表：key 是前缀和，value 是该前缀和出现的次数
+        Map<Integer, Integer> prefixSumCount = new HashMap<>();
+        // 重要初始化：前缀和为 0 的情况出现了一次（表示空前缀）
+        // 这是为了处理那些从数组索引 0 开始就满足 sum == k 的子数组
+        prefixSumCount.put(0, 1); 
+        
+        int currentSum = 0;
+        int count = 0;
+        
+        for (int num : nums) {
+            // 2. 累加当前前缀和
+            currentSum += num;
+            
+            // 3. 核心公式：若存在一个之前的 prefixSum，使得 currentSum - prefixSum == k
+            // 即 prefixSum == currentSum - k
+            int target = currentSum - k;
+            if (prefixSumCount.containsKey(target)) {
+                // 如果存在，说明从这些前缀和对应的位置到当前位置之间，有子数组和为 k
+                count += prefixSumCount.get(target);
+            }
+            
+            // 4. 将当前前缀和存入（或更新）哈希表，供后续元素使用
+            prefixSumCount.put(currentSum, prefixSumCount.getOrDefault(currentSum, 0) + 1);
+        }
+        
+        return count;
+    }
+}
+--------------------------------------------------------------------------------
+图解示例（感受哈希表的作用）
+输入：nums = [1, 2, 3], k = 3
+步骤遍历元素当前前缀和 currentSum目标 currentSum - k哈希表中命中？动作累计结果 count0(初始化)0--放入 {0:1}01111 - 3 = -2否 (不存在)放入 {0:1, 1:1}02233 - 3 = 0是 (存在1次)count += 1；放入 {0:1, 1:1, 3:1}1 (子数组 [1,2])3366 - 3 = 3是 (存在1次)count += 1；放入 {0:1, 1:1, 3:1, 6:1}2 (子数组 [3])
+最终返回 2，完美命中。
+--------------------------------------------------------------------------------
+针对负数情况的验证（哈希表为什么厉害？）
+输入：nums = [1, -1, 0], k = 0
+期望输出：3 (子数组 [1, -1], [0], [1,-1,0])
+- 遍历到 1：currentSum=1, target=1, 命中 0? 否，存入 {0:1, 1:1}。
+- 遍历到 -1：currentSum=0, target=0, 命中 {0:1}，count=1 (得到 [1,-1])。存入，{0:2, 1:1}。
+- 遍历到 0：currentSum=0, target=0, 命中 {0:2}，count += 2 (得到 [0] 和 [1,-1,0])。总 count=3。
+试想如果用双指针，面对负数 -1 和 0，左指针根本不知道何时该移动，哈希表完美解决了这个问题。
+--------------------------------------------------------------------------------
+与之前高频题目的横向对比（建立终极思维框架）
+来画一张清晰的进化图，帮你一秒判断用双指针、单调队列还是哈希表：
+题号数组特征查询目标核心数据结构原因LeetCode 209全是正数和 >= target 的最短长度双指针 (滑动窗口)窗口和具有单调性，可安全伸缩。LeetCode 1658全是正数从两边减到 x 的最少步数双指针 (滑动窗口)转化为找中间和为 total-x 的最长窗口，同样单调。LeetCode 862包含负数和 >= k 的最短长度前缀和 + 单调队列负数破坏单调性，必须保留所有候选起点并按前缀和排序，比较索引差。LeetCode 560 (本题)包含负数和 == k 的个数前缀和 + 哈希表只计数，不关心顺序/长度，直接用哈希表 O(1) 查出 current - k 出现过几次。
+总结一句话：
+刷到子数组和题目，先看有没有负数。
+- 没有负数 → 双指针。
+- 有负数，且找最短长度 → 单调队列。
+- 有负数，且数个数 → 哈希表。
+这就是你从 209 → 1658 → 862 → 560 一路刷下来积累的“条件反射”！
+
+
+
+
 Refer to
-L713.Subarray Product Less Than K
+L713.Subarray Product Less Than K (Ref.L325,L560,L2302)
 L724.Find Pivot Index
-L1074.Number of Submatrices That Sum to Target (Ref.L560)
-L1658.Minimum Operations to Reduce X to Zero (Ref.L1423)
+L1074.Number of Submatrices That Sum to Target (Ref.L560,L2556)
+L1658.Minimum Operations to Reduce X to Zero (Ref.L918,L1423)
 L2090.K Radius Subarray Averages (Ref.L560)
 L2219.Maximum Sum Score of Array (Ref.L560)
