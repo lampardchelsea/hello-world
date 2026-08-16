@@ -68,6 +68,55 @@ class Solution {
 Space Complexity: O(1) 
 Time Complexity: O(n)
 
+Refer to Deepseek
+这道题 (LeetCode 713) 是滑动窗口的又一经典应用，和 LeetCode 209 是亲兄弟。
+因为题目明确说了数组里 nums[i] 全是正数，所以乘积具有单调性（窗口右扩，乘积一定变大；左缩，乘积一定变小）。这让我们可以用标准的双指针滑动窗口，在 O(n) 时间内解决。
+--------------------------------------------------------------------------------
+核心解题公式（非常巧妙）
+对于每一个固定的右边界 right，我们通过收缩左边界 left，找到一个最大的窗口 [left, right]，使得窗口内所有元素的乘积 < k。
+此时，以 right 为结尾的、满足条件的子数组个数正好等于 right - left + 1。
+为什么？
+子数组必须连续且以 right 结尾。
+左端点可以是 left, left+1, ..., right，一共有 right - left + 1 种选择。
+因为当左端点 >= left 时，窗口只会更小，乘积只会更小（正数特性），所以全都满足条件。
+--------------------------------------------------------------------------------
+Java 代码实现
+class Solution {
+    public int numSubarrayProductLessThanK(int[] nums, int k) {
+        // 关键特判：如果 k <= 1，因为所有数 >= 1，任何非空子数组乘积都 >= 1，不可能 < k
+        if (k <= 1) return 0;
+        
+        int left = 0;
+        int product = 1;
+        int count = 0;
+        
+        for (int right = 0; right < nums.length; right++) {
+            product *= nums[right]; // 扩大窗口
+            
+            // 只要乘积不满足条件，就收缩左边界
+            while (product >= k) {
+                product /= nums[left];
+                left++;
+            }
+            
+            // 此时窗口 [left, right] 内的乘积一定 < k
+            // 累加以 right 为右端点的所有合法子数组数量
+            count += right - left + 1;
+        }
+        
+        return count;
+    }
+}
+--------------------------------------------------------------------------------
+图解示例
+输入：nums = [10, 5, 2, 6], k = 100
+步骤右指针 right操作窗口 [left, right]乘积循环后 left累加数量 right-left+1说明（以 right 结尾的子数组）10 (10)乘10[10]1001[10]21 (5)乘5[10,5]5002[10,5], [5]32 (2)乘2[10,5,2]100while循环：<br>去掉10→50, left=112 - 1 + 1 = 2<br>[5,2], [2]<br>(因为 [10,5,2] 不合法)43 (6)乘6[5,2,6]60133 - 1 + 1 = 3<br>[5,2,6], [2,6], [6]
+最终总数：1 + 2 + 2 + 3 = 8 ✅
+--------------------------------------------------------------------------------
+复杂度分析
+- 时间复杂度：O(n)。每个元素被 right 指针访问一次，被 left 指针移出一次。
+- 空间复杂度：O(1)。
+
 We can use Sliding Window to expand on right and shrink on left is because the given nums[i] is positive only as 1 <= nums[i] <= 1000, which means if multiple any new element will monopoly increasing, and divide any old element will monopoly decreasing, which match the usage scenario of Sliding Window.
 Refer to chatGPT
 Key Idea: Sliding Window (Two Pointers)
@@ -132,8 +181,8 @@ Edge Cases:
 1.k = 0 or 1: Return 0 since no subarray can have a product less than kkk.
 2.Single Element: Handle edge cases where the product is already less than kkk.
 
-
 Refer to
-L325.Maximum Size Subarray Sum Equals k (Ref.L560)
+L325.Maximum Size Subarray Sum Equals k (Ref.L523,L560,L713)
 L560.Subarray Sum Equals K
-L2302.Count Subarrays With Score Less Than K
+
+L2302.Count Subarrays With Score Less Than K (Ref.L713)
